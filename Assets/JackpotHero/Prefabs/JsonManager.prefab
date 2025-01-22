@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3373413751481668891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8310733718016577100}
+  - component: {fileID: 7343706027381266258}
+  m_Layer: 0
+  m_Name: JsonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8310733718016577100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373413751481668891}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7343706027381266258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373413751481668891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb345c0a2c93f50448b77e697c379e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_Info:
+    EquipWeaponCode: 0
+    EquipArmorCode: 0
+    EquipShoesCode: 0
+    EquipHatCode: 0
+    EquipAccessoriesCode: 0
+    CurrentHpRatio: 0
+    CurrentTirednessRatio: 0
+    Level: 0
+    StrengthLevel: 0
+    DurabilityLevel: 0
+    SpeedLevel: 0
+    ResilienceLevel: 0
+    LuckLevel: 0
+    Experience: 0
+    EquipmentGamblingLevel: 0
+    EquipmentInventory: 
+    CurrentFloor: 0
+    DetectNextFloorPoint: 0
+  E_Info:
+    PlayerReachFloor: 0
+    PlayerEarlyPoint: 0
+    EarlyStrengthLevel: 0
+    EarlyDurabilityLevel: 0
+    EarlySpeedLevel: 0
+    EarlyResilienceLevel: 0
+    EarlyLuckLevel: 0
+    EarlyHpLevel: 0
+    EarlyTirednessLevel: 0
+    EarlyExperience: 0
+    EarlyExperienceMagnification: 0
+    EquipmentSuccessionLevel: 0
+  O_Info:
+    MasterVolume: 0
+    BGMVolume: 0
+    SFXVolume: 0
+    UISFXVolume: 0
+    ScreenResolutionWidth: 0
+    IsFullScreen: 0
