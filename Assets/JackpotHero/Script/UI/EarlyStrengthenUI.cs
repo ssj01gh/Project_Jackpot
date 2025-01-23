@@ -95,7 +95,8 @@ public class EarlyStrengthenUI : MonoBehaviour
 
     public void EarlyStrengthenActive()
     {
-        EarlyInfo = JsonReadWriteManager.Instance.E_Info;
+        Debug.Log(JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint);
+        EarlyInfo = JsonReadWriteManager.Instance.GetCopyEarlyInfo();
         DetailTitleText.text = "";
         DetailText.text = "";
 
@@ -483,7 +484,7 @@ public class EarlyStrengthenUI : MonoBehaviour
 
     public void LoadPlayScene()//여기서 바뀐 EarlyData를 JsonManager에 넘겨야함
     {
-        JsonReadWriteManager.Instance.E_Info = EarlyInfo;
+        JsonReadWriteManager.Instance.E_Info = EarlyInfo;//JsonReadWriteManager에 값 복사
         LoadingScene.Instance.LoadAnotherScene("PlayScene");
     }
 }

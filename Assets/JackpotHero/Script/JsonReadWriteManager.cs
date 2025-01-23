@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using JetBrains.Annotations;
 
 public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManager>
 {
@@ -109,5 +110,18 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         }
         //불러오기
         O_Info = JsonUtility.FromJson<OptionInfo>(File.ReadAllText(path));
+    }
+
+    public PlayerInfo GetCopyPlayerInfo()
+    {
+        return JsonUtility.FromJson<PlayerInfo>(JsonUtility.ToJson(P_Info));
+    }
+    public EarlyStrengthenInfo GetCopyEarlyInfo()
+    {
+        return JsonUtility.FromJson<EarlyStrengthenInfo>(JsonUtility.ToJson(E_Info));
+    }
+    public OptionInfo GetCopyOptionInfo()
+    {
+        return JsonUtility.FromJson<OptionInfo>(JsonUtility.ToJson(O_Info));
     }
 }
