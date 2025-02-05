@@ -8,6 +8,7 @@ public class PlayerInfo
     public int EquipShoesCode;
     public int EquipHatCode;
     public int EquipAccessoriesCode;
+    public float ShieldAmount;
     public float CurrentHpRatio;
     public float CurrentTirednessRatio;
     public int Level;
@@ -21,6 +22,8 @@ public class PlayerInfo
     public int[] EquipmentInventory;
     public int CurrentFloor;
     public int DetectNextFloorPoint;
+    public int CurrentPlayerAction;
+    public int CurrentPlayerActionDetails;
 }
 
 [System.Serializable]

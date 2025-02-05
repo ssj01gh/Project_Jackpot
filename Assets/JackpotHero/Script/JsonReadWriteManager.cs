@@ -4,6 +4,14 @@ using UnityEngine;
 using System.IO;
 using JetBrains.Annotations;
 
+public enum PlayerCurrentState
+{
+    SelectAction,
+    Battle,
+    OtherEvent,
+    Rest
+}
+
 public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManager>
 {
     [HideInInspector]
@@ -12,6 +20,13 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     public EarlyStrengthenInfo E_Info;
     [HideInInspector]
     public OptionInfo O_Info;
+
+    protected int[] EarlyState_SDRSL = new int[8] { 0, 1, 2, 3, 4, 5, 5, 5 };
+    protected int[] EarlyState_HP = new int[8] { 0, 10, 20, 30, 40, 50, 50, 50 };
+    protected int[] EarlyState_STA = new int[8] { 0, 100, 200, 300, 400, 500, 500, 500 };
+    protected int[] EarlyState_EXP = new int[8] { 0, 30, 60, 90, 120, 150, 150, 150 };
+    protected float[] EarlyState_EXPMG = new float[8] { 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f, 1.25f, 1.25f };
+    protected int[] EarlyState_EquipInven = new int[8] { 4, 6, 8, 10, 12, 12, 12, 12 };
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -30,21 +45,22 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         
     }
     //이 함수는 게임을 새로 시작할때마다 계속 불러와질 예정
-    protected void InitPlayerInfo(bool IsRestartGame = false)
+    public void InitPlayerInfo(bool IsRestartGame = false)
     {
         string FileName = "PlayerInfo";
         string path = Application.persistentDataPath + "/" + FileName + ".json";
         if (!File.Exists(path) || IsRestartGame)//없으면 생성
         {
             //Player Equipment Setting
-            P_Info.EquipWeaponCode = 10000;
-            P_Info.EquipArmorCode = 20000;
-            P_Info.EquipShoesCode = 30000;
-            P_Info.EquipHatCode = 40000;
-            P_Info.EquipAccessoriesCode = 50000;
+            P_Info.EquipWeaponCode = 11001;
+            P_Info.EquipArmorCode = 21001;
+            P_Info.EquipHatCode = 31001;
+            P_Info.EquipShoesCode = 41001;
+            P_Info.EquipAccessoriesCode = 51001;
             //Player State Setting
             P_Info.CurrentHpRatio = 1f;
             P_Info.CurrentTirednessRatio = 1f;
+            P_Info.ShieldAmount = 0f;
             P_Info.Level = 0;
             P_Info.StrengthLevel = 0;
             P_Info.DurabilityLevel = 0;
@@ -57,6 +73,9 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             P_Info.EquipmentInventory = new int[12] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};//0이하는 인벤토리가 비어있는거임
             P_Info.CurrentFloor = 0;
             P_Info.DetectNextFloorPoint = 0;
+            //Player Current Action Type Setting
+            P_Info.CurrentPlayerAction = (int)PlayerCurrentState.SelectAction;
+            P_Info.CurrentPlayerActionDetails = 0;
 
             string classToJson = JsonUtility.ToJson(P_Info, true);
             File.WriteAllText(path, classToJson);
@@ -123,5 +142,51 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     public OptionInfo GetCopyOptionInfo()
     {
         return JsonUtility.FromJson<OptionInfo>(JsonUtility.ToJson(O_Info));
+    }
+
+    public float GetEarlyState(string EarlyType)
+    {
+        switch(EarlyType)
+        {
+            case "STR":
+                return EarlyState_SDRSL[E_Info.EarlyStrengthLevel];
+            case "DUR":
+                return EarlyState_SDRSL[E_Info.EarlyDurabilityLevel];
+            case "RES":
+                return EarlyState_SDRSL[E_Info.EarlyResilienceLevel];
+            case "SPD":
+                return EarlyState_SDRSL[E_Info.EarlySpeedLevel];
+            case "LUK":
+                return EarlyState_SDRSL[E_Info.EarlyLuckLevel];
+            case "HP":
+                return EarlyState_HP[E_Info.EarlyHpLevel];
+            case "STA":
+                return EarlyState_STA[E_Info.EarlyTirednessLevel];
+            case "EXP":
+                return EarlyState_EXP[E_Info.EarlyExperience];
+            case "EXPMG":
+                return EarlyState_EXPMG[E_Info.EarlyExperienceMagnification];
+            case "EQUIP":
+                return EarlyState_EquipInven[E_Info.EquipmentSuccessionLevel];
+        }
+        return 0;
+    }
+
+    private void OnApplicationQuit()
+    {
+        string FileName = "PlayerInfo";
+        string path = Application.persistentDataPath + "/" + FileName + ".json";
+        string classToJson = JsonUtility.ToJson(P_Info, true);
+        File.WriteAllText(path, classToJson);
+
+        FileName = "EarlyStrengthenInfo";
+        path = Application.persistentDataPath + "/" + FileName + ".json";
+        classToJson = JsonUtility.ToJson(E_Info, true);
+        File.WriteAllText(path, classToJson);
+
+        FileName = "OptionInfo";
+        path = Application.persistentDataPath + "/" + FileName + ".json";
+        classToJson = JsonUtility.ToJson(O_Info, true);
+        File.WriteAllText(path, classToJson);
     }
 }
