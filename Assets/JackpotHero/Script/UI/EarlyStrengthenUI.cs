@@ -95,7 +95,7 @@ public class EarlyStrengthenUI : MonoBehaviour
 
     public void EarlyStrengthenActive()
     {
-        Debug.Log(JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint);
+        //Debug.Log(JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint);
         EarlyInfo = JsonReadWriteManager.Instance.GetCopyEarlyInfo();
         DetailTitleText.text = "";
         DetailText.text = "";

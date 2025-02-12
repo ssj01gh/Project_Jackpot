@@ -155,5 +155,4 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         }
         return MonEquipmentStroage[EquipmentCode];
     }
-    
 }

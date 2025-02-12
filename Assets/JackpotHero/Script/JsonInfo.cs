@@ -24,6 +24,10 @@ public class PlayerInfo
     public int DetectNextFloorPoint;
     public int CurrentPlayerAction;
     public int CurrentPlayerActionDetails;
+    public float GiveDamage;
+    public float ReceiveDamage;
+    public float MostPowerfulDamage;
+    public float SpendEXP;
 }
 
 [System.Serializable]

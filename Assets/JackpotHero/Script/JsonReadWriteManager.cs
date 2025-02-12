@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using JetBrains.Annotations;
 
-public enum PlayerCurrentState
+public enum EPlayerCurrentState
 {
     SelectAction,
     Battle,
@@ -74,8 +74,13 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             P_Info.CurrentFloor = 0;
             P_Info.DetectNextFloorPoint = 0;
             //Player Current Action Type Setting
-            P_Info.CurrentPlayerAction = (int)PlayerCurrentState.SelectAction;
+            P_Info.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
             P_Info.CurrentPlayerActionDetails = 0;
+            //PlayerRecordSetting
+            P_Info.GiveDamage = 0f;
+            P_Info.ReceiveDamage = 0f;
+            P_Info.MostPowerfulDamage = 0f;
+            P_Info.SpendEXP = 0f;
 
             string classToJson = JsonUtility.ToJson(P_Info, true);
             File.WriteAllText(path, classToJson);

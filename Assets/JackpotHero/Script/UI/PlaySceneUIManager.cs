@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class PlaySceneUIManager : MonoBehaviour
     public EquipmentDetailInfoUI MEDI_UI;
     public BackGroundUI BG_UI;
     public BattleUI B_UI;
+    public GuideUI G_UI;
     public GameObject ActionSelectionUI;
     public GameObject EventUI;
     public GameObject RestUI;
@@ -30,27 +32,43 @@ public class PlaySceneUIManager : MonoBehaviour
     {
         //Detial Event = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
         B_UI.InitBattleUI();
-        ActionSelectionUI.SetActive(false);
         //EventUI.SetActive(false);
         //RestUI.SetActive(false);
         switch(PlayerAction)
         {
-            case (int)PlayerCurrentState.SelectAction:
+            case (int)EPlayerCurrentState.SelectAction:
+                ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
                 ActionSelectionUI.SetActive(true);
+                ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.5f).SetEase(Ease.OutBack);
                 break;
-            case (int)PlayerCurrentState.Battle:
+            case (int)EPlayerCurrentState.Battle:
+                if (ActionSelectionUI.activeSelf == true)
+                {
+                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+                }
                 B_UI.ActiveBattleUI();
                 break;
-            case (int)PlayerCurrentState.OtherEvent:
+            case (int)EPlayerCurrentState.OtherEvent:
+                if (ActionSelectionUI.activeSelf == true)
+                {
+                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+                }
                 //EventUI.SetActive(true);
                 break;
-            case (int)PlayerCurrentState.Rest:
+            case (int)EPlayerCurrentState.Rest:
+                if (ActionSelectionUI.activeSelf == true)
+                {
+                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+                }
                 //RestUI.SetActive(true);
                 break;
         }
     }
 
-    public void SetUI(PlayerManager PlayerMgr, MonsterManager MonMgr)
+    public void SetUI(PlayerManager PlayerMgr)
     {
         PE_UI.SetEquipmentImage(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
         PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
@@ -131,5 +149,12 @@ public class PlaySceneUIManager : MonoBehaviour
 
         MEDI_UI.gameObject.transform.position = ClickedButton.gameObject.transform.position;
         MEDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetMonEquipmentInfo(EquipCode), false);
+    }
+
+    public void PlayerDefeat()
+    {
+        PE_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { PE_UI.gameObject.SetActive(false); });
+        PSI_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { PSI_UI.gameObject.SetActive(false); });
+        CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
     }
 }
