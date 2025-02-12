@@ -16,9 +16,10 @@ public class MonsterManager : MonoBehaviour
     protected List<GameObject> ActiveMonsters = new List<GameObject>();
 
     protected MonSpawnPattern CurrentSpawnPattern;
+    public float CurrentSpawnPatternReward { protected set; get; }
     protected const int InAdvanceAmount = 3;
     public Monster CurrentTarget { protected set; get; }
-    public event System.Action<Monster> CurrentTargetChange;
+    public event System.Action<Monster> CurrentTargetChange;//배틀 UI에서 현재 몬스터 표시할려고 만든 event
     protected void Awake()
     {
         InitMonster();
@@ -88,6 +89,7 @@ public class MonsterManager : MonoBehaviour
                 if (PatternStorage[ThemeOfEvent][i].SpawnPatternID == DetailOfEvents)//겹치는게 있다면
                 {
                     CurrentSpawnPattern = PatternStorage[ThemeOfEvent][i];
+                    SetCurrentSpawnPatternReward();
                     PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
                     return;//함수 종료
                 }
@@ -113,7 +115,15 @@ public class MonsterManager : MonoBehaviour
             int Rand = Random.Range(0, PatternStorage[ThemeNum].Count);
             CurrentSpawnPattern = PatternStorage[ThemeNum][Rand];
         }
+        SetCurrentSpawnPatternReward();
         PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+    }
+
+    protected void SetCurrentSpawnPatternReward()
+    {
+        CurrentSpawnPatternReward = CurrentSpawnPattern.RewardEXPPoint;
+        float RandVariation = Random.Range(-(int)CurrentSpawnPattern.VariationEXPPoint, (int)CurrentSpawnPattern.VariationEXPPoint + 1);
+        CurrentSpawnPatternReward += RandVariation;
     }
 
     public void SpawnCurrentSpawnPatternMonster()
@@ -153,9 +163,38 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
+    //ActiveMonster중 CurrentHp가 0이하가 된놈은 없애기
+    public void CheckActiveMonstersRSurvive()
+    {
+        for(int i = ActiveMonsters.Count - 1; i >= 0; i-- )
+        {
+            if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
+            {
+                ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
+                ActiveMonsters[i].SetActive(false);
+                ActiveMonsters.RemoveAt(i);
+            }
+        }
+    }
+
+    public void InActiveAllActiveMonster()
+    {
+        for (int i = ActiveMonsters.Count - 1; i >= 0; i--)
+        {
+            ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
+            ActiveMonsters[i].SetActive(false);
+            ActiveMonsters.RemoveAt(i);
+        }
+    }
     public void SetCurrentTargetMonster(Monster ClickedMonster)//몬스터가 클릭이 되면 이 함수가 실행됨
     {
         //MainBattleUI가 켜저 있을때는 클릭이 안되야됨
+        if (ClickedMonster == null)
+        {
+            CurrentTarget = null;
+            return;
+        }
+
         Debug.Log("Monster!!!!!");
         CurrentTarget = ClickedMonster;
         CurrentTargetChange.Invoke(CurrentTarget.GetComponent<Monster>());

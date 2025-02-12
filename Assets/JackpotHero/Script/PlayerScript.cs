@@ -183,9 +183,98 @@ public class PlayerScript : MonoBehaviour
         //현재 인벤토리에 있는 모든 장비
         for(int i = 0; i < PlayerState.EquipmentInventory.Length; i++)
         {
-            AllEquipmentTier += EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipmentInventory[i]).EquipmentTier;
+            if(PlayerState.EquipmentInventory[i] >= 1)
+            {
+                AllEquipmentTier += EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipmentInventory[i]).EquipmentTier;
+            }
         }
 
         return AllEquipmentTier;
+    }
+
+    public void PlayerRecordGiveDamage(float GiveDamage)
+    {
+        PlayerState.GiveDamage += GiveDamage;
+        if(PlayerState.MostPowerfulDamage < GiveDamage)
+        {
+            PlayerState.MostPowerfulDamage = GiveDamage;
+        }
+    }
+
+    public void PlayerDamage(float DamagePoint)//여기서 싹 데미지 계산
+    {
+        PlayerState.ReceiveDamage += DamagePoint;//GameRecord
+
+        float RestDamage = 0;
+        if(PlayerState.ShieldAmount >= DamagePoint)
+        {
+            PlayerState.ShieldAmount -= DamagePoint;
+        }
+        else
+        {
+            RestDamage = DamagePoint - PlayerState.ShieldAmount;
+            PlayerState.ShieldAmount = 0;
+        }
+        PlayerTotalState.CurrentHP -= RestDamage;
+        PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
+    }
+
+    public void PlayerGetShield(float ShieldPoint)
+    {
+        PlayerState.ShieldAmount += ShieldPoint;
+    }
+
+    public void PlayerGetRest(float RestPoint)
+    {
+        PlayerTotalState.CurrentSTA += RestPoint;
+        if(PlayerTotalState.MaxSTA <= PlayerTotalState.CurrentSTA)
+        {
+            PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA;
+        }
+        PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
+    }
+
+    public bool SpendSTA(string ActionType)
+    {
+        switch(ActionType)
+        {
+            case "Attack":
+                if(PlayerTotalState.CurrentSTA < EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness)//피로도가 부족할때
+                {
+                    return false;
+                }
+                else
+                {
+                    PlayerTotalState.CurrentSTA -= EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness;
+                    PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
+                }
+                break;
+            case "Defense":
+                if (PlayerTotalState.CurrentSTA < EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness)//피로도가 부족할때
+                {
+                    return false;
+                }
+                else
+                {
+                    PlayerTotalState.CurrentSTA -= EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness;
+                    PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
+                }
+                break;
+        }
+        return true;
+    }
+
+    public void DefeatFromBattle()
+    {
+        int EarlyPoint = 0;
+        if (PlayerState.CurrentFloor > JsonReadWriteManager.Instance.E_Info.PlayerReachFloor)
+            JsonReadWriteManager.Instance.E_Info.PlayerReachFloor = PlayerState.CurrentFloor;
+
+        EarlyPoint += JsonReadWriteManager.Instance.E_Info.PlayerReachFloor / 5;
+        EarlyPoint += (int)(PlayerState.GiveDamage / 1000);
+        EarlyPoint += (int)(PlayerState.ReceiveDamage / 500);
+        EarlyPoint += (int)(PlayerState.MostPowerfulDamage / 100);
+        EarlyPoint += (int)(PlayerState.SpendEXP / 2000);
+        JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;
     }
 }

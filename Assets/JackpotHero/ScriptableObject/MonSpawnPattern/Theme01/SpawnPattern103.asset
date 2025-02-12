@@ -17,3 +17,5 @@ MonoBehaviour:
   - Weed
   - Weed
   - Weed
+  RewardEXPPoint: 150
+  VariationEXPPoint: 30

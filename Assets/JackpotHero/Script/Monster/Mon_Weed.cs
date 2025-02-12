@@ -15,4 +15,32 @@ public class Mon_Weed : Monster
     {
         base.Update();
     }
+
+    protected override void InitMonsterState()
+    {
+        base.InitMonsterState();
+        int RandNum = Random.Range(0, 2);
+        if(RandNum == 0)
+        {
+            MonsterCurrentState = (int)EMonsterActionState.Attack;
+        }
+        else if(RandNum == 1)
+        {
+            MonsterCurrentState = (int)EMonsterActionState.Defense;
+        }
+    }
+
+    public override void SetNextMonsterState()
+    {
+        base.SetNextMonsterState();
+        int RandNum = Random.Range(0, 2);
+        if (RandNum == 0)
+        {
+            MonsterCurrentState = (int)EMonsterActionState.Attack;
+        }
+        else if (RandNum == 1)
+        {
+            MonsterCurrentState = (int)EMonsterActionState.Defense;
+        }
+    }
 }

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 
 //이건 계속해서 늘어나야 할 enum일듯?
-public enum MonsterActionState
+public enum EMonsterActionState
 {
     Attack,
     Defense,
@@ -19,6 +20,7 @@ public class MonsterCurrentStatus
 
     public float MonsterCurrentATK;
     public float MonsterCurrentDUR;
+    public float MonsterCurrentLUK;
     public float MonsterCurrentSPD;
 }
 
@@ -35,6 +37,9 @@ public class Monster : MonoBehaviour
     [Header("DUR_MonsterState")]
     public float MonsterBaseDUR;
     public float DURVarianceAmount;
+    [Header("LUK_MonsterState")]
+    public float MonsterBaseLuk;
+    public float LUKVarianceAmount;
     [Header("SPD_MonsterState")]
     public float MonsterBaseSPD;
     public float SPDVarianceAmount;
@@ -68,8 +73,13 @@ public class Monster : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            // 충돌 검사//지금 이거는 MainBattle이 진행중일때도 바뀌어 버림 나중에 바꿔야함
+            //BattleTurn이 진행중일때 안클릭되게...
+            //필요없나? 몬스터의 턴일때는 CurrentTarget이 필요한 상황에서 전부다 CurrentTurnObject가 일을 하고.
+            //몬스터를 클릭하고 버튼을 누르는 순간 이미 모든 계산은 끝나있음.
+            //사람이 다른 몬스터를 클릭해도 결과는 바뀌지 않는다.
 
-            if (MonCollider != null && MonCollider.OverlapPoint(mousePosition))  // 충돌 검사//지금 이거는 MainBattle이 진행중일때도 바뀌어 버림 나중에 바꿔야함
+            if (MonCollider != null && MonCollider.OverlapPoint(mousePosition))
             {
                 MonsterClicked.Invoke(gameObject.GetComponent<Monster>());
             }
@@ -93,10 +103,14 @@ public class Monster : MonoBehaviour
         //SetDUR
         Rand = Random.Range(-(int)DURVarianceAmount, (int)DURVarianceAmount + 1);
         MonTotalStatus.MonsterCurrentDUR = MonsterBaseDUR + Rand;
+        //SetLUK
+        Rand = Random.Range(-(int)LUKVarianceAmount, (int)LUKVarianceAmount + 1);
+        MonTotalStatus.MonsterCurrentLUK = MonsterBaseLuk + Rand;
         //SetSPD
         Rand = Random.Range(-(int)SPDVarianceAmount, (int)SPDVarianceAmount + 1);
         MonTotalStatus.MonsterCurrentSPD = MonsterBaseSPD + Rand;
 
+        InitMonsterState();
         StartCoroutine(SpawnFadeIn());
     }
 
@@ -120,5 +134,35 @@ public class Monster : MonoBehaviour
     public MonsterCurrentStatus GetMonsterCurrentStatus()
     {
         return MonTotalStatus;
+    }
+
+    protected virtual void InitMonsterState()
+    {
+
+    }
+
+    public virtual void SetNextMonsterState()
+    {
+
+    }
+
+    public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
+    {
+        float RestDamage = 0;
+        if (MonTotalStatus.MonsterCurrentShieldPoint >= DamagePoint)
+        {
+            MonTotalStatus.MonsterCurrentShieldPoint -= DamagePoint;
+        }
+        else
+        {
+            RestDamage = DamagePoint - MonTotalStatus.MonsterCurrentShieldPoint;
+            MonTotalStatus.MonsterCurrentShieldPoint = 0;
+        }
+        MonTotalStatus.MonsterCurrentHP -= RestDamage;
+    }
+
+    public void MonsterGetShield(float ShieldPoint)
+    {
+        MonTotalStatus.MonsterCurrentShieldPoint = ShieldPoint;
     }
 }
