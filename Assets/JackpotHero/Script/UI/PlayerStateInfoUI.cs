@@ -34,10 +34,10 @@ public class PlayerStateInfoUI : MonoBehaviour
     public void SetPlayerStateUI(TotalPlayerState TPInfo, PlayerInfo PInfo)
     {
         //SetHpUI
-        PlayerHPText.text = TPInfo.CurrentHP.ToString() + " / " + TPInfo.MaxHP.ToString();
+        PlayerHPText.text = TPInfo.CurrentHP.ToString("F1") + " / " + TPInfo.MaxHP.ToString();
         PlayerHPSlider.value = PInfo.CurrentHpRatio;
         //SetSTAUI
-        PlayerSTAText.text = TPInfo.CurrentSTA.ToString() + " / " + TPInfo.MaxSTA.ToString();
+        PlayerSTAText.text = TPInfo.CurrentSTA.ToString("F1") + " / " + TPInfo.MaxSTA.ToString();
         PlayerSTASlider.value = PInfo.CurrentTirednessRatio;
         //SetSTRUI
         PlayerSTR.text = TPInfo.TotalSTR.ToString();

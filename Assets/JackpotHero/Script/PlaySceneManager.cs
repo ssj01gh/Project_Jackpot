@@ -9,16 +9,18 @@ public class PlaySceneManager : MonoBehaviour
     public PlayerManager PlayerMgr;
     public MonsterManager MonMgr;
     public BattleManager BattleMgr;
+    public EventManager EventMgr;
+    public RestManager RestMgr;
     // Start is called before the first frame update
 
     //여기 아래꺼가 바뀌면 CurrentStageProgressUI에서 쓰고있는 상수도 바꿔야함
     protected const float EngageMonster = 200f;
-    protected const float OccurEvent = 50f;
+    protected const float OccurEvent = 200f;//원래 50
     protected const int SearchNextFloorMaxPoint = 10;
     void Start()
     {
         PlayerMgr.InitPlayerManager();
-        UIMgr.SetUI(PlayerMgr);
+        UIMgr.SetUI();
         MonMgr.CurrentTargetChange += UIMgr.B_UI.DisplayMonsterDetailUI;
         //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
         StartCoroutine(CheckBackGroundMoveEnd());
@@ -75,7 +77,7 @@ public class PlaySceneManager : MonoBehaviour
         StartCoroutine(CheckBackGroundMoveEnd());
     }
 
-    IEnumerator CheckBackGroundMoveEnd()
+    IEnumerator CheckBackGroundMoveEnd(bool IsIgnoreWhile = false)
     {
         new WaitForSeconds(0.1f);
         while(true)
@@ -85,9 +87,13 @@ public class PlaySceneManager : MonoBehaviour
             {
                 break;
             }
+            if(IsIgnoreWhile == true)
+            {
+                break;
+            }
         }
         //현재 상태에 맞게 UI 조절
-        UIMgr.SetUI(PlayerMgr);
+        UIMgr.SetUI();
         //여기서 현재 action에 맞게 행동
         switch (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction)
         {
@@ -101,10 +107,11 @@ public class PlaySceneManager : MonoBehaviour
                 //이때에 몬스터를 딱 스폰해야됨//여기에서 DetailOfEvent들어오면 그거에 맞게 몬스터 스폰하기
                 break;
             case (int)EPlayerCurrentState.OtherEvent:
-                //EventUI.SetActive(true);
+                EventMgr.SetCurrentEvent(PlayerMgr.GetPlayerInfo());//현재 발생할 이벤트 설정
+                UIMgr.E_UI.ActiveEventUI(EventMgr);
                 break;
             case (int)EPlayerCurrentState.Rest:
-                //RestUI.SetActive(true);
+                //여기서는 즉각적으로 뭔가 결정할게 없긴함
                 break;
         }
         yield break;
@@ -138,8 +145,10 @@ public class PlaySceneManager : MonoBehaviour
         if (MonMgr.GetActiveMonsters().Count <= 0)
         {
             Debug.Log("Winner");
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience += (int)MonMgr.CurrentSpawnPatternReward;
-            UIMgr.B_UI.VictoryBattle((int)MonMgr.CurrentSpawnPatternReward);
+            PlayerMgr.GetPlayerInfo().EndOfAction();//여기서 Action, ActionDetail이 초기화, 현재 행동 초기화
+            int RewardEXP = PlayerMgr.GetPlayerInfo().ReturnEXPByEXPMagnification((int)MonMgr.CurrentSpawnPatternReward);
+            PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RewardEXP, true);
+            UIMgr.B_UI.VictoryBattle(RewardEXP);
             return;
             //다 죽으면 게임을 전투를 끝낸다.
         }
@@ -173,7 +182,7 @@ public class PlaySceneManager : MonoBehaviour
         }
         if(PlayerMgr.GetPlayerInfo().SpendSTA(ActionButtonType) == false)//피로도가 부족하면
         {
-            UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage);
+            UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_Battle);
             return;
         }
         //행동하기전에 감소해야 할것들은 여기서 할듯?
@@ -226,8 +235,8 @@ public class PlaySceneManager : MonoBehaviour
     public void PressVictoryButton()
     {
         UIMgr.B_UI.ClickVictoryButton();
-        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
-        UIMgr.SetUI(PlayerMgr);
+        UIMgr.GI_UI.ActiveGettingUI();
+        UIMgr.SetUI();
         JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
     }
 
@@ -242,20 +251,83 @@ public class PlaySceneManager : MonoBehaviour
     {
         GameObject obj;
         obj = BattleMgr.GetBattleTurn()[ButtonNum];
-        /*
-        if (ButtonNum == 0)//이걸 눌렀을때 CurrentTurnObject가 obj에 들어간다는건데(죽은얘가)
-        {
-            obj = BattleMgr.CurrentTurnObject;
-        }
-        else
-        {
-            obj = BattleMgr.GetBattleTurn()[ButtonNum - 1];
-        }
-        */
+
         if(obj.tag == "Monster")
         {
             MonMgr.SetCurrentTargetMonster(obj.GetComponent<Monster>());
         }
     }
+    //-----------------------------PressEventButton
+    public void PressEventSelectionButton(int SelectionType)
+    {
+        EventMgr.OccurEventBySelection(SelectionType, PlayerMgr.GetPlayerInfo(), UIMgr);//여기서 이벤트의 선택에 맞게 이벤트가 발생함
+        /*
+        UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
+        PlayerMgr.GetPlayerInfo().EndOfAction();//여기서 Action, ActionDetail이 초기화, 현재 행동 초기화
+        *///위에꺼 2개는 상태에 맞게 각각의 이벤트에서 발생해야 할듯 -> 장비를 얻고, EXP를 얻는건 괜찮지만 배틀로 가야한다면 대참사임
+        JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();//갱신
+        StartCoroutine(CheckBackGroundMoveEnd(true));//여기에 들어가면 현재 상태에 맞게 ui가 생성되고 없어지고 함
+        //UIMgr.SetUI(PlayerMgr);
+    }
+    //-------------------------------PressRestQualityButton
+    public void PressRestQualityButton(int Quality)
+    {
+        switch(Quality)//->퀄리티에 따라 피로도 소모 및 피로도 부족시에 안내 매세지 띄우기
+        {
+            case (int)EPlayerRestQuality.VeryBad:
+                break;
+            case (int)EPlayerRestQuality.Bad:
+                if(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 100)
+                {
+                    UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
+                    return;
+                }
+                break;
+            case (int)EPlayerRestQuality.Good:
+                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 250)
+                {
+                    UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
+                    return;
+                }
+                break;
+            case (int)EPlayerRestQuality.VeryGood:
+                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 350)
+                {
+                    UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
+                    return;
+                }
+                break;
+            case (int)EPlayerRestQuality.Perfect:
+                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 500)
+                {
+                    UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
+                    return;
+                }
+                break;
+        }
 
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Rest;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = Quality;
+        StartCoroutine(CheckBackGroundMoveEnd(true));
+    }
+    //-------------------------------PressRestTimeYesButton
+    public void SetRestMgrRestResult()
+    {
+        RestMgr.SetRestResult(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails);
+        UIMgr.R_UI.ActiveLeftTimeObject(RestMgr.IsPeacefulRest, RestMgr);
+    }
+    //----------------------------------SuddenAttackByMonsterInRestTIme
+    public void SuddenAttackByMonsterInRest(int RestQuality)
+    {
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
+        PlayerMgr.GetPlayerInfo().SetIsSuddenAttackAndRestQuality(RestQuality);//이거를 하면 PlayerScript에 습격당한 전투였다는 사실과 휴식의 품질이 저장됨
+        //위에서 저장한 정보를 가지고 EndOfAction에서 상태를 어떻게 변화 시킬지 정하면 될듯?
+        //전투가 일어날때 습격(몬스터가 먼저 한번씩 공격하게도)되게하기
+
+        StartCoroutine(CheckBackGroundMoveEnd(true));
+
+        //전투가 끝난 후에 CurrentPlayerAction과 CurrentPlayerActionDetail의 상태를 전의 상태로 되돌리고 
+        //SetUI()하는게 중요함
+    }
 }

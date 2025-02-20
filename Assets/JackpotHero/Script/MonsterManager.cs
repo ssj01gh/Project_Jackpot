@@ -94,6 +94,11 @@ public class MonsterManager : MonoBehaviour
                     return;//함수 종료
                 }
             }
+            //만약 겹치는게 없다면
+            int RandomPattern = Random.Range(0, PatternStorage[ThemeOfEvent].Count);
+            CurrentSpawnPattern = PatternStorage[ThemeOfEvent][RandomPattern];
+            SetCurrentSpawnPatternReward();
+            PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
         }
 
         //모든 테마를 다 포함한 랜덤값
