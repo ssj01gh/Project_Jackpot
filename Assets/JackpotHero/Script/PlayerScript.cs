@@ -46,6 +46,9 @@ public class PlayerScript : MonoBehaviour
     const float BasicHP = 100f;
     const float BasicSTA = 1000f;
 
+    public bool IsSuddenAttackInRestTime { protected set; get; } = false;
+    public int SaveRestQualityBySuddenAttack { protected set; get; } = 0;
+    
     void Start()
     {
         
@@ -113,7 +116,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
         //SetEXP
-        PlayerState.Experience = (int)JsonReadWriteManager.Instance.GetEarlyState("EXP");
+        PlayerState.Experience = (int)JsonReadWriteManager.Instance.GetEarlyState("EXP") + PlayerState.Experience;
         //SetCurrentForm
         List<int> CanActiveForm = new List<int>();
         if(JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel >= 7)
@@ -168,8 +171,20 @@ public class PlayerScript : MonoBehaviour
     {
         return PlayerTotalState;
     }
+    public void SetIsSuddenAttackAndRestQuality(int RestQuality)
+    {
+        IsSuddenAttackInRestTime = true;
+        SaveRestQualityBySuddenAttack = RestQuality;
+    }
 
-    public float GetAllEquipTier()
+    public void EndOfAction()//어떠한 행동이 끝났을떄
+    {
+        PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+        PlayerState.CurrentPlayerActionDetails = 0;
+        PlayerState.ShieldAmount = 0;
+    }
+
+    public float GetAllEquipTier()//플레이어의 장착한 장비와 인벤토리속 장비의 모든 티어의 합을 리턴함(EQUIP 7레벨 구현을 위함)
     {
         AllEquipmentTier = 0f;
 
@@ -192,7 +207,7 @@ public class PlayerScript : MonoBehaviour
         return AllEquipmentTier;
     }
 
-    public void PlayerRecordGiveDamage(float GiveDamage)
+    public void PlayerRecordGiveDamage(float GiveDamage)//몬스터에게 주는 데미지를 기록하기 위함
     {
         PlayerState.GiveDamage += GiveDamage;
         if(PlayerState.MostPowerfulDamage < GiveDamage)
@@ -201,7 +216,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void PlayerDamage(float DamagePoint)//여기서 싹 데미지 계산
+    public void PlayerDamage(float DamagePoint)//자신이 받는 데미지를 기록하고 데미지를 받아 쉴드와 체력이 깍일떄
     {
         PlayerState.ReceiveDamage += DamagePoint;//GameRecord
 
@@ -219,12 +234,12 @@ public class PlayerScript : MonoBehaviour
         PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
     }
 
-    public void PlayerGetShield(float ShieldPoint)
+    public void PlayerGetShield(float ShieldPoint)//쉴드가 생겼을떄
     {
         PlayerState.ShieldAmount += ShieldPoint;
     }
 
-    public void PlayerGetRest(float RestPoint)
+    public void PlayerGetRest(float RestPoint)//전투중 피로도 회복을 할떄
     {
         PlayerTotalState.CurrentSTA += RestPoint;
         if(PlayerTotalState.MaxSTA <= PlayerTotalState.CurrentSTA)
@@ -234,7 +249,33 @@ public class PlayerScript : MonoBehaviour
         PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
     }
 
-    public bool SpendSTA(string ActionType)
+    public int ReturnEXPByEXPMagnification(int EXPAmount)//경험치를 얻을때 경험치를 배수함
+    {
+        return (int)(EXPAmount * JsonReadWriteManager.Instance.GetEarlyState("EXPMG"));
+    }
+
+    public void SetPlayerEXPAmount(int EXPAmount, bool IsAlreadyCalculate = false)//경험치를 얻을때 IsAlreadyCalculate의 상태에 따라 경험치를 배수함
+    {
+        if(EXPAmount > 0)
+        {
+            if(IsAlreadyCalculate == true)//다른 곳에서 ReturnEXPByEXPMagnification으로 계산이 됬을때
+            {
+                PlayerState.Experience += EXPAmount;
+            }
+            else if(IsAlreadyCalculate == false)
+            {
+                PlayerState.Experience += ReturnEXPByEXPMagnification(EXPAmount);
+            }
+
+        }
+        else
+        {
+            PlayerState.Experience -= EXPAmount;
+            PlayerState.SpendEXP += EXPAmount;
+        }
+    }
+
+    public bool SpendSTA(string ActionType)//배틀중 행동을 하며 피로도를 쓸때 할때
     {
         switch(ActionType)
         {
@@ -264,7 +305,7 @@ public class PlayerScript : MonoBehaviour
         return true;
     }
 
-    public void DefeatFromBattle()
+    public void DefeatFromBattle()//전투에서 졌을떄
     {
         int EarlyPoint = 0;
         if (PlayerState.CurrentFloor > JsonReadWriteManager.Instance.E_Info.PlayerReachFloor)
@@ -276,5 +317,27 @@ public class PlayerScript : MonoBehaviour
         EarlyPoint += (int)(PlayerState.MostPowerfulDamage / 100);
         EarlyPoint += (int)(PlayerState.SpendEXP / 2000);
         JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;
+    }
+
+    public void RecoverHPNSTAByRest(float RecoverAmount)
+    {
+        if(PlayerState.CurrentHpRatio < 1f)
+        {
+            PlayerState.CurrentHpRatio += RecoverAmount;
+            if(PlayerState.CurrentHpRatio > 1f )
+            {
+                PlayerState.CurrentHpRatio = 1f;
+            }
+            PlayerTotalState.CurrentHP = PlayerTotalState.MaxHP * PlayerState.CurrentHpRatio;
+        }
+        if(PlayerState.CurrentTirednessRatio < 1f)
+        {
+            PlayerState.CurrentTirednessRatio += RecoverAmount;
+            if(PlayerState.CurrentTirednessRatio > 1f)
+            {
+                PlayerState.CurrentTirednessRatio = 1f;
+            }
+            PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA * PlayerState.CurrentTirednessRatio;
+        }
     }
 }

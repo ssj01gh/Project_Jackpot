@@ -8,6 +8,7 @@ public class BackGroundUI : MonoBehaviour
 {
     public float MovingTime;
     public GameObject[] BackGrounds;
+    public GameObject RestBackGround;
 
     protected List<float> TargetPosX = new List<float>();
     protected const float LeftBGSortPos = 1920f;
@@ -16,6 +17,7 @@ public class BackGroundUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
@@ -74,5 +76,10 @@ public class BackGroundUI : MonoBehaviour
         IsMoveEnd = true;
         yield break;
         //yield return null;
+    }
+
+    public void SetRestBackGround(bool BackGroundState)
+    {
+        RestBackGround.SetActive(BackGroundState);
     }
 }

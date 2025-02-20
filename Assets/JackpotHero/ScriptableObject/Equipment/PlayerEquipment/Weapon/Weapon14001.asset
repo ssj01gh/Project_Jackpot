@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83fe01e9704a504cb7683190a5b26ed, type: 3}
+  m_Name: Weapon14001
+  m_EditorClassIdentifier: 
+  EquipmentType: 1
+  EquipmentTier: 4
+  EquipmentCode: 1
+  EquipmentName: "\uBAA9\uAC80"
+  SpendTiredness: 10
+  EquipmentSlots:
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 2
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 2
+  EquipmentImage: {fileID: 21300000, guid: af28b778a9416e746a6148ceb06eea2b, type: 3}
+  AddSTRAmount: 0
+  AddDURAmount: 0
+  AddRESAmount: 0
+  AddSPDAmount: -5
+  AddLUKAmount: 0
+  AddHPAmount: 0
+  AddTirednessAmount: 0

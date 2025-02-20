@@ -12,6 +12,15 @@ public enum EPlayerCurrentState
     Rest
 }
 
+public enum EPlayerRestQuality
+{
+    VeryBad,
+    Bad,
+    Good,
+    VeryGood,
+    Perfect
+}
+
 public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManager>
 {
     [HideInInspector]
@@ -27,6 +36,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     protected int[] EarlyState_EXP = new int[8] { 0, 30, 60, 90, 120, 150, 150, 150 };
     protected float[] EarlyState_EXPMG = new float[8] { 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f, 1.25f, 1.25f };
     protected int[] EarlyState_EquipInven = new int[8] { 4, 6, 8, 10, 12, 12, 12, 12 };
+    protected int[] EarlyState_EquipSuccession = new int[8] { 0, 0, 0, 0, 0, 1, 2, 2 };
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -173,6 +183,8 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
                 return EarlyState_EXPMG[E_Info.EarlyExperienceMagnification];
             case "EQUIP":
                 return EarlyState_EquipInven[E_Info.EquipmentSuccessionLevel];
+            case "EQUIPSUC":
+                return EarlyState_EquipSuccession[E_Info.EquipmentSuccessionLevel];
         }
         return 0;
     }

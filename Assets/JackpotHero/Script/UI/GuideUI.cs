@@ -7,7 +7,9 @@ using UnityEngine;
 public enum EGuideMessage
 {
     AttackGuideMessage,
-    NotEnoughSTAMessage
+    NotEnoughSTAMessage_Battle,
+    NotEnoughInventoryMessage,
+    NotEnoughSTAMessage_RestQuality
 }
 
 public class GuideUI : MonoBehaviour
@@ -29,7 +31,7 @@ public class GuideUI : MonoBehaviour
     {
         gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -115);
         gameObject.SetActive(true);
-        gameObject.GetComponent<RectTransform>().DOAnchorPosY(115, 0.5f).SetEase(Ease.OutBack);
+        gameObject.GetComponent<RectTransform>().DOAnchorPosY(115, 0.5f);
         StopAllCoroutines();
         switch (MessageType)
         {
@@ -37,8 +39,16 @@ public class GuideUI : MonoBehaviour
                 GuideMessageText.text = "공격의 목표가 지정되지 않았습니다.\r\n순서 표시창의 얼굴 아이콘을 클릭하거나 공격하고 싶은 적을 클릭해 목표를 지정해 주세요.";
                 StartCoroutine(CountSeconds());
                 break;
-            case (int)EGuideMessage.NotEnoughSTAMessage:
+            case (int)EGuideMessage.NotEnoughSTAMessage_Battle:
                 GuideMessageText.text = "피로도가 부족합니다.\r\n피로도 회복을 통해 피로도를 회복해 주세요.";
+                StartCoroutine(CountSeconds());
+                break;
+            case (int)EGuideMessage.NotEnoughInventoryMessage:
+                GuideMessageText.text = "장비를 보관할 인벤토리가 부족합니다.\r\n인벤토리속 장비를 처분해서 인벤토리의 공간을 확보해 주세요.";
+                StartCoroutine(CountSeconds());
+                break;
+            case (int)EGuideMessage.NotEnoughSTAMessage_RestQuality:
+                GuideMessageText.text = "피로도가 부족합니다.\r\n낮은 품질의 야영지를 설치해 주세요.";
                 StartCoroutine(CountSeconds());
                 break;
             default:

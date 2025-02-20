@@ -3,22 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlaySceneUIManager : MonoBehaviour
 {
+    public PlayerManager PlayerMgr;
+    public MonsterManager MonMgr;
+
     public PlayerEquipmentUI PE_UI;
     public PlayerStateInfoUI PSI_UI;
     public CurrentStageProgressUI CSP_UI;
     public EquipmentDetailInfoUI EDI_UI;
     public EquipmentDetailInfoUI MEDI_UI;
     public BackGroundUI BG_UI;
+
+
     public BattleUI B_UI;
+    public GettingItenUIScript GI_UI;
     public GuideUI G_UI;
     public GameObject ActionSelectionUI;
-    public GameObject EventUI;
-    public GameObject RestUI;
+    public EventUIScript E_UI;
+    public GameObject RestSelectionUI;
+    public GameObject FadeUI;
+    public RestUIScript R_UI;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
+    {
+        B_UI.InitBattleUI();
+        E_UI.gameObject.SetActive(false);
+        RestSelectionUI.SetActive(false);
+        BG_UI.SetRestBackGround(false);
+        FadeUI.SetActive(false);
+    }
+    void Start()//start에서 하면 뭔가 꼬일것 같음
     {
     }
 
@@ -31,7 +48,8 @@ public class PlaySceneUIManager : MonoBehaviour
     protected void SetCurrentStateUI(int PlayerAction, int DetailEvnet)
     {
         //Detial Event = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
-        B_UI.InitBattleUI();
+        //B_UI.InitBattleUI();//BattleUI의 비활성화//이거를 해버리면 애니메이션이 실행되다가 꺼지는디?
+        //E_UI.gameObject.SetActive(false);
         //EventUI.SetActive(false);
         //RestUI.SetActive(false);
         switch(PlayerAction)
@@ -63,12 +81,25 @@ public class PlaySceneUIManager : MonoBehaviour
                     ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
                     ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
                 }
-                //RestUI.SetActive(true);
+                if(RestSelectionUI.activeSelf == true)
+                {
+                    RestSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+                    RestSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.3f).OnComplete(() => { RestSelectionUI.SetActive(false); });
+                }
+                //페이드 아웃 이 됬다가 완전히 검은 색이 됬을때 백그라운드를 바꿈
+                FadeUI.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+                FadeUI.SetActive(true);
+                FadeUI.GetComponent<Image>().DOFade(1, 0.5f).OnComplete(() => { BG_UI.SetRestBackGround(true); 
+                    DOVirtual.DelayedCall(2f, () => { FadeUI.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => { R_UI.ActiveRestActionSelection(); FadeUI.SetActive(false); }); }); });
+                //나중에는 달그럭 거리는 소리를 낸다던가 하면될듯
+                //백그라운드를 바꾼후에 페이드 인
+                //RestActionSelection 활성화
+                //휴식에서 행동 선택버튼들 활성화
                 break;
         }
     }
 
-    public void SetUI(PlayerManager PlayerMgr)
+    public void SetUI()
     {
         PE_UI.SetEquipmentImage(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
         PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
@@ -77,43 +108,61 @@ public class PlaySceneUIManager : MonoBehaviour
         MEDI_UI.gameObject.SetActive(false);
         SetCurrentStateUI(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction, PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails);
     }
-
-    /*
-    public void SetActionSelectionUIActive(bool IsActive)
-    {
-        ActionSelectionUI.SetActive(IsActive);
-    }
-    */
     public void ForResearchButtonClick()
     {
-        ActionSelectionUI.SetActive(false);
         BG_UI.MoveBackGround();
     }
 
+    public void RestButtonClick()//
+    {
+        ActionSelectionUI.GetComponent<RectTransform>().DOKill();
+        RestSelectionUI.GetComponent<RectTransform>().DOKill();
+
+        ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+        ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.3f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+
+        //RestSelectionUI에서 피로도가 부족하면 안내 매세지를 띄우거나 비활성화 -> 안내 매세지 띄우는게 더 나을듯?
+        RestSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
+        RestSelectionUI.gameObject.SetActive(true);
+        RestSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.3f).SetEase(Ease.OutBack);
+    }
+
+    public void NotRestButtonClick()
+    {
+        RestSelectionUI.GetComponent<RectTransform>().DOKill();
+        ActionSelectionUI.GetComponent<RectTransform>().DOKill();
+
+        RestSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+        RestSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.3f).OnComplete(() => { RestSelectionUI.SetActive(false); });
+
+        ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
+        ActionSelectionUI.gameObject.SetActive(true);
+        ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.3f).SetEase(Ease.OutBack);
+    }
     public bool IsBGMoveEnd()
     {
         return BG_UI.GetIsMoveEnd();
     }
-    public void EquipmentButtonClick(PlayerManager PMgr)
+    public void EquipmentButtonClick()
     {
         GameObject ClickedButton = EventSystem.current.currentSelectedGameObject;
         int EquipCode;
         switch (ClickedButton.name)
         {
             case "Weapon":
-                EquipCode = PMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
+                EquipCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
                 break;
             case "Armor":
-                EquipCode = PMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode;
+                EquipCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode;
                 break;
             case "Hat":
-                EquipCode = PMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode;
+                EquipCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode;
                 break;
             case "Shoes":
-                EquipCode = PMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode;
+                EquipCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode;
                 break;
             case "Accessories":
-                EquipCode = PMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
+                EquipCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
                 break;
             default:
                 return;
@@ -122,7 +171,7 @@ public class PlaySceneUIManager : MonoBehaviour
         EDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipCode), true);
     }
 
-    public void MonEquipmentButtonClick(MonsterManager MonMgr)
+    public void MonEquipmentButtonClick()
     {
         GameObject ClickedButton = EventSystem.current.currentSelectedGameObject;
         int EquipCode;
@@ -157,4 +206,17 @@ public class PlaySceneUIManager : MonoBehaviour
         PSI_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { PSI_UI.gameObject.SetActive(false); });
         CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
     }
+
+    //-------------------------------PressRest
+    public void PressRestActionRest()//휴식 선택창에서 휴식을 누르면 휴식 시간 선택창 활성화
+    {
+        R_UI.ActiveRestTimeSelectionUI(PlayerMgr.GetPlayerInfo());
+    }
+    //-------------------------------PressRestTimeUI
+
+    public void PressRestTimeNo()
+    {
+        R_UI.ActiveRestActionSelection();
+    }
+
 }
