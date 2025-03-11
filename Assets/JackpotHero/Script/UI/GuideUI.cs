@@ -9,7 +9,8 @@ public enum EGuideMessage
     AttackGuideMessage,
     NotEnoughSTAMessage_Battle,
     NotEnoughInventoryMessage,
-    NotEnoughSTAMessage_RestQuality
+    NotEnoughSTAMessage_RestQuality,
+    NotEnoughEXP_PlayerUpgrade,
 }
 
 public class GuideUI : MonoBehaviour
@@ -49,6 +50,10 @@ public class GuideUI : MonoBehaviour
                 break;
             case (int)EGuideMessage.NotEnoughSTAMessage_RestQuality:
                 GuideMessageText.text = "피로도가 부족합니다.\r\n낮은 품질의 야영지를 설치해 주세요.";
+                StartCoroutine(CountSeconds());
+                break;
+            case (int)EGuideMessage.NotEnoughEXP_PlayerUpgrade:
+                GuideMessageText.text = "플레이어를 강화할 경험치가 부족합니다.";
                 StartCoroutine(CountSeconds());
                 break;
             default:

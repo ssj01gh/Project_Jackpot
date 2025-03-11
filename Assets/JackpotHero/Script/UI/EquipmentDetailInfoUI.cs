@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,23 +40,28 @@ public class EquipmentDetailInfoUI : MonoBehaviour
             obj.SetActive(false);
         }
 
-        gameObject.GetComponent<Animator>().SetInteger("EquipDetailUIState", 1);
+        int EquipCode = (EquipInfo.EquipmentType * 10000) + (EquipInfo.EquipmentTier * 1000) + EquipInfo.EquipmentCode;
+        if (EquipCode == 0)
+            return;
+
+        gameObject.GetComponent<RectTransform>().localScale = Vector2.zero;
+        gameObject.GetComponent<RectTransform>().DOScale(Vector2.one, 0.5f).SetEase(Ease.OutBack);
         ClickEquipImage.sprite = EquipInfo.EquipmentImage;
         ClickEquipName.text = EquipInfo.EquipmentName;
 
         if(IsPlayerEquipment == true)
         {
-            int Equipcode = (EquipInfo.EquipmentType * 10000) + (EquipInfo.EquipmentTier * 1000) + EquipInfo.EquipmentCode;
+            
 
-            if (Equipcode >= 10000 && Equipcode < 20000)
+            if (EquipCode >= 10000 && EquipCode < 20000)
                 ClickEquipSpendSTA.text = "공격시 피로도 : " + EquipInfo.SpendTiredness.ToString();
-            else if (Equipcode >= 20000 && Equipcode < 30000)
+            else if (EquipCode >= 20000 && EquipCode < 30000)
                 ClickEquipSpendSTA.text = "방어시 피로도 : " + EquipInfo.SpendTiredness.ToString();
-            else if (Equipcode >= 30000 && Equipcode < 40000)
+            else if (EquipCode >= 30000 && EquipCode < 40000)
                 ClickEquipSpendSTA.text = "피로도 회복시 피로도는 사용되지 않습니다.";
-            else if (Equipcode >= 40000 && Equipcode < 50000)
+            else if (EquipCode >= 40000 && EquipCode < 50000)
                 ClickEquipSpendSTA.text = "신발은 피로도를 사용하지 않습니다.";
-            else if (Equipcode >= 50000 && Equipcode < 60000)
+            else if (EquipCode >= 50000 && EquipCode < 60000)
                 ClickEquipSpendSTA.text = "장신구는 피로도를 사용하지 않습니다.";
             else
                 ClickEquipSpendSTA.text = "??시 피로도 : " + EquipInfo.SpendTiredness.ToString();
@@ -68,7 +74,7 @@ public class EquipmentDetailInfoUI : MonoBehaviour
         }
         else
         {
-            int EquipCode = EquipInfo.EquipmentCode;
+            EquipCode = EquipInfo.EquipmentCode;
 
             if(EquipCode >= 70000 && EquipCode < 80000)
             {
@@ -97,11 +103,7 @@ public class EquipmentDetailInfoUI : MonoBehaviour
 
     public void InActiveEquipmentDetailInfoUI()
     {
-        gameObject.GetComponent<Animator>().SetInteger("EquipDetailUIState", 2);
-    }
-
-    public void InActiveDetailUI()
-    {
-        gameObject.SetActive(false);
+        gameObject.GetComponent<RectTransform>().localScale = Vector2.one;
+        gameObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() => { gameObject.SetActive(false); });
     }
 }

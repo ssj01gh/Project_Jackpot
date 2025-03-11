@@ -176,18 +176,6 @@ public class BattleUI : MonoBehaviour
             PlayerShield.GetComponent<RectTransform>().DOAnchorPos(InitShieldPos, 0.5f).SetEase(Ease.OutBack);
             PlayerShield.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
         }
-        /*
-        else//쉴드의 수치가 0보다 작고 이미 켜져 있는 상태라면
-        {
-            if(PlayerShield.activeSelf == true)
-            {
-                Vector2 InitShieldPos = PlayerShield.GetComponent<RectTransform>().anchoredPosition;
-                PlayerShield.GetComponent<CanvasGroup>().alpha = 1;
-                PlayerShield.GetComponent<RectTransform>().DOAnchorPosY(InitShieldPos.y - 50, 0.5f);
-                PlayerShield.GetComponent<CanvasGroup>().DOFade(0, 0.5f);
-            }
-        }
-        */
         PlayerBuffUI.transform.position = PlayerInfo.BuffUIPos.transform.position;
 
         //MonsterUI
@@ -387,7 +375,7 @@ public class BattleUI : MonoBehaviour
         MagnificationObject.SetActive(true);
         MagnificationObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 350);
         MagnificationObject.GetComponent<RectTransform>().localScale = Vector2.one;
-        MagnificationText.text = "1.0";
+        MagnificationText.text = "1.00";
 
         //일단 3번들 다 비활성화 //밑의 코루틴에서 해결할듯
         BaseAmountCard.SetActive(false);//3번
@@ -563,7 +551,7 @@ public class BattleUI : MonoBehaviour
                     //카드 클릭 애니메이션 재생이 끝나면 비활성화 후 결과값을 출력
                     MagnificationCard.SetActive(false);
                     TotalMagnification *= BattleResult.ResultMagnification[RepeatCount];
-                    MagnificationText.text = TotalMagnification.ToString("F1");
+                    MagnificationText.text = TotalMagnification.ToString("F2");
                     RepeatCount++;
                     break;
                 }
@@ -590,7 +578,7 @@ public class BattleUI : MonoBehaviour
                 FinalCalculateText.gameObject.SetActive(true);
                 FinalCalculateText.gameObject.GetComponent<RectTransform>().localScale = Vector2.zero;
                 FinalCalculateText.gameObject.GetComponent<RectTransform>().DOScale(Vector2.one, 0.5f).SetEase(Ease.OutBack).OnComplete(() => { IsAnimateComplete = true; });
-                FinalCalculateText.text = (BattleResult.FinalResultAmount - BattleResult.FinalResultAmountPlus).ToString("F1");
+                FinalCalculateText.text = ((int)(BattleResult.FinalResultAmount - BattleResult.FinalResultAmountPlus)).ToString();
                 break;
             }
         }
@@ -623,7 +611,7 @@ public class BattleUI : MonoBehaviour
             if (IsAnimateComplete)
             {
                 //애니메이션이 끝나면 1번의 수 증가, 빠져나요기//숫자가 한번에 변하는것이 아닌 조금씩 변화하면 더 좋을것 같기도 함
-                FinalCalculateText.text = BattleResult.FinalResultAmount.ToString("F1");
+                FinalCalculateText.text = ((int)BattleResult.FinalResultAmount).ToString();
                 BaseAmountCard.SetActive(false);
                 break;
             }
@@ -803,12 +791,12 @@ public class BattleUI : MonoBehaviour
             ")\r\n준 피해 (" + PlayerInfo.GetPlayerStateInfo().GiveDamage +
             ")\r\n받은 피해 (" + PlayerInfo.GetPlayerStateInfo().ReceiveDamage +
             ")\r\n최대 피해 (" + PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage +
-            ")\r\n사용한 경험치 (" +PlayerInfo.GetPlayerStateInfo().SpendEXP +")";
+            ")\r\n남은 경험치 (" +PlayerInfo.GetPlayerStateInfo().Experience +")";
         DefeatEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor / 5) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GiveDamage / 1000) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().ReceiveDamage / 500) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage / 100) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().SpendEXP / 2000);
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience / 2000);
         DeafeatEarlyPoint.text = "기초 강화 포인트 : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
     }
 

@@ -63,58 +63,7 @@ public class PlayerScript : MonoBehaviour
     public void PlayerInit()
     {
         PlayerState = JsonReadWriteManager.Instance.GetCopyPlayerInfo();
-
-        //SetHP
-        PlayerTotalState.MaxHP = BasicHP + JsonReadWriteManager.Instance.GetEarlyState("HP") +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddHPAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddHPAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddHPAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddHPAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddHPAmount;
-        PlayerTotalState.CurrentHP = PlayerTotalState.MaxHP * PlayerState.CurrentHpRatio;
-        //SetSTA
-        PlayerTotalState.MaxSTA = BasicSTA + JsonReadWriteManager.Instance.GetEarlyState("STA") +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddTirednessAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddTirednessAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddTirednessAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddTirednessAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddTirednessAmount;
-        PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA * PlayerState.CurrentTirednessRatio;
-        //SetTotalSTR
-        PlayerTotalState.TotalSTR = JsonReadWriteManager.Instance.GetEarlyState("STR") +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSTRAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSTRAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddSTRAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddSTRAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddSTRAmount;
-        //SetTotalDUR
-        PlayerTotalState.TotalDUR = JsonReadWriteManager.Instance.GetEarlyState("DUR") +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddDURAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddDURAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddDURAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddDURAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddDURAmount;
-        //SetTotalRES
-        PlayerTotalState.TotalRES = JsonReadWriteManager.Instance.GetEarlyState("RES") +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddRESAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddRESAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddRESAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddRESAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddRESAmount;
-        //SetTotalSPD
-        PlayerTotalState.TotalSPD = JsonReadWriteManager.Instance.GetEarlyState("SPD") +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSPDAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSPDAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddSPDAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddSPDAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddSPDAmount;
-        //SetTotalLUK
-        PlayerTotalState.TotalLUK = JsonReadWriteManager.Instance.GetEarlyState("LUK") +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddLUKAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddLUKAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddLUKAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddLUKAmount +
-            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
+        SetPlayerTotalStatus();
         //SetEXP
         PlayerState.Experience = (int)JsonReadWriteManager.Instance.GetEarlyState("EXP") + PlayerState.Experience;
         //SetCurrentForm
@@ -162,6 +111,65 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void SetPlayerTotalStatus()
+    {
+        //SetHP
+        PlayerTotalState.MaxHP = BasicHP + JsonReadWriteManager.Instance.GetEarlyState("HP") +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddHPAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddHPAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddHPAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddHPAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddHPAmount;
+        PlayerTotalState.CurrentHP = PlayerTotalState.MaxHP * PlayerState.CurrentHpRatio;
+        //SetSTA
+        PlayerTotalState.MaxSTA = BasicSTA + JsonReadWriteManager.Instance.GetEarlyState("STA") +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddTirednessAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddTirednessAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddTirednessAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddTirednessAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddTirednessAmount;
+        PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA * PlayerState.CurrentTirednessRatio;
+        //SetTotalSTR
+        PlayerTotalState.TotalSTR = JsonReadWriteManager.Instance.GetEarlyState("STR") +
+            PlayerState.StrengthLevel +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSTRAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSTRAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddSTRAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddSTRAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddSTRAmount;
+        //SetTotalDUR
+        PlayerTotalState.TotalDUR = JsonReadWriteManager.Instance.GetEarlyState("DUR") +
+            PlayerState.DurabilityLevel +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddDURAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddDURAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddDURAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddDURAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddDURAmount;
+        //SetTotalRES
+        PlayerTotalState.TotalRES = JsonReadWriteManager.Instance.GetEarlyState("RES") +
+            PlayerState.ResilienceLevel +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddRESAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddRESAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddRESAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddRESAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddRESAmount;
+        //SetTotalSPD
+        PlayerTotalState.TotalSPD = JsonReadWriteManager.Instance.GetEarlyState("SPD") +
+            PlayerState.SpeedLevel +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSPDAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSPDAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddSPDAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddSPDAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddSPDAmount;
+        //SetTotalLUK
+        PlayerTotalState.TotalLUK = JsonReadWriteManager.Instance.GetEarlyState("LUK") +
+            PlayerState.LuckLevel +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddLUKAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddLUKAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddLUKAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddLUKAmount +
+            EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
+    }
     public PlayerInfo GetPlayerStateInfo()
     {
         return PlayerState;
@@ -179,9 +187,18 @@ public class PlayerScript : MonoBehaviour
 
     public void EndOfAction()//어떠한 행동이 끝났을떄
     {
-        PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
-        PlayerState.CurrentPlayerActionDetails = 0;
         PlayerState.ShieldAmount = 0;
+        if(IsSuddenAttackInRestTime == true)//휴식중 습격당했으면 원래 상태로 되돌림
+        {
+            PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.Rest;
+            PlayerState.CurrentPlayerActionDetails = SaveRestQualityBySuddenAttack;
+            IsSuddenAttackInRestTime = false;
+        }
+        else if(IsSuddenAttackInRestTime == false)
+        {
+            PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+            PlayerState.CurrentPlayerActionDetails = 0;
+        }
     }
 
     public float GetAllEquipTier()//플레이어의 장착한 장비와 인벤토리속 장비의 모든 티어의 합을 리턴함(EQUIP 7레벨 구현을 위함)
@@ -256,23 +273,28 @@ public class PlayerScript : MonoBehaviour
 
     public void SetPlayerEXPAmount(int EXPAmount, bool IsAlreadyCalculate = false)//경험치를 얻을때 IsAlreadyCalculate의 상태에 따라 경험치를 배수함
     {
-        if(EXPAmount > 0)
+        if (IsAlreadyCalculate == true)//다른 곳에서 ReturnEXPByEXPMagnification으로 계산이 됬을때
         {
-            if(IsAlreadyCalculate == true)//다른 곳에서 ReturnEXPByEXPMagnification으로 계산이 됬을때
-            {
-                PlayerState.Experience += EXPAmount;
-            }
-            else if(IsAlreadyCalculate == false)
-            {
-                PlayerState.Experience += ReturnEXPByEXPMagnification(EXPAmount);
-            }
+            PlayerState.Experience += EXPAmount;
+        }
+        else if (IsAlreadyCalculate == false)
+        {
+            PlayerState.Experience += ReturnEXPByEXPMagnification(EXPAmount);
+        }
+        /*
+        if (EXPAmount > 0)
+        {
+            
 
         }
         else
         {
-            PlayerState.Experience -= EXPAmount;
-            PlayerState.SpendEXP += EXPAmount;
+            PlayerState.Experience += EXPAmount;
+            //PlayerState.SpendEXP += EXPAmount;
+            //사용 EXP를 하면 안될것 같음. upgrade로 한없이 올릴수 있어서....
+            //남은 EXP로 변경
         }
+        */
     }
 
     public bool SpendSTA(string ActionType)//배틀중 행동을 하며 피로도를 쓸때 할때
@@ -315,7 +337,7 @@ public class PlayerScript : MonoBehaviour
         EarlyPoint += (int)(PlayerState.GiveDamage / 1000);
         EarlyPoint += (int)(PlayerState.ReceiveDamage / 500);
         EarlyPoint += (int)(PlayerState.MostPowerfulDamage / 100);
-        EarlyPoint += (int)(PlayerState.SpendEXP / 2000);
+        EarlyPoint += (int)(PlayerState.Experience / 2000);
         JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;
     }
 
@@ -338,6 +360,54 @@ public class PlayerScript : MonoBehaviour
                 PlayerState.CurrentTirednessRatio = 1f;
             }
             PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA * PlayerState.CurrentTirednessRatio;
+        }
+    }
+
+    public void UpgradePlayerStatus(UpGradeAfterStatus UpgradeStatus)
+    {
+        PlayerState.StrengthLevel = UpgradeStatus.AfterSTR;
+        PlayerState.DurabilityLevel = UpgradeStatus.AfterDUR;
+        PlayerState.ResilienceLevel = UpgradeStatus.AfterRES;
+        PlayerState.SpeedLevel = UpgradeStatus.AfterSPD;
+        PlayerState.LuckLevel = UpgradeStatus.AfterLUK;
+        PlayerState.Level = UpgradeStatus.AfterLevel;
+        SetPlayerTotalStatus();
+    }
+
+    public bool IsInventoryFull()
+    {
+        //JsonReadWriteManager.Instance.GetEarlyState("EQUIP") -> 이걸로 현재 초기 강화에 따른 플레이어의 열린 인벤토리 수를 알수 있음
+        //인벤토리의 코드 값이 0초과이면 장비가 들어있는 칸임 ++한다
+        int FullInventoryCount = 0;
+        for(int i = 0; i < PlayerState.EquipmentInventory.Length; i++)
+        {
+            if (PlayerState.EquipmentInventory[i] > 0)//차있을때
+            {
+                FullInventoryCount++;
+            }
+        }
+        if(JsonReadWriteManager.Instance.GetEarlyState("EQUIP") > FullInventoryCount)
+        {//사용가능한 인벤토리 칸이 차있는 인벤토리 칸보다 크다면(다 안찼다면)
+            return false;
+        }
+        else//이건 다 찼다면
+        {
+            return true;
+        }
+    }
+
+    public void PutEquipmentToInven(int EquipmentCode)
+    {
+        if (IsInventoryFull() == true)
+            return;
+
+        int InventoryAmount = (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIP");//이게 사용가능한 인벤토리 갯수
+        for (int i = 0; i < InventoryAmount; i++)//사용가능 인벤토리 갯수 만큼 반복//0레벨이면 0~3까지 반복함 5레벨 이상이면 0~11까지
+        {
+            if (PlayerState.EquipmentInventory[i] == 0)//비어있다면
+            {
+                PlayerState.EquipmentInventory[i] = EquipmentCode;//접근 가능 인벤토리 list에 저장
+            }
         }
     }
 }

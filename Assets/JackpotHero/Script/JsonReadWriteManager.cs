@@ -150,9 +150,62 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     {
         return JsonUtility.FromJson<PlayerInfo>(JsonUtility.ToJson(P_Info));
     }
+
+    public void SavePlayerInfo(PlayerInfo PInfo)
+    {
+        P_Info = new PlayerInfo
+        {
+            EquipWeaponCode = PInfo.EquipWeaponCode,
+            EquipArmorCode = PInfo.EquipArmorCode,
+            EquipShoesCode = PInfo.EquipShoesCode,
+            EquipHatCode = PInfo.EquipHatCode,
+            EquipAccessoriesCode = PInfo.EquipAccessoriesCode,
+            ShieldAmount = PInfo.ShieldAmount,
+            CurrentHpRatio = PInfo.CurrentHpRatio,
+            CurrentTirednessRatio = PInfo.CurrentTirednessRatio,
+            Level = PInfo.Level,
+            StrengthLevel = PInfo.StrengthLevel,
+            DurabilityLevel = PInfo.DurabilityLevel,
+            SpeedLevel = PInfo.SpeedLevel,
+            ResilienceLevel = PInfo.ResilienceLevel,
+            LuckLevel = PInfo.LuckLevel,
+            Experience = PInfo.Experience,
+            EquipmentGamblingLevel = PInfo.EquipmentGamblingLevel,
+            EquipmentInventory = new int[12] 
+            { PInfo.EquipmentInventory[0], PInfo.EquipmentInventory[1], PInfo.EquipmentInventory[2], PInfo.EquipmentInventory[3],
+                PInfo.EquipmentInventory[4], PInfo.EquipmentInventory[5], PInfo.EquipmentInventory[6], PInfo.EquipmentInventory[7],
+                PInfo.EquipmentInventory[8], PInfo.EquipmentInventory[9], PInfo.EquipmentInventory[10], PInfo.EquipmentInventory[11] },
+            CurrentFloor = PInfo.CurrentFloor,
+            DetectNextFloorPoint = PInfo.DetectNextFloorPoint,
+            CurrentPlayerAction = PInfo.CurrentPlayerAction,
+            CurrentPlayerActionDetails = PInfo.CurrentPlayerActionDetails,
+            GiveDamage = PInfo.GiveDamage,
+            ReceiveDamage = PInfo.ReceiveDamage,
+            MostPowerfulDamage = PInfo.MostPowerfulDamage,
+            SpendEXP = PInfo.SpendEXP
+        };
+    }
     public EarlyStrengthenInfo GetCopyEarlyInfo()
     {
         return JsonUtility.FromJson<EarlyStrengthenInfo>(JsonUtility.ToJson(E_Info));
+    }
+    public void SaveEarlyInfo(EarlyStrengthenInfo EInfo)
+    {
+        E_Info = new EarlyStrengthenInfo
+        {
+            PlayerReachFloor = EInfo.PlayerReachFloor,
+            PlayerEarlyPoint = EInfo.PlayerEarlyPoint,
+            EarlyStrengthLevel = EInfo.EarlyStrengthLevel,
+            EarlyDurabilityLevel = EInfo.EarlyDurabilityLevel,
+            EarlySpeedLevel = EInfo.EarlySpeedLevel,
+            EarlyResilienceLevel = EInfo.EarlyResilienceLevel,
+            EarlyLuckLevel = EInfo.EarlyLuckLevel,
+            EarlyHpLevel = EInfo.EarlyHpLevel,
+            EarlyTirednessLevel = EInfo.EarlyTirednessLevel,
+            EarlyExperience = EInfo.EarlyExperience,
+            EarlyExperienceMagnification = EInfo.EarlyExperienceMagnification,
+            EquipmentSuccessionLevel = EInfo.EquipmentSuccessionLevel
+        };
     }
     public OptionInfo GetCopyOptionInfo()
     {
