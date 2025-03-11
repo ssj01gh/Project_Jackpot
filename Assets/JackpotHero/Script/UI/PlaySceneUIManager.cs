@@ -98,7 +98,6 @@ public class PlaySceneUIManager : MonoBehaviour
                 break;
         }
     }
-
     public void SetUI()
     {
         PE_UI.SetEquipmentImage(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
@@ -107,10 +106,6 @@ public class PlaySceneUIManager : MonoBehaviour
         EDI_UI.gameObject.SetActive(false);
         MEDI_UI.gameObject.SetActive(false);
         SetCurrentStateUI(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction, PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails);
-    }
-    public void ForResearchButtonClick()
-    {
-        BG_UI.MoveBackGround();
     }
 
     public void RestButtonClick()//
@@ -138,10 +133,6 @@ public class PlaySceneUIManager : MonoBehaviour
         ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
         ActionSelectionUI.gameObject.SetActive(true);
         ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.3f).SetEase(Ease.OutBack);
-    }
-    public bool IsBGMoveEnd()
-    {
-        return BG_UI.GetIsMoveEnd();
     }
     public void EquipmentButtonClick()
     {
@@ -219,4 +210,24 @@ public class PlaySceneUIManager : MonoBehaviour
         R_UI.ActiveRestActionSelection();
     }
 
+    public void PressRestEnd()
+    {
+        R_UI.InActiveRestActionSelection();
+        FadeUI.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+        FadeUI.SetActive(true);
+        FadeUI.GetComponent<Image>().DOFade(1, 0.5f).
+        OnComplete(() =>
+            {
+                BG_UI.SetRestBackGround(false);
+                DOVirtual.DelayedCall(2f, () =>
+                {
+                    FadeUI.GetComponent<Image>().DOFade(0, 0.5f).
+                    OnComplete(() =>
+                    {
+                        SetUI();
+                        FadeUI.SetActive(false);
+                    });
+                });
+            });
+    }
 }

@@ -1,7 +1,9 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaySceneManager : MonoBehaviour
 {
@@ -71,9 +73,10 @@ public class PlaySceneManager : MonoBehaviour
             Debug.LogError("Error");
             //예외처리
         }
-        JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();//갱신
+        JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();//갱신
 
-        UIMgr.ForResearchButtonClick();
+        UIMgr.BG_UI.MoveBackGround();
         StartCoroutine(CheckBackGroundMoveEnd());
     }
 
@@ -83,7 +86,7 @@ public class PlaySceneManager : MonoBehaviour
         while(true)
         {
             yield return null;
-            if(UIMgr.IsBGMoveEnd())//백그라운드 움직임이 끝나면 while문을 벗어나기
+            if(UIMgr.BG_UI.IsMoveEnd)//백그라운드 움직임이 끝나면 while문을 벗어나기
             {
                 break;
             }
@@ -100,14 +103,16 @@ public class PlaySceneManager : MonoBehaviour
             case (int)EPlayerCurrentState.SelectAction:
                 break;
             case (int)EPlayerCurrentState.Battle:
-                MonMgr.SetSpawnPattern(PlayerMgr);//몬스터의 스폰 패턴 설정
-                MonMgr.SpawnCurrentSpawnPatternMonster();//스폰 패턴에 맞게 몬스터 생성//ActiveMonster설정
-                BattleMgr.InitMonsterNPlayerActiveGuage(MonMgr.GetActiveMonsters().Count, MonMgr);
-                ProgressBattle();
+                //MonMgr.SetSpawnPattern(PlayerMgr);//몬스터의 스폰 패턴 설정
+                //MonMgr.SpawnCurrentSpawnPatternMonster();//스폰 패턴에 맞게 몬스터 생성//ActiveMonster설정
+                BattleMgr.InitCurrentBattleMonsters();
+                BattleMgr.InitMonsterNPlayerActiveGuage();
+                BattleMgr.ProgressBattle();
+                //ProgressBattle();
                 //이때에 몬스터를 딱 스폰해야됨//여기에서 DetailOfEvent들어오면 그거에 맞게 몬스터 스폰하기
                 break;
             case (int)EPlayerCurrentState.OtherEvent:
-                EventMgr.SetCurrentEvent(PlayerMgr.GetPlayerInfo());//현재 발생할 이벤트 설정
+                EventMgr.SetCurrentEvent();//현재 발생할 이벤트 설정
                 UIMgr.E_UI.ActiveEventUI(EventMgr);
                 break;
             case (int)EPlayerCurrentState.Rest:
@@ -118,8 +123,9 @@ public class PlaySceneManager : MonoBehaviour
     }
 
     //-------------------------BattlePhase
+    /*
     protected void ProgressBattle()//이게 전투가 계속되는 동안 지속적으로 불러와져야될 함수임
-    {
+    {//CheckBackGroundMoveEnd 1개, BattleUI함수로 람다식 전달 2개
         MonMgr.CheckActiveMonstersRSurvive();
         BattleMgr.SetBattleTurn(PlayerMgr, MonMgr);//플레이어와 몬스터의 SPD값에 영향을 받은 Turn을 결정->아마 여기서 확인할듯?
         BattleMgr.DecideCurrentBattleTurn();//여기서 현재 누구의 차례인지 결정
@@ -146,6 +152,7 @@ public class PlaySceneManager : MonoBehaviour
         {
             Debug.Log("Winner");
             PlayerMgr.GetPlayerInfo().EndOfAction();//여기서 Action, ActionDetail이 초기화, 현재 행동 초기화
+            //휴식중에 습격을 받은거라면 다시 휴식 행동 선택으로 돌아감
             int RewardEXP = PlayerMgr.GetPlayerInfo().ReturnEXPByEXPMagnification((int)MonMgr.CurrentSpawnPatternReward);
             PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RewardEXP, true);
             UIMgr.B_UI.VictoryBattle(RewardEXP);
@@ -164,14 +171,11 @@ public class PlaySceneManager : MonoBehaviour
             Debug.Log("MonsterTurn");
             //몬스터의 턴이라는 행동 버튼이 나타남
             UIMgr.B_UI.ActiveBattleSelectionUI_Mon();
-            /*
-            MonMgr.SetCurrentTargetMonster(BattleMgr.CurrentTurnObject.GetComponent<Monster>());
-            BattleButtonClick("Monster");
-            */
         }
     }
-
+*/
     //플레이어 Battle 행동 선택에 쓰이는 함수임
+    /*
     public void PlayerBattleActionSelectionButtonClick(string ActionButtonType)//누른 버튼의 행동에 따라 달라짐
     {
         //공격의 경우 공격 상대가 정해져 있어야함
@@ -206,7 +210,8 @@ public class PlaySceneManager : MonoBehaviour
         //이제 결정된 수치를 바탕으로 MainBattle을 활성화 시킴
         UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentForm, MonMgr.CurrentTarget, ActionButtonType, BattleMgr.BattleResultStatus, BattleMgr.CurrentState, ProgressBattle);
     }
-
+    */
+    /*
     public void MonsterBattleActionSelectionButtonClick()
     {
         //행동하기전에 감소해야 할것들은 여기서 할듯?
@@ -232,12 +237,15 @@ public class PlaySceneManager : MonoBehaviour
         BattleMgr.CurrentTurnObject.GetComponent<Monster>().SetNextMonsterState();
         UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentForm, BattleMgr.CurrentTurnObject.GetComponent<Monster>(), CurrentBattleState, BattleMgr.BattleResultStatus, BattleMgr.CurrentState, ProgressBattle);
     }
+    */
+    /*
     public void PressVictoryButton()
     {
         UIMgr.B_UI.ClickVictoryButton();
         UIMgr.GI_UI.ActiveGettingUI();
         UIMgr.SetUI();
-        JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
+        JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
     }
 
     public void PressDefeatButton()
@@ -257,18 +265,23 @@ public class PlaySceneManager : MonoBehaviour
             MonMgr.SetCurrentTargetMonster(obj.GetComponent<Monster>());
         }
     }
+    */
     //-----------------------------PressEventButton
-    public void PressEventSelectionButton(int SelectionType)
+    /*
+    public void PressEventSelectionButton(int SelectionType)//이게 이제 이벤트의 결과 함수임
     {
         EventMgr.OccurEventBySelection(SelectionType, PlayerMgr.GetPlayerInfo(), UIMgr);//여기서 이벤트의 선택에 맞게 이벤트가 발생함
-        /*
+        
         UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
         PlayerMgr.GetPlayerInfo().EndOfAction();//여기서 Action, ActionDetail이 초기화, 현재 행동 초기화
-        *///위에꺼 2개는 상태에 맞게 각각의 이벤트에서 발생해야 할듯 -> 장비를 얻고, EXP를 얻는건 괜찮지만 배틀로 가야한다면 대참사임
-        JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();//갱신
+        //위에꺼 2개는 상태에 맞게 각각의 이벤트에서 발생해야 할듯 -> 장비를 얻고, EXP를 얻는건 괜찮지만 배틀로 가야한다면 대참사임
+        JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();//갱신
         StartCoroutine(CheckBackGroundMoveEnd(true));//여기에 들어가면 현재 상태에 맞게 ui가 생성되고 없어지고 함
+        //SetUI와 전투를 위한 CheckBackGroundMoveEnd 코루틴임
         //UIMgr.SetUI(PlayerMgr);
     }
+    */
     //-------------------------------PressRestQualityButton
     public void PressRestQualityButton(int Quality)
     {
@@ -308,7 +321,20 @@ public class PlaySceneManager : MonoBehaviour
 
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Rest;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = Quality;
+        //휴식 상태를 저장함
+        JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
         StartCoroutine(CheckBackGroundMoveEnd(true));
+    }
+
+    public void PressRestEndButton()
+    {
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
+
+        UIMgr.PressRestEnd();
+        JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        //StartCoroutine(CheckBackGroundMoveEnd(true));
     }
     //-------------------------------PressRestTimeYesButton
     public void SetRestMgrRestResult()
@@ -329,5 +355,21 @@ public class PlaySceneManager : MonoBehaviour
 
         //전투가 끝난 후에 CurrentPlayerAction과 CurrentPlayerActionDetail의 상태를 전의 상태로 되돌리고 
         //SetUI()하는게 중요함
+    }
+    //--------------------------------------PressPlayerLevelUpButton
+    public void PressPlayerUpgradeButton()
+    {
+        RestMgr.InitUpgradeAfterStatus();
+        UIMgr.R_UI.ActivePlayerUpGradeUI(PlayerMgr.GetPlayerInfo());
+    }
+    public void PressPlayerUpGradePlusButton(string ButtonType)
+    {
+        RestMgr.PlayerUpgradePlusButtonClick(ButtonType);
+        UIMgr.R_UI.PlayerUpgradePLUSMINUSButtonClick(PlayerMgr.GetPlayerInfo(), RestMgr.AfterStatus);
+    }
+    public void PressPlayerUpGradeMinusButton(string ButtonType)
+    {
+        RestMgr.PlayerUpgradeMinusButtonClick(ButtonType);
+        UIMgr.R_UI.PlayerUpgradePLUSMINUSButtonClick(PlayerMgr.GetPlayerInfo(), RestMgr.AfterStatus);
     }
 }

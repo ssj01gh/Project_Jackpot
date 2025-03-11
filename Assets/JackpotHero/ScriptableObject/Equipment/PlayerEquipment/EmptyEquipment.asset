@@ -17,6 +17,12 @@ MonoBehaviour:
   EquipmentCode: 0
   EquipmentName: Empty
   SpendTiredness: 0
-  SpeedAmount: 0
   EquipmentSlots: []
-  EquipmentImage: {fileID: 0}
+  EquipmentImage: {fileID: 21300000, guid: a5e7833226f2df74a8ad61a2953fe45c, type: 3}
+  AddSTRAmount: 0
+  AddDURAmount: 0
+  AddRESAmount: 0
+  AddSPDAmount: 0
+  AddLUKAmount: 0
+  AddHPAmount: 0
+  AddTirednessAmount: 0

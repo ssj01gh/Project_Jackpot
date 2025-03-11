@@ -99,7 +99,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
             {
                 if(Vector2.Distance(ClickedUIPos, InventorySlots[i].GetComponent<RectTransform>().anchoredPosition) <= 10)
                 {
-                    if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//비어있지 않을때
+                    if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0 && InventoryLockImage[i].activeSelf == false)//비어있지 않을때//잠겨있지 않을때
                     {
                         IsClickedInventorySlot = true;
                         //들고 있는 아이템의 정보 저장
@@ -141,7 +141,13 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
                 {
                     if (Vector2.Distance(ClickedUIPos, InventorySlots[i].GetComponent<RectTransform>().anchoredPosition) <= 10)
                     {
-                        if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//비어있지 않을떄
+                        if (InventoryLockImage[i].activeSelf == true)//잠겨 있을때
+                        {
+                            //원래 위치로
+                            InventoryItemImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
+                            TierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
+                        }
+                        else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//비어있지 않을떄//잠겨 있지 않으면서 비어있지 않을때
                         {
                             //떨어뜨리는 곳의 번호와 장비코드를 저장
                             DropDownSlotIndex = i;

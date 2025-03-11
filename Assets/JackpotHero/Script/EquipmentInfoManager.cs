@@ -38,10 +38,11 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     protected List<int> TierFiveEquipmentCodes = new List<int>();
     protected List<int> TierSixEquipmnetCodes = new List<int>();
 
+    //95 5 0 0 0
     protected int[,] EquipmentGamblingDetail =
     {{95,5,0,0,0 }, //0레벨
         { 89,11,0,0,0}, //1레벨
-        { 80,20,1,0,0}, //2레벨
+        { 80,19,1,0,0}, //2레벨
         { 68,27,5,0,0}, //3레벨
         { 53,36,11,0,0}, //4레벨
         { 35,44,20,1,0}, //5레벨
@@ -50,6 +51,9 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         { 0,35,44,20,1}, //8레벨
         { 0,14,54,27,5}, //9레벨
         { 0,0,53,36,11} };//10레벨
+
+    protected int[] GamblingLevelUpCost = new int[10] { 30, 45, 70, 105, 160, 240, 360, 540, 810, 1215 };
+    protected int[] GamblingGachaCost = new int[11] { 1, 2, 3, 5, 8, 12, 18, 27, 40, 60, 90 };
     protected override void Awake()
     {
         base.Awake();
@@ -222,15 +226,15 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
             if(RandLuk < 5)//장비 1티어 상승 당첨 -> 1티어라면 2티어로....5티어 라면 6티어로
             {
                 if (RandNum < TierOneNum)//1티어는 2티어로
-                    RandNum = TierOneNum;
+                    RandNum = TierOneNum + 1;
                 else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//2티어는 3티어로
-                    RandNum = TierTwoNum;
+                    RandNum = TierTwoNum + 1;
                 else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//3티어는 4티어로
-                    RandNum = TierThreeNum;
+                    RandNum = TierThreeNum + 1;
                 else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//4티어는 5티어로
-                    RandNum = TierFourNum;
+                    RandNum = TierFourNum + 1;
                 else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//5티어는 6티어로
-                    RandNum = TierFiveNum;
+                    RandNum = TierFiveNum + 1;
             }
         }
 
@@ -268,5 +272,28 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
             return TierSixEquipmnetCodes[RandTierNum];
         }
         return 0;
+    }
+
+    public int GetGamblingLevelPercent(int Level, int Tier)
+    {
+        return EquipmentGamblingDetail[Level, Tier];
+    }
+
+    public int GetGamblingLevelUPCost(int Level)
+    {
+        if(Level >= GamblingLevelUpCost.Length)
+        {
+            return 0;
+        }
+        return GamblingLevelUpCost[Level];
+    }
+
+    public int GetGamblingGachaCost(int Level)
+    {
+        if (Level >= GamblingGachaCost.Length)
+        {
+            return 0;
+        }
+        return GamblingGachaCost[Level];
     }
 }
