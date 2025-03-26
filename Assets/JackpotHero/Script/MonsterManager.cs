@@ -89,7 +89,7 @@ public class MonsterManager : MonoBehaviour
                 if (PatternStorage[ThemeOfEvent][i].SpawnPatternID == DetailOfEvents)//겹치는게 있다면
                 {
                     CurrentSpawnPattern = PatternStorage[ThemeOfEvent][i];
-                    SetCurrentSpawnPatternReward();
+                    SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
                     PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
                     return;//함수 종료
                 }
@@ -97,7 +97,7 @@ public class MonsterManager : MonoBehaviour
             //만약 겹치는게 없다면
             int RandomPattern = Random.Range(0, PatternStorage[ThemeOfEvent].Count);
             CurrentSpawnPattern = PatternStorage[ThemeOfEvent][RandomPattern];
-            SetCurrentSpawnPatternReward();
+            SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
             PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
         }
 
@@ -120,15 +120,22 @@ public class MonsterManager : MonoBehaviour
             int Rand = Random.Range(0, PatternStorage[ThemeNum].Count);
             CurrentSpawnPattern = PatternStorage[ThemeNum][Rand];
         }
-        SetCurrentSpawnPatternReward();
+        SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
         PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
     }
 
-    protected void SetCurrentSpawnPatternReward()
+    protected void SetCurrentSpawnPatternReward(int IsSuddenAttack)
     {
-        CurrentSpawnPatternReward = CurrentSpawnPattern.RewardEXPPoint;
-        float RandVariation = Random.Range(-(int)CurrentSpawnPattern.VariationEXPPoint, (int)CurrentSpawnPattern.VariationEXPPoint + 1);
-        CurrentSpawnPatternReward += RandVariation;
+        if(IsSuddenAttack == -1)//습격이 아닐때는
+        {
+            CurrentSpawnPatternReward = CurrentSpawnPattern.RewardEXPPoint;
+            float RandVariation = Random.Range(-(int)CurrentSpawnPattern.VariationEXPPoint, (int)CurrentSpawnPattern.VariationEXPPoint + 1);
+            CurrentSpawnPatternReward += RandVariation;
+        }
+        else//-1이 아니라면 습격인거임
+        {
+            CurrentSpawnPatternReward = 0;
+        }
     }
 
     public void SpawnCurrentSpawnPatternMonster()
@@ -176,7 +183,7 @@ public class MonsterManager : MonoBehaviour
             if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
             {
                 ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
-                ActiveMonsters[i].SetActive(false);
+                ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
                 ActiveMonsters.RemoveAt(i);
             }
         }
@@ -187,7 +194,7 @@ public class MonsterManager : MonoBehaviour
         for (int i = ActiveMonsters.Count - 1; i >= 0; i--)
         {
             ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
-            ActiveMonsters[i].SetActive(false);
+            ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
             ActiveMonsters.RemoveAt(i);
         }
     }

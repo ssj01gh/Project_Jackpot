@@ -36,7 +36,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     protected int[] EarlyState_EXP = new int[8] { 0, 30, 60, 90, 120, 150, 150, 150 };
     protected float[] EarlyState_EXPMG = new float[8] { 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f, 1.25f, 1.25f };
     protected int[] EarlyState_EquipInven = new int[8] { 4, 6, 8, 10, 12, 12, 12, 12 };
-    protected int[] EarlyState_EquipSuccession = new int[8] { 0, 0, 0, 0, 0, 1, 2, 2 };
+    protected int[] EarlyState_EquipSuccession = new int[8] { 0, 0, 1, 2, 3, 4, 4, 4 };
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -90,7 +90,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             P_Info.GiveDamage = 0f;
             P_Info.ReceiveDamage = 0f;
             P_Info.MostPowerfulDamage = 0f;
-            P_Info.SpendEXP = 0f;
+            P_Info.SaveRestQualityBySuddenAttack = -1;
 
             string classToJson = JsonUtility.ToJson(P_Info, true);
             File.WriteAllText(path, classToJson);
@@ -98,15 +98,19 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         //불러오기
         P_Info = JsonUtility.FromJson<PlayerInfo>(File.ReadAllText(path));
     }
-    protected void InitEarlyStrengthenInfo()
+    public void InitEarlyStrengthenInfo(bool IsRestartGame = false)
     {
         string FileName = "EarlyStrengthenInfo";
         string path = Application.persistentDataPath + "/" + FileName + ".json";
-        if (!File.Exists(path))//없으면 생성
+        if (!File.Exists(path) || IsRestartGame == true)//없으면 생성
         {
             //Player EarlyStrenghenInfo Setting
-            E_Info.PlayerReachFloor = 0;
-            E_Info.PlayerEarlyPoint = 0;
+            if(IsRestartGame == false)
+            {
+                E_Info.PlayerReachFloor = 0;
+                E_Info.PlayerEarlyPoint = 0;
+            }//나머지는 다 초기화//IsRestartGame이 true이 상황에서 PlyaerReachFloor와 PlyaerEarlyPoint의 수치는 
+            //PlayerScript의 DefeatformBattle에서 설정된다.나머지는 초기화하고 저장시키면 됨
             E_Info.EarlyStrengthLevel = 0;
             E_Info.EarlyDurabilityLevel = 0;
             E_Info.EarlySpeedLevel = 0;
@@ -171,7 +175,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             LuckLevel = PInfo.LuckLevel,
             Experience = PInfo.Experience,
             EquipmentGamblingLevel = PInfo.EquipmentGamblingLevel,
-            EquipmentInventory = new int[12] 
+            EquipmentInventory = new int[12]
             { PInfo.EquipmentInventory[0], PInfo.EquipmentInventory[1], PInfo.EquipmentInventory[2], PInfo.EquipmentInventory[3],
                 PInfo.EquipmentInventory[4], PInfo.EquipmentInventory[5], PInfo.EquipmentInventory[6], PInfo.EquipmentInventory[7],
                 PInfo.EquipmentInventory[8], PInfo.EquipmentInventory[9], PInfo.EquipmentInventory[10], PInfo.EquipmentInventory[11] },
@@ -182,7 +186,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             GiveDamage = PInfo.GiveDamage,
             ReceiveDamage = PInfo.ReceiveDamage,
             MostPowerfulDamage = PInfo.MostPowerfulDamage,
-            SpendEXP = PInfo.SpendEXP
+            SaveRestQualityBySuddenAttack = PInfo.SaveRestQualityBySuddenAttack
         };
     }
     public EarlyStrengthenInfo GetCopyEarlyInfo()

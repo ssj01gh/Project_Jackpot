@@ -41,13 +41,13 @@ public class PlayerScript : MonoBehaviour
     //PlayerState
     protected PlayerInfo PlayerState;
     protected TotalPlayerState PlayerTotalState = new TotalPlayerState();
+    [HideInInspector]
+    public BuffInfo PlayerBuff = new BuffInfo();
     protected float AllEquipmentTier = 0f;
+    public int BeforeShield { protected set; get; } = 0;
 
     const float BasicHP = 100f;
     const float BasicSTA = 1000f;
-
-    public bool IsSuddenAttackInRestTime { protected set; get; } = false;
-    public int SaveRestQualityBySuddenAttack { protected set; get; } = 0;
     
     void Start()
     {
@@ -109,6 +109,12 @@ public class PlayerScript : MonoBehaviour
         {
             PlayerState.CurrentFloor = 1;
         }
+        //---------------Test
+        PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 20;
+        PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
+        PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
+        //PlayerBuff.BuffList[5] = 6;
+        //---------------
     }
 
     public void SetPlayerTotalStatus()
@@ -179,22 +185,22 @@ public class PlayerScript : MonoBehaviour
     {
         return PlayerTotalState;
     }
-    public void SetIsSuddenAttackAndRestQuality(int RestQuality)
+    public void SetIsSuddenAttackAndRestQuality()
     {
-        IsSuddenAttackInRestTime = true;
-        SaveRestQualityBySuddenAttack = RestQuality;
+        PlayerState.SaveRestQualityBySuddenAttack = PlayerState.CurrentPlayerActionDetails;
     }
 
     public void EndOfAction()//어떠한 행동이 끝났을떄
     {
+        BeforeShield = 0;
         PlayerState.ShieldAmount = 0;
-        if(IsSuddenAttackInRestTime == true)//휴식중 습격당했으면 원래 상태로 되돌림
+        if(PlayerState.SaveRestQualityBySuddenAttack != -1)//휴식중 습격당했으면 원래 상태로 되돌림
         {
             PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.Rest;
-            PlayerState.CurrentPlayerActionDetails = SaveRestQualityBySuddenAttack;
-            IsSuddenAttackInRestTime = false;
+            PlayerState.CurrentPlayerActionDetails = PlayerState.SaveRestQualityBySuddenAttack;
+            PlayerState.SaveRestQualityBySuddenAttack = -1;
         }
-        else if(IsSuddenAttackInRestTime == false)
+        else if(PlayerState.SaveRestQualityBySuddenAttack == -1)
         {
             PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
             PlayerState.CurrentPlayerActionDetails = 0;
@@ -224,6 +230,11 @@ public class PlayerScript : MonoBehaviour
         return AllEquipmentTier;
     }
 
+    public void RecordBeforeShield()//ShieldAmount에 변화가 적용되기전에//맞을때, 방어를 사용할때, 내턴이 됬을때
+    {
+        BeforeShield = (int)PlayerState.ShieldAmount;
+    }
+
     public void PlayerRecordGiveDamage(float GiveDamage)//몬스터에게 주는 데미지를 기록하기 위함
     {
         PlayerState.GiveDamage += GiveDamage;
@@ -236,15 +247,19 @@ public class PlayerScript : MonoBehaviour
     public void PlayerDamage(float DamagePoint)//자신이 받는 데미지를 기록하고 데미지를 받아 쉴드와 체력이 깍일떄
     {
         PlayerState.ReceiveDamage += DamagePoint;//GameRecord
+        if (PlayerBuff.BuffList[(int)EBuffType.Defenseless] >= 1)
+            DamagePoint = DamagePoint * 2;
 
         float RestDamage = 0;
         if(PlayerState.ShieldAmount >= DamagePoint)
         {
+            RecordBeforeShield();
             PlayerState.ShieldAmount -= DamagePoint;
         }
         else
         {
             RestDamage = DamagePoint - PlayerState.ShieldAmount;
+            RecordBeforeShield();
             PlayerState.ShieldAmount = 0;
         }
         PlayerTotalState.CurrentHP -= RestDamage;
@@ -253,10 +268,11 @@ public class PlayerScript : MonoBehaviour
 
     public void PlayerGetShield(float ShieldPoint)//쉴드가 생겼을떄
     {
+        RecordBeforeShield();
         PlayerState.ShieldAmount += ShieldPoint;
     }
 
-    public void PlayerGetRest(float RestPoint)//전투중 피로도 회복을 할떄
+    public void PlayerRegenSTA(float RestPoint)//전투중 피로도 회복을 할떄
     {
         PlayerTotalState.CurrentSTA += RestPoint;
         if(PlayerTotalState.MaxSTA <= PlayerTotalState.CurrentSTA)
@@ -264,6 +280,26 @@ public class PlayerScript : MonoBehaviour
             PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA;
         }
         PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
+    }
+
+    public void PlayerSpendSTA(float SpendPoint)
+    {
+        PlayerTotalState.CurrentSTA -= SpendPoint;
+        if(PlayerTotalState.CurrentSTA < 0)
+        {
+            PlayerTotalState.CurrentSTA = 0;
+        }
+        PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
+    }
+
+    public void PlayerRegenHp(float RegenPoint)
+    {
+        PlayerTotalState.CurrentHP += RegenPoint;
+        if(PlayerTotalState.CurrentHP >= PlayerTotalState.MaxHP)
+        {
+            PlayerTotalState.CurrentHP = PlayerTotalState.MaxHP;
+        }
+        PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
     }
 
     public int ReturnEXPByEXPMagnification(int EXPAmount)//경험치를 얻을때 경험치를 배수함
@@ -308,8 +344,14 @@ public class PlayerScript : MonoBehaviour
                 }
                 else
                 {
-                    PlayerTotalState.CurrentSTA -= EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness;
-                    PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
+                    if (PlayerBuff.BuffList[(int)EBuffType.FrostBite] >= 1)
+                    {
+                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness + 50);
+                    }
+                    else
+                    {
+                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness);
+                    }
                 }
                 break;
             case "Defense":
@@ -319,15 +361,21 @@ public class PlayerScript : MonoBehaviour
                 }
                 else
                 {
-                    PlayerTotalState.CurrentSTA -= EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness;
-                    PlayerState.CurrentTirednessRatio = PlayerTotalState.CurrentSTA / PlayerTotalState.MaxSTA;
+                    if (PlayerBuff.BuffList[(int)EBuffType.FrostBite] >= 1)
+                    {
+                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness + 50);
+                    }
+                    else
+                    {
+                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness);
+                    }
                 }
                 break;
         }
         return true;
     }
 
-    public void DefeatFromBattle()//전투에서 졌을떄
+    public void DefeatFromBattle()//전투에서 졌을떄//지거나 게임에서 이기거나
     {
         int EarlyPoint = 0;
         if (PlayerState.CurrentFloor > JsonReadWriteManager.Instance.E_Info.PlayerReachFloor)
@@ -338,7 +386,8 @@ public class PlayerScript : MonoBehaviour
         EarlyPoint += (int)(PlayerState.ReceiveDamage / 500);
         EarlyPoint += (int)(PlayerState.MostPowerfulDamage / 100);
         EarlyPoint += (int)(PlayerState.Experience / 2000);
-        JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;
+
+        JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;//나머지 레벨들은 초기화 해야할듯? 나중에? 여기서하면 계승이 불가능
     }
 
     public void RecoverHPNSTAByRest(float RecoverAmount)
@@ -407,6 +456,7 @@ public class PlayerScript : MonoBehaviour
             if (PlayerState.EquipmentInventory[i] == 0)//비어있다면
             {
                 PlayerState.EquipmentInventory[i] = EquipmentCode;//접근 가능 인벤토리 list에 저장
+                break;
             }
         }
     }

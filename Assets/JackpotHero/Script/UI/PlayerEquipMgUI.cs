@@ -972,8 +972,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
         for(int i = 0; i < EquipGachaLight.Length; i++)
         {
-            EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[0];
-            EquipGachaLight[i].GetComponent<SpriteOutline>().color = GachaTierLightColor[0];
+            EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[i];
+            EquipGachaLight[i].GetComponent<SpriteOutline>().color = GachaTierLightColor[i];
             //EquipGachaLightOutline[i].color = GachaTierLightColor[0];
             EquipGachaLight[i].SetActive(false);
         }
@@ -1007,6 +1007,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void PressGachaClickButton()
     {
+        ClickButton.GetComponent<RectTransform>().DOKill();
         ClickButton.SetActive(false);
         //이 버튼을 누르면 버튼은 비활성화
         int EquipmentTier = (GachaResultEquipCode / 1000) % 10;

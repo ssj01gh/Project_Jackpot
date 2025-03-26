@@ -21,7 +21,7 @@ public class RestManager : MonoBehaviour
     [SerializeField]
     private PlaySceneUIManager UIMgr;
     [SerializeField]
-    private PlaySceneManager PlaySceneMgr;
+    private BattleManager BattleMgr;
     
 
     public Slider TimeCountSlider;
@@ -51,10 +51,26 @@ public class RestManager : MonoBehaviour
     {
         
     }
-    //------------------------------RestFunc
-    public void SetRestResult(int RestQuality)//결과를 결정한다. <- 받아야 하는 것은 휴식 횟수, 휴식 퀄리티
+    public void ActiveRestActionSelection()
+    {
+        UIMgr.R_UI.ActiveRestActionSelection();
+    }
+
+    //------------------------------Rest
+
+    public void PressRestActionRest()//휴식 선택창에서 휴식을 누르면 휴식 시간 선택창 활성화
+    {
+        UIMgr.R_UI.ActiveRestTimeSelectionUI(PlayerMgr.GetPlayerInfo());
+    }
+    public void SetRestMgrRestResult()//휴식할 시간을 조절하고
+    {
+        SetRestResult();
+        UIMgr.R_UI.ActiveLeftTimeObject(IsPeacefulRest, this);
+    }
+    protected void SetRestResult()//결과를 결정한다. <- 받아야 하는 것은 휴식 횟수, 휴식 퀄리티
     {
         //VeryBad -> 0 ~ 49, Bad -> 0 ~ 24, Good -> 0 ~ 9, VeryGood -> 0 ~ 4, Perfect -> 확률 없음
+        int RestQuality = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
         MaxRestTime = (int)TimeCountSlider.value;
         CurrentRestTime = 0;
         IsPeacefulRest.Clear();
@@ -93,23 +109,23 @@ public class RestManager : MonoBehaviour
         }
     }
 
-    public void StartRestCheck(RestUIScript R_UI)
+    public void StartRestCheck()
     {
-        StartCoroutine(RestCheckCoroutine(R_UI));
+        StartCoroutine(RestCheckCoroutine());
     }
 
-    IEnumerator RestCheckCoroutine(RestUIScript R_UI)
+    IEnumerator RestCheckCoroutine()
     {
         yield return null;
         while(CurrentRestTime < MaxRestTime)
         {
             if (IsPeacefulRest[CurrentRestTime] == true)//평화롭게 지나간다면
             {
-                R_UI.SetLeftTimeTextNSlider(MaxRestTime - (CurrentRestTime + 1), (float)(MaxRestTime - (CurrentRestTime + 1)) / MaxRestTime, false);
+                UIMgr.R_UI.SetLeftTimeTextNSlider(MaxRestTime - (CurrentRestTime + 1), (float)(MaxRestTime - (CurrentRestTime + 1)) / MaxRestTime, false);
                 while(true)
                 {
                     yield return null;
-                    if(R_UI.FillAmountAnimEnd == true)
+                    if(UIMgr.R_UI.FillAmountAnimEnd == true)
                     {
                         break;
                     }
@@ -124,18 +140,25 @@ public class RestManager : MonoBehaviour
                 //DurationTime을 추가로 넣을수 있음 절반이 아닌 0.3 ~ 0.8까지 랜덤값을 주도록
                 //1 -> 1초, 0.5 -> 0.5초
                 float RandAmount = Random.Range(0.2f, 0.8f);
-                R_UI.SetLeftTimeTextNSlider(MaxRestTime - (CurrentRestTime + 1), (float)(MaxRestTime - (CurrentRestTime + 1) + RandAmount) / MaxRestTime, true, RandAmount);
+                UIMgr.R_UI.SetLeftTimeTextNSlider(MaxRestTime - (CurrentRestTime + 1), (float)(MaxRestTime - (CurrentRestTime + 1) + RandAmount) / MaxRestTime, true, RandAmount);
                 while(true)
                 {
                     yield return null;
-                    if(R_UI.FillAmountAnimEnd == true)
+                    if(UIMgr.R_UI.FillAmountAnimEnd == true)
                     {
                         break;
                     }
                 }
-                R_UI.InActiveLeftTimeObject();
+                UIMgr.R_UI.InActiveLeftTimeObject();
                 //휴식 UI는 끄고
-                PlaySceneMgr.SuddenAttackByMonsterInRest(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails);
+                PlayerMgr.GetPlayerInfo().SetIsSuddenAttackAndRestQuality();
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
+
+                BattleMgr.InitCurrentBattleMonsters();
+                BattleMgr.InitMonsterNPlayerActiveGuage();
+                BattleMgr.ProgressBattle();
+                //PlaySceneMgr.SuddenAttackByMonsterInRest(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails);
                 //바로 전투 들어가면 될듯? 굳이 시간은 안줄이고 어짜피 다시 휴식 선택으로 돌아갈껀데
                 break;
             }
@@ -147,8 +170,8 @@ public class RestManager : MonoBehaviour
             //회복이 끝나면 다시 휴식 행동 선택창이 나와야함
             //Player의 정보도 Json에 갱신하고
             Debug.Log("FullRest");
-            R_UI.InActiveLeftTimeObject();
-            R_UI.ActiveRestActionSelection();
+            UIMgr.R_UI.InActiveLeftTimeObject();
+            UIMgr.R_UI.ActiveRestActionSelection();
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
             //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
         }
@@ -156,7 +179,12 @@ public class RestManager : MonoBehaviour
     }
 
     //---------------------------------PlayerUpgradeFunc
-    public void InitUpgradeAfterStatus()
+    public void PressPlayerUpgradeButton()
+    {
+        InitUpgradeAfterStatus();
+        UIMgr.R_UI.ActivePlayerUpGradeUI(PlayerMgr.GetPlayerInfo());
+    }
+    protected void InitUpgradeAfterStatus()
     {
         AfterStatus.AfterSTR = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().StrengthLevel;
         AfterStatus.AfterDUR = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DurabilityLevel;
@@ -168,7 +196,18 @@ public class RestManager : MonoBehaviour
         BeforeLevel = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Level;
     }
 
-    public void PlayerUpgradePlusButtonClick(string UpGradeType)
+    public void PressPlayerUpGradePlusButton(string ButtonType)
+    {
+        PlayerUpgradePlusButtonClick(ButtonType);
+        UIMgr.R_UI.PlayerUpgradePLUSMINUSButtonClick(PlayerMgr.GetPlayerInfo(), AfterStatus);
+    }
+    public void PressPlayerUpGradeMinusButton(string ButtonType)
+    {
+        PlayerUpgradeMinusButtonClick(ButtonType);
+        UIMgr.R_UI.PlayerUpgradePLUSMINUSButtonClick(PlayerMgr.GetPlayerInfo(), AfterStatus);
+    }
+
+    protected void PlayerUpgradePlusButtonClick(string UpGradeType)
     {
         AfterStatus.AfterLevel++;
         switch(UpGradeType)
@@ -192,7 +231,7 @@ public class RestManager : MonoBehaviour
         CalculateNeededEXP(true);
     }
 
-    public void PlayerUpgradeMinusButtonClick(string UpGradeType)
+    protected void PlayerUpgradeMinusButtonClick(string UpGradeType)
     {
         AfterStatus.AfterLevel--;
         switch (UpGradeType)
@@ -245,6 +284,12 @@ public class RestManager : MonoBehaviour
         UIMgr.R_UI.ActiveRestActionSelection();//휴식 선택창 띄우기
     }
     //---------------------------------------------------EquipGatchaFunc
+    public void ActiveEquipGambling()
+    {
+        UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
+        UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
+        UIMgr.R_UI.ActivePlayerEquipMg();
+    }
     public void InActiveEquipGambling()
     {
         UIMgr.R_UI.ActiveRestActionSelection();//휴식 선택창 띄우기
@@ -253,5 +298,15 @@ public class RestManager : MonoBehaviour
         UIMgr.PE_UI.SetEquipmentImage(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());//장비 변화에 의한 장비표시 ui 변화 적용
         UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
         //장비 변화에 의한 스탯표시 ui 변화 적용
+    }
+    //-----------------------------------------------------RestEndButton
+    public void PressRestEndButton()
+    {
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int) EPlayerCurrentState.SelectAction;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
+
+        UIMgr.PressRestEnd();
+        JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        //StartCoroutine(CheckBackGroundMoveEnd(true));
     }
 }

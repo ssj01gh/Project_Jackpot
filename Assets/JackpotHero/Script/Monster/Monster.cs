@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -58,8 +59,11 @@ public class Monster : MonoBehaviour
     public event System.Action<Monster> MonsterClicked;
     [HideInInspector]
     public int MonsterCurrentState;
+    [HideInInspector]
+    public BuffInfo MonsterBuff = new BuffInfo();
     protected MonsterCurrentStatus MonTotalStatus = new MonsterCurrentStatus();
     protected Collider2D MonCollider;
+    public int BeforeMonsterShield { protected set; get; } = 0;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -111,24 +115,23 @@ public class Monster : MonoBehaviour
         MonTotalStatus.MonsterCurrentSPD = MonsterBaseSPD + Rand;
 
         InitMonsterState();
-        StartCoroutine(SpawnFadeIn());
+        SpawnFadeIn();
     }
 
-    IEnumerator SpawnFadeIn()
+    protected void SpawnFadeIn()
     {
         Color MonColor = MonsterBody.color;
         MonColor.a = 0;
-        while (true)
-        {
-            yield return null;
-            MonColor.a += Time.deltaTime;//1초에 걸쳐서 1로;
-            MonsterBody.color = MonColor;
-            if(MonColor.a >= 1)
-            {
-                break;
-            }
-        }
-        yield break;
+        MonsterBody.color = MonColor;
+        MonsterBody.DOFade(1, 1);
+    }
+
+    public void DeSpawnFadeOut()
+    {
+        Color MonColor = MonsterBody.color;
+        MonColor.a = 1;
+        MonsterBody.color = MonColor;
+        MonsterBody.DOFade(0, 1).OnComplete(() => { gameObject.SetActive(false); });
     }
 
     public MonsterCurrentStatus GetMonsterCurrentStatus()
@@ -136,9 +139,18 @@ public class Monster : MonoBehaviour
         return MonTotalStatus;
     }
 
+    public void RecordMonsterBeforeShield()
+    {
+        BeforeMonsterShield = (int)MonTotalStatus.MonsterCurrentShieldPoint;
+    }
+
     protected virtual void InitMonsterState()
     {
-
+        //Test
+        //MonsterBuff.BuffList[(int)EBuffType.Luck] = 15;
+        //MonsterBuff.BuffList[(int)BuffType.ThronArmor] = 10;
+        //MonsterBuff.BuffList[15] = 10;
+        //Test
     }
 
     public virtual void SetNextMonsterState()
@@ -149,20 +161,35 @@ public class Monster : MonoBehaviour
     public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
     {
         float RestDamage = 0;
+        if (MonsterBuff.BuffList[(int)EBuffType.Defenseless] >= 1)
+            DamagePoint = DamagePoint * 2;
+        
         if (MonTotalStatus.MonsterCurrentShieldPoint >= DamagePoint)
         {
+            RecordMonsterBeforeShield();
             MonTotalStatus.MonsterCurrentShieldPoint -= DamagePoint;
         }
         else
         {
             RestDamage = DamagePoint - MonTotalStatus.MonsterCurrentShieldPoint;
+            RecordMonsterBeforeShield();
             MonTotalStatus.MonsterCurrentShieldPoint = 0;
         }
         MonTotalStatus.MonsterCurrentHP -= RestDamage;
     }
 
+    public void MonsterRegenHP(float RegenPoint)
+    {
+        MonTotalStatus.MonsterCurrentHP += RegenPoint;
+        if(MonTotalStatus.MonsterCurrentHP >= MonTotalStatus.MonsterMaxHP)
+        {
+            MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
+        }
+    }
+
     public void MonsterGetShield(float ShieldPoint)
     {
-        MonTotalStatus.MonsterCurrentShieldPoint = ShieldPoint;
+        RecordMonsterBeforeShield();
+        MonTotalStatus.MonsterCurrentShieldPoint += ShieldPoint;
     }
 }
