@@ -140,7 +140,7 @@ public class RestUIScript : MonoBehaviour
 
         LeftTimeObject.GetComponent<CanvasGroup>().alpha = 0;
         LeftTimeObject.SetActive(true);
-        LeftTimeObject.GetComponent<CanvasGroup>().DOFade(1, 0.3f).OnComplete(() => { RestMgr.StartRestCheck(this); });
+        LeftTimeObject.GetComponent<CanvasGroup>().DOFade(1, 0.3f).OnComplete(() => { RestMgr.StartRestCheck(); });
     }
 
     public void InActiveLeftTimeObject()

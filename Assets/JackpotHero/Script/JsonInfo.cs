@@ -27,7 +27,7 @@ public class PlayerInfo
     public float GiveDamage;
     public float ReceiveDamage;
     public float MostPowerfulDamage;
-    public float SpendEXP;
+    public int SaveRestQualityBySuddenAttack;
 }
 
 [System.Serializable]

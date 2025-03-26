@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public PlayerManager PlayerMgr;
-    public PlaySceneUIManager UIMgr;
-    public BattleManager BattleMgr;
+    [SerializeField]
+    private PlayerManager PlayerMgr;
+    [SerializeField]
+    private PlaySceneUIManager UIMgr;
+    [SerializeField]
+    private BattleManager BattleMgr;
 
     public EventSO[] GameEvents;
     // Start is called before the first frame update

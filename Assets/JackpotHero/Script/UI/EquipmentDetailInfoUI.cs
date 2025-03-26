@@ -103,6 +103,9 @@ public class EquipmentDetailInfoUI : MonoBehaviour
 
     public void InActiveEquipmentDetailInfoUI()
     {
+        if (gameObject.activeSelf == false)
+            return;
+
         gameObject.GetComponent<RectTransform>().localScale = Vector2.one;
         gameObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() => { gameObject.SetActive(false); });
     }

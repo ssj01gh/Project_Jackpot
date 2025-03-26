@@ -20,8 +20,8 @@ MonoBehaviour:
   EquipmentSlots: []
   EquipmentImage: {fileID: 21300000, guid: 484c85f39cbe097408e79f706102d022, type: 3}
   AddSTRAmount: 20
-  AddDURAmount: 1
-  AddRESAmount: 1
+  AddDURAmount: 20
+  AddRESAmount: 20
   AddSPDAmount: 0
   AddLUKAmount: 0
   AddHPAmount: 0

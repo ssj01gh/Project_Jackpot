@@ -65,6 +65,8 @@ public class PlaySceneUIManager : MonoBehaviour
                     ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
                     ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
                 }
+                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack != -1)
+                    BG_UI.SetRestBackGround(true);//이것도 어디에 넣어야함
                 B_UI.ActiveBattleUI();
                 break;
             case (int)EPlayerCurrentState.OtherEvent:
@@ -191,24 +193,13 @@ public class PlaySceneUIManager : MonoBehaviour
         MEDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetMonEquipmentInfo(EquipCode), false);
     }
 
-    public void PlayerDefeat()
+    public void PlayerDefeat()//지거나 게임에서 이기거나
     {
         PE_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { PE_UI.gameObject.SetActive(false); });
         PSI_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { PSI_UI.gameObject.SetActive(false); });
         CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
     }
-
-    //-------------------------------PressRest
-    public void PressRestActionRest()//휴식 선택창에서 휴식을 누르면 휴식 시간 선택창 활성화
-    {
-        R_UI.ActiveRestTimeSelectionUI(PlayerMgr.GetPlayerInfo());
-    }
     //-------------------------------PressRestTimeUI
-
-    public void PressRestTimeNo()
-    {
-        R_UI.ActiveRestActionSelection();
-    }
 
     public void PressRestEnd()
     {

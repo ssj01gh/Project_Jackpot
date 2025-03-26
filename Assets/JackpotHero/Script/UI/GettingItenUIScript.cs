@@ -35,30 +35,31 @@ public class GettingItenUIScript : MonoBehaviour
         JewelryObject.SetActive(false);
     }
 
-    public void ActiveGettingUI(int EquipmentCode = 0)
+    public void ActiveGettingUI(int EquipmentCode = 0, bool IsEXP = false)
     {
         string GettingType = "EXP";
-        switch(EquipmentCode / 10000)
+        if(IsEXP == false)
         {
-            case 0://°æÇèÄ¡
-                GettingType = "EXP";
-                break;
-            case 1://¹«±â
-                GettingType = "Weapon";
-                break;
-            case 2://°©¿Ê
-                GettingType = "Armor";
-                break;
-            case 3://Çï¸Ë
-                GettingType = "Helmet";
-                break;
-            case 4://ºÎÃ÷
-                GettingType = "Boots";
-                break;
-            case 5://¾Ç¼¼»ç¸®
-                GettingType = "Jewelry";
-                break;
+            switch (EquipmentCode / 10000)
+            {
+                case 1://¹«±â
+                    GettingType = "Weapon";
+                    break;
+                case 2://°©¿Ê
+                    GettingType = "Armor";
+                    break;
+                case 3://Çï¸Ë
+                    GettingType = "Helmet";
+                    break;
+                case 4://ºÎÃ÷
+                    GettingType = "Boots";
+                    break;
+                case 5://¾Ç¼¼»ç¸®
+                    GettingType = "Jewelry";
+                    break;
+            }
         }
+        
         switch(GettingType)
         {
             case "EXP":

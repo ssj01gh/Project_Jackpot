@@ -198,10 +198,12 @@ MonoBehaviour:
   MonsterBody: {fileID: 8682399147922304615}
   MonsterBaseHP: 30
   HPVarianceAmount: 10
-  MonsterBaseATK: 2
+  MonsterBaseATK: 10
   ATKVarianceAmount: 1
-  MonsterBaseDUR: 2
+  MonsterBaseDUR: 10
   DURVarianceAmount: 1
+  MonsterBaseLuk: 0
+  LUKVarianceAmount: 0
   MonsterBaseSPD: 20
   SPDVarianceAmount: 5
   MonsterWeaponCode: 70001
