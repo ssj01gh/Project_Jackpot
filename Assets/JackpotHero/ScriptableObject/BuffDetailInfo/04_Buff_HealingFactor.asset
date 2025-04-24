@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 21300000, guid: 4a5eec551064eaf4fb2b9a08e2e5a868, type: 3}
   BuffName: "\uC7AC\uC0DD"
-  BuffDetail: "\uD134\uB2F9 \uC783\uC740 \uCCB4\uB825\uC758\n5% \uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\n\uD134\uB2F9
+  BuffDetail: "\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uC783\uC740 \uCCB4\uB825\uC758\n5%
+    \uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134\uB2F9
     \uC2A4\uD0DD -1"

@@ -38,6 +38,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     public GameObject ShieldUIPos;
     public GameObject BuffUIPos;
+    public GameObject ActionTypePos;
     //PlayerState
     protected PlayerInfo PlayerState;
     protected TotalPlayerState PlayerTotalState = new TotalPlayerState();
@@ -45,6 +46,10 @@ public class PlayerScript : MonoBehaviour
     public BuffInfo PlayerBuff = new BuffInfo();
     protected float AllEquipmentTier = 0f;
     public int BeforeShield { protected set; get; } = 0;
+
+    public float AttackAverageIncrease { protected set; get; } = 0;
+    public float DefenseAverageIncrease { protected set; get; } = 0;
+    public float RestAverageIncrease { protected set; get; } = 0;
 
     const float BasicHP = 100f;
     const float BasicSTA = 1000f;
@@ -110,14 +115,14 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 20;
-        PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
-        PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.Burn] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;
         //---------------
     }
 
-    public void SetPlayerTotalStatus()
+    public void SetPlayerTotalStatus()//버프 계산할때 해도 될지두/// 버프에 의한 스탯 변화도 표시해야 될것 같기도 하고
     {
         //SetHP
         PlayerTotalState.MaxHP = BasicHP + JsonReadWriteManager.Instance.GetEarlyState("HP") +
@@ -175,6 +180,90 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
+        if (PlayerBuff.BuffList[(int)EBuffType.Luck] >= 1)
+        {
+            PlayerTotalState.TotalLUK += 30;
+        }
+        if (PlayerBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
+        {
+            PlayerTotalState.TotalLUK -= 30;
+        }
+
+        //공격의 평균적이 상승량
+        AttackAverageIncrease = 0;
+        List<float> IncreaseDifference = new List<float>();
+        foreach (EquipmentSlot Slots in EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).EquipmentSlots)
+        {
+            int PositiveCount = 0;
+            foreach(bool IsPositive in Slots.IsPositive)
+            {
+                if (IsPositive == true)
+                    PositiveCount++;
+            }
+            int MagnificationAmount = 60 / Slots.IsPositive.Length;
+            float BeforePositivePercent = (PositiveCount * MagnificationAmount) / 60f;
+            float AfterPositivePercent = 0;
+            if (60 + PlayerTotalState.TotalLUK > 0)
+            {
+                AfterPositivePercent = ((PositiveCount * MagnificationAmount) + PlayerTotalState.TotalLUK) / (60 + PlayerTotalState.TotalLUK);
+            }
+            IncreaseDifference.Add(AfterPositivePercent - BeforePositivePercent);
+        }
+        foreach (float InDif in IncreaseDifference)
+        {
+            AttackAverageIncrease += InDif;
+        }
+        AttackAverageIncrease = (AttackAverageIncrease / EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).EquipmentSlots.Length) * 100;
+        //방어의 평균적인 상승량
+        DefenseAverageIncrease = 0;
+        IncreaseDifference.Clear();
+        foreach (EquipmentSlot Slots in EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).EquipmentSlots)
+        {
+            int PositiveCount = 0;
+            foreach (bool IsPositive in Slots.IsPositive)
+            {
+                if (IsPositive == true)
+                    PositiveCount++;
+            }
+            int MagnificationAmount = 60 / Slots.IsPositive.Length;
+            float BeforePositivePercent = (PositiveCount * MagnificationAmount) / 60f;
+            float AfterPositivePercent = 0;
+            if (60 + PlayerTotalState.TotalLUK > 0)
+            {
+                AfterPositivePercent = ((PositiveCount * MagnificationAmount) + PlayerTotalState.TotalLUK) / (60 + PlayerTotalState.TotalLUK);
+            }
+            IncreaseDifference.Add(AfterPositivePercent - BeforePositivePercent);
+        }
+        foreach (float InDif in IncreaseDifference)
+        {
+            DefenseAverageIncrease += InDif;
+        }
+        DefenseAverageIncrease = (DefenseAverageIncrease / EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).EquipmentSlots.Length) * 100;
+        //휴식의 평균적인 상승량
+        RestAverageIncrease = 0;
+        IncreaseDifference.Clear();
+        foreach (EquipmentSlot Slots in EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).EquipmentSlots)
+        {
+            int PositiveCount = 0;
+            foreach (bool IsPositive in Slots.IsPositive)
+            {
+                if (IsPositive == true)
+                    PositiveCount++;
+            }
+            int MagnificationAmount = 60 / Slots.IsPositive.Length;
+            float BeforePositivePercent = (PositiveCount * MagnificationAmount) / 60f;
+            float AfterPositivePercent = 0;
+            if (60 + PlayerTotalState.TotalLUK > 0)
+            {
+                AfterPositivePercent = ((PositiveCount * MagnificationAmount) + PlayerTotalState.TotalLUK) / (60 + PlayerTotalState.TotalLUK);
+            }
+            IncreaseDifference.Add(AfterPositivePercent - BeforePositivePercent);
+        }
+        foreach (float InDif in IncreaseDifference)
+        {
+            RestAverageIncrease += InDif;
+        }
+        RestAverageIncrease = (RestAverageIncrease / EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).EquipmentSlots.Length) * 100;
     }
     public PlayerInfo GetPlayerStateInfo()
     {
@@ -185,26 +274,86 @@ public class PlayerScript : MonoBehaviour
     {
         return PlayerTotalState;
     }
+
+    public void SetInitBuff()//나중에 뭐가 더 늘어나면 여기서//몬스터는 Monster쪽 SetInitBuff에서
+    {
+        if (JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.OverWhelmingPower] = 99;
+
+        if (JsonReadWriteManager.Instance.E_Info.EarlyDurabilityLevel >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.ThronArmor] = 99;
+
+        if (JsonReadWriteManager.Instance.E_Info.EarlyResilienceLevel >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.AdvancedRest] = 99;
+
+        /*
+        스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨
+        if (JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel >= 7)
+        */
+
+        if (JsonReadWriteManager.Instance.E_Info.EarlyHpLevel >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.HealingFactor] = 99;
+
+        if (JsonReadWriteManager.Instance.E_Info.EarlyTirednessLevel >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.ReCharge] = 99;
+
+        if (JsonReadWriteManager.Instance.E_Info.EarlyExperience >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.Rapine] = 99;
+
+        if (JsonReadWriteManager.Instance.E_Info.EarlyExperienceMagnification >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 99;
+
+        if (JsonReadWriteManager.Instance.E_Info.EquipmentSuccessionLevel >= 7)
+            PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
+
+        //PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.AttackDebuff] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
+        PlayerBuff.BuffList[(int)EBuffType.Misfortune] = 20;
+    }
     public void SetIsSuddenAttackAndRestQuality()
     {
         PlayerState.SaveRestQualityBySuddenAttack = PlayerState.CurrentPlayerActionDetails;
     }
 
-    public void EndOfAction()//어떠한 행동이 끝났을떄
+    public void EndOfAction(bool IsBossBattle = false)//어떠한 행동이 끝났을떄
     {
         BeforeShield = 0;
         PlayerState.ShieldAmount = 0;
-        if(PlayerState.SaveRestQualityBySuddenAttack != -1)//휴식중 습격당했으면 원래 상태로 되돌림
+        for(int i = 0; i < PlayerBuff.BuffList.Length; i++)
         {
-            PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.Rest;
-            PlayerState.CurrentPlayerActionDetails = PlayerState.SaveRestQualityBySuddenAttack;
-            PlayerState.SaveRestQualityBySuddenAttack = -1;
+            if (PlayerBuff.BuffList[i] >= 1)
+            {
+                PlayerBuff.BuffList[i] = 0;
+            }
         }
-        else if(PlayerState.SaveRestQualityBySuddenAttack == -1)
+        
+        if(IsBossBattle == true)
         {
-            PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
-            PlayerState.CurrentPlayerActionDetails = 0;
+
         }
+        else
+        {
+            if (PlayerState.SaveRestQualityBySuddenAttack != -1)//휴식중 습격당했으면 원래 상태로 되돌림
+            {
+                PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.Rest;
+                PlayerState.CurrentPlayerActionDetails = PlayerState.SaveRestQualityBySuddenAttack;
+                PlayerState.SaveRestQualityBySuddenAttack = -1;
+            }
+            else if (PlayerState.SaveRestQualityBySuddenAttack == -1)
+            {
+                PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+                PlayerState.CurrentPlayerActionDetails = 0;
+            }
+        }
+    }
+
+    public void WinBossBattle()
+    {
+        PlayerState.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+        PlayerState.CurrentFloor++;
+        PlayerState.DetectNextFloorPoint = 0;
+        PlayerState.CurrentPlayerActionDetails = 0;
     }
 
     public float GetAllEquipTier()//플레이어의 장착한 장비와 인벤토리속 장비의 모든 티어의 합을 리턴함(EQUIP 7레벨 구현을 위함)

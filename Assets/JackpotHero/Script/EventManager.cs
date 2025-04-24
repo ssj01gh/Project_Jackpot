@@ -51,12 +51,21 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public void SetCurrentEvent()
+    public void SetCurrentEvent(bool IsBossEvent = false)
     {
         PlayerScript P_Info = PlayerMgr.GetPlayerInfo();
 
         int ThemeNum = P_Info.GetPlayerStateInfo().CurrentFloor;
         int DetailOfEvents = P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails;
+
+        //보스 이벤트 라면 -> 보스 이벤트는 한개면 될듯 1001//코드
+        if(IsBossEvent == true)
+        {
+            CurrentEvent = EventStorage[10][0];
+            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+            return;
+        }
 
         //DetailOfEvents는 101 ~ 로 됨 1테마라면 101~ 2테마 라면 201~식이다//이벤트가 결정된 상태로 게임을 껏다 켰으면
         if (DetailOfEvents != 0)
@@ -106,6 +115,7 @@ public class EventManager : MonoBehaviour
 
     public void PressEventSelectionButton(int SelectionType)//이게 이제 이벤트의 결과 함수임
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         OccurEventBySelection(SelectionType);//여기서 이벤트의 선택에 맞게 이벤트가 발생함
         /*
         UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
@@ -131,6 +141,9 @@ public class EventManager : MonoBehaviour
                 break;
             case 103:
                 Event103(ButtonType);
+                break;
+            case 1001:
+                Event1001(ButtonType);
                 break;
             default:
                 break;
@@ -298,6 +311,21 @@ public class EventManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
                 UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
                 BattleMgr.InitCurrentBattleMonsters();
+                BattleMgr.InitMonsterNPlayerActiveGuage();
+                BattleMgr.ProgressBattle();
+                break;
+        }
+    }
+    //------------------------------------------Event1101
+    protected void Event1001(int ButtonType)
+    {
+        switch (ButtonType)
+        {
+            case 0:
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
+                UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
+                BattleMgr.InitCurrentBattleMonsters(true);
                 BattleMgr.InitMonsterNPlayerActiveGuage();
                 BattleMgr.ProgressBattle();
                 break;

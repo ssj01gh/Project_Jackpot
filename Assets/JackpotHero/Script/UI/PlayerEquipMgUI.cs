@@ -265,7 +265,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel))
         {//경험치가 부족할 경우
             EquipGamblingLevelUpButton.interactable = false;
-            EquipGamblingLevelUPButtonText.text = "경험치 부족";
+            EquipGamblingLevelUPButtonText.text = "경험치 부족\r\n" +
+                "필요 : " + EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel) + "경험치";
         }
         else//만랩보다 작을경우
         {
@@ -284,7 +285,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel))
         {//경험치가 부족할경우
             EquipGamblingButton.interactable = false;
-            EquipGamblingButtonText.text = "경험치 부족";
+            EquipGamblingButtonText.text = "경험치 부족\r\n" +
+                "필요 : " + EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel) + "경험치";
         }
         else
         {
@@ -383,6 +385,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                 CurrentBringItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
                             break;
                     }
+                    SoundManager.Instance.PlayUISFX("Item_PickUp");
                     PlayerEquipIndex = i;
                     IsClickedInventorySlot = true;
 
@@ -407,6 +410,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     {
                         if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0 && LockObjects[i].activeSelf == false)//비어있지 않을때//잠겨있지 않을때
                         {
+                            SoundManager.Instance.PlayUISFX("Item_PickUp");
                             IsClickedInventorySlot = true;
                             //들고 있는 아이템의 정보 저장
                             CurrentClickedSlotIndex = i;
@@ -448,6 +452,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             {
                 if (eventData.pointerEnter.tag == "InventorySlot")//마우스를 놓은 곳이 슬롯일때
                 {
+                    SoundManager.Instance.PlayUISFX("Item_PutDown");
                     bool IsEquipmentSlot = true;
                     //인벤토리 칸인지 검사
                     for (int i = 0; i < InventorySlots.Length; i++)
@@ -543,6 +548,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
                 else if (eventData.pointerEnter.name == "TrashCan")//마우스를 놓은 곳이 쓰레기 통일때
                 {
+                    SoundManager.Instance.PlayUISFX("Item_Remove");
                     //비우기
                     switch (PlayerEquipIndex)
                     {
@@ -565,6 +571,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
                 else//뭣도 아닐때
                 {//원래 자리로
+                    SoundManager.Instance.PlayUISFX("Item_PutDown");
                     PlayerEquipImages[PlayerEquipIndex].gameObject.SetActive(true);
                     PlayerEquipTierText[PlayerEquipIndex].text = GetTierText(CurrentBringItemCode);
                 }
@@ -573,6 +580,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             {
                 if (eventData.pointerEnter.tag == "InventorySlot")//마우스를 놓은 곳이 슬롯일때
                 {
+                    SoundManager.Instance.PlayUISFX("Item_PutDown");
                     bool IsEquipmentSlot = true;
                     //인벤토리 칸인지 검사
                     for (int i = 0; i < InventorySlots.Length; i++)
@@ -746,11 +754,13 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 else if (eventData.pointerEnter.name == "TrashCan")//마우스를 놓은 곳이 쓰레기 통일때
                 {
                     //장비를 잡았던 슬롯 비우기
+                    SoundManager.Instance.PlayUISFX("Item_Remove");
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                     InventorySlotTierTexts[CurrentClickedSlotIndex].text = "";
                 }
                 else//뭣도 아닐때
                 {//원래 자리로
+                    SoundManager.Instance.PlayUISFX("Item_PutDown");
                     InventorySlotsImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                     InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
                 }
@@ -951,6 +961,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //경험치가 줄어든다. //경험치가 먼저 줄어들어야지 레벨에 맞는 경험치가 줄어듬
         //플레이어의 뽑기 레벨이 오른다.
         //SetGambling으로 ui를 업데이트한다.
+        SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel++;
         SetGambling();
@@ -959,6 +970,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public void PressEquipGamblingGachaButton()//ActiveGacha
     {
         //경험치가 줄어든다.
+        SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
         //초기화
         EquipGachaObject.SetActive(true);
@@ -1020,6 +1032,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGachaLight[0].GetComponent<RectTransform>().eulerAngles = 
             GachaLightRot[0] + new Vector3(0, 0, Random.Range(-GachaLightZVariation, GachaLightZVariation));
         EquipGachaLight[0].SetActive(true);
+        PlayEquipGachaLightSound(0);
         EquipGachaLight[0].GetComponent<RectTransform>().DOScaleY(1, 0.3f).SetEase(Ease.OutExpo).OnComplete(() => { StartCoroutine(EquipGachaCoroutine(EquipmentTier)); });
     }
 
@@ -1058,6 +1071,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 yield return null;
             }
         }
+        SoundManager.Instance.PlaySFX("EquipGacha_Result");
         EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f).SetEase(Ease.Linear).OnComplete(() => { EndOfEquipGacha(); });
     }
     protected void ContinueOfEquipGacha(int CurrentEffectLevel)
@@ -1073,12 +1087,39 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipGachaLight[i].GetComponent<RectTransform>().eulerAngles =
                     GachaLightRot[i] + new Vector3(0, 0, Random.Range(-GachaLightZVariation, GachaLightZVariation));
                 EquipGachaLight[i].SetActive(true);
+                PlayEquipGachaLightSound(CurrentEffectLevel);
+                Debug.Log("AAAAAA");
                 EquipGachaLight[i].GetComponent<RectTransform>().DOScaleY(1, 0.3f).SetEase(Ease.OutExpo);
             }
             else//이미 켜져있는 light면 outline이미지의 색이 안됨, regenerate?
             {
                 EquipGachaLight[i].GetComponent<SpriteOutline>().Regenerate();
             }
+        }
+    }
+
+    protected void PlayEquipGachaLightSound(int CurrentEffectLevel)
+    {
+        switch(CurrentEffectLevel)
+        {
+            case 0:
+                SoundManager.Instance.PlaySFX("EquipGacha_TierOne");
+                break;
+            case 1:
+                SoundManager.Instance.PlaySFX("EquipGacha_TierTwo");
+                break;
+            case 2:
+                SoundManager.Instance.PlaySFX("EquipGacha_TierThree");
+                break;
+            case 3:
+                SoundManager.Instance.PlaySFX("EquipGacha_TierFour");
+                break;
+            case 4:
+                SoundManager.Instance.PlaySFX("EquipGacha_TierFive");
+                break;
+            case 5:
+                SoundManager.Instance.PlaySFX("EquipGacha_TierSix");
+                break;
         }
     }
 

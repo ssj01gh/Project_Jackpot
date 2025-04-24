@@ -106,6 +106,7 @@ public class EquipmentDetailInfoUI : MonoBehaviour
         if (gameObject.activeSelf == false)
             return;
 
+        SoundManager.Instance.PlayUISFX("UI_Button");
         gameObject.GetComponent<RectTransform>().localScale = Vector2.one;
         gameObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() => { gameObject.SetActive(false); });
     }

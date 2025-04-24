@@ -44,3 +44,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb73d051c7fbe4b44ac1fa321594261c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGM:
+  - SoundName: TitleBGM
+    _Sound: {fileID: 8300000, guid: fcbd37ef160e060409a6839883a4e8dc, type: 3}
+  - SoundName: BaseBGM
+    _Sound: {fileID: 8300000, guid: 9c7015a726bad5c44b6fff219b2c5fb3, type: 3}
+  - SoundName: RestBGM
+    _Sound: {fileID: 8300000, guid: 5446bbe59397aa54f81e978437771e53, type: 3}
+  - SoundName: NormalBattleBGM
+    _Sound: {fileID: 8300000, guid: b2577c7b5deb36b45af802e9bb36e2a8, type: 3}
+  - SoundName: BossBattleBGM
+    _Sound: {fileID: 8300000, guid: 18ff43440de126a4b95c43de2108954e, type: 3}
+  SFX:
+  - SoundName: Hit_Sward
+    _Sound: {fileID: 8300000, guid: 6f01b7c3cfe58ff498832d5b052533fa, type: 3}
+  - SoundName: Shield_Appear
+    _Sound: {fileID: 8300000, guid: ed07ba7f4a44eb84d9a51dbd81bb67d8, type: 3}
+  - SoundName: Shield_Disappear
+    _Sound: {fileID: 8300000, guid: df1e33cf097aeb948b11d6f81de13549, type: 3}
+  - SoundName: Shield_Block
+    _Sound: {fileID: 8300000, guid: 7f4503947974c034ab87e6dea89f099e, type: 3}
+  - SoundName: Increase_Number
+    _Sound: {fileID: 8300000, guid: 4bf49e5fddcdd9142b4e25d933a4bc37, type: 3}
+  - SoundName: ReverseCard_Open
+    _Sound: {fileID: 8300000, guid: 27e13721febb09945a7a3d388f3ca0b0, type: 3}
+  - SoundName: CardOpen_Link01
+    _Sound: {fileID: 8300000, guid: 61ed1798152249d4d81209a0774582ba, type: 3}
+  - SoundName: CardOpen_Link02
+    _Sound: {fileID: 8300000, guid: 29b3a6c8e1356894d9adcd773419ed1c, type: 3}
+  - SoundName: CardOpen_Link03
+    _Sound: {fileID: 8300000, guid: 257e4e59575ae2541a39fd45b936446d, type: 3}
+  - SoundName: CardOpen_Link04
+    _Sound: {fileID: 8300000, guid: 1957cdeacafbfa140b469456db22ad98, type: 3}
+  - SoundName: CardOpen_Link05
+    _Sound: {fileID: 8300000, guid: 2112d2fc85b5c1943a741e1b2e77ebf3, type: 3}
+  - SoundName: CardOpen_Link06
+    _Sound: {fileID: 8300000, guid: e3beab7093aff5b4d9b74e9197ad9c62, type: 3}
+  - SoundName: CardOpen_Link07
+    _Sound: {fileID: 8300000, guid: 6a28128ec099f57439a88ff1aa3e6e1d, type: 3}
+  - SoundName: CardOpen_Link08
+    _Sound: {fileID: 8300000, guid: 1e3ccbc7980368b43afb9201c543ef3a, type: 3}
+  - SoundName: CardOpen_Negative
+    _Sound: {fileID: 8300000, guid: 43a47d2edbc550b4186d0a9b3e221ae0, type: 3}
+  - SoundName: Rest_TickTack
+    _Sound: {fileID: 8300000, guid: df88a6ed14438d8439de427016855057, type: 3}
+  - SoundName: EquipGacha_Result
+    _Sound: {fileID: 8300000, guid: 0b57a0e52a2ff6342b6e44bfce27b108, type: 3}
+  - SoundName: EquipGacha_TierOne
+    _Sound: {fileID: 8300000, guid: 1542aa1331f9eb345b7770f8238eb168, type: 3}
+  - SoundName: EquipGacha_TierTwo
+    _Sound: {fileID: 8300000, guid: 0f6f24a91437e3744b2d3306e4fd0862, type: 3}
+  - SoundName: EquipGacha_TierThree
+    _Sound: {fileID: 8300000, guid: e2da050893ceadc4eadcfe9dba3a48f0, type: 3}
+  - SoundName: EquipGacha_TierFour
+    _Sound: {fileID: 8300000, guid: 21bed645e06aec04eb5b7caf1a375472, type: 3}
+  - SoundName: EquipGacha_TierFive
+    _Sound: {fileID: 8300000, guid: 01c1f9b6bea67c646b981204d36af242, type: 3}
+  - SoundName: EquipGacha_TierSix
+    _Sound: {fileID: 8300000, guid: 509a57c0f11645d469b3cc89250cb9a5, type: 3}
+  - SoundName: Acquire_Item
+    _Sound: {fileID: 8300000, guid: 6f2106c4ffaaf234cbf7b887e4ae80f0, type: 3}
+  - SoundName: Acquire_EXP
+    _Sound: {fileID: 8300000, guid: b1cfb58e352f3524f91faa9a4c6ba815, type: 3}
+  - SoundName: Rest_Ready_Cancel
+    _Sound: {fileID: 8300000, guid: eee8b5248ebedc445bb11b0fae1c9f4e, type: 3}
+  - SoundName: Buff_Forcing
+    _Sound: {fileID: 8300000, guid: e57267637af8b0d47a642609125f4d5c, type: 3}
+  - SoundName: Buff_Healing
+    _Sound: {fileID: 8300000, guid: cbb54c466ecc8f64db17256dc28de344, type: 3}
+  - SoundName: Buff_Consume
+    _Sound: {fileID: 8300000, guid: 4a8faebafb1870144b580dd4f4a51f13, type: 3}
+  - SoundName: Buff_Burn
+    _Sound: {fileID: 8300000, guid: 68ad95330a0461a4392c8a9887169a84, type: 3}
+  UISFX:
+  - SoundName: UI_Button
+    _Sound: {fileID: 8300000, guid: ac667ae2ff44718459b6783220585c78, type: 3}
+  - SoundName: MovingUI_Appear
+    _Sound: {fileID: 8300000, guid: 4033397832edd684baa2ea80ba944b4b, type: 3}
+  - SoundName: MovingUI_Disappear
+    _Sound: {fileID: 8300000, guid: a9a62293c88cebf4486b1a443500b76e, type: 3}
+  - SoundName: Bag_Open
+    _Sound: {fileID: 8300000, guid: 6f2106c4ffaaf234cbf7b887e4ae80f0, type: 3}
+  - SoundName: Bag_Close
+    _Sound: {fileID: 8300000, guid: 496396027cdf8aa4d973db166533f347, type: 3}
+  - SoundName: Item_PickUp
+    _Sound: {fileID: 8300000, guid: 28cd5d8225861b34cbd361e90dfcfa07, type: 3}
+  - SoundName: Item_PutDown
+    _Sound: {fileID: 8300000, guid: 1e514a594c36ad0489dc7384c9923dc4, type: 3}
+  - SoundName: Item_Remove
+    _Sound: {fileID: 8300000, guid: a1acdba5423f14840b305236378818e9, type: 3}
+  BGMPlayer: {fileID: 8435020513809524899, guid: b7dcaff8e4b34c248b4b223a99b457df, type: 3}
+  SFXPlayer: {fileID: 5025712520496327058, guid: 023de268e3bf6b9469534ac21f4a4a94, type: 3}
+  UISFXPlayer: {fileID: 6139995416911395973, guid: 44f54ec906ee79546af9798ea6e89987, type: 3}
+  SFXPlayerAmount: 10
+  UISFXPlayerAmount: 10
+  Mixer: {fileID: 24100000, guid: 4b60b8092997b0847af9d545a3965613, type: 2}

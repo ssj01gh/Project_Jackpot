@@ -9,7 +9,8 @@ public enum EPlayerCurrentState
     SelectAction,
     Battle,
     OtherEvent,
-    Rest
+    Rest,
+    BossBattle,
 }
 
 public enum EPlayerRestQuality
@@ -52,7 +53,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     //이 함수는 게임을 새로 시작할때마다 계속 불러와질 예정
     public void InitPlayerInfo(bool IsRestartGame = false)
@@ -80,7 +81,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             //Player Inventory Setting
             P_Info.Experience = 0;
             P_Info.EquipmentGamblingLevel = 0;
-            P_Info.EquipmentInventory = new int[12] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};//0이하는 인벤토리가 비어있는거임
+            P_Info.EquipmentInventory = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };//0이하는 인벤토리가 비어있는거임
             P_Info.CurrentFloor = 0;
             P_Info.DetectNextFloorPoint = 0;
             //Player Current Action Type Setting
@@ -90,6 +91,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             P_Info.GiveDamage = 0f;
             P_Info.ReceiveDamage = 0f;
             P_Info.MostPowerfulDamage = 0f;
+            P_Info.Karma = 0f;
             P_Info.SaveRestQualityBySuddenAttack = -1;
 
             string classToJson = JsonUtility.ToJson(P_Info, true);
@@ -105,7 +107,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         if (!File.Exists(path) || IsRestartGame == true)//없으면 생성
         {
             //Player EarlyStrenghenInfo Setting
-            if(IsRestartGame == false)
+            if (IsRestartGame == false)
             {
                 E_Info.PlayerReachFloor = 0;
                 E_Info.PlayerEarlyPoint = 0;
@@ -136,10 +138,10 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         if (!File.Exists(path))//없으면 생성
         {
             //OptinInfo Setting
-            O_Info.MasterVolume = 0.7f;
-            O_Info.BGMVolume = 0.7f;
-            O_Info.SFXVolume = 0.7f;
-            O_Info.UISFXVolume = 0.7f;
+            O_Info.MasterVolume = 0.8f;
+            O_Info.BGMVolume = 0.8f;
+            O_Info.SFXVolume = 0.8f;
+            O_Info.UISFXVolume = 0.8f;
             O_Info.ScreenResolutionWidth = 1920f;
             O_Info.IsFullScreen = false;
 
@@ -186,6 +188,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             GiveDamage = PInfo.GiveDamage,
             ReceiveDamage = PInfo.ReceiveDamage,
             MostPowerfulDamage = PInfo.MostPowerfulDamage,
+            Karma = PInfo.Karma,
             SaveRestQualityBySuddenAttack = PInfo.SaveRestQualityBySuddenAttack
         };
     }
@@ -211,11 +214,25 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             EquipmentSuccessionLevel = EInfo.EquipmentSuccessionLevel
         };
     }
+    /*
     public OptionInfo GetCopyOptionInfo()
     {
         return JsonUtility.FromJson<OptionInfo>(JsonUtility.ToJson(O_Info));
     }
 
+    public void SaveOptionInfo(OptionInfo OInfo)
+    {
+        O_Info = new OptionInfo
+        {
+            MasterVolume = OInfo.MasterVolume,
+            BGMVolume = OInfo.BGMVolume,
+            SFXVolume = OInfo.SFXVolume,
+            UISFXVolume = OInfo.UISFXVolume,
+            ScreenResolutionWidth = OInfo.ScreenResolutionWidth,
+            IsFullScreen = OInfo.IsFullScreen
+        };
+    }
+    */
     public float GetEarlyState(string EarlyType)
     {
         switch(EarlyType)

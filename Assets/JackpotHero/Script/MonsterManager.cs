@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,6 +21,7 @@ public class MonsterManager : MonoBehaviour
     protected const int InAdvanceAmount = 3;
     public Monster CurrentTarget { protected set; get; }
     public event System.Action<Monster> CurrentTargetChange;//배틀 UI에서 현재 몬스터 표시할려고 만든 event
+
     protected void Awake()
     {
         InitMonster();
@@ -75,6 +77,17 @@ public class MonsterManager : MonoBehaviour
     {
         return ActiveMonsters;
     }
+
+    public void SetBossSpawn(PlayerManager PMgr)
+    {//1스테이지 라면 1101 ~ // 2스테이지 라면 1201~
+        int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor + 10;
+        int RandBossPatternID = Random.Range(0, PatternStorage[ThemeNum].Count);
+
+        CurrentSpawnPattern = PatternStorage[ThemeNum][RandBossPatternID];
+        SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
+        PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+        JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
+    }
     public void SetSpawnPattern(PlayerManager PMgr)
     {
         int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor;
@@ -91,6 +104,7 @@ public class MonsterManager : MonoBehaviour
                     CurrentSpawnPattern = PatternStorage[ThemeOfEvent][i];
                     SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
                     PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
                     return;//함수 종료
                 }
             }
@@ -99,6 +113,7 @@ public class MonsterManager : MonoBehaviour
             CurrentSpawnPattern = PatternStorage[ThemeOfEvent][RandomPattern];
             SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
             PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+            JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
         }
 
         //모든 테마를 다 포함한 랜덤값
@@ -122,6 +137,7 @@ public class MonsterManager : MonoBehaviour
         }
         SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
         PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+        JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
     }
 
     protected void SetCurrentSpawnPatternReward(int IsSuddenAttack)
@@ -145,7 +161,7 @@ public class MonsterManager : MonoBehaviour
             ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
         }
         ActiveMonsters.Clear();
-        for (int i = 0; i < CurrentSpawnPattern.SpawnMonsterName.Length; i++)
+        for (int i = 0; i < CurrentSpawnPattern.SpawnMonsterName.Length; i++)//0~2까지 밖에 안나옴
         {
             if (CurrentSpawnPattern.SpawnMonsterName[i] == "")//비어있다면
                 continue;//건너 뛰기
@@ -172,6 +188,74 @@ public class MonsterManager : MonoBehaviour
 
                 }
             }
+        }
+    }
+
+    public void SpawnMonsterBySummonMonster(List<string> MonsterID)
+    {
+        //살아 있는 몬스터와 몬스터 스폰가능 위치의 좌표를 비교해서 스폰가능한 지역을 찾음
+        //살아있는 몬스터가 3마리 이상이면 그냥 return -> 어짜피 비어 있는곳이 없음
+        //만약에 스폰 가능한 위치가 없다면 그대로 return(스폰하지 않음)
+        //스폰 가능한 위치가 있다면 앞에서 부터 스폰하고 스폰 가능한 위치가 없어지면 스폰하지 않음
+        //MonsterID.Count와 CanSpwanPont.Count중 큰것을 기준으로 몬스터를 스폰함
+        if (MonsterID.Count >= InAdvanceAmount)
+            return;
+
+        List<Vector2> CanSpawnPoint = new List<Vector2>();
+        for(int i = 0; i < MonsterSpawnPoint.Length; i++)
+        {
+            bool IsEmptySpawnPoint = true;
+            Debug.Log(ActiveMonsters.Count);
+            for (int j = 0; j < ActiveMonsters.Count; j++)
+            {
+                //ActiveMonster의 모두가 MonsterSpawnPoint[i]와 같은 위치가 아니여야지만 비어있는 것임
+                if (Vector2.Distance(MonsterSpawnPoint[i].transform.position, ActiveMonsters[j].transform.position) <= 0.1f)
+                {
+                    IsEmptySpawnPoint = false;
+                    break;
+                    //여기 들어왔다는 것 = 비어있지 않은 것임
+                }
+            }
+            if(IsEmptySpawnPoint == true)
+            {
+                //이게 true이다 : 이 MonsterSpawnPoint[i]의 좌표는 비어있는 것임
+                CanSpawnPoint.Add(MonsterSpawnPoint[i].transform.position);
+            }
+        }
+
+        if (CanSpawnPoint.Count <= 0)//비어있는 장소가 없다면
+            return;
+
+        int SpawnCount = 0;
+        if (CanSpawnPoint.Count >= MonsterID.Count)//작은 쪽을 기준으로
+            SpawnCount = MonsterID.Count;
+        else
+            SpawnCount = CanSpawnPoint.Count;
+
+        for(int i = 0; i < SpawnCount; i ++)
+        {
+            if (MonsterStorage.ContainsKey(MonsterID[i]))//해당 몬스터가 있다면
+            {
+                for(int j = 0; j < MonsterStorage[MonsterID[i]].Count; j++)
+                {
+                    if (MonsterStorage[MonsterID[i]][j].activeSelf == false)//꺼져있을때만 소환
+                    {
+                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().SpawnMonster(CanSpawnPoint[i]);
+                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MonsterClicked += SetCurrentTargetMonster;
+
+                        ActiveMonsters.Add(MonsterStorage[MonsterID[i]][j]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void SetActiveMonstersStatus()
+    {
+        foreach(GameObject Mon in ActiveMonsters)
+        {
+            Mon.GetComponent<Monster>().SetMonsterStatus();
         }
     }
 

@@ -27,6 +27,7 @@ public class PlayerInfo
     public float GiveDamage;
     public float ReceiveDamage;
     public float MostPowerfulDamage;
+    public float Karma;
     public int SaveRestQualityBySuddenAttack;
 }
 

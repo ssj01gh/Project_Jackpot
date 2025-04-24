@@ -22,7 +22,7 @@ public class CurrentStageProgressUI : MonoBehaviour
     public void SetCurrentStegeUI(PlayerInfo PInfo)
     {
         float DetectNextFloorRatio = ((float)PInfo.DetectNextFloorPoint / (250f + PInfo.DetectNextFloorPoint)) * 100f;
-        CurrentStageText.text = (PInfo.CurrentFloor).ToString() +"층";
-        CurrentStageProgressText.text = "다음층 발견 확률 : " + DetectNextFloorRatio.ToString("F1") + "%";
+        CurrentStageText.text = (PInfo.CurrentFloor).ToString() +"스테이지";
+        CurrentStageProgressText.text = "보스 등장 확률 : " + DetectNextFloorRatio.ToString("F1") + "%";
     }
 }
