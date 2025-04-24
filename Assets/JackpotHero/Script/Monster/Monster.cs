@@ -10,6 +10,7 @@ public enum EMonsterActionState
 {
     Attack,
     Defense,
+    SpawnMonster
 }
 public class MonsterCurrentStatus
 {
@@ -17,6 +18,7 @@ public class MonsterCurrentStatus
     public float MonsterCurrentHP;
 
     public float MonsterCurrentActionGauge;
+    public float MonsterNextActionGauge;
     public float MonsterCurrentShieldPoint;
 
     public float MonsterCurrentATK;
@@ -53,6 +55,10 @@ public class Monster : MonoBehaviour
     public GameObject HpSliderPos;
     public float HpsliderWidth;
     public float BuffPosUpperHp;
+    public float ActionPosUpperHP;
+    [Header("SummonMonsterForSpecialAction")]//몇몇 특수 몬스터 들을 위한 소환할 몬스터 종류
+    public string[] CanSummonMonsterIDs;
+    public int SummonMonsterCount;
 
     //--------------------^GetFromInspector\
 
@@ -65,6 +71,12 @@ public class Monster : MonoBehaviour
     protected Collider2D MonCollider;
     public int BeforeMonsterShield { protected set; get; } = 0;
 
+    protected float CurrentBaseATK = 0;
+    protected float CurrentBaseDUR = 0;
+    protected float CurrentBaseLUK = 0;
+    protected float CurrentBaseSPD = 0;
+    //public int UsedMonsterActionGuageIndex { protected set; get; } = 0;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -74,7 +86,7 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(gameObject.activeSelf == true && Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // 충돌 검사//지금 이거는 MainBattle이 진행중일때도 바뀌어 버림 나중에 바꿔야함
@@ -85,7 +97,7 @@ public class Monster : MonoBehaviour
 
             if (MonCollider != null && MonCollider.OverlapPoint(mousePosition))
             {
-                MonsterClicked.Invoke(gameObject.GetComponent<Monster>());
+                MonsterClicked?.Invoke(gameObject.GetComponent<Monster>());
             }
         }
     }
@@ -103,17 +115,22 @@ public class Monster : MonoBehaviour
         MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
         //SetATK
         Rand = Random.Range(-(int)ATKVarianceAmount, (int)ATKVarianceAmount + 1);
-        MonTotalStatus.MonsterCurrentATK = MonsterBaseATK + Rand;
+        CurrentBaseATK = MonsterBaseATK + Rand;
         //SetDUR
         Rand = Random.Range(-(int)DURVarianceAmount, (int)DURVarianceAmount + 1);
-        MonTotalStatus.MonsterCurrentDUR = MonsterBaseDUR + Rand;
+        CurrentBaseDUR = MonsterBaseDUR + Rand;
         //SetLUK
         Rand = Random.Range(-(int)LUKVarianceAmount, (int)LUKVarianceAmount + 1);
-        MonTotalStatus.MonsterCurrentLUK = MonsterBaseLuk + Rand;
+        CurrentBaseLUK = MonsterBaseLuk + Rand;
         //SetSPD
         Rand = Random.Range(-(int)SPDVarianceAmount, (int)SPDVarianceAmount + 1);
-        MonTotalStatus.MonsterCurrentSPD = MonsterBaseSPD + Rand;
+        CurrentBaseSPD = MonsterBaseSPD + Rand;
 
+        //몬스터도 플레이어의 상태에 맞게 버프를 바아야함
+        SetMonsterStatus();
+        SetInitBuffByPlayerState();
+        //일단은 방심만
+        //개인적 몬스터에대한 상태에 대한 버프는 InitMonsterState에서
         InitMonsterState();
         SpawnFadeIn();
     }
@@ -147,7 +164,7 @@ public class Monster : MonoBehaviour
     protected virtual void InitMonsterState()
     {
         //Test
-        //MonsterBuff.BuffList[(int)EBuffType.Luck] = 15;
+        //MonsterBuff.BuffList[(int)EBuffType.Misfortune] = 15;
         //MonsterBuff.BuffList[(int)BuffType.ThronArmor] = 10;
         //MonsterBuff.BuffList[15] = 10;
         //Test
@@ -158,6 +175,34 @@ public class Monster : MonoBehaviour
 
     }
 
+    public void SetMonsterStatus()
+    {
+        MonTotalStatus.MonsterCurrentATK = CurrentBaseATK;
+        MonTotalStatus.MonsterCurrentDUR = CurrentBaseDUR;
+        if(MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1 && MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
+            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
+        else if(MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1)
+            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK + 30;
+        else if(MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
+            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK - 30;
+        else
+            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
+
+        MonTotalStatus.MonsterCurrentSPD = CurrentBaseSPD;
+    }
+
+    protected void SetInitBuffByPlayerState()
+    {
+        if(JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel >= 7)
+        {
+            MonsterBuff.BuffList[(int)EBuffType.Defenseless] = 1;
+        }
+    }
+
+    public Vector2 GetMonActionTypePos()
+    {
+        return new Vector2(HpSliderPos.transform.position.x, HpSliderPos.transform.position.y + ActionPosUpperHP);
+    }
     public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
     {
         float RestDamage = 0;
@@ -191,5 +236,11 @@ public class Monster : MonoBehaviour
     {
         RecordMonsterBeforeShield();
         MonTotalStatus.MonsterCurrentShieldPoint += ShieldPoint;
+    }
+
+    public virtual List<string> GetSummonMonsters()
+    {
+        List<string> SummonMosnters = new List<string>();
+        return SummonMosnters;
     }
 }

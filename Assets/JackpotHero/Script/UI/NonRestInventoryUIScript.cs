@@ -49,6 +49,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
         if (InventoryPanel.activeSelf == true)
             return;
 
+        SoundManager.Instance.PlayUISFX("Bag_Open");
         InventoryPanel.GetComponent<RectTransform>().localScale = Vector2.zero;
         InventoryPanel.SetActive(true);
         InventoryPanel.GetComponent<RectTransform>().DOScale(Vector2.one, 0.5f).SetEase(Ease.OutBack);
@@ -84,7 +85,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
     {
         if (InventoryPanel.activeSelf == false)
             return;
-
+        SoundManager.Instance.PlayUISFX("Bag_Close");
         InventoryPanel.GetComponent<RectTransform>().localScale = Vector2.one;
         InventoryPanel.SetActive(true);
         InventoryPanel.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.3f).OnComplete(() => { InventoryPanel.SetActive(false); });
@@ -101,6 +102,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
                 {
                     if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0 && InventoryLockImage[i].activeSelf == false)//비어있지 않을때//잠겨있지 않을때
                     {
+                        SoundManager.Instance.PlayUISFX("Item_PickUp");
                         IsClickedInventorySlot = true;
                         //들고 있는 아이템의 정보 저장
                         CurrentClickedSlotIndex = i;
@@ -137,6 +139,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
             Vector2 ClickedUIPos = eventData.pointerEnter.GetComponent<RectTransform>().anchoredPosition;
             if (eventData.pointerEnter.tag == "InventorySlot")//마우스를 놓은 곳이 슬롯일때
             {
+                SoundManager.Instance.PlayUISFX("Item_PutDown");
                 for (int i = 0; i < InventorySlots.Length; i++)
                 {
                     if (Vector2.Distance(ClickedUIPos, InventorySlots[i].GetComponent<RectTransform>().anchoredPosition) <= 10)
@@ -180,11 +183,13 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
             else if(eventData.pointerEnter.name == "TrashCan")//마우스를 놓은 곳이 쓰레기 통일때
             {
                 //장비를 잡았던 슬롯 비우기
+                SoundManager.Instance.PlayUISFX("Item_Remove");
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                 TierTexts[CurrentClickedSlotIndex].text = "";
             }
             else//슬롯도 쓰레기 통도 아닐떄
             {//원래 자리로 원위치
+                SoundManager.Instance.PlayUISFX("Item_PutDown");
                 InventoryItemImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                 TierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
             }

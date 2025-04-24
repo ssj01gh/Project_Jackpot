@@ -63,6 +63,7 @@ public class GettingItenUIScript : MonoBehaviour
         switch(GettingType)
         {
             case "EXP":
+                SoundManager.Instance.PlaySFX("Acquire_EXP");
                 EXPObject.SetActive(true);
                 EXPObject.GetComponent<RectTransform>().localScale = Vector3.one;
                 EXPObject.GetComponent<RectTransform>().DOLocalPath(PathPoint, 0.5f, PathType.CatmullRom);
@@ -70,30 +71,35 @@ public class GettingItenUIScript : MonoBehaviour
                 //나중에 끝나면 다른 이펙트/ 사운드도
                 break;
             case "Weapon":
+                SoundManager.Instance.PlaySFX("Acquire_Item");
                 WeaponObject.SetActive(true);
                 WeaponObject.GetComponent<RectTransform>().localScale = Vector3.one;
                 WeaponObject.GetComponent<RectTransform>().DOLocalPath(PathPoint, 0.5f, PathType.CatmullRom);
                 WeaponObject.GetComponent<RectTransform>().DOScale(Vector3.zero, 0.5f).OnComplete(() => { EXPObject.SetActive(false); });
                 break;
             case "Armor":
+                SoundManager.Instance.PlaySFX("Acquire_Item");
                 ArmorObject.SetActive(true);
                 ArmorObject.GetComponent<RectTransform>().localScale = Vector3.one;
                 ArmorObject.GetComponent<RectTransform>().DOLocalPath(PathPoint, 0.5f, PathType.CatmullRom);
                 ArmorObject.GetComponent<RectTransform>().DOScale(Vector3.zero, 0.5f).OnComplete(() => { EXPObject.SetActive(false); });
                 break;
             case "Helmet":
+                SoundManager.Instance.PlaySFX("Acquire_Item");
                 HelmetObject.SetActive(true);
                 HelmetObject.GetComponent<RectTransform>().localScale = Vector3.one;
                 HelmetObject.GetComponent<RectTransform>().DOLocalPath(PathPoint, 0.5f, PathType.CatmullRom);
                 HelmetObject.GetComponent<RectTransform>().DOScale(Vector3.zero, 0.5f).OnComplete(() => { EXPObject.SetActive(false); });
                 break;
             case "Boots":
+                SoundManager.Instance.PlaySFX("Acquire_Item");
                 BootsObject.SetActive(true);
                 BootsObject.GetComponent<RectTransform>().localScale = Vector3.one;
                 BootsObject.GetComponent<RectTransform>().DOLocalPath(PathPoint, 0.5f, PathType.CatmullRom);
                 BootsObject.GetComponent<RectTransform>().DOScale(Vector3.zero, 0.5f).OnComplete(() => { EXPObject.SetActive(false); });
                 break;
             case "Jewelry":
+                SoundManager.Instance.PlaySFX("Acquire_Item");
                 JewelryObject.SetActive(true);
                 JewelryObject.GetComponent<RectTransform>().localScale = Vector3.one;
                 JewelryObject.GetComponent<RectTransform>().DOLocalPath(PathPoint, 0.5f, PathType.CatmullRom);

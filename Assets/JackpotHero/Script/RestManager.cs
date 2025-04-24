@@ -55,15 +55,21 @@ public class RestManager : MonoBehaviour
     {
         UIMgr.R_UI.ActiveRestActionSelection();
     }
+    public void PlayButtonSoundInRestUI()
+    {
+        SoundManager.Instance.PlayUISFX("UI_Button");
+    }
 
     //------------------------------Rest
 
     public void PressRestActionRest()//휴식 선택창에서 휴식을 누르면 휴식 시간 선택창 활성화
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.R_UI.ActiveRestTimeSelectionUI(PlayerMgr.GetPlayerInfo());
     }
     public void SetRestMgrRestResult()//휴식할 시간을 조절하고
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         SetRestResult();
         UIMgr.R_UI.ActiveLeftTimeObject(IsPeacefulRest, this);
     }
@@ -125,13 +131,16 @@ public class RestManager : MonoBehaviour
                 while(true)
                 {
                     yield return null;
-                    if(UIMgr.R_UI.FillAmountAnimEnd == true)
+                    if(UIMgr.R_UI.FillAmountAnimEnd == true)//1턴이 지난간거임 여기서 째깍?//회복하는 이펙트도 넣을까?
                     {
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenHP", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        SoundManager.Instance.PlaySFX("Rest_TickTack");
                         break;
                     }
                 }
                 PlayerMgr.GetPlayerInfo().RecoverHPNSTAByRest(0.1f);
-                UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+                UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(),
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList);
                 CurrentRestTime++;
             }
             else//습격이 일어난다면
@@ -182,6 +191,7 @@ public class RestManager : MonoBehaviour
     public void PressPlayerUpgradeButton()
     {
         InitUpgradeAfterStatus();
+        SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.R_UI.ActivePlayerUpGradeUI(PlayerMgr.GetPlayerInfo());
     }
     protected void InitUpgradeAfterStatus()
@@ -198,11 +208,13 @@ public class RestManager : MonoBehaviour
 
     public void PressPlayerUpGradePlusButton(string ButtonType)
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerUpgradePlusButtonClick(ButtonType);
         UIMgr.R_UI.PlayerUpgradePLUSMINUSButtonClick(PlayerMgr.GetPlayerInfo(), AfterStatus);
     }
     public void PressPlayerUpGradeMinusButton(string ButtonType)
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerUpgradeMinusButtonClick(ButtonType);
         UIMgr.R_UI.PlayerUpgradePLUSMINUSButtonClick(PlayerMgr.GetPlayerInfo(), AfterStatus);
     }
@@ -270,7 +282,8 @@ public class RestManager : MonoBehaviour
 
     public void PlayerUpgradeOKButton()
     {
-        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < AfterStatus.NeededEXP)
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < AfterStatus.NeededEXP)
         {
             UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughEXP_PlayerUpgrade);
             return;
@@ -280,28 +293,33 @@ public class RestManager : MonoBehaviour
         PlayerMgr.GetPlayerInfo().UpgradePlayerStatus(AfterStatus);//스텟을 업그래이드
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());//Json에 저장
 
-        UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());//UI에 있는 스텟 갱신
+        UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(),
+            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList);//UI에 있는 스텟 갱신
         UIMgr.R_UI.ActiveRestActionSelection();//휴식 선택창 띄우기
     }
     //---------------------------------------------------EquipGatchaFunc
     public void ActiveEquipGambling()
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.R_UI.ActivePlayerEquipMg();
     }
     public void InActiveEquipGambling()
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.R_UI.ActiveRestActionSelection();//휴식 선택창 띄우기
         //이 창이 꺼졌다는건 플레이어의 스탯과 장비가 변했을 가능성이 높음
         PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//장비 변화에 의한 스텟 변화적용
         UIMgr.PE_UI.SetEquipmentImage(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());//장비 변화에 의한 장비표시 ui 변화 적용
-        UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(),
+            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList);
         //장비 변화에 의한 스탯표시 ui 변화 적용
     }
     //-----------------------------------------------------RestEndButton
     public void PressRestEndButton()
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int) EPlayerCurrentState.SelectAction;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
 

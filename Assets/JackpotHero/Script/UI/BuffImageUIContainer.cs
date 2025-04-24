@@ -34,6 +34,7 @@ public class BuffImageUIContainer : MonoBehaviour , IPointerEnterHandler, IPoint
 
     public void InitBuffImage()
     {
+        gameObject.SetActive(false);
         for(int i = 0; i < BuffImages.Length; i++)
         {
             BuffText[i].text = "";
@@ -45,6 +46,7 @@ public class BuffImageUIContainer : MonoBehaviour , IPointerEnterHandler, IPoint
 
     public void ActiveBuffImage(int[] BuffList, Vector2 Position)
     {
+        gameObject.SetActive(true);
         gameObject.transform.position = Position;
         for(int i = 0; i < BuffList.Length; i++)
         {//i가 버프의 코드

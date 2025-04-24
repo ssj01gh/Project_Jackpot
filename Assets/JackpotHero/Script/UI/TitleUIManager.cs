@@ -13,7 +13,8 @@ public class TitleUIManager : MonoBehaviour
     {
         SetContinueButton();
         _OptionUI.gameObject.SetActive(false);
-        _EarlyUI.gameObject.SetActive(false);
+        //_EarlyUI.gameObject.SetActive(false);
+        SoundManager.Instance.PlayBGM("TitleBGM");
     }
 
     // Update is called once per frame
@@ -38,10 +39,13 @@ public class TitleUIManager : MonoBehaviour
 
     public void ContinueButtonClick()
     {
-        Debug.Log("Aaaaaaa");
+        //Debug.Log("Aaaaaaa");
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        LoadingScene.Instance.LoadAnotherScene("PlayScene");
     }
     public void StartButtonClick()
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         _EarlyUI.EarlyStrengthenActive();
     }
     public void OptionButtonClick()
@@ -51,8 +55,10 @@ public class TitleUIManager : MonoBehaviour
     public void ExitButtonClick()
     {
 #if UNITY_EDITOR
+        SoundManager.Instance.PlayUISFX("UI_Button");
         UnityEditor.EditorApplication.isPlaying = false;
 #else
+        SoundManager.Instance.PlayUISFX("UI_Button");
         Application.Quit();
 #endif
     }

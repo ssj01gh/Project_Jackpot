@@ -17,11 +17,12 @@ public class PlaySceneManager : MonoBehaviour
 
     //여기 아래꺼가 바뀌면 CurrentStageProgressUI에서 쓰고있는 상수도 바꿔야함
     protected const float EngageMonster = 200f;
-    protected const float OccurEvent = 200f;//원래 50
+    protected const float OccurEvent = 100f;//원래 50
     protected const int SearchNextFloorMaxPoint = 10;
     void Start()
     {
         PlayerMgr.InitPlayerManager();
+        UIMgr.BG_UI.SetBackGroundSprite(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
         UIMgr.SetUI();
         MonMgr.CurrentTargetChange += UIMgr.B_UI.DisplayMonsterDetailUI;
         //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
@@ -31,7 +32,40 @@ public class PlaySceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*
+        if(Input.GetKeyDown(KeyCode.A))//도
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link01");
+        }
+        if (Input.GetKeyDown(KeyCode.S))//레
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link02");
+        }
+        if (Input.GetKeyDown(KeyCode.D))//미
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link03");
+        }
+        if (Input.GetKeyDown(KeyCode.F))//파
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link04");
+        }
+        if (Input.GetKeyDown(KeyCode.G))//솔
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link05");
+        }
+        if (Input.GetKeyDown(KeyCode.H))//라
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link06");
+        }
+        if (Input.GetKeyDown(KeyCode.J))//시
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link07");
+        }
+        if (Input.GetKeyDown(KeyCode.K))//도
+        {
+            SoundManager.Instance.PlaySFX("CardOpen_Link08");
+        }
+        */
     }
 
     private void OnApplicationQuit()
@@ -43,6 +77,7 @@ public class PlaySceneManager : MonoBehaviour
     //-------------------------------IdlePhase
     public void ResearchButtonClick()
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         //전체적인 포인트
         //0 ~ EngageMonster - 1 -> 몬스터 조우,
         //EngageMonster ~ EngageMonster + OccurEvent - 1 -> 이벤트 발생,
@@ -65,7 +100,7 @@ public class PlaySceneManager : MonoBehaviour
         }
         else if(RandPoint >= EngageMonster + OccurEvent && RandPoint < FullEventPoint)//다음 층 발견
         {
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.BossBattle;
             Debug.Log("ResearchNextFloor");
         }
         else
@@ -103,20 +138,34 @@ public class PlaySceneManager : MonoBehaviour
             case (int)EPlayerCurrentState.SelectAction:
                 break;
             case (int)EPlayerCurrentState.Battle:
-                //MonMgr.SetSpawnPattern(PlayerMgr);//몬스터의 스폰 패턴 설정
-                //MonMgr.SpawnCurrentSpawnPatternMonster();//스폰 패턴에 맞게 몬스터 생성//ActiveMonster설정
                 BattleMgr.InitCurrentBattleMonsters();
+                //여기 아래에서 보스냐 아니냐에 따라 BGM이 달라져야 할듯?
+                /*
+                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails >= 1000)//1000이 넘는건 보스 밖에 없음
+                {
+                    SoundManager.Instance.PlayBGM("BossBattleBGM");
+                }
+                else
+                {
+                    SoundManager.Instance.PlayBGM("NormalBattleBGM");
+                }
+                */
                 BattleMgr.InitMonsterNPlayerActiveGuage();
                 BattleMgr.ProgressBattle();
-                //ProgressBattle();
                 //이때에 몬스터를 딱 스폰해야됨//여기에서 DetailOfEvent들어오면 그거에 맞게 몬스터 스폰하기
                 break;
             case (int)EPlayerCurrentState.OtherEvent:
+                SoundManager.Instance.PlayBGM("BaseBGM");
                 EventMgr.SetCurrentEvent();//현재 발생할 이벤트 설정
                 UIMgr.E_UI.ActiveEventUI(EventMgr);
                 break;
             case (int)EPlayerCurrentState.Rest:
                 //여기서는 즉각적으로 뭔가 결정할게 없긴함
+                break;
+            case (int)EPlayerCurrentState.BossBattle:
+                SoundManager.Instance.PlayBGM("BossBattleBGM");
+                EventMgr.SetCurrentEvent(true);
+                UIMgr.E_UI.ActiveEventUI(EventMgr);
                 break;
         }
         yield break;
@@ -124,16 +173,19 @@ public class PlaySceneManager : MonoBehaviour
 
     public void PressRestButton()
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.RestButtonClick();
     }
 
     public void PressRestQuitButton()
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.NotRestButtonClick();
     }
     public void PressRestQualityButton(int Quality)
     {
-        switch(Quality)//->퀄리티에 따라 피로도 소모 및 피로도 부족시에 안내 매세지 띄우기
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        switch (Quality)//->퀄리티에 따라 피로도 소모 및 피로도 부족시에 안내 매세지 띄우기
         {
             case (int)EPlayerRestQuality.VeryBad:
                 break;
@@ -143,12 +195,20 @@ public class PlaySceneManager : MonoBehaviour
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
                     return;
                 }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(100);
+                }
                 break;
             case (int)EPlayerRestQuality.Good:
                 if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 250)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
                     return;
+                }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(250);
                 }
                 break;
             case (int)EPlayerRestQuality.VeryGood:
@@ -157,12 +217,20 @@ public class PlaySceneManager : MonoBehaviour
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
                     return;
                 }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(350);
+                }
                 break;
             case (int)EPlayerRestQuality.Perfect:
                 if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 500)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
                     return;
+                }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(500);
                 }
                 break;
         }

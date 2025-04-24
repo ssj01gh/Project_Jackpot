@@ -15,4 +15,5 @@ MonoBehaviour:
   BuffImage: {fileID: 21300000, guid: 7005f09396a0a96488867af2a62e498a, type: 3}
   BuffName: "\uAC15\uD0C8"
   BuffDetail: "\uACF5\uACA9\uC73C\uB85C \uC900 \uD53C\uD574\uC758\n20% \uB9CC\uD07C
-    EXP\uB85C \uC218\uC9D1\uD55C\uB2E4.\n\n\uD134\uB2F9 \uC2A4\uD0DD -1"
+    EXP\uB85C \uC218\uC9D1\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134\uB2F9
+    \uC2A4\uD0DD -1"

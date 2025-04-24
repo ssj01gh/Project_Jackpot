@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 [System.Serializable]
 public class EarlyStrengthenSO
@@ -102,16 +103,20 @@ public class EarlyStrengthenUI : MonoBehaviour
 
         SetEarlyStrengthenUI();
         //UI조정
-        gameObject.SetActive(true);
-        gameObject.GetComponent<Animator>().SetInteger("EarlyStrengthenState", 1);
+        //gameObject.SetActive(true);
+        DetailTitleText.text = ESDictionary["ATK00"].EarlyDetailTitle;
+        DetailText.text = ESDictionary["ATK00"].DetailText;
+        gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1080);
+        gameObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f).OnComplete(() => { StrengthenActiveAnimationEnd(); });
+        //gameObject.GetComponent<Animator>().SetInteger("EarlyStrengthenState", 1);
     }
 
     public void StrengthenActiveAnimationEnd()
     {
         if (ESDictionary.ContainsKey("ATK00"))
         {
-            DetailTitleText.text = ESDictionary["ATK00"].EarlyDetailTitle;
-            DetailText.text = ESDictionary["ATK00"].DetailText;
+            //DetailTitleText.text = ESDictionary["ATK00"].EarlyDetailTitle;
+            //DetailText.text = ESDictionary["ATK00"].DetailText;
             if (LevelZeros.Length > 0)
             {
                 ButtonOutlineObject.transform.position = LevelZeros[0].transform.position;
@@ -125,7 +130,12 @@ public class EarlyStrengthenUI : MonoBehaviour
 
     public void EarlyStrengthenInActive()
     {
-        gameObject.GetComponent<Animator>().SetInteger("EarlyStrengthenState", 2);
+        if (gameObject.activeSelf == false)
+            return;
+
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+        gameObject.GetComponent<RectTransform>().DOAnchorPosY(-1080, 0.5f);//.OnComplete(() => { gameObject.SetActive(false); });
     }
 
     public void EarlyStrengthenSetActiveFalse()
@@ -308,11 +318,12 @@ public class EarlyStrengthenUI : MonoBehaviour
     //Type : ATK, DUR, RES, SPD, LUK, HP, STA, EXP, EXPMG, EQUIP
     public void PlusButtonClick(string ButtonType)
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         //1. 플러스 버튼을 누른다.
         //2. 플러스 버튼의 종류에 따라 맞는 강화 효과의 레벨이 올라간다.
         //3. 남은 강화 포인트는 1줄어든다.
         //4. UI를 갱신 한다.
-        switch(ButtonType)
+        switch (ButtonType)
         {
             case "ATK":
                 if(EarlyInfo.EarlyStrengthLevel < MaxLevel && EarlyInfo.PlayerEarlyPoint > 0)
@@ -390,6 +401,7 @@ public class EarlyStrengthenUI : MonoBehaviour
 
     public void MinusButtonClick(string ButtonType)
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         //1. 마이너스 버튼을 누른다.
         //2. 마이너스 버튼의 종류에 따라 맞는 강화 효과의 레벨이 내려간다.
         //3. 남은 강화 포인트는 1늘어든다.
@@ -475,6 +487,7 @@ public class EarlyStrengthenUI : MonoBehaviour
         if (!ESDictionary.ContainsKey(ButtonCode))
             return;
 
+        SoundManager.Instance.PlayUISFX("UI_Button");
         GameObject ClickButton = EventSystem.current.currentSelectedGameObject;
         ButtonOutlineObject.transform.position = ClickButton.transform.position;
 
@@ -484,6 +497,7 @@ public class EarlyStrengthenUI : MonoBehaviour
 
     public void LoadPlayScene()//여기서 바뀐 EarlyData를 JsonManager에 넘겨야함
     {
+        SoundManager.Instance.PlayUISFX("UI_Button");
         JsonReadWriteManager.Instance.SaveEarlyInfo(EarlyInfo);
         //JsonReadWriteManager.Instance.E_Info = EarlyInfo;//JsonReadWriteManager에 값 복사
         JsonReadWriteManager.Instance.InitPlayerInfo(true);//새로 시작하는거니까 PlayInfo초기값으로 변경시키기

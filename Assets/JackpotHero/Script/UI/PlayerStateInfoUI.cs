@@ -32,7 +32,7 @@ public class PlayerStateInfoUI : MonoBehaviour
         
     }
 
-    public void SetPlayerStateUI(TotalPlayerState TPInfo, PlayerInfo PInfo)
+    public void SetPlayerStateUI(TotalPlayerState TPInfo, PlayerInfo PInfo, int[] BuffList)
     {
         //SetHpUI
         float BeforeHP = TPInfo.MaxHP * PlayerHPSlider.value;
@@ -108,6 +108,14 @@ public class PlayerStateInfoUI : MonoBehaviour
             {
                 BeforeLUK = x;
                 PlayerLUK.text = BeforeLUK.ToString("F0");
+                if (BuffList[(int)EBuffType.Luck] >= 1 && BuffList[(int)EBuffType.Misfortune] >= 1)
+                    PlayerLUK.color = Color.white;
+                else if (BuffList[(int)EBuffType.Luck] >= 1)
+                    PlayerLUK.color = Color.green;
+                else if (BuffList[(int)EBuffType.Misfortune] >= 1)
+                    PlayerLUK.color = Color.red;
+                else
+                    PlayerLUK.color = Color.white;
             }, TPInfo.TotalLUK, 0.5f);
             //PlayerLUK.text = TPInfo.TotalLUK.ToString();
         }

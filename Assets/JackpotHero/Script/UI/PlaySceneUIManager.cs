@@ -10,13 +10,14 @@ public class PlaySceneUIManager : MonoBehaviour
     public PlayerManager PlayerMgr;
     public MonsterManager MonMgr;
 
+    //아...... UI 구조 잘짤껄.... 사운드 하나하나 다 넣어야 되네....
     public PlayerEquipmentUI PE_UI;
     public PlayerStateInfoUI PSI_UI;
     public CurrentStageProgressUI CSP_UI;
     public EquipmentDetailInfoUI EDI_UI;
     public EquipmentDetailInfoUI MEDI_UI;
     public BackGroundUI BG_UI;
-
+    public OptionUI OP_UI;
 
     public BattleUI B_UI;
     public GettingItenUIScript GI_UI;
@@ -34,6 +35,7 @@ public class PlaySceneUIManager : MonoBehaviour
         RestSelectionUI.SetActive(false);
         BG_UI.SetRestBackGround(false);
         FadeUI.SetActive(false);
+        OP_UI.OptionInActive();
     }
     void Start()//start에서 하면 뭔가 꼬일것 같음
     {
@@ -58,6 +60,7 @@ public class PlaySceneUIManager : MonoBehaviour
                 ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
                 ActionSelectionUI.SetActive(true);
                 ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.5f).SetEase(Ease.OutBack);
+                SoundManager.Instance.PlayBGM("BaseBGM");//빅토리 뜰때 바뀌는게 자연스러울듯? (이건 SelectionAction을 위해 남겨 놓고)
                 break;
             case (int)EPlayerCurrentState.Battle:
                 if (ActionSelectionUI.activeSelf == true)
@@ -91,19 +94,38 @@ public class PlaySceneUIManager : MonoBehaviour
                 //페이드 아웃 이 됬다가 완전히 검은 색이 됬을때 백그라운드를 바꿈
                 FadeUI.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
                 FadeUI.SetActive(true);
-                FadeUI.GetComponent<Image>().DOFade(1, 0.5f).OnComplete(() => { BG_UI.SetRestBackGround(true); 
-                    DOVirtual.DelayedCall(2f, () => { FadeUI.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => { R_UI.ActiveRestActionSelection(); FadeUI.SetActive(false); }); }); });
+                FadeUI.GetComponent<Image>().DOFade(1, 0.5f).OnComplete(() => 
+                { 
+                    BG_UI.SetRestBackGround(true);
+                    SoundManager.Instance.PlaySFX("Rest_Ready_Cancel");
+                    DOVirtual.DelayedCall(1f, () => 
+                    { FadeUI.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => 
+                        { 
+                            R_UI.ActiveRestActionSelection(); 
+                            FadeUI.SetActive(false);
+                            SoundManager.Instance.PlayBGM("RestBGM");
+                        }); 
+                    }); 
+                });
                 //나중에는 달그럭 거리는 소리를 낸다던가 하면될듯
                 //백그라운드를 바꾼후에 페이드 인
                 //RestActionSelection 활성화
                 //휴식에서 행동 선택버튼들 활성화
+                break;
+            case (int)EPlayerCurrentState.BossBattle:
+                if (ActionSelectionUI.activeSelf == true)
+                {
+                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+                }
                 break;
         }
     }
     public void SetUI()
     {
         PE_UI.SetEquipmentImage(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-        PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(),
+            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList);
         CSP_UI.SetCurrentStegeUI(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
         EDI_UI.gameObject.SetActive(false);
         MEDI_UI.gameObject.SetActive(false);
@@ -210,7 +232,8 @@ public class PlaySceneUIManager : MonoBehaviour
         OnComplete(() =>
             {
                 BG_UI.SetRestBackGround(false);
-                DOVirtual.DelayedCall(2f, () =>
+                SoundManager.Instance.PlaySFX("Rest_Ready_Cancel");
+                DOVirtual.DelayedCall(1f, () =>
                 {
                     FadeUI.GetComponent<Image>().DOFade(0, 0.5f).
                     OnComplete(() =>
@@ -220,5 +243,23 @@ public class PlaySceneUIManager : MonoBehaviour
                     });
                 });
             });
+    }
+    //-------------------BossBattleWinFad
+    public void BossBattleWinFade()
+    {
+        FadeUI.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
+        FadeUI.SetActive(true);
+        FadeUI.GetComponent<Image>().DOFade(1, 0.5f).OnComplete(() =>
+        {
+            BG_UI.SetBackGroundSprite(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
+            DOVirtual.DelayedCall(1f, () =>
+            {
+                FadeUI.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() =>
+                {
+                    SetUI();
+                    FadeUI.SetActive(false);
+                });
+            });
+        });
     }
 }

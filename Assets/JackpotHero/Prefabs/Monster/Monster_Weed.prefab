@@ -204,7 +204,7 @@ MonoBehaviour:
   DURVarianceAmount: 1
   MonsterBaseLuk: 0
   LUKVarianceAmount: 0
-  MonsterBaseSPD: 20
+  MonsterBaseSPD: 60
   SPDVarianceAmount: 5
   MonsterWeaponCode: 70001
   MonsterArmorCode: 80001
@@ -213,6 +213,9 @@ MonoBehaviour:
   HpSliderPos: {fileID: 2684368698094234167}
   HpsliderWidth: 150
   BuffPosUpperHp: 0.5
+  ActionPosUpperHP: 1
+  CanSummonMonsterIDs: []
+  SummonMonsterCount: 0
   MonsterCurrentState: 0
 --- !u!61 &8471394727436038436
 BoxCollider2D:
