@@ -118514,14 +118514,9 @@ MonoBehaviour:
   - {fileID: 592172189}
   - {fileID: 639310995}
   MonsterPrefabs:
-  - {fileID: 9043193781284999687, guid: 75b03a6fcdba1cc449b0d90176ce109b, type: 3}
-  - {fileID: 9043193781284999687, guid: 1826c6976f641da4fb56553ef9df0f40, type: 3}
+  - {fileID: 9043193781284999687, guid: ab86ef37297dcb342a37d0b77f23a081, type: 3}
   SpawnPatternSO:
   - {fileID: 11400000, guid: 6c95c9adaa1399d4b81162c2e217cc27, type: 2}
-  - {fileID: 11400000, guid: e7f022adcf81ca448bab64571768ba39, type: 2}
-  - {fileID: 11400000, guid: db03dbe653ce51c45a4e71c98f85902a, type: 2}
-  - {fileID: 11400000, guid: aaff74b07318f284385959e5fbc42c58, type: 2}
-  - {fileID: 11400000, guid: 6ada68cde088ad74db224d5eac58a937, type: 2}
 --- !u!1 &2112544618
 GameObject:
   m_ObjectHideFlags: 0
