@@ -15,7 +15,7 @@ MonoBehaviour:
   SpawnPatternID: 101
   SpawnMonsterName:
   - 
-  - Weed
+  - Dirt_Golem
   - 
   RewardEXPPoint: 50
   VariationEXPPoint: 10

@@ -25,12 +25,15 @@ public class MonsterCurrentStatus
     public float MonsterCurrentDUR;
     public float MonsterCurrentLUK;
     public float MonsterCurrentSPD;
+
+    public float MonsterReward;
 }
 
 public class Monster : MonoBehaviour
 {
     public string MonsterName;
     public SpriteRenderer MonsterBody;
+    public Animator MonsterAnimator;
     [Header("HP_MonsterState")]
     public float MonsterBaseHP;
     public float HPVarianceAmount;
@@ -46,6 +49,9 @@ public class Monster : MonoBehaviour
     [Header("SPD_MonsterState")]
     public float MonsterBaseSPD;
     public float SPDVarianceAmount;
+    [Header("EXP_MonsterReward")]
+    public float MonsterBaseEXP;
+    public float EXPVarianceAmount;
 
     public int MonsterWeaponCode;
     public int MonsterArmorCode;
@@ -108,6 +114,7 @@ public class Monster : MonoBehaviour
         Color MonColor = MonsterBody.color;
         MonColor.a = 0;
         MonsterBody.color = MonColor;
+        MonsterAnimator.speed = 0f;
         gameObject.transform.position = SpawnPosition;
         //SetHP
         int Rand = Random.Range(-(int)HPVarianceAmount, (int)HPVarianceAmount + 1);
@@ -125,6 +132,9 @@ public class Monster : MonoBehaviour
         //SetSPD
         Rand = Random.Range(-(int)SPDVarianceAmount, (int)SPDVarianceAmount + 1);
         CurrentBaseSPD = MonsterBaseSPD + Rand;
+        //SetReward
+        Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
+        MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
 
         //몬스터도 플레이어의 상태에 맞게 버프를 바아야함
         SetMonsterStatus();
@@ -140,7 +150,7 @@ public class Monster : MonoBehaviour
         Color MonColor = MonsterBody.color;
         MonColor.a = 0;
         MonsterBody.color = MonColor;
-        MonsterBody.DOFade(1, 1);
+        MonsterBody.DOFade(1, 1).OnComplete(() => { MonsterAnimator.speed = 1; });
     }
 
     public void DeSpawnFadeOut()
