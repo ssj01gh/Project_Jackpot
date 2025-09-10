@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SoundInfo
@@ -90,6 +91,8 @@ public class SoundManager : MonoSingletonDontDestroy<SoundManager>
         //PlayBGM("TitleBGM");
         //타이틀 <-> 게임씬 구분
         //게임씬 <-> 보스전투, 일반전투, 일반 상태, 휴식 구분
+        if (SceneManager.GetActiveScene().name == "TitleScene")
+            PlayBGM("TitleBGM");
     }
 
     protected void InitSoundValue()

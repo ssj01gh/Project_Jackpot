@@ -10,14 +10,20 @@ public class MonsterManager : MonoBehaviour
     public GameObject[] MonsterSpawnPoint;
     [Header("MonsterInfo")]
     public GameObject[] MonsterPrefabs;
-    public MonSpawnPattern[] SpawnPatternSO;
+    public MonSpawnPattern[] Tier01SpawnPatternSO;
+    public MonSpawnPattern[] Tier02SpawnPatternSO;
+    public MonSpawnPattern[] BossSpawnPatternSO;
+    public MonSpawnPattern[] EventSpawnPatternSO;
 
     protected Dictionary<string, List<GameObject>> MonsterStorage = new Dictionary<string, List<GameObject>>();
-    protected Dictionary<int, List<MonSpawnPattern>> PatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
+    protected Dictionary<int, List<MonSpawnPattern>> Tier01PatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
+    protected Dictionary<int, List<MonSpawnPattern>> Tier02PatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
+    protected Dictionary<int, List<MonSpawnPattern>> BossPatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
+    protected Dictionary<int, List<MonSpawnPattern>> EventPatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
     protected List<GameObject> ActiveMonsters = new List<GameObject>();
 
     protected MonSpawnPattern CurrentSpawnPattern;
-    public float CurrentSpawnPatternReward { protected set; get; }
+    //public float CurrentSpawnPatternReward { protected set; get; }
     protected const int InAdvanceAmount = 3;
     public Monster CurrentTarget { protected set; get; }
     public event System.Action<Monster> CurrentTargetChange;//배틀 UI에서 현재 몬스터 표시할려고 만든 event
@@ -56,19 +62,65 @@ public class MonsterManager : MonoBehaviour
                 MonsterStorage.Add(MonsterPrefabs[i].GetComponent<Monster>().MonsterName, MonsterList);
             }
         }
-        foreach(MonSpawnPattern MSPattern in SpawnPatternSO)
+        //SaveTier01SpawnPattern
+        foreach(MonSpawnPattern MSPattern in Tier01SpawnPatternSO)
         {
-            int PatternThemeNum = MSPattern.SpawnPatternID / 100;
+            int PatternThemeNum = MSPattern.SpawnPatternID / 1000;
             //저장된 테마가 없을경우
-            if(!PatternStorage.ContainsKey(PatternThemeNum))
+            if(!Tier01PatternStorage.ContainsKey(PatternThemeNum))
             {
-                List<MonSpawnPattern> MonSpawnList = new List<MonSpawnPattern>();
-                MonSpawnList.Add(MSPattern);
-                PatternStorage.Add(PatternThemeNum, MonSpawnList);
+                List<MonSpawnPattern> MonTier01SpawnList = new List<MonSpawnPattern>();
+                MonTier01SpawnList.Add(MSPattern);
+                Tier01PatternStorage.Add(PatternThemeNum, MonTier01SpawnList);
             }
             else//저장된 테마가 있을경우
             {
-                PatternStorage[PatternThemeNum].Add(MSPattern);
+                Tier01PatternStorage[PatternThemeNum].Add(MSPattern);
+            }
+        }
+        //SaveTier02SpawnPattern
+        foreach (MonSpawnPattern MSPattern in Tier02SpawnPatternSO)
+        {
+            int PatternThemeNum = MSPattern.SpawnPatternID / 1000;
+            //저장된 테마가 없을경우
+            if(!Tier02PatternStorage.ContainsKey(PatternThemeNum))
+            {
+                List<MonSpawnPattern> MonTier02SpawnList = new List<MonSpawnPattern>();
+                MonTier02SpawnList.Add(MSPattern);
+                Tier02PatternStorage.Add(PatternThemeNum, MonTier02SpawnList);
+            }
+            else
+            {
+                Tier02PatternStorage[PatternThemeNum].Add(MSPattern);
+            }
+        }
+        //SaveBossSpawnPattern
+        foreach(MonSpawnPattern MSPattern in BossSpawnPatternSO)
+        {
+            int PatternThemeNum = MSPattern.SpawnPatternID / 1000;
+            if(!BossPatternStorage.ContainsKey(PatternThemeNum))
+            {
+                List<MonSpawnPattern> MonBossSpawnList = new List<MonSpawnPattern>();
+                MonBossSpawnList.Add(MSPattern);
+                BossPatternStorage.Add(PatternThemeNum, MonBossSpawnList);
+            }
+            else
+            {
+                BossPatternStorage[PatternThemeNum].Add(MSPattern);
+            }
+        }
+        foreach(MonSpawnPattern MSPattern in EventSpawnPatternSO)
+        {
+            int PatternThemeNum = MSPattern.SpawnPatternID / 1000;
+            if (!EventPatternStorage.ContainsKey(PatternThemeNum))
+            {
+                List<MonSpawnPattern> MonBossSpawnList = new List<MonSpawnPattern>();
+                MonBossSpawnList.Add(MSPattern);
+                EventPatternStorage.Add(PatternThemeNum, MonBossSpawnList);
+            }
+            else
+            {
+                EventPatternStorage[PatternThemeNum].Add(MSPattern);
             }
         }
     }
@@ -78,80 +130,95 @@ public class MonsterManager : MonoBehaviour
         return ActiveMonsters;
     }
 
-    public void SetBossSpawn(PlayerManager PMgr)
-    {//1스테이지 라면 1101 ~ // 2스테이지 라면 1201~
-        int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor + 10;
-        int RandBossPatternID = Random.Range(0, PatternStorage[ThemeNum].Count);
+    public void SetBossSpawn(PlayerManager PMgr)//여기는 보스를 최초로 정할때만 들어옴
+    {//1스테이지 라면 1200 ~ // 2스테이지 라면 2200~
+        int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor;
+        int DetailOfEvents = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
+        int RandBossPatternID = Random.Range(0, BossPatternStorage[ThemeNum].Count);
 
-        CurrentSpawnPattern = PatternStorage[ThemeNum][RandBossPatternID];
-        SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
+        CurrentSpawnPattern = BossPatternStorage[ThemeNum][RandBossPatternID];
         PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
         JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
     }
     public void SetSpawnPattern(PlayerManager PMgr)
     {
+        //DetailOfEvents는 1000 ~ 로 됨 1테마라면 1000~ 2테마 라면 2000~식이다
         int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor;
         int DetailOfEvents = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
-        //DetailOfEvents는 101 ~ 로 됨 1테마라면 101~ 2테마 라면 201~식이다
-        if(DetailOfEvents != 0)
-        {
-            int ThemeOfEvent = DetailOfEvents / 100;
-            //PatternStorage[DetailOfEvents / 100];이게 이제 저장된 적들의 스폰 패턴중 하나// 여기서 찾아야함
-            for (int i = 0; i < PatternStorage[ThemeOfEvent].Count; i++)
+        int CurrentSearchPoint = PMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint;//0 -> 1티어 100% 40 -> 2티어 100%
+        //패턴을 결정하기 전에 이미 정해진 패턴이 있다면 리턴 -> 이미 스폰 패턴이 결정된 상태(껏다 킨거임)
+        if(DetailOfEvents % 1000 < 100 && DetailOfEvents % 1000 >= 0)
+        {//0~99이라면 1티어 // 0 ~ 99임 0이면 패턴을 결정해야 되는거임
+            for (int i = 0; i < Tier01PatternStorage[ThemeNum].Count; i++)
             {
-                if (PatternStorage[ThemeOfEvent][i].SpawnPatternID == DetailOfEvents)//겹치는게 있다면
+                if (Tier01PatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
                 {
-                    CurrentSpawnPattern = PatternStorage[ThemeOfEvent][i];
-                    SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
-                    PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
-                    return;//함수 종료
+                    CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][i];
+                    return;
                 }
             }
-            //만약 겹치는게 없다면
-            int RandomPattern = Random.Range(0, PatternStorage[ThemeOfEvent].Count);
-            CurrentSpawnPattern = PatternStorage[ThemeOfEvent][RandomPattern];
-            SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
-            PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-            JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
         }
-
-        //모든 테마를 다 포함한 랜덤값
-        if (ThemeNum == -1)
-        {
-            List<MonSpawnPattern> MSPatterns = new List<MonSpawnPattern>();
-            foreach (int Key in PatternStorage.Keys)
+        else if(DetailOfEvents % 1000 >= 100 && DetailOfEvents % 1000 < 200 )
+        {//100 ~ 199라면 2티어
+            for (int i = 0; i < Tier02PatternStorage[ThemeNum].Count; i++)
             {
-                foreach (MonSpawnPattern MSPattern in PatternStorage[Key])
+                if (Tier02PatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
                 {
-                    MSPatterns.Add(MSPattern);
+                    CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][i];
+                    return;
                 }
             }
-            int Rand = Random.Range(0, MSPatterns.Count);
-            CurrentSpawnPattern = MSPatterns[Rand];
         }
-        else//-1이 아닐때 들어온 테마 값에 맞게 결정
-        {
-            int Rand = Random.Range(0, PatternStorage[ThemeNum].Count);
-            CurrentSpawnPattern = PatternStorage[ThemeNum][Rand];
+        else if(DetailOfEvents % 1000 >= 200 && DetailOfEvents % 1000 < 300)
+        {//보스전일때 껏다 키면 여기로 들어옴//200 ~ 299라면 보스
+            for (int i = 0; i < BossPatternStorage[ThemeNum].Count; i++)
+            {
+                if (BossPatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
+                {
+                    CurrentSpawnPattern = BossPatternStorage[ThemeNum][i];
+                    return;
+                }
+            }
         }
-        SetCurrentSpawnPatternReward(PMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack);
-        PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-        JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());
-    }
+        else if(DetailOfEvents % 1000 >= 300 && DetailOfEvents % 1000 < 400)
+        {//300 ~ 399라면 이벤트 몬스터 스폰
+            for(int i = 0; i < EventPatternStorage[ThemeNum].Count; i++)
+            {
+                if (EventPatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
+                {
+                    CurrentSpawnPattern = EventPatternStorage[ThemeNum][i];
+                    return;
+                }
+            }
+        }
 
-    protected void SetCurrentSpawnPatternReward(int IsSuddenAttack)
-    {
-        if(IsSuddenAttack == -1)//습격이 아닐때는
-        {
-            CurrentSpawnPatternReward = CurrentSpawnPattern.RewardEXPPoint;
-            float RandVariation = Random.Range(-(int)CurrentSpawnPattern.VariationEXPPoint, (int)CurrentSpawnPattern.VariationEXPPoint + 1);
-            CurrentSpawnPatternReward += RandVariation;
+        //위에서 걸러지지 않았다면 새로 결정
+        int RandNum = Random.Range(0, 41);
+        if(RandNum >= CurrentSearchPoint)
+        {//여기가 1티어
+            if(Tier01PatternStorage.ContainsKey(ThemeNum))
+            {//해당 테마를 지니고 있을때
+                RandNum = Random.Range(0, Tier01PatternStorage[ThemeNum].Count);
+                CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][RandNum];
+                PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                return;
+            }
         }
-        else//-1이 아니라면 습격인거임
-        {
-            CurrentSpawnPatternReward = 0;
+        else
+        {//여기가 2티어
+            if (Tier02PatternStorage.ContainsKey(ThemeNum))
+            {//해당 테마를 지니고 있을때
+                RandNum = Random.Range(0, Tier02PatternStorage[ThemeNum].Count);
+                CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][RandNum];
+                PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                return;
+            }
         }
+
+        //여기 까지 온거면 ThemeNum가 없는거임
+        Debug.Log("NoThemeNum");
     }
 
     public void SpawnCurrentSpawnPatternMonster()
@@ -260,17 +327,31 @@ public class MonsterManager : MonoBehaviour
     }
 
     //ActiveMonster중 CurrentHp가 0이하가 된놈은 없애기
-    public void CheckActiveMonstersRSurvive()
+    public List<int> CheckActiveMonstersRSurvive(PlayerManager PlayerMgr)
     {
+        List<int> DeadMonsterReward = new List<int>();
         for(int i = ActiveMonsters.Count - 1; i >= 0; i-- )
         {
             if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
             {
+                if (ActiveMonsters[i].GetComponent<Monster>().IsTierOne == true)//1티어
+                {
+                    PlayerMgr.GetPlayerInfo().RecordKillCount(1);
+                }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().RecordKillCount(0,1);
+                }
+                ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//모든 버프들 없애기
                 ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
                 ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
+                int RewardEXP = (int)ActiveMonsters[i].GetComponent<Monster>().MonsterBaseEXP;
+                int VarianceEXP = Random.Range(-(int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount, (int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount);
+                DeadMonsterReward.Add(RewardEXP + VarianceEXP);
                 ActiveMonsters.RemoveAt(i);
             }
         }
+        return DeadMonsterReward;
     }
 
     public void InActiveAllActiveMonster()
@@ -291,7 +372,7 @@ public class MonsterManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("Monster!!!!!");
+        //Debug.Log("Monster!!!!!");
         CurrentTarget = ClickedMonster;
         CurrentTargetChange.Invoke(CurrentTarget.GetComponent<Monster>());
     }

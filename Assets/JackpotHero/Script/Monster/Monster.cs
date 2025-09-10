@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 //이건 계속해서 늘어나야 할 enum일듯?
 public enum EMonsterActionState
 {
     Attack,
     Defense,
-    SpawnMonster
+    SpawnMonster,
+    ApplyLuck,
+    GivePoison,
+    GiveMisFortune,
+    GiveCurseOfDeath,
+    ApplyThornArmor
 }
 public class MonsterCurrentStatus
 {
@@ -32,8 +38,11 @@ public class MonsterCurrentStatus
 public class Monster : MonoBehaviour
 {
     public string MonsterName;
+    public Sprite MonsterHead;
     public SpriteRenderer MonsterBody;
     public Animator MonsterAnimator;
+    [Header("Monster_Tier")]
+    public bool IsTierOne;
     [Header("HP_MonsterState")]
     public float MonsterBaseHP;
     public float HPVarianceAmount;
@@ -73,6 +82,7 @@ public class Monster : MonoBehaviour
     public int MonsterCurrentState;
     [HideInInspector]
     public BuffInfo MonsterBuff = new BuffInfo();
+    //protected BuffInfo EnemyBuff = new BuffInfo();
     protected MonsterCurrentStatus MonTotalStatus = new MonsterCurrentStatus();
     protected Collider2D MonCollider;
     public int BeforeMonsterShield { protected set; get; } = 0;
@@ -137,7 +147,10 @@ public class Monster : MonoBehaviour
         MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
 
         //몬스터도 플레이어의 상태에 맞게 버프를 바아야함
+        InitAllBuff();//일단 초기화 하고 추가
         SetMonsterStatus();
+        SetMonsterDefenseBuff();
+
         SetInitBuffByPlayerState();
         //일단은 방심만
         //개인적 몬스터에대한 상태에 대한 버프는 InitMonsterState에서
@@ -174,12 +187,15 @@ public class Monster : MonoBehaviour
     protected virtual void InitMonsterState()
     {
         //Test
-        //MonsterBuff.BuffList[(int)EBuffType.Misfortune] = 15;
+        //MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] = 99;
         //MonsterBuff.BuffList[(int)BuffType.ThronArmor] = 10;
         //MonsterBuff.BuffList[15] = 10;
         //Test
     }
+    public virtual void CheckEnemyBuff(BuffInfo EnemyBuff)
+    {
 
+    }
     public virtual void SetNextMonsterState()
     {
 
@@ -192,13 +208,18 @@ public class Monster : MonoBehaviour
         if(MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1 && MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
             MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
         else if(MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1)
-            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK + 30;
+            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK + 10;
         else if(MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
-            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK - 30;
+            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK - 10;
         else
             MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
 
         MonTotalStatus.MonsterCurrentSPD = CurrentBaseSPD;
+    }
+
+    public void SetMonsterDefenseBuff()
+    {
+        MonsterBuff.BuffList[(int)EBuffType.Defense] = (int)(MonTotalStatus.MonsterCurrentDUR / 5);
     }
 
     protected void SetInitBuffByPlayerState()
@@ -209,6 +230,16 @@ public class Monster : MonoBehaviour
         }
     }
 
+    public void InitAllBuff()//소환 될때랑 죽을때//쉴드량 포함
+    {
+        BeforeMonsterShield = 0;
+        MonTotalStatus.MonsterCurrentShieldPoint = 0;
+
+        for (int i = 0; i < MonsterBuff.BuffList.Length; i++)
+        {
+            MonsterBuff.BuffList[i] = 0;
+        }
+    }
     public Vector2 GetMonActionTypePos()
     {
         return new Vector2(HpSliderPos.transform.position.x, HpSliderPos.transform.position.y + ActionPosUpperHP);
@@ -216,6 +247,12 @@ public class Monster : MonoBehaviour
     public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
     {
         float RestDamage = 0;
+        if (MonsterBuff.BuffList[(int)EBuffType.Defense] >= 1)
+            DamagePoint -= MonsterBuff.BuffList[(int)EBuffType.Defense];
+
+        if (DamagePoint < 0)
+            DamagePoint = 0;
+
         if (MonsterBuff.BuffList[(int)EBuffType.Defenseless] >= 1)
             DamagePoint = DamagePoint * 2;
         
@@ -246,6 +283,23 @@ public class Monster : MonoBehaviour
     {
         RecordMonsterBeforeShield();
         MonTotalStatus.MonsterCurrentShieldPoint += ShieldPoint;
+    }
+
+    //-------------------------SpecialAction------------------------
+
+    public virtual void MonsterGetBuff(int i_BuffType, int BuffCount = 0)
+    {
+        MonsterBuff.BuffList[i_BuffType] += BuffCount;
+    }
+    /*
+    public virtual void MonsterGetThronArmor(int ThronArmorCount = 0)
+    {
+        MonsterBuff.BuffList[(int)EBuffType.]
+    }
+    */
+    public virtual int MonsterGiveBuff(int i_BuffType, int BuffCount = 0)
+    {
+        return BuffCount;
     }
 
     public virtual List<string> GetSummonMonsters()

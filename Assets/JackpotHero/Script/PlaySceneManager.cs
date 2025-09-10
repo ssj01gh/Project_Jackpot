@@ -16,14 +16,14 @@ public class PlaySceneManager : MonoBehaviour
     // Start is called before the first frame update
 
     //여기 아래꺼가 바뀌면 CurrentStageProgressUI에서 쓰고있는 상수도 바꿔야함
-    protected const float EngageMonster = 200f;
-    protected const float OccurEvent = 100f;//원래 50
-    protected const int SearchNextFloorMaxPoint = 10;
+    protected const float EngageMonster = 175f;//원래 175
+    protected const float OccurEvent = 125f;//원래 125
+    protected const int SearchNextFloorMaxPoint = 4;
     void Start()
     {
         PlayerMgr.InitPlayerManager();
         UIMgr.BG_UI.SetBackGroundSprite(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
-        UIMgr.SetUI();
+        //UIMgr.SetUI();
         MonMgr.CurrentTargetChange += UIMgr.B_UI.DisplayMonsterDetailUI;
         //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
         StartCoroutine(CheckBackGroundMoveEnd());
@@ -78,30 +78,36 @@ public class PlaySceneManager : MonoBehaviour
     public void ResearchButtonClick()
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
+        PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Walk);
         //전체적인 포인트
         //0 ~ EngageMonster - 1 -> 몬스터 조우,
         //EngageMonster ~ EngageMonster + OccurEvent - 1 -> 이벤트 발생,
         //EngageMonster + OccurEvent ~ FullEventChange - 1 -> 다음 층으로 이동 이벤트
         int FullEventPoint = (int)EngageMonster + (int)OccurEvent + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint;
         int RandPoint = Random.Range(0, FullEventPoint);
-        if(RandPoint >= 0 && RandPoint < EngageMonster)//전투시작
+        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint >= 9999)
         {
-            int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint+1);
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Boss_Battle;
+        }
+        else if(RandPoint >= 0 && RandPoint < EngageMonster)//전투시작
+        {
+            //1 2 3 4 5 6 7
+            int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint * 2);
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
             Debug.Log("EngageMonster");
         }
         else if(RandPoint >= EngageMonster && RandPoint < EngageMonster + OccurEvent)//랜덤 이벤트 발생
         {
-            int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint + 1);
+            int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint * 2);
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.OtherEvent;
             Debug.Log("RandomEvent");
         }
         else if(RandPoint >= EngageMonster + OccurEvent && RandPoint < FullEventPoint)//다음 층 발견
         {
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.BossBattle;
-            Debug.Log("ResearchNextFloor");
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Boss_Event;
+            Debug.Log("ResearchNextFloor_Evnet");
         }
         else
         {
@@ -136,8 +142,10 @@ public class PlaySceneManager : MonoBehaviour
         switch (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction)
         {
             case (int)EPlayerCurrentState.SelectAction:
+                PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
                 break;
             case (int)EPlayerCurrentState.Battle:
+                PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
                 BattleMgr.InitCurrentBattleMonsters();
                 //여기 아래에서 보스냐 아니냐에 따라 BGM이 달라져야 할듯?
                 /*
@@ -155,6 +163,7 @@ public class PlaySceneManager : MonoBehaviour
                 //이때에 몬스터를 딱 스폰해야됨//여기에서 DetailOfEvent들어오면 그거에 맞게 몬스터 스폰하기
                 break;
             case (int)EPlayerCurrentState.OtherEvent:
+                PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
                 SoundManager.Instance.PlayBGM("BaseBGM");
                 EventMgr.SetCurrentEvent();//현재 발생할 이벤트 설정
                 UIMgr.E_UI.ActiveEventUI(EventMgr);
@@ -162,10 +171,18 @@ public class PlaySceneManager : MonoBehaviour
             case (int)EPlayerCurrentState.Rest:
                 //여기서는 즉각적으로 뭔가 결정할게 없긴함
                 break;
-            case (int)EPlayerCurrentState.BossBattle:
-                SoundManager.Instance.PlayBGM("BossBattleBGM");
+            case (int)EPlayerCurrentState.Boss_Event:
+                SoundManager.Instance.PlayBGM("BaseBGM");
+                PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
                 EventMgr.SetCurrentEvent(true);
                 UIMgr.E_UI.ActiveEventUI(EventMgr);
+                break;
+            case (int)EPlayerCurrentState.Boss_Battle:
+                //SoundManager.Instance.PlayBGM("BossBattleBGM");
+                PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
+                BattleMgr.InitCurrentBattleMonsters(true);
+                BattleMgr.InitMonsterNPlayerActiveGuage();
+                BattleMgr.ProgressBattle();
                 break;
         }
         yield break;
@@ -212,25 +229,25 @@ public class PlaySceneManager : MonoBehaviour
                 }
                 break;
             case (int)EPlayerRestQuality.VeryGood:
-                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 350)
+                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 450)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
                     return;
                 }
                 else
                 {
-                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(350);
+                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(450);
                 }
                 break;
             case (int)EPlayerRestQuality.Perfect:
-                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 500)
+                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA < 700)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_RestQuality);
                     return;
                 }
                 else
                 {
-                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(500);
+                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(700);
                 }
                 break;
         }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
   m_Name: 02_Buff_DefenseLess
   m_EditorClassIdentifier: 
-  BuffImage: {fileID: 21300000, guid: 270f07b7c6556314ea994ea44f7d3e4d, type: 3}
+  BuffImage: {fileID: -1074198462, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uBB34\uBC29\uBE44"
   BuffDetail: "\uACF5\uACA9\uC744 \uBC1B\uC744\uB54C\n\uB370\uBBF8\uC9C0\uB97C 2\uBC30\uB85C
     \uBC1B\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134\uC5D0 \uC18C\uBA78"

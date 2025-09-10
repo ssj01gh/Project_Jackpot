@@ -10,7 +10,8 @@ public enum EPlayerCurrentState
     Battle,
     OtherEvent,
     Rest,
-    BossBattle,
+    Boss_Event,
+    Boss_Battle,
 }
 
 public enum EPlayerRestQuality
@@ -30,10 +31,12 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     public EarlyStrengthenInfo E_Info;
     [HideInInspector]
     public OptionInfo O_Info;
+    [HideInInspector]
+    public LinkageEventInfo LkEv_Info;
 
     protected int[] EarlyState_SDRSL = new int[8] { 0, 1, 2, 3, 4, 5, 5, 5 };
-    protected int[] EarlyState_HP = new int[8] { 0, 10, 20, 30, 40, 50, 50, 50 };
-    protected int[] EarlyState_STA = new int[8] { 0, 100, 200, 300, 400, 500, 500, 500 };
+    protected int[] EarlyState_HP = new int[8] { 0, 20, 40, 60, 100, 100, 100, 100 };
+    protected int[] EarlyState_STA = new int[8] { 0, 200, 400, 600, 800, 1000, 1000, 1000 };
     protected int[] EarlyState_EXP = new int[8] { 0, 30, 60, 90, 120, 150, 150, 150 };
     protected float[] EarlyState_EXPMG = new float[8] { 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f, 1.25f, 1.25f };
     protected int[] EarlyState_EquipInven = new int[8] { 4, 6, 8, 10, 12, 12, 12, 12 };
@@ -45,6 +48,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         InitPlayerInfo();
         InitEarlyStrengthenInfo();
         InitOptionInfo();
+        InitLinkageEventInfo();
     }
     void Start()
     {
@@ -63,11 +67,11 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         if (!File.Exists(path) || IsRestartGame)//없으면 생성
         {
             //Player Equipment Setting
-            P_Info.EquipWeaponCode = 11001;
-            P_Info.EquipArmorCode = 21001;
-            P_Info.EquipHatCode = 31001;
-            P_Info.EquipShoesCode = 41001;
-            P_Info.EquipAccessoriesCode = 51001;
+            P_Info.EquipWeaponCode = 10001;
+            P_Info.EquipArmorCode = 20001;
+            P_Info.EquipHatCode = 30001;
+            P_Info.EquipShoesCode = 40001;
+            P_Info.EquipAccessoriesCode = 50001;
             //Player State Setting
             P_Info.CurrentHpRatio = 1f;
             P_Info.CurrentTirednessRatio = 1f;
@@ -88,10 +92,10 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             P_Info.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
             P_Info.CurrentPlayerActionDetails = 0;
             //PlayerRecordSetting
-            P_Info.GiveDamage = 0f;
-            P_Info.ReceiveDamage = 0f;
-            P_Info.MostPowerfulDamage = 0f;
-            P_Info.Karma = 0f;
+            P_Info.KillNormalMonster = 0f;
+            P_Info.KillEliteMonster = 0f;
+            P_Info.GoodKarma = 0f;
+            P_Info.BadKarma = 0f;
             P_Info.SaveRestQualityBySuddenAttack = -1;
 
             string classToJson = JsonUtility.ToJson(P_Info, true);
@@ -152,6 +156,29 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         O_Info = JsonUtility.FromJson<OptionInfo>(File.ReadAllText(path));
     }
 
+    public void InitLinkageEventInfo(bool IsRestartGame = false)
+    {
+        string FileName = "LinkageEventInfo";
+        string path = Application.persistentDataPath + "/" + FileName + ".json";
+        if(!File.Exists(path) || IsRestartGame == true)
+        {
+            LkEv_Info.TalkingMonster = false;
+            LkEv_Info.TalkingDirtGolem = false;
+            LkEv_Info.TotoRepayFavor = false;
+            LkEv_Info.TotoCursedSword = false;
+            LkEv_Info.TotoBlessedSword = false;
+            LkEv_Info.RestInPeace = false;
+            LkEv_Info.OminousSword = false;
+            LkEv_Info.CleanOminousSword = false;
+            LkEv_Info.PowwersCeremony = 0;
+
+            string classToJson = JsonUtility.ToJson(LkEv_Info, true);
+            File.WriteAllText(path, classToJson);
+        }
+
+        LkEv_Info = JsonUtility.FromJson<LinkageEventInfo>(File.ReadAllText(path));
+    }
+
     public PlayerInfo GetCopyPlayerInfo()
     {
         return JsonUtility.FromJson<PlayerInfo>(JsonUtility.ToJson(P_Info));
@@ -185,10 +212,10 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             DetectNextFloorPoint = PInfo.DetectNextFloorPoint,
             CurrentPlayerAction = PInfo.CurrentPlayerAction,
             CurrentPlayerActionDetails = PInfo.CurrentPlayerActionDetails,
-            GiveDamage = PInfo.GiveDamage,
-            ReceiveDamage = PInfo.ReceiveDamage,
-            MostPowerfulDamage = PInfo.MostPowerfulDamage,
-            Karma = PInfo.Karma,
+            KillNormalMonster = PInfo.KillNormalMonster,
+            KillEliteMonster = PInfo.KillEliteMonster,
+            GoodKarma = PInfo.GoodKarma,
+            BadKarma = PInfo.BadKarma,
             SaveRestQualityBySuddenAttack = PInfo.SaveRestQualityBySuddenAttack
         };
     }
@@ -278,6 +305,11 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         FileName = "OptionInfo";
         path = Application.persistentDataPath + "/" + FileName + ".json";
         classToJson = JsonUtility.ToJson(O_Info, true);
+        File.WriteAllText(path, classToJson);
+
+        FileName = "LinkageEventInfo";
+        path = Application.persistentDataPath + "/" + FileName + ".json";
+        classToJson = JsonUtility.ToJson(LkEv_Info, true);
         File.WriteAllText(path, classToJson);
     }
 }

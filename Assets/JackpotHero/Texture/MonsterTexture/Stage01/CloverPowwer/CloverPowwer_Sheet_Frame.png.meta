@@ -1,0 +1,291 @@
+fileFormatVersion: 2
+guid: f2982b2375f032f4fadcc149462aa9e9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CloverPowwer_Sheet_Frame_6
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 5
+        width: 42
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dfe980b5a829254a9141011aebc68e9
+      internalID: 1238483169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloverPowwer_Sheet_Frame_7
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 5
+        width: 43
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5117475, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 784730ea7676d5043b3157540354aab3
+      internalID: -1566086909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloverPowwer_Sheet_Frame_8
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 5
+        width: 43
+        height: 37
+      alignment: 9
+      pivot: {x: 0.51153105, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0956f3acdc9d2d6449e0a7009844cae8
+      internalID: -1981241088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloverPowwer_Sheet_Frame_9
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 5
+        width: 43
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5122092, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d25411f5beaba564a8e7ad4af68942a2
+      internalID: 727066655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloverPowwer_Sheet_Frame_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 5
+        width: 41
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5121951, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9fb4f77a35a11a4190429af4dc6d7be
+      internalID: -845043104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloverPowwer_Sheet_Frame_1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 5
+        width: 42
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdefffb3a3c8a054d8ec5d45ffb5994b
+      internalID: -997220601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloverPowwer_Sheet_Frame_2
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 5
+        width: 41
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5121951, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d44a731610a053c40b167a7f3f8b5b6d
+      internalID: 1289419627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      CloverPowwer_Sheet_Frame_0: -845043104
+      CloverPowwer_Sheet_Frame_1: -997220601
+      CloverPowwer_Sheet_Frame_10: 1851738419
+      CloverPowwer_Sheet_Frame_11: 1560634381
+      CloverPowwer_Sheet_Frame_12: -1706044389
+      CloverPowwer_Sheet_Frame_13: -431524783
+      CloverPowwer_Sheet_Frame_14: 112668390
+      CloverPowwer_Sheet_Frame_15: 824867312
+      CloverPowwer_Sheet_Frame_16: 1456307370
+      CloverPowwer_Sheet_Frame_2: 1289419627
+      CloverPowwer_Sheet_Frame_3: 549707464
+      CloverPowwer_Sheet_Frame_4: -1368022225
+      CloverPowwer_Sheet_Frame_5: 1532135506
+      CloverPowwer_Sheet_Frame_6: 1238483169
+      CloverPowwer_Sheet_Frame_7: -1566086909
+      CloverPowwer_Sheet_Frame_8: -1981241088
+      CloverPowwer_Sheet_Frame_9: 727066655
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

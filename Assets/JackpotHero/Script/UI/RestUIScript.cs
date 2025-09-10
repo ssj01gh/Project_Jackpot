@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -93,23 +92,23 @@ public class RestUIScript : MonoBehaviour
         {
             case (int)EPlayerRestQuality.VeryBad:
                 RestTimeTitleText.text = "ºÎ½ÇÇÑ ÈÞ½Ä";
-                PercentOfMonsterAttackText.text = "50%";
+                PercentOfMonsterAttackText.text = "55%";
                 break;
             case (int)EPlayerRestQuality.Bad:
                 RestTimeTitleText.text = "ºÎÁ·ÇÑ ÈÞ½Ä";
-                PercentOfMonsterAttackText.text = "25%";
+                PercentOfMonsterAttackText.text = "35%";
                 break;
             case (int)EPlayerRestQuality.Good:
                 RestTimeTitleText.text = "Æò¹üÇÑ ÈÞ½Ä";
-                PercentOfMonsterAttackText.text = "10%";
+                PercentOfMonsterAttackText.text = "20%";
                 break;
             case (int)EPlayerRestQuality.VeryGood:
                 RestTimeTitleText.text = "±¦ÂúÀº ÈÞ½Ä";
-                PercentOfMonsterAttackText.text = "5%";
+                PercentOfMonsterAttackText.text = "10%";
                 break;
             case (int)EPlayerRestQuality.Perfect:
                 RestTimeTitleText.text = "¿Ïº®ÇÑ ÈÞ½Ä";
-                PercentOfMonsterAttackText.text = "0%";
+                PercentOfMonsterAttackText.text = "5%";
                 break;
         }
 

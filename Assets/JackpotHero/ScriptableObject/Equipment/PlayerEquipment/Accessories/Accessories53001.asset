@@ -15,14 +15,14 @@ MonoBehaviour:
   EquipmentType: 5
   EquipmentTier: 3
   EquipmentCode: 1
-  EquipmentName: "\uC2ED\uC790\uAC00"
+  EquipmentName: "\uC591\uC9C8\uC758 \uC7A5\uC2E0\uAD6C"
   SpendTiredness: 0
   EquipmentSlots: []
-  EquipmentImage: {fileID: 21300000, guid: 484c85f39cbe097408e79f706102d022, type: 3}
-  AddSTRAmount: 20
-  AddDURAmount: 1
-  AddRESAmount: 1
-  AddSPDAmount: 0
-  AddLUKAmount: 0
+  EquipmentImage: {fileID: -1937990377, guid: 6316d7c3d5099d84182fcf745422c95c, type: 3}
+  AddSTRAmount: 3
+  AddDURAmount: 3
+  AddRESAmount: 3
+  AddSPDAmount: 3
+  AddLUKAmount: 3
   AddHPAmount: 0
   AddTirednessAmount: 0

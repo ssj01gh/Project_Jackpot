@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a2232226e93b54f9f018e3e210a353, type: 3}
+  m_Name: EventSO1022
+  m_EditorClassIdentifier: 
+  EventCode: 1022
+  EventTitle: "\uBC1C\uAC01"
+  EventImage: {fileID: 21300000, guid: 711622f4bcb66d841a95c61116312306, type: 3}
+  EventDetail: "\uC758\uC2DD\uC758 \uD6A8\uACFC\uB97C \uBAB0\uB798 \uD6D4\uCE58\uB824\uB358
+    \uB2F9\uC2E0\uC740\n\uD074\uB85C\uBC84 \uC8FC\uC220\uC0AC\uC5D0\uAC8C \uBC1C\uAC01
+    \uB418\uC5C8\uC2B5\uB2C8\uB2E4."
+  EventSelectionDetail:
+  - "\uC804\uD22C \uAC1C\uC2DC"

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
   m_Name: 10_Buff_DefenseDebuff
   m_EditorClassIdentifier: 
-  BuffImage: {fileID: 21300000, guid: 9dabf718c65855f4da415d48638a4e22, type: 3}
+  BuffImage: {fileID: -1246673051, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uBC29\uC5B4\uB825 \uAC10\uC18C"
   BuffDetail: "\uBC29\uC5B4\uC2DC 0.5\uB97C \uACF1\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134\uB2F9 \uC2A4\uD0DD -1"

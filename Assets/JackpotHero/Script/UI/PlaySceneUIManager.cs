@@ -98,6 +98,7 @@ public class PlaySceneUIManager : MonoBehaviour
                 { 
                     BG_UI.SetRestBackGround(true);
                     SoundManager.Instance.PlaySFX("Rest_Ready_Cancel");
+                    PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Rest);
                     DOVirtual.DelayedCall(1f, () => 
                     { FadeUI.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() => 
                         { 
@@ -112,7 +113,14 @@ public class PlaySceneUIManager : MonoBehaviour
                 //RestActionSelection 활성화
                 //휴식에서 행동 선택버튼들 활성화
                 break;
-            case (int)EPlayerCurrentState.BossBattle:
+            case (int)EPlayerCurrentState.Boss_Event:
+                if (ActionSelectionUI.activeSelf == true)
+                {
+                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+                }
+                break;
+            case (int)EPlayerCurrentState.Boss_Battle:
                 if (ActionSelectionUI.activeSelf == true)
                 {
                     ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
@@ -182,6 +190,11 @@ public class PlaySceneUIManager : MonoBehaviour
             default:
                 return;
         }
+
+        if(EquipCode == 0)//비어있는 칸을 클릭했다면
+        {
+            return;
+        }
         EDI_UI.gameObject.transform.position = ClickedButton.gameObject.transform.position;
         EDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipCode), true);
     }
@@ -199,13 +212,22 @@ public class PlaySceneUIManager : MonoBehaviour
                 EquipCode = MonMgr.CurrentTarget.MonsterArmorCode;
                 break;
             case "AnotherEquip01":
-                EquipCode = MonMgr.CurrentTarget.MonsterWeaponCode;
+                if (MonMgr.CurrentTarget.MonsterAnotherEquipmentCode.Length >= 1)
+                    EquipCode = MonMgr.CurrentTarget.MonsterAnotherEquipmentCode[0];
+                else
+                    EquipCode = 0;
                 break;
             case "AnotherEquip02":
-                EquipCode = MonMgr.CurrentTarget.MonsterWeaponCode;
+                if (MonMgr.CurrentTarget.MonsterAnotherEquipmentCode.Length >= 2)
+                    EquipCode = MonMgr.CurrentTarget.MonsterAnotherEquipmentCode[1];
+                else
+                    EquipCode = 0;
                 break;
             case "AnotherEquip03":
-                EquipCode = MonMgr.CurrentTarget.MonsterWeaponCode;
+                if (MonMgr.CurrentTarget.MonsterAnotherEquipmentCode.Length >= 3)
+                    EquipCode = MonMgr.CurrentTarget.MonsterAnotherEquipmentCode[2];
+                else
+                    EquipCode = 0;
                 break;
             default:
                 return;
@@ -220,6 +242,7 @@ public class PlaySceneUIManager : MonoBehaviour
         PE_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { PE_UI.gameObject.SetActive(false); });
         PSI_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { PSI_UI.gameObject.SetActive(false); });
         CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
+        SoundManager.Instance.PlayBGM("DefeatBGM");
     }
     //-------------------------------PressRestTimeUI
 
@@ -233,6 +256,7 @@ public class PlaySceneUIManager : MonoBehaviour
             {
                 BG_UI.SetRestBackGround(false);
                 SoundManager.Instance.PlaySFX("Rest_Ready_Cancel");
+                PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
                 DOVirtual.DelayedCall(1f, () =>
                 {
                     FadeUI.GetComponent<Image>().DOFade(0, 0.5f).
