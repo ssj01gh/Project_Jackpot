@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83fe01e9704a504cb7683190a5b26ed, type: 3}
+  m_Name: ShortLegBird_Attack
+  m_EditorClassIdentifier: 
+  EquipmentType: 0
+  EquipmentTier: 0
+  EquipmentCode: 71021
+  EquipmentName: "\uCABC\uAE30"
+  SpendTiredness: 0
+  EquipmentSlots:
+  - IsPositive: 000001
+    SlotState:
+    - 0.5
+    - 0.75
+    - 1
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 1.5
+  EquipmentImage: {fileID: 21300000, guid: 3634879140ed8524895ca7149ace26a4, type: 3}
+  AddSTRAmount: 0
+  AddDURAmount: 0
+  AddRESAmount: 0
+  AddSPDAmount: 0
+  AddLUKAmount: 0
+  AddHPAmount: 0
+  AddTirednessAmount: 0

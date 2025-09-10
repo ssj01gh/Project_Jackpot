@@ -249,7 +249,23 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     protected string GetTierText(int Code)
     {
-        return (Code / 1000) % 10 + "티어";
+        if ((Code / 1000) % 10 == 7)
+        {
+            switch (Code)
+            {
+                case 17001:
+                    return "3티어";
+                case 17002:
+                    return "4티어";
+                case 17003:
+                    return "5티어";
+                case 17004:
+                    return "6티어";
+            }
+            return "1티어";
+        }
+        else
+            return ((Code / 1000) % 10).ToString() + "티어";
     }
 
     protected void SetGambling(bool IsActive = false)//->이거는 무언가 행동 될때마다 계속 업데이트 해야할듯?
@@ -614,6 +630,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             {
                                 //비어있는 곳에 넣고
                                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] = CurrentBringItemCode;
+                                InventorySlotsImage[i].gameObject.SetActive(true);
                                 InventorySlotsImage[i].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                 InventorySlotTierTexts[i].text = GetTierText(CurrentBringItemCode);
                                 //원래 칸은 비우고
@@ -976,7 +993,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGachaObject.SetActive(true);
         EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
         EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
-        EquipGachaCapsule.GetComponent<CanvasGroup>().alpha = 1;
+        EquipGachaCapsule.GetComponent<Image>().color = Color.white;
         EquipGachaCapsule.SetActive(true);
         EquipGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
         ClickButton.SetActive(false);
@@ -985,7 +1002,6 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         for(int i = 0; i < EquipGachaLight.Length; i++)
         {
             EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[i];
-            EquipGachaLight[i].GetComponent<SpriteOutline>().color = GachaTierLightColor[i];
             //EquipGachaLightOutline[i].color = GachaTierLightColor[0];
             EquipGachaLight[i].SetActive(false);
         }
@@ -1057,8 +1073,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     OnComplete(() =>
                     { 
                         ContinueOfEquipGacha(CurrentEffectLevel++); 
-                        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(1f, 1f), 0.3f).
-                        OnComplete(() => { IsAnimationEnd = true; }); 
+                        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(1.5f, 1.5f), 0.3f).
+                        OnComplete(() => 
+                        { 
+                            IsAnimationEnd = true;
+                            //EquipGachaCapsule.GetComponent<Image>().color = GachaTierLightColor[CurrentEffectLevel-1];
+                            }); 
                     });//ContinueOfGacha에 int값을 전달후에 ++가됨
             }
 
@@ -1080,7 +1100,6 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         for(int i = 0; i < CurrentEffectLevel + 1; i++)
         {
             EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[CurrentEffectLevel];
-            EquipGachaLight[i].GetComponent<SpriteOutline>().color = GachaTierLightColor[CurrentEffectLevel];
             if (EquipGachaLight[i].activeSelf == false)
             {//false면 키는거임
                 EquipGachaLight[i].GetComponent<RectTransform>().localScale = new Vector3(1, 0, 1);
@@ -1088,12 +1107,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     GachaLightRot[i] + new Vector3(0, 0, Random.Range(-GachaLightZVariation, GachaLightZVariation));
                 EquipGachaLight[i].SetActive(true);
                 PlayEquipGachaLightSound(CurrentEffectLevel);
-                Debug.Log("AAAAAA");
+                //Debug.Log("AAAAAA");
                 EquipGachaLight[i].GetComponent<RectTransform>().DOScaleY(1, 0.3f).SetEase(Ease.OutExpo);
-            }
-            else//이미 켜져있는 light면 outline이미지의 색이 안됨, regenerate?
-            {
-                EquipGachaLight[i].GetComponent<SpriteOutline>().Regenerate();
             }
         }
     }
@@ -1132,13 +1147,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 for(int i = 0; i < EquipGachaLight.Length; i++)
                 {
                     EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[i];
-                    EquipGachaLight[i].GetComponent<SpriteOutline>().color = GachaTierLightColor[i];
-                    if (EquipGachaLight[i].activeSelf == true)
-                        EquipGachaLight[i].GetComponent<SpriteOutline>().Regenerate();
                     //obj.GetComponent<SpriteOutline>().Regenerate();
                     EquipGachaLight[i].SetActive(false);
                 };
-                EquipGachaCapsule.GetComponent<CanvasGroup>().DOFade(0, 0.5f).
+                EquipGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f).
                 OnComplete(() => 
                 { 
                     GetEquipClickButton.SetActive(true);

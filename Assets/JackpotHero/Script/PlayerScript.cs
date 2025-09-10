@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum PlayerForm
@@ -17,6 +18,15 @@ public enum PlayerForm
     EXP_Form,
     EXPMG_Form,
     EQUIP_Form
+}
+
+public enum EPlayerAnimationState
+{
+    Idle,
+    Walk,
+    Idle_Battle,
+    Defeat,
+    Rest,
 }
 
 public class TotalPlayerState
@@ -39,6 +49,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject ShieldUIPos;
     public GameObject BuffUIPos;
     public GameObject ActionTypePos;
+    public GameObject HeroineBody;
     //PlayerState
     protected PlayerInfo PlayerState;
     protected TotalPlayerState PlayerTotalState = new TotalPlayerState();
@@ -53,6 +64,10 @@ public class PlayerScript : MonoBehaviour
 
     const float BasicHP = 100f;
     const float BasicSTA = 1000f;
+    const float BasicSTR = 5f;
+    const float BasicDUR = 5f;
+    const float BasicRES = 5f;
+    const float BasicSPD = 5f;
     
     void Start()
     {
@@ -70,7 +85,8 @@ public class PlayerScript : MonoBehaviour
         PlayerState = JsonReadWriteManager.Instance.GetCopyPlayerInfo();
         SetPlayerTotalStatus();
         //SetEXP
-        PlayerState.Experience = (int)JsonReadWriteManager.Instance.GetEarlyState("EXP") + PlayerState.Experience;
+        if(PlayerState.Experience == 0)
+            PlayerState.Experience = (int)JsonReadWriteManager.Instance.GetEarlyState("EXP") + PlayerState.Experience;
         //SetCurrentForm
         List<int> CanActiveForm = new List<int>();
         if(JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel >= 7)
@@ -141,7 +157,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddTirednessAmount;
         PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA * PlayerState.CurrentTirednessRatio;
         //SetTotalSTR
-        PlayerTotalState.TotalSTR = JsonReadWriteManager.Instance.GetEarlyState("STR") +
+        PlayerTotalState.TotalSTR = BasicSTR + JsonReadWriteManager.Instance.GetEarlyState("STR") +
             PlayerState.StrengthLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSTRAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSTRAmount +
@@ -149,7 +165,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddSTRAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddSTRAmount;
         //SetTotalDUR
-        PlayerTotalState.TotalDUR = JsonReadWriteManager.Instance.GetEarlyState("DUR") +
+        PlayerTotalState.TotalDUR = BasicDUR + JsonReadWriteManager.Instance.GetEarlyState("DUR") +
             PlayerState.DurabilityLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddDURAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddDURAmount +
@@ -157,7 +173,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddDURAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddDURAmount;
         //SetTotalRES
-        PlayerTotalState.TotalRES = JsonReadWriteManager.Instance.GetEarlyState("RES") +
+        PlayerTotalState.TotalRES = BasicRES + JsonReadWriteManager.Instance.GetEarlyState("RES") +
             PlayerState.ResilienceLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddRESAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddRESAmount +
@@ -165,7 +181,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddRESAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddRESAmount;
         //SetTotalSPD
-        PlayerTotalState.TotalSPD = JsonReadWriteManager.Instance.GetEarlyState("SPD") +
+        PlayerTotalState.TotalSPD = BasicSPD + JsonReadWriteManager.Instance.GetEarlyState("SPD") +
             PlayerState.SpeedLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSPDAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSPDAmount +
@@ -182,11 +198,11 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
         if (PlayerBuff.BuffList[(int)EBuffType.Luck] >= 1)
         {
-            PlayerTotalState.TotalLUK += 30;
+            PlayerTotalState.TotalLUK += 10;
         }
         if (PlayerBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
         {
-            PlayerTotalState.TotalLUK -= 30;
+            PlayerTotalState.TotalLUK -= 10;
         }
 
         //공격의 평균적이 상승량
@@ -274,7 +290,19 @@ public class PlayerScript : MonoBehaviour
     {
         return PlayerTotalState;
     }
-
+    public void SetInitBuffByMonsters(List<GameObject> ActiveMonsters)
+    {
+        
+        for(int i = 0; i < ActiveMonsters.Count; i++)
+        {
+            /*
+            if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "Mandrake")
+            {
+                PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath] += ActiveMonsters[i].GetComponent<Monster>().MonsterGiveCurseOfDead();
+            }
+            */
+        }
+    }
     public void SetInitBuff()//나중에 뭐가 더 늘어나면 여기서//몬스터는 Monster쪽 SetInitBuff에서
     {
         if (JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel >= 7)
@@ -292,13 +320,13 @@ public class PlayerScript : MonoBehaviour
         */
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyHpLevel >= 7)
-            PlayerBuff.BuffList[(int)EBuffType.HealingFactor] = 99;
+            PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 99;
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyTirednessLevel >= 7)
-            PlayerBuff.BuffList[(int)EBuffType.ReCharge] = 99;
+            PlayerBuff.BuffList[(int)EBuffType.TiredControll] = 99;
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyExperience >= 7)
-            PlayerBuff.BuffList[(int)EBuffType.Rapine] = 99;
+            PlayerBuff.BuffList[(int)EBuffType.Exploitation] = 99;
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyExperienceMagnification >= 7)
             PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 99;
@@ -306,10 +334,35 @@ public class PlayerScript : MonoBehaviour
         if (JsonReadWriteManager.Instance.E_Info.EquipmentSuccessionLevel >= 7)
             PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
 
-        //PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 20;
+        SetDefeseResilienceBuff();
+
+        if (PlayerState.SaveRestQualityBySuddenAttack != -1)//습격을 당했다면
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Defenseless] = 1;
+        }
+
+        if(JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Luck] += 3;
+            JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony -= 1;
+        }
+
+        //PlayerBuff.BuffList[(int)EBuffType.TiredControll] = 99;
         //PlayerBuff.BuffList[(int)EBuffType.AttackDebuff] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
-        PlayerBuff.BuffList[(int)EBuffType.Misfortune] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.Misfortune] = 20;
+    }
+
+    public void SetDefeseResilienceBuff()
+    {
+        PlayerBuff.BuffList[(int)EBuffType.Defense] = (int)(PlayerTotalState.TotalDUR / 5);
+        PlayerBuff.BuffList[(int)EBuffType.Resilience] = (int)(PlayerTotalState.TotalRES / 5);
+    }
+
+    public void ApplyBuff(int ApplyBuffType, int BuffCount)
+    {
+        Debug.Log("IsThisActive");
+        PlayerBuff.BuffList[ApplyBuffType] += BuffCount;
     }
     public void SetIsSuddenAttackAndRestQuality()
     {
@@ -378,25 +431,27 @@ public class PlayerScript : MonoBehaviour
 
         return AllEquipmentTier;
     }
+    public void RecordKillCount(int KillNormalCount = 0, int KillEliteCount = 0)
+    {
+        PlayerState.KillNormalMonster += KillNormalCount;
+        PlayerState.KillEliteMonster += KillEliteCount;
+    }
+
 
     public void RecordBeforeShield()//ShieldAmount에 변화가 적용되기전에//맞을때, 방어를 사용할때, 내턴이 됬을때
     {
         BeforeShield = (int)PlayerState.ShieldAmount;
     }
 
-    public void PlayerRecordGiveDamage(float GiveDamage)//몬스터에게 주는 데미지를 기록하기 위함
+    public void PlayerDamage(float DamagePoint, bool IsIgnoreDefense = false)//자신이 받는 데미지를 기록하고 데미지를 받아 쉴드와 체력이 깍일떄
     {
-        PlayerState.GiveDamage += GiveDamage;
-        if(PlayerState.MostPowerfulDamage < GiveDamage)
-        {
-            PlayerState.MostPowerfulDamage = GiveDamage;
-        }
-    }
+        if (IsIgnoreDefense == false && PlayerBuff.BuffList[(int)EBuffType.Defense] >= 1)
+            DamagePoint -= PlayerBuff.BuffList[(int)EBuffType.Defense];
 
-    public void PlayerDamage(float DamagePoint)//자신이 받는 데미지를 기록하고 데미지를 받아 쉴드와 체력이 깍일떄
-    {
-        PlayerState.ReceiveDamage += DamagePoint;//GameRecord
-        if (PlayerBuff.BuffList[(int)EBuffType.Defenseless] >= 1)
+        if (DamagePoint < 0)
+            DamagePoint = 0;
+
+        if (IsIgnoreDefense == false && PlayerBuff.BuffList[(int)EBuffType.Defenseless] >= 1)
             DamagePoint = DamagePoint * 2;
 
         float RestDamage = 0;
@@ -448,6 +503,10 @@ public class PlayerScript : MonoBehaviour
         {
             PlayerTotalState.CurrentHP = PlayerTotalState.MaxHP;
         }
+        else if(PlayerTotalState.CurrentHP < 1)
+        {
+            PlayerTotalState.CurrentHP = 1;
+        }
         PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
     }
 
@@ -465,6 +524,11 @@ public class PlayerScript : MonoBehaviour
         else if (IsAlreadyCalculate == false)
         {
             PlayerState.Experience += ReturnEXPByEXPMagnification(EXPAmount);
+        }
+
+        if(PlayerState.Experience < 0)
+        {
+            PlayerState.Experience = 0;
         }
         /*
         if (EXPAmount > 0)
@@ -484,57 +548,70 @@ public class PlayerScript : MonoBehaviour
 
     public bool SpendSTA(string ActionType)//배틀중 행동을 하며 피로도를 쓸때 할때
     {
+        float SpendTired = 0;
         switch(ActionType)
         {
             case "Attack":
-                if(PlayerTotalState.CurrentSTA < EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness)//피로도가 부족할때
-                {
-                    return false;
-                }
-                else
-                {
-                    if (PlayerBuff.BuffList[(int)EBuffType.FrostBite] >= 1)
-                    {
-                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness + 50);
-                    }
-                    else
-                    {
-                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness);
-                    }
-                }
+                SpendTired += EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).SpendTiredness;
                 break;
             case "Defense":
-                if (PlayerTotalState.CurrentSTA < EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness)//피로도가 부족할때
-                {
-                    return false;
-                }
-                else
-                {
-                    if (PlayerBuff.BuffList[(int)EBuffType.FrostBite] >= 1)
-                    {
-                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness + 50);
-                    }
-                    else
-                    {
-                        PlayerSpendSTA(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness);
-                    }
-                }
+                SpendTired += EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).SpendTiredness;
                 break;
         }
+
+        if (PlayerBuff.BuffList[(int)EBuffType.Petrification] >= 1)
+        {
+            SpendTired += PlayerBuff.BuffList[(int)EBuffType.Petrification] * 20;
+        }
+
+        //피로도 조절은 모든거 뒤에 실행
+        if (PlayerBuff.BuffList[(int)EBuffType.TiredControll] >= 1)
+        {
+            float TiredRatio = PlayerState.CurrentTirednessRatio;
+            if (TiredRatio < 0.1)
+                TiredRatio = 0.1f;
+
+            SpendTired = SpendTired * TiredRatio;
+        }
+
+        if (PlayerTotalState.CurrentSTA < SpendTired)
+        {
+            return false;
+        }
+        else
+        {
+            PlayerSpendSTA((int)SpendTired);
+        }
+
         return true;
     }
 
-    public void DefeatFromBattle()//전투에서 졌을떄//지거나 게임에서 이기거나
+    public void CalculateEarlyPoint()//전투에서 졌을떄//지거나 게임에서 이기거나
     {
         int EarlyPoint = 0;
         if (PlayerState.CurrentFloor > JsonReadWriteManager.Instance.E_Info.PlayerReachFloor)
             JsonReadWriteManager.Instance.E_Info.PlayerReachFloor = PlayerState.CurrentFloor;
 
-        EarlyPoint += JsonReadWriteManager.Instance.E_Info.PlayerReachFloor / 5;
+        EarlyPoint += JsonReadWriteManager.Instance.E_Info.PlayerReachFloor;
+
+        if (JsonReadWriteManager.Instance.P_Info.KillNormalMonster / 4 > 5)
+            EarlyPoint += 5;
+        else
+            EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillNormalMonster / 4);
+
+        if (JsonReadWriteManager.Instance.P_Info.KillEliteMonster * 7 / 20 > 5)
+            EarlyPoint += 5;
+        else
+            EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillEliteMonster * 7 / 20);
+
+        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.Experience / 2000);
+        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.GoodKarma / 10);
+        /*
         EarlyPoint += (int)(PlayerState.GiveDamage / 1000);
         EarlyPoint += (int)(PlayerState.ReceiveDamage / 500);
         EarlyPoint += (int)(PlayerState.MostPowerfulDamage / 100);
         EarlyPoint += (int)(PlayerState.Experience / 2000);
+        */
 
         JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;//나머지 레벨들은 초기화 해야할듯? 나중에? 여기서하면 계승이 불가능
     }
@@ -569,6 +646,30 @@ public class PlayerScript : MonoBehaviour
         PlayerState.SpeedLevel = UpgradeStatus.AfterSPD;
         PlayerState.LuckLevel = UpgradeStatus.AfterLUK;
         PlayerState.Level = UpgradeStatus.AfterLevel;
+        SetPlayerTotalStatus();
+    }
+
+    public void UpgradePlayerSingleStatus(string UpgradeState, int Amount)
+    {
+        switch(UpgradeState)
+        {
+            case "STR":
+                PlayerState.StrengthLevel += Amount;
+                break;
+            case "DUR":
+                PlayerState.DurabilityLevel += Amount;
+                break;
+            case "RES":
+                PlayerState.ResilienceLevel += Amount;
+                break;
+            case "SPD":
+                PlayerState.SpeedLevel += Amount;
+                break;
+            case "LUK":
+                PlayerState.LuckLevel += Amount;
+                break;
+        }
+        PlayerState.Level += Amount;
         SetPlayerTotalStatus();
     }
 
@@ -607,6 +708,45 @@ public class PlayerScript : MonoBehaviour
                 PlayerState.EquipmentInventory[i] = EquipmentCode;//접근 가능 인벤토리 list에 저장
                 break;
             }
+        }
+    }
+
+    //-----------------------------------------HeroineAnimation
+    public void SetPlayerAnimation(int PlayerTargetState)
+    {
+        Animator HeroineAnimator = HeroineBody.GetComponent<Animator>();
+        switch(PlayerTargetState)
+        {
+            case (int)EPlayerAnimationState.Idle:
+                if(HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Idle)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Idle);
+                }
+                break;
+            case (int)EPlayerAnimationState.Walk:
+                if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Walk)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Walk);
+                }
+                break;
+            case (int)EPlayerAnimationState.Idle_Battle:
+                if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Idle_Battle)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Idle_Battle);
+                }
+                break;
+            case (int)EPlayerAnimationState.Defeat:
+                if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Defeat)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Defeat);
+                }
+                break;
+            case (int)EPlayerAnimationState.Rest:
+                if(HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Rest)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Rest);
+                }
+                break;
         }
     }
 }

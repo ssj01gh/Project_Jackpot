@@ -55,6 +55,8 @@ MonoBehaviour:
     _Sound: {fileID: 8300000, guid: b2577c7b5deb36b45af802e9bb36e2a8, type: 3}
   - SoundName: BossBattleBGM
     _Sound: {fileID: 8300000, guid: 18ff43440de126a4b95c43de2108954e, type: 3}
+  - SoundName: DefeatBGM
+    _Sound: {fileID: 8300000, guid: dc1c2f17c7e31f643b1e6a4359d1eab7, type: 3}
   SFX:
   - SoundName: Hit_Sward
     _Sound: {fileID: 8300000, guid: 6f01b7c3cfe58ff498832d5b052533fa, type: 3}

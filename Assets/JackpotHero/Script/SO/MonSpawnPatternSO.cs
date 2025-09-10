@@ -5,6 +5,4 @@ public class MonSpawnPattern : ScriptableObject
 {
     public int SpawnPatternID;
     public string[] SpawnMonsterName;
-    public float RewardEXPPoint;
-    public float VariationEXPPoint;
 }

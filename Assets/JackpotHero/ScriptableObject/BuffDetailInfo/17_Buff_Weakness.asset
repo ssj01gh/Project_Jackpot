@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
   m_Name: 17_Buff_Weakness
   m_EditorClassIdentifier: 
-  BuffImage: {fileID: 21300000, guid: d0c203f053a91f043a15225cb904c0fe, type: 3}
+  BuffImage: {fileID: 1863569177, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uB098\uC57D\uD568"
   BuffDetail: "\uC790\uC2E0\uC758 \uD134\uB2F9 \uD604\uC7AC \uD53C\uB85C\uB3C4\uC758\n5%\uC5D0
     \uD574\uB2F9\uD558\uB294\n\uD53C\uB85C\uB3C4\uB97C \uC783\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758

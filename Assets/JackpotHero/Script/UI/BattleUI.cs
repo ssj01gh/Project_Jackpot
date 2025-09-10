@@ -42,10 +42,6 @@ public class BattleUI : MonoBehaviour
     public GameObject ClickTextObject;//5번
     public GameObject PlayerZone;
     public GameObject MonsterZone;
-
-    [Header("MonsterSprites")]
-    public string[] MonsterName;
-    public Sprite[] MonsterHeadSprites;
     //0. Normal # 1. ATK_Form # 2. DUR_Form # 3. RES_Form # 4. SPD_Form # 5. LUK_Form # 6. HP_Form # 7. STA_Form # 8. EXP_From # 9. EXPMG_Form # 10. EQUIP_Form
     [Header("BattleTurnUI")]
     public GameObject DisplayTurnUI;
@@ -96,14 +92,13 @@ public class BattleUI : MonoBehaviour
     public TextMeshProUGUI DeafeatEarlyPoint;
     [Header("WinGameUI")]
     public GameObject WinGameUI;
-    public TextMeshProUGUI WinGameUITitleText;
     public TextMeshProUGUI WinEventTitle;
     public TextMeshProUGUI WinEquipSuccessionText;
     public TextMeshProUGUI WinEventAmount;
     public TextMeshProUGUI WinEarlyPoint;
 
-    protected Dictionary<string, GameObject> MonSpritesStorage = new Dictionary<string, GameObject>();
-    protected Dictionary<string, Sprite> MonHeadSpriteStorage = new Dictionary<string, Sprite>();
+    //protected Dictionary<string, GameObject> MonSpritesStorage = new Dictionary<string, GameObject>();
+    //protected Dictionary<string, Sprite> MonHeadSpriteStorage = new Dictionary<string, Sprite>();
     // Start is called before the first frame update
     protected bool IsAnimateComplete = false;
     protected bool IsOpenCard = false;
@@ -151,13 +146,7 @@ public class BattleUI : MonoBehaviour
     };
     private void Awake()
     {
-        for(int i = 0; i < MonsterName.Length; i++)
-        {
-            if (!MonHeadSpriteStorage.ContainsKey(MonsterName[i]))
-            {
-                MonHeadSpriteStorage.Add(MonsterName[i], MonsterHeadSprites[i]);
-            }
-        }
+
     }
     void Start()
     {
@@ -481,10 +470,7 @@ public class BattleUI : MonoBehaviour
             }
             else if(obj.tag == "Monster")
             {
-                if (!MonHeadSpriteStorage.ContainsKey(obj.GetComponent<Monster>().MonsterName))//없다면 패스
-                    continue;
-
-                DisplayTurnUIImages[i].sprite = MonHeadSpriteStorage[obj.GetComponent<Monster>().MonsterName];
+                DisplayTurnUIImages[i].sprite = obj.GetComponent<Monster>().MonsterHead;
             }
         }
     }
@@ -578,7 +564,7 @@ public class BattleUI : MonoBehaviour
         MainBattleUI.SetActive(true);
         MainBattleUI.GetComponent<CanvasGroup>().DOFade(1, 1);
 
-        if(ActionString == "Another")
+        if(ActionString != "Attack" && ActionString != "Defense" &&  ActionString != "Rest")
         {
             BaseAmountObject.SetActive(false);
             MagnificationObject.SetActive(false);
@@ -626,7 +612,7 @@ public class BattleUI : MonoBehaviour
             case "Rest":
                 ActionTypeObject[2].SetActive(true);
                 break;
-            case "Another":
+            default:
                 ActionTypeObject[3].SetActive(true);
                 break;
         }
@@ -667,7 +653,7 @@ public class BattleUI : MonoBehaviour
                 BaseAmountCardTitleText.text = "현재 회복";
                 BaseAmountCardDetailText.text = ((int)BattleResult.BaseAmount).ToString();
                 break;
-            case "Another":
+            default:
                 CurrentMainBattlePhase = (int)EMainBattlePhase.SpecialAction;
                 BaseAmountCardTitleText.text = "특수 행동";
                 BaseAmountCardDetailText.text = "";
@@ -1028,7 +1014,7 @@ public class BattleUI : MonoBehaviour
             }
             else//안가지고 있을때 -> 뚫은거임
             {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", TargetPos);
+                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", TargetPos + new Vector2(0,0.5f));
             }
             //overwhelmingpower 이 있으면 사방으로 퍼져나가는 이펙트가 있으면 좋을듯?
             ActionObj.transform.DOPunchPosition(new Vector3(1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
@@ -1036,20 +1022,44 @@ public class BattleUI : MonoBehaviour
         }
         else if(ActionObj.tag == "Player" && ActionString == "Rest")
         {
-            SoundManager.Instance.PlaySFX("Buff_Healing");
+            if(BattleResult.FinalResultAmount != 0)
+                SoundManager.Instance.PlaySFX("Buff_Healing");
+
             IsAnimateComplete = true;
         }
-        else if (ActionObj.tag == "Monster" && (ActionString == "Attack"))//몬스터일 경우 공격 + 특수 행동일때만
+        else if (ActionObj.tag == "Monster")//몬스터일 경우 공격 + 특수 행동일때만
         {
-            if (IsThereShield == true)//몬스터가 쉴드를 가지고 있을떄 -> 막힌거임
+            if (ActionString == "Attack")
             {
-                SoundManager.Instance.PlaySFX("Shield_Block");
+                if (IsThereShield == true)//플레이어가 쉴드를 가지고 있을떄 -> 막힌거임
+                {
+                    SoundManager.Instance.PlaySFX("Shield_Block");
+                }
+                else//플레이어가 안가지고 있을때 -> 뚫은거임
+                {
+                    EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", PlayerPos + new Vector2(0, 0.5f));//몬스터의 종류에 따라 달라지면 좋을지두
+                }
+                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else//안가지고 있을때 -> 뚫은거임
+            else if(ActionString == "Poison")
             {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", PlayerPos);//몬스터의 종류에 따라 달라지면 좋을지두
+                SoundManager.Instance.PlaySFX("Buff_Consume");
+                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+            else if(ActionString == "MisFortune")
+            {
+                SoundManager.Instance.PlaySFX("Buff_Forcing");
+                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+            }
+            else if(ActionString == "CurseOfDeath")
+            {
+                SoundManager.Instance.PlaySFX("Buff_Consume");
+                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+            }
+            else
+            {
+                IsAnimateComplete = true;
+            }
             //MonsterZone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(350, 0), 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { IsAnimateComplete = true; });
         }
         else
@@ -1227,6 +1237,22 @@ public class BattleUI : MonoBehaviour
         {
             obj.InitBuffImage();
         }
+        //몬스터 다음 행동 표시 비활성화
+        for(int i = 0; i < MonsterAttackIcons.Length; i++)
+        {
+            if (MonsterAttackIcons.Length > i && MonsterAttackIcons[i].activeSelf == true)
+            {
+                MonsterAttackIcons[i].SetActive(false);
+            }
+            if(MonsterDefenseIcons.Length > i && MonsterDefenseIcons[i].activeSelf == true)
+            {
+                MonsterDefenseIcons[i].SetActive(false);
+            }
+            if(MonsterAnotherIcons.Length > i && MonsterAnotherIcons[i].activeSelf == true)
+            {
+                MonsterAnotherIcons[i].SetActive(false);
+            }
+        }
         //이게 이제 승리 했을때 올라오는거고
         VictoryUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -1080);
         VictoryUI.SetActive(true);
@@ -1284,10 +1310,38 @@ public class BattleUI : MonoBehaviour
         {
             obj.InitBuffImage();
         }
+        //몬스터 다음 행동 표시 비활성화
+        for (int i = 0; i < MonsterAttackIcons.Length; i++)
+        {
+            if (MonsterAttackIcons.Length > i && MonsterAttackIcons[i].activeSelf == true)
+            {
+                MonsterAttackIcons[i].SetActive(false);
+            }
+            if (MonsterDefenseIcons.Length > i && MonsterDefenseIcons[i].activeSelf == true)
+            {
+                MonsterDefenseIcons[i].SetActive(false);
+            }
+            if (MonsterAnotherIcons.Length > i && MonsterAnotherIcons[i].activeSelf == true)
+            {
+                MonsterAnotherIcons[i].SetActive(false);
+            }
+        }
 
         DefeatUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -1080);
         DefeatUI.SetActive(true);
         DefeatUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f).SetEase(Ease.OutBack);
+
+        DefeatEventTitle.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
+            ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
+            ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
+            ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
+            ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
+        DefeatEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 2000) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillNormalMonster * 500) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillEliteMonster * 700) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GoodKarma * 200);
+        /*
         DefeatEventTitle.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
             ")\r\n준 피해 (" + PlayerInfo.GetPlayerStateInfo().GiveDamage +
             ")\r\n받은 피해 (" + PlayerInfo.GetPlayerStateInfo().ReceiveDamage +
@@ -1298,6 +1352,7 @@ public class BattleUI : MonoBehaviour
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().ReceiveDamage / 500) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage / 100) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience / 2000);
+        */
         EquipSuccessionText.text = "소지한 장비중 랜덤한 " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "개의 장비가 계승됩니다.";
         DeafeatEarlyPoint.text = "기초 강화 포인트 : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
     }
@@ -1334,7 +1389,17 @@ public class BattleUI : MonoBehaviour
         WinGameUI.SetActive(true);
         WinGameUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.4f).SetEase(Ease.OutBack);
         //특정 조건에 따라 승리라는 제목도 바뀔수 있지 않을까? 일단 그대로 진행
-
+        WinEventTitle.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
+            ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
+            ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
+            ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
+            ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
+        WinEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 2000) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillNormalMonster * 500) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillEliteMonster * 700) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience) +
+            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GoodKarma * 200);
+        /*
         WinEventTitle.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
             ")\r\n준 피해 (" + PlayerInfo.GetPlayerStateInfo().GiveDamage +
             ")\r\n받은 피해 (" + PlayerInfo.GetPlayerStateInfo().ReceiveDamage +
@@ -1345,6 +1410,7 @@ public class BattleUI : MonoBehaviour
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().ReceiveDamage / 500) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage / 100) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience / 2000);
+        */
         WinEquipSuccessionText.text = "소지한 장비중 랜덤한 " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "개의 장비가 계승됩니다.";
         WinEarlyPoint.text = "기초 강화 포인트 : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
     }

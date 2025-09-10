@@ -80,24 +80,24 @@ public class RestManager : MonoBehaviour
         MaxRestTime = (int)TimeCountSlider.value;
         CurrentRestTime = 0;
         IsPeacefulRest.Clear();
-        int MonAttackRange = 0;
+        int MonAttackRange = 5;
 
         switch (RestQuality)
         {
             case (int)EPlayerRestQuality.VeryBad:
-                MonAttackRange = 50;
+                MonAttackRange = 55;
                 break;
             case (int)EPlayerRestQuality.Bad:
-                MonAttackRange = 25;
+                MonAttackRange = 35;
                 break;
             case (int)EPlayerRestQuality.Good:
-                MonAttackRange = 10;
+                MonAttackRange = 20;
                 break;
             case (int)EPlayerRestQuality.VeryGood:
-                MonAttackRange = 5;
+                MonAttackRange = 10;
                 break;
             case (int)EPlayerRestQuality.Perfect:
-                MonAttackRange = 0;
+                MonAttackRange = 5;
                 break;
         }
 
@@ -133,7 +133,7 @@ public class RestManager : MonoBehaviour
                     yield return null;
                     if(UIMgr.R_UI.FillAmountAnimEnd == true)//1턴이 지난간거임 여기서 째깍?//회복하는 이펙트도 넣을까?
                     {
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenHP", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenHP", PlayerMgr.GetPlayerInfo().gameObject.transform.position + new Vector3(0, 0.5f));
                         SoundManager.Instance.PlaySFX("Rest_TickTack");
                         break;
                     }
@@ -164,6 +164,7 @@ public class RestManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
 
+                PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
                 BattleMgr.InitCurrentBattleMonsters();
                 BattleMgr.InitMonsterNPlayerActiveGuage();
                 BattleMgr.ProgressBattle();

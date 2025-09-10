@@ -24,10 +24,10 @@ public class PlayerInfo
     public int DetectNextFloorPoint;
     public int CurrentPlayerAction;
     public int CurrentPlayerActionDetails;
-    public float GiveDamage;
-    public float ReceiveDamage;
-    public float MostPowerfulDamage;
-    public float Karma;
+    public float KillNormalMonster;
+    public float KillEliteMonster;
+    public float GoodKarma;
+    public float BadKarma;
     public int SaveRestQualityBySuddenAttack;
 }
 
@@ -58,4 +58,18 @@ public class OptionInfo
     public float UISFXVolume;
     public float ScreenResolutionWidth;
     public bool IsFullScreen;
+}
+
+[System.Serializable]
+public class LinkageEventInfo
+{
+    public bool TalkingMonster;
+    public bool TalkingDirtGolem;
+    public bool TotoRepayFavor;
+    public bool TotoCursedSword;
+    public bool TotoBlessedSword;
+    public bool RestInPeace;
+    public bool OminousSword;
+    public bool CleanOminousSword;
+    public int PowwersCeremony;
 }

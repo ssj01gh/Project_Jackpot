@@ -11,6 +11,7 @@ public enum EGuideMessage
     NotEnoughInventoryMessage,
     NotEnoughSTAMessage_RestQuality,
     NotEnoughEXP_PlayerUpgrade,
+    NotEnoughEXP_ForgeEvent,
 }
 
 public class GuideUI : MonoBehaviour
@@ -56,6 +57,10 @@ public class GuideUI : MonoBehaviour
                 GuideMessageText.text = "플레이어를 강화할 경험치가 부족합니다.";
                 StartCoroutine(CountSeconds());
                 break;
+            case (int)EGuideMessage.NotEnoughEXP_ForgeEvent:
+                GuideMessageText.text = "경험치가 부족합니다.";
+                StartCoroutine(CountSeconds());
+                break;
             default:
                 break;
         }
@@ -63,7 +68,7 @@ public class GuideUI : MonoBehaviour
 
     IEnumerator CountSeconds()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         if(gameObject.activeSelf == true)
         {
             gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 115);

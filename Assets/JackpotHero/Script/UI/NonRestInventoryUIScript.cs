@@ -213,8 +213,24 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
         MouseFollowImage.transform.position = gameObject.GetComponentInParent<Canvas>().transform.TransformPoint(localPoint);
     }
 
-    private string GetTierText(int EquipmnetCode)
+    private string GetTierText(int EquipmentCode)
     {
-        return ((EquipmnetCode / 1000) % 10).ToString() + "티어";
+        if((EquipmentCode / 1000) % 10 == 7)
+        {
+            switch(EquipmentCode)
+            {
+                case 17001:
+                    return "3티어";
+                case 17002:
+                    return "4티어";
+                case 17003:
+                    return "5티어";
+                case 17004:
+                    return "6티어";
+            }
+            return "1티어";
+        }
+        else
+            return ((EquipmentCode / 1000) % 10).ToString() + "티어";
     }
 }

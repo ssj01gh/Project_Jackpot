@@ -4,6 +4,6 @@ using UnityEngine;
 public class EarlyStrengthenDetailSO : ScriptableObject
 {
     public string EarlyDetailTitle;
-    [TextArea]
+    [TextArea(5, 20)]
     public string DetailText;
 }

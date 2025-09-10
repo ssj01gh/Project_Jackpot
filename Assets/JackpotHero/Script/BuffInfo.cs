@@ -4,6 +4,10 @@ using UnityEngine;
 
 public enum EBuffType
 {
+    //방어력
+    Defense,
+    //회복력
+    Resilience,
      //넘치는 힘
     OverWhelmingPower,
     //가시 갑옷
@@ -12,12 +16,12 @@ public enum EBuffType
     Defenseless,
     //상급 휴식
     AdvancedRest,
-    //재생
-    HealingFactor,
-    //기충전
-    ReCharge,
-    //강탈
-    Rapine,
+    //피의 일족
+    BloodFamiliy,
+    //피로도 조절
+    TiredControll,
+    //착취
+    Exploitation,
     //경험이 곧 힘
     EXPPower,
     //웨폰마스터
@@ -40,8 +44,8 @@ public enum EBuffType
     UnbreakableArmor,
     //나약함
     Weakness,
-    //동상
-    FrostBite,
+    //석화
+    Petrification,
     //단단한피부
     ToughSkin,
     //단단한주먹

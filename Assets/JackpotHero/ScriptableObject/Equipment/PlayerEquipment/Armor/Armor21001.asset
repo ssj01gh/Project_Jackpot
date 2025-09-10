@@ -15,20 +15,29 @@ MonoBehaviour:
   EquipmentType: 2
   EquipmentTier: 1
   EquipmentCode: 1
-  EquipmentName: "\uAC00\uC8FD\uD749\uAC11"
+  EquipmentName: "\uB0A1\uC740 \uCCA0\uAC11\uC637"
   SpendTiredness: 10
   EquipmentSlots:
-  - IsPositive: 00000101
+  - IsPositive: 000101
     SlotState:
-    - 0.1
     - 0.5
-    - 2
-    - 4
-  EquipmentImage: {fileID: 21300000, guid: bc2f8250aa321d3429348ad21a592e6f, type: 3}
+    - 1
+    - 1.5
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 1.5
+  - IsPositive: 000101
+    SlotState:
+    - 0.75
+    - 1.25
+    - 1.75
+  EquipmentImage: {fileID: 839352824, guid: 5b85432932240f443be80b207cd9bddd, type: 3}
   AddSTRAmount: 0
-  AddDURAmount: 0
+  AddDURAmount: 1
   AddRESAmount: 0
-  AddSPDAmount: -5
+  AddSPDAmount: -1
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0

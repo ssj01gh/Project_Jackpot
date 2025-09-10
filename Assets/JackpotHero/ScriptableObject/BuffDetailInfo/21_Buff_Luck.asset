@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
   m_Name: 21_Buff_Luck
   m_EditorClassIdentifier: 
-  BuffImage: {fileID: 21300000, guid: 7e406199c949f1449bc592e1e4db1487, type: 3}
+  BuffImage: {fileID: 326455573, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uD589\uC6B4"
-  BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9\uC2DC\n\uD589\uC6B4 +30\uC758\n\uD310\uC815\uC744
+  BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9\uC2DC\n\uD589\uC6B4 +10\uC758\n\uD310\uC815\uC744
     \uC5BB\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134\uB2F9 \uC2A4\uD0DD -1"

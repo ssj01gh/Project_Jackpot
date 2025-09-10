@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
   m_Name: 15_Buff_RegenArmor
   m_EditorClassIdentifier: 
-  BuffImage: {fileID: 21300000, guid: cfa7f803e7aba9444a57c689cbeee2d4, type: 3}
+  BuffImage: {fileID: -679775825, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uC7AC\uC0DD\uD615 \uAC11\uC637"
   BuffDetail: "\uC790\uC2E0\uC758 \uD134\uB9C8\uB2E4 \n\uC2A4\uD0DD\uC5D0 \uD574\uB2F9\uD558\uB294\n\uBCF4\uD638\uB9C9\uC744
     \uC5BB\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134\uB2F9 \uC2A4\uD0DD -1"

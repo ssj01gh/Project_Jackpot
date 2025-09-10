@@ -49,6 +49,7 @@ public class EffectManager : MonoSingleton<EffectManager>
         {
             //타격
             case "BattleEffect_Hit_Sward":
+            case "BattleEffect_Hit_Mon_Sward":
                 SoundManager.Instance.PlaySFX("Hit_Sward");
                 break;
             //소모형

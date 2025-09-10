@@ -4,6 +4,14 @@ using Unity.Burst;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum EEquipmentType
+{
+    Weapon = 1,
+    Armor,
+    Helmet,
+    Boots,
+    Accessories,
+}
 public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
 {
     [Header("EquipmentSlotSprite")]
@@ -31,12 +39,15 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     protected Dictionary<int, EquipmentSO> EquipmentStorage = new Dictionary<int, EquipmentSO>();
     protected Dictionary<int, EquipmentSO> MonEquipmentStroage = new Dictionary<int, EquipmentSO>();
 
+    protected List<int> TierZeroEquipmentCodes = new List<int>();
     protected List<int> TierOneEquipmentCodes = new List<int>();
     protected List<int> TierTwoEquipmentCodes = new List<int>();
     protected List<int> TierThreeEquipmentCodes = new List<int>();
     protected List<int> TierFourEquipmentCodes = new List<int>();
     protected List<int> TierFiveEquipmentCodes = new List<int>();
     protected List<int> TierSixEquipmnetCodes = new List<int>();
+
+    protected List<int> EventEquipmentCodes = new List<int>();
 
     //95 5 0 0 0
     protected int[,] EquipmentGamblingDetail =
@@ -164,6 +175,9 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     {
         switch(EquipmentTier)
         {
+            case 0:
+                TierZeroEquipmentCodes.Add(EquipmentCode);
+                break;
             case 1:
                 TierOneEquipmentCodes.Add(EquipmentCode);
                 break;
@@ -181,6 +195,9 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                 break;
             case 6:
                 TierSixEquipmnetCodes.Add(EquipmentCode);
+                break;
+            case 7:
+                EventEquipmentCodes.Add(EquipmentTier);
                 break;
         }
     }
@@ -208,6 +225,129 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
             return MonEquipmentStroage[0];
         }
         return MonEquipmentStroage[EquipmentCode];
+    }
+
+    public int GetFixedTierRandomEquipmnet(int Tier)//정해진 티어에서 랜덤한 장비 리턴
+    {
+        int RandNum = 0;
+        switch(Tier)
+        {
+            case 0://0티어 장비
+                RandNum = Random.Range(0, TierZeroEquipmentCodes.Count);
+                return TierZeroEquipmentCodes[RandNum];
+            case 1://1티어 장비
+                RandNum = Random.Range(0, TierOneEquipmentCodes.Count);
+                return TierOneEquipmentCodes[RandNum];
+            case 2://2티어 장비
+                RandNum = Random.Range(0, TierTwoEquipmentCodes.Count);
+                return TierTwoEquipmentCodes[RandNum];
+            case 3://3티어 장비
+                RandNum = Random.Range(0, TierThreeEquipmentCodes.Count);
+                return TierThreeEquipmentCodes[RandNum];
+            case 4://4티어 장비
+                RandNum = Random.Range(0, TierFourEquipmentCodes.Count);
+                return TierFourEquipmentCodes[RandNum];
+            case 5://5티어 장비
+                RandNum = Random.Range(0, TierFiveEquipmentCodes.Count);
+                return TierFiveEquipmentCodes[RandNum];
+            case 6://6티어 장비
+                RandNum = Random.Range(0, TierSixEquipmnetCodes.Count);
+                return TierSixEquipmnetCodes[RandNum];
+            case 7://이벤트 장비
+                RandNum = Random.Range(0, EventEquipmentCodes.Count);
+                return EventEquipmentCodes[RandNum];
+        }
+        return 0;
+    }
+
+    public int GetFixedTierNTypeRandomEquipment(int Tier, EEquipmentType Type)
+    {
+        List<int> ApplyEquipment = new List<int>();
+        int TypeNum = 0;
+        switch(Type)
+        {
+            case EEquipmentType.Weapon:
+                TypeNum = (int)EEquipmentType.Weapon;
+                break;
+            case EEquipmentType.Armor:
+                TypeNum = (int)EEquipmentType.Armor;
+                break;
+            case EEquipmentType.Helmet:
+                TypeNum = (int)EEquipmentType.Helmet;
+                break;
+            case EEquipmentType.Boots:
+                TypeNum = (int)EEquipmentType.Boots;
+                break;
+            case EEquipmentType.Accessories:
+                TypeNum = (int)EEquipmentType.Accessories;
+                break;
+        }
+        switch(Tier)
+        {
+            case 0://0티어
+                for(int i = 0; i < TierZeroEquipmentCodes.Count; i++)
+                {
+                    if ((TierZeroEquipmentCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(TierZeroEquipmentCodes[i]);
+                }
+                break;
+            case 1://1티어
+                for (int i = 0; i < TierOneEquipmentCodes.Count; i++)
+                {
+                    if ((TierOneEquipmentCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(TierOneEquipmentCodes[i]);
+                }
+                break;
+            case 2://2티어
+                for (int i = 0; i < TierTwoEquipmentCodes.Count; i++)
+                {
+                    if ((TierTwoEquipmentCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(TierTwoEquipmentCodes[i]);
+                }
+                break;
+            case 3://3티어
+                for (int i = 0; i < TierThreeEquipmentCodes.Count; i++)
+                {
+                    if ((TierThreeEquipmentCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(TierThreeEquipmentCodes[i]);
+                }
+                break;
+            case 4://4티어
+                for (int i = 0; i < TierFourEquipmentCodes.Count; i++)
+                {
+                    if ((TierFourEquipmentCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(TierFourEquipmentCodes[i]);
+                }
+                break;
+            case 5://5티어
+                for (int i = 0; i < TierFiveEquipmentCodes.Count; i++)
+                {
+                    if ((TierFiveEquipmentCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(TierFiveEquipmentCodes[i]);
+                }
+                break;
+            case 6://6티어
+                for (int i = 0; i < TierSixEquipmnetCodes.Count; i++)
+                {
+                    if ((TierSixEquipmnetCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(TierSixEquipmnetCodes[i]);
+                }
+                break;
+            case 7://이벤트 장비
+                for (int i = 0; i < EventEquipmentCodes.Count; i++)
+                {
+                    if ((EventEquipmentCodes[i] / 10000) == TypeNum)
+                        ApplyEquipment.Add(EventEquipmentCodes[i]);
+                }
+                break;
+        }
+        if(ApplyEquipment.Count == 0)
+            return 0;
+        else
+        {
+            int RandNum = Random.Range(0, ApplyEquipment.Count);
+            return ApplyEquipment[RandNum];
+        }
     }
 
     public int GetGamblingEquipmentCode(int GamblingLevel)//플레이어의 겜블링 레벨에 맞춰서 랜덤한 장비의 코드를 리턴함//이게 보통 장비를 얻는것임

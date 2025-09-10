@@ -15,17 +15,47 @@ MonoBehaviour:
   EquipmentType: 2
   EquipmentTier: 5
   EquipmentCode: 1
-  EquipmentName: "\uAC00\uC8FD\uD749\uAC11"
+  EquipmentName: "\uC644\uC131\uD615 \uCCA0\uAC11\uC637"
   SpendTiredness: 10
   EquipmentSlots:
   - IsPositive: 000101
     SlotState:
     - 0.5
     - 1
+    - 1.5
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 1.5
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 1.5
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 1.5
+  - IsPositive: 000101
+    SlotState:
+    - 0.5
+    - 1
+    - 1.5
+  - IsPositive: 010101
+    SlotState:
+    - 1
+    - 1.5
     - 2
-  EquipmentImage: {fileID: 21300000, guid: bc2f8250aa321d3429348ad21a592e6f, type: 3}
+  - IsPositive: 010101
+    SlotState:
+    - 1
+    - 1.5
+    - 2
+  EquipmentImage: {fileID: -1728275576, guid: 5b85432932240f443be80b207cd9bddd, type: 3}
   AddSTRAmount: 0
-  AddDURAmount: 0
+  AddDURAmount: 5
   AddRESAmount: 0
   AddSPDAmount: -5
   AddLUKAmount: 0
