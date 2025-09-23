@@ -302,7 +302,7 @@ public class BattleManager : MonoBehaviour
                 }
             }
             //적이 가시값옷 보유시
-            if (MonMgr.CurrentTarget.MonsterBuff.BuffList[(int)EBuffType.ThronArmor] >= 1)
+            if (MonMgr.CurrentTarget.MonsterBuff.BuffList[(int)EBuffType.ThornArmor] >= 1)
             {//내가 주는 데미지가 적의 보호막에 다 막힐때 => 나의 데미지 < 적의 보호막
                 if(BattleResultStatus.FinalResultAmount < MonMgr.CurrentTarget.GetMonsterCurrentStatus().MonsterCurrentShieldPoint)
                 {
@@ -312,7 +312,7 @@ public class BattleManager : MonoBehaviour
                     PlayerMgr.GetPlayerInfo().PlayerDamage((int)ReflectionDamage);
                 }
             }
-            //강탈 보유시
+            //착취보유시
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Exploitation] >= 1)
             {
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount((int)(BattleResultStatus.FinalResultAmount / 5));
@@ -361,7 +361,7 @@ public class BattleManager : MonoBehaviour
                 CurrentBattleState = "Attack";
                 TargetObject = PlayerMgr.GetPlayerInfo().gameObject;
                 //플레이어가 가시 갑옷을 가지고 있을경우
-                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ThronArmor] >= 1)
+                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ThornArmor] >= 1)
                 {//데미지 < 플레이어 보호막 일경우
                     if (BattleResultStatus.FinalResultAmount < PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount)
                     {
@@ -370,11 +370,20 @@ public class BattleManager : MonoBehaviour
                     }
                 }
                 //강탈을 가지고 있을때
-                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Exploitation] >= 1)
+                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Plunder] >= 1)
                 {
-                    PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-(int)(BattleResultStatus.FinalResultAmount / 5), true);
+                    int CurrentPlayerExperience = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience;
+                    if (CurrentPlayerExperience >= BattleResultStatus.FinalResultAmount)//경험치만 깍고 끝
+                    {
+                        PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-(int)BattleResultStatus.FinalResultAmount, true);
+                    }
+                    else//아니라면 경험치를 깍고 쉴드 및 체력을 깍음
+                    {
+                        float RemainDamange = BattleResultStatus.FinalResultAmount - CurrentPlayerExperience;
+                        PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-CurrentPlayerExperience, true);
+                        PlayerMgr.GetPlayerInfo().PlayerDamage(RemainDamange);
+                    }
                 }
-                PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount);
                 if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
                 {
                     IsTargetHasShield = true;
@@ -419,7 +428,7 @@ public class BattleManager : MonoBehaviour
                 SpawnMonstersID.Clear();
                 CurrentBattleState = "ThornArmor";
                 TargetObject = null;
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.ThronArmor);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.ThornArmor);
                 break;
             default:
                 CurrentBattleState = "Another";
