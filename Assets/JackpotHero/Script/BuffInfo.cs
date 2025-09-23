@@ -11,8 +11,8 @@ public enum EBuffType
      //넘치는 힘
     OverWhelmingPower,
     //가시 갑옷
-    ThronArmor,
-    //기습
+    ThornArmor,
+    //무방비
     Defenseless,
     //상급 휴식
     AdvancedRest,
@@ -52,8 +52,76 @@ public enum EBuffType
     ToughFist,
     //행운
     Luck,
-    //불행
+    //불운
     Misfortune,
+    //도발
+    Provocation,
+    //재생
+    Regeneration,
+    //기충전
+    Recharge,
+    //강탈
+    Plunder,
+    //연속타격
+    ChainAttack,
+    //졸개
+    Survant,
+    //위축
+    Cower,
+    //산군
+    MountainLord,
+    //자폭
+    SelfDestruct,
+    //죽음의 힘
+    PowerOfDeath,
+    //과부하
+    OverCharge,
+    //복사_힘
+    CopyStrength,
+    //복사_내구
+    CopyDurability,
+    //복사_속도
+    CopySpeed,
+    //복사_행운
+    CopyLuck,
+    //흡수
+    Consume,
+    //도핑
+    CorruptSerum,
+    //감속
+    Slow,
+    //신속
+    Haste,
+    //적응_힘
+    StrengthAdaptation,
+    //적응_내구
+    DurabilityAdaptation,
+    //적응_속도
+    SpeedAdaptation,
+    //매혹
+    Charm,
+    //축적
+    Charging,
+    //업보_선
+    GoodKarma,
+    //업보_악
+    BadKarma,
+    //반사
+    Reflect,
+    //교만
+    Pride,
+    //탐욕
+    Greed,
+    //질투
+    Envy,
+    //색욕
+    Lust,
+    //식탐
+    Gluttony,
+    //나태
+    Sloth,
+    //분노
+    Wrath,
     //불사//여기 위에 버프추가.
     UnDead,
     //Buff종류에 맞는 BuffList배열 생성을 위해있는것임

@@ -309,7 +309,7 @@ public class PlayerScript : MonoBehaviour
             PlayerBuff.BuffList[(int)EBuffType.OverWhelmingPower] = 99;
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyDurabilityLevel >= 7)
-            PlayerBuff.BuffList[(int)EBuffType.ThronArmor] = 99;
+            PlayerBuff.BuffList[(int)EBuffType.ThornArmor] = 99;
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyResilienceLevel >= 7)
             PlayerBuff.BuffList[(int)EBuffType.AdvancedRest] = 99;
