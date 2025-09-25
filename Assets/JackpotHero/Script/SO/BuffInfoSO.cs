@@ -7,6 +7,6 @@ public class BuffInfoSO : ScriptableObject
 {
     public Sprite BuffImage;
     public string BuffName;
-    [TextArea]
+    [TextArea(10,20)]
     public string BuffDetail;
 }

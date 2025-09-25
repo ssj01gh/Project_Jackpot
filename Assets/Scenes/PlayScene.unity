@@ -39971,6 +39971,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eeb6513812a05ef4ea5a7faf0bebb00d, type: 2}
   - {fileID: 11400000, guid: d37877ea55da65b4e8429a269044072f, type: 2}
   - {fileID: 11400000, guid: 5f8f33de365405e48817735cdc989b75, type: 2}
+  - {fileID: 11400000, guid: 6c2b25e1d20b6d944a6eab6cc719c5c1, type: 2}
   MonArmorSOs:
   - {fileID: 11400000, guid: d4a26aec5d863eb4da38221ca84f3366, type: 2}
   - {fileID: 11400000, guid: d84902394b698bd4999e8ef92a7f7895, type: 2}
@@ -39980,6 +39981,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 14767ce39ef1e3b408631637fc59b057, type: 2}
   - {fileID: 11400000, guid: 21c75f32f76ed6744bbe066db532c325, type: 2}
   - {fileID: 11400000, guid: 970b57de0aff66f42babcf39d837303d, type: 2}
+  - {fileID: 11400000, guid: ebabf3cefea081f409221470eb98eddc, type: 2}
   MonAnotherEquipSOs:
   - {fileID: 11400000, guid: 747d8cbf88059db43a90d8bf7c829836, type: 2}
   - {fileID: 11400000, guid: b525ef06226e5e74dafdfa3d1403771b, type: 2}
@@ -39988,6 +39990,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 823880875d341b64e8efc305fdae357d, type: 2}
   - {fileID: 11400000, guid: 66cc792cd3779644b9805459bdb7e3b5, type: 2}
   - {fileID: 11400000, guid: 1aba49f7ff82df04db59df7c96cfbbb0, type: 2}
+  - {fileID: 11400000, guid: c03baaa4a02da1544afbf0e840866615, type: 2}
 --- !u!1 &736837029
 GameObject:
   m_ObjectHideFlags: 0
@@ -86294,6 +86297,40 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10669ebf3baa42b4a91e2e71312daf47, type: 2}
   - {fileID: 11400000, guid: 5b4524bead7eab845be8844991636762, type: 2}
   - {fileID: 11400000, guid: cd19e1f0d33eb354ca4402d386d944ec, type: 2}
+  - {fileID: 11400000, guid: c05a8ac580f78c7468f0b966b6315dad, type: 2}
+  - {fileID: 11400000, guid: 834bed5c5a27b8e4eb5936199cbeb245, type: 2}
+  - {fileID: 11400000, guid: 90a6a1c26391a3c44b0930046a5b0ef4, type: 2}
+  - {fileID: 11400000, guid: 9fd25129bc1f91a4491039680812a860, type: 2}
+  - {fileID: 11400000, guid: 0048c941db22c6649bb9ce6cf48f2860, type: 2}
+  - {fileID: 11400000, guid: 9cffddad15c7ea246be1aa7021c224a2, type: 2}
+  - {fileID: 11400000, guid: 84dad5bb871a51d49a88e2f0147b081c, type: 2}
+  - {fileID: 11400000, guid: 323c32e4c2aa5f44daf03b119ba20a64, type: 2}
+  - {fileID: 11400000, guid: a631c1a8bf1168549b7c161c3ba863c6, type: 2}
+  - {fileID: 11400000, guid: 0af9eb442f793b842ae6701bab55bbc7, type: 2}
+  - {fileID: 11400000, guid: 7f57637834779ab48a483a7e48910463, type: 2}
+  - {fileID: 11400000, guid: 9c5b81a2eb5d44343812808106be56fa, type: 2}
+  - {fileID: 11400000, guid: e1592cc7d8293c249ad6455599d24d31, type: 2}
+  - {fileID: 11400000, guid: a3cc337fe5618b64cada46696f346bb4, type: 2}
+  - {fileID: 11400000, guid: 9a97919886e585447b35b9185f33d240, type: 2}
+  - {fileID: 11400000, guid: 7721b5df0e845a142aba9a2897b58a0f, type: 2}
+  - {fileID: 11400000, guid: 2fd2f532ebfb731438d850c35421f5ef, type: 2}
+  - {fileID: 11400000, guid: 9b86003da7210694ab1aca8a3b827f7c, type: 2}
+  - {fileID: 11400000, guid: 5e7834b8ff4fbf345974ae4ea2f801d3, type: 2}
+  - {fileID: 11400000, guid: 91a4177a904d4ec4a8b151675df6b258, type: 2}
+  - {fileID: 11400000, guid: 3cbbe48269ed9c842808ad5d1ed6a2bc, type: 2}
+  - {fileID: 11400000, guid: 0722c7de3934bd24fa1c53aeb8f32628, type: 2}
+  - {fileID: 11400000, guid: 249e52893e19d9848a05c9620916e903, type: 2}
+  - {fileID: 11400000, guid: c4c060a6c6bafc241ae262132c9a7517, type: 2}
+  - {fileID: 11400000, guid: 973b714d81312d34fbf35cec816d432e, type: 2}
+  - {fileID: 11400000, guid: c61270f779a6b5d45acc119ada5046c2, type: 2}
+  - {fileID: 11400000, guid: 1a17cab3cb54778459a867d6672944b3, type: 2}
+  - {fileID: 11400000, guid: b823a5d3be2c79449a716365b6f7bbc8, type: 2}
+  - {fileID: 11400000, guid: f4fad2252e7e87e4b92b664616b1191c, type: 2}
+  - {fileID: 11400000, guid: 473ea164d10de6c4789296b150e4d7e7, type: 2}
+  - {fileID: 11400000, guid: eaa79733a9e7fea44bc1cf438db61906, type: 2}
+  - {fileID: 11400000, guid: d1b2ee8610bf6ad408c25f6e58d394ef, type: 2}
+  - {fileID: 11400000, guid: 0815554319bbe5f4990c071d2dc797b0, type: 2}
+  - {fileID: 11400000, guid: 8da566706a98be649a9a9ea0710557f7, type: 2}
   - {fileID: 11400000, guid: 177779231e1db074f85ea00d37eee64a, type: 2}
 --- !u!1 &1525144244
 GameObject:

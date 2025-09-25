@@ -354,6 +354,19 @@ public class MonsterManager : MonoBehaviour
         return DeadMonsterReward;
     }
 
+    public Monster CheckActiveMonsterHaveProvocation()
+    {
+        for(int i = 0; i < ActiveMonsters.Count; i++)
+        {
+            if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Provocation] >= 1)//도발이 있다면
+            {
+                CurrentTarget = ActiveMonsters[i].GetComponent<Monster>();
+                break;
+            }
+        }
+        return CurrentTarget;
+    }
+
     public void InActiveAllActiveMonster()
     {
         for (int i = ActiveMonsters.Count - 1; i >= 0; i--)

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EffectSO_Buff_Poison
   m_EditorClassIdentifier: 
   EffectID: BattleEffect_Buff_Poison
-  EffectSprite: {fileID: 21300000, guid: 8086410badb259d4b8571665d3af5da2, type: 3}
+  EffectSprite: {fileID: -1927567980, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
