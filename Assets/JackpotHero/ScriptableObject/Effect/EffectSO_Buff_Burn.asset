@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EffectSO_Buff_Burn
   m_EditorClassIdentifier: 
   EffectID: BattleEffect_Buff_Burn
-  EffectSprite: {fileID: 21300000, guid: 0665309bb2f8310478f58e6450f0038c, type: 3}
+  EffectSprite: {fileID: 813420744, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}

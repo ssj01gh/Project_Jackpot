@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EffectSO_Buff_RegenArmor
   m_EditorClassIdentifier: 
   EffectID: BattleEffect_Buff_RegenArmor
-  EffectSprite: {fileID: 21300000, guid: cfa7f803e7aba9444a57c689cbeee2d4, type: 3}
+  EffectSprite: {fileID: -679775825, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}

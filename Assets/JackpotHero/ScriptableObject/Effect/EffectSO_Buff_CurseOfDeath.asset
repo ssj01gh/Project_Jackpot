@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EffectSO_Buff_CurseOfDeath
   m_EditorClassIdentifier: 
   EffectID: BattleEffect_Buff_CurseOfDeath
-  EffectSprite: {fileID: 21300000, guid: 77393c4a95bfea84fb281b49f5a3b6c9, type: 3}
+  EffectSprite: {fileID: 687118729, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}

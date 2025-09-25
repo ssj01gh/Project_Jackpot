@@ -62,14 +62,14 @@ public class EffectManager : MonoSingleton<EffectManager>
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 break;
             //회복형
-            case "BattleEffect_Buff_RegenHP":
-            case "BattleEffect_Buff_RegenSTA":
+            case "BattleEffect_Buff_Regeneration":
+            case "BattleEffect_Buff_ReCharge":
             case "BattleEffect_Buff_UnDead":
             case "BattleEffect_Buff_RegenArmor":
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 break;
             //강제형
-            case "BattleEffect_Buff_Frost":
+            case "BattleEffect_Buff_Petrification":
             case "BattleEffect_Buff_Fear":
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 break;

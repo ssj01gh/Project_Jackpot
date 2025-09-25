@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
+  m_Name: 49_Buff_Reflect
+  m_EditorClassIdentifier: 
+  BuffImage: {fileID: 21300000, guid: a23548fd66329ca43938b1a8fe961152, type: 3}
+  BuffName: "\uBC18\uC0AC"
+  BuffDetail: "\uACF5\uACA9\uC2DC \uC2A4\uD0DD\uC744\n\uBAA8\uB450 \uC18C\uBAA8\uD569\uB2C8\uB2E4.\n\uC18C\uBAA8\uD55C
+    \uC2A4\uD0DD\uB9CC\uD07C\n\uCD5C\uC885\uC218\uCE58\uC5D0 \uB354\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC774
+    \uC785\uC740 \uD53C\uD574\uB9CC\uD07C\n\uC2A4\uD0DD \uC99D\uAC00\n\uACF5\uACA9
+    \uC678\uC758 \uB2E4\uB978 \uD589\uB3D9\uC2DC\n\uC2A4\uD0DD 50% \uAC10\uC18C"

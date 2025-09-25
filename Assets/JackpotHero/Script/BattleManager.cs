@@ -277,7 +277,10 @@ public class BattleManager : MonoBehaviour
 
         if (ActionButtonType == "Attack")//공격이라면 BattleMgr에서 나온 결과로 현재 타겟의 체력을 깍음
         {
-            TargetObject = MonMgr.CurrentTarget.gameObject;
+            TargetObject = MonMgr.CheckActiveMonsterHaveProvocation().gameObject;
+            //몬스터중에 도발을 가지고 있는 녀석이 있다면 그녀석으로 CurrentTarget을 바꿔야함.
+
+
             //넘치는 힘 버프 보유시
             if(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.OverWhelmingPower] >= 1)
             {//체력 + 보호막 보다 데미지가 높을때
@@ -618,6 +621,13 @@ public class BattleManager : MonoBehaviour
                         PlayerMgr.GetPlayerInfo().PlayerSpendSTA(WeaknessSpendSTA);
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Weakness", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
                         break;
+                    case (int)EBuffType.Regeneration:
+                        float RegenHPAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP;
+                        RegenHPAmount = RegenHPAmount / 20;
+                        PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)RegenHPAmount);
+                        //BattleEffect_Buff_Regeneration
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        break;
                     case (int)EBuffType.UnDead:
                         if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1)
                         {
@@ -631,9 +641,6 @@ public class BattleManager : MonoBehaviour
                         {//위의 조건이 아니라면 --
                             PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead]--;
                         }
-                        break;
-                    case (int)EBuffType.Petrification:
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Frost", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
                         break;
                     case (int)EBuffType.Fear:
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
@@ -682,6 +689,12 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.RegenArmor:
                         MonInfo.MonsterGetShield(MonInfo.MonsterBuff.BuffList[(int)EBuffType.RegenArmor]);
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", MonInfo.gameObject.transform.position);
+                        break;
+                    case (int)EBuffType.Regeneration:
+                        float RegenHPAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP;
+                        RegenHPAmount = RegenHPAmount / 2;
+                        //PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)RegenHPAmount);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
                         break;
                     case (int)EBuffType.UnDead:
                         if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP < 1)
