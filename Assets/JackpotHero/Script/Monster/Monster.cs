@@ -92,6 +92,8 @@ public class Monster : MonoBehaviour
     protected float CurrentBaseLUK = 0;
     protected float CurrentBaseSPD = 0;
     //public int UsedMonsterActionGuageIndex { protected set; get; } = 0;
+    [HideInInspector]
+    public float AdditionalEXP = 0;
 
     // Start is called before the first frame update
     protected virtual void Start()

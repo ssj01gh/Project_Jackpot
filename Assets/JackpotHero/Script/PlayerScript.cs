@@ -131,7 +131,7 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        PlayerBuff.BuffList[(int)EBuffType.Regeneration] = 20;
+        PlayerBuff.BuffList[(int)EBuffType.Recharge] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;

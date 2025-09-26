@@ -379,9 +379,11 @@ public class BattleManager : MonoBehaviour
                     if (CurrentPlayerExperience >= BattleResultStatus.FinalResultAmount)//경험치만 깍고 끝
                     {
                         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-(int)BattleResultStatus.FinalResultAmount, true);
+                        CurrentTurnObject.GetComponent<Monster>().AdditionalEXP += (int)(BattleResultStatus.FinalResultAmount * 0.7);
                     }
                     else//아니라면 경험치를 깍고 쉴드 및 체력을 깍음
                     {
+                        CurrentTurnObject.GetComponent<Monster>().AdditionalEXP += (int)(CurrentPlayerExperience * 0.7);
                         float RemainDamange = BattleResultStatus.FinalResultAmount - CurrentPlayerExperience;
                         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-CurrentPlayerExperience, true);
                         PlayerMgr.GetPlayerInfo().PlayerDamage(RemainDamange);
@@ -579,6 +581,8 @@ public class BattleManager : MonoBehaviour
     {
         if (CurrentTurnObject.tag == "Player" && MonMgr.GetActiveMonsters().Count > 0)
         {
+            Vector3 PlayerBuffPos = PlayerMgr.GetPlayerInfo().gameObject.transform.position;
+            PlayerBuffPos.y += 1.5f;
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[BuffsType] > 0)
             {
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
@@ -591,12 +595,12 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.Burn:
                         float BurnDamage = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP / 20;
                         PlayerMgr.GetPlayerInfo().PlayerDamage((int)BurnDamage, true);
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Burn", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Burn", PlayerBuffPos);
                         break;
                     case (int)EBuffType.Poison:
                         PlayerMgr.GetPlayerInfo().PlayerDamage(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison], true);
                         PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] / 2;
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", PlayerBuffPos);
                         break;
                     case (int)EBuffType.CurseOfDeath:
                         if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath] <= 1)//1보다 작을때 = 지금 0이된다 = 데미지를 입는다.
@@ -604,7 +608,7 @@ public class BattleManager : MonoBehaviour
                             float CurseOfDeathDamage = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP * 9 / 10;
                             PlayerMgr.GetPlayerInfo().PlayerDamage((int)CurseOfDeathDamage, true);
                             PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath] = 0;
-                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_CurseOfDeath", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_CurseOfDeath", PlayerBuffPos);
                         }
                         else
                         {//0초과이기만 할때는 --
@@ -614,19 +618,25 @@ public class BattleManager : MonoBehaviour
                         break;
                     case (int)EBuffType.RegenArmor:
                         PlayerMgr.GetPlayerInfo().PlayerGetShield(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.RegenArmor]);
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", PlayerBuffPos);
                         break;
                     case (int)EBuffType.Weakness:
                         float WeaknessSpendSTA = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA / 20;
                         PlayerMgr.GetPlayerInfo().PlayerSpendSTA(WeaknessSpendSTA);
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Weakness", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Weakness", PlayerBuffPos);
                         break;
                     case (int)EBuffType.Regeneration:
                         float RegenHPAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP;
                         RegenHPAmount = RegenHPAmount / 20;
                         PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)RegenHPAmount);
                         //BattleEffect_Buff_Regeneration
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", PlayerBuffPos);
+                        break;
+                    case (int)EBuffType.Recharge:
+                        float RegenSTAAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxSTA - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA;
+                        RegenSTAAmount = RegenSTAAmount / 20;
+                        PlayerMgr.GetPlayerInfo().PlayerRegenSTA(RegenSTAAmount);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_ReCharge", PlayerBuffPos);
                         break;
                     case (int)EBuffType.UnDead:
                         if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1)
@@ -635,7 +645,7 @@ public class BattleManager : MonoBehaviour
                             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentHpRatio =
                                 PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP / PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP;
                             PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead] = 0;
-                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerBuffPos);
                         }
                         else
                         {//위의 조건이 아니라면 --
@@ -643,7 +653,7 @@ public class BattleManager : MonoBehaviour
                         }
                         break;
                     case (int)EBuffType.Fear:
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerBuffPos);
                         break;
                 }
 
@@ -691,10 +701,10 @@ public class BattleManager : MonoBehaviour
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", MonInfo.gameObject.transform.position);
                         break;
                     case (int)EBuffType.Regeneration:
-                        float RegenHPAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP;
-                        RegenHPAmount = RegenHPAmount / 2;
-                        //PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)RegenHPAmount);
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
+                        float RegenHPAmount = MonInfo.GetMonsterCurrentStatus().MonsterMaxHP - MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP;
+                        RegenHPAmount = RegenHPAmount / 20;
+                        MonInfo.MonsterRegenHP(RegenHPAmount);
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", MonInfo.gameObject.transform.position);
                         break;
                     case (int)EBuffType.UnDead:
                         if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP < 1)
@@ -1086,6 +1096,10 @@ public class BattleManager : MonoBehaviour
             int TenPercentHP = (int)(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP / 20);
             BattleResultStatus.BaseAmountPlus += TenPercentHP;
         }
+        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ChainAttack] >= 1)
+        {
+            BattleResultStatus.BaseAmountPlus += PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ChainAttack];
+        }
 
         //배율들//무기의 slot을 랜덤으로 결정해야함, luck에 영향을 받아서 결정됨
         //각 슬롯의 슬롯 스테이트 수만큼
@@ -1247,6 +1261,10 @@ public class BattleManager : MonoBehaviour
         if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] >= 1)
         {
             BattleResultStatus.BaseAmountPlus += (int)(MC_Info.MonsterCurrentHP / 10);
+        }
+        if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] >= 1)
+        {
+            BattleResultStatus.BaseAmountPlus += CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack];
         }
 
         switch (CurrentState)

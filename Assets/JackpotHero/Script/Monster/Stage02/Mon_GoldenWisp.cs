@@ -18,6 +18,7 @@ public class Mon_GoldenWisp : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        AdditionalEXP = 0;
         MonsterBuff.BuffList[(int)EBuffType.Plunder] = 99;
         MonsterCurrentState = (int)EMonsterActionState.Attack;
     }
