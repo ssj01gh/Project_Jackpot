@@ -347,7 +347,8 @@ public class MonsterManager : MonoBehaviour
                 ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
                 int RewardEXP = (int)ActiveMonsters[i].GetComponent<Monster>().MonsterBaseEXP;
                 int VarianceEXP = Random.Range(-(int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount, (int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount);
-                DeadMonsterReward.Add(RewardEXP + VarianceEXP);
+                int AdditionalEXP = (int)ActiveMonsters[i].GetComponent<Monster>().AdditionalEXP;
+                DeadMonsterReward.Add(RewardEXP + VarianceEXP + AdditionalEXP);
                 ActiveMonsters.RemoveAt(i);
             }
         }
