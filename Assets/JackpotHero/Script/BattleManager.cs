@@ -54,6 +54,7 @@ public class BattleManager : MonoBehaviour
     public float CurrentSpawnPatternReward { protected set; get; }
 
     protected List<string> SpawnMonstersID = new List<string>();
+    protected GameObject SummonerMonster = null;
     //protected List<float> MonsterActiveGuage = new List<float>();
     void Start()
     {
@@ -152,7 +153,8 @@ public class BattleManager : MonoBehaviour
 
         if(SpawnMonstersID.Count >= 1)
         {
-            MonMgr.SpawnMonsterBySummonMonster(SpawnMonstersID);
+            MonMgr.SpawnMonsterBySummonMonster(SpawnMonstersID, SummonerMonster);
+            SummonerMonster = null;
         }
         SetBattleTurn();//플레이어와 몬스터의 SPD값에 영향을 받은 Turn을 결정->아마 여기서 확인할듯?
         DecideCurrentBattleTurn();//여기서 현재 누구의 차례인지 결정
@@ -241,12 +243,18 @@ public class BattleManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().AttackAverageIncrease, PlayerMgr.GetPlayerInfo().DefenseAverageIncrease, PlayerMgr.GetPlayerInfo().RestAverageIncrease);//행동 결정 버튼이 나타남
 
             PlayerMgr.GetPlayerInfo().SetDefeseResilienceBuff();
+
+            //플레이어의 턴이 됬으니 살아있는 몬스터들의 연속 타격 초기화
+            MonMgr.SetActiveMonsterChainAttack(false, false);
         }
         else if (CurrentState == (int)EBattleStates.MonsterTurn)
         {
             //몬스터의 턴이라는 행동 버튼이 나타남
             UIMgr.B_UI.ActiveBattleSelectionUI_Mon();
             CurrentTurnObject.GetComponent<Monster>().SetMonsterDefenseBuff();
+
+            //몬스텅의 턴이 됬으니 플레이어의 연속 타격 초기화
+            PlayerMgr.GetPlayerInfo().SetChainAttackBuff(false, false);
             /*
             MonMgr.SetCurrentTargetMonster(BattleMgr.CurrentTurnObject.GetComponent<Monster>());
             BattleButtonClick("Monster");
@@ -279,6 +287,8 @@ public class BattleManager : MonoBehaviour
         {
             TargetObject = MonMgr.CheckActiveMonsterHaveProvocation().gameObject;
             //몬스터중에 도발을 가지고 있는 녀석이 있다면 그녀석으로 CurrentTarget을 바꿔야함.
+
+            PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, true);
 
 
             //넘치는 힘 버프 보유시
@@ -329,11 +339,15 @@ public class BattleManager : MonoBehaviour
         else if (ActionButtonType == "Defense")//방어라면 결과로 플레이어의 방어 수치를 높임
         {
             TargetObject = null;
+
+            PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, false);
             PlayerMgr.GetPlayerInfo().PlayerGetShield(BattleResultStatus.FinalResultAmount);
         }
         else if (ActionButtonType == "Rest")//휴식이라면 결과로 플레이어의 피로도를 회복함
         {
             TargetObject = null;
+
+            PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, false);
             PlayerMgr.GetPlayerInfo().PlayerRegenSTA(BattleResultStatus.FinalResultAmount);
             //상급휴식 보유시
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.AdvancedRest] >= 1)
@@ -356,6 +370,8 @@ public class BattleManager : MonoBehaviour
         SoundManager.Instance.PlayUISFX("UI_Button");
         string CurrentBattleState;
         bool IsTargetHasShield = false;
+        bool IsMonsterAttack = false;
+        bool IsAlreadyDamageCalculate = false;
         switch (CurrentTurnObject.GetComponent<Monster>().MonsterCurrentState)
         {
             case (int)EMonsterActionState.Attack:
@@ -363,6 +379,8 @@ public class BattleManager : MonoBehaviour
                 //데미지가 플레이어가 가지고있는 쉴드보다 작거나 같다면
                 CurrentBattleState = "Attack";
                 TargetObject = PlayerMgr.GetPlayerInfo().gameObject;
+                IsMonsterAttack = true;
+
                 //플레이어가 가시 갑옷을 가지고 있을경우
                 if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ThornArmor] >= 1)
                 {//데미지 < 플레이어 보호막 일경우
@@ -387,7 +405,13 @@ public class BattleManager : MonoBehaviour
                         float RemainDamange = BattleResultStatus.FinalResultAmount - CurrentPlayerExperience;
                         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-CurrentPlayerExperience, true);
                         PlayerMgr.GetPlayerInfo().PlayerDamage(RemainDamange);
+                        IsAlreadyDamageCalculate = true;
                     }
+                }
+
+                if(IsAlreadyDamageCalculate == false)
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerDamage((int)BattleResultStatus.FinalResultAmount);
                 }
                 if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
                 {
@@ -398,10 +422,12 @@ public class BattleManager : MonoBehaviour
                 SpawnMonstersID.Clear();
                 CurrentBattleState = "Defense";
                 TargetObject = null;
+
                 CurrentTurnObject.GetComponent<Monster>().MonsterGetShield(BattleResultStatus.FinalResultAmount);
                 break;
             case (int)EMonsterActionState.SpawnMonster:
                 SpawnMonstersID = CurrentTurnObject.GetComponent<Monster>().GetSummonMonsters();
+                SummonerMonster = CurrentTurnObject;
                 //여기서 다음 턴에 어떤 몬스터를 스폰할지 결정하면 될듯?
                 CurrentBattleState = "Another";
                 break;
@@ -435,10 +461,18 @@ public class BattleManager : MonoBehaviour
                 TargetObject = null;
                 CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.ThornArmor);
                 break;
+            case (int)EMonsterActionState.GiveCower:
+                SpawnMonstersID.Clear();
+                CurrentBattleState = "Cower";
+                TargetObject = null;
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Cower, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Cower));
+                break;
             default:
                 CurrentBattleState = "Another";
                 break;
         }
+
+        MonMgr.SetActiveMonsterChainAttack(true, IsMonsterAttack, CurrentTurnObject.GetComponent<Monster>());
 
         CurrentTurnObject.GetComponent<Monster>().CheckEnemyBuff(PlayerMgr.GetPlayerInfo().PlayerBuff);
         CurrentTurnObject.GetComponent<Monster>().SetNextMonsterState();//몬스터의 행동 패턴에 따라 다음 행동 결정
@@ -652,14 +686,26 @@ public class BattleManager : MonoBehaviour
                             PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead]--;
                         }
                         break;
+                    case (int)EBuffType.Cower:
+                        if(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 3)
+                        {
+                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] -= 3;
+                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
+                        }
+                        float DebuffSpendSTA = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] * 20;
+                        PlayerMgr.GetPlayerInfo().PlayerSpendSTA(DebuffSpendSTA);
+                        //durl
+                        break;
                     case (int)EBuffType.Fear:
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerBuffPos);
                         break;
                 }
 
+                //독, 죽음의 저주, 불사, 무방비, 방어력, 회복력, 연속 타격, 위축 제외
                 if (BuffsType != (int)EBuffType.Poison && BuffsType != (int)EBuffType.CurseOfDeath &&
                     BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defenseless && 
-                    BuffsType != (int)EBuffType.Defense && BuffsType != (int)EBuffType.Resilience)//독 과 죽음의 저주, 불사, 무방비, 방어력, 회복력 따로 계산
+                    BuffsType != (int)EBuffType.Defense && BuffsType != (int)EBuffType.Resilience &&
+                    BuffsType != (int)EBuffType.ChainAttack && BuffsType != (int)EBuffType.Cower)//독 과 죽음의 저주, 불사, 무방비, 방어력, 회복력 따로 계산
                 {
                     PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[BuffsType]--;
                 }
@@ -718,10 +764,18 @@ public class BattleManager : MonoBehaviour
                             MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
                         }
                         break;
+                    case (int)EBuffType.Survant:
+                        if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.Survant] <= 1)
+                        {
+                            MonInfo.MonsterDamage(99999);
+                        }
+                        break;
                 }
 
+                //독, 죽음의 저주, 불사, 방어력, 연속 타격 제외
                 if (BuffsType != (int)EBuffType.Poison && BuffsType != (int)EBuffType.CurseOfDeath &&
-                    BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defense)//독 과 죽음의 저주, 불사, 방어력은 따로 계산
+                    BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defense &&
+                    BuffsType != (int)EBuffType.ChainAttack)//독 과 죽음의 저주, 불사, 방어력은 따로 계산
                 {
                     MonInfo.MonsterBuff.BuffList[BuffsType]--;
                 }
@@ -1066,11 +1120,16 @@ public class BattleManager : MonoBehaviour
         float AllEquipTier = PlayerMgr.GetPlayerInfo().GetAllEquipTier();
 
         int EquipCode = 0;
+        BattleResultStatus.BaseAmountPlus = 0;
         switch (ActionButtonType)
         {
             case "Attack":
                 EquipCode = P_Info.EquipWeaponCode;
                 BattleResultStatus.BaseAmount = TP_Info.TotalSTR;
+                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ChainAttack] >= 1)
+                {
+                    BattleResultStatus.BaseAmountPlus += PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ChainAttack];
+                }
                 break;
             case "Defense":
                 EquipCode = P_Info.EquipArmorCode;
@@ -1085,7 +1144,6 @@ public class BattleManager : MonoBehaviour
 
 
         //기초 추가 수치 // 거의 유일하게 EQUIP 초반 강화 효과에 영향을 받는 수치임
-        BattleResultStatus.BaseAmountPlus = 0;
         if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] >= 1)//웨폰마스터 버프를 보유중일때
         {
             //플레이어간 끼고 있는 장비들을 포함한 모든 장비들의 티어의 합
@@ -1095,10 +1153,6 @@ public class BattleManager : MonoBehaviour
         {
             int TenPercentHP = (int)(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP / 20);
             BattleResultStatus.BaseAmountPlus += TenPercentHP;
-        }
-        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ChainAttack] >= 1)
-        {
-            BattleResultStatus.BaseAmountPlus += PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ChainAttack];
         }
 
         //배율들//무기의 slot을 랜덤으로 결정해야함, luck에 영향을 받아서 결정됨
@@ -1240,6 +1294,10 @@ public class BattleManager : MonoBehaviour
             case (int)EMonsterActionState.Attack:
                 MonEquipmentCode = CurrentTurnObject.GetComponent<Monster>().MonsterWeaponCode;
                 BattleResultStatus.BaseAmount = MC_Info.MonsterCurrentATK;
+                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] >= 1)
+                {
+                    BattleResultStatus.BaseAmountPlus += CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack];
+                }
                 break;
             case (int)EMonsterActionState.Defense:
                 MonEquipmentCode = CurrentTurnObject.GetComponent<Monster>().MonsterArmorCode;
@@ -1261,10 +1319,6 @@ public class BattleManager : MonoBehaviour
         if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] >= 1)
         {
             BattleResultStatus.BaseAmountPlus += (int)(MC_Info.MonsterCurrentHP / 10);
-        }
-        if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] >= 1)
-        {
-            BattleResultStatus.BaseAmountPlus += CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack];
         }
 
         switch (CurrentState)

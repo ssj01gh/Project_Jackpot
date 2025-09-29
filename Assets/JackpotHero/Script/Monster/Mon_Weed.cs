@@ -19,6 +19,7 @@ public class Mon_Weed : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        MonsterBuff.BuffList[(int)EBuffType.Survant] = 5;
         int RandNum = Random.Range(0, 2);
         if(RandNum == 0)
         {

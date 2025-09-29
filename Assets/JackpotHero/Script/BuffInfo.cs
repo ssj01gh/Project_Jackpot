@@ -30,8 +30,8 @@ public enum EBuffType
     AttackDebuff,
     //방깍
     DefenseDebuff,
-    //공포
-    Fear,
+    //위축
+    Cower,
     //화상
     Burn,
     //독
@@ -66,8 +66,8 @@ public enum EBuffType
     ChainAttack,
     //졸개
     Survant,
-    //위축
-    Cower,
+    //공포
+    Fear,
     //산군
     MountainLord,
     //자폭

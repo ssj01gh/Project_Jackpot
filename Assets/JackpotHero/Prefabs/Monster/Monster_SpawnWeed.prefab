@@ -195,17 +195,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterName: Spawn_Weed
+  MonsterHead: {fileID: 0}
   MonsterBody: {fileID: 8682399147922304615}
+  MonsterAnimator: {fileID: 0}
+  IsTierOne: 0
+  IsSummonTier: 0
   MonsterBaseHP: 30
   HPVarianceAmount: 10
-  MonsterBaseATK: 10
+  MonsterBaseATK: 5
   ATKVarianceAmount: 1
-  MonsterBaseDUR: 10
+  MonsterBaseDUR: 5
   DURVarianceAmount: 1
   MonsterBaseLuk: 0
   LUKVarianceAmount: 0
-  MonsterBaseSPD: 40
-  SPDVarianceAmount: 5
+  MonsterBaseSPD: 5
+  SPDVarianceAmount: 1
+  MonsterBaseEXP: 0
+  EXPVarianceAmount: 0
   MonsterWeaponCode: 70001
   MonsterArmorCode: 80001
   MonsterAnotherEquipmentCode: 
@@ -218,6 +224,8 @@ MonoBehaviour:
   - Weed
   SummonMonsterCount: 1
   MonsterCurrentState: 0
+  AdditionalEXP: 0
+  MasterMonster: {fileID: 0}
 --- !u!61 &8471394727436038436
 BoxCollider2D:
   m_ObjectHideFlags: 0

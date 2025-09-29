@@ -1056,6 +1056,11 @@ public class BattleUI : MonoBehaviour
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
+            else if(ActionString == "Cower")
+            {
+                SoundManager.Instance.PlaySFX("Buff_Forcing");
+                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+            }
             else
             {
                 IsAnimateComplete = true;

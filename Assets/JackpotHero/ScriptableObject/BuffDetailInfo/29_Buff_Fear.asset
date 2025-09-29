@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
-  m_Name: 11_Buff_Fear
+  m_Name: 29_Buff_Fear
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 1139492143, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uACF5\uD3EC"

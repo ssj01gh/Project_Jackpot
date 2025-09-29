@@ -131,7 +131,7 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        PlayerBuff.BuffList[(int)EBuffType.Recharge] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.Recharge] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;
@@ -357,6 +357,23 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerBuff.BuffList[(int)EBuffType.Defense] = (int)(PlayerTotalState.TotalDUR / 5);
         PlayerBuff.BuffList[(int)EBuffType.Resilience] = (int)(PlayerTotalState.TotalRES / 5);
+    }
+
+    public void SetChainAttackBuff(bool IsAttack, bool IsPlayerTurn)
+    {
+        //특정 조건이 되면 연속타격 쌓임
+        //임시로 52001
+        if(PlayerState.EquipAccessoriesCode == 0)
+        {
+            if(IsAttack == true && IsPlayerTurn == true)
+            {
+                PlayerBuff.BuffList[(int)EBuffType.ChainAttack] += 1;
+            }
+            else
+            {
+                PlayerBuff.BuffList[(int)EBuffType.ChainAttack] = 0;
+            }
+        }
     }
 
     public void ApplyBuff(int ApplyBuffType, int BuffCount)

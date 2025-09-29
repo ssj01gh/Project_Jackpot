@@ -28,6 +28,7 @@ public class Mon_ShortLegBird : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
+        //MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
     }
 
     public override void SetNextMonsterState()
@@ -43,5 +44,20 @@ public class Mon_ShortLegBird : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
+        //MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
     }
+
+    /*
+    public override List<string> GetSummonMonsters()
+    {
+        List<string> SummonMonsters = new List<string>();
+        for (int i = 0; i < SummonMonsterCount; i++)
+        {
+            SummonMonsters.Add(CanSummonMonsterIDs[0]);
+        }
+
+        return SummonMonsters;
+        //return base.GetSummonMonsters();
+    }
+    */
 }

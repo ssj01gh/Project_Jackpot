@@ -266,6 +266,7 @@ MonoBehaviour:
   MonsterBody: {fileID: 8682399147922304615}
   MonsterAnimator: {fileID: 4574223246146854910}
   IsTierOne: 1
+  IsSummonTier: 0
   MonsterBaseHP: 20
   HPVarianceAmount: 5
   MonsterBaseATK: 6
@@ -289,3 +290,5 @@ MonoBehaviour:
   CanSummonMonsterIDs: []
   SummonMonsterCount: 0
   MonsterCurrentState: 0
+  AdditionalEXP: 0
+  MasterMonster: {fileID: 0}

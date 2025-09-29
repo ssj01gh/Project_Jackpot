@@ -258,7 +258,7 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
-    public void SpawnMonsterBySummonMonster(List<string> MonsterID)
+    public void SpawnMonsterBySummonMonster(List<string> MonsterID, GameObject SummonerMonster)
     {
         //살아 있는 몬스터와 몬스터 스폰가능 위치의 좌표를 비교해서 스폰가능한 지역을 찾음
         //살아있는 몬스터가 3마리 이상이면 그냥 return -> 어짜피 비어 있는곳이 없음
@@ -309,6 +309,7 @@ public class MonsterManager : MonoBehaviour
                     {
                         MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().SpawnMonster(CanSpawnPoint[i]);
                         MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MonsterClicked += SetCurrentTargetMonster;
+                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MasterMonster = SummonerMonster;
 
                         ActiveMonsters.Add(MonsterStorage[MonsterID[i]][j]);
                         break;
@@ -330,6 +331,7 @@ public class MonsterManager : MonoBehaviour
     public List<int> CheckActiveMonstersRSurvive(PlayerManager PlayerMgr)
     {
         List<int> DeadMonsterReward = new List<int>();
+        List<GameObject> DeadMonsters = new List<GameObject>();
         for(int i = ActiveMonsters.Count - 1; i >= 0; i-- )
         {
             if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
@@ -338,21 +340,51 @@ public class MonsterManager : MonoBehaviour
                 {
                     PlayerMgr.GetPlayerInfo().RecordKillCount(1);
                 }
+                else if (ActiveMonsters[i].GetComponent<Monster>().IsSummonTier == true)
+                {
+
+                }
                 else
                 {
-                    PlayerMgr.GetPlayerInfo().RecordKillCount(0,1);
+                    PlayerMgr.GetPlayerInfo().RecordKillCount(0, 1);
                 }
+
                 ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//모든 버프들 없애기
                 ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
+                ActiveMonsters[i].GetComponent<Monster>().MasterMonster = null;
                 ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
                 int RewardEXP = (int)ActiveMonsters[i].GetComponent<Monster>().MonsterBaseEXP;
                 int VarianceEXP = Random.Range(-(int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount, (int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount);
                 int AdditionalEXP = (int)ActiveMonsters[i].GetComponent<Monster>().AdditionalEXP;
                 DeadMonsterReward.Add(RewardEXP + VarianceEXP + AdditionalEXP);
+
+                DeadMonsters.Add(ActiveMonsters[i]);
                 ActiveMonsters.RemoveAt(i);
             }
         }
-        return DeadMonsterReward;
+        //위쪽에서 죽은 애들을 다 거름//죽은 애들중에서 주인이 되는 몬스터가 있다면 survant도 죽임
+        for (int i = ActiveMonsters.Count - 1; i >= 0; i--)
+        {
+            if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Survant] >= 1)
+            {//졸개가 있다면 죽은 애들중에 비교함
+                for(int j = 0; j < DeadMonsters.Count; j++)
+                {
+                    if (ActiveMonsters[i].GetComponent<Monster>().MasterMonster == DeadMonsters[j])
+                    {//죽은 애들중에 마스터가 있다면
+                        ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//모든 버프들 없애기
+                        ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
+                        ActiveMonsters[i].GetComponent<Monster>().MasterMonster = null;
+                        ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
+                        ActiveMonsters.RemoveAt(i);
+
+                        break;
+                    }
+                }
+            }
+        }
+
+
+            return DeadMonsterReward;
     }
 
     public Monster CheckActiveMonsterHaveProvocation()
@@ -366,6 +398,39 @@ public class MonsterManager : MonoBehaviour
             }
         }
         return CurrentTarget;
+    }
+
+    public void SetActiveMonsterChainAttack(bool IsMonsterTurn, bool IsAttack , Monster CurrentTurnMon = null)
+    {
+        //몬스터의 연속 타격이 초기화 되는 경우 -> 플레이어의 턴일때 혹은 자신이 공격 이외의 행동을 할때
+        for(int i = 0; i < ActiveMonsters.Count; i++)
+        {
+            if(IsMonsterTurn == true && IsAttack == true)
+            {//몬스터의 턴이고, 공격이며, 현재턴의 몬스터가 특정 몬스터일때
+                if(CurrentTurnMon == ActiveMonsters[i].GetComponent<Monster>())
+                {
+                    switch(ActiveMonsters[i].GetComponent<Monster>().MonsterName)//임시로 짧다리새
+                    {
+                        /*
+                        case "ShortLegBird":
+                            ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] += 1;
+                            break;
+                        */
+                    }
+                }
+            }
+            else if(IsMonsterTurn == true && IsAttack == false)
+            {
+                if(CurrentTurnMon == ActiveMonsters[i].GetComponent<Monster>())
+                {
+                    ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] = 0;
+                }
+            }
+            else//몬스터의 턴이 아닐때
+            {
+                ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] = 0;
+            }
+        }
     }
 
     public void InActiveAllActiveMonster()
