@@ -19,7 +19,8 @@ public class Mon_DirtGolem : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
-        MonsterBuff.BuffList[(int)EBuffType.Plunder] = 99;
+        //MonsterBuff.BuffList[(int)EBuffType.Survant] = 5;
+        //MonsterBuff.BuffList[(int)EBuffType.Plunder] = 99;
         //공격 : 방어 = 1 : 4
         //0~4
         int RandNum = Random.Range(0, 5);
