@@ -510,19 +510,41 @@ public class BattleUI : MonoBehaviour
             MonsterAnotherEquipmentButton[i].SetActive(true);
             MonsterAnotherEquipmentImage[i].sprite = AnotherEquip[i].EquipmentImage;
         }
-        
+
         MonsterSTRText.text = Mon.GetMonsterCurrentStatus().MonsterCurrentATK.ToString();
         MonsterDURText.text = Mon.GetMonsterCurrentStatus().MonsterCurrentDUR.ToString();
         MonsterSPDText.text = Mon.GetMonsterCurrentStatus().MonsterCurrentSPD.ToString();
         MonsterLUKText.text = Mon.GetMonsterCurrentStatus().MonsterCurrentLUK.ToString();
-        if (Mon.MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1 && Mon.MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
-            MonsterLUKText.color = Color.white;
-        else if (Mon.MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1)
+
+        //ÆÄ¶ûÀÌ ±àÁ¤ »¡°­ÀÌ ºÎÁ¤
+        //Èû
+        if (Mon.GetMonsterCurrentBaseStatus("STR") < Mon.GetMonsterCurrentStatus().MonsterCurrentATK)
+            MonsterSTRText.color = Color.blue;
+        else if(Mon.GetMonsterCurrentBaseStatus("STR") > Mon.GetMonsterCurrentStatus().MonsterCurrentATK)
+            MonsterSTRText.color = Color.red;
+        else
+            MonsterSTRText.color = Color.white;
+        //³»±¸
+        if (Mon.GetMonsterCurrentBaseStatus("DUR") < Mon.GetMonsterCurrentStatus().MonsterCurrentDUR)
+            MonsterDURText.color = Color.blue;
+        else if (Mon.GetMonsterCurrentBaseStatus("DUR") > Mon.GetMonsterCurrentStatus().MonsterCurrentDUR)
+            MonsterDURText.color = Color.red;
+        else
+            MonsterDURText.color = Color.white;
+        //Çà¿î
+        if (Mon.GetMonsterCurrentBaseStatus("LUK") < Mon.GetMonsterCurrentStatus().MonsterCurrentLUK)
             MonsterLUKText.color = Color.blue;
-        else if (Mon.MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
+        else if (Mon.GetMonsterCurrentBaseStatus("LUK") > Mon.GetMonsterCurrentStatus().MonsterCurrentLUK)
             MonsterLUKText.color = Color.red;
         else
             MonsterLUKText.color = Color.white;
+        //¼Óµµ
+        if (Mon.GetMonsterCurrentBaseStatus("SPD") < Mon.GetMonsterCurrentStatus().MonsterCurrentSPD)
+            MonsterSPDText.color = Color.blue;
+        else if (Mon.GetMonsterCurrentBaseStatus("SPD") > Mon.GetMonsterCurrentStatus().MonsterCurrentSPD)
+            MonsterSPDText.color = Color.red;
+        else
+            MonsterSPDText.color = Color.white;
     }
 
     public void UnDisplayMonsterDetailUI()

@@ -59,6 +59,7 @@ public class EffectManager : MonoSingleton<EffectManager>
             case "BattleEffect_Buff_Poison":
             case "BattleEffect_Buff_CurseOfDeath":
             case "BattleEffect_Buff_Weakness":
+            case "BattleEffect_Buff_Cower":
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 break;
             //È¸º¹Çü
