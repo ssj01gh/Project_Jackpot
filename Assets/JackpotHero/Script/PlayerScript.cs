@@ -41,6 +41,12 @@ public class TotalPlayerState
     public float TotalSPD;
     public float TotalLUK;
     public int CurrentForm;
+
+    public float WithOutBuffSTR;
+    public float WithOutBuffDUR;
+    public float WithOutBuffRES;
+    public float WithOutBuffSPD;
+    public float WithOutBuffLUK;
 }
 
 public class PlayerScript : MonoBehaviour
@@ -131,7 +137,7 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        //PlayerBuff.BuffList[(int)EBuffType.Recharge] = 20;
+        //PlayerBuff.BuffList[(int)EBuffType.OverCharge] = 4;
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;
@@ -157,7 +163,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddTirednessAmount;
         PlayerTotalState.CurrentSTA = PlayerTotalState.MaxSTA * PlayerState.CurrentTirednessRatio;
         //SetTotalSTR
-        PlayerTotalState.TotalSTR = BasicSTR + JsonReadWriteManager.Instance.GetEarlyState("STR") +
+        PlayerTotalState.WithOutBuffSTR = BasicSTR + JsonReadWriteManager.Instance.GetEarlyState("STR") +
             PlayerState.StrengthLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSTRAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSTRAmount +
@@ -165,7 +171,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddSTRAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddSTRAmount;
         //SetTotalDUR
-        PlayerTotalState.TotalDUR = BasicDUR + JsonReadWriteManager.Instance.GetEarlyState("DUR") +
+        PlayerTotalState.WithOutBuffDUR = BasicDUR + JsonReadWriteManager.Instance.GetEarlyState("DUR") +
             PlayerState.DurabilityLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddDURAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddDURAmount +
@@ -173,7 +179,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddDURAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddDURAmount;
         //SetTotalRES
-        PlayerTotalState.TotalRES = BasicRES + JsonReadWriteManager.Instance.GetEarlyState("RES") +
+        PlayerTotalState.WithOutBuffRES = BasicRES + JsonReadWriteManager.Instance.GetEarlyState("RES") +
             PlayerState.ResilienceLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddRESAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddRESAmount +
@@ -181,7 +187,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddRESAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddRESAmount;
         //SetTotalSPD
-        PlayerTotalState.TotalSPD = BasicSPD + JsonReadWriteManager.Instance.GetEarlyState("SPD") +
+        PlayerTotalState.WithOutBuffSPD = BasicSPD + JsonReadWriteManager.Instance.GetEarlyState("SPD") +
             PlayerState.SpeedLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddSPDAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddSPDAmount +
@@ -189,20 +195,37 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddSPDAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddSPDAmount;
         //SetTotalLUK
-        PlayerTotalState.TotalLUK = JsonReadWriteManager.Instance.GetEarlyState("LUK") +
+        PlayerTotalState.WithOutBuffLUK = JsonReadWriteManager.Instance.GetEarlyState("LUK") +
             PlayerState.LuckLevel +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
-        if (PlayerBuff.BuffList[(int)EBuffType.Luck] >= 1)
+
+        PlayerTotalState.TotalSTR = PlayerTotalState.WithOutBuffSTR;
+        PlayerTotalState.TotalDUR = PlayerTotalState.WithOutBuffDUR;
+        PlayerTotalState.TotalRES = PlayerTotalState.WithOutBuffRES;
+        PlayerTotalState.TotalSPD = PlayerTotalState.WithOutBuffSPD;
+        PlayerTotalState.TotalLUK = PlayerTotalState.WithOutBuffLUK;
+
+        for(int i = 0; i < (int)EBuffType.CountOfBuff; i++)
         {
-            PlayerTotalState.TotalLUK += 10;
-        }
-        if (PlayerBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
-        {
-            PlayerTotalState.TotalLUK -= 10;
+            if (PlayerBuff.BuffList[i] < 1)
+                continue;
+
+            switch(i)
+            {
+                case (int)EBuffType.Luck:
+                    PlayerTotalState.TotalLUK = PlayerTotalState.WithOutBuffLUK + 10;
+                    break;
+                case (int)EBuffType.Misfortune:
+                    PlayerTotalState.TotalLUK = PlayerTotalState.WithOutBuffLUK - 10;
+                    break;
+                case (int)EBuffType.OverCharge:
+                    PlayerTotalState.TotalSPD = PlayerTotalState.WithOutBuffSPD + 20;
+                    break;
+            }
         }
 
         //°ø°ÝÀÇ Æò±ÕÀûÀÌ »ó½Â·®
@@ -346,11 +369,6 @@ public class PlayerScript : MonoBehaviour
             PlayerBuff.BuffList[(int)EBuffType.Luck] += 3;
             JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony -= 1;
         }
-
-        //PlayerBuff.BuffList[(int)EBuffType.TiredControll] = 99;
-        //PlayerBuff.BuffList[(int)EBuffType.AttackDebuff] = 20;
-        //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
-        //PlayerBuff.BuffList[(int)EBuffType.Misfortune] = 20;
     }
 
     public void SetDefeseResilienceBuff()

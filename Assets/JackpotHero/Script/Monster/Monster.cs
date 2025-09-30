@@ -17,7 +17,11 @@ public enum EMonsterActionState
     GiveMisFortune,
     GiveCurseOfDeath,
     ApplyThornArmor,
-    GiveCower
+    GiveCower,
+    ApplyCopyStrength,
+    ApplyCopyDurability,
+    ApplyCopySpeed,
+    ApplyCopyLuck
 }
 public class MonsterCurrentStatus
 {
@@ -186,6 +190,23 @@ public class Monster : MonoBehaviour
         return MonTotalStatus;
     }
 
+    public float GetMonsterCurrentBaseStatus(string StatusType)
+    {
+        switch(StatusType)
+        {
+            case "STR":
+                return CurrentBaseATK;
+            case "DUR":
+                return CurrentBaseDUR;
+            case "LUK":
+                return CurrentBaseLUK;
+            case "SPD":
+                return CurrentBaseSPD;
+            default:
+                return 0;
+        }
+    }
+
     public void RecordMonsterBeforeShield()
     {
         BeforeMonsterShield = (int)MonTotalStatus.MonsterCurrentShieldPoint;
@@ -212,16 +233,45 @@ public class Monster : MonoBehaviour
     {
         MonTotalStatus.MonsterCurrentATK = CurrentBaseATK;
         MonTotalStatus.MonsterCurrentDUR = CurrentBaseDUR;
-        if(MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1 && MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
-            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
-        else if(MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1)
-            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK + 10;
-        else if(MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
-            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK - 10;
-        else
-            MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
-
+        MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
         MonTotalStatus.MonsterCurrentSPD = CurrentBaseSPD;
+
+        for(int i = 0; i < (int)EBuffType.CountOfBuff; i++)
+        {
+            if (MonsterBuff.BuffList[i] < 1)
+                continue;
+
+            switch(i)
+            {
+                case (int)EBuffType.Luck:
+                    MonTotalStatus.MonsterCurrentLUK += 10;
+                    break;
+                case (int)EBuffType.Misfortune:
+                    MonTotalStatus.MonsterCurrentLUK -= 10;
+                    break;
+                case (int)EBuffType.MountainLord:
+                    MonTotalStatus.MonsterCurrentATK += MonsterBuff.BuffList[(int)EBuffType.MountainLord];
+                    MonTotalStatus.MonsterCurrentDUR += MonsterBuff.BuffList[(int)EBuffType.MountainLord];
+                    MonTotalStatus.MonsterCurrentLUK += MonsterBuff.BuffList[(int)EBuffType.MountainLord];
+                    MonTotalStatus.MonsterCurrentSPD += MonsterBuff.BuffList[(int)EBuffType.MountainLord];
+                    break;
+                case (int)EBuffType.OverCharge:
+                    MonTotalStatus.MonsterCurrentSPD += 20;
+                    break;
+                case (int)EBuffType.CopyStrength:
+                    MonTotalStatus.MonsterCurrentATK += MonsterBuff.BuffList[(int)EBuffType.CopyStrength];
+                    break;
+                case (int)EBuffType.CopyDurability:
+                    MonTotalStatus.MonsterCurrentDUR += MonsterBuff.BuffList[(int)EBuffType.CopyDurability];
+                    break;
+                case (int)EBuffType.CopySpeed:
+                    MonTotalStatus.MonsterCurrentSPD += MonsterBuff.BuffList[(int)EBuffType.CopySpeed];
+                    break;
+                case (int)EBuffType.CopyLuck:
+                    MonTotalStatus.MonsterCurrentLUK += MonsterBuff.BuffList[(int)EBuffType.CopyLuck];
+                    break;
+            }
+        }
     }
 
     public void SetMonsterDefenseBuff()

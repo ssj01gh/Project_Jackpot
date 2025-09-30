@@ -64,6 +64,12 @@ public class PlayerStateInfoUI : MonoBehaviour
             {
                 BeforeSTR = x;
                 PlayerSTR.text = BeforeSTR.ToString("F0");
+                if(TPInfo.TotalSTR > TPInfo.WithOutBuffSTR)
+                    PlayerSTR.color = Color.blue;
+                else if(TPInfo.TotalSTR < TPInfo.WithOutBuffSTR)
+                    PlayerSTR.color = Color.red;
+                else
+                    PlayerSTR.color = Color.white;
             }, TPInfo.TotalSTR, 0.5f);
             //PlayerSTR.text = TPInfo.TotalSTR.ToString();
         }
@@ -75,6 +81,12 @@ public class PlayerStateInfoUI : MonoBehaviour
             {
                 BeforeDUR = x;
                 PlayerDUR.text = BeforeDUR.ToString("F0");
+                if (TPInfo.TotalDUR > TPInfo.WithOutBuffDUR)
+                    PlayerDUR.color = Color.blue;
+                else if (TPInfo.TotalDUR < TPInfo.WithOutBuffDUR)
+                    PlayerDUR.color = Color.red;
+                else
+                    PlayerDUR.color = Color.white;
             }, TPInfo.TotalDUR, 0.5f);
             //PlayerDUR.text = TPInfo.TotalDUR.ToString();
         }
@@ -86,6 +98,12 @@ public class PlayerStateInfoUI : MonoBehaviour
             {
                 BeforeRES = x;
                 PlayerRES.text = BeforeRES.ToString("F0");
+                if (TPInfo.TotalRES > TPInfo.WithOutBuffRES)
+                    PlayerRES.color = Color.blue;
+                else if (TPInfo.TotalRES < TPInfo.WithOutBuffRES)
+                    PlayerRES.color = Color.red;
+                else
+                    PlayerRES.color = Color.white;
             }, TPInfo.TotalRES, 0.5f);
             //PlayerRES.text = TPInfo.TotalRES.ToString();
         }
@@ -97,6 +115,12 @@ public class PlayerStateInfoUI : MonoBehaviour
             {
                 BeforeSPD = x;
                 PlayerSPD.text = BeforeSPD.ToString("F0");
+                if (TPInfo.TotalSPD > TPInfo.WithOutBuffSPD)
+                    PlayerSPD.color = Color.blue;
+                else if (TPInfo.TotalSPD < TPInfo.WithOutBuffSPD)
+                    PlayerSPD.color = Color.red;
+                else
+                    PlayerSPD.color = Color.white;
             }, TPInfo.TotalSPD, 0.5f);
             //PlayerSPD.text = TPInfo.TotalSPD.ToString();
         }
@@ -108,11 +132,9 @@ public class PlayerStateInfoUI : MonoBehaviour
             {
                 BeforeLUK = x;
                 PlayerLUK.text = BeforeLUK.ToString("F0");
-                if (BuffList[(int)EBuffType.Luck] >= 1 && BuffList[(int)EBuffType.Misfortune] >= 1)
-                    PlayerLUK.color = Color.white;
-                else if (BuffList[(int)EBuffType.Luck] >= 1)
-                    PlayerLUK.color = Color.green;
-                else if (BuffList[(int)EBuffType.Misfortune] >= 1)
+                if (TPInfo.TotalLUK > TPInfo.WithOutBuffLUK)
+                    PlayerLUK.color = Color.blue;
+                else if (TPInfo.TotalLUK < TPInfo.WithOutBuffLUK)
                     PlayerLUK.color = Color.red;
                 else
                     PlayerLUK.color = Color.white;

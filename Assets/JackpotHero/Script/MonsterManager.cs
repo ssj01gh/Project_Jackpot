@@ -433,6 +433,19 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
+    public void SetAcitveMonsterMountainLord()
+    {
+        for (int i = 0; i < ActiveMonsters.Count; i++)
+        {//살아있는 몬스터 중에 산군만 해당되게(테스트에서는 짧다리새)
+            /*
+            if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "ShortLegBird")
+            {
+                ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.MountainLord] += 1;
+            }
+            */
+        }
+    }
+
     public void InActiveAllActiveMonster()
     {
         for (int i = ActiveMonsters.Count - 1; i >= 0; i--)
