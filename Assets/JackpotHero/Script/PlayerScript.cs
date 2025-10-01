@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        //PlayerBuff.BuffList[(int)EBuffType.OverCharge] = 4;
+        //PlayerBuff.BuffList[(int)EBuffType.Haste] = 99;
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;
@@ -217,16 +217,36 @@ public class PlayerScript : MonoBehaviour
             switch(i)
             {
                 case (int)EBuffType.Luck:
-                    PlayerTotalState.TotalLUK = PlayerTotalState.WithOutBuffLUK + 10;
+                    PlayerTotalState.TotalLUK += 10;
                     break;
                 case (int)EBuffType.Misfortune:
-                    PlayerTotalState.TotalLUK = PlayerTotalState.WithOutBuffLUK - 10;
+                    PlayerTotalState.TotalLUK -= 10;
                     break;
                 case (int)EBuffType.OverCharge:
-                    PlayerTotalState.TotalSPD = PlayerTotalState.WithOutBuffSPD + 20;
+                    PlayerTotalState.TotalSPD += 20;
+                    break;
+                case (int)EBuffType.CorruptSerum:
+                    PlayerTotalState.TotalSTR += 3;
+                    PlayerTotalState.TotalDUR += 3;
+                    PlayerTotalState.TotalSPD += 3;
+                    break;
+                case (int)EBuffType.Slow:
+                    PlayerTotalState.TotalSPD -= 10;
+                    break;
+                case (int)EBuffType.Haste:
+                    PlayerTotalState.TotalSPD += 10;
                     break;
             }
         }
+
+        if(PlayerTotalState.TotalSTR < 0)
+            PlayerTotalState.TotalSTR = 0;
+        if(PlayerTotalState.TotalDUR < 0)
+            PlayerTotalState.TotalDUR = 0;
+        if(PlayerTotalState.TotalRES < 0)
+            PlayerTotalState.TotalRES = 0;
+        if(PlayerTotalState.TotalSPD < 0)
+            PlayerTotalState.TotalSPD = 0;
 
         //°ø°ÝÀÇ Æò±ÕÀûÀÌ »ó½Â·®
         AttackAverageIncrease = 0;

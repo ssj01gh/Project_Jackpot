@@ -270,7 +270,49 @@ public class Monster : MonoBehaviour
                 case (int)EBuffType.CopyLuck:
                     MonTotalStatus.MonsterCurrentLUK += MonsterBuff.BuffList[(int)EBuffType.CopyLuck];
                     break;
+                case (int)EBuffType.Consume:
+                    int StatusIncreaseByConsume = MonsterBuff.BuffList[(int)EBuffType.Consume] * 5;
+                    MonTotalStatus.MonsterCurrentATK += StatusIncreaseByConsume;
+                    MonTotalStatus.MonsterCurrentDUR += StatusIncreaseByConsume;
+                    MonTotalStatus.MonsterCurrentLUK += StatusIncreaseByConsume;
+                    MonTotalStatus.MonsterCurrentSPD += StatusIncreaseByConsume;
+                    break;
+                case (int)EBuffType.CorruptSerum:
+                    MonTotalStatus.MonsterCurrentATK += 3;
+                    MonTotalStatus.MonsterCurrentDUR += 3;
+                    MonTotalStatus.MonsterCurrentSPD += 3;
+                    break;
+                case (int)EBuffType.Slow:
+                    MonTotalStatus.MonsterCurrentSPD -= 10;
+                    break;
+                case (int)EBuffType.Haste:
+                    MonTotalStatus.MonsterCurrentSPD += 10;
+                    break;
+                case (int)EBuffType.StrengthAdaptation:
+                    int StackOfSTRAdap = MonsterBuff.BuffList[(int)EBuffType.StrengthAdaptation];
+                    MonTotalStatus.MonsterCurrentATK += (StackOfSTRAdap * StackOfSTRAdap);
+                    break;
+                case (int)EBuffType.DurabilityAdaptation:
+                    int StackOfDURAdap = MonsterBuff.BuffList[(int)EBuffType.DurabilityAdaptation];
+                    MonTotalStatus.MonsterCurrentDUR += (StackOfDURAdap * StackOfDURAdap);
+                    break;
+                case (int)EBuffType.SpeedAdaptation:
+                    int StackOfSPDAdap = MonsterBuff.BuffList[(int)EBuffType.SpeedAdaptation];
+                    MonTotalStatus.MonsterCurrentSPD += (StackOfSPDAdap * StackOfSPDAdap);
+                    break;
             }
+        }
+        if(MonTotalStatus.MonsterCurrentATK < 0)
+        {
+            MonTotalStatus.MonsterCurrentATK = 0;
+        }
+        if (MonTotalStatus.MonsterCurrentDUR < 0)
+        {
+            MonTotalStatus.MonsterCurrentDUR = 0;
+        }
+        if (MonTotalStatus.MonsterCurrentSPD < 0)
+        {
+            MonTotalStatus.MonsterCurrentSPD = 0;
         }
     }
 
@@ -324,6 +366,18 @@ public class Monster : MonoBehaviour
             RecordMonsterBeforeShield();
             MonTotalStatus.MonsterCurrentShieldPoint = 0;
         }
+        
+        if(RestDamage >= 1)
+        {
+            //일단 짧다리새만
+            /*
+            if(MonsterName == "ShortLegBird")
+            {
+                MonsterBuff.BuffList[(int)EBuffType.DurabilityAdaptation] += 1;
+            }
+            */
+        }
+
         MonTotalStatus.MonsterCurrentHP -= RestDamage;
     }
 
