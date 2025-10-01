@@ -263,14 +263,17 @@ public class BattleManager : MonoBehaviour
             //다 죽으면 게임을 전투를 끝낸다.
         }
 
+        PlayerMgr.GetPlayerInfo().SetDefeseResilienceBuff();
+        foreach(GameObject Mon in MonMgr.GetActiveMonsters())
+        {
+            Mon.GetComponent<Monster>().SetMonsterDefenseBuff();
+        }
 
         if (CurrentState == (int)EBattleStates.PlayerTurn)
         {
             //플레이어의 턴이라면 플레이어의 행동을 결정하는 버튼을 나타나게 한다.
             UIMgr.B_UI.ActiveBattleSelectionUI(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] >= 1,
                 PlayerMgr.GetPlayerInfo().AttackAverageIncrease, PlayerMgr.GetPlayerInfo().DefenseAverageIncrease, PlayerMgr.GetPlayerInfo().RestAverageIncrease);//행동 결정 버튼이 나타남
-
-            PlayerMgr.GetPlayerInfo().SetDefeseResilienceBuff();
 
             //플레이어의 턴이 됬으니 살아있는 몬스터들의 연속 타격 초기화
             MonMgr.SetActiveMonsterChainAttack(false, false);
@@ -279,7 +282,6 @@ public class BattleManager : MonoBehaviour
         {
             //몬스터의 턴이라는 행동 버튼이 나타남
             UIMgr.B_UI.ActiveBattleSelectionUI_Mon();
-            CurrentTurnObject.GetComponent<Monster>().SetMonsterDefenseBuff();
 
             //몬스텅의 턴이 됬으니 플레이어의 연속 타격 초기화
             PlayerMgr.GetPlayerInfo().SetChainAttackBuff(false, false);
@@ -307,8 +309,19 @@ public class BattleManager : MonoBehaviour
             UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughSTAMessage_Battle);
             return;
         }
-        //행동하기전에 감소해야 할것들은 여기서 할듯?//여기가 아니라 턴 정해질때 감소해야함//DecideTurn에서
-        //PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount = 0;
+
+        //매혹이 있다면//확률에 걸렸다면//ActionButtonType을 Charm으로 바꿔야 할듯?
+        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm] >= 1)
+        {
+            //1~11에서 랜덤값
+            int GetCharm = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm];
+            int RandCharmNum = Random.Range(1, 11);
+            if(GetCharm >= RandCharmNum)
+            {
+                ActionButtonType = "Charm";
+            }
+        }
+
         SetPlayerBattleStatus(ActionButtonType);
 
         if (ActionButtonType == "Attack")//공격이라면 BattleMgr에서 나온 결과로 현재 타겟의 체력을 깍음
@@ -350,7 +363,8 @@ public class BattleManager : MonoBehaviour
                 if(BattleResultStatus.FinalResultAmount < MonMgr.CurrentTarget.GetMonsterCurrentStatus().MonsterCurrentShieldPoint)
                 {
                     float ReflectionDamage =
-                        MonMgr.CurrentTarget.GetMonsterCurrentStatus().MonsterCurrentShieldPoint - BattleResultStatus.FinalResultAmount;
+                        (MonMgr.CurrentTarget.GetMonsterCurrentStatus().MonsterCurrentShieldPoint + MonMgr.CurrentTarget.MonsterBuff.BuffList[(int)EBuffType.Defense])
+                        - BattleResultStatus.FinalResultAmount;
 
                     PlayerMgr.GetPlayerInfo().PlayerDamage((int)ReflectionDamage);
                 }
@@ -362,6 +376,19 @@ public class BattleManager : MonoBehaviour
             }
             MonMgr.CurrentTarget.MonsterDamage(BattleResultStatus.FinalResultAmount);
             if(MonMgr.CurrentTarget.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentShieldPoint >= 1)
+            {//쉴드가 남아있으면
+                IsTargetHasShield = true;
+            }
+        }
+        else if (ActionButtonType == "Charm")
+        {
+            TargetObject = PlayerMgr.GetPlayerInfo().gameObject;
+            PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, true);
+            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
+                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
+
+            PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount);
+            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
             {//쉴드가 남아있으면
                 IsTargetHasShield = true;
             }
@@ -390,9 +417,9 @@ public class BattleManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)(BattleResultStatus.FinalResultAmount / 10));
             }
         }
-        //이 함수를 실행시키면 현재 BattleMgr에는 플레이어 행동에 따른 결과값이 저장됨 -> 이걸 BattleUI가 잘 전달 받아서 작동하면 될듯?
-        //이제 결정된 수치를 바탕으로 MainBattle을 활성화 시킴
-        UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
+            //이 함수를 실행시키면 현재 BattleMgr에는 플레이어 행동에 따른 결과값이 저장됨 -> 이걸 BattleUI가 잘 전달 받아서 작동하면 될듯?
+            //이제 결정된 수치를 바탕으로 MainBattle을 활성화 시킴
+            UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         //여기서는 공격주체가 플레이어
         UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().gameObject, MonMgr.CurrentTarget, ActionButtonType, BattleResultStatus, 
@@ -417,12 +444,15 @@ public class BattleManager : MonoBehaviour
                 TargetObject = PlayerMgr.GetPlayerInfo().gameObject;
                 IsMonsterAttack = true;
 
+
+
                 //플레이어가 가시 갑옷을 가지고 있을경우
                 if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ThornArmor] >= 1)
                 {//데미지 < 플레이어 보호막 일경우
                     if (BattleResultStatus.FinalResultAmount < PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount)
                     {
-                        float ReflectionDamage = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount - BattleResultStatus.FinalResultAmount;
+                        float ReflectionDamage = (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount + PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Defense])
+                            - BattleResultStatus.FinalResultAmount;
                         CurrentTurnObject.GetComponent<Monster>().MonsterDamage(ReflectionDamage);
                     }
                 }
@@ -450,7 +480,14 @@ public class BattleManager : MonoBehaviour
                     PlayerMgr.GetPlayerInfo().PlayerDamage((int)BattleResultStatus.FinalResultAmount);
                 }
                 if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
-                {
+                {//여기에 들어오면 적응_힘 증가
+                    //임시로 짧다리새
+                    /*
+                    if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "ShortLegBird")
+                    {
+                        CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.StrengthAdaptation] += 1;
+                    }
+                    */
                     IsTargetHasShield = true;
                 }
                 break;
@@ -836,12 +873,15 @@ public class BattleManager : MonoBehaviour
                         break;
                 }
 
-                //독, 죽음의 저주, 불사, 방어력, 연속타격, 산군, 복사_힘, 복사_내구, 복사_속도, 복사_행운 제외
+                //독, 죽음의 저주, 불사, 방어력, 연속타격, 산군, 복사_힘, 복사_내구, 복사_속도, 복사_행운, 흡수 제외
+                //적응_힘, 적응_내구, 적응_속도 제외
                 if (BuffsType != (int)EBuffType.Poison && BuffsType != (int)EBuffType.CurseOfDeath &&
                     BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defense &&
                     BuffsType != (int)EBuffType.ChainAttack && BuffsType != (int)EBuffType.MountainLord &&
                     BuffsType != (int)EBuffType.CopyStrength && BuffsType != (int)EBuffType.CopyDurability &&
-                    BuffsType != (int)EBuffType.CopySpeed && BuffsType != (int)EBuffType.CopyLuck)//독 과 죽음의 저주, 불사, 방어력은 따로 계산
+                    BuffsType != (int)EBuffType.CopySpeed && BuffsType != (int)EBuffType.CopyLuck &&
+                    BuffsType != (int)EBuffType.Consume && BuffsType != (int)EBuffType.StrengthAdaptation &&
+                    BuffsType != (int)EBuffType.DurabilityAdaptation && BuffsType != (int)EBuffType.SpeedAdaptation)//독 과 죽음의 저주, 불사, 방어력은 따로 계산
                 {
                     MonInfo.MonsterBuff.BuffList[BuffsType]--;
                 }
@@ -1130,6 +1170,23 @@ public class BattleManager : MonoBehaviour
                 }
             }
 
+            if(CurrentTurnObject != null)
+            {
+                if(CurrentTurnObject.tag == "Player" && CurrentTurnObject == BattleTurn[0])
+                {//전턴의 오브젝트가 플레이어이고 전턴의 오브젝트가 이번턴에도 행동할때
+                    foreach (GameObject Mon in MonMgr.GetActiveMonsters())
+                    {
+                        /*
+                        if(Mon.GetComponent<Monster>().MonsterName == "ShortLegBird")
+                        {
+                            Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.SpeedAdaptation] += 1;
+                        }
+                        */
+                    }
+                }
+            }
+            //이 줄 위쪽의 CurrentTurnObject는 전턴의 오브젝트임
+
             CurrentTurnObject = BattleTurn[0];
             //BattleTurn.RemoveAt(0);
             if (CurrentTurnObject.tag == "Player")
@@ -1189,6 +1246,7 @@ public class BattleManager : MonoBehaviour
         BattleResultStatus.BaseAmountPlus = 0;
         switch (ActionButtonType)
         {
+            case "Charm":
             case "Attack":
                 EquipCode = P_Info.EquipWeaponCode;
                 BattleResultStatus.BaseAmount = TP_Info.TotalSTR;
@@ -1303,6 +1361,7 @@ public class BattleManager : MonoBehaviour
 
         switch (ActionButtonType)
         {
+            case "Charm":
             case "Attack":
                 //공깍
                 if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.AttackDebuff] >= 1)

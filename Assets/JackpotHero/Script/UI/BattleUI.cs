@@ -586,8 +586,8 @@ public class BattleUI : MonoBehaviour
         MainBattleUI.SetActive(true);
         MainBattleUI.GetComponent<CanvasGroup>().DOFade(1, 1);
 
-        if(ActionString != "Attack" && ActionString != "Defense" &&  ActionString != "Rest")
-        {
+        if(ActionString != "Attack" && ActionString != "Defense" &&  ActionString != "Rest" && ActionString != "Charm")
+        {//Another일때
             BaseAmountObject.SetActive(false);
             MagnificationObject.SetActive(false);
         }
@@ -613,7 +613,7 @@ public class BattleUI : MonoBehaviour
         BaseAmountCardDetailText.text = "";//3번
         MagnificationCard.SetActive(false);//3번
 
-        //0. Attack, 1. Defense, 2. Rest, 3. Another
+        //0. Attack, 1. Defense, 2. Rest, 3. Another 4.Charm
         //행동 상태에 맞는 모양 활성화 //4번 활성화
         FinalCalculateObject.SetActive(true);
         //FinalCalculateObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 350);
@@ -633,6 +633,9 @@ public class BattleUI : MonoBehaviour
                 break;
             case "Rest":
                 ActionTypeObject[2].SetActive(true);
+                break;
+            case "Charm":
+                ActionTypeObject[4].SetActive(true);
                 break;
             default:
                 ActionTypeObject[3].SetActive(true);
@@ -663,6 +666,7 @@ public class BattleUI : MonoBehaviour
         ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
         switch (ActionString)
         {
+            case "Charm":
             case "Attack":
                 BaseAmountCardTitleText.text = "현재 힘";
                 BaseAmountCardDetailText.text = ((int)BattleResult.BaseAmount).ToString();
@@ -840,7 +844,7 @@ public class BattleUI : MonoBehaviour
             }
             //여기 왔다는것은 장비에의한 곱이 완료된거임
             CurrentMainBattlePhase = (int)EMainBattlePhase.EquipMagnificationComplete;
-            if (BattleResult.BuffMagnification != 1)//버프에 의한 증감이 존재 할때
+            if (BattleResult.BuffMagnification != 1f)//버프에 의한 증감이 존재 할때
             {
                 IsAnimateComplete = false;
                 //BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -1034,7 +1038,7 @@ public class BattleUI : MonoBehaviour
             {
                 SoundManager.Instance.PlaySFX("Shield_Block");
             }
-            else//안가지고 있을때 -> 뚫은거임
+            else//안가지고 있을때 -> 뚫은거임 혹은 매혹상태거나
             {
                 EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", TargetPos + new Vector2(0,0.5f));
             }
@@ -1042,9 +1046,16 @@ public class BattleUI : MonoBehaviour
             ActionObj.transform.DOPunchPosition(new Vector3(1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             //PlayerZone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-350, 0), 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { IsAnimateComplete = true; });
         }
-        else if(ActionObj.tag == "Player" && ActionString == "Rest")
+        else if(ActionObj.tag == "Player" && ActionString == "Charm")
         {
-            if(BattleResult.FinalResultAmount != 0)
+            Vector2 ActionObjPos = ActionObj.transform.position;
+            EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", ActionObjPos + new Vector2(0, 0.5f));
+
+            IsAnimateComplete = true;
+        }
+        else if (ActionObj.tag == "Player" && ActionString == "Rest")
+        {
+            if (BattleResult.FinalResultAmount != 0)
                 SoundManager.Instance.PlaySFX("Buff_Healing");
 
             IsAnimateComplete = true;
@@ -1053,7 +1064,7 @@ public class BattleUI : MonoBehaviour
         {
             if (ActionString == "Attack")
             {
-                if (IsThereShield == true)//플레이어가 쉴드를 가지고 있을떄 -> 막힌거임
+                if (IsThereShield == true && ActionString == "Attack")//플레이어가 쉴드를 가지고 있을떄 -> 막힌거임
                 {
                     SoundManager.Instance.PlaySFX("Shield_Block");
                 }
@@ -1063,22 +1074,29 @@ public class BattleUI : MonoBehaviour
                 }
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if(ActionString == "Poison")
+            else if (ActionString == "Charm")
+            {
+                Vector2 ActionObjPos = ActionObj.transform.position;
+                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", ActionObjPos + new Vector2(0, 0.5f));
+
+                IsAnimateComplete = true;
+            }
+            else if (ActionString == "Poison")
             {
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if(ActionString == "MisFortune")
+            else if (ActionString == "MisFortune")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if(ActionString == "CurseOfDeath")
+            else if (ActionString == "CurseOfDeath")
             {
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if(ActionString == "Cower")
+            else if (ActionString == "Cower")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
