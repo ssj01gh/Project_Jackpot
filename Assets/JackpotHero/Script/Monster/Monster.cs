@@ -21,7 +21,11 @@ public enum EMonsterActionState
     ApplyCopyStrength,
     ApplyCopyDurability,
     ApplyCopySpeed,
-    ApplyCopyLuck
+    ApplyCopyLuck,
+    Charm,
+    ApplyGreed,
+    GiveEnvy,
+    ConsumeGluttony
 }
 public class MonsterCurrentStatus
 {
@@ -160,7 +164,7 @@ public class Monster : MonoBehaviour
         //몬스터도 플레이어의 상태에 맞게 버프를 바아야함
         InitAllBuff();//일단 초기화 하고 추가
         SetMonsterStatus();
-        SetMonsterDefenseBuff();
+        SetMonsterVariousBuff();
 
         SetInitBuffByPlayerState();
         //일단은 방심만
@@ -300,6 +304,18 @@ public class Monster : MonoBehaviour
                     int StackOfSPDAdap = MonsterBuff.BuffList[(int)EBuffType.SpeedAdaptation];
                     MonTotalStatus.MonsterCurrentSPD += (StackOfSPDAdap * StackOfSPDAdap);
                     break;
+                case (int)EBuffType.Charging:
+                    MonTotalStatus.MonsterCurrentLUK += (MonsterBuff.BuffList[(int)EBuffType.Charging] * 15);
+                    break;
+                case (int)EBuffType.Greed:
+                    int IncreaseStateByGreed = (int)(MonsterBuff.BuffList[(int)EBuffType.Greed] * 0.05f);
+                    MonTotalStatus.MonsterCurrentHP += MonsterBuff.BuffList[(int)EBuffType.Greed];
+                    MonTotalStatus.MonsterMaxHP += MonsterBuff.BuffList[(int)EBuffType.Greed];
+                    MonTotalStatus.MonsterCurrentATK += IncreaseStateByGreed;
+                    MonTotalStatus.MonsterCurrentDUR += IncreaseStateByGreed;
+                    MonTotalStatus.MonsterCurrentSPD += IncreaseStateByGreed;
+                    MonTotalStatus.MonsterCurrentLUK += IncreaseStateByGreed;
+                    break;
             }
         }
         if(MonTotalStatus.MonsterCurrentATK < 0)
@@ -316,9 +332,17 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void SetMonsterDefenseBuff()
+    public void SetMonsterVariousBuff()
     {
         MonsterBuff.BuffList[(int)EBuffType.Defense] = (int)(MonTotalStatus.MonsterCurrentDUR / 5);
+        //임시로 짧다리새
+        if(MonsterName == "ABC")
+        {
+            //체력 1일때 90 만피일때 10
+            float PrideHpRatio = (MonTotalStatus.MonsterCurrentHP - 1) / (MonTotalStatus.MonsterMaxHP - 1);
+            float PrideResult = Mathf.Lerp(90, 10, PrideHpRatio);
+            MonsterBuff.BuffList[(int)EBuffType.Pride] = (int)PrideResult;
+        }
     }
 
     protected void SetInitBuffByPlayerState()
@@ -345,6 +369,16 @@ public class Monster : MonoBehaviour
     }
     public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
     {
+        if(DamagePoint > 0)
+        {
+            /*
+            if(MonsterName == "ShortLegBird")
+            {
+                MonsterBuff.BuffList[(int)EBuffType.Reflect] += (int)DamagePoint;
+            } 
+            */
+        }
+
         float RestDamage = 0;
         if (MonsterBuff.BuffList[(int)EBuffType.Defense] >= 1)
             DamagePoint -= MonsterBuff.BuffList[(int)EBuffType.Defense];
