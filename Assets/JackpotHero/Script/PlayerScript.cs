@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        //PlayerBuff.BuffList[(int)EBuffType.Haste] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.BadKarma] = 1;
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;
@@ -235,6 +235,33 @@ public class PlayerScript : MonoBehaviour
                     break;
                 case (int)EBuffType.Haste:
                     PlayerTotalState.TotalSPD += 10;
+                    break;
+                case (int)EBuffType.Charging:
+                    PlayerTotalState.TotalLUK += (PlayerBuff.BuffList[(int)EBuffType.Charging] * 15);
+                    break;
+                case (int)EBuffType.GoodKarma:
+                    int IncreaseStateByGK = PlayerBuff.BuffList[(int)EBuffType.GoodKarma] * 3;
+                    PlayerTotalState.TotalSTR += IncreaseStateByGK;
+                    PlayerTotalState.TotalDUR += IncreaseStateByGK;
+                    PlayerTotalState.TotalRES += IncreaseStateByGK;
+                    PlayerTotalState.TotalSPD += IncreaseStateByGK;
+                    PlayerTotalState.TotalLUK += IncreaseStateByGK;
+                    break;
+                case (int)EBuffType.BadKarma:
+                    int DecreaseStateByBK = PlayerBuff.BuffList[(int)EBuffType.BadKarma] * 3;
+                    PlayerTotalState.TotalSTR -= DecreaseStateByBK;
+                    PlayerTotalState.TotalDUR -= DecreaseStateByBK;
+                    PlayerTotalState.TotalRES -= DecreaseStateByBK;
+                    PlayerTotalState.TotalSPD -= DecreaseStateByBK;
+                    PlayerTotalState.TotalLUK -= DecreaseStateByBK;
+                    break;
+                case (int)EBuffType.Envy:
+                    int DecreaseStateByEnvy = (int)(PlayerBuff.BuffList[(int)EBuffType.Envy] * 0.3f);
+                    PlayerTotalState.TotalSTR -= DecreaseStateByEnvy;
+                    PlayerTotalState.TotalDUR -= DecreaseStateByEnvy;
+                    PlayerTotalState.TotalRES -= DecreaseStateByEnvy;
+                    PlayerTotalState.TotalSPD -= DecreaseStateByEnvy;
+                    PlayerTotalState.TotalLUK -= DecreaseStateByEnvy;
                     break;
             }
         }
@@ -500,6 +527,14 @@ public class PlayerScript : MonoBehaviour
 
     public void PlayerDamage(float DamagePoint, bool IsIgnoreDefense = false)//자신이 받는 데미지를 기록하고 데미지를 받아 쉴드와 체력이 깍일떄
     {
+        if(DamagePoint > 0)
+        {
+            if (PlayerState.EquipAccessoriesCode == -1)
+            {
+                PlayerBuff.BuffList[(int)EBuffType.Reflect] += (int)DamagePoint;
+            }
+        }
+
         if (IsIgnoreDefense == false && PlayerBuff.BuffList[(int)EBuffType.Defense] >= 1)
             DamagePoint -= PlayerBuff.BuffList[(int)EBuffType.Defense];
 

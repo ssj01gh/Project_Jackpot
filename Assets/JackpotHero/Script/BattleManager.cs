@@ -166,7 +166,12 @@ public class BattleManager : MonoBehaviour
         //스탯 계산
         MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
         PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//버프 디버프에의한 스탯 계산용
-       //턴계산 하기전에 전의 턴의 녀석이 죽었나 확인. 전의 녀석이 죽었으면 CurrentTurnObject를 초기화한다?
+        PlayerMgr.GetPlayerInfo().SetDefeseResilienceBuff();
+        foreach (GameObject Mon in MonMgr.GetActiveMonsters())
+        {
+            Mon.GetComponent<Monster>().SetMonsterVariousBuff();
+        }
+        //턴계산 하기전에 전의 턴의 녀석이 죽었나 확인. 전의 녀석이 죽었으면 CurrentTurnObject를 초기화한다?
         if (CurrentTurnObject != null && CurrentTurnObject.tag == "Monster")
         {
             if (CurrentTurnObject.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
@@ -263,12 +268,6 @@ public class BattleManager : MonoBehaviour
             //다 죽으면 게임을 전투를 끝낸다.
         }
 
-        PlayerMgr.GetPlayerInfo().SetDefeseResilienceBuff();
-        foreach(GameObject Mon in MonMgr.GetActiveMonsters())
-        {
-            Mon.GetComponent<Monster>().SetMonsterDefenseBuff();
-        }
-
         if (CurrentState == (int)EBattleStates.PlayerTurn)
         {
             //플레이어의 턴이라면 플레이어의 행동을 결정하는 버튼을 나타나게 한다.
@@ -323,6 +322,8 @@ public class BattleManager : MonoBehaviour
         }
 
         SetPlayerBattleStatus(ActionButtonType);
+        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] >= 1)
+            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] = 0;
 
         if (ActionButtonType == "Attack")//공격이라면 BattleMgr에서 나온 결과로 현재 타겟의 체력을 깍음
         {
@@ -332,7 +333,6 @@ public class BattleManager : MonoBehaviour
             PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, true);
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
-
 
             //넘치는 힘 버프 보유시
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.OverWhelmingPower] >= 1)
@@ -428,6 +428,16 @@ public class BattleManager : MonoBehaviour
 
     public void MonsterBattleActionSelectionButtonClick()
     {
+        if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charm] >= 1)
+        {
+            int GetCharm = CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charm];
+            int RandCharmNum = Random.Range(1, 11);
+            if(GetCharm >= RandCharmNum)
+            {
+                CurrentTurnObject.GetComponent<Monster>().MonsterCurrentState = (int)EMonsterActionState.Charm;
+            }
+        }
+
         CalculateMonsterAction();
         SoundManager.Instance.PlayUISFX("UI_Button");
         string CurrentBattleState;
@@ -444,7 +454,8 @@ public class BattleManager : MonoBehaviour
                 TargetObject = PlayerMgr.GetPlayerInfo().gameObject;
                 IsMonsterAttack = true;
 
-
+                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] >= 1)
+                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] = 0;
 
                 //플레이어가 가시 갑옷을 가지고 있을경우
                 if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.ThornArmor] >= 1)
@@ -491,8 +502,26 @@ public class BattleManager : MonoBehaviour
                     IsTargetHasShield = true;
                 }
                 break;
+            case (int)EMonsterActionState.Charm:
+                CurrentBattleState = "Charm";
+                TargetObject = CurrentTurnObject;
+                IsMonsterAttack = true;
+
+                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] >= 1)
+                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] = 0;
+
+                CurrentTurnObject.GetComponent<Monster>().MonsterDamage((int)BattleResultStatus.FinalResultAmount);
+                if(CurrentTurnObject.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentShieldPoint >= 1)
+                {
+                    IsTargetHasShield = true;
+                }
+                break;
             case (int)EMonsterActionState.Defense:
                 CurrentBattleState = "Defense";
+
+                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] >= 1)
+                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] = 0;
+
                 CurrentTurnObject.GetComponent<Monster>().MonsterGetShield(BattleResultStatus.FinalResultAmount);
                 break;
             case (int)EMonsterActionState.SpawnMonster:
@@ -545,6 +574,31 @@ public class BattleManager : MonoBehaviour
                 CurrentBattleState = "CopyLuck";
                 int LUKPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("LUK") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().LuckLevel);
                 CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyLuck, LUKPlusAmount);
+                break;
+            case (int)EMonsterActionState.ApplyGreed:
+                CurrentBattleState = "Greed";
+                int GreedStackAmount = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience;
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Greed, GreedStackAmount);
+                break;
+            case (int)EMonsterActionState.GiveEnvy:
+                CurrentBattleState = "Envy";
+                int EnvyStackAmount = (int)PlayerMgr.GetPlayerInfo().GetAllEquipTier();
+                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Envy] = EnvyStackAmount;
+                break;
+            case (int)EMonsterActionState.ConsumeGluttony:
+                //Stack이 자기 자신의 최대 체력보다 많을때는 데미지
+                int GluttonyMonMaxHP = (int)(CurrentTurnObject.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterMaxHP);
+                int GluttonyStack = CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Gluttony];
+                if (GluttonyMonMaxHP >= GluttonyStack)
+                {//체력이 더 많거나 같을때 -> 소화 가능 -> 졸개 소환
+                    CurrentBattleState = "SurvantByGluttony";
+                }
+                else
+                {//체력이 더 적을때 -> 소화 불가능 -> 데미지
+                    CurrentBattleState = "CantConsume";
+                    CurrentTurnObject.GetComponent<Monster>().MonsterDamage(GluttonyStack / 2);
+                }
+                    //Stack이 자기 자신으 최대 체력보다 적을때는 졸개 소환
                 break;
             default:
                 CurrentBattleState = "Another";
@@ -788,12 +842,15 @@ public class BattleManager : MonoBehaviour
                         break;
                 }
 
-                //독, 죽음의 저주, 불사, 무방비, 방어력, 회복력, 연속 타격, 위축, 공포 제외
+                //독, 죽음의 저주, 불사, 무방비, 방어력, 회복력, 연속 타격, 위축, 공포, 축적 제외
+                //업보_선, 업보_악, 반사, 질투 제외
                 if (BuffsType != (int)EBuffType.Poison && BuffsType != (int)EBuffType.CurseOfDeath &&
                     BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defenseless && 
                     BuffsType != (int)EBuffType.Defense && BuffsType != (int)EBuffType.Resilience &&
                     BuffsType != (int)EBuffType.ChainAttack && BuffsType != (int)EBuffType.Cower &&
-                    BuffsType != (int)EBuffType.Fear)//독 과 죽음의 저주, 불사, 무방비, 방어력, 회복력 따로 계산
+                    BuffsType != (int)EBuffType.Fear && BuffsType != (int)EBuffType.Charging &&
+                    BuffsType != (int)EBuffType.GoodKarma && BuffsType != (int)EBuffType.BadKarma &&
+                    BuffsType != (int)EBuffType.Reflect && BuffsType != (int)EBuffType.Envy)//독 과 죽음의 저주, 불사, 무방비, 방어력, 회복력 따로 계산
                 {
                     PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[BuffsType]--;
                 }
@@ -871,17 +928,25 @@ public class BattleManager : MonoBehaviour
                             MonInfo.MonsterDamage(99999);
                         }
                         break;
+                    case (int)EBuffType.Lust:
+                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm] += 2;
+                        break;
                 }
 
                 //독, 죽음의 저주, 불사, 방어력, 연속타격, 산군, 복사_힘, 복사_내구, 복사_속도, 복사_행운, 흡수 제외
-                //적응_힘, 적응_내구, 적응_속도 제외
+                //적응_힘, 적응_내구, 적응_속도, 축적, 반사 제외
+                //교만, 탐욕, 질투, 색욕, 식탐, 분노 제외
                 if (BuffsType != (int)EBuffType.Poison && BuffsType != (int)EBuffType.CurseOfDeath &&
                     BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defense &&
                     BuffsType != (int)EBuffType.ChainAttack && BuffsType != (int)EBuffType.MountainLord &&
                     BuffsType != (int)EBuffType.CopyStrength && BuffsType != (int)EBuffType.CopyDurability &&
                     BuffsType != (int)EBuffType.CopySpeed && BuffsType != (int)EBuffType.CopyLuck &&
                     BuffsType != (int)EBuffType.Consume && BuffsType != (int)EBuffType.StrengthAdaptation &&
-                    BuffsType != (int)EBuffType.DurabilityAdaptation && BuffsType != (int)EBuffType.SpeedAdaptation)//독 과 죽음의 저주, 불사, 방어력은 따로 계산
+                    BuffsType != (int)EBuffType.DurabilityAdaptation && BuffsType != (int)EBuffType.SpeedAdaptation &&
+                    BuffsType != (int)EBuffType.Charging && BuffsType != (int)EBuffType.Reflect &&
+                    BuffsType != (int)EBuffType.Pride && BuffsType != (int)EBuffType.Greed &&
+                    BuffsType != (int)EBuffType.Envy && BuffsType != (int)EBuffType.Lust &&
+                    BuffsType != (int)EBuffType.Gluttony && BuffsType != (int)EBuffType.Wrath)//독 과 죽음의 저주, 불사, 방어력은 따로 계산
                 {
                     MonInfo.MonsterBuff.BuffList[BuffsType]--;
                 }
@@ -1186,6 +1251,19 @@ public class BattleManager : MonoBehaviour
                 }
             }
             //이 줄 위쪽의 CurrentTurnObject는 전턴의 오브젝트임
+            //살아있는 몬스터중 오만을 가지고 있는 몬스터가 있다면
+            foreach(GameObject Mon in MonMgr.GetActiveMonsters())
+            {
+                if (Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Pride] >= 1)
+                {
+                    int PercentOfPride = Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Pride];
+                    int RandPrideNum = Random.Range(1, 101);
+                    if(PercentOfPride >= RandPrideNum)
+                    {//여기 들어오면 해당 몬스터의 턴이 됨
+                        BattleTurn[0] = Mon;
+                    }
+                }
+            }
 
             CurrentTurnObject = BattleTurn[0];
             //BattleTurn.RemoveAt(0);
@@ -1303,28 +1381,16 @@ public class BattleManager : MonoBehaviour
                     NegativeList.Add(Equipment_Info.EquipmentSlots[i].SlotState[j]);
                 }
             }
-            int LuckBuffNum = 0;//저기 스탯쪽에서 따로 적용 시키면 될듯?
-            /*
-            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Luck] >= 1)
-            {
-                LuckBuffNum += 30;
-            }
-            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
-            {
-                LuckBuffNum -= 30;
-            }
-            */
-
             //Debug.Log("부정 : 긍정 = 1 : 2 => 부정 : 0 ~ 20"  + " 긍정 : 20 ~ " + (60 + (int)TP_Info.TotalLUK + LuckBuffNum));
             //Luk이 겁나 낮아지는거 예외처리
             int RandNum;
-            if (60 + (int)TP_Info.TotalLUK + LuckBuffNum<= 1)
+            if (60 + (int)TP_Info.TotalLUK <= 1)
             {
                 RandNum = 0;
             }
             else
             {
-                RandNum = Random.Range(0, 60 + (int)TP_Info.TotalLUK + LuckBuffNum);
+                RandNum = Random.Range(0, 60 + (int)TP_Info.TotalLUK);
             }
 
             if(NegativeAmount == 0)//긍정에서 하나 뽑아서 저장
@@ -1343,7 +1409,7 @@ public class BattleManager : MonoBehaviour
                 int NegativeRandNum = Random.Range(0, NegativeList.Count);
                 BattleResultStatus.ResultMagnification.Add(NegativeList[NegativeRandNum]);
             }
-            else if (RandNum >= MultiplyNum * NegativeAmount && RandNum < 60 + (int)TP_Info.TotalLUK + LuckBuffNum)
+            else if (RandNum >= MultiplyNum * NegativeAmount && RandNum < 60 + (int)TP_Info.TotalLUK)
             {
                 //긍정적 List에서 하나를 뽑아서 저장
                 int PositiveRandNum = Random.Range(0, PositiveList.Count);
@@ -1388,15 +1454,36 @@ public class BattleManager : MonoBehaviour
             case "Rest":
                 break;
         }
+        BattleResultStatus.FinalResultAmountPlus = 0f;
+        switch(ActionButtonType)
+        {
+            case "Charm":
+            case "Attack":
+                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.EXPPower] >= 1)//경험은 힘 버프 보유시
+                {
+                    BattleResultStatus.FinalResultAmountPlus += (int)(P_Info.Experience / 100f);
+                }
+                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] >= 1)
+                {
+                    BattleResultStatus.FinalResultAmountPlus += PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect];
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] = 0;
+                }
+                break;
+            case "Defense":
+                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] >= 1)
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] = (int)(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] * 0.5f);
+                }
+                break;
+            case "Rest":
+                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] >= 1)
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] = (int)(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] * 0.5f);
+                }
+                break;
+        }
         //최종 추가 수치 // 거의 유일하게 EXPMG 초반 강화 효과에 영향을 받는 수치임
-        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.EXPPower] >= 1)//경험은 힘 버프 보유시
-        {
-            BattleResultStatus.FinalResultAmountPlus = (int)(P_Info.Experience / 100f);
-        }
-        else
-        {
-            BattleResultStatus.FinalResultAmountPlus = 0f;
-        }
+        
         //최종 수치 -> (기초 수치 + 기초 추가 수치) * 배율들 안의 배율 1 * 배율들 안의 배율 2 ...... * 배율들 안의 배율 n + 최종 추가 수치;
         float FinalMultiplyNum = 1f;
         for (int i = 0; i < BattleResultStatus.ResultMagnification.Count; i++)
@@ -1423,6 +1510,7 @@ public class BattleManager : MonoBehaviour
 
         switch (CurrentState)
         {
+            case (int)EMonsterActionState.Charm:
             case (int)EMonsterActionState.Attack:
                 MonEquipmentCode = CurrentTurnObject.GetComponent<Monster>().MonsterWeaponCode;
                 BattleResultStatus.BaseAmount = MC_Info.MonsterCurrentATK;
@@ -1461,6 +1549,7 @@ public class BattleManager : MonoBehaviour
         }
         switch (CurrentState)
         {
+            case (int)EMonsterActionState.Charm:
             case (int)EMonsterActionState.Attack:
                 if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.AttackDebuff] >= 1)
                 {
@@ -1479,6 +1568,25 @@ public class BattleManager : MonoBehaviour
                 if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ToughSkin] >= 1)
                 {
                     BattleResultStatus.BuffMagnification *= 2f;
+                }
+                break;
+        }
+        //BattleResultStatus.FinalResultPlus
+        switch (CurrentState)
+        {
+            case (int)EMonsterActionState.Charm:
+            case (int)EMonsterActionState.Attack:
+                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Reflect] >= 1)
+                {
+                    BattleResultStatus.FinalResultAmountPlus += CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Reflect];
+                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Reflect] = 0;
+                }
+                break;
+            default:
+                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Reflect] >= 1)
+                {
+                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Reflect] =
+                        (int)(CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Reflect] * 0.5f);
                 }
                 break;
         }
@@ -1505,25 +1613,16 @@ public class BattleManager : MonoBehaviour
                 }
             }
 
-            int LuckBuffNum = 0;
-            if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Luck] >= 1)
-            {
-                LuckBuffNum += 30;
-            }
-            if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Misfortune] >= 1)
-            {
-                LuckBuffNum -= 30;
-            }
             //Debug.Log("부정 : 긍정 = 1 : 1 => 부정 : 0 ~ 30" + " 긍정 : 30 ~ " + (60 + (int)MC_Info.MonsterCurrentLUK + LuckBuffNum));
             //Luk이 겁나 낮아지는거 예외처리
             int RandNum;
-            if (60 + (int)MC_Info.MonsterCurrentLUK + LuckBuffNum <= 1)
+            if (60 + (int)MC_Info.MonsterCurrentLUK <= 1)
             {
                 RandNum = 0;
             }
             else
             {
-                RandNum = Random.Range(0, 60 + (int)MC_Info.MonsterCurrentLUK +LuckBuffNum);
+                RandNum = Random.Range(0, 60 + (int)MC_Info.MonsterCurrentLUK);
             }
 
             if (RandNum >= 0 && RandNum < MultiplyNum * NegativeAmount)
@@ -1532,7 +1631,7 @@ public class BattleManager : MonoBehaviour
                 int NegativeRandNum = Random.Range(0, NegativeList.Count);
                 BattleResultStatus.ResultMagnification.Add(NegativeList[NegativeRandNum]);
             }
-            else if (RandNum >= MultiplyNum * NegativeAmount && RandNum < 60 + (int)MC_Info.MonsterCurrentLUK + LuckBuffNum)
+            else if (RandNum >= MultiplyNum * NegativeAmount && RandNum < 60 + (int)MC_Info.MonsterCurrentLUK)
             {
                 //긍정적 List에서 하나를 뽑아서 저장
                 int PositiveRandNum = Random.Range(0, PositiveList.Count);

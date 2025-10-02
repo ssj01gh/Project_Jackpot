@@ -81,6 +81,7 @@ public class BattleUI : MonoBehaviour
     public GameObject[] MonsterAttackIcons;
     public GameObject[] MonsterDefenseIcons;
     public GameObject[] MonsterAnotherIcons;
+    public GameObject[] MonsterPrideIcons;
     [Header("VictoryUI")]
     public GameObject VictoryUI;
     public TextMeshProUGUI VictoryText;
@@ -333,6 +334,7 @@ public class BattleUI : MonoBehaviour
             MonsterAttackIcons[i].SetActive(false);
             MonsterDefenseIcons[i].SetActive(false);
             MonsterAnotherIcons[i].SetActive(false);
+            MonsterPrideIcons[i].SetActive(false);
         }
 
         for (int i = 0; i < ActiveMonsters.Count; i++)
@@ -342,20 +344,29 @@ public class BattleUI : MonoBehaviour
             //SetCurrentActionIcon;
             Vector2 ActiveIconPosition = Mon.HpSliderPos.transform.position;
             ActiveIconPosition.x -= (Mon.HpsliderWidth / 100 / 2) + 0.2f;
-            switch (Mon.MonsterCurrentState)
+
+            if (Mon.MonsterBuff.BuffList[(int)EBuffType.Pride] >= 1)
             {
-                case (int)EMonsterActionState.Attack:
-                    MonsterAttackIcons[i].SetActive(true);
-                    MonsterAttackIcons[i].transform.position = ActiveIconPosition;
-                    break;
-                case (int)EMonsterActionState.Defense:
-                    MonsterDefenseIcons[i].SetActive(true);
-                    MonsterDefenseIcons[i].transform.position = ActiveIconPosition;
-                    break;
-                default:
-                    MonsterAnotherIcons[i].SetActive(true);
-                    MonsterAnotherIcons[i].transform.position = ActiveIconPosition;
-                    break;
+                MonsterPrideIcons[i].SetActive(true);
+                MonsterPrideIcons[i].transform.position = ActiveIconPosition;
+            }
+            else
+            {
+                switch (Mon.MonsterCurrentState)
+                {
+                    case (int)EMonsterActionState.Attack:
+                        MonsterAttackIcons[i].SetActive(true);
+                        MonsterAttackIcons[i].transform.position = ActiveIconPosition;
+                        break;
+                    case (int)EMonsterActionState.Defense:
+                        MonsterDefenseIcons[i].SetActive(true);
+                        MonsterDefenseIcons[i].transform.position = ActiveIconPosition;
+                        break;
+                    default:
+                        MonsterAnotherIcons[i].SetActive(true);
+                        MonsterAnotherIcons[i].transform.position = ActiveIconPosition;
+                        break;
+                }
             }
 
             if(Mon.BeforeMonsterShield <= 0 && Mon.GetMonsterCurrentStatus().MonsterCurrentShieldPoint > 0)//È°¼ºÈ­
@@ -1049,7 +1060,7 @@ public class BattleUI : MonoBehaviour
         else if(ActionObj.tag == "Player" && ActionString == "Charm")
         {
             Vector2 ActionObjPos = ActionObj.transform.position;
-            EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", ActionObjPos + new Vector2(0, 0.5f));
+            EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", ActionObjPos + new Vector2(0.5f, 0.5f));
 
             IsAnimateComplete = true;
         }
@@ -1077,26 +1088,16 @@ public class BattleUI : MonoBehaviour
             else if (ActionString == "Charm")
             {
                 Vector2 ActionObjPos = ActionObj.transform.position;
-                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", ActionObjPos + new Vector2(0, 0.5f));
+                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", ActionObjPos + new Vector2(-0.5f, 0.5f));
 
                 IsAnimateComplete = true;
             }
-            else if (ActionString == "Poison")
+            else if (ActionString == "Poison" || ActionString == "CurseOfDeath")
             {
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if (ActionString == "MisFortune")
-            {
-                SoundManager.Instance.PlaySFX("Buff_Forcing");
-                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
-            }
-            else if (ActionString == "CurseOfDeath")
-            {
-                SoundManager.Instance.PlaySFX("Buff_Consume");
-                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
-            }
-            else if (ActionString == "Cower")
+            else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });

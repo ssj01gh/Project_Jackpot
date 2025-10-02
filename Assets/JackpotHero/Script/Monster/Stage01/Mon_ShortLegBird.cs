@@ -18,7 +18,7 @@ public class Mon_ShortLegBird : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
-        //MonsterBuff.BuffList[(int)EBuffType.Slow] = 99;
+        //MonsterBuff.BuffList[(int)EBuffType.Lust] = 1;
         //공격 : 방어 = 1 : 1
         
         int RandNum = Random.Range(0, 2);
@@ -31,7 +31,7 @@ public class Mon_ShortLegBird : Monster
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
         
-        //MonsterCurrentState = (int)EMonsterActionState.ApplyCopyStrength;
+        //MonsterCurrentState = (int)EMonsterActionState.GiveEnvy;
     }
 
     public override void SetNextMonsterState()
