@@ -287,8 +287,9 @@ MonoBehaviour:
   HpsliderWidth: 180
   BuffPosUpperHp: 0.5
   ActionPosUpperHP: 1
-  CanSummonMonsterIDs: []
-  SummonMonsterCount: 0
+  CanSummonMonsterIDs:
+  - Bonni
+  SummonMonsterCount: 1
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}

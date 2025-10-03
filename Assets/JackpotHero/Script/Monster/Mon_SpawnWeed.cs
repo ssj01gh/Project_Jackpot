@@ -58,7 +58,8 @@ public class Mon_SpawnWeed : Monster
         */
     }
 
-    public override List<string> GetSummonMonsters()
+    public override List<string> GetSummonMonsters(float SetSummonMonHP = 0, float SetSummonMonSTR = 0, float SetSummonMonDUR = 0,
+        float SetSummonMonLUK = 0, float SetSummonMonSPD = 0)
     {
         List<string> SummonMonsters = new List<string>();
         for(int i = 0; i < SummonMonsterCount; i++)

@@ -105,6 +105,12 @@ public class Monster : MonoBehaviour
     protected float CurrentBaseDUR = 0;
     protected float CurrentBaseLUK = 0;
     protected float CurrentBaseSPD = 0;
+
+    protected int SummonMonHP = 0;
+    protected int SummonMonSTR = 0;
+    protected int SummonMonDUR = 0;
+    protected int SummonMonLUK = 0;
+    protected int SummonMonSPD = 0;
     //public int UsedMonsterActionGuageIndex { protected set; get; } = 0;
 
 
@@ -133,7 +139,8 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void SpawnMonster(Vector2 SpawnPosition)
+    public void SpawnMonster(Vector2 SpawnPosition, float SetMonBaseHP = 0, float SetMonBaseATK = 0, float SetMonBaseDUR = 0,
+        float SetMonBaseLUK = 0, float SetMonBaseSPD = 0)
     {
         gameObject.SetActive(true);
         Color MonColor = MonsterBody.color;
@@ -141,25 +148,46 @@ public class Monster : MonoBehaviour
         MonsterBody.color = MonColor;
         MonsterAnimator.speed = 0f;
         gameObject.transform.position = SpawnPosition;
-        //SetHP
-        int Rand = Random.Range(-(int)HPVarianceAmount, (int)HPVarianceAmount + 1);
-        MonTotalStatus.MonsterMaxHP = MonsterBaseHP + Rand;
-        MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
-        //SetATK
-        Rand = Random.Range(-(int)ATKVarianceAmount, (int)ATKVarianceAmount + 1);
-        CurrentBaseATK = MonsterBaseATK + Rand;
-        //SetDUR
-        Rand = Random.Range(-(int)DURVarianceAmount, (int)DURVarianceAmount + 1);
-        CurrentBaseDUR = MonsterBaseDUR + Rand;
-        //SetLUK
-        Rand = Random.Range(-(int)LUKVarianceAmount, (int)LUKVarianceAmount + 1);
-        CurrentBaseLUK = MonsterBaseLuk + Rand;
-        //SetSPD
-        Rand = Random.Range(-(int)SPDVarianceAmount, (int)SPDVarianceAmount + 1);
-        CurrentBaseSPD = MonsterBaseSPD + Rand;
-        //SetReward
-        Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
-        MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
+
+        SummonMonHP = 0;
+        SummonMonSTR = 0;
+        SummonMonDUR = 0;
+        SummonMonLUK = 0;
+        SummonMonSPD = 0;
+
+        if (SetMonBaseHP >= 1)
+        {
+            MonTotalStatus.MonsterMaxHP = SetMonBaseHP;
+            MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
+
+            CurrentBaseATK = SetMonBaseATK;
+            CurrentBaseDUR = SetMonBaseDUR;
+            CurrentBaseLUK = SetMonBaseLUK;
+            CurrentBaseSPD = SetMonBaseSPD;
+        }
+        else
+        {
+            //SetHP
+            int Rand = Random.Range(-(int)HPVarianceAmount, (int)HPVarianceAmount + 1);
+            MonTotalStatus.MonsterMaxHP = MonsterBaseHP + Rand;
+            MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
+            //SetATK
+            Rand = Random.Range(-(int)ATKVarianceAmount, (int)ATKVarianceAmount + 1);
+            CurrentBaseATK = MonsterBaseATK + Rand;
+            //SetDUR
+            Rand = Random.Range(-(int)DURVarianceAmount, (int)DURVarianceAmount + 1);
+            CurrentBaseDUR = MonsterBaseDUR + Rand;
+            //SetLUK
+            Rand = Random.Range(-(int)LUKVarianceAmount, (int)LUKVarianceAmount + 1);
+            CurrentBaseLUK = MonsterBaseLuk + Rand;
+            //SetSPD
+            Rand = Random.Range(-(int)SPDVarianceAmount, (int)SPDVarianceAmount + 1);
+            CurrentBaseSPD = MonsterBaseSPD + Rand;
+            //SetReward
+            Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
+            MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
+        }
+        
 
         //몬스터도 플레이어의 상태에 맞게 버프를 바아야함
         InitAllBuff();//일단 초기화 하고 추가
@@ -316,6 +344,20 @@ public class Monster : MonoBehaviour
                     MonTotalStatus.MonsterCurrentSPD += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentLUK += IncreaseStateByGreed;
                     break;
+                case (int)EBuffType.Sloth:
+                    float DecreaseStateBySloth = MonsterBuff.BuffList[(int)EBuffType.Sloth] * 0.15f;
+                    int DecreaseSTRBySloth = (int)(MonTotalStatus.MonsterCurrentATK * DecreaseStateBySloth);
+                    int DecreaseSPDBySloth = (int)(MonTotalStatus.MonsterCurrentSPD * DecreaseStateBySloth);
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK - DecreaseSTRBySloth);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD - DecreaseSPDBySloth);
+                    break;
+                case (int)EBuffType.Wrath:
+                    float IncreaseStateByWrath = 1 + MonsterBuff.BuffList[(int)EBuffType.Wrath] * 0.1f;
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentDUR = (int)(MonTotalStatus.MonsterCurrentDUR * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentLUK = (int)(MonTotalStatus.MonsterCurrentLUK * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD * IncreaseStateByWrath);
+                    break;
             }
         }
         if(MonTotalStatus.MonsterCurrentATK < 0)
@@ -367,8 +409,14 @@ public class Monster : MonoBehaviour
     {
         return new Vector2(HpSliderPos.transform.position.x, HpSliderPos.transform.position.y + ActionPosUpperHP);
     }
-    public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
+    public void MonsterDamage(float DamagePoint, bool IsTrueDamage = false)//여기서 싹 데미지 계산
     {
+        if(IsTrueDamage == true)
+        {
+            MonTotalStatus.MonsterCurrentHP -= DamagePoint;
+            return;
+        }
+
         if(DamagePoint > 0)
         {
             /*
@@ -376,6 +424,14 @@ public class Monster : MonoBehaviour
             {
                 MonsterBuff.BuffList[(int)EBuffType.Reflect] += (int)DamagePoint;
             } 
+            */
+            //임시로 흙골렘
+            /*
+            if(MonsterName == "DirtGolem")
+            {
+                MonsterBuff.BuffList[(int)EBuffType.Gluttony] += (int)DamagePoint;
+                return;
+            }
             */
         }
 
@@ -430,6 +486,25 @@ public class Monster : MonoBehaviour
         MonTotalStatus.MonsterCurrentShieldPoint += ShieldPoint;
     }
 
+    public int GetSummonMonStatus(string StatusType)
+    {
+        switch(StatusType)
+        {
+            case "HP":
+                return SummonMonHP;
+            case "STR":
+                return SummonMonSTR;
+            case "DUR":
+                return SummonMonDUR;
+            case "LUK":
+                return SummonMonLUK;
+            case "SPD":
+                return SummonMonSPD;
+            default:
+                return 0;
+        }
+    }
+
     //-------------------------SpecialAction------------------------
 
     public virtual void MonsterGetBuff(int i_BuffType, int BuffCount = 0)
@@ -447,7 +522,8 @@ public class Monster : MonoBehaviour
         return BuffCount;
     }
 
-    public virtual List<string> GetSummonMonsters()
+    public virtual List<string> GetSummonMonsters(float SetSummonMonHP = 0, float SetSummonMonSTR = 0, float SetSummonMonDUR = 0,
+        float SetSummonMonLUK = 0, float SetSummonMonSPD = 0)
     {
         List<string> SummonMosnters = new List<string>();
         return SummonMosnters;
