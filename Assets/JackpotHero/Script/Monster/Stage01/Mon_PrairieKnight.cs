@@ -18,6 +18,7 @@ public class Mon_PrairieKnight : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        MonsterBuff.BuffList[(int)EBuffType.Wrath] = 5;
         //공격 : 방어 = 1 : 1
         int RandNum = Random.Range(0, 2);
         if (RandNum == 0)

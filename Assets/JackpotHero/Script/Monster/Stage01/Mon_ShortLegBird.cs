@@ -18,7 +18,7 @@ public class Mon_ShortLegBird : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
-        //MonsterBuff.BuffList[(int)EBuffType.Lust] = 1;
+        //MonsterBuff.BuffList[(int)EBuffType.Sloth] = 4;
         //공격 : 방어 = 1 : 1
         
         int RandNum = Random.Range(0, 2);
@@ -62,8 +62,17 @@ public class Mon_ShortLegBird : Monster
     }
     */
     /*
-    public override List<string> GetSummonMonsters()
+    public override List<string> GetSummonMonsters(float SetSummonMonHP = 0, float SetSummonMonSTR = 0, float SetSummonMonDUR = 0,
+        float SetSummonMonLUK = 0, float SetSummonMonSPD = 0)
     {
+        if(SetSummonMonHP >= 1)
+        {
+            SummonMonHP = (int)SetSummonMonHP;
+            SummonMonSTR = (int)SetSummonMonSTR;
+            SummonMonDUR = (int)SetSummonMonDUR;
+            SummonMonLUK = (int)SetSummonMonLUK;
+            SummonMonSPD = (int)SetSummonMonSPD;
+        }
         List<string> SummonMonsters = new List<string>();
         for (int i = 0; i < SummonMonsterCount; i++)
         {
@@ -74,4 +83,5 @@ public class Mon_ShortLegBird : Monster
         //return base.GetSummonMonsters();
     }
     */
+    
 }

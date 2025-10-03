@@ -307,7 +307,10 @@ public class MonsterManager : MonoBehaviour
                 {
                     if (MonsterStorage[MonsterID[i]][j].activeSelf == false)//꺼져있을때만 소환
                     {
-                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().SpawnMonster(CanSpawnPoint[i]);
+                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().SpawnMonster(CanSpawnPoint[i],
+                            SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("HP"), SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("STR"),
+                            SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("DUR"), SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("LUK"),
+                            SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("SPD"));
                         MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MonsterClicked += SetCurrentTargetMonster;
                         MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MasterMonster = SummonerMonster;
 
