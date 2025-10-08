@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83fe01e9704a504cb7683190a5b26ed, type: 3}
+  m_Name: ScreamSubject_Special01
+  m_EditorClassIdentifier: 
+  EquipmentType: 0
+  EquipmentTier: 0
+  EquipmentCode: 93031
+  EquipmentName: "\uBD88\uC548\uC815\uD55C \uC2E0\uCCB4"
+  SpendTiredness: 0
+  EquipmentSlots: []
+  EquipmentImage: {fileID: 1809414471, guid: 2dd8813a275129545b61cf33c39103b4, type: 3}
+  AddSTRAmount: 0
+  AddDURAmount: 0
+  AddRESAmount: 0
+  AddSPDAmount: 0
+  AddLUKAmount: 0
+  AddHPAmount: 0
+  AddTirednessAmount: 0

@@ -25,7 +25,8 @@ public enum EMonsterActionState
     Charm,
     ApplyGreed,
     GiveEnvy,
-    ConsumeGluttony
+    ConsumeGluttony,
+    GiveDefenseDebuff
 }
 public class MonsterCurrentStatus
 {
@@ -50,6 +51,7 @@ public class Monster : MonoBehaviour
     public Sprite MonsterHead;
     public SpriteRenderer MonsterBody;
     public Animator MonsterAnimator;
+    public bool IsHaveAttackAnimation;
     [Header("Monster_Tier")]
     public bool IsTierOne;
     public bool IsSummonTier;
@@ -246,6 +248,7 @@ public class Monster : MonoBehaviour
 
     protected virtual void InitMonsterState()
     {
+        AdditionalEXP = 0;
         //Test
         //MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] = 99;
         //MonsterBuff.BuffList[(int)BuffType.ThronArmor] = 10;
@@ -259,6 +262,15 @@ public class Monster : MonoBehaviour
     public virtual void SetNextMonsterState()
     {
 
+    }
+    public virtual void SetMonsterAnimation(string AnimationType = "")
+    {
+
+    }
+
+    public virtual bool CheckmonsterAnimationEnd(string AnimationType = "")
+    {
+        return true;
     }
 
     public void SetMonsterStatus()

@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        //PlayerBuff.BuffList[(int)EBuffType.BadKarma] = 1;
+        //PlayerBuff.BuffList[(int)EBuffType.Poison] = 10;
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;

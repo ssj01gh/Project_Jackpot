@@ -1083,21 +1083,36 @@ public class BattleUI : MonoBehaviour
                 {
                     EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", PlayerPos + new Vector2(0, 0.5f));//몬스터의 종류에 따라 달라지면 좋을지두
                 }
-                ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+
+                if(ActionObj.GetComponent<Monster>().IsHaveAttackAnimation == false)
+                {
+                    ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+                }
+                else
+                {
+                    ActionObj.GetComponent<Monster>().SetMonsterAnimation("Attack");
+                }
             }
             else if (ActionString == "Charm")
             {
                 Vector2 ActionObjPos = ActionObj.transform.position;
                 EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", ActionObjPos + new Vector2(-0.5f, 0.5f));
 
-                IsAnimateComplete = true;
+                if (ActionObj.GetComponent<Monster>().IsHaveAttackAnimation == false)
+                {
+                    IsAnimateComplete = true;
+                }
+                else
+                {
+                    ActionObj.GetComponent<Monster>().SetMonsterAnimation("Attack");
+                }
             }
             else if (ActionString == "Poison" || ActionString == "CurseOfDeath")
             {
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower")
+            else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower" || ActionString == "DefenseDebuff")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
@@ -1124,6 +1139,20 @@ public class BattleUI : MonoBehaviour
             if (IsAnimateComplete == true)
             {
                 break;
+            }
+            else
+            {
+                if(ActionObj.tag == "Monster" && ActionObj.GetComponent<Monster>().IsHaveAttackAnimation == true)
+                {
+                    if(ActionObj.GetComponent<Monster>().CheckmonsterAnimationEnd("Attack") == true)
+                    {
+                        IsAnimateComplete = true;
+                    }
+                    else
+                    {
+                        IsAnimateComplete = false;
+                    }
+                }
             }
         }
 
