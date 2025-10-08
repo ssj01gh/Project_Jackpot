@@ -64,6 +64,7 @@ public class BackGroundUI : MonoBehaviour
         if (ThemeNum - 1 >= BackGroundObjects.Length)
             return;
         */
+        ThemeNum = 1;
         RestBackGround.GetComponent<Image>().sprite = BackGroundSprites[ThemeNum - 1].StageBackGroundSprites[(int)ELayer.RestLayer];
         Layer05_BackGround.GetComponent<Image>().sprite = BackGroundSprites[ThemeNum - 1].StageBackGroundSprites[(int)ELayer.Layer05];
         for (int i = 0; i < 3; i++)

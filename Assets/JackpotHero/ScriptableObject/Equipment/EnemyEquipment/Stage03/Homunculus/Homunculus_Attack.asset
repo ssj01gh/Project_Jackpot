@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83fe01e9704a504cb7683190a5b26ed, type: 3}
+  m_Name: Homunculus_Attack
+  m_EditorClassIdentifier: 
+  EquipmentType: 0
+  EquipmentTier: 0
+  EquipmentCode: 73051
+  EquipmentName: "\uB09C\uC7C1\uC774\uC758 \uACF5\uACA9"
+  SpendTiredness: 0
+  EquipmentSlots:
+  - IsPositive: 0000010101
+    SlotState:
+    - 0.25
+    - 0.75
+    - 1
+    - 1.25
+    - 1.5
+  - IsPositive: 0000010101
+    SlotState:
+    - 0.5
+    - 0.75
+    - 1
+    - 1.25
+    - 1.5
+  - IsPositive: 0000010101
+    SlotState:
+    - 0.25
+    - 0.75
+    - 1.25
+    - 1.5
+    - 1.75
+  - IsPositive: 0000010101
+    SlotState:
+    - 0.25
+    - 0.75
+    - 1
+    - 1.5
+    - 2
+  - IsPositive: 0001010101
+    SlotState:
+    - 0.5
+    - 1
+    - 1.25
+    - 1.5
+    - 1.75
+  - IsPositive: 0001010101
+    SlotState:
+    - 0.75
+    - 1.25
+    - 1.5
+    - 1.75
+    - 2
+  EquipmentImage: {fileID: -917125737, guid: c9adea759f72cdb4c8d97766d48039b7, type: 3}
+  AddSTRAmount: 0
+  AddDURAmount: 0
+  AddRESAmount: 0
+  AddSPDAmount: 0
+  AddLUKAmount: 0
+  AddHPAmount: 0
+  AddTirednessAmount: 0

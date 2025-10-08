@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928206271216405744}
   - component: {fileID: 2179559600177875215}
-  - component: {fileID: 1634825984073469176}
+  - component: {fileID: 8979809298239526766}
   m_Layer: 0
   m_Name: Monster_GoldenWisp
   m_TagString: Monster
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &1634825984073469176
+--- !u!114 &8979809298239526766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,14 +121,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2816280614747406496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3e901ace89a2c48b9dde366f89073a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5814662d26a9fad44938b23d61c05eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterName: GoldenWisp
-  MonsterHead: {fileID: 21300000, guid: b151d52519b1b6b43a04acbdf93e8de3, type: 3}
+  MonsterHead: {fileID: 951617281, guid: 71efb3cf420da3144b6a99823fd3282e, type: 3}
   MonsterBody: {fileID: 3229441595594747495}
   MonsterAnimator: {fileID: 8009959077196215787}
   IsTierOne: 1
+  IsSummonTier: 0
   MonsterBaseHP: 48
   HPVarianceAmount: 12
   MonsterBaseATK: 11
@@ -152,6 +153,8 @@ MonoBehaviour:
   CanSummonMonsterIDs: []
   SummonMonsterCount: 0
   MonsterCurrentState: 0
+  AdditionalEXP: 0
+  MasterMonster: {fileID: 0}
 --- !u!1 &3712609004761415353
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83fe01e9704a504cb7683190a5b26ed, type: 3}
+  m_Name: MountainLord_Special02
+  m_EditorClassIdentifier: 
+  EquipmentType: 0
+  EquipmentTier: 0
+  EquipmentCode: 92072
+  EquipmentName: "\uC0B0\uC758 \uC8FC\uC778"
+  SpendTiredness: 0
+  EquipmentSlots: []
+  EquipmentImage: {fileID: -37162892, guid: 53d9b53ddb12e0b42926269f17a32b0f, type: 3}
+  AddSTRAmount: 0
+  AddDURAmount: 0
+  AddRESAmount: 0
+  AddSPDAmount: 0
+  AddLUKAmount: 0
+  AddHPAmount: 0
+  AddTirednessAmount: 0
