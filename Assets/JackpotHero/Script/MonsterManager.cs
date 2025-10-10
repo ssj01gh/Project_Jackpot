@@ -307,9 +307,9 @@ public class MonsterManager : MonoBehaviour
                 {
                     if (MonsterStorage[MonsterID[i]][j].activeSelf == false)//꺼져있을때만 소환
                     {
+                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MasterMonster = SummonerMonster;
                         MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().SpawnMonster(CanSpawnPoint[i]);
                         MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MonsterClicked += SetCurrentTargetMonster;
-                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MasterMonster = SummonerMonster;
 
                         ActiveMonsters.Add(MonsterStorage[MonsterID[i]][j]);
                         break;
@@ -336,17 +336,20 @@ public class MonsterManager : MonoBehaviour
         {
             if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
             {
-                if (ActiveMonsters[i].GetComponent<Monster>().IsTierOne == true)//1티어
+                if (ActiveMonsters[i].GetComponent<Monster>().IsSummonTier == true)
                 {
-                    PlayerMgr.GetPlayerInfo().RecordKillCount(1);
-                }
-                else if (ActiveMonsters[i].GetComponent<Monster>().IsSummonTier == true)
-                {
-
+                    //여기에 들어오면 아무것도 안중가하게
                 }
                 else
                 {
-                    PlayerMgr.GetPlayerInfo().RecordKillCount(0, 1);
+                    if (ActiveMonsters[i].GetComponent<Monster>().IsTierOne == true)//1티어
+                    {
+                        PlayerMgr.GetPlayerInfo().RecordKillCount(1);
+                    }
+                    else
+                    {
+                        PlayerMgr.GetPlayerInfo().RecordKillCount(0, 1);
+                    }
                 }
 
                 ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//모든 버프들 없애기
@@ -470,13 +473,11 @@ public class MonsterManager : MonoBehaviour
     public void SetAcitveMonsterMountainLord()
     {
         for (int i = 0; i < ActiveMonsters.Count; i++)
-        {//살아있는 몬스터 중에 산군만 해당되게(테스트에서는 짧다리새)
-            /*
-            if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "ShortLegBird")
+        {
+            if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "MountainLord")
             {
                 ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.MountainLord] += 1;
             }
-            */
         }
     }
 

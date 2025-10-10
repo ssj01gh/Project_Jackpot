@@ -503,6 +503,7 @@ public class BattleUI : MonoBehaviour
 
         EquipmentSO MonWeapon = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterWeaponCode);
         EquipmentSO MonArmor = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterArmorCode);
+
         List<EquipmentSO> AnotherEquip = new List<EquipmentSO>();
         for(int i = 0; i < Mon.MonsterAnotherEquipmentCode.Length; i++)
         {
@@ -1107,12 +1108,12 @@ public class BattleUI : MonoBehaviour
                     ActionObj.GetComponent<Monster>().SetMonsterAnimation("Attack");
                 }
             }
-            else if (ActionString == "Poison" || ActionString == "CurseOfDeath")
+            else if (ActionString == "Poison" || ActionString == "CurseOfDeath" || ActionString == "Burn")
             {
                 SoundManager.Instance.PlaySFX("Buff_Consume");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower" || ActionString == "DefenseDebuff")
+            else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower" || ActionString == "DefenseDebuff" || ActionString == "AttackDebuff")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });

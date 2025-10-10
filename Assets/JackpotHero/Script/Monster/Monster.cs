@@ -26,7 +26,10 @@ public enum EMonsterActionState
     ApplyGreed,
     GiveEnvy,
     ConsumeGluttony,
-    GiveDefenseDebuff
+    GiveDefenseDebuff,
+    ApplyRegeneration,
+    GiveBurn,
+    GiveAttackDebuff
 }
 public class MonsterCurrentStatus
 {
@@ -103,6 +106,8 @@ public class Monster : MonoBehaviour
     protected Collider2D MonCollider;
     public int BeforeMonsterShield { protected set; get; } = 0;
 
+    protected bool IsCanSummonMonster = false;
+
     protected float CurrentBaseATK = 0;
     protected float CurrentBaseDUR = 0;
     protected float CurrentBaseLUK = 0;
@@ -143,6 +148,24 @@ public class Monster : MonoBehaviour
         MonsterBody.color = MonColor;
         MonsterAnimator.speed = 0f;
         gameObject.transform.position = SpawnPosition;
+
+        if(MasterMonster != null)
+        {
+            Monster MasterMon = MasterMonster.GetComponent<Monster>();
+            if(MasterMon.MonsterName == "Slime")
+            {
+                MonsterBaseHP = (int)(MasterMon.MonTotalStatus.MonsterCurrentHP * 0.5f);
+                MonsterBaseATK = (int)(MasterMon.MonTotalStatus.MonsterCurrentATK * 0.5f);
+                MonsterBaseDUR = (int)(MasterMon.MonTotalStatus.MonsterCurrentDUR * 0.5f);
+                MonsterBaseSPD = (int)(MasterMon.MonTotalStatus.MonsterCurrentSPD * 0.5f);
+                MonsterBaseLuk = (int)(MasterMon.MonTotalStatus.MonsterCurrentLUK * 0.5f);
+            }
+            else if(MasterMon.MonsterName == "ABC")
+            {
+
+            }
+        }
+
         //SetHP
         int Rand = Random.Range(-(int)HPVarianceAmount, (int)HPVarianceAmount + 1);
         MonTotalStatus.MonsterMaxHP = MonsterBaseHP + Rand;
@@ -230,6 +253,17 @@ public class Monster : MonoBehaviour
     public virtual void CheckEnemyBuff(BuffInfo EnemyBuff)
     {
 
+    }
+    public void CheckCanSummonMonster(int SummonMonsterCount, int ActiveMonsterCount)
+    {
+        if(SummonMonsterCount + ActiveMonsterCount < 3)
+        {
+            IsCanSummonMonster = true;
+        }
+        else if(SummonMonsterCount + ActiveMonsterCount >= 3)
+        {
+            IsCanSummonMonster = false;
+        }
     }
     public virtual void SetNextMonsterState()
     {
