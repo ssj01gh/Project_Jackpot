@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
-//ÀÌ°Ç °è¼ÓÇØ¼­ ´Ã¾î³ª¾ß ÇÒ enumÀÏµí?
+//ì´ê±´ ê³„ì†í•´ì„œ ëŠ˜ì–´ë‚˜ì•¼ í•  enumì¼ë“¯?
 public enum EMonsterActionState
 {
     Attack,
@@ -86,7 +86,7 @@ public class Monster : MonoBehaviour
     public float HpsliderWidth;
     public float BuffPosUpperHp;
     public float ActionPosUpperHP;
-    [Header("SummonMonsterForSpecialAction")]//¸î¸î Æ¯¼ö ¸ó½ºÅÍ µéÀ» À§ÇÑ ¼ÒÈ¯ÇÒ ¸ó½ºÅÍ Á¾·ù
+    [Header("SummonMonsterForSpecialAction")]//ëª‡ëª‡ íŠ¹ìˆ˜ ëª¬ìŠ¤í„° ë“¤ì„ ìœ„í•œ ì†Œí™˜í•  ëª¬ìŠ¤í„° ì¢…ë¥˜
     public string[] CanSummonMonsterIDs;
     public int SummonMonsterCount;
 
@@ -112,6 +112,12 @@ public class Monster : MonoBehaviour
     protected float CurrentBaseDUR = 0;
     protected float CurrentBaseLUK = 0;
     protected float CurrentBaseSPD = 0;
+
+    protected int SummonMonHP = 0;
+    protected int SummonMonSTR = 0;
+    protected int SummonMonDUR = 0;
+    protected int SummonMonLUK = 0;
+    protected int SummonMonSPD = 0;
     //public int UsedMonsterActionGuageIndex { protected set; get; } = 0;
 
 
@@ -127,11 +133,11 @@ public class Monster : MonoBehaviour
         if(gameObject.activeSelf == true && Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // Ãæµ¹ °Ë»ç//Áö±İ ÀÌ°Å´Â MainBattleÀÌ ÁøÇàÁßÀÏ¶§µµ ¹Ù²î¾î ¹ö¸² ³ªÁß¿¡ ¹Ù²ã¾ßÇÔ
-            //BattleTurnÀÌ ÁøÇàÁßÀÏ¶§ ¾ÈÅ¬¸¯µÇ°Ô...
-            //ÇÊ¿ä¾ø³ª? ¸ó½ºÅÍÀÇ ÅÏÀÏ¶§´Â CurrentTargetÀÌ ÇÊ¿äÇÑ »óÈ²¿¡¼­ ÀüºÎ´Ù CurrentTurnObject°¡ ÀÏÀ» ÇÏ°í.
-            //¸ó½ºÅÍ¸¦ Å¬¸¯ÇÏ°í ¹öÆ°À» ´©¸£´Â ¼ø°£ ÀÌ¹Ì ¸ğµç °è»êÀº ³¡³ªÀÖÀ½.
-            //»ç¶÷ÀÌ ´Ù¸¥ ¸ó½ºÅÍ¸¦ Å¬¸¯ÇØµµ °á°ú´Â ¹Ù²îÁö ¾Ê´Â´Ù.
+            // ì¶©ëŒ ê²€ì‚¬//ì§€ê¸ˆ ì´ê±°ëŠ” MainBattleì´ ì§„í–‰ì¤‘ì¼ë•Œë„ ë°”ë€Œì–´ ë²„ë¦¼ ë‚˜ì¤‘ì— ë°”ê¿”ì•¼í•¨
+            //BattleTurnì´ ì§„í–‰ì¤‘ì¼ë•Œ ì•ˆí´ë¦­ë˜ê²Œ...
+            //í•„ìš”ì—†ë‚˜? ëª¬ìŠ¤í„°ì˜ í„´ì¼ë•ŒëŠ” CurrentTargetì´ í•„ìš”í•œ ìƒí™©ì—ì„œ ì „ë¶€ë‹¤ CurrentTurnObjectê°€ ì¼ì„ í•˜ê³ .
+            //ëª¬ìŠ¤í„°ë¥¼ í´ë¦­í•˜ê³  ë²„íŠ¼ì„ ëˆ„ë¥´ëŠ” ìˆœê°„ ì´ë¯¸ ëª¨ë“  ê³„ì‚°ì€ ëë‚˜ìˆìŒ.
+            //ì‚¬ëŒì´ ë‹¤ë¥¸ ëª¬ìŠ¤í„°ë¥¼ í´ë¦­í•´ë„ ê²°ê³¼ëŠ” ë°”ë€Œì§€ ì•ŠëŠ”ë‹¤.
 
             if (MonCollider != null && MonCollider.OverlapPoint(mousePosition))
             {
@@ -140,7 +146,8 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void SpawnMonster(Vector2 SpawnPosition)
+    public void SpawnMonster(Vector2 SpawnPosition, float SetMonBaseHP = 0, float SetMonBaseATK = 0, float SetMonBaseDUR = 0,
+        float SetMonBaseLUK = 0, float SetMonBaseSPD = 0)
     {
         gameObject.SetActive(true);
         Color MonColor = MonsterBody.color;
@@ -148,6 +155,7 @@ public class Monster : MonoBehaviour
         MonsterBody.color = MonColor;
         MonsterAnimator.speed = 0f;
         gameObject.transform.position = SpawnPosition;
+
 
         if(MasterMonster != null)
         {
@@ -186,14 +194,14 @@ public class Monster : MonoBehaviour
         Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
         MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
 
-        //¸ó½ºÅÍµµ ÇÃ·¹ÀÌ¾îÀÇ »óÅÂ¿¡ ¸Â°Ô ¹öÇÁ¸¦ ¹Ù¾Æ¾ßÇÔ
-        InitAllBuff();//ÀÏ´Ü ÃÊ±âÈ­ ÇÏ°í Ãß°¡
+        //ëª¬ìŠ¤í„°ë„ í”Œë ˆì´ì–´ì˜ ìƒíƒœì— ë§ê²Œ ë²„í”„ë¥¼ ë°”ì•„ì•¼í•¨
+        InitAllBuff();//ì¼ë‹¨ ì´ˆê¸°í™” í•˜ê³  ì¶”ê°€
         SetMonsterStatus();
         SetMonsterVariousBuff();
 
         SetInitBuffByPlayerState();
-        //ÀÏ´ÜÀº ¹æ½É¸¸
-        //°³ÀÎÀû ¸ó½ºÅÍ¿¡´ëÇÑ »óÅÂ¿¡ ´ëÇÑ ¹öÇÁ´Â InitMonsterState¿¡¼­
+        //ì¼ë‹¨ì€ ë°©ì‹¬ë§Œ
+        //ê°œì¸ì  ëª¬ìŠ¤í„°ì—ëŒ€í•œ ìƒíƒœì— ëŒ€í•œ ë²„í”„ëŠ” InitMonsterStateì—ì„œ
         InitMonsterState();
         SpawnFadeIn();
     }
@@ -362,6 +370,20 @@ public class Monster : MonoBehaviour
                     MonTotalStatus.MonsterCurrentSPD += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentLUK += IncreaseStateByGreed;
                     break;
+                case (int)EBuffType.Sloth:
+                    float DecreaseStateBySloth = MonsterBuff.BuffList[(int)EBuffType.Sloth] * 0.15f;
+                    int DecreaseSTRBySloth = (int)(MonTotalStatus.MonsterCurrentATK * DecreaseStateBySloth);
+                    int DecreaseSPDBySloth = (int)(MonTotalStatus.MonsterCurrentSPD * DecreaseStateBySloth);
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK - DecreaseSTRBySloth);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD - DecreaseSPDBySloth);
+                    break;
+                case (int)EBuffType.Wrath:
+                    float IncreaseStateByWrath = 1 + MonsterBuff.BuffList[(int)EBuffType.Wrath] * 0.1f;
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentDUR = (int)(MonTotalStatus.MonsterCurrentDUR * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentLUK = (int)(MonTotalStatus.MonsterCurrentLUK * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD * IncreaseStateByWrath);
+                    break;
             }
         }
         if(MonTotalStatus.MonsterCurrentATK < 0)
@@ -381,17 +403,17 @@ public class Monster : MonoBehaviour
     public void SetMonsterVariousBuff()
     {
         MonsterBuff.BuffList[(int)EBuffType.Defense] = (int)(MonTotalStatus.MonsterCurrentDUR / 5);
-        //ÀÓ½Ã·Î Âª´Ù¸®»õ
+        //ì„ì‹œë¡œ ì§§ë‹¤ë¦¬ìƒˆ
         if(MonsterName == "ABC")
         {
-            //Ã¼·Â 1ÀÏ¶§ 90 ¸¸ÇÇÀÏ¶§ 10
+            //ì²´ë ¥ 1ì¼ë•Œ 90 ë§Œí”¼ì¼ë•Œ 10
             float PrideHpRatio = (MonTotalStatus.MonsterCurrentHP - 1) / (MonTotalStatus.MonsterMaxHP - 1);
             float PrideResult = Mathf.Lerp(90, 10, PrideHpRatio);
             MonsterBuff.BuffList[(int)EBuffType.Pride] = (int)PrideResult;
         }
 
         if (MonsterName == "Doppelganger")
-        {//¿©±â¼­ º¯ÇÏ°Ô....
+        {//ì—¬ê¸°ì„œ ë³€í•˜ê²Œ....
             bool CopySTR = false;
             bool CopyDUR = false;
             bool CopyLUK = false;
@@ -421,7 +443,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void InitAllBuff()//¼ÒÈ¯ µÉ¶§¶û Á×À»¶§//½¯µå·® Æ÷ÇÔ
+    public void InitAllBuff()//ì†Œí™˜ ë ë•Œë‘ ì£½ì„ë•Œ//ì‰´ë“œëŸ‰ í¬í•¨
     {
         BeforeMonsterShield = 0;
         MonTotalStatus.MonsterCurrentShieldPoint = 0;
@@ -435,8 +457,14 @@ public class Monster : MonoBehaviour
     {
         return new Vector2(HpSliderPos.transform.position.x, HpSliderPos.transform.position.y + ActionPosUpperHP);
     }
-    public void MonsterDamage(float DamagePoint)//¿©±â¼­ ½Ï µ¥¹ÌÁö °è»ê
+    public void MonsterDamage(float DamagePoint, bool IsTrueDamage = false)//ì—¬ê¸°ì„œ ì‹¹ ë°ë¯¸ì§€ ê³„ì‚°
     {
+        if(IsTrueDamage == true)
+        {
+            MonTotalStatus.MonsterCurrentHP -= DamagePoint;
+            return;
+        }
+
         if(DamagePoint > 0)
         {
             /*
@@ -444,6 +472,14 @@ public class Monster : MonoBehaviour
             {
                 MonsterBuff.BuffList[(int)EBuffType.Reflect] += (int)DamagePoint;
             } 
+            */
+            //ì„ì‹œë¡œ í™ê³¨ë ˜
+            /*
+            if(MonsterName == "DirtGolem")
+            {
+                MonsterBuff.BuffList[(int)EBuffType.Gluttony] += (int)DamagePoint;
+                return;
+            }
             */
         }
 
@@ -471,7 +507,7 @@ public class Monster : MonoBehaviour
         
         if(RestDamage >= 1)
         {
-            //ÀÏ´Ü Âª´Ù¸®»õ¸¸
+            //ì¼ë‹¨ ì§§ë‹¤ë¦¬ìƒˆë§Œ
             /*
             if(MonsterName == "ShortLegBird")
             {
@@ -498,6 +534,25 @@ public class Monster : MonoBehaviour
         MonTotalStatus.MonsterCurrentShieldPoint += ShieldPoint;
     }
 
+    public int GetSummonMonStatus(string StatusType)
+    {
+        switch(StatusType)
+        {
+            case "HP":
+                return SummonMonHP;
+            case "STR":
+                return SummonMonSTR;
+            case "DUR":
+                return SummonMonDUR;
+            case "LUK":
+                return SummonMonLUK;
+            case "SPD":
+                return SummonMonSPD;
+            default:
+                return 0;
+        }
+    }
+
     //-------------------------SpecialAction------------------------
 
     public virtual void MonsterGetBuff(int i_BuffType, int BuffCount = 0)
@@ -515,7 +570,8 @@ public class Monster : MonoBehaviour
         return BuffCount;
     }
 
-    public virtual List<string> GetSummonMonsters()
+    public virtual List<string> GetSummonMonsters(float SetSummonMonHP = 0, float SetSummonMonSTR = 0, float SetSummonMonDUR = 0,
+        float SetSummonMonLUK = 0, float SetSummonMonSPD = 0)
     {
         List<string> SummonMosnters = new List<string>();
         return SummonMosnters;

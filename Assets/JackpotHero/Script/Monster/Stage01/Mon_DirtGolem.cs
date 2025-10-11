@@ -32,6 +32,7 @@ public class Mon_DirtGolem : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
+        //MonsterCurrentState = (int)EMonsterActionState.ConsumeGluttony;
     }
 
     public override void SetNextMonsterState()
@@ -48,5 +49,29 @@ public class Mon_DirtGolem : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
+        //MonsterCurrentState = (int)EMonsterActionState.ConsumeGluttony;
     }
+
+    /*
+    public override List<string> GetSummonMonsters(float SetSummonMonHP = 0, float SetSummonMonSTR = 0, float SetSummonMonDUR = 0,
+        float SetSummonMonLUK = 0, float SetSummonMonSPD = 0)
+    {
+        if (SetSummonMonHP >= 1)
+        {
+            SummonMonHP = (int)SetSummonMonHP;
+            SummonMonSTR = (int)SetSummonMonSTR;
+            SummonMonDUR = (int)SetSummonMonDUR;
+            SummonMonLUK = (int)SetSummonMonLUK;
+            SummonMonSPD = (int)SetSummonMonSPD;
+        }
+        List<string> SummonMonsters = new List<string>();
+        for (int i = 0; i < SummonMonsterCount; i++)
+        {
+            SummonMonsters.Add(CanSummonMonsterIDs[0]);
+        }
+
+        return SummonMonsters;
+        //return base.GetSummonMonsters();
+    }
+    */
 }

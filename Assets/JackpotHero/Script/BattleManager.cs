@@ -605,11 +605,19 @@ public class BattleManager : MonoBehaviour
                 if (GluttonyMonMaxHP >= GluttonyStack)
                 {//체력이 더 많거나 같을때 -> 소화 가능 -> 졸개 소환
                     CurrentBattleState = "SurvantByGluttony";
+                    int GluttonySummonMonHP = (int)(GluttonyStack * 0.2f);
+                    int GluttonySummonMonStatus = (int)(GluttonyStack * 0.03f);
+
+                    SpawnMonstersID = CurrentTurnObject.GetComponent<Monster>().
+                        GetSummonMonsters(GluttonySummonMonHP, GluttonySummonMonStatus, GluttonySummonMonStatus, GluttonySummonMonStatus, GluttonySummonMonStatus);
+                    SummonerMonster = CurrentTurnObject;
+                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Gluttony] = 0;
                 }
                 else
                 {//체력이 더 적을때 -> 소화 불가능 -> 데미지
                     CurrentBattleState = "CantConsume";
-                    CurrentTurnObject.GetComponent<Monster>().MonsterDamage(GluttonyStack / 2);
+                    CurrentTurnObject.GetComponent<Monster>().MonsterDamage(GluttonyStack / 2, true);
+                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Gluttony] = 0;
                 }
                     //Stack이 자기 자신으 최대 체력보다 적을때는 졸개 소환
                 break;
