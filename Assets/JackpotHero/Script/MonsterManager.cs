@@ -26,7 +26,7 @@ public class MonsterManager : MonoBehaviour
     //public float CurrentSpawnPatternReward { protected set; get; }
     protected const int InAdvanceAmount = 3;
     public Monster CurrentTarget { protected set; get; }
-    public event System.Action<Monster> CurrentTargetChange;//¹èÆ² UI¿¡¼­ ÇöÀç ¸ó½ºÅÍ Ç¥½ÃÇÒ·Á°í ¸¸µç event
+    public event System.Action<Monster> CurrentTargetChange;//ë°°í‹€ UIì—ì„œ í˜„ì¬ ëª¬ìŠ¤í„° í‘œì‹œí• ë ¤ê³  ë§Œë“  event
 
     protected void Awake()
     {
@@ -48,7 +48,7 @@ public class MonsterManager : MonoBehaviour
     {
         for(int i = 0; i < MonsterPrefabs.Length; i++)
         {
-            //ÇØ´ç ÀÌ¸§À» °¡Áø ¸ó½ºÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é
+            //í•´ë‹¹ ì´ë¦„ì„ ê°€ì§„ ëª¬ìŠ¤í„°ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´
             if(!MonsterStorage.ContainsKey(MonsterPrefabs[i].GetComponent<Monster>().MonsterName))
             {
                 List<GameObject> MonsterList = new List<GameObject>();
@@ -66,14 +66,14 @@ public class MonsterManager : MonoBehaviour
         foreach(MonSpawnPattern MSPattern in Tier01SpawnPatternSO)
         {
             int PatternThemeNum = MSPattern.SpawnPatternID / 1000;
-            //ÀúÀåµÈ Å×¸¶°¡ ¾øÀ»°æ¿ì
+            //ì €ì¥ëœ í…Œë§ˆê°€ ì—†ì„ê²½ìš°
             if(!Tier01PatternStorage.ContainsKey(PatternThemeNum))
             {
                 List<MonSpawnPattern> MonTier01SpawnList = new List<MonSpawnPattern>();
                 MonTier01SpawnList.Add(MSPattern);
                 Tier01PatternStorage.Add(PatternThemeNum, MonTier01SpawnList);
             }
-            else//ÀúÀåµÈ Å×¸¶°¡ ÀÖÀ»°æ¿ì
+            else//ì €ì¥ëœ í…Œë§ˆê°€ ìˆì„ê²½ìš°
             {
                 Tier01PatternStorage[PatternThemeNum].Add(MSPattern);
             }
@@ -82,7 +82,7 @@ public class MonsterManager : MonoBehaviour
         foreach (MonSpawnPattern MSPattern in Tier02SpawnPatternSO)
         {
             int PatternThemeNum = MSPattern.SpawnPatternID / 1000;
-            //ÀúÀåµÈ Å×¸¶°¡ ¾øÀ»°æ¿ì
+            //ì €ì¥ëœ í…Œë§ˆê°€ ì—†ì„ê²½ìš°
             if(!Tier02PatternStorage.ContainsKey(PatternThemeNum))
             {
                 List<MonSpawnPattern> MonTier02SpawnList = new List<MonSpawnPattern>();
@@ -130,8 +130,8 @@ public class MonsterManager : MonoBehaviour
         return ActiveMonsters;
     }
 
-    public void SetBossSpawn(PlayerManager PMgr)//¿©±â´Â º¸½º¸¦ ÃÖÃÊ·Î Á¤ÇÒ¶§¸¸ µé¾î¿È
-    {//1½ºÅ×ÀÌÁö ¶ó¸é 1200 ~ // 2½ºÅ×ÀÌÁö ¶ó¸é 2200~
+    public void SetBossSpawn(PlayerManager PMgr)//ì—¬ê¸°ëŠ” ë³´ìŠ¤ë¥¼ ìµœì´ˆë¡œ ì •í• ë•Œë§Œ ë“¤ì–´ì˜´
+    {//1ìŠ¤í…Œì´ì§€ ë¼ë©´ 1200 ~ // 2ìŠ¤í…Œì´ì§€ ë¼ë©´ 2200~
         int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor;
         int DetailOfEvents = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
         int RandBossPatternID = Random.Range(0, BossPatternStorage[ThemeNum].Count);
@@ -142,13 +142,13 @@ public class MonsterManager : MonoBehaviour
     }
     public void SetSpawnPattern(PlayerManager PMgr)
     {
-        //DetailOfEvents´Â 1000 ~ ·Î µÊ 1Å×¸¶¶ó¸é 1000~ 2Å×¸¶ ¶ó¸é 2000~½ÄÀÌ´Ù
+        //DetailOfEventsëŠ” 1000 ~ ë¡œ ë¨ 1í…Œë§ˆë¼ë©´ 1000~ 2í…Œë§ˆ ë¼ë©´ 2000~ì‹ì´ë‹¤
         int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor;
         int DetailOfEvents = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
-        int CurrentSearchPoint = PMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint;//0 -> 1Æ¼¾î 100% 40 -> 2Æ¼¾î 100%
-        //ÆĞÅÏÀ» °áÁ¤ÇÏ±â Àü¿¡ ÀÌ¹Ì Á¤ÇØÁø ÆĞÅÏÀÌ ÀÖ´Ù¸é ¸®ÅÏ -> ÀÌ¹Ì ½ºÆù ÆĞÅÏÀÌ °áÁ¤µÈ »óÅÂ(²¯´Ù Å²°ÅÀÓ)
+        int CurrentSearchPoint = PMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint;//0 -> 1í‹°ì–´ 100% 40 -> 2í‹°ì–´ 100%
+        //íŒ¨í„´ì„ ê²°ì •í•˜ê¸° ì „ì— ì´ë¯¸ ì •í•´ì§„ íŒ¨í„´ì´ ìˆë‹¤ë©´ ë¦¬í„´ -> ì´ë¯¸ ìŠ¤í° íŒ¨í„´ì´ ê²°ì •ëœ ìƒíƒœ(ê»ë‹¤ í‚¨ê±°ì„)
         if(DetailOfEvents % 1000 < 100 && DetailOfEvents % 1000 >= 0)
-        {//0~99ÀÌ¶ó¸é 1Æ¼¾î // 0 ~ 99ÀÓ 0ÀÌ¸é ÆĞÅÏÀ» °áÁ¤ÇØ¾ß µÇ´Â°ÅÀÓ
+        {//0~99ì´ë¼ë©´ 1í‹°ì–´ // 0 ~ 99ì„ 0ì´ë©´ íŒ¨í„´ì„ ê²°ì •í•´ì•¼ ë˜ëŠ”ê±°ì„
             for (int i = 0; i < Tier01PatternStorage[ThemeNum].Count; i++)
             {
                 if (Tier01PatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
@@ -159,7 +159,7 @@ public class MonsterManager : MonoBehaviour
             }
         }
         else if(DetailOfEvents % 1000 >= 100 && DetailOfEvents % 1000 < 200 )
-        {//100 ~ 199¶ó¸é 2Æ¼¾î
+        {//100 ~ 199ë¼ë©´ 2í‹°ì–´
             for (int i = 0; i < Tier02PatternStorage[ThemeNum].Count; i++)
             {
                 if (Tier02PatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
@@ -170,7 +170,7 @@ public class MonsterManager : MonoBehaviour
             }
         }
         else if(DetailOfEvents % 1000 >= 200 && DetailOfEvents % 1000 < 300)
-        {//º¸½ºÀüÀÏ¶§ ²¯´Ù Å°¸é ¿©±â·Î µé¾î¿È//200 ~ 299¶ó¸é º¸½º
+        {//ë³´ìŠ¤ì „ì¼ë•Œ ê»ë‹¤ í‚¤ë©´ ì—¬ê¸°ë¡œ ë“¤ì–´ì˜´//200 ~ 299ë¼ë©´ ë³´ìŠ¤
             for (int i = 0; i < BossPatternStorage[ThemeNum].Count; i++)
             {
                 if (BossPatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
@@ -181,7 +181,7 @@ public class MonsterManager : MonoBehaviour
             }
         }
         else if(DetailOfEvents % 1000 >= 300 && DetailOfEvents % 1000 < 400)
-        {//300 ~ 399¶ó¸é ÀÌº¥Æ® ¸ó½ºÅÍ ½ºÆù
+        {//300 ~ 399ë¼ë©´ ì´ë²¤íŠ¸ ëª¬ìŠ¤í„° ìŠ¤í°
             for(int i = 0; i < EventPatternStorage[ThemeNum].Count; i++)
             {
                 if (EventPatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
@@ -192,32 +192,32 @@ public class MonsterManager : MonoBehaviour
             }
         }
 
-        //À§¿¡¼­ °É·¯ÁöÁö ¾Ê¾Ò´Ù¸é »õ·Î °áÁ¤
+        //ìœ„ì—ì„œ ê±¸ëŸ¬ì§€ì§€ ì•Šì•˜ë‹¤ë©´ ìƒˆë¡œ ê²°ì •
         int RandNum = Random.Range(0, 41);
         if(RandNum >= CurrentSearchPoint)
-        {//¿©±â°¡ 1Æ¼¾î
+        {//ì—¬ê¸°ê°€ 1í‹°ì–´
             if(Tier01PatternStorage.ContainsKey(ThemeNum))
-            {//ÇØ´ç Å×¸¶¸¦ Áö´Ï°í ÀÖÀ»¶§
+            {//í•´ë‹¹ í…Œë§ˆë¥¼ ì§€ë‹ˆê³  ìˆì„ë•Œ
                 RandNum = Random.Range(0, Tier01PatternStorage[ThemeNum].Count);
                 CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][RandNum];
                 PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//°áÁ¤ µÈ°Å ÀúÀå
+                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//ê²°ì • ëœê±° ì €ì¥
                 return;
             }
         }
         else
-        {//¿©±â°¡ 2Æ¼¾î
+        {//ì—¬ê¸°ê°€ 2í‹°ì–´
             if (Tier02PatternStorage.ContainsKey(ThemeNum))
-            {//ÇØ´ç Å×¸¶¸¦ Áö´Ï°í ÀÖÀ»¶§
+            {//í•´ë‹¹ í…Œë§ˆë¥¼ ì§€ë‹ˆê³  ìˆì„ë•Œ
                 RandNum = Random.Range(0, Tier02PatternStorage[ThemeNum].Count);
                 CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][RandNum];
                 PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//°áÁ¤ µÈ°Å ÀúÀå
+                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//ê²°ì • ëœê±° ì €ì¥
                 return;
             }
         }
 
-        //¿©±â ±îÁö ¿Â°Å¸é ThemeNum°¡ ¾ø´Â°ÅÀÓ
+        //ì—¬ê¸° ê¹Œì§€ ì˜¨ê±°ë©´ ThemeNumê°€ ì—†ëŠ”ê±°ì„
         Debug.Log("NoThemeNum");
     }
 
@@ -228,21 +228,21 @@ public class MonsterManager : MonoBehaviour
             ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
         }
         ActiveMonsters.Clear();
-        for (int i = 0; i < CurrentSpawnPattern.SpawnMonsterName.Length; i++)//0~2±îÁö ¹Û¿¡ ¾È³ª¿È
+        for (int i = 0; i < CurrentSpawnPattern.SpawnMonsterName.Length; i++)//0~2ê¹Œì§€ ë°–ì— ì•ˆë‚˜ì˜´
         {
-            if (CurrentSpawnPattern.SpawnMonsterName[i] == "")//ºñ¾îÀÖ´Ù¸é
-                continue;//°Ç³Ê ¶Ù±â
+            if (CurrentSpawnPattern.SpawnMonsterName[i] == "")//ë¹„ì–´ìˆë‹¤ë©´
+                continue;//ê±´ë„ˆ ë›°ê¸°
             else
             {
-                if (!MonsterStorage.ContainsKey(CurrentSpawnPattern.SpawnMonsterName[i]))//Dictionary¿¡ ¾ø´Ù¸é
+                if (!MonsterStorage.ContainsKey(CurrentSpawnPattern.SpawnMonsterName[i]))//Dictionaryì— ì—†ë‹¤ë©´
                 {
-                    continue;//°Ç³Ê¶Ù±â
+                    continue;//ê±´ë„ˆë›°ê¸°
                 }
-                else//ÀÖ´Ù¸é
+                else//ìˆë‹¤ë©´
                 {
                     for (int j = 0; j < MonsterStorage[CurrentSpawnPattern.SpawnMonsterName[i]].Count; j++)
                     {
-                        //ºñÈ°¼ºÈ­ µÇ¾îÀÖ´Â ¸ó½ºÅÍ¶ó¸é È°¼ºÈ­, ActiveMonsters¿¡ µî·Ï
+                        //ë¹„í™œì„±í™” ë˜ì–´ìˆëŠ” ëª¬ìŠ¤í„°ë¼ë©´ í™œì„±í™”, ActiveMonstersì— ë“±ë¡
                         if (MonsterStorage[CurrentSpawnPattern.SpawnMonsterName[i]][j].activeSelf == false)
                         {
                             MonsterStorage[CurrentSpawnPattern.SpawnMonsterName[i]][j].GetComponent<Monster>().SpawnMonster(MonsterSpawnPoint[i].transform.position);
@@ -260,11 +260,11 @@ public class MonsterManager : MonoBehaviour
 
     public void SpawnMonsterBySummonMonster(List<string> MonsterID, GameObject SummonerMonster)
     {
-        //»ì¾Æ ÀÖ´Â ¸ó½ºÅÍ¿Í ¸ó½ºÅÍ ½ºÆù°¡´É À§Ä¡ÀÇ ÁÂÇ¥¸¦ ºñ±³ÇØ¼­ ½ºÆù°¡´ÉÇÑ Áö¿ªÀ» Ã£À½
-        //»ì¾ÆÀÖ´Â ¸ó½ºÅÍ°¡ 3¸¶¸® ÀÌ»óÀÌ¸é ±×³É return -> ¾îÂ¥ÇÇ ºñ¾î ÀÖ´Â°÷ÀÌ ¾øÀ½
-        //¸¸¾à¿¡ ½ºÆù °¡´ÉÇÑ À§Ä¡°¡ ¾ø´Ù¸é ±×´ë·Î return(½ºÆùÇÏÁö ¾ÊÀ½)
-        //½ºÆù °¡´ÉÇÑ À§Ä¡°¡ ÀÖ´Ù¸é ¾Õ¿¡¼­ ºÎÅÍ ½ºÆùÇÏ°í ½ºÆù °¡´ÉÇÑ À§Ä¡°¡ ¾ø¾îÁö¸é ½ºÆùÇÏÁö ¾ÊÀ½
-        //MonsterID.Count¿Í CanSpwanPont.CountÁß Å«°ÍÀ» ±âÁØÀ¸·Î ¸ó½ºÅÍ¸¦ ½ºÆùÇÔ
+        //ì‚´ì•„ ìˆëŠ” ëª¬ìŠ¤í„°ì™€ ëª¬ìŠ¤í„° ìŠ¤í°ê°€ëŠ¥ ìœ„ì¹˜ì˜ ì¢Œí‘œë¥¼ ë¹„êµí•´ì„œ ìŠ¤í°ê°€ëŠ¥í•œ ì§€ì—­ì„ ì°¾ìŒ
+        //ì‚´ì•„ìˆëŠ” ëª¬ìŠ¤í„°ê°€ 3ë§ˆë¦¬ ì´ìƒì´ë©´ ê·¸ëƒ¥ return -> ì–´ì§œí”¼ ë¹„ì–´ ìˆëŠ”ê³³ì´ ì—†ìŒ
+        //ë§Œì•½ì— ìŠ¤í° ê°€ëŠ¥í•œ ìœ„ì¹˜ê°€ ì—†ë‹¤ë©´ ê·¸ëŒ€ë¡œ return(ìŠ¤í°í•˜ì§€ ì•ŠìŒ)
+        //ìŠ¤í° ê°€ëŠ¥í•œ ìœ„ì¹˜ê°€ ìˆë‹¤ë©´ ì•ì—ì„œ ë¶€í„° ìŠ¤í°í•˜ê³  ìŠ¤í° ê°€ëŠ¥í•œ ìœ„ì¹˜ê°€ ì—†ì–´ì§€ë©´ ìŠ¤í°í•˜ì§€ ì•ŠìŒ
+        //MonsterID.Countì™€ CanSpwanPont.Countì¤‘ í°ê²ƒì„ ê¸°ì¤€ìœ¼ë¡œ ëª¬ìŠ¤í„°ë¥¼ ìŠ¤í°í•¨
         if (MonsterID.Count >= InAdvanceAmount)
             return;
 
@@ -275,44 +275,42 @@ public class MonsterManager : MonoBehaviour
             Debug.Log(ActiveMonsters.Count);
             for (int j = 0; j < ActiveMonsters.Count; j++)
             {
-                //ActiveMonsterÀÇ ¸ğµÎ°¡ MonsterSpawnPoint[i]¿Í °°Àº À§Ä¡°¡ ¾Æ´Ï¿©¾ßÁö¸¸ ºñ¾îÀÖ´Â °ÍÀÓ
+                //ActiveMonsterì˜ ëª¨ë‘ê°€ MonsterSpawnPoint[i]ì™€ ê°™ì€ ìœ„ì¹˜ê°€ ì•„ë‹ˆì—¬ì•¼ì§€ë§Œ ë¹„ì–´ìˆëŠ” ê²ƒì„
                 if (Vector2.Distance(MonsterSpawnPoint[i].transform.position, ActiveMonsters[j].transform.position) <= 0.1f)
                 {
                     IsEmptySpawnPoint = false;
                     break;
-                    //¿©±â µé¾î¿Ô´Ù´Â °Í = ºñ¾îÀÖÁö ¾ÊÀº °ÍÀÓ
+                    //ì—¬ê¸° ë“¤ì–´ì™”ë‹¤ëŠ” ê²ƒ = ë¹„ì–´ìˆì§€ ì•Šì€ ê²ƒì„
                 }
             }
             if(IsEmptySpawnPoint == true)
             {
-                //ÀÌ°Ô trueÀÌ´Ù : ÀÌ MonsterSpawnPoint[i]ÀÇ ÁÂÇ¥´Â ºñ¾îÀÖ´Â °ÍÀÓ
+                //ì´ê²Œ trueì´ë‹¤ : ì´ MonsterSpawnPoint[i]ì˜ ì¢Œí‘œëŠ” ë¹„ì–´ìˆëŠ” ê²ƒì„
                 CanSpawnPoint.Add(MonsterSpawnPoint[i].transform.position);
             }
         }
 
-        if (CanSpawnPoint.Count <= 0)//ºñ¾îÀÖ´Â Àå¼Ò°¡ ¾ø´Ù¸é
+        if (CanSpawnPoint.Count <= 0)//ë¹„ì–´ìˆëŠ” ì¥ì†Œê°€ ì—†ë‹¤ë©´
             return;
 
         int SpawnCount = 0;
-        if (CanSpawnPoint.Count >= MonsterID.Count)//ÀÛÀº ÂÊÀ» ±âÁØÀ¸·Î
+        if (CanSpawnPoint.Count >= MonsterID.Count)//ì‘ì€ ìª½ì„ ê¸°ì¤€ìœ¼ë¡œ
             SpawnCount = MonsterID.Count;
         else
             SpawnCount = CanSpawnPoint.Count;
 
         for(int i = 0; i < SpawnCount; i ++)
         {
-            if (MonsterStorage.ContainsKey(MonsterID[i]))//ÇØ´ç ¸ó½ºÅÍ°¡ ÀÖ´Ù¸é
+            if (MonsterStorage.ContainsKey(MonsterID[i]))//í•´ë‹¹ ëª¬ìŠ¤í„°ê°€ ìˆë‹¤ë©´
             {
                 for(int j = 0; j < MonsterStorage[MonsterID[i]].Count; j++)
                 {
-                    if (MonsterStorage[MonsterID[i]][j].activeSelf == false)//²¨Á®ÀÖÀ»¶§¸¸ ¼ÒÈ¯
+                    if (MonsterStorage[MonsterID[i]][j].activeSelf == false)//êº¼ì ¸ìˆì„ë•Œë§Œ ì†Œí™˜
                     {
-                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().SpawnMonster(CanSpawnPoint[i],
-                            SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("HP"), SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("STR"),
-                            SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("DUR"), SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("LUK"),
-                            SummonerMonster.GetComponent<Monster>().GetSummonMonStatus("SPD"));
-                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MonsterClicked += SetCurrentTargetMonster;
+
                         MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MasterMonster = SummonerMonster;
+                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().SpawnMonster(CanSpawnPoint[i]);
+                        MonsterStorage[MonsterID[i]][j].GetComponent<Monster>().MonsterClicked += SetCurrentTargetMonster;
 
                         ActiveMonsters.Add(MonsterStorage[MonsterID[i]][j]);
                         break;
@@ -330,7 +328,7 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
-    //ActiveMonsterÁß CurrentHp°¡ 0ÀÌÇÏ°¡ µÈ³ğÀº ¾ø¾Ö±â
+    //ActiveMonsterì¤‘ CurrentHpê°€ 0ì´í•˜ê°€ ëœë†ˆì€ ì—†ì• ê¸°
     public List<int> CheckActiveMonstersRSurvive(PlayerManager PlayerMgr)
     {
         List<int> DeadMonsterReward = new List<int>();
@@ -339,20 +337,31 @@ public class MonsterManager : MonoBehaviour
         {
             if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
             {
-                if (ActiveMonsters[i].GetComponent<Monster>().IsTierOne == true)//1Æ¼¾î
+                if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.UnDead] >= 1)
                 {
-                    PlayerMgr.GetPlayerInfo().RecordKillCount(1);
+                    ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP = 1;
+                    ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.UnDead] = 0;
+                    EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", ActiveMonsters[i].gameObject.transform.position);
+                    continue;
                 }
-                else if (ActiveMonsters[i].GetComponent<Monster>().IsSummonTier == true)
-                {
 
+                if (ActiveMonsters[i].GetComponent<Monster>().IsSummonTier == true)
+                {
+                    //ì—¬ê¸°ì— ë“¤ì–´ì˜¤ë©´ ì•„ë¬´ê²ƒë„ ì•ˆì¤‘ê°€í•˜ê²Œ
                 }
                 else
                 {
-                    PlayerMgr.GetPlayerInfo().RecordKillCount(0, 1);
+                    if (ActiveMonsters[i].GetComponent<Monster>().IsTierOne == true)//1í‹°ì–´
+                    {
+                        PlayerMgr.GetPlayerInfo().RecordKillCount(1);
+                    }
+                    else
+                    {
+                        PlayerMgr.GetPlayerInfo().RecordKillCount(0, 1);
+                    }
                 }
 
-                ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//¸ğµç ¹öÇÁµé ¾ø¾Ö±â
+                ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//ëª¨ë“  ë²„í”„ë“¤ ì—†ì• ê¸°
                 ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
                 ActiveMonsters[i].GetComponent<Monster>().MasterMonster = null;
                 ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
@@ -365,16 +374,16 @@ public class MonsterManager : MonoBehaviour
                 ActiveMonsters.RemoveAt(i);
             }
         }
-        //À§ÂÊ¿¡¼­ Á×Àº ¾ÖµéÀ» ´Ù °Å¸§//Á×Àº ¾ÖµéÁß¿¡¼­ ÁÖÀÎÀÌ µÇ´Â ¸ó½ºÅÍ°¡ ÀÖ´Ù¸é survantµµ Á×ÀÓ
+        //ìœ„ìª½ì—ì„œ ì£½ì€ ì• ë“¤ì„ ë‹¤ ê±°ë¦„//ì£½ì€ ì• ë“¤ì¤‘ì—ì„œ ì£¼ì¸ì´ ë˜ëŠ” ëª¬ìŠ¤í„°ê°€ ìˆë‹¤ë©´ survantë„ ì£½ì„
         for (int i = ActiveMonsters.Count - 1; i >= 0; i--)
         {
             if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Survant] >= 1)
-            {//Á¹°³°¡ ÀÖ´Ù¸é Á×Àº ¾ÖµéÁß¿¡ ºñ±³ÇÔ
+            {//ì¡¸ê°œê°€ ìˆë‹¤ë©´ ì£½ì€ ì• ë“¤ì¤‘ì— ë¹„êµí•¨
                 for(int j = 0; j < DeadMonsters.Count; j++)
                 {
                     if (ActiveMonsters[i].GetComponent<Monster>().MasterMonster == DeadMonsters[j])
-                    {//Á×Àº ¾ÖµéÁß¿¡ ¸¶½ºÅÍ°¡ ÀÖ´Ù¸é
-                        ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//¸ğµç ¹öÇÁµé ¾ø¾Ö±â
+                    {//ì£½ì€ ì• ë“¤ì¤‘ì— ë§ˆìŠ¤í„°ê°€ ìˆë‹¤ë©´
+                        ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//ëª¨ë“  ë²„í”„ë“¤ ì—†ì• ê¸°
                         ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
                         ActiveMonsters[i].GetComponent<Monster>().MasterMonster = null;
                         ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
@@ -385,38 +394,23 @@ public class MonsterManager : MonoBehaviour
                 }
             }
         }
-        //¸¸¾à DeadCount°¡ 1ÀÌ»óÀÎµ¥, »ì¾ÆÀÖ´Â ¸ó½ºÅÍÁß¿¡ È£¹®Å¬·ç½º°¡ ÀÖ´Ù¸é ±×³ğ¿¡°Ô Èí¼ö ºÎ¿©
+        //ë§Œì•½ DeadCountê°€ 1ì´ìƒì¸ë°, ì‚´ì•„ìˆëŠ” ëª¬ìŠ¤í„°ì¤‘ì— í˜¸ë¬¸í´ë£¨ìŠ¤ê°€ ìˆë‹¤ë©´ ê·¸ë†ˆì—ê²Œ í¡ìˆ˜ ë¶€ì—¬
         if(DeadMonsters.Count >= 1)
         {
             for(int i = 0; i < ActiveMonsters.Count; i++)
             {
-                /*
-                //Áö±İÀº ÀÓ½Ã·Î Âª´Ù¸®»õ
-                if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "ShortLegBird")
+                
+                //ì§€ê¸ˆì€ ì„ì‹œë¡œ ì§§ë‹¤ë¦¬ìƒˆ
+                if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "Homunculus")
                 {
-                    //DeadMonsters.Count¸¸Å­ ¹İº¹
+                    //DeadMonsters.Countë§Œí¼ ë°˜ë³µ
                     for(int j = 0; j < DeadMonsters.Count; j++)
                     {
-                        //´ÜÇÇ¸¦ ¾È°¡Áö°í ÀÖÀ»¶§
-                        if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ToughSkin] < 1)
-                            ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.ToughSkin, 99);
-                        else
-                        {//´ÜÇÇ´Â °¡Áö°í ÀÖ°í
-                         //´ÜÁÖ¸¦ ¾È°¡Áö°í ÀÖÀ»¶§
-                            if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ToughFist] < 1)
-                                ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.ToughFist, 99);
-                            else
-                            {//´ÜÇÇ, ´ÜÁÖ¸¦ °¡Áö°í ÀÖÀ»¶§
-                                if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Luck] < 1)
-                                    ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Luck, 99);
-                            }
-                        }
-
-                        ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Consume, 1);
+                        ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Consume);
                     }
                     
                 }
-                */
+                
             }
         }
 
@@ -428,7 +422,7 @@ public class MonsterManager : MonoBehaviour
     {
         for(int i = 0; i < ActiveMonsters.Count; i++)
         {
-            if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Provocation] >= 1)//µµ¹ßÀÌ ÀÖ´Ù¸é
+            if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Provocation] >= 1)//ë„ë°œì´ ìˆë‹¤ë©´
             {
                 CurrentTarget = ActiveMonsters[i].GetComponent<Monster>();
                 break;
@@ -439,14 +433,14 @@ public class MonsterManager : MonoBehaviour
 
     public void SetActiveMonsterChainAttack(bool IsMonsterTurn, bool IsAttack , Monster CurrentTurnMon = null)
     {
-        //¸ó½ºÅÍÀÇ ¿¬¼Ó Å¸°İÀÌ ÃÊ±âÈ­ µÇ´Â °æ¿ì -> ÇÃ·¹ÀÌ¾îÀÇ ÅÏÀÏ¶§ È¤Àº ÀÚ½ÅÀÌ °ø°İ ÀÌ¿ÜÀÇ Çàµ¿À» ÇÒ¶§
+        //ëª¬ìŠ¤í„°ì˜ ì—°ì† íƒ€ê²©ì´ ì´ˆê¸°í™” ë˜ëŠ” ê²½ìš° -> í”Œë ˆì´ì–´ì˜ í„´ì¼ë•Œ í˜¹ì€ ìì‹ ì´ ê³µê²© ì´ì™¸ì˜ í–‰ë™ì„ í• ë•Œ
         for(int i = 0; i < ActiveMonsters.Count; i++)
         {
             if(IsMonsterTurn == true && IsAttack == true)
-            {//¸ó½ºÅÍÀÇ ÅÏÀÌ°í, °ø°İÀÌ¸ç, ÇöÀçÅÏÀÇ ¸ó½ºÅÍ°¡ Æ¯Á¤ ¸ó½ºÅÍÀÏ¶§
+            {//ëª¬ìŠ¤í„°ì˜ í„´ì´ê³ , ê³µê²©ì´ë©°, í˜„ì¬í„´ì˜ ëª¬ìŠ¤í„°ê°€ íŠ¹ì • ëª¬ìŠ¤í„°ì¼ë•Œ
                 if(CurrentTurnMon == ActiveMonsters[i].GetComponent<Monster>())
                 {
-                    switch(ActiveMonsters[i].GetComponent<Monster>().MonsterName)//ÀÓ½Ã·Î Âª´Ù¸®»õ
+                    switch(ActiveMonsters[i].GetComponent<Monster>().MonsterName)//ì„ì‹œë¡œ ì§§ë‹¤ë¦¬ìƒˆ
                     {
                         /*
                         case "ShortLegBird":
@@ -463,7 +457,7 @@ public class MonsterManager : MonoBehaviour
                     ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] = 0;
                 }
             }
-            else//¸ó½ºÅÍÀÇ ÅÏÀÌ ¾Æ´Ò¶§
+            else//ëª¬ìŠ¤í„°ì˜ í„´ì´ ì•„ë‹ë•Œ
             {
                 ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] = 0;
             }
@@ -473,13 +467,11 @@ public class MonsterManager : MonoBehaviour
     public void SetAcitveMonsterMountainLord()
     {
         for (int i = 0; i < ActiveMonsters.Count; i++)
-        {//»ì¾ÆÀÖ´Â ¸ó½ºÅÍ Áß¿¡ »ê±º¸¸ ÇØ´çµÇ°Ô(Å×½ºÆ®¿¡¼­´Â Âª´Ù¸®»õ)
-            /*
-            if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "ShortLegBird")
+        {
+            if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "MountainLord")
             {
                 ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.MountainLord] += 1;
             }
-            */
         }
     }
 
@@ -492,9 +484,9 @@ public class MonsterManager : MonoBehaviour
             ActiveMonsters.RemoveAt(i);
         }
     }
-    public void SetCurrentTargetMonster(Monster ClickedMonster)//¸ó½ºÅÍ°¡ Å¬¸¯ÀÌ µÇ¸é ÀÌ ÇÔ¼ö°¡ ½ÇÇàµÊ
+    public void SetCurrentTargetMonster(Monster ClickedMonster)//ëª¬ìŠ¤í„°ê°€ í´ë¦­ì´ ë˜ë©´ ì´ í•¨ìˆ˜ê°€ ì‹¤í–‰ë¨
     {
-        //MainBattleUI°¡ ÄÑÀú ÀÖÀ»¶§´Â Å¬¸¯ÀÌ ¾ÈµÇ¾ßµÊ
+        //MainBattleUIê°€ ì¼œì € ìˆì„ë•ŒëŠ” í´ë¦­ì´ ì•ˆë˜ì•¼ë¨
         if (ClickedMonster == null)
         {
             CurrentTarget = null;

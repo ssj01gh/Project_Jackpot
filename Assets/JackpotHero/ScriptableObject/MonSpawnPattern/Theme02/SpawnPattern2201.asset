@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 063d4d55861b56e49a5fd0bc9cc7207e, type: 3}
-  m_Name: SpawnPattern2004
+  m_Name: SpawnPattern2201
   m_EditorClassIdentifier: 
-  SpawnPatternID: 2004
+  SpawnPatternID: 2201
   SpawnMonsterName:
   - 
-  - DirtGolem
+  - ForestWitch
   - 

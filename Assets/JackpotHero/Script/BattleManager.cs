@@ -143,6 +143,7 @@ public class BattleManager : MonoBehaviour
             SoundManager.Instance.PlayBGM("NormalBattleBGM");
         }
 
+        //몬스터는 여기서 불사를 계산해야함
         List<int> RewardEXPs = MonMgr.CheckActiveMonstersRSurvive(PlayerMgr);//현재 스폰된 몬스터중 죽은 몬스터 정리//죽을때 Reward증가
         if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack == -1)
         {//-1이란 것은 습격이 아니다 -> 보상을 획득 해야 한다.
@@ -162,6 +163,12 @@ public class BattleManager : MonoBehaviour
         if(CurrentTurnObject != null)
         {
             AfterBuffProgress();//AfterBuffProgress
+            //위축 -> 공포는 모든 턴마다 전환
+            while (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 3)
+            {
+                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] -= 3;
+                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
+            }
         }
         //스탯 계산
         MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
@@ -499,12 +506,12 @@ public class BattleManager : MonoBehaviour
                 if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
                 {//여기에 들어오면 적응_힘 증가
                     //임시로 짧다리새
-                    /*
-                    if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "ShortLegBird")
+                    
+                    if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "ABC")
                     {
                         CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.StrengthAdaptation] += 1;
                     }
-                    */
+                    
                     IsTargetHasShield = true;
                 }
                 break;
@@ -618,6 +625,18 @@ public class BattleManager : MonoBehaviour
                 CurrentBattleState = "DefenseDebuff";
                 PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.DefenseDebuff, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.DefenseDebuff));
                 break;
+            case (int)EMonsterActionState.ApplyRegeneration:
+                CurrentBattleState = "Regeneration";
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Regeneration);
+                break;
+            case (int)EMonsterActionState.GiveBurn:
+                CurrentBattleState = "Burn";
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Burn, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Burn));
+                break;
+            case (int)EMonsterActionState.GiveAttackDebuff:
+                CurrentBattleState = "AttackDebuff";
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.AttackDebuff, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.AttackDebuff));
+                break;
             default:
                 CurrentBattleState = "Another";
                 break;
@@ -626,6 +645,7 @@ public class BattleManager : MonoBehaviour
         MonMgr.SetActiveMonsterChainAttack(true, IsMonsterAttack, CurrentTurnObject.GetComponent<Monster>());
 
         CurrentTurnObject.GetComponent<Monster>().CheckEnemyBuff(PlayerMgr.GetPlayerInfo().PlayerBuff);
+        CurrentTurnObject.GetComponent<Monster>().CheckCanSummonMonster(SpawnMonstersID.Count, MonMgr.GetActiveMonsters().Count);
         CurrentTurnObject.GetComponent<Monster>().SetNextMonsterState();//몬스터의 행동 패턴에 따라 다음 행동 결정
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
@@ -798,11 +818,13 @@ public class BattleManager : MonoBehaviour
                         }
                         break;
                     case (int)EBuffType.Cower:
+                        /*
                         while(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 3)
                         {
                             PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] -= 3;
                             PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
                         }
+                        */
                         break;
                     case (int)EBuffType.Fear:
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerBuffPos);
@@ -856,6 +878,8 @@ public class BattleManager : MonoBehaviour
                         }
                         break;
                     case (int)EBuffType.UnDead:
+                        MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
+                        /*
                         if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP < 1)
                         {
                             MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP = 1;
@@ -866,6 +890,7 @@ public class BattleManager : MonoBehaviour
                         {
                             MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
                         }
+                        */
                         break;
                     case (int)EBuffType.Survant:
                         if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.Survant] <= 1)
@@ -1359,6 +1384,11 @@ public class BattleManager : MonoBehaviour
             Monster.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentShieldPoint = 0;
         }
         Monster.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Defenseless] = 0;
+
+        if(Monster.GetComponent<Monster>().MonsterName == "MountainLord")
+        {
+            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] += 1;
+        }
     }
 
     //CalculatePlayerAction

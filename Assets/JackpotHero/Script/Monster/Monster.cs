@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
-//ÀÌ°Ç °è¼ÓÇØ¼­ ´Ã¾î³ª¾ß ÇÒ enumÀÏµí?
+//ì´ê±´ ê³„ì†í•´ì„œ ëŠ˜ì–´ë‚˜ì•¼ í•  enumì¼ë“¯?
 public enum EMonsterActionState
 {
     Attack,
@@ -26,7 +26,10 @@ public enum EMonsterActionState
     ApplyGreed,
     GiveEnvy,
     ConsumeGluttony,
-    GiveDefenseDebuff
+    GiveDefenseDebuff,
+    ApplyRegeneration,
+    GiveBurn,
+    GiveAttackDebuff
 }
 public class MonsterCurrentStatus
 {
@@ -83,7 +86,7 @@ public class Monster : MonoBehaviour
     public float HpsliderWidth;
     public float BuffPosUpperHp;
     public float ActionPosUpperHP;
-    [Header("SummonMonsterForSpecialAction")]//¸î¸î Æ¯¼ö ¸ó½ºÅÍ µéÀ» À§ÇÑ ¼ÒÈ¯ÇÒ ¸ó½ºÅÍ Á¾·ù
+    [Header("SummonMonsterForSpecialAction")]//ëª‡ëª‡ íŠ¹ìˆ˜ ëª¬ìŠ¤í„° ë“¤ì„ ìœ„í•œ ì†Œí™˜í•  ëª¬ìŠ¤í„° ì¢…ë¥˜
     public string[] CanSummonMonsterIDs;
     public int SummonMonsterCount;
 
@@ -102,6 +105,8 @@ public class Monster : MonoBehaviour
     protected MonsterCurrentStatus MonTotalStatus = new MonsterCurrentStatus();
     protected Collider2D MonCollider;
     public int BeforeMonsterShield { protected set; get; } = 0;
+
+    protected bool IsCanSummonMonster = false;
 
     protected float CurrentBaseATK = 0;
     protected float CurrentBaseDUR = 0;
@@ -128,11 +133,11 @@ public class Monster : MonoBehaviour
         if(gameObject.activeSelf == true && Input.GetMouseButtonDown(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // Ãæµ¹ °Ë»ç//Áö±İ ÀÌ°Å´Â MainBattleÀÌ ÁøÇàÁßÀÏ¶§µµ ¹Ù²î¾î ¹ö¸² ³ªÁß¿¡ ¹Ù²ã¾ßÇÔ
-            //BattleTurnÀÌ ÁøÇàÁßÀÏ¶§ ¾ÈÅ¬¸¯µÇ°Ô...
-            //ÇÊ¿ä¾ø³ª? ¸ó½ºÅÍÀÇ ÅÏÀÏ¶§´Â CurrentTargetÀÌ ÇÊ¿äÇÑ »óÈ²¿¡¼­ ÀüºÎ´Ù CurrentTurnObject°¡ ÀÏÀ» ÇÏ°í.
-            //¸ó½ºÅÍ¸¦ Å¬¸¯ÇÏ°í ¹öÆ°À» ´©¸£´Â ¼ø°£ ÀÌ¹Ì ¸ğµç °è»êÀº ³¡³ªÀÖÀ½.
-            //»ç¶÷ÀÌ ´Ù¸¥ ¸ó½ºÅÍ¸¦ Å¬¸¯ÇØµµ °á°ú´Â ¹Ù²îÁö ¾Ê´Â´Ù.
+            // ì¶©ëŒ ê²€ì‚¬//ì§€ê¸ˆ ì´ê±°ëŠ” MainBattleì´ ì§„í–‰ì¤‘ì¼ë•Œë„ ë°”ë€Œì–´ ë²„ë¦¼ ë‚˜ì¤‘ì— ë°”ê¿”ì•¼í•¨
+            //BattleTurnì´ ì§„í–‰ì¤‘ì¼ë•Œ ì•ˆí´ë¦­ë˜ê²Œ...
+            //í•„ìš”ì—†ë‚˜? ëª¬ìŠ¤í„°ì˜ í„´ì¼ë•ŒëŠ” CurrentTargetì´ í•„ìš”í•œ ìƒí™©ì—ì„œ ì „ë¶€ë‹¤ CurrentTurnObjectê°€ ì¼ì„ í•˜ê³ .
+            //ëª¬ìŠ¤í„°ë¥¼ í´ë¦­í•˜ê³  ë²„íŠ¼ì„ ëˆ„ë¥´ëŠ” ìˆœê°„ ì´ë¯¸ ëª¨ë“  ê³„ì‚°ì€ ëë‚˜ìˆìŒ.
+            //ì‚¬ëŒì´ ë‹¤ë¥¸ ëª¬ìŠ¤í„°ë¥¼ í´ë¦­í•´ë„ ê²°ê³¼ëŠ” ë°”ë€Œì§€ ì•ŠëŠ”ë‹¤.
 
             if (MonCollider != null && MonCollider.OverlapPoint(mousePosition))
             {
@@ -151,54 +156,52 @@ public class Monster : MonoBehaviour
         MonsterAnimator.speed = 0f;
         gameObject.transform.position = SpawnPosition;
 
-        SummonMonHP = 0;
-        SummonMonSTR = 0;
-        SummonMonDUR = 0;
-        SummonMonLUK = 0;
-        SummonMonSPD = 0;
 
-        if (SetMonBaseHP >= 1)
+        if(MasterMonster != null)
         {
-            MonTotalStatus.MonsterMaxHP = SetMonBaseHP;
-            MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
+            Monster MasterMon = MasterMonster.GetComponent<Monster>();
+            if(MasterMon.MonsterName == "Slime")
+            {
+                MonsterBaseHP = (int)(MasterMon.MonTotalStatus.MonsterCurrentHP * 0.5f);
+                MonsterBaseATK = (int)(MasterMon.MonTotalStatus.MonsterCurrentATK * 0.5f);
+                MonsterBaseDUR = (int)(MasterMon.MonTotalStatus.MonsterCurrentDUR * 0.5f);
+                MonsterBaseSPD = (int)(MasterMon.MonTotalStatus.MonsterCurrentSPD * 0.5f);
+                MonsterBaseLuk = (int)(MasterMon.MonTotalStatus.MonsterCurrentLUK * 0.5f);
+            }
+            else if(MasterMon.MonsterName == "ABC")
+            {
 
-            CurrentBaseATK = SetMonBaseATK;
-            CurrentBaseDUR = SetMonBaseDUR;
-            CurrentBaseLUK = SetMonBaseLUK;
-            CurrentBaseSPD = SetMonBaseSPD;
+            }
         }
-        else
-        {
-            //SetHP
-            int Rand = Random.Range(-(int)HPVarianceAmount, (int)HPVarianceAmount + 1);
-            MonTotalStatus.MonsterMaxHP = MonsterBaseHP + Rand;
-            MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
-            //SetATK
-            Rand = Random.Range(-(int)ATKVarianceAmount, (int)ATKVarianceAmount + 1);
-            CurrentBaseATK = MonsterBaseATK + Rand;
-            //SetDUR
-            Rand = Random.Range(-(int)DURVarianceAmount, (int)DURVarianceAmount + 1);
-            CurrentBaseDUR = MonsterBaseDUR + Rand;
-            //SetLUK
-            Rand = Random.Range(-(int)LUKVarianceAmount, (int)LUKVarianceAmount + 1);
-            CurrentBaseLUK = MonsterBaseLuk + Rand;
-            //SetSPD
-            Rand = Random.Range(-(int)SPDVarianceAmount, (int)SPDVarianceAmount + 1);
-            CurrentBaseSPD = MonsterBaseSPD + Rand;
-            //SetReward
-            Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
-            MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
-        }
-        
 
-        //¸ó½ºÅÍµµ ÇÃ·¹ÀÌ¾îÀÇ »óÅÂ¿¡ ¸Â°Ô ¹öÇÁ¸¦ ¹Ù¾Æ¾ßÇÔ
-        InitAllBuff();//ÀÏ´Ü ÃÊ±âÈ­ ÇÏ°í Ãß°¡
+        //SetHP
+        int Rand = Random.Range(-(int)HPVarianceAmount, (int)HPVarianceAmount + 1);
+        MonTotalStatus.MonsterMaxHP = MonsterBaseHP + Rand;
+        MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP;
+        //SetATK
+        Rand = Random.Range(-(int)ATKVarianceAmount, (int)ATKVarianceAmount + 1);
+        CurrentBaseATK = MonsterBaseATK + Rand;
+        //SetDUR
+        Rand = Random.Range(-(int)DURVarianceAmount, (int)DURVarianceAmount + 1);
+        CurrentBaseDUR = MonsterBaseDUR + Rand;
+        //SetLUK
+        Rand = Random.Range(-(int)LUKVarianceAmount, (int)LUKVarianceAmount + 1);
+        CurrentBaseLUK = MonsterBaseLuk + Rand;
+        //SetSPD
+        Rand = Random.Range(-(int)SPDVarianceAmount, (int)SPDVarianceAmount + 1);
+        CurrentBaseSPD = MonsterBaseSPD + Rand;
+        //SetReward
+        Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
+        MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
+
+        //ëª¬ìŠ¤í„°ë„ í”Œë ˆì´ì–´ì˜ ìƒíƒœì— ë§ê²Œ ë²„í”„ë¥¼ ë°”ì•„ì•¼í•¨
+        InitAllBuff();//ì¼ë‹¨ ì´ˆê¸°í™” í•˜ê³  ì¶”ê°€
         SetMonsterStatus();
         SetMonsterVariousBuff();
 
         SetInitBuffByPlayerState();
-        //ÀÏ´ÜÀº ¹æ½É¸¸
-        //°³ÀÎÀû ¸ó½ºÅÍ¿¡´ëÇÑ »óÅÂ¿¡ ´ëÇÑ ¹öÇÁ´Â InitMonsterState¿¡¼­
+        //ì¼ë‹¨ì€ ë°©ì‹¬ë§Œ
+        //ê°œì¸ì  ëª¬ìŠ¤í„°ì—ëŒ€í•œ ìƒíƒœì— ëŒ€í•œ ë²„í”„ëŠ” InitMonsterStateì—ì„œ
         InitMonsterState();
         SpawnFadeIn();
     }
@@ -258,6 +261,17 @@ public class Monster : MonoBehaviour
     public virtual void CheckEnemyBuff(BuffInfo EnemyBuff)
     {
 
+    }
+    public void CheckCanSummonMonster(int SummonMonsterCount, int ActiveMonsterCount)
+    {
+        if(SummonMonsterCount + ActiveMonsterCount < 3)
+        {
+            IsCanSummonMonster = true;
+        }
+        else if(SummonMonsterCount + ActiveMonsterCount >= 3)
+        {
+            IsCanSummonMonster = false;
+        }
     }
     public virtual void SetNextMonsterState()
     {
@@ -389,13 +403,35 @@ public class Monster : MonoBehaviour
     public void SetMonsterVariousBuff()
     {
         MonsterBuff.BuffList[(int)EBuffType.Defense] = (int)(MonTotalStatus.MonsterCurrentDUR / 5);
-        //ÀÓ½Ã·Î Âª´Ù¸®»õ
+        //ì„ì‹œë¡œ ì§§ë‹¤ë¦¬ìƒˆ
         if(MonsterName == "ABC")
         {
-            //Ã¼·Â 1ÀÏ¶§ 90 ¸¸ÇÇÀÏ¶§ 10
+            //ì²´ë ¥ 1ì¼ë•Œ 90 ë§Œí”¼ì¼ë•Œ 10
             float PrideHpRatio = (MonTotalStatus.MonsterCurrentHP - 1) / (MonTotalStatus.MonsterMaxHP - 1);
             float PrideResult = Mathf.Lerp(90, 10, PrideHpRatio);
             MonsterBuff.BuffList[(int)EBuffType.Pride] = (int)PrideResult;
+        }
+
+        if (MonsterName == "Doppelganger")
+        {//ì—¬ê¸°ì„œ ë³€í•˜ê²Œ....
+            bool CopySTR = false;
+            bool CopyDUR = false;
+            bool CopyLUK = false;
+            bool CopySPD = false;
+
+            if (MonsterBuff.BuffList[(int)EBuffType.CopyStrength] >= 1)
+                CopySTR = true;
+            if (MonsterBuff.BuffList[(int)EBuffType.CopyDurability] >= 1)
+                CopyDUR = true;
+            if (MonsterBuff.BuffList[(int)EBuffType.CopyLuck] >= 1)
+                CopyLUK = true;
+            if (MonsterBuff.BuffList[(int)EBuffType.CopySpeed] >= 1)
+                CopySPD = true;
+
+            if (CopySTR == true && CopyDUR == true && CopyLUK == true && CopySPD == true)
+            {
+                MonsterAnimator.SetInteger("DoppelgangerState", 1);
+            }
         }
     }
 
@@ -407,7 +443,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void InitAllBuff()//¼ÒÈ¯ µÉ¶§¶û Á×À»¶§//½¯µå·® Æ÷ÇÔ
+    public void InitAllBuff()//ì†Œí™˜ ë ë•Œë‘ ì£½ì„ë•Œ//ì‰´ë“œëŸ‰ í¬í•¨
     {
         BeforeMonsterShield = 0;
         MonTotalStatus.MonsterCurrentShieldPoint = 0;
@@ -421,7 +457,7 @@ public class Monster : MonoBehaviour
     {
         return new Vector2(HpSliderPos.transform.position.x, HpSliderPos.transform.position.y + ActionPosUpperHP);
     }
-    public void MonsterDamage(float DamagePoint, bool IsTrueDamage = false)//¿©±â¼­ ½Ï µ¥¹ÌÁö °è»ê
+    public void MonsterDamage(float DamagePoint, bool IsTrueDamage = false)//ì—¬ê¸°ì„œ ì‹¹ ë°ë¯¸ì§€ ê³„ì‚°
     {
         if(IsTrueDamage == true)
         {
@@ -437,7 +473,7 @@ public class Monster : MonoBehaviour
                 MonsterBuff.BuffList[(int)EBuffType.Reflect] += (int)DamagePoint;
             } 
             */
-            //ÀÓ½Ã·Î Èë°ñ·½
+            //ì„ì‹œë¡œ í™ê³¨ë ˜
             /*
             if(MonsterName == "DirtGolem")
             {
@@ -471,7 +507,7 @@ public class Monster : MonoBehaviour
         
         if(RestDamage >= 1)
         {
-            //ÀÏ´Ü Âª´Ù¸®»õ¸¸
+            //ì¼ë‹¨ ì§§ë‹¤ë¦¬ìƒˆë§Œ
             /*
             if(MonsterName == "ShortLegBird")
             {
