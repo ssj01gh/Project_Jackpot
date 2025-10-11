@@ -336,6 +336,14 @@ public class MonsterManager : MonoBehaviour
         {
             if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
             {
+                if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.UnDead] >= 1)
+                {
+                    ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP = 1;
+                    ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.UnDead] = 0;
+                    EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", ActiveMonsters[i].gameObject.transform.position);
+                    continue;
+                }
+
                 if (ActiveMonsters[i].GetComponent<Monster>().IsSummonTier == true)
                 {
                     //여기에 들어오면 아무것도 안중가하게
@@ -390,33 +398,18 @@ public class MonsterManager : MonoBehaviour
         {
             for(int i = 0; i < ActiveMonsters.Count; i++)
             {
-                /*
+                
                 //지금은 임시로 짧다리새
-                if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "ShortLegBird")
+                if (ActiveMonsters[i].GetComponent<Monster>().MonsterName == "Homunculus")
                 {
                     //DeadMonsters.Count만큼 반복
                     for(int j = 0; j < DeadMonsters.Count; j++)
                     {
-                        //단피를 안가지고 있을때
-                        if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ToughSkin] < 1)
-                            ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.ToughSkin, 99);
-                        else
-                        {//단피는 가지고 있고
-                         //단주를 안가지고 있을때
-                            if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ToughFist] < 1)
-                                ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.ToughFist, 99);
-                            else
-                            {//단피, 단주를 가지고 있을때
-                                if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Luck] < 1)
-                                    ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Luck, 99);
-                            }
-                        }
-
-                        ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Consume, 1);
+                        ActiveMonsters[i].GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Consume);
                     }
                     
                 }
-                */
+                
             }
         }
 

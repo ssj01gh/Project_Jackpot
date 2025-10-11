@@ -143,6 +143,7 @@ public class BattleManager : MonoBehaviour
             SoundManager.Instance.PlayBGM("NormalBattleBGM");
         }
 
+        //몬스터는 여기서 불사를 계산해야함
         List<int> RewardEXPs = MonMgr.CheckActiveMonstersRSurvive(PlayerMgr);//현재 스폰된 몬스터중 죽은 몬스터 정리//죽을때 Reward증가
         if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack == -1)
         {//-1이란 것은 습격이 아니다 -> 보상을 획득 해야 한다.
@@ -869,6 +870,8 @@ public class BattleManager : MonoBehaviour
                         }
                         break;
                     case (int)EBuffType.UnDead:
+                        MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
+                        /*
                         if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP < 1)
                         {
                             MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP = 1;
@@ -879,6 +882,7 @@ public class BattleManager : MonoBehaviour
                         {
                             MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
                         }
+                        */
                         break;
                     case (int)EBuffType.Survant:
                         if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.Survant] <= 1)

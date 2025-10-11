@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 593374256164039861}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalPosition: {x: 0, y: 2.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 928206271216405744}
   - component: {fileID: 2179559600177875215}
-  - component: {fileID: 3959250300285130101}
+  - component: {fileID: 7773832673248709559}
   m_Layer: 0
-  m_Name: Monster_DefectiveSubject
+  m_Name: Monster_Homunculus
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7}
+  m_Offset: {x: 0, y: 1.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -110,9 +110,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1, y: 1.5}
+  m_Size: {x: 1.7, y: 1.7}
   m_EdgeRadius: 0
---- !u!114 &3959250300285130101
+--- !u!114 &7773832673248709559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,34 +121,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 2816280614747406496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19399aabdbf8984f9357c089c068742, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f1dcf1bde7c1b44bb57fba229a0e6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterName: DefectiveSubject
-  MonsterHead: {fileID: 1339781653, guid: ecfb5d37ba0bab74a939e3aae67823d0, type: 3}
+  MonsterName: Homunculus
+  MonsterHead: {fileID: -620297580, guid: ecfb5d37ba0bab74a939e3aae67823d0, type: 3}
   MonsterBody: {fileID: 3229441595594747495}
   MonsterAnimator: {fileID: 8009959077196215787}
   IsHaveAttackAnimation: 0
-  IsTierOne: 1
+  IsTierOne: 0
   IsSummonTier: 0
-  MonsterBaseHP: 113
-  HPVarianceAmount: 29
-  MonsterBaseATK: 6
-  ATKVarianceAmount: 1
-  MonsterBaseDUR: 15
-  DURVarianceAmount: 3
-  MonsterBaseLuk: 5
-  LUKVarianceAmount: 3
-  MonsterBaseSPD: 8
-  SPDVarianceAmount: 3
-  MonsterBaseEXP: 209
-  EXPVarianceAmount: 52
-  MonsterWeaponCode: 73001
-  MonsterArmorCode: 83001
-  MonsterAnotherEquipmentCode: 496b0100
+  MonsterBaseHP: 106
+  HPVarianceAmount: 26
+  MonsterBaseATK: 7
+  ATKVarianceAmount: 4
+  MonsterBaseDUR: 8
+  DURVarianceAmount: 4
+  MonsterBaseLuk: 0
+  LUKVarianceAmount: 0
+  MonsterBaseSPD: 6
+  SPDVarianceAmount: 1
+  MonsterBaseEXP: 417
+  EXPVarianceAmount: 104
+  MonsterWeaponCode: 73051
+  MonsterArmorCode: 83051
+  MonsterAnotherEquipmentCode: 7b6b01007c6b0100
   MonsterShieldPos: {fileID: 3712609004761415353}
   HpSliderPos: {fileID: 593374256164039861}
-  HpsliderWidth: 300
+  HpsliderWidth: 250
   BuffPosUpperHp: 0.5
   ActionPosUpperHP: 1
   CanSummonMonsterIDs: []
@@ -181,7 +181,7 @@ Transform:
   m_GameObject: {fileID: 3712609004761415353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.6, z: 0}
+  m_LocalPosition: {x: -1.4, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 8064565801963877911}
   - component: {fileID: 3229441595594747495}
   - component: {fileID: 8009959077196215787}
+  - component: {fileID: 4581291482382746409}
   m_Layer: 0
   m_Name: MonsterBody
   m_TagString: Untagged
@@ -261,7 +262,7 @@ SpriteRenderer:
   m_SortingLayerID: 2013905161
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -564504346, guid: efdf594e5efcc3c4e9ae80ba385bc823, type: 3}
+  m_Sprite: {fileID: 1061428021, guid: a50f7d8d42947c443ab6bd7ea02f1fe8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -282,7 +283,7 @@ Animator:
   m_GameObject: {fileID: 5067641677053797877}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bf1f7f306c881cb4d81ba2c2ee28a8a5, type: 2}
+  m_Controller: {fileID: 9100000, guid: f237eac68ee864b4184ba3602dd56275, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -293,3 +294,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4581291482382746409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067641677053797877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203d928163784314ca42ab0c29588f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 7773832673248709559}

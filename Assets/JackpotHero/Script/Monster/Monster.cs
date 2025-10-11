@@ -389,6 +389,28 @@ public class Monster : MonoBehaviour
             float PrideResult = Mathf.Lerp(90, 10, PrideHpRatio);
             MonsterBuff.BuffList[(int)EBuffType.Pride] = (int)PrideResult;
         }
+
+        if (MonsterName == "Doppelganger")
+        {//여기서 변하게....
+            bool CopySTR = false;
+            bool CopyDUR = false;
+            bool CopyLUK = false;
+            bool CopySPD = false;
+
+            if (MonsterBuff.BuffList[(int)EBuffType.CopyStrength] >= 1)
+                CopySTR = true;
+            if (MonsterBuff.BuffList[(int)EBuffType.CopyDurability] >= 1)
+                CopyDUR = true;
+            if (MonsterBuff.BuffList[(int)EBuffType.CopyLuck] >= 1)
+                CopyLUK = true;
+            if (MonsterBuff.BuffList[(int)EBuffType.CopySpeed] >= 1)
+                CopySPD = true;
+
+            if (CopySTR == true && CopyDUR == true && CopyLUK == true && CopySPD == true)
+            {
+                MonsterAnimator.SetInteger("DoppelgangerState", 1);
+            }
+        }
     }
 
     protected void SetInitBuffByPlayerState()

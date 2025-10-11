@@ -20,6 +20,7 @@ public class Mon_WoodElemental : Monster
         base.InitMonsterState();
         MonsterBuff.BuffList[(int)EBuffType.ToughSkin] = 99;
         MonsterBuff.BuffList[(int)EBuffType.Regeneration] = 99;
+        MonsterAnimator.SetInteger("WoodElementalState", 0);
         int RandNum = Random.Range(0, 2);
         if(RandNum == 0)
         {

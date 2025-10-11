@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 87dc3d14f80cf694faefbfe1ec7f4ff8
+guid: 0a7aa7055183a8549b06543d36786b58
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Berserk_Golem-Sheet_0
+      name: Doppelganger_Heroine_Idle-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
+      pivot: {x: 0.46875, y: 0.046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30a0df4d71eec5c489f8aebccd06d384
-      internalID: -1774752620
+      spriteID: c247eb45ceb84be43b24ad66e0ccb99e
+      internalID: 426854729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Berserk_Golem-Sheet_1
+      name: Doppelganger_Heroine_Idle-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -139,20 +139,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
+      pivot: {x: 0.46875, y: 0.046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bc29f7a490e65641836c2e012c190d6
-      internalID: -2517200
+      spriteID: 4b448418f590cea4692ec3cde6895150
+      internalID: -903271941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Berserk_Golem-Sheet_2
+      name: Doppelganger_Heroine_Idle-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -160,20 +160,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
+      pivot: {x: 0.46875, y: 0.046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a31bcf1104711274b81042fd0297b213
-      internalID: 264229165
+      spriteID: 7d4471c78a4c4804bb9283d9245ce714
+      internalID: 26453614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Berserk_Golem-Sheet_3
+      name: Doppelganger_Heroine_Idle-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -181,20 +181,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
+      pivot: {x: 0.46875, y: 0.046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eadd3621fdee9054abfb1e1e5b27008b
-      internalID: -1750045130
+      spriteID: 915ed6f723eb73249aabe4c878f9df56
+      internalID: -1831461187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Berserk_Golem-Sheet_4
+      name: Doppelganger_Heroine_Idle-Sheet_4
       rect:
         serializedVersion: 2
         x: 256
@@ -202,20 +202,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
+      pivot: {x: 0.46875, y: 0.046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d872de8864044aa40aeefbc87034a903
-      internalID: -944976224
+      spriteID: eca67966e8969b84fb8fc1f014606839
+      internalID: -1949676998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Berserk_Golem-Sheet_5
+      name: Doppelganger_Heroine_Idle-Sheet_5
       rect:
         serializedVersion: 2
         x: 320
@@ -223,20 +223,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
+      pivot: {x: 0.46875, y: 0.046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08b2c76b9ac6ca647989e640dd96fcc0
-      internalID: 238978759
+      spriteID: 6b4784e40cce073429587a05604beccf
+      internalID: -2136308254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Berserk_Golem-Sheet_6
+      name: Doppelganger_Heroine_Idle-Sheet_6
       rect:
         serializedVersion: 2
         x: 384
@@ -244,35 +244,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
+      pivot: {x: 0.46875, y: 0.046875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b419ec8af5d7fe45b43c464db24ccec
-      internalID: 116932111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Berserk_Golem-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 9
-      pivot: {x: 0.48, y: 0.015625}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbaa94c5745a6fb4b956c7ee1c58460b
-      internalID: 300871813
+      spriteID: 23223b208c6fd9d4abb356e0c395cea5
+      internalID: 415812188
       vertices: []
       indices: 
       edges: []
@@ -288,14 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Berserk_Golem-Sheet_0: -1774752620
-      Berserk_Golem-Sheet_1: -2517200
-      Berserk_Golem-Sheet_2: 264229165
-      Berserk_Golem-Sheet_3: -1750045130
-      Berserk_Golem-Sheet_4: -944976224
-      Berserk_Golem-Sheet_5: 238978759
-      Berserk_Golem-Sheet_6: 116932111
-      Berserk_Golem-Sheet_7: 300871813
+      Doppelganger_Heroine_Idle-Sheet_0: 426854729
+      Doppelganger_Heroine_Idle-Sheet_1: -903271941
+      Doppelganger_Heroine_Idle-Sheet_2: 26453614
+      Doppelganger_Heroine_Idle-Sheet_3: -1831461187
+      Doppelganger_Heroine_Idle-Sheet_4: -1949676998
+      Doppelganger_Heroine_Idle-Sheet_5: -2136308254
+      Doppelganger_Heroine_Idle-Sheet_6: 415812188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
