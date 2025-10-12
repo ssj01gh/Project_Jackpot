@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f6fa34150f8424ea88928c8c93ebc2, type: 3}
+  m_Name: 00_ABuff_Defense
+  m_EditorClassIdentifier: 
+  BuffImage: {fileID: 1559191660, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
+  BuffName: "\uBC29\uC5B4\uB825"
+  BuffDetail: "\uD53C\uD574\uB97C \uBC1B\uC744\uB54C \uC2A4\uD0DD\uB9CC\uD07C\n\uD53C\uD574\uB97C
+    \uB35C \uBC1B\uC2B5\uB2C8\uB2E4.\n\uC790\uC2E0\uC758 \uD134\uB9C8\uB2E4\n\uD604\uC7AC
+    \uB0B4\uAD6C\uC758 20%\uB9CC\uD07C \uC2A4\uD0DD\n"

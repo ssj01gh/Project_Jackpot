@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a2232226e93b54f9f018e3e210a353, type: 3}
+  m_Name: EventSO9002
+  m_EditorClassIdentifier: 
+  EventCode: 9002
+  EventTitle: "\uAC70\uB798 \uAC70\uBD80"
+  EventImage: {fileID: 21300000, guid: 513bae082e637234b8d72a71e5d4ec5c, type: 3}
+  EventDetail: "\"\uD6CC\uB96D\uD558\uAD70. \uB2E4\uC74C\uC5D0 \uB610 \uBCF4\uB3C4\uB85D
+    \uD558\uC9C0\"\n\uC815\uCCB4\uBD88\uBA85\uC758 \uB0A8\uC790\uB294 \uAC80\uC0C9
+    \uD3EC\uD0C8\uC5D0\n\uB4E4\uC5B4\uAC00\uBA70 \uC0AC\uB77C\uC84C\uC2B5\uB2C8\uB2E4."
+  EventSelectionDetail:
+  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."

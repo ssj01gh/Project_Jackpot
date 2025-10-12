@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fc56754e1bc3a4fb0ae2205428e551, type: 3}
+  m_Name: HPSO07
+  m_EditorClassIdentifier: 
+  EarlyDetailTitle: "\uCCB4\uB825 \uAC15\uD654 7\uB808\uBCA8"
+  DetailText: "\uCCB4\uB825\uC744 200\uC73C\uB85C \uC2DC\uC791\uD569\uB2C8\uB2E4.\n\n\uC804\uD22C
+    \uC2DC\uC791\uC2DC \uC790\uC2E0\uC5D0\uAC8C\n<link=\"HP07\"><color=green>\uD53C\uC758
+    \uC77C\uC871</color></link>\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n\n\uCCB4\uB825\uC774
+    0\uC774 \uB420\uC2DC \uD328\uBC30\uD569\uB2C8\uB2E4."
