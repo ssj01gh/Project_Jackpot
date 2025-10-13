@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 593374256164039861}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.2, z: 0}
+  m_LocalPosition: {x: 0, y: 2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 928206271216405744}
   - component: {fileID: 2179559600177875215}
-  - component: {fileID: 1113870883943251207}
+  - component: {fileID: 3882377261199221676}
   m_Layer: 0
-  m_Name: Monster_AdminiStrator
+  m_Name: Monster_AdminiStrator_Knife
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.3}
+  m_Offset: {x: 0, y: 1.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -110,9 +110,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5}
+  m_Size: {x: 1.6, y: 2}
   m_EdgeRadius: 0
---- !u!114 &1113870883943251207
+--- !u!114 &3882377261199221676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,42 +121,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 2816280614747406496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71376ec60b58efd4c8ff0da6d02f941c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fd27338d932849428761fcb3aa26094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterName: Administrator
-  MonsterHead: {fileID: 1043248787, guid: ecfb5d37ba0bab74a939e3aae67823d0, type: 3}
+  MonsterName: Administrator_Knife
+  MonsterHead: {fileID: -583675839, guid: ecfb5d37ba0bab74a939e3aae67823d0, type: 3}
   MonsterBody: {fileID: 3229441595594747495}
   MonsterAnimator: {fileID: 8009959077196215787}
   IsHaveAttackAnimation: 1
   IsTierOne: 0
-  IsSummonTier: 0
-  MonsterBaseHP: 326
+  IsSummonTier: 1
+  MonsterBaseHP: 100
   HPVarianceAmount: 0
-  MonsterBaseATK: 8
+  MonsterBaseATK: 5
   ATKVarianceAmount: 0
-  MonsterBaseDUR: 20
+  MonsterBaseDUR: 5
   DURVarianceAmount: 0
   MonsterBaseLuk: 0
   LUKVarianceAmount: 0
-  MonsterBaseSPD: 15
+  MonsterBaseSPD: 5
   SPDVarianceAmount: 0
-  MonsterBaseEXP: 533
-  EXPVarianceAmount: 133
-  MonsterWeaponCode: 73061
-  MonsterArmorCode: 83061
-  MonsterAnotherEquipmentCode: 856b0100866b0100
+  MonsterBaseEXP: 0
+  EXPVarianceAmount: 0
+  MonsterWeaponCode: 73091
+  MonsterArmorCode: 83071
+  MonsterAnotherEquipmentCode: 
   MonsterShieldPos: {fileID: 3712609004761415353}
   HpSliderPos: {fileID: 593374256164039861}
-  HpsliderWidth: 400
+  HpsliderWidth: 200
   BuffPosUpperHp: 0.5
   ActionPosUpperHP: 1
-  CanSummonMonsterIDs:
-  - Administrator_Hammer
-  - Administrator_Saw
-  - Administrator_Knife
-  - Administrator_Syringe
-  SummonMonsterCount: 2
+  CanSummonMonsterIDs: []
+  SummonMonsterCount: 0
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}
@@ -185,7 +181,7 @@ Transform:
   m_GameObject: {fileID: 3712609004761415353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8, y: 2.2, z: 0}
+  m_LocalPosition: {x: -1.2, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,7 +261,7 @@ SpriteRenderer:
   m_SortingLayerID: 2013905161
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1155028460, guid: 0376920bc5d1367408c97b21fa3b9d4a, type: 3}
+  m_Sprite: {fileID: 1710971143, guid: d2c33365c97c6a543aeebab199ebbd23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -286,7 +282,7 @@ Animator:
   m_GameObject: {fileID: 5067641677053797877}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0da28a29a579f9e45a156b89d305e429, type: 2}
+  m_Controller: {fileID: 9100000, guid: 28b5a11a827457b48a4549f366f3a334, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

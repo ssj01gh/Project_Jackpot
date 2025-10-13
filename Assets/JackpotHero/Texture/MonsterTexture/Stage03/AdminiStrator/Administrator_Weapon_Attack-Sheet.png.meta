@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2c33365c97c6a543aeebab199ebbd23
+guid: 5c0001dba55004d40b5568cd18a13d71
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,505 +110,505 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_0
+      name: Administrator_Weapon_Attack-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 144
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8258907679a04f34790da98fd67cac77
-      internalID: 1722816089
+      spriteID: 2caadfe057d66b14bb1859d453ec9284
+      internalID: -439814195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 144
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1129e61b0c677f846a3835db1a79ce38
-      internalID: 1065576562
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_2
+      name: Administrator_Weapon_Attack-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
         y: 144
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 764243eda2dc1dd40af73fd455b74cc0
-      internalID: 797810060
+      spriteID: 2f2ddca42b680d8499d8632b986807eb
+      internalID: 2044197124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 144
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3d347707113f49478ea70d7026ad4dd
-      internalID: -1887744936
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_4
+      name: Administrator_Weapon_Attack-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
         y: 144
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7bafdbb21130e94ba2b102a1d7aaab3
-      internalID: -1913337941
+      spriteID: e141ca00f73c8d54b92545ba33ee08bb
+      internalID: -1762868843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_5
+      name: Administrator_Weapon_Attack-Sheet_3
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 144
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cebf96def2ea7394a970588935e55604
-      internalID: 252011546
+      spriteID: 55678fbad9e71e140a0bff0fac2dba3e
+      internalID: -500897146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_6
+      name: Administrator_Weapon_Attack-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98225f246958e3c48850b2ae6cb9755d
+      internalID: 1162191877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 144
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aec8f542fdab3a4ba871453e2409c14
+      internalID: -241411582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_6
       rect:
         serializedVersion: 2
         x: 0
         y: 96
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08c4c0a13fd455c4cae8d747079d21bd
-      internalID: -247530161
+      spriteID: d725148312d430548a35f94565467a5e
+      internalID: 567281446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 96
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75b0b1ad19585a94f90de7a9d3079e4f
-      internalID: -1510197900
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_8
+      name: Administrator_Weapon_Attack-Sheet_7
       rect:
         serializedVersion: 2
         x: 64
         y: 96
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c928d7252f7cab9499b34a06cc5a74f0
-      internalID: 832080095
+      spriteID: f8e38c3ea09a58f439fc3345b9fc168e
+      internalID: -1221814411
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ef3f1acd71908344fa04ab082eb92bdb
-      internalID: -494270968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_10
+      name: Administrator_Weapon_Attack-Sheet_8
       rect:
         serializedVersion: 2
         x: 128
         y: 96
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac1e217b790b6bc4c9b50c3ae8db3518
-      internalID: 1879730535
+      spriteID: 8a651a12eab79ff4aaeef75bc524410c
+      internalID: 131171368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_11
+      name: Administrator_Weapon_Attack-Sheet_9
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 96
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b600cd9119ba374786acdd7abe807bc
-      internalID: 686501848
+      spriteID: e1c9459d5b73fba418ecd9062be1cdc3
+      internalID: 250009644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_12
+      name: Administrator_Weapon_Attack-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ca6d400ade0c2842af40d58e8eb1507
+      internalID: 276224160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee276a5cc8e0caf4cbfd89123c76c421
+      internalID: -1770451627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_12
       rect:
         serializedVersion: 2
         x: 0
         y: 48
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84e488bd4efe00b4ab4b66e492c5b612
-      internalID: 1710971143
+      spriteID: fe3f855d76613d042ab19413c6ccd335
+      internalID: 619185714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_13
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 943d3c5203d05c54b907bf5bedf8ec25
-      internalID: 699649100
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_14
+      name: Administrator_Weapon_Attack-Sheet_13
       rect:
         serializedVersion: 2
         x: 64
         y: 48
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7645c234efd2fa478d3c73f21c21b6a
-      internalID: 1014822935
+      spriteID: 0a15401ac4bede14594019b51d453903
+      internalID: 541985412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_15
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 48
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e46bf49a05b2de4195c418d97f9b44c
-      internalID: 1867203412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_16
+      name: Administrator_Weapon_Attack-Sheet_14
       rect:
         serializedVersion: 2
         x: 128
         y: 48
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01d2dd9bdb6c9614ba5c04c9c76589d9
-      internalID: 587054662
+      spriteID: 1926d99c585dbd14a8a59adb43b359ae
+      internalID: -343445634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_17
+      name: Administrator_Weapon_Attack-Sheet_15
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 48
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b605a1ce44c1c84c9970d3d12193d68
-      internalID: -799967058
+      spriteID: 0f7cb072fa742f44bbd6113b2a5eb252
+      internalID: 431026346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_18
+      name: Administrator_Weapon_Attack-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65868354acbf10488b44bc114e6c0ad
+      internalID: -435337073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 48
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3b5a4f5d3552f41a5947a8b65455e9
+      internalID: 76515152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_18
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b4c2e55ee5d342489044f3cad2b6514
-      internalID: 941168198
+      spriteID: 06c3e08378fc44e42b2e004f821c3662
+      internalID: -2025886499
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_19
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bfcf78391a9c4c040a681a2daf87438a
-      internalID: -1150957420
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_20
+      name: Administrator_Weapon_Attack-Sheet_19
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf193bb1723e3c949b1a61d3c8276d37
-      internalID: -420033151
+      spriteID: 7f048eb7e3dfc214483848dd804bdea8
+      internalID: -1087483975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_21
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22bd094dc4989fa419e9bd3142ccbcfb
-      internalID: 303924103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_22
+      name: Administrator_Weapon_Attack-Sheet_20
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 041a99d84dc9ee94c82b88c523260398
-      internalID: 758694234
+      spriteID: 021a0b5dccf34a24b9ce284c53d5f5a4
+      internalID: -596630770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Administrator_Weapon-Sheet_23
+      name: Administrator_Weapon_Attack-Sheet_21
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 0
-        width: 32
+        width: 64
         height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 907e89ba8a5e22442ba563eb81a18427
-      internalID: -496376681
+      spriteID: 7364fe2957f227148bce55a6d014dea2
+      internalID: -833600501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a00a4aa0eeea5f43a170080020a3c2e
+      internalID: -1892616281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Administrator_Weapon_Attack-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 48
+      alignment: 9
+      pivot: {x: 0.75, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8993dbe4749881489c30ea08b04ba54
+      internalID: -797122749
       vertices: []
       indices: 
       edges: []
@@ -624,30 +624,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Administrator_Weapon-Sheet_0: 1722816089
-      Administrator_Weapon-Sheet_1: 1065576562
-      Administrator_Weapon-Sheet_10: 1879730535
-      Administrator_Weapon-Sheet_11: 686501848
-      Administrator_Weapon-Sheet_12: 1710971143
-      Administrator_Weapon-Sheet_13: 699649100
-      Administrator_Weapon-Sheet_14: 1014822935
-      Administrator_Weapon-Sheet_15: 1867203412
-      Administrator_Weapon-Sheet_16: 587054662
-      Administrator_Weapon-Sheet_17: -799967058
-      Administrator_Weapon-Sheet_18: 941168198
-      Administrator_Weapon-Sheet_19: -1150957420
-      Administrator_Weapon-Sheet_2: 797810060
-      Administrator_Weapon-Sheet_20: -420033151
-      Administrator_Weapon-Sheet_21: 303924103
-      Administrator_Weapon-Sheet_22: 758694234
-      Administrator_Weapon-Sheet_23: -496376681
-      Administrator_Weapon-Sheet_3: -1887744936
-      Administrator_Weapon-Sheet_4: -1913337941
-      Administrator_Weapon-Sheet_5: 252011546
-      Administrator_Weapon-Sheet_6: -247530161
-      Administrator_Weapon-Sheet_7: -1510197900
-      Administrator_Weapon-Sheet_8: 832080095
-      Administrator_Weapon-Sheet_9: -494270968
+      Administrator_Weapon_Attack-Sheet_0: -439814195
+      Administrator_Weapon_Attack-Sheet_1: 2044197124
+      Administrator_Weapon_Attack-Sheet_10: 276224160
+      Administrator_Weapon_Attack-Sheet_11: -1770451627
+      Administrator_Weapon_Attack-Sheet_12: 619185714
+      Administrator_Weapon_Attack-Sheet_13: 541985412
+      Administrator_Weapon_Attack-Sheet_14: -343445634
+      Administrator_Weapon_Attack-Sheet_15: 431026346
+      Administrator_Weapon_Attack-Sheet_16: -435337073
+      Administrator_Weapon_Attack-Sheet_17: 76515152
+      Administrator_Weapon_Attack-Sheet_18: -2025886499
+      Administrator_Weapon_Attack-Sheet_19: -1087483975
+      Administrator_Weapon_Attack-Sheet_2: -1762868843
+      Administrator_Weapon_Attack-Sheet_20: -596630770
+      Administrator_Weapon_Attack-Sheet_21: -833600501
+      Administrator_Weapon_Attack-Sheet_22: -1892616281
+      Administrator_Weapon_Attack-Sheet_23: -797122749
+      Administrator_Weapon_Attack-Sheet_3: -500897146
+      Administrator_Weapon_Attack-Sheet_4: 1162191877
+      Administrator_Weapon_Attack-Sheet_5: -241411582
+      Administrator_Weapon_Attack-Sheet_6: 567281446
+      Administrator_Weapon_Attack-Sheet_7: -1221814411
+      Administrator_Weapon_Attack-Sheet_8: 131171368
+      Administrator_Weapon_Attack-Sheet_9: 250009644
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

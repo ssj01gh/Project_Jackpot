@@ -158,9 +158,9 @@ public class BattleManager : MonoBehaviour
             MonMgr.SpawnMonsterBySummonMonster(SpawnMonstersID, SummonerMonster);
             SummonerMonster = null;
         }
-
+        
         //버프 계산 <- 이놈은 근데 전의 녀석을 계산함 만약 없으면 계산X
-        if(CurrentTurnObject != null)
+        if (CurrentTurnObject != null)
         {
             AfterBuffProgress();//AfterBuffProgress
             //위축 -> 공포는 모든 턴마다 전환
@@ -170,6 +170,7 @@ public class BattleManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
             }
         }
+        
         //스탯 계산
         MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
         PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//버프 디버프에의한 스탯 계산용
@@ -499,15 +500,32 @@ public class BattleManager : MonoBehaviour
                     }
                 }
 
+                switch(CurrentTurnObject.GetComponent<Monster>().MonsterName)
+                {
+                    case "Administrator_Hammer":
+                        PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.DefenseDebuff, 
+                            CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.DefenseDebuff));
+                        break;
+                    case "Administrator_Saw":
+                        PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.AttackDebuff,
+                            CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.AttackDebuff));
+                        break;
+                    case "Administrator_Syringe":
+                        int[] DebuffArray = new int[3] { (int)EBuffType.Poison, (int)EBuffType.Weakness, (int)EBuffType.Slow };
+                        int RandomDebuff = Random.Range(0, 3);
+                        PlayerMgr.GetPlayerInfo().ApplyBuff(DebuffArray[RandomDebuff],
+                            CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff(DebuffArray[RandomDebuff]));
+                        break;
+                }
+
                 if(IsAlreadyDamageCalculate == false)
                 {
                     PlayerMgr.GetPlayerInfo().PlayerDamage((int)BattleResultStatus.FinalResultAmount);
                 }
                 if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
                 {//여기에 들어오면 적응_힘 증가
-                    //임시로 짧다리새
                     
-                    if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "ABC")
+                    if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "Guardian")
                     {
                         CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.StrengthAdaptation] += 1;
                     }
@@ -851,8 +869,8 @@ public class BattleManager : MonoBehaviour
         else if (CurrentTurnObject.tag == "Monster")
         {
             Monster MonInfo = CurrentTurnObject.GetComponent<Monster>();
-            if (MonInfo.MonsterBuff.BuffList[BuffsType] > 0)
-            {
+            if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP > 0 && MonInfo.MonsterBuff.BuffList[BuffsType] > 0)
+            {//살아있는 놈들 중에서
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                 {
                     //재생 , 기충전, 화상, 독, 죽음의 저주, 재생형갑옷, 나약함, 불사(이놈은 마지막에 계산되야 될것 같은데)
@@ -1311,12 +1329,12 @@ public class BattleManager : MonoBehaviour
                 {//전턴의 오브젝트가 플레이어이고 전턴의 오브젝트가 이번턴에도 행동할때
                     foreach (GameObject Mon in MonMgr.GetActiveMonsters())
                     {
-                        /*
-                        if(Mon.GetComponent<Monster>().MonsterName == "ShortLegBird")
+                        
+                        if(Mon.GetComponent<Monster>().MonsterName == "Guardian")
                         {
                             Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.SpeedAdaptation] += 1;
                         }
-                        */
+                        
                     }
                 }
             }

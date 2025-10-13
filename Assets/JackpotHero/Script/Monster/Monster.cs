@@ -188,6 +188,9 @@ public class Monster : MonoBehaviour
         Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
         MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
 
+        //Action게이지도 초기화
+        MonTotalStatus.MonsterCurrentActionGauge = 0;
+        MonTotalStatus.MonsterNextActionGauge = 0;
         //몬스터도 플레이어의 상태에 맞게 버프를 바아야함
         InitAllBuff();//일단 초기화 하고 추가
         SetMonsterStatus();
@@ -482,14 +485,13 @@ public class Monster : MonoBehaviour
         }
         
         if(RestDamage >= 1)
-        {
-            //일단 짧다리새만
-            /*
-            if(MonsterName == "ShortLegBird")
+        {//적응 내구 증가
+            
+            if(MonsterName == "Guardian")
             {
                 MonsterBuff.BuffList[(int)EBuffType.DurabilityAdaptation] += 1;
             }
-            */
+            
         }
 
         MonTotalStatus.MonsterCurrentHP -= RestDamage;
