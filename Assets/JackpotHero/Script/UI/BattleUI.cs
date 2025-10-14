@@ -1114,10 +1114,15 @@ public class BattleUI : MonoBehaviour
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
             else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower" || ActionString == "DefenseDebuff" || ActionString == "AttackDebuff" ||
-                ActionString == "OverCharge")
+                ActionString == "OverCharge" || ActionString == "GiveCharm")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+            }
+            else if(ActionString == "Greed")
+            {
+                SoundManager.Instance.PlaySFX("Acquire_EXP");
+                IsAnimateComplete = true;
             }
             else
             {

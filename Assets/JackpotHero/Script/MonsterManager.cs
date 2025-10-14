@@ -349,7 +349,7 @@ public class MonsterManager : MonoBehaviour
         List<GameObject> DeadMonsters = new List<GameObject>();
         for(int i = ActiveMonsters.Count - 1; i >= 0; i-- )
         {
-            if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
+            if (ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP < 1)
             {
                 if (ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.UnDead] >= 1)
                 {

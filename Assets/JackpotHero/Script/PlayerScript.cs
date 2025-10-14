@@ -525,7 +525,7 @@ public class PlayerScript : MonoBehaviour
         BeforeShield = (int)PlayerState.ShieldAmount;
     }
 
-    public void PlayerDamage(float DamagePoint, bool IsIgnoreDefense = false)//자신이 받는 데미지를 기록하고 데미지를 받아 쉴드와 체력이 깍일떄
+    public void PlayerDamage(float DamagePoint, bool IsIgnoreDefense = false, bool IsSelfDamage = false)//자신이 받는 데미지를 기록하고 데미지를 받아 쉴드와 체력이 깍일떄
     {
         if(DamagePoint > 0)
         {
@@ -556,6 +556,17 @@ public class PlayerScript : MonoBehaviour
             RecordBeforeShield();
             PlayerState.ShieldAmount = 0;
         }
+
+        if (IsSelfDamage == true)
+        {
+            if (PlayerBuff.BuffList[(int)EBuffType.Charm] >= 1)
+            {
+                PlayerBuff.BuffList[(int)EBuffType.Charm] -= (int)(RestDamage * 0.1f);
+                if (PlayerBuff.BuffList[(int)EBuffType.Charm] < 0)
+                    PlayerBuff.BuffList[(int)EBuffType.Charm] = 0;
+            }
+        }
+
         PlayerTotalState.CurrentHP -= RestDamage;
         PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
     }

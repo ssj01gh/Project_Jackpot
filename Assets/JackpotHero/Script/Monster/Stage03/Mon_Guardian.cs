@@ -47,4 +47,36 @@ public class Mon_Guardian : Monster
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
     }
+
+    public override void MonsterDamage(float DamagePoint)
+    {
+        float RestDamage = 0;
+        if (MonsterBuff.BuffList[(int)EBuffType.Defense] >= 1)
+            DamagePoint -= MonsterBuff.BuffList[(int)EBuffType.Defense];
+
+        if (DamagePoint < 0)
+            DamagePoint = 0;
+
+        if (MonsterBuff.BuffList[(int)EBuffType.Defenseless] >= 1)
+            DamagePoint = DamagePoint * 2;
+
+        if (MonTotalStatus.MonsterCurrentShieldPoint >= DamagePoint)
+        {
+            RecordMonsterBeforeShield();
+            MonTotalStatus.MonsterCurrentShieldPoint -= DamagePoint;
+        }
+        else
+        {
+            RestDamage = DamagePoint - MonTotalStatus.MonsterCurrentShieldPoint;
+            RecordMonsterBeforeShield();
+            MonTotalStatus.MonsterCurrentShieldPoint = 0;
+        }
+
+        if (RestDamage >= 1)
+        {//적응 내구 증가
+            MonsterBuff.BuffList[(int)EBuffType.DurabilityAdaptation] += 1;
+        }
+
+        MonTotalStatus.MonsterCurrentHP -= RestDamage;
+    }
 }

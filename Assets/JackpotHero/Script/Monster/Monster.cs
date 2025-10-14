@@ -30,7 +30,8 @@ public enum EMonsterActionState
     ApplyRegeneration,
     GiveBurn,
     GiveAttackDebuff,
-    GiveOverChargeToServant
+    GiveOverChargeToServant,
+    GiveCharm
 }
 public class MonsterCurrentStatus
 {
@@ -370,8 +371,9 @@ public class Monster : MonoBehaviour
                     break;
                 case (int)EBuffType.Greed:
                     int IncreaseStateByGreed = (int)(MonsterBuff.BuffList[(int)EBuffType.Greed] * 0.05f);
-                    MonTotalStatus.MonsterCurrentHP += MonsterBuff.BuffList[(int)EBuffType.Greed];
-                    MonTotalStatus.MonsterMaxHP += MonsterBuff.BuffList[(int)EBuffType.Greed];
+                    int CurrentDamange = (int)(MonTotalStatus.MonsterMaxHP - MonTotalStatus.MonsterCurrentHP);
+                    MonTotalStatus.MonsterMaxHP = MonsterBaseHP + MonsterBuff.BuffList[(int)EBuffType.Greed];
+                    MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP - CurrentDamange;
                     MonTotalStatus.MonsterCurrentATK += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentDUR += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentSPD += IncreaseStateByGreed;
@@ -396,14 +398,6 @@ public class Monster : MonoBehaviour
     public void SetMonsterVariousBuff()
     {
         MonsterBuff.BuffList[(int)EBuffType.Defense] = (int)(MonTotalStatus.MonsterCurrentDUR / 5);
-        //임시로 짧다리새
-        if(MonsterName == "ABC")
-        {
-            //체력 1일때 90 만피일때 10
-            float PrideHpRatio = (MonTotalStatus.MonsterCurrentHP - 1) / (MonTotalStatus.MonsterMaxHP - 1);
-            float PrideResult = Mathf.Lerp(90, 10, PrideHpRatio);
-            MonsterBuff.BuffList[(int)EBuffType.Pride] = (int)PrideResult;
-        }
 
         if (MonsterName == "Doppelganger")
         {//여기서 변하게....
@@ -450,17 +444,8 @@ public class Monster : MonoBehaviour
     {
         return new Vector2(HpSliderPos.transform.position.x, HpSliderPos.transform.position.y + ActionPosUpperHP);
     }
-    public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
+    public virtual void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
     {
-        if(DamagePoint > 0)
-        {
-            /*
-            if(MonsterName == "ShortLegBird")
-            {
-                MonsterBuff.BuffList[(int)EBuffType.Reflect] += (int)DamagePoint;
-            } 
-            */
-        }
 
         float RestDamage = 0;
         if (MonsterBuff.BuffList[(int)EBuffType.Defense] >= 1)
@@ -483,17 +468,6 @@ public class Monster : MonoBehaviour
             RecordMonsterBeforeShield();
             MonTotalStatus.MonsterCurrentShieldPoint = 0;
         }
-        
-        if(RestDamage >= 1)
-        {//적응 내구 증가
-            
-            if(MonsterName == "Guardian")
-            {
-                MonsterBuff.BuffList[(int)EBuffType.DurabilityAdaptation] += 1;
-            }
-            
-        }
-
         MonTotalStatus.MonsterCurrentHP -= RestDamage;
     }
 

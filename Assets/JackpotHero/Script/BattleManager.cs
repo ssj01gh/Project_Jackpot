@@ -237,7 +237,7 @@ public class BattleManager : MonoBehaviour
         UIMgr.B_UI.SetMonsterBattleUI(MonMgr.GetActiveMonsters());
         //UIMgr.B_UI.ActivePlayerShieldNBuffUI(PlayerMgr.GetPlayerInfo());//이거 전에 몬스터가 죽엇는지 아닌지 확인해야됨
 
-        if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP <= 0)
+        if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1)
         {
             //스프라이트가 쓰러지는 스프라이트가 재생된다던가?
             //ActiveMonster전부다 해제
@@ -400,7 +400,7 @@ public class BattleManager : MonoBehaviour
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
 
-            PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount);
+            PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount, false, true);
             if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
             {//쉴드가 남아있으면
                 IsTargetHasShield = true;
@@ -522,7 +522,8 @@ public class BattleManager : MonoBehaviour
                 {
                     PlayerMgr.GetPlayerInfo().PlayerDamage((int)BattleResultStatus.FinalResultAmount);
                 }
-                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
+                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1 || 
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Defense] >= (int)BattleResultStatus.FinalResultAmount)
                 {//여기에 들어오면 적응_힘 증가
                     
                     if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "Guardian")
@@ -614,7 +615,7 @@ public class BattleManager : MonoBehaviour
             case (int)EMonsterActionState.GiveEnvy:
                 CurrentBattleState = "Envy";
                 int EnvyStackAmount = (int)PlayerMgr.GetPlayerInfo().GetAllEquipTier();
-                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Envy] = EnvyStackAmount;
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Envy, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Envy, EnvyStackAmount));
                 break;
             case (int)EMonsterActionState.ConsumeGluttony:
                 //Stack이 자기 자신의 최대 체력보다 많을때는 데미지
@@ -627,7 +628,8 @@ public class BattleManager : MonoBehaviour
                 else
                 {//체력이 더 적을때 -> 소화 불가능 -> 데미지
                     CurrentBattleState = "CantConsume";
-                    CurrentTurnObject.GetComponent<Monster>().MonsterDamage(GluttonyStack / 2);
+                    //-로 데미지를 기록해서 전달함 -> 플레이어가 주는 데미지와 구분하기 위해서
+                    CurrentTurnObject.GetComponent<Monster>().MonsterDamage(-(GluttonyStack * 0.5f));
                 }
                     //Stack이 자기 자신으 최대 체력보다 적을때는 졸개 소환
                 break;
@@ -651,6 +653,10 @@ public class BattleManager : MonoBehaviour
                 CurrentBattleState = "OverCharge";
                 MonMgr.GiveBuffToActiveServent((int)EBuffType.OverCharge, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.OverCharge), CurrentTurnObject);
                 //살아있는 몬스터중에 졸개 버프를 가지고있고, 마스터 몬스터가 해당 턴의 몬스터인 모든 몬스터에게
+                break;
+            case (int)EMonsterActionState.GiveCharm:
+                CurrentBattleState = "GiveCharm";
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Charm, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Charm));
                 break;
             default:
                 CurrentBattleState = "Another";
@@ -927,7 +933,7 @@ public class BattleManager : MonoBehaviour
                         }
                         break;
                     case (int)EBuffType.Lust:
-                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm] += 2;
+                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm] += 1;
                         break;
                 }
 
