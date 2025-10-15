@@ -660,7 +660,7 @@ public class PlayerScript : MonoBehaviour
                 break;
         }
 
-        if (PlayerBuff.BuffList[(int)EBuffType.Petrification] >= 1)
+        if ((ActionType == "Attack" || ActionType == "Defense") && PlayerBuff.BuffList[(int)EBuffType.Petrification] >= 1)
         {
             SpendTired += PlayerBuff.BuffList[(int)EBuffType.Petrification] * 20;
         }

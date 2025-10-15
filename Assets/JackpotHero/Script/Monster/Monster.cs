@@ -31,7 +31,9 @@ public enum EMonsterActionState
     GiveBurn,
     GiveAttackDebuff,
     GiveOverChargeToServant,
-    GiveCharm
+    GiveCharm,
+    GivePetrification,
+    ApplyCharging
 }
 public class MonsterCurrentStatus
 {
@@ -163,9 +165,16 @@ public class Monster : MonoBehaviour
                 MonsterBaseSPD = (int)(MasterMon.MonTotalStatus.MonsterCurrentSPD * 0.5f);
                 MonsterBaseLuk = (int)(MasterMon.MonTotalStatus.MonsterCurrentLUK * 0.5f);
             }
-            else if(MasterMon.MonsterName == "ABC")
-            {
+            else if(MasterMon.MonsterName == "Gluttony")
+            {//여기서 MasterMon의 Gluttony도 0으로
+                int MasterMonGluttonyStack = MasterMon.MonsterBuff.BuffList[(int)EBuffType.Gluttony];
+                MonsterBaseHP = (int)(MasterMonGluttonyStack * 0.2f);
+                MonsterBaseATK = (int)(MasterMonGluttonyStack * 0.05f);
+                MonsterBaseDUR = (int)(MasterMonGluttonyStack * 0.05f);
+                MonsterBaseSPD = (int)(MasterMonGluttonyStack * 0.05f);
+                MonsterBaseLuk = (int)(MasterMonGluttonyStack * 0.05f);
 
+                MasterMon.MonsterBuff.BuffList[(int)EBuffType.Gluttony] = 0;
             }
         }
 
@@ -379,6 +388,11 @@ public class Monster : MonoBehaviour
                     MonTotalStatus.MonsterCurrentSPD += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentLUK += IncreaseStateByGreed;
                     break;
+                case (int)EBuffType.Sloth:
+                    float DecreaseStateBySloth = 1 - (MonsterBuff.BuffList[(int)EBuffType.Sloth] * 0.15f);
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK * DecreaseStateBySloth);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD * DecreaseStateBySloth);
+                    break;
             }
         }
         if(MonTotalStatus.MonsterCurrentATK < 0)
@@ -418,6 +432,48 @@ public class Monster : MonoBehaviour
             if (CopySTR == true && CopyDUR == true && CopyLUK == true && CopySPD == true)
             {
                 MonsterAnimator.SetInteger("DoppelgangerState", 1);
+            }
+        }
+        if(MonsterName == "Sloth")
+        {
+            switch(MonsterBuff.BuffList[(int)EBuffType.Sloth])
+            {
+                case 4:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 0);
+                    break;
+                case 3:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 1);
+                    break;
+                case 2:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 2);
+                    break;
+                case 1:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 3);
+                    break;
+                case 0:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 4);
+                    break;
+            }
+        }
+        if(MonsterName == "Wrath")
+        {
+            switch(MonsterBuff.BuffList[(int)EBuffType.Charging])
+            {
+                case 0:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 0);
+                    break;
+                case 1:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 1);
+                    break;
+                case 2:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 2);
+                    break;
+                case 3:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 3);
+                    break;
+                default:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 0);
+                    break;
             }
         }
     }

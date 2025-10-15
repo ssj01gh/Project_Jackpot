@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 593374256164039861}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.8, z: 0}
+  m_LocalPosition: {x: 0, y: 2.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 928206271216405744}
   - component: {fileID: 2179559600177875215}
-  - component: {fileID: 8969641887097786255}
+  - component: {fileID: 2549367550620236363}
   m_Layer: 0
-  m_Name: Monster_Gluttony
+  m_Name: Monster_Sloth
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
+  m_Offset: {x: 0, y: 1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -110,9 +110,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2}
+  m_Size: {x: 4, y: 3}
   m_EdgeRadius: 0
---- !u!114 &8969641887097786255
+--- !u!114 &2549367550620236363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,39 +121,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 2816280614747406496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bea6a252de2348d4eba967d9fcfca175, type: 3}
+  m_Script: {fileID: 11500000, guid: e09aed1a382acc94c8b0ecd2de54749a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterName: Gluttony
-  MonsterHead: {fileID: 381896541, guid: 7196f7a7476786c4b8971a0a419548c7, type: 3}
+  MonsterName: Sloth
+  MonsterHead: {fileID: -24962798, guid: 7196f7a7476786c4b8971a0a419548c7, type: 3}
   MonsterBody: {fileID: 3229441595594747495}
   MonsterAnimator: {fileID: 8009959077196215787}
   IsHaveAttackAnimation: 0
   IsTierOne: 0
   IsSummonTier: 0
-  MonsterBaseHP: 565
+  MonsterBaseHP: 938
   HPVarianceAmount: 0
-  MonsterBaseATK: 15
+  MonsterBaseATK: 19
   ATKVarianceAmount: 0
-  MonsterBaseDUR: 1
+  MonsterBaseDUR: 15
   DURVarianceAmount: 0
   MonsterBaseLuk: 0
   LUKVarianceAmount: 0
-  MonsterBaseSPD: 16
+  MonsterBaseSPD: 25
   SPDVarianceAmount: 0
   MonsterBaseEXP: 1088
   EXPVarianceAmount: 272
-  MonsterWeaponCode: 74041
-  MonsterArmorCode: 84041
-  MonsterAnotherEquipmentCode: 596f01005a6f0100
+  MonsterWeaponCode: 74061
+  MonsterArmorCode: 84061
+  MonsterAnotherEquipmentCode: 6d6f01006e6f0100
   MonsterShieldPos: {fileID: 3712609004761415353}
   HpSliderPos: {fileID: 593374256164039861}
-  HpsliderWidth: 350
-  BuffPosUpperHp: 0.5
+  HpsliderWidth: 500
+  BuffPosUpperHp: 0.3
   ActionPosUpperHP: 1
-  CanSummonMonsterIDs:
-  - GluttonyServant
-  SummonMonsterCount: 1
+  CanSummonMonsterIDs: []
+  SummonMonsterCount: 0
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}
@@ -182,7 +181,7 @@ Transform:
   m_GameObject: {fileID: 3712609004761415353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 2.2, z: 0}
+  m_LocalPosition: {x: -2.6, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -262,7 +261,7 @@ SpriteRenderer:
   m_SortingLayerID: 2013905161
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1968290945, guid: 20dda0ae75ef2a64c8a6f04d7195b9b6, type: 3}
+  m_Sprite: {fileID: -539433602, guid: 3ce681d61d9e1ef4c92c70c95a9463b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -283,7 +282,7 @@ Animator:
   m_GameObject: {fileID: 5067641677053797877}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 116c054a8c7cc5947b323d7c43b99661, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8458729e56c5d154cab6e729869fd697, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

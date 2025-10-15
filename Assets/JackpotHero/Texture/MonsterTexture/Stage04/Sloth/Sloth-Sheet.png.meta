@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,847 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Sloth-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ead2c5c066fb74c81c882f80ffe339
+      internalID: -539433602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b015ed0e495191d4d84fe42a157ee4aa
+      internalID: -1055669253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7cd7eafcd7c21a438bf9a7fd4cc472c
+      internalID: -10167273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a73be23422f8c6741aeb5d9d11eb7457
+      internalID: 1788549676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a16310c3f6569274283683e1674c5a67
+      internalID: -1004989527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56dbd7d55a7d8fc448cccc2e12ba9683
+      internalID: 943114193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca2be34f0531aa54bab9cd4c3d072fd6
+      internalID: -896873160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 320
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff64b49f0469a3744b3634b2aeb77597
+      internalID: -1380629971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2446cf398dbaad44917aa1d09b86daf
+      internalID: 296462959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef58379ab8f15941b98882aa0d49f8e
+      internalID: -890212712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c369dbace0fbdb4e95448b7c8166a13
+      internalID: 322724632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eab473f3a011514c8d0a8d6621b036b
+      internalID: -1576367048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48d41dc5469b08f439cd5ca37c96a96d
+      internalID: 1912993632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d50f77c5760b41e4c8af03b4a08875ba
+      internalID: -1698891320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a8aa2157fcddf34cb8a4ae454e61aa1
+      internalID: 373833343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 240
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5279a59f8b6683945b434f7a855cec77
+      internalID: 811652392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814c140552430d94088528b5bac8611f
+      internalID: 1044350990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69e73d10c2d031489621847f3e9c580
+      internalID: -1037570644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16bfac235b006594e81de883cf819976
+      internalID: -8473598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb5c2967269712408b5922f7aaf1b75
+      internalID: -702163954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033cae443f360914da290ddc6770a9eb
+      internalID: -1239476620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea77ea419de40448a43a4932da01012
+      internalID: -1125056854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c38f35ac44fe9489cc8b46c751806c
+      internalID: -639232422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 160
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f17c1198470d6949973a26150d8dfeb
+      internalID: -136041500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 897e0b8f967e2494c998307df5b87130
+      internalID: -1696887982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073a4b4cfa249ac40b2cf62b4e468b23
+      internalID: 489774115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58e81fe7f37c16540a0e9130411d4b39
+      internalID: 1920050202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b117a18343b3d4aa46ea0d8999328c
+      internalID: -591087684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3437223091c4b6a43ac5baa062991d5f
+      internalID: 1420277543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1550feff7dfbfc34bab46c745a696bd6
+      internalID: 1930809456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0063cc79c4f852540b81ec61f04bd202
+      internalID: -1257718413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 80
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 362efabb7e33e8f48bb4fd8c087f508d
+      internalID: 1927777528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760452a76bd1f0f4ca4273456d0f4d9e
+      internalID: -1253908329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe8419aaf5bf788448349cd4250fbf5c
+      internalID: -1767428102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 908655da278e9524784ba08c3b73fc98
+      internalID: 1192635551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14a7af7bf32aec4fac4d3728af0ac16
+      internalID: 2140025879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c50a4db76f46da4db0fc11825885777
+      internalID: 262119279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35076344f3808e49888b11ae846f15e
+      internalID: -1032834093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1a3bafc7907e3d4c999e355d9226911
+      internalID: -311511521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sloth-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 0
+        width: 112
+        height: 80
+      alignment: 9
+      pivot: {x: 0.482166, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb127d93889e4754d81d5b421a70c1f6
+      internalID: -2001536149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +959,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sloth-Sheet_0: -539433602
+      Sloth-Sheet_1: -1055669253
+      Sloth-Sheet_10: 322724632
+      Sloth-Sheet_11: -1576367048
+      Sloth-Sheet_12: 1912993632
+      Sloth-Sheet_13: -1698891320
+      Sloth-Sheet_14: 373833343
+      Sloth-Sheet_15: 811652392
+      Sloth-Sheet_16: 1044350990
+      Sloth-Sheet_17: -1037570644
+      Sloth-Sheet_18: -8473598
+      Sloth-Sheet_19: -702163954
+      Sloth-Sheet_2: -10167273
+      Sloth-Sheet_20: -1239476620
+      Sloth-Sheet_21: -1125056854
+      Sloth-Sheet_22: -639232422
+      Sloth-Sheet_23: -136041500
+      Sloth-Sheet_24: -1696887982
+      Sloth-Sheet_25: 489774115
+      Sloth-Sheet_26: 1920050202
+      Sloth-Sheet_27: -591087684
+      Sloth-Sheet_28: 1420277543
+      Sloth-Sheet_29: 1930809456
+      Sloth-Sheet_3: 1788549676
+      Sloth-Sheet_30: -1257718413
+      Sloth-Sheet_31: 1927777528
+      Sloth-Sheet_32: -1253908329
+      Sloth-Sheet_33: -1767428102
+      Sloth-Sheet_34: 1192635551
+      Sloth-Sheet_35: 2140025879
+      Sloth-Sheet_36: 262119279
+      Sloth-Sheet_37: -1032834093
+      Sloth-Sheet_38: -311511521
+      Sloth-Sheet_39: -2001536149
+      Sloth-Sheet_4: -1004989527
+      Sloth-Sheet_5: 943114193
+      Sloth-Sheet_6: -896873160
+      Sloth-Sheet_7: -1380629971
+      Sloth-Sheet_8: 296462959
+      Sloth-Sheet_9: -890212712
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -624,6 +624,8 @@ public class BattleManager : MonoBehaviour
                 if (GluttonyMonMaxHP >= GluttonyStack)
                 {//체력이 더 많거나 같을때 -> 소화 가능 -> 졸개 소환
                     CurrentBattleState = "SurvantByGluttony";
+                    SpawnMonstersID = CurrentTurnObject.GetComponent<Monster>().GetSummonMonsters();
+                    SummonerMonster = CurrentTurnObject;
                 }
                 else
                 {//체력이 더 적을때 -> 소화 불가능 -> 데미지
@@ -657,6 +659,14 @@ public class BattleManager : MonoBehaviour
             case (int)EMonsterActionState.GiveCharm:
                 CurrentBattleState = "GiveCharm";
                 PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Charm, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Charm));
+                break;
+            case (int)EMonsterActionState.GivePetrification:
+                CurrentBattleState = "Petrification";
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Petrification, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Petrification));
+                break;
+            case (int)EMonsterActionState.ApplyCharging:
+                CurrentBattleState = "Charging";
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Charging);
                 break;
             default:
                 CurrentBattleState = "Another";

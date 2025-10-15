@@ -10,6 +10,7 @@ public class Mon_Gluttony : Monster
         Action02,
         TryConsume
     }
+    int GluttonyNextActionState = (int)EGluttonyState.Action01;
     int TryConsumePercent = 0;
     protected override void Start()
     {
@@ -25,6 +26,9 @@ public class Mon_Gluttony : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        GluttonyNormalAction();
+        GluttonyNextActionState = (int)EGluttonyState.Action02;
+        TryConsumePercent = 0;
     }
 
     public override void CheckEnemyBuff(BuffInfo EnemyBuff)
@@ -35,6 +39,50 @@ public class Mon_Gluttony : Monster
     public override void SetNextMonsterState()
     {
         base.SetNextMonsterState();
+        switch(GluttonyNextActionState)
+        {
+            case (int)EGluttonyState.Action01:
+                GluttonyNormalAction();
+                GluttonyNextActionState = (int)EGluttonyState.Action02;
+                TryConsumePercent = 0;
+                break;
+            case (int)EGluttonyState.Action02:
+                GluttonyNormalAction();
+                GluttonyNextActionState = (int)EGluttonyState.TryConsume;
+                TryConsumePercent += Random.Range(5, 16);
+                break;
+            case (int)EGluttonyState.TryConsume:
+                int RandomConsumeNum = Random.Range(1, 101);
+                if(RandomConsumeNum > TryConsumePercent || MonsterBuff.BuffList[(int)EBuffType.Gluttony] <= 0)
+                {//TryConsumePercent가 점점 높아지면 흡수 시도할 확률도 높아 져야 함
+                    //여기는 흡수 안하는 곳 -> TryConsumePercent가 낮을때 확률이 높은곳
+                    //혹은 Gluttony버프 스택이 0일때
+                    GluttonyNormalAction();
+                    TryConsumePercent += Random.Range(5, 16);
+                }
+                else
+                {//여기가 흡수 하는곳
+                    MonsterCurrentState = (int)EMonsterActionState.ConsumeGluttony;
+                    TryConsumePercent = 0;
+                    GluttonyNextActionState = (int)EGluttonyState.Action01;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void GluttonyNormalAction()
+    {
+        int RandNum = Random.Range(0, 3);
+        if(RandNum == 0)
+        {
+            MonsterCurrentState = (int)EMonsterActionState.Defense;
+        }
+        else
+        {
+            MonsterCurrentState = (int)EMonsterActionState.Attack;
+        }
     }
 
     public override List<string> GetSummonMonsters()
@@ -56,7 +104,8 @@ public class Mon_Gluttony : Monster
             MonsterBuff.BuffList[(int)EBuffType.Gluttony] += (int)DamagePoint;
         }
         else
-        {//음수일때 -> 흡수 실패 -> 진짜로 데미지를 입음
+        {//음수일때 -> 흡수 실패 -> 진짜로 데미지를 입음 // 스택도 초기화
+            MonsterBuff.BuffList[(int)EBuffType.Gluttony] = 0;
             int RealDamagePoint = -(int)DamagePoint;
             base.MonsterDamage(RealDamagePoint);
         }

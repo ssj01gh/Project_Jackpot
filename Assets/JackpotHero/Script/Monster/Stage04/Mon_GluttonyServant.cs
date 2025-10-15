@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mon_SlimeServant : Monster
+public class Mon_GluttonyServant : Monster
 {
     protected override void Start()
     {
@@ -18,14 +18,14 @@ public class Mon_SlimeServant : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
-        //초기에는 공격 혹은 방어로
         MonsterBuff.BuffList[(int)EBuffType.Servant] = 99;
+        MonsterBuff.BuffList[(int)EBuffType.SelfDestruct] = 7;
         int RandNum = Random.Range(0, 2);
-        if (RandNum == 0)
+        if (RandNum == 0)//공격
         {
             MonsterCurrentState = (int)EMonsterActionState.Attack;
         }
-        else
+        else//방어
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
@@ -40,11 +40,11 @@ public class Mon_SlimeServant : Monster
     {
         base.SetNextMonsterState();
         int RandNum = Random.Range(0, 2);
-        if (RandNum == 0)
+        if (RandNum == 0)//공격
         {
             MonsterCurrentState = (int)EMonsterActionState.Attack;
         }
-        else
+        else//방어
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
