@@ -311,12 +311,14 @@ public class Monster : MonoBehaviour
         MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
         MonTotalStatus.MonsterCurrentSPD = CurrentBaseSPD;
 
+        //Debug.Log("Before : " + MonTotalStatus.MonsterCurrentSPD);
+
         for(int i = 0; i < (int)EBuffType.CountOfBuff; i++)
         {
             if (MonsterBuff.BuffList[i] < 1)
                 continue;
 
-            switch(i)
+            switch (i)
             {
                 case (int)EBuffType.Luck:
                     MonTotalStatus.MonsterCurrentLUK += 10;
@@ -393,6 +395,13 @@ public class Monster : MonoBehaviour
                     MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK * DecreaseStateBySloth);
                     MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD * DecreaseStateBySloth);
                     break;
+                case (int)EBuffType.Wrath:
+                    float IncreaseStateByWrath = 1 + (MonsterBuff.BuffList[(int)EBuffType.Wrath] * 0.1f);
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentDUR = (int)(MonTotalStatus.MonsterCurrentDUR * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentLUK = (int)(MonTotalStatus.MonsterCurrentLUK * IncreaseStateByWrath);
+                    break;
             }
         }
         if(MonTotalStatus.MonsterCurrentATK < 0)
@@ -407,6 +416,7 @@ public class Monster : MonoBehaviour
         {
             MonTotalStatus.MonsterCurrentSPD = 0;
         }
+        
     }
 
     public void SetMonsterVariousBuff()
@@ -469,6 +479,9 @@ public class Monster : MonoBehaviour
                     MonsterAnimator.SetInteger("WrathAnimeState", 2);
                     break;
                 case 3:
+                case 4:
+                case 5:
+                case 6:
                     MonsterAnimator.SetInteger("WrathAnimeState", 3);
                     break;
                 default:

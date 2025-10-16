@@ -829,6 +829,7 @@ public class BattleUI : MonoBehaviour
                     }
                 }
 
+                //이쪽이 곱 카드 표시하는곳
                 //카드 클릭 애니메이션이 진행될때까지 대기
                 while (true)
                 {
@@ -854,6 +855,7 @@ public class BattleUI : MonoBehaviour
                     }
                 }
             }
+
             //여기 왔다는것은 장비에의한 곱이 완료된거임
             CurrentMainBattlePhase = (int)EMainBattlePhase.EquipMagnificationComplete;
             if (BattleResult.BuffMagnification != 1f)//버프에 의한 증감이 존재 할때
@@ -1114,12 +1116,12 @@ public class BattleUI : MonoBehaviour
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
             else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower" || ActionString == "DefenseDebuff" || ActionString == "AttackDebuff" ||
-                ActionString == "OverCharge" || ActionString == "GiveCharm" || ActionString == "Petrification" || ActionString == "Charging")
+                ActionString == "OverCharge" || ActionString == "GiveCharm" || ActionString == "Petrification")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if(ActionString == "Greed")
+            else if(ActionString == "Greed" || ActionString == "Charging")
             {
                 SoundManager.Instance.PlaySFX("Acquire_EXP");
                 IsAnimateComplete = true;
@@ -1223,7 +1225,7 @@ public class BattleUI : MonoBehaviour
         */
     }
 
-    public void ClickMagnificationCard()
+    public void ClickMagnificationCard()//여는거랑// 연거 곱하는 연출
     {
         if(IsOpenCard == false)//아직 안열였다면//IsOpenCard를 true로 함 -> 코루틴에서 값에 맞는 카드로 바뀜
         {
