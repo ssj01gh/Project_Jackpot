@@ -28,7 +28,6 @@ public class Mon_Slime : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
-
         /*
         MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
         MonsterCurrentState = (int)EMonsterActionState.ApplyRegeneration;

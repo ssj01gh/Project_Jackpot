@@ -27,8 +27,11 @@ public class Mon_Administrator : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        
         MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
         AdministratorNextAction = (int)EAdministratorState.OverChargeServant;
+        
+        //Test
     }
 
     public override void CheckEnemyBuff(BuffInfo EnemyBuff)
@@ -44,7 +47,7 @@ public class Mon_Administrator : Monster
         //3. 공격 혹은 방어를 2번 실행한다.
         //1부터 다시 반복한다.
         //만약 이 함수에 들어왔을때 소환되어 있는 졸개가 아무것도 없다면 1번부터 다시 실행한다.
-
+        
         if(IsAllServantDead)
         {
             AdministratorNextAction = (int)EAdministratorState.SummonServant;
@@ -80,6 +83,7 @@ public class Mon_Administrator : Monster
 
                 break;
         }
+        
     }
 
     public override List<string> GetSummonMonsters()
@@ -100,5 +104,38 @@ public class Mon_Administrator : Monster
             return base.MonsterGiveBuff(i_BuffType, 3);
         else
             return 0;
+    }
+
+    public override void SetMonsterAnimation(string AnimationType = "")
+    {
+        //MonsterAnimator
+        if (AnimationType == "Attack")
+        {
+            MonsterAnimator.SetInteger("AdminState", 1);
+        }
+        else
+        {
+            MonsterAnimator.SetInteger("AdminState", 0);
+        }
+    }
+
+    public override bool CheckmonsterAnimationEnd(string AnimationType = "")
+    {
+        if (AnimationType == "Attack")
+        {
+            if (MonsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
+            {
+                MonsterAnimator.SetInteger("AdminState", 0);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
     }
 }

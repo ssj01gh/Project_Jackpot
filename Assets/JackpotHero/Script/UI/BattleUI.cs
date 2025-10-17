@@ -18,6 +18,7 @@ public class MonBrokenShield
 
 public class BattleUI : MonoBehaviour
 {
+    public Canvas WorldCanvas;
     public GameObject UI_StartOfBattle;
     [Header("ActionSelectionUI")]
     public GameObject PlayerActionSelectionBattleUI;
@@ -36,6 +37,12 @@ public class BattleUI : MonoBehaviour
     public TextMeshProUGUI BaseAmountCardTitleText;//3번
     public TextMeshProUGUI BaseAmountCardDetailText;//3번
     public GameObject MagnificationCard;//3번
+    public GameObject UpperMGLine;
+    public GameObject LowerMGLine;
+    public GameObject[] UpperMGCard;
+    public GameObject[] UpperMGVirtualCard;
+    public GameObject[] LowerMGCard;
+    public GameObject[] LowerMGVirtualCard;
     public GameObject[] ActionTypeObject;//4번
     public GameObject FinalCalculateObject;//4번
     public TextMeshProUGUI FinalCalculateText;//4번
@@ -105,6 +112,12 @@ public class BattleUI : MonoBehaviour
     protected bool IsOpenCard = false;
     protected bool IsOpenAnimationComplete = false;
 
+    protected int TotalOpenCard = 0;
+    protected List<float> UpperMGList = new List<float>();
+    protected List<float> LowwerMGList = new List<float>();
+    protected int PositiveLink = 0;
+    protected int MergeCompleteCardCount = 0;
+
     protected int CurrentMainBattlePhase;
     protected enum EMainBattlePhase
     {
@@ -145,6 +158,12 @@ public class BattleUI : MonoBehaviour
         new Vector2(8f,8f),
         new Vector2(0,-11f)
     };
+
+    private Vector3 InitMGPosRotation = new Vector3(0, 0, 0);
+    private Vector3 InitMGScale = new Vector3(1, 1, 1);
+    private Color InitMGColor = new Color(1, 1, 1, 1);
+
+    private Color TargetMGColor = new Color(1, 1, 1, 0);
     private void Awake()
     {
 
@@ -624,6 +643,7 @@ public class BattleUI : MonoBehaviour
         BaseAmountCardTitleText.text = "";//3번
         BaseAmountCardDetailText.text = "";//3번
         MagnificationCard.SetActive(false);//3번
+        InitAllMGCard();//3번
 
         //0. Attack, 1. Defense, 2. Rest, 3. Another 4.Charm
         //행동 상태에 맞는 모양 활성화 //4번 활성화
@@ -767,8 +787,59 @@ public class BattleUI : MonoBehaviour
             //2번으로 향할 3번 활성화
             //이걸 BattleResult.Count만큼 반복 시켜야함
             float TotalMagnification = 1f;
-            int RepeatCount = 0;
-            int PositiveLink = 0;
+            TotalOpenCard = 0;
+            PositiveLink = 0;
+            UpperMGList.Clear();
+            LowwerMGList.Clear();
+
+            //BattleResult.Count만큼 활성화 및 위 아래의 카드 개봉시 수치 나누기
+            SetMGCardActive(BattleResult.ResultMagnification);
+            //클릭할 수 있는 카드는 활성화 되어있음
+            //각 카드를 누를때마다 PositiveLink가 증가할지 0으로 될지 결정됨
+            //각 카드가 몇번째 카드인지 확인할 수 있어야함 (왼쪽 위 부터 1번)
+            //개방된 카드가 ResultMagnification.count 이상이 되면 다음으로 넘어감
+            while(true)
+            {//개방된 카드가 ResultMagnification.count 이상이 되면 다음으로 넘어감
+                //
+                yield return null;
+                if (TotalOpenCard >= BattleResult.ResultMagnification.Count)
+                {//여기까지 오면 카드가 다 개방된거임
+                    break;
+                }
+
+            }
+
+            yield return new WaitForSeconds(0.3f);//잠깐 기다렸다가
+
+            MergeCompleteCardCount = 0;
+            //모든 Active상태의 Virtual카드가 날라가게
+            MergeToMagnificationSlot();
+
+            while (true)
+            {
+                yield return null;
+                if (MergeCompleteCardCount >= BattleResult.ResultMagnification.Count)
+                {
+                    float BeforeMagnification = TotalMagnification;
+
+                    for(int i = 0; i < BattleResult.ResultMagnification.Count; i++)
+                    {
+                        TotalMagnification *= BattleResult.ResultMagnification[i];
+                    }
+
+                    if (BeforeMagnification != TotalMagnification)//*1이 아닐때
+                    {
+                        NumAudioSource = SoundManager.Instance.PlaySFX("Increase_Number");
+                    }
+                    DOTween.To(() => BeforeMagnification, x =>
+                    {
+                        BeforeMagnification = x;
+                        MagnificationText.text = BeforeMagnification.ToString("F2");
+                    }, TotalMagnification, 0.3f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
+                    break;
+                }
+            }
+            /*
             while (RepeatCount < BattleResult.ResultMagnification.Count)
             {
                 yield return null;
@@ -829,6 +900,7 @@ public class BattleUI : MonoBehaviour
                     }
                 }
 
+                //이쪽이 곱 카드 표시하는곳
                 //카드 클릭 애니메이션이 진행될때까지 대기
                 while (true)
                 {
@@ -854,6 +926,8 @@ public class BattleUI : MonoBehaviour
                     }
                 }
             }
+            */
+
             //여기 왔다는것은 장비에의한 곱이 완료된거임
             CurrentMainBattlePhase = (int)EMainBattlePhase.EquipMagnificationComplete;
             if (BattleResult.BuffMagnification != 1f)//버프에 의한 증감이 존재 할때
@@ -1114,10 +1188,15 @@ public class BattleUI : MonoBehaviour
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
             else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower" || ActionString == "DefenseDebuff" || ActionString == "AttackDebuff" ||
-                ActionString == "OverCharge")
+                ActionString == "OverCharge" || ActionString == "GiveCharm" || ActionString == "Petrification")
             {
                 SoundManager.Instance.PlaySFX("Buff_Forcing");
                 ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+            }
+            else if(ActionString == "Greed" || ActionString == "Charging")
+            {
+                SoundManager.Instance.PlaySFX("Acquire_EXP");
+                IsAnimateComplete = true;
             }
             else
             {
@@ -1218,8 +1297,12 @@ public class BattleUI : MonoBehaviour
         */
     }
 
-    public void ClickMagnificationCard()
-    {
+    public void ClickMagnificationCard(int CardNum)//여는거 연출
+    {//UpperCard == 0 ~ 3 // LowwerCard == 4 ~ 7
+        //클릭 텍스트를 띄워야 하려나? -> 이건 일단 나중에 하면 될듯?
+        //일단 클릭되면 클릭된 당사자는 투명해지고 ButtonInteratable false로
+        //, Virtual카드들이 뒤집히는 연출을함
+        /*
         if(IsOpenCard == false)//아직 안열였다면//IsOpenCard를 true로 함 -> 코루틴에서 값에 맞는 카드로 바뀜
         {
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
@@ -1228,13 +1311,198 @@ public class BattleUI : MonoBehaviour
             MagnificationCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() => { IsOpenCard = true; });
         }
         else if(IsOpenCard == true && IsOpenAnimationComplete == true && IsAnimateComplete == false)//카드가 공개 되고, 공개 애니메이션이 끝났을때 클릭하면
-        {
+        {//이게 날라가는거
             //MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(400, 350), 0.5f);
             MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
             MagnificationCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
             MagnificationCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
             ClickTextObject.GetComponent<RectTransform>().DOKill();
             ClickTextObject.SetActive(false);
+        }
+        */
+        if(CardNum <= 3 && CardNum >= 0)
+        {//UpperCard
+            UpperMGCard[CardNum].GetComponent<Image>().color = TargetMGColor;
+            UpperMGCard[CardNum].GetComponent<Button>().interactable = false;
+            //TotalOpenCard++;
+
+            SoundManager.Instance.PlaySFX("ReverseCard_Open");
+            UpperMGVirtualCard[CardNum].SetActive(true);
+            //뒤집는 애니메이션이 완료됬을때 카드를 
+            UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() => 
+            {
+                if (UpperMGList[CardNum] >= 1)//긍정
+                    PositiveLink++;
+                else//부정
+                    PositiveLink = 0;
+
+                UpperMGVirtualCard[CardNum].GetComponent<Image>().sprite = 
+                EquipmentInfoManager.Instance.GetEquipmentSlotSprite(UpperMGList[CardNum]);//클릭한 카드에 맞는 결과 출력
+                UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).OnComplete(() =>
+                {
+                    TotalOpenCard++;
+                    PlayCardResultSound(PositiveLink);//계속 긍정이 되면 피치가 계속 올라감
+                });
+            });
+        }
+        else if(CardNum >= 4 && CardNum <= 7)
+        {//LowerCard
+            int FixedCardNum = CardNum - 4;
+            LowerMGCard[FixedCardNum].GetComponent<Image>().color = TargetMGColor;
+            LowerMGCard[FixedCardNum].GetComponent<Button>().interactable = false;
+
+            SoundManager.Instance.PlaySFX("ReverseCard_Open");
+            LowerMGVirtualCard[FixedCardNum].SetActive(true);
+            //뒤집는 애니메이션이 완료됬을때 카드를 
+            LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() =>
+            {
+                if (LowwerMGList[FixedCardNum] >= 1)//긍정
+                    PositiveLink++;
+                else//부정
+                    PositiveLink = 0;
+
+                LowerMGVirtualCard[FixedCardNum].GetComponent<Image>().sprite =
+                EquipmentInfoManager.Instance.GetEquipmentSlotSprite(LowwerMGList[FixedCardNum]);//클릭한 카드에 맞는 결과 출력
+                LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).OnComplete(() =>
+                {
+                    TotalOpenCard++;
+                    PlayCardResultSound(PositiveLink);//계속 긍정이 되면 피치가 계속 올라감
+                });
+            });
+        }
+    }
+
+    protected void MergeToMagnificationSlot()//합쳐지는 연출//Active됬던 모든 Virtual카드
+    {
+        RectTransform CanvasRect = (RectTransform)WorldCanvas.transform;
+
+
+        foreach(GameObject UCard in UpperMGVirtualCard)
+        {
+            if(UCard.activeSelf == true)
+            {
+                UCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
+                UCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
+                UCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => 
+                { 
+                    MergeCompleteCardCount++;
+                    UCard.SetActive(false);
+                });
+            }
+
+        }
+        foreach(GameObject LCard in LowerMGVirtualCard)
+        {
+            LCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
+            LCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
+            LCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => 
+            { 
+                MergeCompleteCardCount++;
+                LCard.SetActive(false);
+            });
+        }
+        /*
+        if (IsOpenCard == true && IsOpenAnimationComplete == true && IsAnimateComplete == false)//카드가 공개 되고, 공개 애니메이션이 끝났을때 클릭하면
+        {//이게 날라가는거
+         //MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(400, 350), 0.5f);
+            MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
+            MagnificationCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
+            MagnificationCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
+            ClickTextObject.GetComponent<RectTransform>().DOKill();
+            ClickTextObject.SetActive(false);
+        }
+        */
+    }
+
+    protected void InitAllMGCard()
+    {//초기화 == 일단 카드들 다 비활성화, 초기 상태로 되될리기
+        UpperMGLine.SetActive(false);
+        LowerMGLine.SetActive(false);
+        foreach (GameObject obj in UpperMGCard)
+        {
+            obj.SetActive(false);
+            obj.GetComponent<Image>().color = InitMGColor;
+            obj.GetComponent<Button>().interactable = true;
+        }
+        foreach (GameObject obj in UpperMGVirtualCard)
+        {
+            obj.SetActive(false);
+            obj.GetComponent<RectTransform>().anchoredPosition = InitMGPosRotation;
+            obj.GetComponent<RectTransform>().localScale = InitMGScale;
+            obj.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);
+        }
+        foreach (GameObject obj in LowerMGCard)
+        {
+            obj.SetActive(false);
+            obj.GetComponent<Image>().color = InitMGColor;
+            obj.GetComponent<Button>().interactable = true;
+        }
+        foreach (GameObject obj in LowerMGVirtualCard)
+        {
+            obj.SetActive(false);
+            obj.GetComponent<RectTransform>().anchoredPosition = InitMGPosRotation;
+            obj.GetComponent<RectTransform>().localScale = InitMGScale;
+            obj.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);
+        }
+        //MagnificationCard.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);//?카드로 초기화
+        //EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);
+    }
+
+    protected void SetMGCardActive(List<float> MagnificationList)
+    {
+        int ListCount = MagnificationList.Count;
+        int UpperInt = 0;
+        int LowwerInt = 0;
+        switch (ListCount)
+        {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                UpperInt = ListCount;
+                UpperMGLine.SetActive(true);
+                break;
+            case 5://3 2
+                UpperInt = 3;
+                LowwerInt = 2;
+                UpperMGLine.SetActive(true);
+                LowerMGLine.SetActive(true);
+                break;
+            case 6:// 4 2
+                UpperInt = 4;
+                LowwerInt = 2;
+                UpperMGLine.SetActive(true);
+                LowerMGLine.SetActive(true);
+                break;
+            case 7://4 3
+                UpperInt = 4;
+                LowwerInt = 3;
+                UpperMGLine.SetActive(true);
+                LowerMGLine.SetActive(true);
+                break;
+            case 8://4 4
+                UpperInt = 4;
+                LowwerInt = 4;
+                UpperMGLine.SetActive(true);
+                LowerMGLine.SetActive(true);
+                break;
+        }
+
+        if(UpperInt != 0)
+        {
+            for (int i = 0; i < UpperInt; i++)
+            {
+                UpperMGCard[i].SetActive(true);
+                UpperMGList.Add(MagnificationList[i]);
+            }
+        }
+        if(LowwerInt != 0)
+        {
+            for (int i = 0; i < LowwerInt; i++)
+            {
+                LowerMGCard[i].SetActive(true);
+                LowwerMGList.Add(MagnificationList[UpperInt + i]);
+            }
         }
     }
 

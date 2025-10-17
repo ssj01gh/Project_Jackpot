@@ -158,9 +158,9 @@ public class BattleManager : MonoBehaviour
             MonMgr.SpawnMonsterBySummonMonster(SpawnMonstersID, SummonerMonster);
             SummonerMonster = null;
         }
-
+        
         //버프 계산 <- 이놈은 근데 전의 녀석을 계산함 만약 없으면 계산X
-        if(CurrentTurnObject != null)
+        if (CurrentTurnObject != null)
         {
             AfterBuffProgress();//AfterBuffProgress
             //위축 -> 공포는 모든 턴마다 전환
@@ -170,6 +170,7 @@ public class BattleManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
             }
         }
+        
         //스탯 계산
         MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
         PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//버프 디버프에의한 스탯 계산용
@@ -236,7 +237,7 @@ public class BattleManager : MonoBehaviour
         UIMgr.B_UI.SetMonsterBattleUI(MonMgr.GetActiveMonsters());
         //UIMgr.B_UI.ActivePlayerShieldNBuffUI(PlayerMgr.GetPlayerInfo());//이거 전에 몬스터가 죽엇는지 아닌지 확인해야됨
 
-        if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP <= 0)
+        if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1)
         {
             //스프라이트가 쓰러지는 스프라이트가 재생된다던가?
             //ActiveMonster전부다 해제
@@ -399,7 +400,7 @@ public class BattleManager : MonoBehaviour
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
 
-            PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount);
+            PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount, false, true);
             if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
             {//쉴드가 남아있으면
                 IsTargetHasShield = true;
@@ -499,15 +500,33 @@ public class BattleManager : MonoBehaviour
                     }
                 }
 
+                switch(CurrentTurnObject.GetComponent<Monster>().MonsterName)
+                {
+                    case "Administrator_Hammer":
+                        PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.DefenseDebuff, 
+                            CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.DefenseDebuff));
+                        break;
+                    case "Administrator_Saw":
+                        PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.AttackDebuff,
+                            CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.AttackDebuff));
+                        break;
+                    case "Administrator_Syringe":
+                        int[] DebuffArray = new int[3] { (int)EBuffType.Poison, (int)EBuffType.Weakness, (int)EBuffType.Slow };
+                        int RandomDebuff = Random.Range(0, 3);
+                        PlayerMgr.GetPlayerInfo().ApplyBuff(DebuffArray[RandomDebuff],
+                            CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff(DebuffArray[RandomDebuff]));
+                        break;
+                }
+
                 if(IsAlreadyDamageCalculate == false)
                 {
                     PlayerMgr.GetPlayerInfo().PlayerDamage((int)BattleResultStatus.FinalResultAmount);
                 }
-                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
+                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1 || 
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Defense] >= (int)BattleResultStatus.FinalResultAmount)
                 {//여기에 들어오면 적응_힘 증가
-                    //임시로 짧다리새
                     
-                    if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "ABC")
+                    if(CurrentTurnObject.GetComponent<Monster>().MonsterName == "Guardian")
                     {
                         CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.StrengthAdaptation] += 1;
                     }
@@ -596,7 +615,7 @@ public class BattleManager : MonoBehaviour
             case (int)EMonsterActionState.GiveEnvy:
                 CurrentBattleState = "Envy";
                 int EnvyStackAmount = (int)PlayerMgr.GetPlayerInfo().GetAllEquipTier();
-                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Envy] = EnvyStackAmount;
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Envy, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Envy, EnvyStackAmount));
                 break;
             case (int)EMonsterActionState.ConsumeGluttony:
                 //Stack이 자기 자신의 최대 체력보다 많을때는 데미지
@@ -605,11 +624,14 @@ public class BattleManager : MonoBehaviour
                 if (GluttonyMonMaxHP >= GluttonyStack)
                 {//체력이 더 많거나 같을때 -> 소화 가능 -> 졸개 소환
                     CurrentBattleState = "SurvantByGluttony";
+                    SpawnMonstersID = CurrentTurnObject.GetComponent<Monster>().GetSummonMonsters();
+                    SummonerMonster = CurrentTurnObject;
                 }
                 else
                 {//체력이 더 적을때 -> 소화 불가능 -> 데미지
                     CurrentBattleState = "CantConsume";
-                    CurrentTurnObject.GetComponent<Monster>().MonsterDamage(GluttonyStack / 2);
+                    //-로 데미지를 기록해서 전달함 -> 플레이어가 주는 데미지와 구분하기 위해서
+                    CurrentTurnObject.GetComponent<Monster>().MonsterDamage(-(GluttonyStack * 0.5f));
                 }
                     //Stack이 자기 자신으 최대 체력보다 적을때는 졸개 소환
                 break;
@@ -633,6 +655,18 @@ public class BattleManager : MonoBehaviour
                 CurrentBattleState = "OverCharge";
                 MonMgr.GiveBuffToActiveServent((int)EBuffType.OverCharge, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.OverCharge), CurrentTurnObject);
                 //살아있는 몬스터중에 졸개 버프를 가지고있고, 마스터 몬스터가 해당 턴의 몬스터인 모든 몬스터에게
+                break;
+            case (int)EMonsterActionState.GiveCharm:
+                CurrentBattleState = "GiveCharm";
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Charm, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Charm));
+                break;
+            case (int)EMonsterActionState.GivePetrification:
+                CurrentBattleState = "Petrification";
+                PlayerMgr.GetPlayerInfo().ApplyBuff((int)EBuffType.Petrification, CurrentTurnObject.GetComponent<Monster>().MonsterGiveBuff((int)EBuffType.Petrification));
+                break;
+            case (int)EMonsterActionState.ApplyCharging:
+                CurrentBattleState = "Charging";
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.Charging);
                 break;
             default:
                 CurrentBattleState = "Another";
@@ -851,8 +885,8 @@ public class BattleManager : MonoBehaviour
         else if (CurrentTurnObject.tag == "Monster")
         {
             Monster MonInfo = CurrentTurnObject.GetComponent<Monster>();
-            if (MonInfo.MonsterBuff.BuffList[BuffsType] > 0)
-            {
+            if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP > 0 && MonInfo.MonsterBuff.BuffList[BuffsType] > 0)
+            {//살아있는 놈들 중에서
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                 {
                     //재생 , 기충전, 화상, 독, 죽음의 저주, 재생형갑옷, 나약함, 불사(이놈은 마지막에 계산되야 될것 같은데)
@@ -909,7 +943,7 @@ public class BattleManager : MonoBehaviour
                         }
                         break;
                     case (int)EBuffType.Lust:
-                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm] += 2;
+                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm] += 1;
                         break;
                 }
 
@@ -1311,12 +1345,12 @@ public class BattleManager : MonoBehaviour
                 {//전턴의 오브젝트가 플레이어이고 전턴의 오브젝트가 이번턴에도 행동할때
                     foreach (GameObject Mon in MonMgr.GetActiveMonsters())
                     {
-                        /*
-                        if(Mon.GetComponent<Monster>().MonsterName == "ShortLegBird")
+                        
+                        if(Mon.GetComponent<Monster>().MonsterName == "Guardian")
                         {
                             Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.SpeedAdaptation] += 1;
                         }
-                        */
+                        
                     }
                 }
             }

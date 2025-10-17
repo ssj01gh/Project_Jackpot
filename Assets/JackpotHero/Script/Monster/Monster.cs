@@ -30,7 +30,10 @@ public enum EMonsterActionState
     ApplyRegeneration,
     GiveBurn,
     GiveAttackDebuff,
-    GiveOverChargeToServant
+    GiveOverChargeToServant,
+    GiveCharm,
+    GivePetrification,
+    ApplyCharging
 }
 public class MonsterCurrentStatus
 {
@@ -162,9 +165,16 @@ public class Monster : MonoBehaviour
                 MonsterBaseSPD = (int)(MasterMon.MonTotalStatus.MonsterCurrentSPD * 0.5f);
                 MonsterBaseLuk = (int)(MasterMon.MonTotalStatus.MonsterCurrentLUK * 0.5f);
             }
-            else if(MasterMon.MonsterName == "ABC")
-            {
+            else if(MasterMon.MonsterName == "Gluttony")
+            {//여기서 MasterMon의 Gluttony도 0으로
+                int MasterMonGluttonyStack = MasterMon.MonsterBuff.BuffList[(int)EBuffType.Gluttony];
+                MonsterBaseHP = (int)(MasterMonGluttonyStack * 0.2f);
+                MonsterBaseATK = (int)(MasterMonGluttonyStack * 0.05f);
+                MonsterBaseDUR = (int)(MasterMonGluttonyStack * 0.05f);
+                MonsterBaseSPD = (int)(MasterMonGluttonyStack * 0.05f);
+                MonsterBaseLuk = (int)(MasterMonGluttonyStack * 0.05f);
 
+                MasterMon.MonsterBuff.BuffList[(int)EBuffType.Gluttony] = 0;
             }
         }
 
@@ -188,6 +198,9 @@ public class Monster : MonoBehaviour
         Rand = Random.Range(-(int)EXPVarianceAmount, (int)EXPVarianceAmount + 1);
         MonTotalStatus.MonsterReward = MonsterBaseEXP + Rand;
 
+        //Action게이지도 초기화
+        MonTotalStatus.MonsterCurrentActionGauge = 0;
+        MonTotalStatus.MonsterNextActionGauge = 0;
         //몬스터도 플레이어의 상태에 맞게 버프를 바아야함
         InitAllBuff();//일단 초기화 하고 추가
         SetMonsterStatus();
@@ -298,12 +311,14 @@ public class Monster : MonoBehaviour
         MonTotalStatus.MonsterCurrentLUK = CurrentBaseLUK;
         MonTotalStatus.MonsterCurrentSPD = CurrentBaseSPD;
 
+        //Debug.Log("Before : " + MonTotalStatus.MonsterCurrentSPD);
+
         for(int i = 0; i < (int)EBuffType.CountOfBuff; i++)
         {
             if (MonsterBuff.BuffList[i] < 1)
                 continue;
 
-            switch(i)
+            switch (i)
             {
                 case (int)EBuffType.Luck:
                     MonTotalStatus.MonsterCurrentLUK += 10;
@@ -367,12 +382,25 @@ public class Monster : MonoBehaviour
                     break;
                 case (int)EBuffType.Greed:
                     int IncreaseStateByGreed = (int)(MonsterBuff.BuffList[(int)EBuffType.Greed] * 0.05f);
-                    MonTotalStatus.MonsterCurrentHP += MonsterBuff.BuffList[(int)EBuffType.Greed];
-                    MonTotalStatus.MonsterMaxHP += MonsterBuff.BuffList[(int)EBuffType.Greed];
+                    int CurrentDamange = (int)(MonTotalStatus.MonsterMaxHP - MonTotalStatus.MonsterCurrentHP);
+                    MonTotalStatus.MonsterMaxHP = MonsterBaseHP + MonsterBuff.BuffList[(int)EBuffType.Greed];
+                    MonTotalStatus.MonsterCurrentHP = MonTotalStatus.MonsterMaxHP - CurrentDamange;
                     MonTotalStatus.MonsterCurrentATK += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentDUR += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentSPD += IncreaseStateByGreed;
                     MonTotalStatus.MonsterCurrentLUK += IncreaseStateByGreed;
+                    break;
+                case (int)EBuffType.Sloth:
+                    float DecreaseStateBySloth = 1 - (MonsterBuff.BuffList[(int)EBuffType.Sloth] * 0.15f);
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK * DecreaseStateBySloth);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD * DecreaseStateBySloth);
+                    break;
+                case (int)EBuffType.Wrath:
+                    float IncreaseStateByWrath = 1 + (MonsterBuff.BuffList[(int)EBuffType.Wrath] * 0.1f);
+                    MonTotalStatus.MonsterCurrentATK = (int)(MonTotalStatus.MonsterCurrentATK * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentDUR = (int)(MonTotalStatus.MonsterCurrentDUR * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentSPD = (int)(MonTotalStatus.MonsterCurrentSPD * IncreaseStateByWrath);
+                    MonTotalStatus.MonsterCurrentLUK = (int)(MonTotalStatus.MonsterCurrentLUK * IncreaseStateByWrath);
                     break;
             }
         }
@@ -388,19 +416,12 @@ public class Monster : MonoBehaviour
         {
             MonTotalStatus.MonsterCurrentSPD = 0;
         }
+        
     }
 
     public void SetMonsterVariousBuff()
     {
         MonsterBuff.BuffList[(int)EBuffType.Defense] = (int)(MonTotalStatus.MonsterCurrentDUR / 5);
-        //임시로 짧다리새
-        if(MonsterName == "ABC")
-        {
-            //체력 1일때 90 만피일때 10
-            float PrideHpRatio = (MonTotalStatus.MonsterCurrentHP - 1) / (MonTotalStatus.MonsterMaxHP - 1);
-            float PrideResult = Mathf.Lerp(90, 10, PrideHpRatio);
-            MonsterBuff.BuffList[(int)EBuffType.Pride] = (int)PrideResult;
-        }
 
         if (MonsterName == "Doppelganger")
         {//여기서 변하게....
@@ -421,6 +442,51 @@ public class Monster : MonoBehaviour
             if (CopySTR == true && CopyDUR == true && CopyLUK == true && CopySPD == true)
             {
                 MonsterAnimator.SetInteger("DoppelgangerState", 1);
+            }
+        }
+        if(MonsterName == "Sloth")
+        {
+            switch(MonsterBuff.BuffList[(int)EBuffType.Sloth])
+            {
+                case 4:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 0);
+                    break;
+                case 3:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 1);
+                    break;
+                case 2:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 2);
+                    break;
+                case 1:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 3);
+                    break;
+                case 0:
+                    MonsterAnimator.SetInteger("SlothAnimeState", 4);
+                    break;
+            }
+        }
+        if(MonsterName == "Wrath")
+        {
+            switch(MonsterBuff.BuffList[(int)EBuffType.Charging])
+            {
+                case 0:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 0);
+                    break;
+                case 1:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 1);
+                    break;
+                case 2:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 2);
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 3);
+                    break;
+                default:
+                    MonsterAnimator.SetInteger("WrathAnimeState", 0);
+                    break;
             }
         }
     }
@@ -447,17 +513,8 @@ public class Monster : MonoBehaviour
     {
         return new Vector2(HpSliderPos.transform.position.x, HpSliderPos.transform.position.y + ActionPosUpperHP);
     }
-    public void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
+    public virtual void MonsterDamage(float DamagePoint)//여기서 싹 데미지 계산
     {
-        if(DamagePoint > 0)
-        {
-            /*
-            if(MonsterName == "ShortLegBird")
-            {
-                MonsterBuff.BuffList[(int)EBuffType.Reflect] += (int)DamagePoint;
-            } 
-            */
-        }
 
         float RestDamage = 0;
         if (MonsterBuff.BuffList[(int)EBuffType.Defense] >= 1)
@@ -480,18 +537,6 @@ public class Monster : MonoBehaviour
             RecordMonsterBeforeShield();
             MonTotalStatus.MonsterCurrentShieldPoint = 0;
         }
-        
-        if(RestDamage >= 1)
-        {
-            //일단 짧다리새만
-            /*
-            if(MonsterName == "ShortLegBird")
-            {
-                MonsterBuff.BuffList[(int)EBuffType.DurabilityAdaptation] += 1;
-            }
-            */
-        }
-
         MonTotalStatus.MonsterCurrentHP -= RestDamage;
     }
 

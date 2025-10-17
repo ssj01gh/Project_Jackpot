@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -108,7 +108,1120 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Warth-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6373e6390dc25a4ca5abdf4e2256c99
+      internalID: 1266332818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 560
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca842901f62b1045afd7db41d4b03f3
+      internalID: 1381250131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 560
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a95029331b366bd478d3965fc3f17519
+      internalID: 980170556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 560
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fac0f9c8c4c2704e98f65051997b2ca
+      internalID: -926262095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53abe1df37cae194482abe43403c48c1
+      internalID: -42387646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 480
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a91eed530b06044da1e6b99ba94b08c
+      internalID: 1434514748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 480
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3c0f4c90d3ddb4b999707fcafe2c0b
+      internalID: 842396552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 480
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c01277bd5de4d408c6b5c53d5ed5eb
+      internalID: 279516318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 480
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b098291dde0371409ed58ecf7d792f0
+      internalID: 125947733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 480
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49ba2088005ad4e4a8dff5078e17f8af
+      internalID: -1620183602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 480
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b0c5bd447c45643b61c4e86e33a5f7
+      internalID: -1261103498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151e64db2b5769f4599d1c7797382906
+      internalID: 1449186183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 400
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ff7ef5af47e1d4d86c27292f40a688
+      internalID: 1463469450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 400
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc714cee267759643b61a72029627413
+      internalID: -426405986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 400
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331a164c59da10242b35bddba6059c5f
+      internalID: -754630814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 400
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfca0d710a8f3874bb289dd372d5272b
+      internalID: -1718936017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 400
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a97a6acc09416ab4b97cf9d198e23bda
+      internalID: 797208004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 400
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e296bb66376beba409482f2a2660f975
+      internalID: -1556164897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83097b807a744f346ac67bf87c58f06b
+      internalID: 634698006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 320
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584896f07cee62241a7b3aee54830c6c
+      internalID: 1228554342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 320
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca7276b8d536008409c236f77264baaa
+      internalID: 689957374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 320
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc505838a59b9c4bb3b2b955ebae04e
+      internalID: 185839490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 320
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 469d17c1117394e4bab7c13ad575e999
+      internalID: -856945089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 320
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de6af7f3189ba142be62c217d03e313
+      internalID: 17485049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 320
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6dbeacf6993e846bf445e55bc49a74
+      internalID: 1032351772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9862a401f6db0448884b4d272c7b9eb
+      internalID: 312081188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 240
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39586fe9ea452bd4d9f2699624cff4bc
+      internalID: -391937798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 240
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 958518bcfaaa0ea49ad3965fd5eea011
+      internalID: 1216148818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 240
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a409a5143c4c74642846ba800c8a5de2
+      internalID: 325807747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 240
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a36ec422ba386743b8b5462b61b9524
+      internalID: 1122343775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 240
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d95bd7e46c63574392491def70e61e5
+      internalID: 1139479186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 240
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96b7be92496a6c4b91705931de9dab7
+      internalID: -1648233185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bdc3e1bbd3568f44b621516024cbe5a
+      internalID: -172214220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 160
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c63057ebc14b024a905e025f92185ac
+      internalID: 1920365632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 160
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e01556f44193e034c8a8e3ca5bfe4466
+      internalID: -488901237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 160
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b865b20fb43e1e6499d55a13ade6e6b3
+      internalID: -489760813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 160
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4834c983f2b916946834b53ade7feb47
+      internalID: 393853032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 160
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a2617553081be44286f0b6edc9f7c50
+      internalID: -740707277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 160
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c251e5e0ee08e04696d120f1d6adbe3
+      internalID: -1609127749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 740cc4484cef39e4d9f90ab07efabee3
+      internalID: 737204497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 80
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e1d58d81b8af4e4b92d25c11e684f5f
+      internalID: 127192997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 80
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73e336257cf1fc84b88e92d17d3a0e81
+      internalID: 2129266940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 80
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91e56520f9716204cbed2b4f07e50c84
+      internalID: 600249638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 80
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8ab30d0260d40e48b8dfa73c7543d42
+      internalID: -1376630524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 80
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86616ea8a5dfeb245b2938f7e6997868
+      internalID: -706848963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 80
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faf129829d5d9664391405f681299523
+      internalID: 1009659125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a1afeb62e78d645a23e6aa284d62e0
+      internalID: 357492243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515f24a04f5319f49a58a4ae0cfffd26
+      internalID: -2069953880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 0
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 371f98b60f29c0d4fa3ed6005b83b4a5
+      internalID: 1769595633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 0
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ef31d09fc098d42920f5105b7bd480
+      internalID: 1510538878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 0
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a707cc0c8f1abc543916d46dfdc74770
+      internalID: 1734530242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 1840
+        y: 0
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a2857b1df6393b4d9ff193aec2266e2
+      internalID: 469919026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth-Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 0
+        width: 368
+        height: 80
+      alignment: 9
+      pivot: {x: 0.758043, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f62a4e2fa7530f149afd2e9747e7a938
+      internalID: -1900155192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +1232,60 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Warth-Sheet_0: 1266332818
+      Warth-Sheet_1: 1381250131
+      Warth-Sheet_10: -1261103498
+      Warth-Sheet_11: 1449186183
+      Warth-Sheet_12: 1463469450
+      Warth-Sheet_13: -426405986
+      Warth-Sheet_14: -754630814
+      Warth-Sheet_15: -1718936017
+      Warth-Sheet_16: 797208004
+      Warth-Sheet_17: -1556164897
+      Warth-Sheet_18: 634698006
+      Warth-Sheet_19: 1228554342
+      Warth-Sheet_2: 980170556
+      Warth-Sheet_20: 689957374
+      Warth-Sheet_21: 185839490
+      Warth-Sheet_22: -856945089
+      Warth-Sheet_23: 17485049
+      Warth-Sheet_24: 1032351772
+      Warth-Sheet_25: 312081188
+      Warth-Sheet_26: -391937798
+      Warth-Sheet_27: 1216148818
+      Warth-Sheet_28: 325807747
+      Warth-Sheet_29: 1122343775
+      Warth-Sheet_3: -926262095
+      Warth-Sheet_30: 1139479186
+      Warth-Sheet_31: -1648233185
+      Warth-Sheet_32: -172214220
+      Warth-Sheet_33: 1920365632
+      Warth-Sheet_34: -488901237
+      Warth-Sheet_35: -489760813
+      Warth-Sheet_36: 393853032
+      Warth-Sheet_37: -740707277
+      Warth-Sheet_38: -1609127749
+      Warth-Sheet_39: 737204497
+      Warth-Sheet_4: -42387646
+      Warth-Sheet_40: 127192997
+      Warth-Sheet_41: 2129266940
+      Warth-Sheet_42: 600249638
+      Warth-Sheet_43: -1376630524
+      Warth-Sheet_44: -706848963
+      Warth-Sheet_45: 1009659125
+      Warth-Sheet_46: 357492243
+      Warth-Sheet_47: -2069953880
+      Warth-Sheet_48: 1769595633
+      Warth-Sheet_49: 1510538878
+      Warth-Sheet_5: 1434514748
+      Warth-Sheet_50: 1734530242
+      Warth-Sheet_51: 469919026
+      Warth-Sheet_52: -1900155192
+      Warth-Sheet_6: 842396552
+      Warth-Sheet_7: 279516318
+      Warth-Sheet_8: 125947733
+      Warth-Sheet_9: -1620183602
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

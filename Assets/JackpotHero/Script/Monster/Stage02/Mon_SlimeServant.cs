@@ -19,6 +19,7 @@ public class Mon_SlimeServant : Monster
     {
         base.InitMonsterState();
         //초기에는 공격 혹은 방어로
+        MonsterBuff.BuffList[(int)EBuffType.Servant] = 99;
         int RandNum = Random.Range(0, 2);
         if (RandNum == 0)
         {
