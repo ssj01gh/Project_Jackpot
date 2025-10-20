@@ -18,7 +18,13 @@ public class EquipmentDetailInfoUI : MonoBehaviour
     public TextMeshProUGUI ClickEquipAddSPD;
     public TextMeshProUGUI ClickEquipAddLUK;
 
-    public GameObject[] CardContainers; 
+    public TextMeshProUGUI ClickEquipDetailText;
+
+    public GameObject ClickEquipCardContainer;
+    public GameObject[] CardContainers;
+
+    public GameObject ClickEquipCardButtonDownArrow;
+    public GameObject ClickEquipCardButtonUpArrow;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,7 +99,14 @@ public class EquipmentDetailInfoUI : MonoBehaviour
 
             }
         }
-        for(int i = 0; i < EquipInfo.EquipmentSlots.Length; i++)
+        //장비의 설명창
+        ClickEquipDetailText.text = EquipInfo.EquipmentDetail.ToString();
+        //이 밑에꺼는 나중에 버튼 클릭하면 열리게 설정만 해놓고
+        //얘의 부모를 꺼놓음
+        ClickEquipCardButtonDownArrow.SetActive(true);
+        ClickEquipCardButtonUpArrow.SetActive(false);
+        ClickEquipCardContainer.SetActive(false);
+        for (int i = 0; i < EquipInfo.EquipmentSlots.Length; i++)
         {
             //활성화
             CardContainers[i].SetActive(true);
@@ -107,7 +120,27 @@ public class EquipmentDetailInfoUI : MonoBehaviour
             return;
 
         SoundManager.Instance.PlayUISFX("UI_Button");
+        SetClickEquipCardContainer(true);
         gameObject.GetComponent<RectTransform>().localScale = Vector2.one;
         gameObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() => { gameObject.SetActive(false); });
+    }
+
+    public void SetClickEquipCardContainer(bool IsInActiveEquipmentDetailInfo = false)
+    {
+        if(IsInActiveEquipmentDetailInfo == false)
+            SoundManager.Instance.PlayUISFX("UI_Button");
+
+        if (ClickEquipCardContainer.activeSelf == true || IsInActiveEquipmentDetailInfo == true)
+        {//켜져있을때는 끄고
+            ClickEquipCardButtonDownArrow.SetActive(true);
+            ClickEquipCardButtonUpArrow.SetActive(false);
+            ClickEquipCardContainer.SetActive(false);
+        }
+        else if(ClickEquipCardContainer.activeSelf == false)
+        {//꺼져있을때는 키고
+            ClickEquipCardButtonDownArrow.SetActive(false);
+            ClickEquipCardButtonUpArrow.SetActive(true);
+            ClickEquipCardContainer.SetActive(true);
+        }
     }
 }

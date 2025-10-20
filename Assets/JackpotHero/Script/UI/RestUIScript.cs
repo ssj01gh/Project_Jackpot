@@ -21,6 +21,12 @@ public class RestUIScript : MonoBehaviour
     public TextMeshProUGUI LeftTimeText;
     [Header("PlayerUpgrade")]
     public GameObject PlayerUpgradeUI;
+    public TextMeshProUGUI HPBeforeText;
+    public TextMeshProUGUI HPAfterText;
+    public Button HPMinusButton;
+    public TextMeshProUGUI STABeforeText;
+    public TextMeshProUGUI STAAfterText;
+    public Button STAMinusButton;
     public TextMeshProUGUI STRBeforeText;
     public TextMeshProUGUI STRAfterText;
     public Button STRMinusButton;
@@ -170,7 +176,28 @@ public class RestUIScript : MonoBehaviour
         InActiveRestTimeSelectionUI();
         InActiveLeftTimeObject();
         InActivePlayerEquipMg();
-
+        //HP
+        if(PlayerInfo.GetPlayerStateInfo().HPLevel <= 0)
+        {
+            HPMinusButton.interactable = false;
+        }
+        else
+        {
+            HPMinusButton.interactable = true;
+        }
+        HPBeforeText.text = PlayerInfo.GetPlayerStateInfo().HPLevel.ToString();
+        HPAfterText.text = PlayerInfo.GetPlayerStateInfo().HPLevel.ToString();
+        //STA
+        if (PlayerInfo.GetPlayerStateInfo().STALevel <= 0)
+        {
+            STAMinusButton.interactable = false;
+        }
+        else
+        {
+            STAMinusButton.interactable = true;
+        }
+        STABeforeText.text = PlayerInfo.GetPlayerStateInfo().STALevel.ToString();
+        STAAfterText.text = PlayerInfo.GetPlayerStateInfo().STALevel.ToString();
         //STR
         if (PlayerInfo.GetPlayerStateInfo().StrengthLevel <= 0)
         {
@@ -243,6 +270,29 @@ public class RestUIScript : MonoBehaviour
     }
     public void PlayerUpgradePLUSMINUSButtonClick(PlayerScript PlayerInfo, UpGradeAfterStatus AfterStatus)
     {
+        //HP
+        if (AfterStatus.AfterHP <= 0)
+        {
+            HPMinusButton.interactable = false;
+        }
+        else
+        {
+            HPMinusButton.interactable = true;
+        }
+        HPBeforeText.text = PlayerInfo.GetPlayerStateInfo().HPLevel.ToString();
+        HPAfterText.text = AfterStatus.AfterHP.ToString();
+        //STA
+        if (AfterStatus.AfterSTA <= 0)
+        {
+            STAMinusButton.interactable = false;
+        }
+        else
+        {
+            STAMinusButton.interactable = true;
+        }
+        STABeforeText.text = PlayerInfo.GetPlayerStateInfo().STALevel.ToString();
+        STAAfterText.text = AfterStatus.AfterSTA.ToString();
+        //STR
         if (AfterStatus.AfterSTR <= 0)
         {
             STRMinusButton.interactable = false;

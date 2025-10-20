@@ -147,7 +147,7 @@ public class PlayerScript : MonoBehaviour
     public void SetPlayerTotalStatus()//버프 계산할때 해도 될지두/// 버프에 의한 스탯 변화도 표시해야 될것 같기도 하고
     {
         //SetHP
-        PlayerTotalState.MaxHP = BasicHP + JsonReadWriteManager.Instance.GetEarlyState("HP") +
+        PlayerTotalState.MaxHP = BasicHP + JsonReadWriteManager.Instance.GetEarlyState("HP") + (PlayerState.HPLevel * 20) +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddHPAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddHPAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddHPAmount +
@@ -155,7 +155,7 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddHPAmount;
         PlayerTotalState.CurrentHP = PlayerTotalState.MaxHP * PlayerState.CurrentHpRatio;
         //SetSTA
-        PlayerTotalState.MaxSTA = BasicSTA + JsonReadWriteManager.Instance.GetEarlyState("STA") +
+        PlayerTotalState.MaxSTA = BasicSTA + JsonReadWriteManager.Instance.GetEarlyState("STA") + (PlayerState.STALevel * 200) +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipWeaponCode).AddTirednessAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipArmorCode).AddTirednessAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipHatCode).AddTirednessAmount +
@@ -741,6 +741,8 @@ public class PlayerScript : MonoBehaviour
 
     public void UpgradePlayerStatus(UpGradeAfterStatus UpgradeStatus)
     {
+        PlayerState.HPLevel = UpgradeStatus.AfterHP;
+        PlayerState.STALevel = UpgradeStatus.AfterSTA;
         PlayerState.StrengthLevel = UpgradeStatus.AfterSTR;
         PlayerState.DurabilityLevel = UpgradeStatus.AfterDUR;
         PlayerState.ResilienceLevel = UpgradeStatus.AfterRES;
@@ -754,6 +756,12 @@ public class PlayerScript : MonoBehaviour
     {
         switch(UpgradeState)
         {
+            case "HP":
+                PlayerState.HPLevel += Amount;
+                break;
+            case "STA":
+                PlayerState.STALevel += Amount;
+                break;
             case "STR":
                 PlayerState.StrengthLevel += Amount;
                 break;

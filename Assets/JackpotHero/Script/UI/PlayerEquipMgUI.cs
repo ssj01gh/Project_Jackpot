@@ -30,24 +30,26 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public Image EquipDetail_EquipImage;
     public TextMeshProUGUI EquipDetail_EquipTierText;
     public TextMeshProUGUI EquipDetail_EquipNameText;
-    public TextMeshProUGUI EquipDetail_EquipDetailText;
+    public TextMeshProUGUI EquipDetail_EquipSTAText;
     public TextMeshProUGUI EquipDetail_EquipSTRText;
     public TextMeshProUGUI EquipDetail_EquipDURText;
     public TextMeshProUGUI EquipDetail_EquipRESText;
     public TextMeshProUGUI EquipDetail_EquipSPDText;
     public TextMeshProUGUI EquipDetail_EquipLUKText;
     public GameObject[] EquipDetail_EquipCardContainer;
+    public TextMeshProUGUI EquipDetail_EquipDetailText;
     [Header("EquipMg_EquipDetailInfo_Inven")]
     public Image EquipDetail_InvenImage;
     public TextMeshProUGUI EquipDetail_InvenTierText;
     public TextMeshProUGUI EquipDetail_InvenNameText;
-    public TextMeshProUGUI EquipDetail_InvenDetailText;
+    public TextMeshProUGUI EquipDetail_InvenSTAText;
     public TextMeshProUGUI EquipDetail_InvenSTRText;
     public TextMeshProUGUI EquipDetail_InvenDURText;
     public TextMeshProUGUI EquipDetail_InvenRESText;
     public TextMeshProUGUI EquipDetail_InvenSPDText;
     public TextMeshProUGUI EquipDetail_InvenLUKText;
     public GameObject[] EquipDetail_InvenCardContainer;
+    public TextMeshProUGUI EquipDetail_InvenDetailText;
     [Header("EqupMg_EquipGambling")]
     public TextMeshProUGUI EXPAmountText;
     public Button EquipGamblingButton;
@@ -89,6 +91,24 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         new Vector3(0,0,-240),
         new Vector3(0,0,-300)
     };
+
+    //플레이어 장비창 좌표들
+    protected Vector2 PlayerEquipInitPos = new Vector2();
+    protected Vector2 PlayerEquipTargetPos = new Vector2();
+    //플레이어 장비 상세 정보 좌표들
+    protected Vector2 EquipedEquipDetailInitPos = new Vector2();
+    protected Vector2 EquipedEquipDetailTargetPos = new Vector2();
+    //플레이어가 클릭한 장비 상세 정보 좌표들
+    protected Vector2 ClickedInvenDetailInitPos = new Vector2();
+    protected Vector2 ClickedInvenDetailTargetPos = new Vector2();
+    //인벤토리 좌표들
+    protected Vector2 InvenInitPos = new Vector2(1420, 890);
+    protected Vector2 InvenTargetPos = new Vector2(500, 190);
+    //갓챠창 좌표들
+    protected Vector2 GamblingInitPos = new Vector2(1420, -730);
+    protected Vector2 GamblingTargetPos = new Vector2(500, -350);
+    //요 위의 좌표들에 정보 입력
+
     protected const float GachaLightZVariation = 10f;
 
     protected bool IsClickedInventorySlot = false;
@@ -181,7 +201,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipDetail_EquipImage.gameObject.SetActive(false);
         EquipDetail_EquipTierText.text = "";
         EquipDetail_EquipNameText.text = "";
-        EquipDetail_EquipDetailText.text = "";
+        EquipDetail_EquipSTAText.text = "";
         EquipDetail_EquipSTRText.text = "";
         EquipDetail_EquipDURText.text = "";
         EquipDetail_EquipRESText.text = "";
@@ -191,6 +211,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {
             Obj.SetActive(false);
         }
+        EquipDetail_EquipDetailText.text = "";
         EquipDetailInfo_Equip.GetComponent<RectTransform>().anchoredPosition = new Vector2(-710, -850);
         EquipDetailInfo_Equip.SetActive(true);
         EquipDetailInfo_Equip.GetComponent<RectTransform>().DOAnchorPosY(-350, 0.5f);
@@ -198,7 +219,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipDetail_InvenImage.gameObject.SetActive(false);
         EquipDetail_InvenTierText.text = "";
         EquipDetail_InvenNameText.text = "";
-        EquipDetail_InvenDetailText.text = "";
+        EquipDetail_InvenSTAText.text = "";
         EquipDetail_InvenSTRText.text = "";
         EquipDetail_InvenDURText.text = "";
         EquipDetail_InvenRESText.text = "";
@@ -208,6 +229,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {
             Obj.SetActive(false);
         }
+        EquipDetail_InvenDetailText.text = "";
         EquipDetailInfo_Inven.GetComponent<RectTransform>().anchoredPosition = new Vector2(-210, -730);
         EquipDetailInfo_Inven.SetActive(true);
         EquipDetailInfo_Inven.GetComponent<RectTransform>().DOAnchorPosY(-350, 0.5f);
@@ -816,23 +838,24 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
 
             if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
-                EquipDetail_EquipDetailText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                EquipDetail_EquipSTAText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
             else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
-                EquipDetail_EquipDetailText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                EquipDetail_EquipSTAText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
             else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
-                EquipDetail_EquipDetailText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
+                EquipDetail_EquipSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
             else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
-                EquipDetail_EquipDetailText.text = "신발은 피로도를 사용하지 않습니다.";
+                EquipDetail_EquipSTAText.text = "신발은 피로도를 사용하지 않습니다.";
             else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
-                EquipDetail_EquipDetailText.text = "장신구는 피로도를 사용하지 않습니다.";
+                EquipDetail_EquipSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
             else
-                EquipDetail_EquipDetailText.text = "";
+                EquipDetail_EquipSTAText.text = "";
 
             EquipDetail_EquipSTRText.text = EquipedEquipmentInfo.AddSTRAmount.ToString();
             EquipDetail_EquipDURText.text = EquipedEquipmentInfo.AddDURAmount.ToString();
             EquipDetail_EquipRESText.text = EquipedEquipmentInfo.AddRESAmount.ToString();
             EquipDetail_EquipSPDText.text = EquipedEquipmentInfo.AddSPDAmount.ToString();
             EquipDetail_EquipLUKText.text = EquipedEquipmentInfo.AddLUKAmount.ToString();
+            EquipDetail_EquipDetailText.text = EquipedEquipmentInfo.EquipmentDetail.ToString();
 
             //활성화 하기전에 한번 다 초기화
             foreach(GameObject obj in EquipDetail_EquipCardContainer)
@@ -847,7 +870,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_InvenImage.gameObject.SetActive(false);
             EquipDetail_InvenTierText.text = "";
             EquipDetail_InvenNameText.text = "";
-            EquipDetail_InvenDetailText.text = "";
+            EquipDetail_InvenSTAText.text = "";
             EquipDetail_InvenSTRText.text = "";
             EquipDetail_InvenDURText.text = "";
             EquipDetail_InvenRESText.text = "";
@@ -871,32 +894,32 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
             if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
             {
-                EquipDetail_InvenDetailText.text = "공격시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
+                EquipDetail_InvenSTAText.text = "공격시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
             }
             else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
             {
-                EquipDetail_InvenDetailText.text = "방어시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
+                EquipDetail_InvenSTAText.text = "방어시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode;
             }
             else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
             {
-                EquipDetail_InvenDetailText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
+                EquipDetail_InvenSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode;
             }
             else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
             {
-                EquipDetail_InvenDetailText.text = "신발은 피로도를 사용하지 않습니다.";
+                EquipDetail_InvenSTAText.text = "신발은 피로도를 사용하지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode;
             }
             else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
             {
-                EquipDetail_InvenDetailText.text = "장신구는 피로도를 사용하지 않습니다.";
+                EquipDetail_InvenSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
             }
             else
             {
-                EquipDetail_InvenDetailText.text = "";
+                EquipDetail_InvenSTAText.text = "";
                 EquipedEquipmentCode = 0;
             }
 
@@ -905,6 +928,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_InvenRESText.text = UnEquipedEquipment.AddRESAmount.ToString();
             EquipDetail_InvenSPDText.text = UnEquipedEquipment.AddSPDAmount.ToString();
             EquipDetail_InvenLUKText.text = UnEquipedEquipment.AddLUKAmount.ToString();
+            EquipDetail_InvenDetailText.text = UnEquipedEquipment.EquipmentDetail.ToString();
 
             //활성화 하기전에 한번 다 초기화
             foreach (GameObject obj in EquipDetail_InvenCardContainer)
@@ -923,7 +947,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipImage.gameObject.SetActive(false);
                 EquipDetail_EquipTierText.text = "";
                 EquipDetail_EquipNameText.text = "";
-                EquipDetail_EquipDetailText.text = "";
+                EquipDetail_EquipSTAText.text = "";
                 EquipDetail_EquipSTRText.text = "";
                 EquipDetail_EquipDURText.text = "";
                 EquipDetail_EquipRESText.text = "";
@@ -942,17 +966,17 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
 
                 if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
-                    EquipDetail_EquipDetailText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                    EquipDetail_EquipSTAText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
                 else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
-                    EquipDetail_EquipDetailText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                    EquipDetail_EquipSTAText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
                 else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
-                    EquipDetail_EquipDetailText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
+                    EquipDetail_EquipSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
                 else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
-                    EquipDetail_EquipDetailText.text = "신발은 피로도를 사용하지 않습니다.";
+                    EquipDetail_EquipSTAText.text = "신발은 피로도를 사용하지 않습니다.";
                 else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
-                    EquipDetail_EquipDetailText.text = "장신구는 피로도를 사용하지 않습니다.";
+                    EquipDetail_EquipSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
                 else
-                    EquipDetail_EquipDetailText.text = "";
+                    EquipDetail_EquipSTAText.text = "";
 
                 EquipDetail_EquipSTRText.text = EquipedEquipmentInfo.AddSTRAmount.ToString();
                 EquipDetail_EquipDURText.text = EquipedEquipmentInfo.AddDURAmount.ToString();

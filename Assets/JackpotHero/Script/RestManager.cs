@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UpGradeAfterStatus
 {
+    public int AfterHP = 0;
+    public int AfterSTA = 0;
     public int AfterSTR = 0;
     public int AfterDUR = 0;
     public int AfterRES = 0;
@@ -197,6 +199,8 @@ public class RestManager : MonoBehaviour
     }
     protected void InitUpgradeAfterStatus()
     {
+        AfterStatus.AfterHP = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().HPLevel;
+        AfterStatus.AfterSTA = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().STALevel;
         AfterStatus.AfterSTR = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().StrengthLevel;
         AfterStatus.AfterDUR = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DurabilityLevel;
         AfterStatus.AfterRES = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ResilienceLevel;
@@ -225,6 +229,12 @@ public class RestManager : MonoBehaviour
         AfterStatus.AfterLevel++;
         switch(UpGradeType)
         {
+            case "HP":
+                AfterStatus.AfterHP++;
+                break;
+            case "STA":
+                AfterStatus.AfterSTA++;
+                break;
             case "STR":
                 AfterStatus.AfterSTR++;
                 break;
@@ -249,6 +259,12 @@ public class RestManager : MonoBehaviour
         AfterStatus.AfterLevel--;
         switch (UpGradeType)
         {
+            case "HP":
+                AfterStatus.AfterHP--;
+                break;
+            case "STA":
+                AfterStatus.AfterSTA--;
+                break;
             case "STR":
                 AfterStatus.AfterSTR--;
                 break;
@@ -295,7 +311,7 @@ public class RestManager : MonoBehaviour
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());//Json에 저장
 
         UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(),
-            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList);//UI에 있는 스텟 갱신
+            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList, true);//UI에 있는 스텟 갱신
         UIMgr.R_UI.ActiveRestActionSelection();//휴식 선택창 띄우기
     }
     //---------------------------------------------------EquipGatchaFunc

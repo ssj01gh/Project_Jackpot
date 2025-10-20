@@ -77,6 +77,8 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             P_Info.CurrentTirednessRatio = 1f;
             P_Info.ShieldAmount = 0f;
             P_Info.Level = 0;
+            P_Info.HPLevel = 0;
+            P_Info.STALevel = 0;
             P_Info.StrengthLevel = 0;
             P_Info.DurabilityLevel = 0;
             P_Info.SpeedLevel = 0;
@@ -197,6 +199,8 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             CurrentHpRatio = PInfo.CurrentHpRatio,
             CurrentTirednessRatio = PInfo.CurrentTirednessRatio,
             Level = PInfo.Level,
+            HPLevel = PInfo.HPLevel,
+            STALevel = PInfo.STALevel,
             StrengthLevel = PInfo.StrengthLevel,
             DurabilityLevel = PInfo.DurabilityLevel,
             SpeedLevel = PInfo.SpeedLevel,
