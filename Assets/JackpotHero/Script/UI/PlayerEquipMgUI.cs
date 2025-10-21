@@ -93,14 +93,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     };
 
     //플레이어 장비창 좌표들
-    protected Vector2 PlayerEquipInitPos = new Vector2();
-    protected Vector2 PlayerEquipTargetPos = new Vector2();
+    protected Vector2 PlayerEquipInitPos = new Vector2(-1460, 740);
+    protected Vector2 PlayerEquipTargetPos = new Vector2(-460,340);
     //플레이어 장비 상세 정보 좌표들
-    protected Vector2 EquipedEquipDetailInitPos = new Vector2();
-    protected Vector2 EquipedEquipDetailTargetPos = new Vector2();
+    protected Vector2 EquipedEquipDetailInitPos = new Vector2(-1210, -730);
+    protected Vector2 EquipedEquipDetailTargetPos = new Vector2(-710,-50);
     //플레이어가 클릭한 장비 상세 정보 좌표들
-    protected Vector2 ClickedInvenDetailInitPos = new Vector2();
-    protected Vector2 ClickedInvenDetailTargetPos = new Vector2();
+    protected Vector2 ClickedInvenDetailInitPos = new Vector2(-710,-730);
+    protected Vector2 ClickedInvenDetailTargetPos = new Vector2(-210,-50);
     //인벤토리 좌표들
     protected Vector2 InvenInitPos = new Vector2(1420, 890);
     protected Vector2 InvenTargetPos = new Vector2(500, 190);
@@ -192,9 +192,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             PlayerEquipImages[(int)EPlayerEquip.Accessories].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode).EquipmentImage;
             PlayerEquipTierText[(int)EPlayerEquip.Accessories].text = GetTierText(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode);
         }
-        PlayerEquip.GetComponent<RectTransform>().anchoredPosition = new Vector2(-1460, 890);
+        PlayerEquip.GetComponent<RectTransform>().anchoredPosition = PlayerEquipInitPos;
         PlayerEquip.SetActive(true);
-        PlayerEquip.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-460, 190), 0.5f);
+        PlayerEquip.GetComponent<RectTransform>().DOAnchorPos(PlayerEquipTargetPos, 0.5f);
         //SetEquipInventory
         SetInventory(true);
         //SetEquipDetailInfo_Equip//Detail의 초기상태는 비어있는 거임//후에 플레이어의 조작에 따라 정보 표시
@@ -212,9 +212,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             Obj.SetActive(false);
         }
         EquipDetail_EquipDetailText.text = "";
-        EquipDetailInfo_Equip.GetComponent<RectTransform>().anchoredPosition = new Vector2(-710, -850);
+        EquipDetailInfo_Equip.GetComponent<RectTransform>().anchoredPosition = EquipedEquipDetailInitPos;
         EquipDetailInfo_Equip.SetActive(true);
-        EquipDetailInfo_Equip.GetComponent<RectTransform>().DOAnchorPosY(-350, 0.5f);
+        EquipDetailInfo_Equip.GetComponent<RectTransform>().DOAnchorPos(EquipedEquipDetailTargetPos, 0.5f);
         //SetEquipDetailInfo_Inven//Detail의 초기상태는 비어있는 거임//후에 플레이어의 조작에 따라 정보 표시
         EquipDetail_InvenImage.gameObject.SetActive(false);
         EquipDetail_InvenTierText.text = "";
@@ -230,9 +230,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             Obj.SetActive(false);
         }
         EquipDetail_InvenDetailText.text = "";
-        EquipDetailInfo_Inven.GetComponent<RectTransform>().anchoredPosition = new Vector2(-210, -730);
+        EquipDetailInfo_Inven.GetComponent<RectTransform>().anchoredPosition = ClickedInvenDetailInitPos;
         EquipDetailInfo_Inven.SetActive(true);
-        EquipDetailInfo_Inven.GetComponent<RectTransform>().DOAnchorPosY(-350, 0.5f);
+        EquipDetailInfo_Inven.GetComponent<RectTransform>().DOAnchorPos(ClickedInvenDetailTargetPos, 0.5f);
         //SetEquipGambling
         SetGambling(true);
 
@@ -242,28 +242,28 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         if(PlayerEquip.activeSelf == true)
         {
-            PlayerEquip.GetComponent<RectTransform>().anchoredPosition = new Vector2(-460, 190);
-            PlayerEquip.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-1460, 890), 0.5f).OnComplete(() => { PlayerEquip.SetActive(false); });
+            PlayerEquip.GetComponent<RectTransform>().anchoredPosition = PlayerEquipTargetPos;
+            PlayerEquip.GetComponent<RectTransform>().DOAnchorPos(PlayerEquipInitPos, 0.5f).OnComplete(() => { PlayerEquip.SetActive(false); });
         }
         if(EquipInventory.activeSelf == true)
         {
-            EquipInventory.GetComponent<RectTransform>().anchoredPosition = new Vector2(500, 190);
-            EquipInventory.GetComponent<RectTransform>().DOAnchorPos(new Vector2(1420, 890), 0.5f).OnComplete(() => { EquipInventory.SetActive(false); });
+            EquipInventory.GetComponent<RectTransform>().anchoredPosition = InvenTargetPos;
+            EquipInventory.GetComponent<RectTransform>().DOAnchorPos(InvenInitPos, 0.5f).OnComplete(() => { EquipInventory.SetActive(false); });
         }
         if(EquipDetailInfo_Equip.activeSelf == true)
         {
-            EquipDetailInfo_Equip.GetComponent<RectTransform>().anchoredPosition = new Vector2(-710, -350);
-            EquipDetailInfo_Equip.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-710, -850), 0.5f).OnComplete(() => { EquipDetailInfo_Equip.SetActive(false); });
+            EquipDetailInfo_Equip.GetComponent<RectTransform>().anchoredPosition = EquipedEquipDetailTargetPos;
+            EquipDetailInfo_Equip.GetComponent<RectTransform>().DOAnchorPos(EquipedEquipDetailInitPos, 0.5f).OnComplete(() => { EquipDetailInfo_Equip.SetActive(false); });
         }
         if(EquipDetailInfo_Inven.activeSelf == true)
         {
-            EquipDetailInfo_Inven.GetComponent<RectTransform>().anchoredPosition = new Vector2(-210, -350);
-            EquipDetailInfo_Inven.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-210, -730), 0.5f).OnComplete(() => { EquipDetailInfo_Inven.SetActive(false); });
+            EquipDetailInfo_Inven.GetComponent<RectTransform>().anchoredPosition = ClickedInvenDetailTargetPos;
+            EquipDetailInfo_Inven.GetComponent<RectTransform>().DOAnchorPos(ClickedInvenDetailInitPos, 0.5f).OnComplete(() => { EquipDetailInfo_Inven.SetActive(false); });
         }
         if(EquipGambling.activeSelf == true)
         {
-            EquipGambling.GetComponent<RectTransform>().anchoredPosition = new Vector2(500, -350);
-            EquipGambling.GetComponent<RectTransform>().DOAnchorPos(new Vector2(1420, -730), 0.5f).OnComplete(() => { EquipGambling.SetActive(false); gameObject.SetActive(false); });
+            EquipGambling.GetComponent<RectTransform>().anchoredPosition = GamblingTargetPos;
+            EquipGambling.GetComponent<RectTransform>().DOAnchorPos(GamblingInitPos, 0.5f).OnComplete(() => { EquipGambling.SetActive(false); gameObject.SetActive(false); });
         }
 
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
@@ -342,9 +342,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
         if (IsActive == true)
         {
-            EquipGambling.GetComponent<RectTransform>().anchoredPosition = new Vector2(1420, -730);
+            EquipGambling.GetComponent<RectTransform>().anchoredPosition = GamblingInitPos;
             EquipGambling.SetActive(true);
-            EquipGambling.GetComponent<RectTransform>().DOAnchorPos(new Vector2(500, -350), 0.5f);
+            EquipGambling.GetComponent<RectTransform>().DOAnchorPos(GamblingTargetPos, 0.5f);
         }
     }
 
@@ -374,9 +374,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         }
         if(IsActive == true)
         {
-            EquipInventory.GetComponent<RectTransform>().anchoredPosition = new Vector2(1420, 890);
+            EquipInventory.GetComponent<RectTransform>().anchoredPosition = InvenInitPos;
             EquipInventory.SetActive(true);
-            EquipInventory.GetComponent<RectTransform>().DOAnchorPos(new Vector2(500, 190), 0.5f);
+            EquipInventory.GetComponent<RectTransform>().DOAnchorPos(InvenTargetPos, 0.5f);
         }
     }
 

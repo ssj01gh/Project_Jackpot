@@ -21,8 +21,12 @@ MonoBehaviour:
     \uC778\uC0C1\uC758 \uB0A8\uC131\uC774 \uB9D0\uC744 \uAC78\uC5B4\uC635\uB2C8\uB2E4.\n\"\uBB58
     \uB9CC\uB4E4\uC5B4 \uC8FC\uBA74 \uB418\uACA0\uC18C?\""
   EventSelectionDetail:
-  - "\uD3C9\uBC94\uD55C \uC7A5\uBE44 -120 \uACBD\uD5D8\uCE58-"
-  - "\uC88B\uC740 \uC7A5\uBE44 -300 \uACBD\uD5D8\uCE58-"
-  - "\uB6F0\uC5B4\uB09C \uC7A5\uBE44 -1050 \uACBD\uD5D8\uCE58-"
-  - "\uC644\uBCBD\uD55C \uC7A5\uBE44 -3000 \uACBD\uD5D8\uCE58-"
+  - "\uD3C9\uBC94\uD55C \uC7A5\uBE44 <color=green>+\uC7A5\uBE44 : 2\uD2F0\uC5B4</color>
+    <color=red>-\uACBD\uD5D8\uCE58 : 120</color>"
+  - "\uC88B\uC740 \uC7A5\uBE44 <color=green>+\uC7A5\uBE44 : 3\uD2F0\uC5B4</color>
+    <color=red>-\uACBD\uD5D8\uCE58 : 300</color>"
+  - "\uB6F0\uC5B4\uB09C \uC7A5\uBE44 <color=green>+\uC7A5\uBE44 : 4\uD2F0\uC5B4</color>
+    <color=red>-\uACBD\uD5D8\uCE58 : 1050</color>"
+  - "\uC644\uBCBD\uD55C \uC7A5\uBE44 <color=green>+\uC7A5\uBE44 : 5\uD2F0\uC5B4</color>
+    <color=red>-\uACBD\uD5D8\uCE58 : 3000</color>"
   - "\uB300\uC7A5\uAC04\uC744 \uB5A0\uB09C\uB2E4."
