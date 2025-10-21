@@ -26,4 +26,6 @@ public class EquipmentSO : ScriptableObject
     public int AddLUKAmount;
     public float AddHPAmount;
     public float AddTirednessAmount;
+    [TextArea(10, 20)]
+    public string EquipmentDetail;
 }

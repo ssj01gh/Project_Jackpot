@@ -8,7 +8,7 @@ public class EventSO : ScriptableObject
     public int EventCode;
     public string EventTitle;
     public Sprite EventImage;
-    [TextArea]
+    [TextArea(10,20)]
     public string EventDetail;
     public string[] EventSelectionDetail;
 }

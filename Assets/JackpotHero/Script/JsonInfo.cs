@@ -12,6 +12,8 @@ public class PlayerInfo
     public float CurrentHpRatio;
     public float CurrentTirednessRatio;
     public int Level;
+    public int HPLevel;
+    public int STALevel;
     public int StrengthLevel;
     public int DurabilityLevel;
     public int SpeedLevel;

@@ -10,8 +10,9 @@ public class Stage01EventDetailAction
     public int Event1000(int ButtonType, PlayerManager PlayerMgr)
     {
         //0. 아무일 없음
-        //1. 50% 체력 +30 50% 체력 -50
-        switch(ButtonType)
+        //1. 50% 체력 +30 50% 체력 -30
+        int RandomHP = Random.Range(-15, 16);
+        switch (ButtonType)
         {
             case 0:
                 return 1001;
@@ -19,13 +20,13 @@ public class Stage01EventDetailAction
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
                 {//독초
-                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30);
+                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandomHP);
                     SoundManager.Instance.PlaySFX("Buff_Consume");
                     return 1002;
                 }
                 else if(Rand == 1)
                 {//약초
-                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(30);
+                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     return 1003;
                 }
@@ -115,10 +116,11 @@ public class Stage01EventDetailAction
     {
         //0. 힘, 내구, 속도 중 레벨 낮은거 1렙업, 피로도 -300
         //1. 전투
+        int RandSTA = Random.Range(-150, 151);
         switch(ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandSTA);
                 int STRLevel = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().StrengthLevel;
                 int DURLevel = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DurabilityLevel;
                 int SPDLevel = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SpeedLevel;
@@ -158,10 +160,11 @@ public class Stage01EventDetailAction
     {
         //0. 피로도 300회복
         //2. 탐색 수치 증가
-        switch(ButtonType)
+        int RandSTA = Random.Range(-150, 151);
+        switch (ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 1041;
             case 1:
@@ -177,23 +180,25 @@ public class Stage01EventDetailAction
     {
         //0. 50% 체력 소모30 // 50% 피로도 회복 300
         //1. 피로도 소모 300
+        int RandHP = Random.Range(-15, 16);
+        int RandSTA = Random.Range(-150, 151);
         switch(ButtonType)
         {
             case 0:
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
                 {//부딪힘
-                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30);
+                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandHP);
                     return 1051;
                 }
                 else
                 {//안부딪힘
-                    PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300);
+                    PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandSTA);
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     return 1052;
                 }
             case 1:
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandSTA);
                 return 1053;
         }
         return 1050;

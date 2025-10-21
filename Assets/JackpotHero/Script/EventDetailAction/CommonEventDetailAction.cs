@@ -52,24 +52,25 @@ public class CommonEventDetailAction
         //1. 체력 60회복 bk + 1
         //2. 체력 30회복
         //3. 체력 30회복 경험치 - 스테이지 보상 gk + 1
+        int RandomAverage = Random.Range(-15, 16);//-15 ~ 15
         switch (ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(90);
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(90 + RandomAverage);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 break;
             case 1:
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(60);
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(60 + RandomAverage);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                 break;
             case 2:
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(30);
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomAverage);
                 break;
             case 3:
                 int RewardRange = (int)(StageAverageReward / 4);
                 int RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
 
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(30);
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomAverage);
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
                 break;
@@ -83,18 +84,20 @@ public class CommonEventDetailAction
         //0. 피로도 300회복
         //1. gk + 1
         //2. 체력 -30 피로도 - 300 gk + 3
+        int RandomAverSTA = Random.Range(-150, 151);
+        int RandomAverHP = Random.Range(-15, 16);
         switch (ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomAverSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 9021;
             case 1:
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
                 return 9022;
             case 2:
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300);
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30);
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomAverSTA);
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 + RandomAverHP);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 3;
                 JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster = true;
 
@@ -111,6 +114,7 @@ public class CommonEventDetailAction
         //3. 피로도 -300, gk + 2
         int RewardRange = 0;
         int RandomReward = 0;
+        int RandomSTA = Random.Range(-150, 151);
         switch (ButtonType)
         {
             case 0:
@@ -145,7 +149,7 @@ public class CommonEventDetailAction
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                 //스테마나 소모
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 //카르마 계산
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
 
@@ -155,7 +159,7 @@ public class CommonEventDetailAction
                 return 9032;
             case 3:
                 //스테미나소모
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 //카르마 계산
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 2;
 
@@ -172,21 +176,22 @@ public class CommonEventDetailAction
         //1. 피로 600회복 bk + 1
         //2. 피로 300회복
         //3. 피로 300회복, -스테이지 평균 보상, gk + 1
+        int RandomSTA = Random.Range(-150, 151);
         switch (ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(900);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(900 + RandomSTA);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 break;
             case 1:
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(600);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(600 + RandomSTA);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                 break;
             case 2:
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 break;
             case 3:
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 int RewardRange = (int)(StageAverageReward / 4);
                 int RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);

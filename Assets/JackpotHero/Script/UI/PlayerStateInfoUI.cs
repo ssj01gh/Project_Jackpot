@@ -1,9 +1,12 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class PlayerStateInfoUI : MonoBehaviour
 {
@@ -32,28 +35,45 @@ public class PlayerStateInfoUI : MonoBehaviour
         
     }
 
-    public void SetPlayerStateUI(TotalPlayerState TPInfo, PlayerInfo PInfo, int[] BuffList)
+    public void SetPlayerStateUI(TotalPlayerState TPInfo, PlayerInfo PInfo, int[] BuffList, bool IsRestUpgrade = false)
     {
+        //HP, STA는 강화를 해도 업데이트 되지않음 따로 확인할게 필요함
         //SetHpUI
-        float BeforeHP = TPInfo.MaxHP * PlayerHPSlider.value;
-        if((int)BeforeHP != (int)TPInfo.CurrentHP)//다를때만 업데이트
+        float[] BeforeHPs = Regex.Matches(PlayerHPText.text, @"\d+").Cast<Match>().Select(m => float.Parse(m.Value)).ToArray();
+        if (BeforeHPs.Length >= 2 &&
+            (BeforeHPs[0] != TPInfo.CurrentHP || BeforeHPs[1] != TPInfo.MaxHP || PlayerHPSlider.value != PInfo.CurrentHpRatio))
         {
-            DOTween.To(() => BeforeHP, x =>
+            DOTween.To(() => new Vector2(BeforeHPs[0], BeforeHPs[1]), xy =>
             {
-                BeforeHP = x;
-                PlayerHPText.text = BeforeHP.ToString("F0") + " / " + TPInfo.MaxHP.ToString();
-            }, TPInfo.CurrentHP, 0.5f);
+                BeforeHPs[0] = xy.x;
+                BeforeHPs[1] = xy.y;
+                PlayerHPText.text = BeforeHPs[0].ToString("F0") + " / " + BeforeHPs[1].ToString("F0");
+            }, new Vector2(TPInfo.CurrentHP, TPInfo.MaxHP), 0.5f);
             PlayerHPSlider.DOValue(PInfo.CurrentHpRatio, 0.5f);
         }
         //SetSTAUI
+        /*
         float BeforeSTA = TPInfo.MaxSTA * PlayerSTASlider.value;
-        if((int)BeforeSTA != (int)TPInfo.CurrentSTA)//다를때만 업데이트
+        if(IsRestUpgrade == true || (int)BeforeSTA != (int)TPInfo.CurrentSTA)//다를때만 업데이트
         {
             DOTween.To(() => BeforeSTA, x =>
             {
                 BeforeSTA = x;
                 PlayerSTAText.text = BeforeSTA.ToString("F0") + " / " + TPInfo.MaxSTA.ToString();
             }, TPInfo.CurrentSTA, 0.5f);
+            PlayerSTASlider.DOValue(PInfo.CurrentTirednessRatio, 0.5f);
+        }
+        */
+        float[] BeforeSTAs = Regex.Matches(PlayerSTAText.text, @"\d+").Cast<Match>().Select(m => float.Parse(m.Value)).ToArray();
+        if(BeforeSTAs.Length >= 2 &&
+            (BeforeSTAs[0] != TPInfo.CurrentSTA || BeforeSTAs[1] != TPInfo.MaxSTA || PlayerSTASlider.value != PInfo.CurrentTirednessRatio))
+        {
+            DOTween.To(() => new Vector2(BeforeSTAs[0], BeforeSTAs[1]), xy =>
+            {
+                BeforeSTAs[0] = xy.x;
+                BeforeSTAs[1] = xy.y;
+                PlayerSTAText.text = BeforeSTAs[0].ToString("F0") + " / " + BeforeSTAs[1].ToString("F0");
+            }, new Vector2(TPInfo.CurrentSTA, TPInfo.MaxSTA), 0.5f);
             PlayerSTASlider.DOValue(PInfo.CurrentTirednessRatio, 0.5f);
         }
         //SetSTRUI

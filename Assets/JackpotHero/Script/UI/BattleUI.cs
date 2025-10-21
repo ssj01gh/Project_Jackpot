@@ -1375,13 +1375,20 @@ public class BattleUI : MonoBehaviour
     protected void MergeToMagnificationSlot()//합쳐지는 연출//Active됬던 모든 Virtual카드
     {
         RectTransform CanvasRect = (RectTransform)WorldCanvas.transform;
+        Vector3 TargetPivotWorldPos = MagnificationObject.transform.position;
+        Vector2 CanvasLocal;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(CanvasRect,
+            RectTransformUtility.WorldToScreenPoint(WorldCanvas.worldCamera, TargetPivotWorldPos), WorldCanvas.worldCamera, out CanvasLocal);
 
+        Vector3 World = CanvasRect.TransformPoint(CanvasLocal);
 
-        foreach(GameObject UCard in UpperMGVirtualCard)
+        foreach (GameObject UCard in UpperMGVirtualCard)
         {
             if(UCard.activeSelf == true)
             {
-                UCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
+                Vector3 TargetPos = UCard.transform.parent.InverseTransformPoint(World);
+
+                UCard.GetComponent<RectTransform>().DOAnchorPos(TargetPos, 0.5f);
                 UCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
                 UCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => 
                 { 
@@ -1393,7 +1400,9 @@ public class BattleUI : MonoBehaviour
         }
         foreach(GameObject LCard in LowerMGVirtualCard)
         {
-            LCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
+            Vector3 TargetPos = LCard.transform.parent.InverseTransformPoint(World);
+
+            LCard.GetComponent<RectTransform>().DOAnchorPos(TargetPos, 0.5f);
             LCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
             LCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => 
             { 

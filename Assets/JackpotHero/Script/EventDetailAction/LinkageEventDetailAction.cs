@@ -73,18 +73,27 @@ public class LinkageEventDetailAction
         //0. 체력15, 피로도150 회복
         //1. gk+1
         //2. 피로도 -300 gk + 2
+        int RandomSTA = Random.Range(-150, 151);
+        int RandomHP = Random.Range(-15, 16);
         switch(ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(15);
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(150);
+                int RandomNum = Random.Range(0, 2);
+                if(RandomNum == 0)
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
+                }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
+                }
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 8011;
             case 1:
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
                 return 8012;
             case 2:
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300);
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 2;
                 JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem = true;
                 return 8013;
@@ -186,11 +195,13 @@ public class LinkageEventDetailAction
     {
         //0. 체력 30, 피로도 300회복
         //1. gk + 3
+        int RandomHP = Random.Range(-15, 16);
+        int RandomSTA = Random.Range(-150, 151);
         switch(ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(15);
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(150);
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 8061;
             case 1:
@@ -203,11 +214,20 @@ public class LinkageEventDetailAction
     public int Event8070(int ButtonType, PlayerManager PlayerMgr)
     {
         //0. 체력 -10 피로도 -100
+        int RandomHP = Random.Range(-15, 16);
+        int RandomSTA = Random.Range(-150, 151);
         switch(ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(100);
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(-10);
+                int RandNum = Random.Range(0, 2);
+                if(RandNum == 0)
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
+                }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandomHP);
+                }
                 return 8071;
         }
         return 8070;
@@ -222,11 +242,13 @@ public class LinkageEventDetailAction
     public int Event8090(int ButtonType, PlayerManager PlayerMgr)
     {
         //체력 -15, 피로도-150
-        switch(ButtonType)
+        int RandomHP = Random.Range(-15, 16);
+        int RandomSTA = Random.Range(-150, 151);
+        switch (ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(150);
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(-15);
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandomHP);
                 return 8091;
         }
         return 8090;
@@ -234,11 +256,20 @@ public class LinkageEventDetailAction
     //--------------------------------------------Event8100
     public int Event8100(int ButtonType, PlayerManager PlayerMgr)
     {
-        switch(ButtonType)
+        int RandomHP = Random.Range(-15, 16);
+        int RandomSTA = Random.Range(-150, 151);
+        switch (ButtonType)
         {
             case 0:
-                PlayerMgr.GetPlayerInfo().PlayerRegenHp(5);
-                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(50);
+                int RandNum = Random.Range(0, 2);
+                if(RandNum == 0)
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
+                }
+                else
+                {
+                    PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
+                }
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 8101;
         }
