@@ -335,8 +335,6 @@ public class BattleManager : MonoBehaviour
         }
 
         SetPlayerBattleStatus(ActionButtonType);
-        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] >= 1)
-            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] = 0;
 
         if (ActionButtonType == "Attack")//공격이라면 BattleMgr에서 나온 결과로 현재 타겟의 체력을 깍음
         {
@@ -346,6 +344,10 @@ public class BattleManager : MonoBehaviour
             PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, true);
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
+
+            //충전을 공격시에 소모됨
+            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] >= 1)
+                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] = 0;
 
             //넘치는 힘 버프 보유시
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.OverWhelmingPower] >= 1)
@@ -1462,7 +1464,7 @@ public class BattleManager : MonoBehaviour
         }
         if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] >= 1)
         {
-            int TenPercentHP = (int)(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP / 20);
+            int TenPercentHP = (int)(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP * 0.03f);
             BattleResultStatus.BaseAmountPlus += TenPercentHP;
         }
 
