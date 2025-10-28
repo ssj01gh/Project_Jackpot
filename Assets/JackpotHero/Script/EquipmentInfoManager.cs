@@ -12,6 +12,15 @@ public enum EEquipmentType
     Boots,
     Accessories,
 }
+
+public enum EEquipState
+{
+    StateSTR,
+    StateDUR,
+    StateRES,
+    StateSPD,
+    StateLUK
+}
 public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
 {
     [Header("EquipmentSlotSprite")]
@@ -27,6 +36,10 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     public EquipmentSO[] PlayerBootsSOs;
     [Header("PlayerAsseccories")]
     public EquipmentSO[] PlayerAccessoriesSOs;
+    [Header("PlayerEquipIncreaseState")]
+    public EquipIncreaseSO[] PlayerEquipIncreaseSOs;
+    [Header("PlayerSlots")]
+    public EquipSlotSO[] PlayerEquipSlotSos;
 
     [Header("MonWeapon")]
     public EquipmentSO[] MonWeaponSOs;
@@ -48,6 +61,10 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     protected List<int> TierSixEquipmnetCodes = new List<int>();
 
     protected List<int> EventEquipmentCodes = new List<int>();
+
+    protected Dictionary<int, EquipIncreaseSO> EquipIncreaseState = new Dictionary<int, EquipIncreaseSO>();
+    protected Dictionary<int, EquipSlotSO> EquipSlot = new Dictionary<int, EquipSlotSO>();
+
 
     //95 5 0 0 0
     protected int[,] EquipmentGamblingDetail =
@@ -142,6 +159,22 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                 EquipmentStorage.Add(i_EquipmentCode, PlayerAccessoriesSOs[i]);
             }
         }
+
+        //InitPlayerIncreaseState
+        for(int i = 0; i < PlayerEquipIncreaseSOs.Length; i++)
+        {
+            int SaveCode = (PlayerEquipIncreaseSOs[i].EquipStateType * 10) + PlayerEquipIncreaseSOs[i].EquipType;
+            if(!EquipIncreaseState.ContainsKey(SaveCode))
+            {
+                EquipIncreaseState.Add(SaveCode, PlayerEquipIncreaseSOs[i]);
+            }
+        }
+        //InitPlayerEquipSlot
+        for(int i = 0; i < PlayerEquipSlotSos.Length; i++)
+        {
+            int SaveCode = (PlayerEquipSlotSos[i].EquipTier * 10) + PlayerEquipSlotSos[i].EquipMultiType;
+        }
+
         //InitMonWeapon
         for (int i = 0; i < MonWeaponSOs.Length; i++)
         {
@@ -210,8 +243,16 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         return EquipmentSlotSpriteStorage[SlotAmount];
     }
     
-    public EquipmentSO GetPlayerEquipmentInfo(int EquipmentCode)
+    public EquipmentSO GetPlayerEquipmentInfo(int EquipmentCode)//이것만 어떻게 바꾸면 될듯?
     {
+        //여기에서 EquipmentCode가 들어오는 정보대로 EquipmentSO를 맞춰서 retrun 해주면 될듯함
+        /*
+        public string EquipmentName; -- 장비티어 + 장비 성향 + 장비 종류
+        public EquipmentSlot[] EquipmentSlots; -- 장비 티어 + 장비 성향 + 장비 종류 + 곱 성향
+        public Sprite EquipmentImage; -- 장비 티어 + 장비 성향 + 장비 종류
+        [TextArea(10, 20)]
+        public string EquipmentDetail; -- 장비 성향 + 장비 종류
+         */
         if (!EquipmentStorage.ContainsKey(EquipmentCode))//EquipmentStorage에 없으면 0번 장비(아무것도 아닌것)전달
         {
             return EquipmentStorage[0];
