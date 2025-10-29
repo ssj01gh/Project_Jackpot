@@ -40,6 +40,8 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     public EquipIncreaseSO[] PlayerEquipIncreaseSOs;
     [Header("PlayerSlots")]
     public EquipSlotSO[] PlayerEquipSlotSos;
+    [Header("PlayerEquipDetails")]
+    public PlayerEquipDetailSO[] PlayerEquipDetailSOs;
 
     [Header("MonWeapon")]
     public EquipmentSO[] MonWeaponSOs;
@@ -64,6 +66,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
 
     protected Dictionary<int, EquipIncreaseSO> EquipIncreaseState = new Dictionary<int, EquipIncreaseSO>();
     protected Dictionary<int, EquipSlotSO> EquipSlot = new Dictionary<int, EquipSlotSO>();
+    protected Dictionary<int, PlayerEquipDetailSO> EquipDetail = new Dictionary<int, PlayerEquipDetailSO>();
 
 
     //95 5 0 0 0
@@ -173,6 +176,19 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         for(int i = 0; i < PlayerEquipSlotSos.Length; i++)
         {
             int SaveCode = (PlayerEquipSlotSos[i].EquipTier * 10) + PlayerEquipSlotSos[i].EquipMultiType;
+            if(!EquipSlot.ContainsKey(SaveCode))
+            {
+                EquipSlot.Add(SaveCode, PlayerEquipSlotSos[i]);
+            }
+        }
+        //InitPlayerEquipDetail
+        for(int i = 0; i < PlayerEquipDetailSOs.Length; i++)
+        {
+            int SaveCode = (PlayerEquipDetailSOs[i].EquipStateType * 10) + PlayerEquipDetailSOs[i].EquipType;
+            if(!EquipDetail.ContainsKey(SaveCode))
+            {
+                EquipDetail.Add(SaveCode, PlayerEquipDetailSOs[i]);
+            }
         }
 
         //InitMonWeapon
@@ -247,11 +263,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     {
         //여기에서 EquipmentCode가 들어오는 정보대로 EquipmentSO를 맞춰서 retrun 해주면 될듯함
         /*
-        public string EquipmentName; -- 장비티어 + 장비 성향 + 장비 종류
-        public EquipmentSlot[] EquipmentSlots; -- 장비 티어 + 장비 성향 + 장비 종류 + 곱 성향
         public Sprite EquipmentImage; -- 장비 티어 + 장비 성향 + 장비 종류
-        [TextArea(10, 20)]
-        public string EquipmentDetail; -- 장비 성향 + 장비 종류
          */
         if (!EquipmentStorage.ContainsKey(EquipmentCode))//EquipmentStorage에 없으면 0번 장비(아무것도 아닌것)전달
         {

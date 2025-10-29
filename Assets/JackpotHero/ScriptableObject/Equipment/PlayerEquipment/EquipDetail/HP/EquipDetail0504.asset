@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ef57f3714e9e44abfb4b267bd21938, type: 3}
+  m_Name: EquipDetail0504
+  m_EditorClassIdentifier: 
+  EquipStateType: 5
+  EquipType: 4
+  EquipmentName: "\uC77C\uC871\uC758 \uD314\uCC0C"
+  EquipmentDetail: "\uD53C\uC758 \uC77C\uC871\uC758 \uB9C8\uBC95\uC73C\uB85C \uB9CC\uB4E0
+    \uBD89\uC740 \uC0C9 \uD314\uCC0C\uC785\uB2C8\uB2E4.\n\uC804\uD22C \uC2DC\uC791\uC2DC
+    <link=\"HPAC\"><color=green>\uC8FD\uC74C\uC758 \uD798</color></link> {HPA}\uC2A4\uD0DD\uC744
+    \uC5BB\uC2B5\uB2C8\uB2E4."

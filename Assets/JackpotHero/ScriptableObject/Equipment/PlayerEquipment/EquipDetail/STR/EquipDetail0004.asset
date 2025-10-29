@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ef57f3714e9e44abfb4b267bd21938, type: 3}
+  m_Name: EquipDetail0004
+  m_EditorClassIdentifier: 
+  EquipStateType: 0
+  EquipType: 4
+  EquipmentName: "\uBF08 \uBAA9\uAC78\uC774"
+  EquipmentDetail: "\uC804\uC0AC \uBB38\uBA85\uC758 \uC8FC\uC220\uC774 \uB2F4\uAE34
+    \uBF08 \uBAA9\uAC78\uC774\uC785\uB2C8\uB2E4.\n\uC804\uD22C \uC2DC\uC791\uC2DC
+    <link=\"STRAC\"><color=green>\uB2E8\uB2E8\uD55C \uC8FC\uBA39</color></link> {STRA}\uC2A4\uD0DD\uC744
+    \uC5BB\uC2B5\uB2C8\uB2E4."

@@ -30754,7 +30754,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB098\uBB34 \uAC80"
+  m_text: "\uD3ED\uBC1C\uC801\uC778 \uACE0\uD488\uC9C8\uC758 \uC57C\uB9CC\uC804\uC0AC\uC758
+    \uC5B4\uAE68\uB760"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
   m_sharedMaterial: {fileID: -1303872472515561569, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
@@ -30781,11 +30782,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.25
+  m_fontSize: 15.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 15
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -41581,6 +41582,47 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54f796f69e04b3f44ad75f96ff4ea74e, type: 2}
   - {fileID: 11400000, guid: 3f98e3c5a1ade3445babb55e0edd6cdf, type: 2}
   - {fileID: 11400000, guid: 6524c2ea1bdb0a04792ef6723f625ad3, type: 2}
+  PlayerEquipDetailSOs:
+  - {fileID: 11400000, guid: 245e955d14f8ffc4aa82492d2229bb9f, type: 2}
+  - {fileID: 11400000, guid: c1da83a1c46240f45aadce1c7696045c, type: 2}
+  - {fileID: 11400000, guid: fc32a019df3738147a6aeacca8114194, type: 2}
+  - {fileID: 11400000, guid: ea39967fc8240864cb8586ff8a10561d, type: 2}
+  - {fileID: 11400000, guid: 493dd446c0a0b7c4b8dae65ea6b1210e, type: 2}
+  - {fileID: 11400000, guid: 8be5d5617bbe6dd45bb266299466fbdb, type: 2}
+  - {fileID: 11400000, guid: 9bbddd193c6eb3945ab22b1138eb7a13, type: 2}
+  - {fileID: 11400000, guid: 064be9efc586f084dbb31c9670f1a1a0, type: 2}
+  - {fileID: 11400000, guid: 3b6922e978ab746478e48b6f3b720304, type: 2}
+  - {fileID: 11400000, guid: 643ab17719ad5a446abc85bc38240301, type: 2}
+  - {fileID: 11400000, guid: 7235246f69b34e545a55eda8d55235e2, type: 2}
+  - {fileID: 11400000, guid: 1b04e7077ab9d37419dc3ad0d01e94dd, type: 2}
+  - {fileID: 11400000, guid: 5112cefe6ada33449887f9131ee1c4fb, type: 2}
+  - {fileID: 11400000, guid: 047be2059ba408e45aefb035847af5d3, type: 2}
+  - {fileID: 11400000, guid: 2486cc9458290df408bd75437174c3ef, type: 2}
+  - {fileID: 11400000, guid: 83749e7dbaa42144eb3c6637be10dc27, type: 2}
+  - {fileID: 11400000, guid: 8d565c4bda46b1642bda948332b1ed05, type: 2}
+  - {fileID: 11400000, guid: 6336854be9c242841baae682d58b5310, type: 2}
+  - {fileID: 11400000, guid: b138961d1dee6b540a1eaa11286c9865, type: 2}
+  - {fileID: 11400000, guid: d3fd471c17218ca4d92e27f2f754bff9, type: 2}
+  - {fileID: 11400000, guid: ab3ab0bf303e34d48b854d095af445ed, type: 2}
+  - {fileID: 11400000, guid: d67a67b1ad9573d4eb95f82b6f8c784a, type: 2}
+  - {fileID: 11400000, guid: 8599c77de814802438c1b8e96894d94e, type: 2}
+  - {fileID: 11400000, guid: e4b8432bc27b2d64eb36d4f55dbd791e, type: 2}
+  - {fileID: 11400000, guid: f338b552697786449a16c3cd68e5ad15, type: 2}
+  - {fileID: 11400000, guid: acd169786a8c3644090f1d202479c9b0, type: 2}
+  - {fileID: 11400000, guid: 48c22c9c2801e554aae08d48ef97d915, type: 2}
+  - {fileID: 11400000, guid: a0c70298e5f3ce84898487f4c7777a3d, type: 2}
+  - {fileID: 11400000, guid: 18c8b0a35c79b8e459ba10aa6e866cfb, type: 2}
+  - {fileID: 11400000, guid: cb7009fe69f9f0042a6c17522564b207, type: 2}
+  - {fileID: 11400000, guid: 04614c46e871eaa4e8d434d51060f165, type: 2}
+  - {fileID: 11400000, guid: bc5ea85b108c1414a8fd6338a4a31da7, type: 2}
+  - {fileID: 11400000, guid: baed4f7ad375e3949a910781489755fd, type: 2}
+  - {fileID: 11400000, guid: 51945d09d45721f4e894a9714dfb304e, type: 2}
+  - {fileID: 11400000, guid: d49557c044d12b644992c7c55ced720d, type: 2}
+  - {fileID: 11400000, guid: f3095fb0665670d469516bd3ad85f97d, type: 2}
+  - {fileID: 11400000, guid: cd678c2dc26fb8b4680e5dc2da73ddce, type: 2}
+  - {fileID: 11400000, guid: bd2504ee0b3fb7c4292cb6a119d142a2, type: 2}
+  - {fileID: 11400000, guid: a75715958243b0148bc602bd70ad897b, type: 2}
+  - {fileID: 11400000, guid: 7305b436c499aa64fabdaad48eb9d1a5, type: 2}
   MonWeaponSOs:
   - {fileID: 11400000, guid: 3bf7872cf330fbe49a5c1acfa214c0ad, type: 2}
   - {fileID: 11400000, guid: aff556ade9f11ea4e84002577d40dc38, type: 2}
@@ -102220,7 +102262,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "\uC0AC\uC6A9\uC790\uC758 \uD53C\uB85C\uB3C4\uB97C \uD480\uC5B4\uC9C0\uB294
+    \uB9C8\uBC95\uC774 \uAC78\uB9B0 \uD22C\uAD6C\uC785\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
   m_sharedMaterial: {fileID: -1303872472515561569, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}

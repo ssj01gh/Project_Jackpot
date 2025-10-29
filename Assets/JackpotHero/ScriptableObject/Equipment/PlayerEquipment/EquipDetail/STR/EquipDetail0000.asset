@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ef57f3714e9e44abfb4b267bd21938, type: 3}
+  m_Name: EquipDetail0000
+  m_EditorClassIdentifier: 
+  EquipStateType: 0
+  EquipType: 0
+  EquipmentName: "\uB300\uAC80"
+  EquipmentDetail: "\uBCA4\uB2E4\uAE30 \uBCF4\uB2E4\uB294 \uBD80\uC218\uB294\uB370
+    \uD2B9\uD654\uB41C \uB300\uAC80\uC785\uB2C8\uB2E4.\n\uACF5\uACA9\uC2DC \uC801\uC5D0\uAC8C
+    <link=\"STRWE\"><color=green>\uBC29\uC5B4\uB825 \uAC10\uC18C</color></link> 3\uC2A4\uD0DD\uC744
+    \uBD80\uC5EC \uD569\uB2C8\uB2E4."
