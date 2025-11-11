@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipStateType: 2
   EquipType: 2
-  EquipmentName: "\uB9C8\uB140\uC758 \uBAA8\uC790"
+  EquipmentName: "\uB9C8\uB140 \uBAA8\uC790"
   EquipmentDetail: "\uCC29\uC6A9\uC790\uC5D0\uAC8C \uB9C8\uBC95\uC744 \uAC78\uC5B4\uC8FC\uB294
     \uB9C8\uB140 \uBAA8\uC790\uC785\uB2C8\uB2E4.\n\uD734\uC2DD\uC2DC <link=\"RESHE\"><color=green>\uC7AC\uC0DD</color></link>
     3\uC2A4\uD0DD\uC744 \uC5BB\uC2B5\uB2C8\uB2E4."

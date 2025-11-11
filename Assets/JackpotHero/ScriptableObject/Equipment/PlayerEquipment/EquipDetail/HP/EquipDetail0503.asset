@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipStateType: 5
   EquipType: 3
-  EquipmentName: "\uC77C\uC871\uC758 \uBC1C\uCC0C"
+  EquipmentName: "\uC77C\uC871\uC758 \uBC1C \uC7A5\uC2DD"
   EquipmentDetail: "\uD53C\uC758 \uC77C\uC871\uC758 \uB9C8\uBC95\uC73C\uB85C \uB9CC\uB4E0
-    \uBD89\uC740\uC0C9 \uBC1C\uCC0C\uC785\uB2C8\uB2E4.\n\uC804\uD22C \uC2DC\uC791\uC2DC
+    \uBD89\uC740\uC0C9 \uBC1C \uC7A5\uC2DD\uC785\uB2C8\uB2E4.\n\uC804\uD22C \uC2DC\uC791\uC2DC
     <link=\"HPBO\"><color=green>\uBD88\uC0AC</color></link> {HPB}\uC2A4\uD0DD\uC744
     \uC5BB\uC2B5\uB2C8\uB2E4."

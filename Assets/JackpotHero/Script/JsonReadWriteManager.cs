@@ -43,7 +43,8 @@ public enum EEquipStateType
     StateLUK,
     StateHP,
     StateSTA,
-    StateNormal
+    StateNormal,
+    StateStart
 }
 public enum EEquipType
 {

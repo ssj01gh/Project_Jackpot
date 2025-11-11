@@ -42,6 +42,8 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     public EquipSlotSO[] PlayerEquipSlotSos;
     [Header("PlayerEquipDetails")]
     public PlayerEquipDetailSO[] PlayerEquipDetailSOs;
+    [Header("PlayerEquipSprite")]
+    public EquipSpriteSO[] PlayerEquipSpriteSOs;
 
     [Header("MonWeapon")]
     public EquipmentSO[] MonWeaponSOs;
@@ -67,8 +69,16 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     protected Dictionary<int, EquipIncreaseSO> EquipIncreaseState = new Dictionary<int, EquipIncreaseSO>();
     protected Dictionary<int, EquipSlotSO> EquipSlot = new Dictionary<int, EquipSlotSO>();
     protected Dictionary<int, PlayerEquipDetailSO> EquipDetail = new Dictionary<int, PlayerEquipDetailSO>();
+    protected Dictionary<int, EquipSpriteSO> EquipSprite = new Dictionary<int, EquipSpriteSO>();
 
-
+    protected string[] PlayerEquipTierName = new string[7]
+    { "시작의", "저품질의", "평범한", "고품질의", "강화된", "마법의", "영원한" };
+    protected string[] PlayerEquipMultiTypeName = new string[3]
+    { "안정적인","균형적인","폭발적인" };
+    protected int[] BootsBuffInt = new int[7]
+    { 2,40,2,1,1,1,2 };
+    protected int[] AccessoriesBuffInt = new int[7]
+    { 3,3,2,3,0,3,2 };
     //95 5 0 0 0
     protected int[,] EquipmentGamblingDetail =
     {{95,5,0,0,0 }, //0레벨
@@ -162,7 +172,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                 EquipmentStorage.Add(i_EquipmentCode, PlayerAccessoriesSOs[i]);
             }
         }
-
+        //-------------------------------------------------------------
         //InitPlayerIncreaseState
         for(int i = 0; i < PlayerEquipIncreaseSOs.Length; i++)
         {
@@ -190,7 +200,16 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                 EquipDetail.Add(SaveCode, PlayerEquipDetailSOs[i]);
             }
         }
-
+        //InitPlayerEquipSprite
+        for(int i = 0; i < PlayerEquipSpriteSOs.Length; i++)
+        {
+            int SaveCode = (PlayerEquipSpriteSOs[i].EqupTier * 100) + (PlayerEquipSpriteSOs[i].EquipStateType * 10) + PlayerEquipSpriteSOs[i].EquipType;
+            if(!EquipSprite.ContainsKey(SaveCode))
+            {
+                EquipSprite.Add(SaveCode, PlayerEquipSpriteSOs[i]);
+            }
+        }
+        //--------------------------------------------------------
         //InitMonWeapon
         for (int i = 0; i < MonWeaponSOs.Length; i++)
         {
@@ -258,19 +277,145 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         }
         return EquipmentSlotSpriteStorage[SlotAmount];
     }
-    
-    public EquipmentSO GetPlayerEquipmentInfo(int EquipmentCode)//이것만 어떻게 바꾸면 될듯?
+
+    protected EquipIncreaseSO GetEquipIncreseInfo(int StateType, int EquipType)
+    {
+        int NeededCode = (StateType * 10) + EquipType;
+        return EquipIncreaseState[NeededCode];
+    }
+
+    protected EquipSlotSO GetEquipSlotInfo(int EquipTier, int MultiType)
+    {
+        int NeededCode = (EquipTier * 10) + MultiType;
+        return EquipSlot[NeededCode];
+    }
+
+    protected PlayerEquipDetailSO GetEquipDetailInfo(int StateType, int EquipType)
+    {
+        int NeededCode = (StateType * 10) + EquipType;
+        return EquipDetail[NeededCode];
+    }
+
+    protected EquipSpriteSO GetEquipSpriteInfo(int EquipTier, int StateType, int EquipType)
+    {
+        int NeededCode = (EquipTier * 100) + (StateType * 10) + EquipType;
+        return EquipSprite[NeededCode];
+    }
+
+    public EquipmentSO GetPlayerEquipmentInfo(int EquipCode)//이것만 어떻게 바꾸면 될듯?
     {
         //여기에서 EquipmentCode가 들어오는 정보대로 EquipmentSO를 맞춰서 retrun 해주면 될듯함
+
+        //IncreaseState => StateType * 10 + EquipType
+        //PlayerEqupSlot => EquipTier * 10 + EquipMultiType
+        //PlayerEquipDetailSo => StateType * 10 + EquipType
+        //EquipSprite => EquipTier * 100 + StateType * 10 + EquipType
         /*
-        public Sprite EquipmentImage; -- 장비 티어 + 장비 성향 + 장비 종류
-         */
-        if (!EquipmentStorage.ContainsKey(EquipmentCode))//EquipmentStorage에 없으면 0번 장비(아무것도 아닌것)전달
+        public int EquipmentType;//장비의 종류 -> 십의 자리                          //
+        public int EquipmentTier;//장비의 티어 -> 천의 자리                          //
+        public int EquipmentCode;//장비코드? 이건 굳이? ->이건 0으로            //
+        public string EquipmentName;//장비 이름 = 장비 티어 종류 + 곱 성향 + 장비이름-> PlayerEquipDetailSo에서        //
+        public float SpendTiredness;//사용하는 피로도, 주어진 정보에 티어 곱하기, (0티어 제외)-> EqupIncreaseSO에서     //
+        public EquipmentSlot[] EquipmentSlots; // 슬롯 ->EqupSlotSo에서                 //
+        public Sprite EquipmentImage;//장비 이미지 -> EquipSpriteSo에서                //
+        public int AddSTRAmount;//변화하는 힘 수치 , 주어진 정보에 티어 곱하기 스탯 관련은 다 똑같이->EqupIncreaseSO에서
+        public int AddDURAmount;//변화하는 내구 수치 ->EqupIncreaseSO에서
+        public int AddRESAmount;//변화하는 회복 수치 ->EqupIncreaseSO에서
+        public int AddSPDAmount;//변화하는 속도 수치 ->EqupIncreaseSO에서
+        public int AddLUKAmount;//변화하는 행운 수치 ->EqupIncreaseSO에서
+        public float AddHPAmount;//변화하는 체력 수치 -> 0으로
+        public float AddTirednessAmount;//변화하는 피로도 수치 -> 0으로
+        [TextArea(10, 20)]
+        public string EquipmentDetail;//장비 상세 설명 -> EquipDetailSo에서
+         * */
+        int PlayerEquipTier = (EquipCode / 1000);
+        int PlayerEquipStateType = (EquipCode / 100) % 10;
+        int PlayerEquipType = (EquipCode / 10) % 10;
+        int PlayerEquipMultiType = (EquipCode % 10);
+
+        EquipmentSO AssembleEquip = new EquipmentSO();
+        //(number / (int)Mathf.Pow(10, position)) % 10;
+        AssembleEquip.EquipmentType = ((EquipCode / 10) % 10);
+        AssembleEquip.EquipmentTier = (EquipCode / 1000);
+        AssembleEquip.EquipmentCode = 0;
+        AssembleEquip.EquipmentName = PlayerEquipTierName[PlayerEquipTier] + " " + PlayerEquipMultiTypeName[PlayerEquipMultiType] + " " +
+            GetEquipDetailInfo(PlayerEquipStateType, PlayerEquipType).EquipmentName;
+        if (PlayerEquipTier < 1)//0티어
+        {
+            AssembleEquip.SpendTiredness = GetEquipIncreseInfo(PlayerEquipStateType, PlayerEquipType).SpendTired;
+            AssembleEquip.AddSTRAmount = 0;
+            AssembleEquip.AddDURAmount = 0;
+            AssembleEquip.AddRESAmount = 0;
+            AssembleEquip.AddSPDAmount = 0;
+            AssembleEquip.AddLUKAmount = 0;
+        }
+        else
+        {
+            AssembleEquip.SpendTiredness = (int)(GetEquipIncreseInfo(PlayerEquipStateType, PlayerEquipType).SpendTired * PlayerEquipTier);
+            AssembleEquip.AddSTRAmount = (GetEquipIncreseInfo(PlayerEquipStateType, PlayerEquipType).IncreaseSTR * PlayerEquipTier);
+            AssembleEquip.AddDURAmount = (GetEquipIncreseInfo(PlayerEquipStateType, PlayerEquipType).IncreaseDUR * PlayerEquipTier);
+            AssembleEquip.AddRESAmount = (GetEquipIncreseInfo(PlayerEquipStateType, PlayerEquipType).IncreaseRES * PlayerEquipTier);
+            AssembleEquip.AddSPDAmount = (GetEquipIncreseInfo(PlayerEquipStateType, PlayerEquipType).IncreaseSPD * PlayerEquipTier);
+            AssembleEquip.AddLUKAmount = (GetEquipIncreseInfo(PlayerEquipStateType, PlayerEquipType).IncreaseLUK * PlayerEquipTier);
+        }
+        AssembleEquip.EquipmentSlots = GetEquipSlotInfo(PlayerEquipTier, PlayerEquipMultiType).EquipmentSlots;
+        AssembleEquip.EquipmentImage = GetEquipSpriteInfo(PlayerEquipTier, PlayerEquipStateType, PlayerEquipType).EquipSprite;
+        AssembleEquip.AddHPAmount = 0;
+        AssembleEquip.AddTirednessAmount = 0;
+        string BeforeDetailString = GetEquipDetailInfo(PlayerEquipStateType, PlayerEquipType).EquipmentDetail;
+        //AssembleEquip.EquipmentDetail = BeforeDetailString.Replace()
+        switch(PlayerEquipStateType)
+        {
+            case (int)EEquipStateType.StateSTR:
+                int STRB = BootsBuffInt[(int)EEquipStateType.StateSTR] * PlayerEquipTier;
+                int STRA = AccessoriesBuffInt[(int)EEquipStateType.StateSTR] * PlayerEquipTier;
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{STRB}", STRB.ToString()).Replace("{STRA}", STRA.ToString());
+                break;
+            case (int)EEquipStateType.StateDUR:
+                int DURB = BootsBuffInt[(int)EEquipStateType.StateDUR] * PlayerEquipTier;
+                int DURA = AccessoriesBuffInt[(int)EEquipStateType.StateDUR] * PlayerEquipTier;
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{DURB}", DURB.ToString()).Replace("{DURA}", DURA.ToString());
+                break;
+            case (int)EEquipStateType.StateRES:
+                int RESB = BootsBuffInt[(int)EEquipStateType.StateRES] * PlayerEquipTier;
+                int RESA = AccessoriesBuffInt[(int)EEquipStateType.StateRES] * PlayerEquipTier;
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{RESB}", RESB.ToString()).Replace("{RESA}", RESA.ToString());
+                break;
+            case (int)EEquipStateType.StateSPD:
+                int SPDB = BootsBuffInt[(int)EEquipStateType.StateSPD] * PlayerEquipTier;
+                int SPDA = AccessoriesBuffInt[(int)EEquipStateType.StateSPD] * PlayerEquipTier;
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{SPDB}", SPDB.ToString()).Replace("{SPDA}", SPDA.ToString());
+                break;
+            case (int)EEquipStateType.StateLUK:
+                int LUKB = BootsBuffInt[(int)EEquipStateType.StateLUK] * PlayerEquipTier;
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{LUKB}", LUKB.ToString());
+                break;
+            case (int)EEquipStateType.StateHP:
+                int HPB = BootsBuffInt[(int)EEquipStateType.StateHP] * PlayerEquipTier;
+                int HPA = AccessoriesBuffInt[(int)EEquipStateType.StateHP] * PlayerEquipTier;
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{HPB}", HPB.ToString()).Replace("{HPA}", HPA.ToString());
+                break;
+            case (int)EEquipStateType.StateSTA:
+                int STAB = BootsBuffInt[(int)EEquipStateType.StateSTA] * PlayerEquipTier;
+                int STAA = AccessoriesBuffInt[(int)EEquipStateType.StateSTA] * PlayerEquipTier;
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{STAB}", STAB.ToString()).Replace("{STAA}", STAA.ToString());
+                break;
+            case (int)EEquipStateType.StateNormal:
+            case (int)EEquipStateType.StateStart:
+                AssembleEquip.EquipmentDetail = BeforeDetailString;
+                break;
+        }
+
+        return AssembleEquip;
+        /*
+        if (!EquipmentStorage.ContainsKey(EquipCode))//EquipmentStorage에 없으면 0번 장비(아무것도 아닌것)전달
         {
             return EquipmentStorage[0];
         }
-        return EquipmentStorage[EquipmentCode];
+        return EquipmentStorage[EquipCode];
+        */
     }
+
     public EquipmentSO GetMonEquipmentInfo(int EquipmentCode)
     {
         if (!MonEquipmentStroage.ContainsKey(EquipmentCode))//MonEquipmentStroage에 없으면 0번 장비(아무것도 아닌것)전달
