@@ -23,44 +23,6 @@ public enum EPlayerRestQuality
     Perfect
 }
 
-public enum EEquipTier
-{
-    TierZero,
-    TierOne,
-    TierTwo,
-    TierThree,
-    TierFour,
-    TierFive,
-    TierSix,
-    TierEvent
-}
-public enum EEquipStateType
-{
-    StateSTR,
-    StateDUR,
-    StateRES,
-    StateSPD,
-    StateLUK,
-    StateHP,
-    StateSTA,
-    StateNormal,
-    StateStart
-}
-public enum EEquipType
-{
-    TypeWeapon,
-    TypeArmor,
-    TypeHelmet,
-    TypeBoots,
-    TypeAcc,
-}
-public enum EEquipMultiType
-{
-    MultiSteady,
-    MultiBalanced,
-    MultiVolatile,
-}
-
 public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManager>
 {
     [HideInInspector]

@@ -41587,6 +41587,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54f796f69e04b3f44ad75f96ff4ea74e, type: 2}
   - {fileID: 11400000, guid: 3f98e3c5a1ade3445babb55e0edd6cdf, type: 2}
   - {fileID: 11400000, guid: 6524c2ea1bdb0a04792ef6723f625ad3, type: 2}
+  - {fileID: 11400000, guid: ce3450ba41c63f049a76f5e9005005a0, type: 2}
   PlayerEquipDetailSOs:
   - {fileID: 11400000, guid: 245e955d14f8ffc4aa82492d2229bb9f, type: 2}
   - {fileID: 11400000, guid: c1da83a1c46240f45aadce1c7696045c, type: 2}

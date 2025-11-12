@@ -520,10 +520,10 @@ public class BattleUI : MonoBehaviour
         SelectionArrowPos.y -= 0.5f;
         SelectionArrow.transform.position = SelectionArrowPos;
 
-        EquipmentSO MonWeapon = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterWeaponCode);
-        EquipmentSO MonArmor = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterArmorCode);
+        EquipmentInfo MonWeapon = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterWeaponCode);
+        EquipmentInfo MonArmor = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterArmorCode);
 
-        List<EquipmentSO> AnotherEquip = new List<EquipmentSO>();
+        List<EquipmentInfo> AnotherEquip = new List<EquipmentInfo>();
         for(int i = 0; i < Mon.MonsterAnotherEquipmentCode.Length; i++)
         {
             AnotherEquip.Add(EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterAnotherEquipmentCode[i]));

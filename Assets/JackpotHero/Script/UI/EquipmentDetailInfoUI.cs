@@ -34,10 +34,10 @@ public class EquipmentDetailInfoUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void ActiveEquipmentDetailInfoUI(EquipmentSO EquipInfo, bool IsPlayerEquipment)
+    public void ActiveEquipmentDetailInfoUI(EquipmentInfo EquipInfo, bool IsPlayerEquipment)
     {
         gameObject.SetActive(true);
 
@@ -57,8 +57,6 @@ public class EquipmentDetailInfoUI : MonoBehaviour
 
         if(IsPlayerEquipment == true)
         {
-            
-
             if (EquipCode >= 10000 && EquipCode < 20000)
                 ClickEquipSpendSTA.text = "공격시 피로도 : " + EquipInfo.SpendTiredness.ToString();
             else if (EquipCode >= 20000 && EquipCode < 30000)

@@ -1453,7 +1453,7 @@ public class BattleManager : MonoBehaviour
                 BattleResultStatus.BaseAmount = TP_Info.TotalRES;
                 break;
         }
-        EquipmentSO Equipment_Info = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipCode);
+        EquipmentInfo Equipment_Info = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipCode);
 
 
         //기초 추가 수치 // 거의 유일하게 EQUIP 초반 강화 효과에 영향을 받는 수치임
@@ -1635,7 +1635,7 @@ public class BattleManager : MonoBehaviour
                 BattleResultStatus.BaseAmount = MC_Info.MonsterCurrentDUR;
                 break;
         }
-        EquipmentSO ESO_Info = EquipmentInfoManager.Instance.GetMonEquipmentInfo(MonEquipmentCode);
+        EquipmentInfo ESO_Info = EquipmentInfoManager.Instance.GetMonEquipmentInfo(MonEquipmentCode);
 
         if(BattleResultStatus.BaseAmount > 0)
         {
@@ -1645,7 +1645,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    protected void SetMonsterBattleStatus(MonsterCurrentStatus MC_Info, EquipmentSO ESO_Info, int CurrentState)
+    protected void SetMonsterBattleStatus(MonsterCurrentStatus MC_Info, EquipmentInfo ESO_Info, int CurrentState)
     {
         if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] >= 1)
         {

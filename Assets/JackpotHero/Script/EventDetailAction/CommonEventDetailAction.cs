@@ -333,19 +333,19 @@ public class CommonEventDetailAction
         switch(ButtonType)
         {
             case 0:
-                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipmentType.Weapon);
+                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipType.TypeWeapon);
                 break;
             case 1:
-                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipmentType.Armor);
+                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipType.TypeArmor);
                 break;
             case 2:
-                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipmentType.Helmet);
+                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipType.TypeHelmet);
                 break;
             case 3:
-                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipmentType.Boots);
+                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipType.TypeBoots);
                 break;
             case 4:
-                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipmentType.Accessories);
+                RandomEquipmnetCode = EquipmentInfoManager.Instance.GetFixedTierNTypeRandomEquipment(CurrentEventEquipTier, EEquipType.TypeAcc);
                 break;
         }
         if (RandomEquipmnetCode == 0)

@@ -831,7 +831,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if(IsEquipedEquipment == true)//장비칸에 있는 아이템 클릭
         {//-> 오른쪽 Detail만 출력하면 됨
             //CurrentBringItemCode -> 0일때는 안 들어옴
-            EquipmentSO EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
+            EquipmentInfo EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
             EquipDetail_EquipImage.gameObject.SetActive(true);
             EquipDetail_EquipImage.sprite = EquipedEquipmentInfo.EquipmentImage;
             EquipDetail_EquipTierText.text = GetTierText(CurrentBringItemCode);
@@ -884,8 +884,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         else//인벤토리에 있는 아이템 클릭
         {//-> 왼쪽 Detail, 오른쪽 Detail다 출력 해야됨
          //같은 타입의 장비가 없으면 오른쪽은 출력 x
-            //인벤의 장비 표시
-            EquipmentSO UnEquipedEquipment = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
+         //인벤의 장비 표시
+            EquipmentInfo UnEquipedEquipment = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
             int EquipedEquipmentCode;
             EquipDetail_InvenImage.gameObject.SetActive(true);
             EquipDetail_InvenImage.sprite = UnEquipedEquipment.EquipmentImage;
@@ -940,7 +940,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_InvenCardContainer[i].GetComponent<EquipmentDetailCardContainerUI>().SetActiveCards(UnEquipedEquipment.EquipmentSlots[i].SlotState);
             }
             //같은 타입의 장비가 있거나 혹은 없거나
-            EquipmentSO EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipedEquipmentCode);
+            EquipmentInfo EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipedEquipmentCode);
             if (EquipedEquipmentCode == 0)//끼고 있는 장비가 없을때
             {
                 //아예 비우기
@@ -1047,7 +1047,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //띄용띄용이 끝나면 클릭버튼 활성화
         EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
             OnComplete(() => { ActiveGachaClickButton(); });
-        //가챠 연출같은게 있으면 좋을텐데.....
+
     }
 
     private void ActiveGachaClickButton()
@@ -1062,7 +1062,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         ClickButton.GetComponent<RectTransform>().DOKill();
         ClickButton.SetActive(false);
         //이 버튼을 누르면 버튼은 비활성화
-        int EquipmentTier = (GachaResultEquipCode / 1000) % 10;
+        int EquipmentTier = GachaResultEquipCode / 1000;
         // 1티어 장비라면 0번까지 활성화 , 흰색// 2티어 장비라면  1번까지 활성화, 파란색
         // 3티어 장비라면 2번까지 활성화, 보라색// 4티어 장비라면 3번까지 활성화, 노란색
         // 5티어 장비라면 4번까지 활성화, 
