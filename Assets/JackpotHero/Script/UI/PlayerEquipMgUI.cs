@@ -837,15 +837,17 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_EquipTierText.text = GetTierText(CurrentBringItemCode);
             EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
 
-            if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
+            int EquipType = (CurrentBringItemCode / 10) % 10;
+
+            if (EquipType == (int)EEquipType.TypeWeapon)
                 EquipDetail_EquipSTAText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-            else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
+            else if (EquipType == (int)EEquipType.TypeArmor)
                 EquipDetail_EquipSTAText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-            else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
+            else if (EquipType == (int)EEquipType.TypeHelmet)
                 EquipDetail_EquipSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
-            else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
+            else if (EquipType == (int)EEquipType.TypeBoots)
                 EquipDetail_EquipSTAText.text = "신발은 피로도를 사용하지 않습니다.";
-            else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
+            else if (EquipType == (int)EEquipType.TypeAcc)
                 EquipDetail_EquipSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
             else
                 EquipDetail_EquipSTAText.text = "";
@@ -892,27 +894,30 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_InvenTierText.text = GetTierText(CurrentBringItemCode);
             EquipDetail_InvenNameText.text = UnEquipedEquipment.EquipmentName;
 
-            if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
+            int EquipType = (CurrentBringItemCode / 10) % 10;
+
+            //장비의 종류 10의 자리
+            if (EquipType == (int)EEquipType.TypeWeapon)//무기
             {
                 EquipDetail_InvenSTAText.text = "공격시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
             }
-            else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
+            else if (EquipType == (int)EEquipType.TypeArmor)//방어구
             {
                 EquipDetail_InvenSTAText.text = "방어시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode;
             }
-            else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
+            else if (EquipType == (int)EEquipType.TypeHelmet)//투구
             {
                 EquipDetail_InvenSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode;
             }
-            else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
+            else if (EquipType == (int)EEquipType.TypeBoots)//신발
             {
                 EquipDetail_InvenSTAText.text = "신발은 피로도를 사용하지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode;
             }
-            else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
+            else if (EquipType == (int)EEquipType.TypeAcc)//장신구
             {
                 EquipDetail_InvenSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
@@ -965,15 +970,15 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipTierText.text = GetTierText(EquipedEquipmentCode);
                 EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
 
-                if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
+                if (EquipType == (int)EEquipType.TypeWeapon)
                     EquipDetail_EquipSTAText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-                else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
+                else if (EquipType == (int)EEquipType.TypeArmor)
                     EquipDetail_EquipSTAText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-                else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
+                else if (EquipType == (int)EEquipType.TypeHelmet)
                     EquipDetail_EquipSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
-                else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
+                else if (EquipType == (int)EEquipType.TypeBoots)
                     EquipDetail_EquipSTAText.text = "신발은 피로도를 사용하지 않습니다.";
-                else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
+                else if (EquipType == (int)EEquipType.TypeAcc)
                     EquipDetail_EquipSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
                 else
                     EquipDetail_EquipSTAText.text = "";

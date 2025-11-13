@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ef57f3714e9e44abfb4b267bd21938, type: 3}
   m_Name: EquipDetail0204
   m_EditorClassIdentifier: 
+  IsEventEquip: 1
   EquipStateType: 2
   EquipType: 4
   EquipmentName: "\uB9C8\uB3C4\uC11C"

@@ -57,15 +57,15 @@ public class EquipmentDetailInfoUI : MonoBehaviour
 
         if(IsPlayerEquipment == true)
         {
-            if (EquipCode >= 10000 && EquipCode < 20000)
+            if (EquipInfo.EquipmentType == (int)EEquipType.TypeWeapon)
                 ClickEquipSpendSTA.text = "공격시 피로도 : " + EquipInfo.SpendTiredness.ToString();
-            else if (EquipCode >= 20000 && EquipCode < 30000)
+            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeArmor)
                 ClickEquipSpendSTA.text = "방어시 피로도 : " + EquipInfo.SpendTiredness.ToString();
-            else if (EquipCode >= 30000 && EquipCode < 40000)
+            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeHelmet)
                 ClickEquipSpendSTA.text = "피로도 회복시 피로도는 사용되지 않습니다.";
-            else if (EquipCode >= 40000 && EquipCode < 50000)
+            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeBoots)
                 ClickEquipSpendSTA.text = "신발은 피로도를 사용하지 않습니다.";
-            else if (EquipCode >= 50000 && EquipCode < 60000)
+            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeAcc)
                 ClickEquipSpendSTA.text = "장신구는 피로도를 사용하지 않습니다.";
             else
                 ClickEquipSpendSTA.text = "??시 피로도 : " + EquipInfo.SpendTiredness.ToString();

@@ -41456,51 +41456,6 @@ MonoBehaviour:
   - {fileID: -282605209, guid: dfab9a77b8274f74e9631f5b09126bcb, type: 3}
   - {fileID: -1758586544, guid: dfab9a77b8274f74e9631f5b09126bcb, type: 3}
   - {fileID: 167288736, guid: dfab9a77b8274f74e9631f5b09126bcb, type: 3}
-  PlayerWeaponSOs:
-  - {fileID: 11400000, guid: cc68487133d115f4d86f7a923557d33b, type: 2}
-  - {fileID: 11400000, guid: f88c1c7fa7ec3ce46a96c8be768e33f0, type: 2}
-  - {fileID: 11400000, guid: 4601027bec7f86a4fb12036161f52336, type: 2}
-  - {fileID: 11400000, guid: a0d7993e13ca498478597c83bed43f93, type: 2}
-  - {fileID: 11400000, guid: 5f21a89a158fcca46a563ea2d6f752bd, type: 2}
-  - {fileID: 11400000, guid: 1546c7c6c5ad15342b2d94ac6d377561, type: 2}
-  - {fileID: 11400000, guid: 684742e36280d234d972f639a4dd7c4f, type: 2}
-  - {fileID: 11400000, guid: efd2311b1cd2f8549bbae88a34bcef41, type: 2}
-  - {fileID: 11400000, guid: a6d574d6ed3e40f48945fa4314e27dc3, type: 2}
-  - {fileID: 11400000, guid: aa96a6ac3523ac74399f85787776645a, type: 2}
-  - {fileID: 11400000, guid: 5c07dd1ff2890be4f8410799e5363c67, type: 2}
-  - {fileID: 11400000, guid: 7b1014222ee4ba44bb8377f83e4fc70b, type: 2}
-  PlayerArmorSOs:
-  - {fileID: 11400000, guid: 848a7ab8c2894ab4ea507328593896f1, type: 2}
-  - {fileID: 11400000, guid: 5fe3cc7381c4c264cbc32e22cc7afc93, type: 2}
-  - {fileID: 11400000, guid: 819451400ec35d644abd6eaf992be860, type: 2}
-  - {fileID: 11400000, guid: 46eea461088ac3f41bc186b5a685b30b, type: 2}
-  - {fileID: 11400000, guid: af0d0120dbf679641b5ecfd310a64200, type: 2}
-  - {fileID: 11400000, guid: d42ab80ab3883ba4db4d6c69e82fb957, type: 2}
-  - {fileID: 11400000, guid: e85cfaf84dc69764a9136e9377a622e9, type: 2}
-  PlayerHelmetSOs:
-  - {fileID: 11400000, guid: 6bfbb5c42e74a684ea7b5ccb6496a3c7, type: 2}
-  - {fileID: 11400000, guid: c1652f921e4b54a45887f1aa900c17b1, type: 2}
-  - {fileID: 11400000, guid: eb3032979af466541bf6758f18d7b088, type: 2}
-  - {fileID: 11400000, guid: 3bad73e8a3aff56409e2f7b5182254d8, type: 2}
-  - {fileID: 11400000, guid: b453e3b693feda8459a2cf82160f6b14, type: 2}
-  - {fileID: 11400000, guid: 4bfe7b14e38aa034d95b49118e69ea39, type: 2}
-  - {fileID: 11400000, guid: cd14dbda0adcaf84a89a625433e5fdcd, type: 2}
-  PlayerBootsSOs:
-  - {fileID: 11400000, guid: f8ddc779418d1a644995e97ac3795423, type: 2}
-  - {fileID: 11400000, guid: f9063ad6576097d46b4c3dfc83afcdd7, type: 2}
-  - {fileID: 11400000, guid: 5cec318734c278647a944bb209c4c398, type: 2}
-  - {fileID: 11400000, guid: 1d0c782f5dce3174b895ef2b359b4f7a, type: 2}
-  - {fileID: 11400000, guid: bbf3f09e5ab906340ae72d255b916ca9, type: 2}
-  - {fileID: 11400000, guid: e8a750fa60c53314e83e4dbb6e8e0355, type: 2}
-  - {fileID: 11400000, guid: edb7a523e5fbb9447a4464fda2929ed4, type: 2}
-  PlayerAccessoriesSOs:
-  - {fileID: 11400000, guid: 03f70e79a6c33b84d81871ce6ead28a7, type: 2}
-  - {fileID: 11400000, guid: b84a91c8f30b4a54ea75b60eb4830878, type: 2}
-  - {fileID: 11400000, guid: bc08d6927336eaf498a4865f1f1b8249, type: 2}
-  - {fileID: 11400000, guid: 3dde7e5a06f6a3d41a030b34ae0ff473, type: 2}
-  - {fileID: 11400000, guid: a5432cba8431d1e4babfdc304449a7cc, type: 2}
-  - {fileID: 11400000, guid: daf912440d39fd245be969956dfabd9c, type: 2}
-  - {fileID: 11400000, guid: f6693aaf6d5113a4ea7ccbd0618cde10, type: 2}
   PlayerEquipIncreaseSOs:
   - {fileID: 11400000, guid: da94937012b6cb545a892a182f23d79b, type: 2}
   - {fileID: 11400000, guid: b6797c96e89114949b8af686d45dd6f8, type: 2}
@@ -41635,6 +41590,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b84b4d21a7c11b49b7c1e7bb25ca9f9, type: 2}
   - {fileID: 11400000, guid: cd187a1921bf2f3419da5cd0831bf249, type: 2}
   PlayerEquipSpriteSOs:
+  - {fileID: 11400000, guid: ad9ff8e0ecd790c41a02795c92e158d2, type: 2}
   - {fileID: 11400000, guid: 93dc4e4ab37b4404991ab92caba409b9, type: 2}
   - {fileID: 11400000, guid: 900adb2787e55eb4e82879489e4764c3, type: 2}
   - {fileID: 11400000, guid: fa069c040a916da4eb1ea8fb6f12e037, type: 2}
@@ -41880,6 +41836,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d78483f191623549ac757975fa2d9c4, type: 2}
   - {fileID: 11400000, guid: ba0eacfa4c710e14286b2439c6b83a9f, type: 2}
   - {fileID: 11400000, guid: 60615ddb2cb2a014d8c66272daa2d969, type: 2}
+  PlayerEventEquipSOs:
+  - {fileID: 11400000, guid: cc68487133d115f4d86f7a923557d33b, type: 2}
+  - {fileID: 11400000, guid: 66b2cc8baf46a134e86fb8bf6f64c62b, type: 2}
+  - {fileID: 11400000, guid: 95935409495a9ad4db97d11dfef46534, type: 2}
+  - {fileID: 11400000, guid: f87a00421d97f114c8446d96dd21e8e4, type: 2}
+  - {fileID: 11400000, guid: 324ccd99f6682224bbb606fa5da9abe1, type: 2}
   MonWeaponSOs:
   - {fileID: 11400000, guid: 3bf7872cf330fbe49a5c1acfa214c0ad, type: 2}
   - {fileID: 11400000, guid: aff556ade9f11ea4e84002577d40dc38, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c876e53c36e3454fa592d0018844b02, type: 3}
   m_Name: Tier0000NullSlot
   m_EditorClassIdentifier: 
+  IsEventEquip: 0
   EquipTier: 0
   EquipMultiType: 0
   EquipmentSlots: []

@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EquipIncreaseStateSO", menuName = "SO/EquipIncreaseStateSO")]
 public class EquipIncreaseSO : ScriptableObject
 {
+    public int IsEventEquip;
     public int EquipStateType;
     public int EquipType;
     public int IncreaseSTR;

@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EquipDetailSO", menuName = "SO/EquipDetailSO")]
 public class PlayerEquipDetailSO : ScriptableObject
 {
+    public int IsEventEquip;
     public int EquipStateType;
     public int EquipType;
     public string EquipmentName;

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c876e53c36e3454fa592d0018844b02, type: 3}
   m_Name: Tier0103Volatile
   m_EditorClassIdentifier: 
+  IsEventEquip: 1
   EquipTier: 1
   EquipMultiType: 3
   EquipmentSlots:

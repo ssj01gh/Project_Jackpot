@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ab423eddad6b7498a43e1e86facd66, type: 3}
   m_Name: LUKBoots
   m_EditorClassIdentifier: 
+  IsEventEquip: 1
   EquipStateType: 4
   EquipType: 3
   IncreaseSTR: 0
