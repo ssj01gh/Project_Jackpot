@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
@@ -160,7 +161,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         //InitPlayerEquipSlot
         for(int i = 0; i < PlayerEquipSlotSos.Length; i++)
         {
-            int SaveCode = (PlayerEquipIncreaseSOs[i].IsEventEquip * IsEventEquipMultipleNum) + 
+            int SaveCode = (PlayerEquipSlotSos[i].IsEventEquip * IsEventEquipMultipleNum) + 
                 (PlayerEquipSlotSos[i].EquipTier * TierMultipleNum) + PlayerEquipSlotSos[i].EquipMultiType;
             if(!EquipSlot.ContainsKey(SaveCode))
             {
@@ -170,7 +171,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         //InitPlayerEquipDetail
         for(int i = 0; i < PlayerEquipDetailSOs.Length; i++)
         {
-            int SaveCode = (PlayerEquipIncreaseSOs[i].IsEventEquip * IsEventEquipMultipleNum) + 
+            int SaveCode = (PlayerEquipDetailSOs[i].IsEventEquip * IsEventEquipMultipleNum) + 
                 (PlayerEquipDetailSOs[i].EquipStateType * StateTypeMultipleNum) + (PlayerEquipDetailSOs[i].EquipType * TypeMultipleNum);
             if(!EquipDetail.ContainsKey(SaveCode))
             {
@@ -180,7 +181,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         //InitPlayerEquipSprite
         for(int i = 0; i < PlayerEquipSpriteSOs.Length; i++)
         {
-            int SaveCode = (PlayerEquipIncreaseSOs[i].IsEventEquip * IsEventEquipMultipleNum) + 
+            int SaveCode = (PlayerEquipSpriteSOs[i].IsEventEquip * IsEventEquipMultipleNum) + 
                 (PlayerEquipSpriteSOs[i].EqupTier * TierMultipleNum) + (PlayerEquipSpriteSOs[i].EquipStateType * StateTypeMultipleNum) + 
                 (PlayerEquipSpriteSOs[i].EquipType * TypeMultipleNum);
             if(!EquipSprite.ContainsKey(SaveCode))
@@ -284,6 +285,38 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         int NeededCode = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + (StateType * StateTypeMultipleNum) + (EquipType * TypeMultipleNum);
         return EquipSprite[NeededCode];
     }
+    public bool CheckIsCorrectEquipCode(int EquipCode)
+    {
+        int EquipEventType = (EquipCode / IsEventEquipMultipleNum);
+        int EquipTier = (EquipCode / TierMultipleNum) % 10;
+        int EquipStateType = (EquipCode / StateTypeMultipleNum) % 10;
+        int EquipType = (EquipCode / TypeMultipleNum) % 10;
+        int EquipMultiType = (EquipCode % 10);
+
+        int IncreaseInfoNum = (EquipEventType * IsEventEquipMultipleNum) + (EquipStateType * StateTypeMultipleNum) + (EquipType * TypeMultipleNum);
+        int NormalSlotInfoNum = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + EquipMultiType;
+        int LuckSlotInfoNum = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + EquipMultiType + 3;
+        int DetailNum = (EquipEventType * IsEventEquipMultipleNum) + (EquipStateType * StateTypeMultipleNum) + (EquipType * TypeMultipleNum);
+        int SpriteNum = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + (EquipStateType * StateTypeMultipleNum) + (EquipType * TypeMultipleNum);
+        int EventNum = EquipCode;
+
+        if (!EquipIncreaseState.ContainsKey(IncreaseInfoNum))//없으면
+            return false;
+
+        if (!EquipSlot.ContainsKey(NormalSlotInfoNum) && !EquipSlot.ContainsKey(LuckSlotInfoNum))
+            return false;
+
+        if (!EquipDetail.ContainsKey(DetailNum))
+            return false;
+
+        if (!EquipSprite.ContainsKey(SpriteNum))
+            return false;
+        
+        if (EquipEventType == (int)EIsEventEquip.EventEquip && !PlayerEventEquip.ContainsKey(EventNum))
+            return false;
+
+        return true;
+    }
     //------------------------------------
     public EquipmentInfo GetPlayerEquipmentInfo(int EquipCode)//이것만 어떻게 바꾸면 될듯?
     {
@@ -323,18 +356,47 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         int PlayerEquipType = (EquipCode / TypeMultipleNum) % 10;
         int PlayerEquipMultiType = (EquipCode % 10);
         EquipmentInfo AssembleEquip = new EquipmentInfo();
-
-        if (EquipCode == 0)
-        {
+        //보관하고 있는 코드중 하나라도 false(있지 않음이 뜬다면)null을 리턴하게
+        if (EquipCode == 0 || !CheckIsCorrectEquipCode(EquipCode))
+        {//옳지 않은 코드가 들어오면 이걸 리턴하게 하고 싶은데....//둘중 하나라도 true면 empty 반환
             AssembleEquip.EquipmentType = PlayerEventEquip[0].EquipmentType;
             AssembleEquip.EquipmentTier = PlayerEventEquip[0].EquipmentTier;
-        }
+            AssembleEquip.EquipmentCode = PlayerEventEquip[0].EquipmentCode;
+            AssembleEquip.EquipmentName = PlayerEventEquip[0].EquipmentName;
+            AssembleEquip.SpendTiredness = PlayerEventEquip[0].SpendTiredness;
+            AssembleEquip.EquipmentSlots = PlayerEventEquip[0].EquipmentSlots;
+            AssembleEquip.EquipmentImage = PlayerEventEquip[0].EquipmentImage;
+            AssembleEquip.AddSTRAmount = PlayerEventEquip[0].AddSTRAmount;
+            AssembleEquip.AddDURAmount = PlayerEventEquip[0].AddDURAmount;
+            AssembleEquip.AddRESAmount = PlayerEventEquip[0].AddRESAmount;
+            AssembleEquip.AddSPDAmount = PlayerEventEquip[0].AddSPDAmount;
+            AssembleEquip.AddLUKAmount = PlayerEventEquip[0].AddLUKAmount;
+            AssembleEquip.AddHPAmount = PlayerEventEquip[0].AddHPAmount;
+            AssembleEquip.AddTirednessAmount = PlayerEventEquip[0].AddTirednessAmount;
+            AssembleEquip.EquipmentDetail = PlayerEventEquip[0].EquipmentDetail;
 
+            return AssembleEquip;
+        }
+        
         if (PlayerEquipEventType == (int)EIsEventEquip.EventEquip)
         {
             //여기서 이벤트 장비는 적절하게 가공을 해야할듯
             //Type하고 Tier는 꼭 맞게 들어가 있어야함
-            //AssembleEquip.EquipmentType = ((EquipCode / 10))
+            AssembleEquip.EquipmentType = PlayerEquipType;
+            AssembleEquip.EquipmentTier = PlayerEquipTier;
+            AssembleEquip.EquipmentCode = 0;
+            AssembleEquip.EquipmentName = PlayerEventEquip[EquipCode].EquipmentName;
+            AssembleEquip.SpendTiredness = PlayerEventEquip[EquipCode].SpendTiredness;
+            AssembleEquip.EquipmentSlots = PlayerEventEquip[EquipCode].EquipmentSlots;
+            AssembleEquip.EquipmentImage = PlayerEventEquip[EquipCode].EquipmentImage;
+            AssembleEquip.AddSTRAmount = PlayerEventEquip[EquipCode].AddSTRAmount;
+            AssembleEquip.AddDURAmount = PlayerEventEquip[EquipCode].AddDURAmount;
+            AssembleEquip.AddRESAmount = PlayerEventEquip[EquipCode].AddRESAmount;
+            AssembleEquip.AddSPDAmount = PlayerEventEquip[EquipCode].AddSPDAmount;
+            AssembleEquip.AddLUKAmount = PlayerEventEquip[EquipCode].AddLUKAmount;
+            AssembleEquip.AddHPAmount = PlayerEventEquip[EquipCode].AddHPAmount;
+            AssembleEquip.AddTirednessAmount = PlayerEventEquip[EquipCode].AddTirednessAmount;
+            AssembleEquip.EquipmentDetail = PlayerEventEquip[EquipCode].EquipmentDetail;
 
             return AssembleEquip;
         }
@@ -345,16 +407,6 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.EquipmentCode = 0;
         AssembleEquip.EquipmentName = PlayerEquipTierName[PlayerEquipTier] + PlayerEquipMultiTypeName[PlayerEquipMultiType] +
             GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentName;
-        /*
-        if (PlayerEquipType == (int)EEquipmentType.Boots || PlayerEquipType == (int)EEquipmentType.Accessories)
-        {
-            AssembleEquip.EquipmentName = PlayerEquipTierName[PlayerEquipTier] + " " +
-                GetEquipDetailInfo(PlayerEquipStateType, PlayerEquipType).EquipmentName;
-        }
-        else
-        {
-        }
-        */
 
         if (PlayerEquipTier < 1)//0티어
         {

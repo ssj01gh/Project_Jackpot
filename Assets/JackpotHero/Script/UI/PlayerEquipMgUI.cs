@@ -988,6 +988,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipRESText.text = EquipedEquipmentInfo.AddRESAmount.ToString();
                 EquipDetail_EquipSPDText.text = EquipedEquipmentInfo.AddSPDAmount.ToString();
                 EquipDetail_EquipLUKText.text = EquipedEquipmentInfo.AddLUKAmount.ToString();
+                EquipDetail_EquipDetailText.text = EquipedEquipmentInfo.EquipmentDetail.ToString();
 
                 //활성화 하기전에 한번 다 초기화
                 foreach (GameObject obj in EquipDetail_EquipCardContainer)

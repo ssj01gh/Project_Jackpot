@@ -371,7 +371,7 @@ public class CommonEventDetailAction
                     return 9080;
                 }
                 //저주받은 검 코드 = 17001
-                int OminousSwordCode = 17001;
+                int OminousSwordCode = 23000;
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(OminousSwordCode);
                 UIMgr.GI_UI.ActiveGettingUI(OminousSwordCode);
                 JsonReadWriteManager.Instance.LkEv_Info.OminousSword = true;
