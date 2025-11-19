@@ -191,7 +191,7 @@ public class PlaySceneUIManager : MonoBehaviour
                 return;
         }
 
-        if(EquipCode == 0)//비어있는 칸을 클릭했다면
+        if(EquipCode == 0 || !EquipmentInfoManager.Instance.CheckIsCorrectEquipCode(EquipCode))//비어있는 칸을 클릭했다면
         {
             return;
         }

@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
             PlayerState.CurrentFloor = 1;
         }
         //---------------Test
-        //PlayerBuff.BuffList[(int)EBuffType.Poison] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 10;
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 20;
         //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 20;
         //PlayerBuff.BuffList[5] = 6;
@@ -375,6 +375,31 @@ public class PlayerScript : MonoBehaviour
     }
     public void SetInitBuff()//나중에 뭐가 더 늘어나면 여기서//몬스터는 Monster쪽 SetInitBuff에서
     {
+        //일단 버프 싹 초기화
+        for (int i = 0; i < PlayerBuff.BuffList.Length; i++)
+        {
+            if (PlayerBuff.BuffList[i] >= 1)
+            {
+                PlayerBuff.BuffList[i] = 0;
+            }
+        }
+        PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 10;
+        SetInitBuffByEarlyUpgrade();
+        /*
+        스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨
+        if (JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel >= 7)
+        */
+        SetDefeseResilienceBuff();
+
+        if (PlayerState.SaveRestQualityBySuddenAttack != -1)//습격을 당했다면
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Defenseless] = 1;
+        }
+        SetInitBuffByEvent();
+        SetInitBuffByEquipmnet();
+    }
+    protected void SetInitBuffByEarlyUpgrade()
+    {
         if (JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel >= 7)
             PlayerBuff.BuffList[(int)EBuffType.OverWhelmingPower] = 99;
 
@@ -383,11 +408,6 @@ public class PlayerScript : MonoBehaviour
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyResilienceLevel >= 7)
             PlayerBuff.BuffList[(int)EBuffType.AdvancedRest] = 99;
-
-        /*
-        스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨
-        if (JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel >= 7)
-        */
 
         if (JsonReadWriteManager.Instance.E_Info.EarlyHpLevel >= 7)
             PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 99;
@@ -403,32 +423,128 @@ public class PlayerScript : MonoBehaviour
 
         if (JsonReadWriteManager.Instance.E_Info.EquipmentSuccessionLevel >= 7)
             PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
-
-        SetDefeseResilienceBuff();
-
-        if (PlayerState.SaveRestQualityBySuddenAttack != -1)//습격을 당했다면
-        {
-            PlayerBuff.BuffList[(int)EBuffType.Defenseless] = 1;
-        }
-
-        if(JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony >= 1)
-        {
-            PlayerBuff.BuffList[(int)EBuffType.Luck] += 3;
-            JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony -= 1;
-        }
     }
-
     public void SetDefeseResilienceBuff()
     {
         PlayerBuff.BuffList[(int)EBuffType.Defense] = (int)(PlayerTotalState.TotalDUR / 5);
         PlayerBuff.BuffList[(int)EBuffType.Resilience] = (int)(PlayerTotalState.TotalRES / 5);
     }
+    protected void SetInitBuffByEvent()
+    {
+        if (JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Luck] += 3;
+            JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony -= 1;
+        }
+    }
+    protected void SetInitBuffByEquipmnet()
+    {
+        int STREquip = 10; int DUREquip = 11; int SPDEquip = 13; int LUKEquip = 14; int HPEquip = 15; int STAEquip = 16;
+
+        int BootsTier = (PlayerState.EquipShoesCode / 1000) % 10;
+        int IsEventBoots = PlayerState.EquipShoesCode / 10000;
+        int BootsStateType = (PlayerState.EquipShoesCode / 100) % 10;
+        int BootsType = (IsEventBoots * 10) + BootsStateType;
+
+        int AccTier = (PlayerState.EquipAccessoriesCode / 1000) % 10;
+        int IsEventAcc = PlayerState.EquipAccessoriesCode / 10000;
+        int AccStateType = (PlayerState.EquipAccessoriesCode / 100) % 10;
+        int AccType = (IsEventBoots * 10) + BootsStateType;
+
+        if(BootsType == STREquip)
+            PlayerBuff.BuffList[(int)EBuffType.OverCharge] += (BootsTier * 2);
+        if(BootsType == DUREquip)
+            PlayerGetShield(BootsTier * 40);
+        if(BootsType == SPDEquip)
+            PlayerBuff.BuffList[(int)EBuffType.Haste] += BootsTier;
+        if(BootsType == LUKEquip)
+            PlayerBuff.BuffList[(int)EBuffType.Luck] += BootsTier;
+        if(BootsType == HPEquip)
+            PlayerBuff.BuffList[(int)EBuffType.UnDead] += BootsTier;
+        if(BootsType == STAEquip)
+            PlayerBuff.BuffList[(int)EBuffType.Petrification] += (BootsTier * 2);
+
+        if (AccType == STREquip)
+            PlayerBuff.BuffList[(int)EBuffType.ToughFist] += (AccTier * 3);
+        if (AccType == DUREquip)
+            PlayerBuff.BuffList[(int)EBuffType.ToughSkin] += (AccTier * 3);
+        if (AccType == SPDEquip)
+            PlayerBuff.BuffList[(int)EBuffType.CorruptSerum] += (AccTier * 3);
+        if (AccType == HPEquip)
+            PlayerBuff.BuffList[(int)EBuffType.PowerOfDeath] += (AccTier * 3);
+        if (AccType == STAEquip)
+            PlayerBuff.BuffList[(int)EBuffType.Petrification] += (AccTier * 2);
+    }
+    public void GetBuffByAttack()
+    {
+        int HPWeapon = 15;
+        int IsEventEquip = PlayerState.EquipWeaponCode / 10000;
+        int EquipStateType = (PlayerState.EquipWeaponCode / 100) % 10;
+        int WeaponType = (IsEventEquip * 10) + EquipStateType;
+        if (WeaponType == HPWeapon)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.LifeSteal] += 3;
+        }
+    }
+    public void GetBuffByDefense(int DefensePointAmount = 0)
+    {
+        int STRArmor = 10; int DURArmor = 11; int SPDArmor = 13; int HPArmor = 15;
+        int IsEventEquip = PlayerState.EquipArmorCode / 10000;
+        int EquipStateType = (PlayerState.EquipArmorCode / 100) % 10;
+        int ArmorType = (IsEventEquip * 10) + EquipStateType;
+        if (ArmorType == STRArmor)
+        {
+            int Amout = (int)(DefensePointAmount * 0.05f);
+            PlayerBuff.BuffList[(int)EBuffType.UnDead] += Amout;
+        }
+        if(ArmorType == DURArmor)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.UnbreakableArmor] += 3;
+        }
+        if(ArmorType == SPDArmor)
+        {
+            int Amount = (int)(DefensePointAmount * 0.2f);
+            PlayerBuff.BuffList[(int)EBuffType.RegenArmor] += Amount;
+        }
+        if(ArmorType == HPArmor)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 3;
+        }
+    }
+    public void GetBuffByRest()
+    {
+        int STRHelmet = 10; int DURHelmet = 11; int RESHelmet = 12; int SPDHelmet = 13;
+        int IsEventEquip = PlayerState.EquipHatCode / 10000;
+        int EquipStateType = (PlayerState.EquipHatCode / 100) % 10;
+        int HelmetType = (IsEventEquip * 10) + EquipStateType;
+
+        if(HelmetType == STRHelmet)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Recharge] += 3;
+        }
+        if(HelmetType == DURHelmet)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.RegenArmor] += 5;
+        }
+        if(HelmetType == RESHelmet)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 3;
+        }
+        if(HelmetType == SPDHelmet)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.OverCharge] += 3;
+        }
+    }
 
     public void SetChainAttackBuff(bool IsAttack, bool IsPlayerTurn)
     {
+        int SPDWeapon = 13;
+        int IsEventEquip = PlayerState.EquipWeaponCode / 10000;
+        int EquipStateType = (PlayerState.EquipWeaponCode / 100) % 10;
+        int WeaponType = (IsEventEquip * 10) + EquipStateType;
         //특정 조건이 되면 연속타격 쌓임
         //임시로 52001
-        if(PlayerState.EquipAccessoriesCode == 0)
+        if (WeaponType == SPDWeapon)
         {
             if(IsAttack == true && IsPlayerTurn == true)
             {

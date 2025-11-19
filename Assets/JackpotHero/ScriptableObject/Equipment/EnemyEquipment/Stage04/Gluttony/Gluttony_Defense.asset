@@ -68,3 +68,5 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uD2B9\uC720\uC758 \uB2E8\uB2E8\uD55C \uAECD\uC9C8\uC740 \uC801\uC758
+    \uACF5\uACA9\uC744 \uBC29\uC5B4\uD569\uB2C8\uB2E4."

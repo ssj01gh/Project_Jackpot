@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ef57f3714e9e44abfb4b267bd21938, type: 3}
+  m_Name: EquipDetail0401
+  m_EditorClassIdentifier: 
+  IsEventEquip: 1
+  EquipStateType: 4
+  EquipType: 1
+  EquipmentName: "\uC2B9\uBD80\uC0AC \uC678\uD22C"
+  EquipmentDetail: "\uD770\uC0C9 \uC637\uAC10\uC73C\uB85C \uB9CC\uB4E4\uC5B4\uC9C4
+    \uC678\uD22C\uC785\uB2C8\uB2E4.\n\uB9E4\uC6B0 \uAC15\uB825\uD55C \uBC29\uC5B4\uB9C9\uC744
+    \uD3BC\uCE60 \uAC00\uB2A5\uC131\uC774 \uC788\uC2B5\uB2C8\uB2E4."

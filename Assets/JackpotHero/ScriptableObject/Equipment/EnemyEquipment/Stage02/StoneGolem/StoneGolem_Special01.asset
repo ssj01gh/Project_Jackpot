@@ -26,3 +26,7 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uB3CC\uACE8\uB818\uC740 \uB2E8\uB2E8\uD55C \uBC14\uC704\uB85C
+    \uC774\uB8E8\uC5B4\uC838\uC788\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791
+    : \uB3CC \uC8FC\uBA39\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MToughFist\"><color=green>\uB2E8\uB2E8\uD55C
+    \uC8FC\uBA39</color></link> 99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

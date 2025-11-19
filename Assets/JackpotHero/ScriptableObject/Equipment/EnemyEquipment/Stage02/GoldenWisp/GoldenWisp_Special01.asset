@@ -26,3 +26,6 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uD669\uAE08 \uB3C4\uAE68\uBE44\uBD88\uC740 \uC695\uC2EC\uC7C1\uC774\uC785\uB2C8\uB2E4.\n\n\uC804\uD22C
+    \uC2DC\uC791 : \uB2E4 \uB0B4\uAEBC\uC57C\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MPlunder\"><color=green>\uAC15\uD0C8</color></link>
+    99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

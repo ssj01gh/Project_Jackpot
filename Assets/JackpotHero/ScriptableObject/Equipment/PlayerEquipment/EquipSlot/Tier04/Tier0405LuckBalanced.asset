@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c876e53c36e3454fa592d0018844b02, type: 3}
+  m_Name: Tier0405LuckBalanced
+  m_EditorClassIdentifier: 
+  IsEventEquip: 1
+  EquipTier: 4
+  EquipMultiType: 5
+  EquipmentSlots:
+  - IsPositive: 0001
+    SlotState:
+    - 0.25
+    - 1.75
+  - IsPositive: 0001
+    SlotState:
+    - 0.25
+    - 1.75
+  - IsPositive: 0001
+    SlotState:
+    - 0.25
+    - 1.75
+  - IsPositive: 0001
+    SlotState:
+    - 0.25
+    - 1.75
+  - IsPositive: 0001
+    SlotState:
+    - 0.25
+    - 1.75
+  - IsPositive: 0001
+    SlotState:
+    - 0.25
+    - 1.75

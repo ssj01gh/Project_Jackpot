@@ -15,7 +15,7 @@ MonoBehaviour:
   EquipmentType: 0
   EquipmentTier: 0
   EquipmentCode: 93051
-  EquipmentName: "\uC778\uC870\uC0DD\uBA85\uCCB4"
+  EquipmentName: "\uC778\uC870 \uC0DD\uBA85\uCCB4"
   SpendTiredness: 0
   EquipmentSlots: []
   EquipmentImage: {fileID: 576583954, guid: c9adea759f72cdb4c8d97766d48039b7, type: 3}
@@ -26,3 +26,9 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC778\uACF5\uC801\uC73C\uB85C \uD0DC\uC5B4\uB09C \uD638\uBB38\uCFE8\uB8E8\uC2A4\uB294\n\uD2B9\uC218\uD55C
+    \uB2A5\uB825\uC744 \uD0C0\uACE0\uB0A9\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791
+    : \uC778\uC870 \uC0DD\uBA85\uCCB4\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MToughSkin\"><color=green>\uB2E8\uB2E8\uD55C
+    \uD53C\uBD80</color></link>, <link=\"MToughFist\"><color=green>\uB2E8\uB2E8\uD55C
+    \uC8FC\uBA39</color></link>, <link=\"MLuck\"><color=green>\uD589\uC6B4</color></link>
+    \uC911\n\uD558\uB098\uB97C 99\uC2A4\uD0DD \uBD80\uC5EC\uD569\uB2C8\uB2E4."

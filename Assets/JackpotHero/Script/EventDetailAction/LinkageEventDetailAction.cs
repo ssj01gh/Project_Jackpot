@@ -37,8 +37,8 @@ public class LinkageEventDetailAction
 
                 return 8002;
             case 3:
-                int SmallCursedSword = 17002;
-                int CursedSword = 17001;
+                int SmallCursedSword = 24001;
+                int CursedSword = 23000;
                 bool IsHaveCursedSword = false;
                 if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == CursedSword)
                 {
@@ -121,7 +121,7 @@ public class LinkageEventDetailAction
     public int Event8030(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
     {
         //0.신성이 깃던검 17003
-        int HolySword = 17003;
+        int HolySword = 25002;
         if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//인벤토리가 꽉찼다면
         {
             UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);
@@ -142,8 +142,8 @@ public class LinkageEventDetailAction
     {
         //0. -저주 받은검, 혹은 - 저주가 옅어진 검
         //1. 아무일 X
-        int SmallCursedSword = 17002;
-        int CursedSword = 17001;
+        int SmallCursedSword = 24001;
+        int CursedSword = 23000;
         switch (ButtonType)
         {
             case 0:
@@ -174,7 +174,7 @@ public class LinkageEventDetailAction
     //---------------------------------------Event8050
     public int Event8050(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
     {
-        int BlessedSword = 17004;
+        int BlessedSword = 26003;
         if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//인벤토리가 꽉찼다면
         {
             UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);

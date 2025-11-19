@@ -26,3 +26,9 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC74C\uC695\uC774 \uB0B4\uBFDC\uB294 \uAE30\uC6B4\uC774 \uC815\uC2E0\uC744
+    \uD750\uD2B8\uB824 \uB193\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791 : \uC74C\uC695\n\uC790\uC2E0\uC5D0\uAC8C
+    <link=\"MLust\"><color=green>\uC74C\uC695</color></link> 99\uC2A4\uD0DD\uC744
+    \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9 : \uC74C\uC695\n\uC801\uC5D0\uAC8C
+    <link=\"MCharm\"><color=green>\uB9E4\uD639</color></link> 1 ~ 3\uC2A4\uD0DD\uC744
+    \uBD80\uC5EC\uD569\uB2C8\uB2E4."

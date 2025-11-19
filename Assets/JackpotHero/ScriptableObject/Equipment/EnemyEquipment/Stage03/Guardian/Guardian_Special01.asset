@@ -26,3 +26,7 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC218\uD638\uC790\uB294 \uC804\uD22C \uC0C1\uD669\uC5D0 \uC801\uC751\uD569\uB2C8\uB2E4.\n\n\uC801\uC774
+    2\uD134 \uC5F0\uC18D \uD589\uB3D9 : \uD589\uB3D9 \uB300\uC751 : \uC18D\uB3C4\n\uC790\uC2E0\uC5D0\uAC8C
+    <link=\"MSpeedAdaptation\"><color=green>\uC801\uC751 : \uC18D\uB3C4</color></link>
+    1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

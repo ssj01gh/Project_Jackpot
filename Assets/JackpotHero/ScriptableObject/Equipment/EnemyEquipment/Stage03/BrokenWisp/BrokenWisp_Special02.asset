@@ -26,3 +26,7 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC8FD\uC74C\uC744 \uB2E4\uB8E8\uB824\uACE0 \uD588\uB358 \uAD11\uAE30\uC758
+    \uC2E4\uD5D8\uC740\n\uC5B4\uB290\uC815\uB3C4 \uC131\uACFC\uAC00 \uC788\uC5C8\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C
+    \uC2DC\uC791 : \uBD88\uC0AC\uC758 \uD798\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MPowerOfDeath\"><color=green>\uC8FD\uC74C\uC758
+    \uD798</color></link> 99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

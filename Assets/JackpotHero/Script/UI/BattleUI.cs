@@ -1,15 +1,16 @@
+using DG.Tweening;
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Reflection;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using System;
-using System.Net.NetworkInformation;
-using System.Reflection;
+using static UnityEngine.GraphicsBuffer;
 [System.Serializable]
 public class MonBrokenShield
 {
@@ -520,10 +521,10 @@ public class BattleUI : MonoBehaviour
         SelectionArrowPos.y -= 0.5f;
         SelectionArrow.transform.position = SelectionArrowPos;
 
-        EquipmentSO MonWeapon = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterWeaponCode);
-        EquipmentSO MonArmor = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterArmorCode);
+        EquipmentInfo MonWeapon = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterWeaponCode);
+        EquipmentInfo MonArmor = EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterArmorCode);
 
-        List<EquipmentSO> AnotherEquip = new List<EquipmentSO>();
+        List<EquipmentInfo> AnotherEquip = new List<EquipmentInfo>();
         for(int i = 0; i < Mon.MonsterAnotherEquipmentCode.Length; i++)
         {
             AnotherEquip.Add(EquipmentInfoManager.Instance.GetMonEquipmentInfo(Mon.MonsterAnotherEquipmentCode[i]));
@@ -750,7 +751,7 @@ public class BattleUI : MonoBehaviour
                 IsAnimateComplete = false;
                 //BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
-                BaseAmountCard.GetComponent<RectTransform>().localScale = Vector2.one;
+                BaseAmountCard.GetComponent<RectTransform>().localScale = Vector3.one;
                 BaseAmountCard.SetActive(true);
 
                 ClickTextObject.SetActive(true);
@@ -820,6 +821,7 @@ public class BattleUI : MonoBehaviour
                 yield return null;
                 if (MergeCompleteCardCount >= BattleResult.ResultMagnification.Count)
                 {
+                    InitAllMGCard();
                     float BeforeMagnification = TotalMagnification;
 
                     for(int i = 0; i < BattleResult.ResultMagnification.Count; i++)
@@ -935,7 +937,7 @@ public class BattleUI : MonoBehaviour
                 IsAnimateComplete = false;
                 //BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
-                BaseAmountCard.GetComponent<RectTransform>().localScale = Vector2.one;
+                BaseAmountCard.GetComponent<RectTransform>().localScale = Vector3.one;
                 BaseAmountCard.SetActive(true);
 
                 //ClickTextObject.SetActive(true);
@@ -1251,7 +1253,7 @@ public class BattleUI : MonoBehaviour
 
     public void ClickAmountCard()
     {
-        if(CurrentMainBattlePhase == (int)EMainBattlePhase.Nothing || CurrentMainBattlePhase == (int)EMainBattlePhase.BaseAmountComplete)//왼쪽으로 회전하면서
+        if (CurrentMainBattlePhase == (int)EMainBattlePhase.Nothing || CurrentMainBattlePhase == (int)EMainBattlePhase.BaseAmountComplete)//왼쪽으로 회전하면서
         {//기초 수치 도착 지점, //추가 기초 수치 도착지점
             //BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-400, 350), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-180, 130), 0.5f);

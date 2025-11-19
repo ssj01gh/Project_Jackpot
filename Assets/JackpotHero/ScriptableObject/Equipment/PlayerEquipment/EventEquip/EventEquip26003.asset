@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83fe01e9704a504cb7683190a5b26ed, type: 3}
+  m_Name: EventEquip26003
+  m_EditorClassIdentifier: 
+  EquipmentType: 2
+  EquipmentTier: 6
+  EquipmentCode: 3
+  EquipmentName: "\uC644\uC804\uD788 \uC815\uD654\uB41C \uAC80"
+  SpendTiredness: 100
+  EquipmentSlots:
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  - IsPositive: 01
+    SlotState:
+    - 1.25
+  EquipmentImage: {fileID: 138394972, guid: c106645960e0cd842aa426bb75f08bf3, type: 3}
+  AddSTRAmount: 10
+  AddDURAmount: 0
+  AddRESAmount: 0
+  AddSPDAmount: 0
+  AddLUKAmount: -40
+  AddHPAmount: 0
+  AddTirednessAmount: 0
+  EquipmentDetail: "\uD1A0\uD1A0\uC5D0 \uC758\uD574 \uC644\uC804\uD788 \uC815\uD654\uB41C
+    \uAC80\uC785\uB2C8\uB2E4.\n\uC5B8\uC81C\uB098 \uC548\uC815\uC801\uC778 \uACF5\uACA9\uC744
+    \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."

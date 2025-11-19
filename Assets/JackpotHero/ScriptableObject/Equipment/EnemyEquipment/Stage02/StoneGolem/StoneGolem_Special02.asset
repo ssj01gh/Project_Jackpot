@@ -26,3 +26,8 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uB3CC\uACE8\uB818\uC774 \uD53C\uD574\uB97C \uBC1B\uACE0 \uBD80\uC11C\uC9C0\uB294
+    \uAC83\uC744\n\uC911\uC2EC\uC758 \uBCF4\uC11D\uC774 \uB9C9\uC544\uC90D\uB2C8\uB2E4.\n\n\uC804\uD22C
+    \uC2DC\uC791 : \uD615\uC0C1 \uAE30\uC5B5 \uC554\uC11D\n\uC790\uC2E0\uC5D0\uAC8C
+    <link=\"MRegenArmor\"><color=green>\uC7AC\uC0DD\uD615 \uAC11\uC637</color></link>
+    15\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

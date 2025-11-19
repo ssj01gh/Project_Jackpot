@@ -54,3 +54,9 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC8FC\uC0AC\uAE30\uB97C \uD1B5\uD574 \uC815\uCCB4\uBD88\uBA85\uC758
+    \uC57D\uBB3C\uC744 \uC8FC\uC0AC\uD569\uB2C8\uB2E4.\n\n\uACF5\uACA9 : \uC57D\uBB3C
+    \uC8FC\uC785\n\uC801\uC5D0\uAC8C <link=\"MPoison\"><color=green>\uB3C5</color></link>
+    5\uC2A4\uD0DD, <link=\"MWeakness\"><color=green>\uB098\uC57D\uD568</color></link>
+    2\uC2A4\uD0DD, <link=\"MSlow\"><color=green>\uAC10\uC18D</color></link> 2\uC2A4\uD0DD
+    \uC911\n\uD558\uB098\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."

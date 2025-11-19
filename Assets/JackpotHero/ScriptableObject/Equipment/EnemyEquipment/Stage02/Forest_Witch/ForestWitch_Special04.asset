@@ -15,7 +15,7 @@ MonoBehaviour:
   EquipmentType: 0
   EquipmentTier: 0
   EquipmentCode: 92084
-  EquipmentName: "\uCDE8\uC57D\uD3EC\uC158"
+  EquipmentName: "\uCDE8\uC57D \uD3EC\uC158"
   SpendTiredness: 0
   EquipmentSlots: []
   EquipmentImage: {fileID: -1997325039, guid: f36f937166d95824da5215cc4dc7a501, type: 3}
@@ -26,3 +26,7 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC232\uC758 \uB9C8\uB140\uAC00 \uD2B9\uC218\uD55C \uC57D\uBB3C\uC774
+    \uB4E4\uC5B4\uC788\uB294\n\uC720\uB9AC\uBCD1\uC744 \uB358\uC9D1\uB2C8\uB2E4.\n\n\uD2B9\uC218
+    \uD589\uB3D9 : \uCDE8\uC57D \uD3EC\uC158\n\uC801\uC5D0\uAC8C <link=\"MDefenseDebuff\"><color=green>\uBC29\uC5B4\uB825
+    \uAC10\uC18C</color></link> 2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

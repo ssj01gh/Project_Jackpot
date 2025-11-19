@@ -15,7 +15,7 @@ MonoBehaviour:
   EquipmentType: 0
   EquipmentTier: 0
   EquipmentCode: 81021
-  EquipmentName: "\uD53C\uD558\uAE30"
+  EquipmentName: "\uD68C\uD53C"
   SpendTiredness: 0
   EquipmentSlots:
   - IsPositive: 000001
@@ -36,3 +36,5 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC7AC\uBE60\uB978 \uBAB8\uB180\uB9BC\uC73C\uB85C \uD53C\uD574\uB97C
+    \uC904\uC785\uB2C8\uB2E4."

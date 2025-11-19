@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ef57f3714e9e44abfb4b267bd21938, type: 3}
+  m_Name: EquipDetail0301
+  m_EditorClassIdentifier: 
+  IsEventEquip: 1
+  EquipStateType: 3
+  EquipType: 1
+  EquipmentName: "\uC554\uC0B4\uC790 \uC637"
+  EquipmentDetail: "\uC554\uC0B4\uC790\uB4E4\uC758 \uD2B9\uC218\uD55C \uC637\uAC10\uC73C\uB85C
+    \uB9CC\uB4E4\uC5B4\uC9C4 \uC637\uC785\uB2C8\uB2E4.\n\uBC29\uC5B4\uC2DC \uBC29\uC5B4\uB3C4\uC758
+    20%\uB9CC\uD07C <link=\"SPDAR\"><color=green>\uC7AC\uC0DD\uD615 \uAC11\uC637</color></link>\uC744
+    \uC5BB\uC2B5\uB2C8\uB2E4."

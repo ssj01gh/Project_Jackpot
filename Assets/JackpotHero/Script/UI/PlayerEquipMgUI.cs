@@ -67,7 +67,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject GetEquipClickButton;
     public Image EquipGachaResultImage;
     public GameObject[] EquipGachaLight;
-
+    [Header("Equip_EquipBuffDetail")]
+    public GameObject EquipBuffDetailExplainObject;//설명 나올 오브젝트
+    public TextMeshProUGUI EquipBuffDetailExplainTitleText;//설명 제목
+    public TextMeshProUGUI EquipBuffDetailExplainDetailText;//설명 상세
+    [Header("Inven_EquipBuffDetail")]
+    public GameObject InvenBuffDetailExplainObject;//설명 나올 오브젝트
+    public TextMeshProUGUI InvenBuffDetailExplainTitleText;//설명 제목
+    public TextMeshProUGUI InvenBuffDetailExplainDetailText;//설명 상세
 
     protected Color InventoryActiveColor = new Color(0.28f, 0.19f, 0.1f, 1f);
     protected Color InventoryUnActiveColor = new Color(0.78f, 0.78f, 0.78f, 0.5f);
@@ -121,6 +128,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     protected int DropDownItemCode = 0;
 
     protected int GachaResultEquipCode = 0;
+
+    private int EquipCurrentLinkIndex = -1;
+    private int InvenCurrentLinkIndex = -1;
     protected enum EPlayerEquip
     {
         Helmet,
@@ -139,12 +149,429 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGambling.SetActive(false);
         MouseFollowImage.gameObject.SetActive(false);
         EquipGachaObject.SetActive(false);
+        if (EquipBuffDetailExplainObject != null)
+        {
+            EquipBuffDetailExplainObject.SetActive(false);
+        }
+        if (InvenBuffDetailExplainObject != null)
+        {
+            InvenBuffDetailExplainObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 mousePosition = Input.mousePosition;
+        //EquipDetail_EquipDetailText
+        //EquipDetail_InvenDetailText
         
+        // 링크 인덱스를 찾음
+        int EquiplinkIndex = TMP_TextUtilities.FindIntersectingLink(EquipDetail_EquipDetailText, mousePosition, Camera.main);
+        int InvenLinkIndex = TMP_TextUtilities.FindIntersectingLink(EquipDetail_InvenDetailText, mousePosition, Camera.main);
+
+        if (EquiplinkIndex != EquipCurrentLinkIndex)
+        {
+            // 기존 링크에서 마우스가 벗어났을 때
+            if (EquipCurrentLinkIndex != -1)
+            {
+                string oldID = EquipDetail_EquipDetailText.textInfo.linkInfo[EquipCurrentLinkIndex].GetLinkID();
+                OnLinkExit(oldID, 0);
+            }
+
+            // 새로운 링크에 마우스가 올라갔을 때
+            if (EquiplinkIndex != -1)
+            {
+                string newID = EquipDetail_EquipDetailText.textInfo.linkInfo[EquiplinkIndex].GetLinkID();
+                OnLinkEnter(newID, 0);
+            }
+            EquipCurrentLinkIndex = EquiplinkIndex;
+        }
+
+        if (InvenLinkIndex != InvenCurrentLinkIndex)
+        {
+            // 기존 링크에서 마우스가 벗어났을 때
+            if (InvenCurrentLinkIndex != -1)
+            {
+                string oldID = EquipDetail_InvenDetailText.textInfo.linkInfo[InvenCurrentLinkIndex].GetLinkID();
+                OnLinkExit(oldID, 1);
+            }
+
+            // 새로운 링크에 마우스가 올라갔을 때
+            if (InvenLinkIndex != -1)
+            {
+                string newID = EquipDetail_InvenDetailText.textInfo.linkInfo[InvenLinkIndex].GetLinkID();
+                OnLinkEnter(newID, 1);
+            }
+            InvenCurrentLinkIndex = InvenLinkIndex;
+        }
+
+    }
+    private void OnLinkEnter(string id, int DetailNum)
+    {
+        /*
+         * DetailExplainText.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
+    ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
+    ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
+    ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
+    ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
+         */
+        if (DetailNum == 0)
+            EquipBuffDetailExplainObject.SetActive(true);
+        else
+            InvenBuffDetailExplainObject.SetActive(true);
+
+        switch (id)
+        {
+            case "STRWE":
+                if(DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.DefenseDebuff).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.DefenseDebuff).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.DefenseDebuff).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.DefenseDebuff).BuffDetail;
+                }
+                break;
+            case "STRAR":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffDetail;
+                }
+                break;
+            case "STRHE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffDetail;
+                }
+                break;
+            case "STRBO":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffDetail;
+                }
+                break;
+            case "STRAC":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughFist).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughFist).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughFist).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughFist).BuffDetail;
+                }
+                break;
+            case "DURWE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.AttackDebuff).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.AttackDebuff).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.AttackDebuff).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.AttackDebuff).BuffDetail;
+                }
+                break;
+            case "DURAR":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnbreakableArmor).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnbreakableArmor).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnbreakableArmor).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnbreakableArmor).BuffDetail;
+                }
+                break;
+            case "DURHE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffDetail;
+                }
+                break;
+            case "DURAC":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughSkin).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughSkin).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughSkin).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughSkin).BuffDetail;
+                }
+                break;
+            case "RESWE01":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Poison).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Poison).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Poison).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Poison).BuffDetail;
+                }
+                break;
+            case "RESWE02":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Burn).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Burn).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Burn).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Burn).BuffDetail;
+                }
+                break;
+            case "RESAR":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Misfortune).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Misfortune).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Misfortune).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Misfortune).BuffDetail;
+                }
+                break;
+            case "RESHE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffDetail;
+                }
+                break;
+            case "RESBO":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Slow).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Slow).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Slow).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Slow).BuffDetail;
+                }
+                break;
+            case "RESAC":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CurseOfDeath).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CurseOfDeath).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CurseOfDeath).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CurseOfDeath).BuffDetail;
+                }
+                break;
+            case "SPDWE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ChainAttack).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ChainAttack).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ChainAttack).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ChainAttack).BuffDetail;
+                }
+                break;
+            case "SPDAR":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffDetail;
+                }
+                break;
+            case "SPDHE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffDetail;
+                }
+                break;
+            case "SPDBO":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Haste).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Haste).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Haste).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Haste).BuffDetail;
+                }
+                break;
+            case "SPDAC":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CorruptSerum).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CorruptSerum).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CorruptSerum).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CorruptSerum).BuffDetail;
+                }
+                break;
+            case "LUKBO":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Luck).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Luck).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Luck).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Luck).BuffDetail;
+                }
+                break;
+            case "HPWE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.LifeSteal).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.LifeSteal).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.LifeSteal).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.LifeSteal).BuffDetail;
+                }
+                break;
+            case "HPAR":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffDetail;
+                }
+                break;
+            case "HPHE":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Charm).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Charm).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Charm).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Charm).BuffDetail;
+                }
+                break;
+            case "HPBO":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffDetail;
+                }
+                break;
+            case "HPAC":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.PowerOfDeath).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.PowerOfDeath).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.PowerOfDeath).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.PowerOfDeath).BuffDetail;
+                }
+                break;
+            case "STABO":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffDetail;
+                }
+                break;
+            case "STAAC":
+                if (DetailNum == 0)
+                {
+                    EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffName;
+                    EquipBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffDetail;
+                }
+                else
+                {
+                    InvenBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffName;
+                    InvenBuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffDetail;
+                }
+                break;
+        }
+        
+        //Debug.Log($"마우스 올라감: {id}");
+    }
+
+    private void OnLinkExit(string id, int DetailNum)
+    {
+        if(DetailNum == 0)
+            EquipBuffDetailExplainObject.SetActive(false);
+        else 
+            InvenBuffDetailExplainObject.SetActive(false);
+        // 예: 원래 색상 복구, 툴팁 숨기기 등
+        //Debug.Log($"마우스 벗어남: {id}");
     }
 
     public void ActivePlayerEquipMg()
@@ -271,23 +698,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     protected string GetTierText(int Code)
     {
-        if ((Code / 1000) % 10 == 7)
-        {
-            switch (Code)
-            {
-                case 17001:
-                    return "3티어";
-                case 17002:
-                    return "4티어";
-                case 17003:
-                    return "5티어";
-                case 17004:
-                    return "6티어";
-            }
-            return "1티어";
-        }
-        else
-            return ((Code / 1000) % 10).ToString() + "티어";
+           return ((Code / 1000) % 10).ToString() + "티어";
     }
 
     protected void SetGambling(bool IsActive = false)//->이거는 무언가 행동 될때마다 계속 업데이트 해야할듯?
@@ -831,21 +1242,23 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if(IsEquipedEquipment == true)//장비칸에 있는 아이템 클릭
         {//-> 오른쪽 Detail만 출력하면 됨
             //CurrentBringItemCode -> 0일때는 안 들어옴
-            EquipmentSO EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
+            EquipmentInfo EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
             EquipDetail_EquipImage.gameObject.SetActive(true);
             EquipDetail_EquipImage.sprite = EquipedEquipmentInfo.EquipmentImage;
             EquipDetail_EquipTierText.text = GetTierText(CurrentBringItemCode);
             EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
 
-            if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
+            int EquipType = (CurrentBringItemCode / 10) % 10;
+
+            if (EquipType == (int)EEquipType.TypeWeapon)
                 EquipDetail_EquipSTAText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-            else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
+            else if (EquipType == (int)EEquipType.TypeArmor)
                 EquipDetail_EquipSTAText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-            else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
+            else if (EquipType == (int)EEquipType.TypeHelmet)
                 EquipDetail_EquipSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
-            else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
+            else if (EquipType == (int)EEquipType.TypeBoots)
                 EquipDetail_EquipSTAText.text = "신발은 피로도를 사용하지 않습니다.";
-            else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
+            else if (EquipType == (int)EEquipType.TypeAcc)
                 EquipDetail_EquipSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
             else
                 EquipDetail_EquipSTAText.text = "";
@@ -876,6 +1289,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_InvenRESText.text = "";
             EquipDetail_InvenSPDText.text = "";
             EquipDetail_InvenLUKText.text = "";
+            EquipDetail_InvenDetailText.text = "";
             foreach (GameObject Obj in EquipDetail_InvenCardContainer)
             {
                 Obj.SetActive(false);
@@ -884,35 +1298,38 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         else//인벤토리에 있는 아이템 클릭
         {//-> 왼쪽 Detail, 오른쪽 Detail다 출력 해야됨
          //같은 타입의 장비가 없으면 오른쪽은 출력 x
-            //인벤의 장비 표시
-            EquipmentSO UnEquipedEquipment = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
+         //인벤의 장비 표시
+            EquipmentInfo UnEquipedEquipment = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
             int EquipedEquipmentCode;
             EquipDetail_InvenImage.gameObject.SetActive(true);
             EquipDetail_InvenImage.sprite = UnEquipedEquipment.EquipmentImage;
             EquipDetail_InvenTierText.text = GetTierText(CurrentBringItemCode);
             EquipDetail_InvenNameText.text = UnEquipedEquipment.EquipmentName;
 
-            if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
+            int EquipType = (CurrentBringItemCode / 10) % 10;
+
+            //장비의 종류 10의 자리
+            if (EquipType == (int)EEquipType.TypeWeapon)//무기
             {
                 EquipDetail_InvenSTAText.text = "공격시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
             }
-            else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
+            else if (EquipType == (int)EEquipType.TypeArmor)//방어구
             {
                 EquipDetail_InvenSTAText.text = "방어시 피로도 : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode;
             }
-            else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
+            else if (EquipType == (int)EEquipType.TypeHelmet)//투구
             {
                 EquipDetail_InvenSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode;
             }
-            else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
+            else if (EquipType == (int)EEquipType.TypeBoots)//신발
             {
                 EquipDetail_InvenSTAText.text = "신발은 피로도를 사용하지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode;
             }
-            else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
+            else if (EquipType == (int)EEquipType.TypeAcc)//장신구
             {
                 EquipDetail_InvenSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
@@ -940,7 +1357,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_InvenCardContainer[i].GetComponent<EquipmentDetailCardContainerUI>().SetActiveCards(UnEquipedEquipment.EquipmentSlots[i].SlotState);
             }
             //같은 타입의 장비가 있거나 혹은 없거나
-            EquipmentSO EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipedEquipmentCode);
+            EquipmentInfo EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipedEquipmentCode);
             if (EquipedEquipmentCode == 0)//끼고 있는 장비가 없을때
             {
                 //아예 비우기
@@ -965,15 +1382,15 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipTierText.text = GetTierText(EquipedEquipmentCode);
                 EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
 
-                if (CurrentBringItemCode >= 10000 && CurrentBringItemCode < 20000)
+                if (EquipType == (int)EEquipType.TypeWeapon)
                     EquipDetail_EquipSTAText.text = "공격시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-                else if (CurrentBringItemCode >= 20000 && CurrentBringItemCode < 30000)
+                else if (EquipType == (int)EEquipType.TypeArmor)
                     EquipDetail_EquipSTAText.text = "방어시 피로도 : " + EquipedEquipmentInfo.SpendTiredness.ToString();
-                else if (CurrentBringItemCode >= 30000 && CurrentBringItemCode < 40000)
+                else if (EquipType == (int)EEquipType.TypeHelmet)
                     EquipDetail_EquipSTAText.text = "피로도 회복시 피로도는 사용되지 않습니다.";
-                else if (CurrentBringItemCode >= 40000 && CurrentBringItemCode < 50000)
+                else if (EquipType == (int)EEquipType.TypeBoots)
                     EquipDetail_EquipSTAText.text = "신발은 피로도를 사용하지 않습니다.";
-                else if (CurrentBringItemCode >= 50000 && CurrentBringItemCode < 60000)
+                else if (EquipType == (int)EEquipType.TypeAcc)
                     EquipDetail_EquipSTAText.text = "장신구는 피로도를 사용하지 않습니다.";
                 else
                     EquipDetail_EquipSTAText.text = "";
@@ -983,6 +1400,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipRESText.text = EquipedEquipmentInfo.AddRESAmount.ToString();
                 EquipDetail_EquipSPDText.text = EquipedEquipmentInfo.AddSPDAmount.ToString();
                 EquipDetail_EquipLUKText.text = EquipedEquipmentInfo.AddLUKAmount.ToString();
+                EquipDetail_EquipDetailText.text = EquipedEquipmentInfo.EquipmentDetail.ToString();
 
                 //활성화 하기전에 한번 다 초기화
                 foreach (GameObject obj in EquipDetail_EquipCardContainer)
@@ -1047,7 +1465,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //띄용띄용이 끝나면 클릭버튼 활성화
         EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
             OnComplete(() => { ActiveGachaClickButton(); });
-        //가챠 연출같은게 있으면 좋을텐데.....
+
     }
 
     private void ActiveGachaClickButton()
@@ -1062,7 +1480,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         ClickButton.GetComponent<RectTransform>().DOKill();
         ClickButton.SetActive(false);
         //이 버튼을 누르면 버튼은 비활성화
-        int EquipmentTier = (GachaResultEquipCode / 1000) % 10;
+        int EquipmentTier = GachaResultEquipCode / 1000;
         // 1티어 장비라면 0번까지 활성화 , 흰색// 2티어 장비라면  1번까지 활성화, 파란색
         // 3티어 장비라면 2번까지 활성화, 보라색// 4티어 장비라면 3번까지 활성화, 노란색
         // 5티어 장비라면 4번까지 활성화, 

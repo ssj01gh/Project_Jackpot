@@ -215,7 +215,9 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
 
     private string GetTierText(int EquipmentCode)
     {
-        if((EquipmentCode / 1000) % 10 == 7)
+        return ((EquipmentCode / 1000) % 10).ToString() + "티어";
+        /*
+        if ((EquipmentCode / 10000) == 2)
         {
             switch(EquipmentCode)
             {
@@ -231,6 +233,6 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
             return "1티어";
         }
         else
-            return ((EquipmentCode / 1000) % 10).ToString() + "티어";
+          */  
     }
 }
