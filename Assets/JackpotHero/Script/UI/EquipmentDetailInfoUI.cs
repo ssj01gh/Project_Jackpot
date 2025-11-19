@@ -25,16 +25,183 @@ public class EquipmentDetailInfoUI : MonoBehaviour
 
     public GameObject ClickEquipCardButtonDownArrow;
     public GameObject ClickEquipCardButtonUpArrow;
+
+    public TextMeshProUGUI TextWithLink;//링크 있는 텍스트
+    public GameObject BuffDetailExplainObject;//설명 나올 오브젝트
+    public TextMeshProUGUI BuffDetailExplainTitleText;//설명 제목
+    public TextMeshProUGUI BuffDetailExplainDetailText;//설명 상세
     // Start is called before the first frame update
+
+    private int CurrentLinkIndex = -1;
     void Start()
     {
-        
+        if (BuffDetailExplainObject != null)
+        {
+            BuffDetailExplainObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 mousePosition = Input.mousePosition;
 
+        // 링크 인덱스를 찾음
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(TextWithLink, mousePosition, Camera.main);
+
+        if (linkIndex != CurrentLinkIndex)
+        {
+            // 기존 링크에서 마우스가 벗어났을 때
+            if (CurrentLinkIndex != -1)
+            {
+                string oldID = TextWithLink.textInfo.linkInfo[CurrentLinkIndex].GetLinkID();
+                OnLinkExit(oldID);
+            }
+
+            // 새로운 링크에 마우스가 올라갔을 때
+            if (linkIndex != -1)
+            {
+                string newID = TextWithLink.textInfo.linkInfo[linkIndex].GetLinkID();
+                OnLinkEnter(newID);
+            }
+
+            CurrentLinkIndex = linkIndex;
+        }
+        
+    }
+    private void OnLinkEnter(string id)
+    {
+        /*
+         * DetailExplainText.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
+    ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
+    ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
+    ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
+    ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
+         */
+        BuffDetailExplainObject.SetActive(true);
+        switch (id)
+        {
+            case "STRWE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.DefenseDebuff).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.DefenseDebuff).BuffDetail;
+                break;
+            case "STRAR":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffDetail;
+                break;
+            case "STRHE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffDetail;
+                break;
+            case "STRBO":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffDetail;
+                break;
+            case "STRAC":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughFist).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughFist).BuffDetail;
+                break;
+            case "DURWE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.AttackDebuff).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.AttackDebuff).BuffDetail;
+                break;
+            case "DURAR":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnbreakableArmor).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnbreakableArmor).BuffDetail;
+                break;
+            case "DURHE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffDetail;
+                break;
+            case "DURAC":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughSkin).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ToughSkin).BuffDetail;
+                break;
+            case "RESWE01":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Poison).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Poison).BuffDetail;
+                break;
+            case "RESWE02":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Burn).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Burn).BuffDetail;
+                break;
+            case "RESAR":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Misfortune).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Misfortune).BuffDetail;
+                break;
+            case "RESHE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffDetail;
+                break;
+            case "RESBO":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Slow).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Slow).BuffDetail;
+                break;
+            case "RESAC":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CurseOfDeath).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CurseOfDeath).BuffDetail;
+                break;
+            case "SPDWE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ChainAttack).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.ChainAttack).BuffDetail;
+                break;
+            case "SPDAR":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.RegenArmor).BuffDetail;
+                break;
+            case "SPDHE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.OverCharge).BuffDetail;
+                break;
+            case "SPDBO":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Haste).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Haste).BuffDetail;
+                break;
+            case "SPDAC":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CorruptSerum).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.CorruptSerum).BuffDetail;
+                break;
+            case "LUKBO":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Luck).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Luck).BuffDetail;
+                break;
+            case "HPWE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.LifeSteal).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.LifeSteal).BuffDetail;
+                break;
+            case "HPAR":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffDetail;
+                break;
+            case "HPHE":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Charm).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Charm).BuffDetail;
+                break;
+            case "HPBO":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.UnDead).BuffDetail;
+                break;
+            case "HPAC":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.PowerOfDeath).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.PowerOfDeath).BuffDetail;
+                break;
+            case "STABO":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffDetail;
+                break;
+            case "STAAC":
+                BuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffName;
+                BuffDetailExplainDetailText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Petrification).BuffDetail;
+                break;
+        }
+        //Debug.Log($"마우스 올라감: {id}");
+    }
+
+    private void OnLinkExit(string id)
+    {
+        BuffDetailExplainObject.SetActive(false);
+        // 예: 원래 색상 복구, 툴팁 숨기기 등
+        //Debug.Log($"마우스 벗어남: {id}");
     }
 
     public void ActiveEquipmentDetailInfoUI(EquipmentInfo EquipInfo, bool IsPlayerEquipment)

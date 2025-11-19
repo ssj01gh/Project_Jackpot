@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -56,6 +57,7 @@ public class BattleManager : MonoBehaviour
     protected List<string> SpawnMonstersID = new List<string>();
     protected GameObject SummonerMonster = null;
     //protected List<float> MonsterActiveGuage = new List<float>();
+
     void Start()
     {
         
@@ -93,7 +95,8 @@ public class BattleManager : MonoBehaviour
             MonMgr.SetBossSpawn(PlayerMgr);
         }
         
-        MonMgr.SpawnCurrentSpawnPatternMonster();//스폰 패턴에 맞게 몬스터 생성//ActiveMonster설정
+        MonMgr.SpawnCurrentSpawnPatternMonster();//스폰 패턴에 맞게 몬스터 생성//ActiveMonster설정//버프도 다 0으로 최기화됨
+        MonMgr.GiveBuffActiveMonsterByPlayer(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
         //몬스터는 이 SpawnCurrentSpawnPatternMonster에서 얻을 버프를 다 받음
         //스폰 패턴이 저장된후 다시 저장
         PlayerMgr.GetPlayerInfo().SetInitBuffByMonsters(MonMgr.GetActiveMonsters());
@@ -340,7 +343,9 @@ public class BattleManager : MonoBehaviour
         {
             TargetObject = MonMgr.CheckActiveMonsterHaveProvocation().gameObject;
             //몬스터중에 도발을 가지고 있는 녀석이 있다면 그녀석으로 CurrentTarget을 바꿔야함.
-
+            GiveDebuffToMonsterByAttack(TargetObject.GetComponent<Monster>());
+            //
+            PlayerMgr.GetPlayerInfo().GetBuffByAttack();
             PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, true);
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
@@ -369,6 +374,7 @@ public class BattleManager : MonoBehaviour
                     foreach(GameObject Mon in UnTargetMonsters)
                     {
                         Mon.GetComponent<Monster>().MonsterDamage((int)LastDamage);
+                        GiveDebuffToMonsterByAttack(Mon.GetComponent<Monster>());
                     }
                 }
             }
@@ -388,6 +394,11 @@ public class BattleManager : MonoBehaviour
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Exploitation] >= 1)
             {
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount((int)(BattleResultStatus.FinalResultAmount / 5));
+            }
+            //흡혈보유시
+            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.LifeSteal] >= 1)
+            {
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)(BattleResultStatus.FinalResultAmount / 20));
             }
             MonMgr.CurrentTarget.MonsterDamage(BattleResultStatus.FinalResultAmount);
             if(MonMgr.CurrentTarget.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentShieldPoint >= 1)
@@ -411,19 +422,23 @@ public class BattleManager : MonoBehaviour
         else if (ActionButtonType == "Defense")//방어라면 결과로 플레이어의 방어 수치를 높임
         {
             TargetObject = null;
+            GiveDebuffToMosnterByDefense();
 
+            PlayerMgr.GetPlayerInfo().GetBuffByDefense((int)BattleResultStatus.FinalResultAmount);
             PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, false);
             PlayerMgr.GetPlayerInfo().PlayerGetShield(BattleResultStatus.FinalResultAmount);
         }
         else if (ActionButtonType == "Rest")//휴식이라면 결과로 플레이어의 피로도를 회복함
         {
             TargetObject = null;
+            GiveDebuffToMonsterByRest();
 
             MonMgr.SetAcitveMonsterMountainLord();
 
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear]--;
 
+            PlayerMgr.GetPlayerInfo().GetBuffByRest();
             PlayerMgr.GetPlayerInfo().SetChainAttackBuff(true, false);
             PlayerMgr.GetPlayerInfo().PlayerRegenSTA(BattleResultStatus.FinalResultAmount);
             //상급휴식 보유시
@@ -432,13 +447,64 @@ public class BattleManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)(BattleResultStatus.FinalResultAmount / 10));
             }
         }
-            //이 함수를 실행시키면 현재 BattleMgr에는 플레이어 행동에 따른 결과값이 저장됨 -> 이걸 BattleUI가 잘 전달 받아서 작동하면 될듯?
-            //이제 결정된 수치를 바탕으로 MainBattle을 활성화 시킴
-            UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
+        //이 함수를 실행시키면 현재 BattleMgr에는 플레이어 행동에 따른 결과값이 저장됨 -> 이걸 BattleUI가 잘 전달 받아서 작동하면 될듯?
+        //이제 결정된 수치를 바탕으로 MainBattle을 활성화 시킴
+        UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         //여기서는 공격주체가 플레이어
         UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().gameObject, MonMgr.CurrentTarget, ActionButtonType, BattleResultStatus, 
             PlayerMgr.GetPlayerInfo().gameObject.transform.position, IsTargetHasShield, ProgressBattle);
+    }
+    protected void GiveDebuffToMonsterByAttack(Monster TargetMon)
+    {
+        int STRWeapon = 10; int DURWeapon = 11; int RESWeapon = 12;
+        //이벤트 장비 유무 / 장비 성향/ 장비 종류에 따라서 적에게 디버프 부여 -> 만의 자리, 백의 자리, 십의 자리로 구분가능
+        int IsEventEquip = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode / 10000;
+        int EquipStateType = (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode / 100) % 10;
+        int WeaponType = (IsEventEquip * 10) + EquipStateType;
+        if (WeaponType == STRWeapon)
+        {
+            TargetMon.MonsterBuff.BuffList[(int)EBuffType.DefenseDebuff] += 3;
+        }
+        if (WeaponType == DURWeapon)
+        {
+            TargetMon.MonsterBuff.BuffList[(int)EBuffType.AttackDebuff] += 3;
+        }
+        if (WeaponType == RESWeapon)
+        {
+            TargetMon.MonsterBuff.BuffList[(int)EBuffType.Poison] += 5;
+            TargetMon.MonsterBuff.BuffList[(int)EBuffType.Burn] += 3;
+        }
+    }
+    protected void GiveDebuffToMosnterByDefense()
+    {
+        int RESArmor = 12;
+        int IsEventEquip = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode / 10000;
+        int EquipStateType = (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode / 100) % 10;
+        int ArmorType = (IsEventEquip * 10) + EquipStateType;
+
+        if(ArmorType == RESArmor)
+        {
+            foreach(GameObject Mon in MonMgr.GetActiveMonsters())
+            {
+                Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Misfortune] += 3;
+            }
+        }
+    }
+    protected void GiveDebuffToMonsterByRest()
+    {
+        int HPHelmet = 15;
+        int IsEventEquip = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode / 10000;
+        int EquipStateType = (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode / 100) % 10;
+        int HelmetType = (IsEventEquip * 10) + EquipStateType;
+
+        if(HelmetType == HPHelmet)
+        {
+            foreach (GameObject Mon in MonMgr.GetActiveMonsters())
+            {
+                Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charm] += 1;
+            }
+        }
     }
 
     public void MonsterBattleActionSelectionButtonClick()

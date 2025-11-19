@@ -15,7 +15,7 @@ MonoBehaviour:
   EquipmentType: 0
   EquipmentTier: 0
   EquipmentCode: 92085
-  EquipmentName: "\uC7AC\uC0DD\uD3EC\uC158"
+  EquipmentName: "\uC7AC\uC0DD \uD3EC\uC158"
   SpendTiredness: 0
   EquipmentSlots: []
   EquipmentImage: {fileID: 670374244, guid: f36f937166d95824da5215cc4dc7a501, type: 3}
@@ -26,3 +26,7 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC232\uC758 \uB9C8\uB140\uAC00 \uC720\uB9AC\uBCD1\uC774 \uB4E4\uC5B4\uC788\uB294
+    \uCE58\uB8CC\uC57D\uC744 \uB9C8\uC2ED\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9
+    : \uC7AC\uC0DD \uD3EC\uC158\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MRegeneration\"><color=green>\uC7AC\uC0DD</color></link>
+    5\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

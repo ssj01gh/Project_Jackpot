@@ -26,3 +26,7 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC6A9\uC758 \uC2EC\uC7A5\uC740 \uBB34\uD55C\uD55C \uD798\uC758
+    \uC0C1\uC9D5\uC785\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9 : \uC6A9\uC758 \uC2EC\uC7A5\n\uC790\uC2E0\uC5D0\uAC8C
+    <link=\"MCharging\"><color=green>\uCD95\uC801</color></link> 1\uC2A4\uD0DD\uC744
+    \uBD80\uC5EC\uD569\uB2C8\uB2E4."

@@ -205,9 +205,6 @@ public class Monster : MonoBehaviour
         InitAllBuff();//일단 초기화 하고 추가
         SetMonsterStatus();
         SetMonsterVariousBuff();
-
-        SetInitBuffByPlayerState();
-        //일단은 방심만
         //개인적 몬스터에대한 상태에 대한 버프는 InitMonsterState에서
         InitMonsterState();
         SpawnFadeIn();
@@ -488,14 +485,6 @@ public class Monster : MonoBehaviour
                     MonsterAnimator.SetInteger("WrathAnimeState", 0);
                     break;
             }
-        }
-    }
-
-    protected void SetInitBuffByPlayerState()
-    {
-        if(JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel >= 7)
-        {
-            MonsterBuff.BuffList[(int)EBuffType.Defenseless] = 1;
         }
     }
 

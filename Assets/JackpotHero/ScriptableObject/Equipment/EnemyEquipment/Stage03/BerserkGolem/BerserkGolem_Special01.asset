@@ -26,3 +26,7 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uACE8\uB818\uC740 \uC7AC\uBE60\uB974\uC9C0\uB9CC \uACE7 \uBB34\uB108\uC9C8
+    \uB4EF \uD569\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791 : \uD3ED\uC8FC\uD558\uB294
+    \uC2E0\uCCB4\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MOverCharge\"><color=green>\uACFC\uBD80\uD558</color></link>
+    5\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

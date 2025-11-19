@@ -26,3 +26,12 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uB3C4\uD50C\uAC31\uC5B4\uB294 \uC801\uACFC \uB611\uAC19\uC774
+    \uBCC0\uD558\uB824\uACE0 \uD569\uB2C8\uB2E4.\n\uC131\uC7A5\uC5D0 \uC758\uD574
+    \uBCC0\uD654\uD55C \uC2A4\uD0EF\uC744 \uBCF5\uC0AC\uD558\uC5EC \uAC00\uC838\uC635\uB2C8\uB2E4.\n\n\uD2B9\uC218
+    \uD589\uB3D9 : \uBCF5\uC0AC\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MCopyStrength\"><color=green>\uBCF5\uC0AC
+    : \uD798</color></link>, <link=\"MCopyDurability\"><color=green>\uBCF5\uC0AC
+    : \uB0B4\uAD6C</color></link>, <link=\"MCopySpeed\"><color=green>\uBCF5\uC0AC
+    : \uC18D\uB3C4</color></link>, <link=\"MCopyLuck\"><color=green>\uBCF5\uC0AC
+    : \uD589\uC6B4</color></link> \uC911\n\uBCF5\uC0AC \uD558\uC9C0 \uBABB\uD55C
+    \uC2A4\uD0EF\uC744 \uBCF5\uC0AC\uD558\uC5EC \uBD80\uC5EC\uD569\uB2C8\uB2E4."

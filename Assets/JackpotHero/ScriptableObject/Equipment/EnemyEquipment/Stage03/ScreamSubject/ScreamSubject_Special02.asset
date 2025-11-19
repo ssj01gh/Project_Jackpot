@@ -26,3 +26,8 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
+  EquipmentDetail: "\uC0B4\uB369\uC774\uC5D0 \uB3CB\uC544\uB09C \uC218\uB9CE\uC740
+    \uC785\uC5D0\uC11C\n\uC545\uC5D0 \uBC1B\uCE5C \uBE44\uBA85\uC774 \uD758\uB7EC
+    \uB098\uC635\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9 : \uC18C\uB984\uB07C\uCE58\uB294
+    \uBE44\uBA85\n\uC801\uC5D0\uAC8C <link=\"MCower\"><color=green>\uC704\uCD95</color></link>
+    2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

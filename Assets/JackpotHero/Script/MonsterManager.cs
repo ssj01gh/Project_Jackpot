@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
 public class MonsterManager : MonoBehaviour
@@ -256,6 +257,43 @@ public class MonsterManager : MonoBehaviour
                 }
             }
         }
+    }
+    public void GiveBuffActiveMonsterByPlayer(PlayerInfo _PlayerInfo)
+    {
+        if (JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel >= 7)
+        {
+            foreach(GameObject Mon in ActiveMonsters)
+            {
+                Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Defenseless] += 99;
+            }
+        }
+        int RESEquip = 12;
+
+        int BootsTier = (_PlayerInfo.EquipShoesCode / 1000) % 10;
+        int IsEventBoots = _PlayerInfo.EquipShoesCode / 10000;
+        int BootsStateType = (_PlayerInfo.EquipShoesCode / 100) % 10;
+        int BootsType = (IsEventBoots * 10) + BootsStateType;
+
+        int AccTier = (_PlayerInfo.EquipAccessoriesCode / 1000) % 10;
+        int IsEventAcc = _PlayerInfo.EquipAccessoriesCode / 10000;
+        int AccStateType = (_PlayerInfo.EquipAccessoriesCode / 100) % 10;
+        int AccType = (IsEventBoots * 10) + BootsStateType;
+
+        if(BootsType == RESEquip)
+        {
+            foreach (GameObject Mon in ActiveMonsters)
+            {
+                Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Slow] += (BootsTier * 2);
+            }
+        }
+        if(AccType == RESEquip)
+        {
+            foreach (GameObject Mon in ActiveMonsters)
+            {
+                Mon.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.CurseOfDeath] += (15 - (AccTier * 2));
+            }
+        }
+
     }
 
     public void SpawnMonsterBySummonMonster(List<string> MonsterID, GameObject SummonerMonster)

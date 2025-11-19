@@ -261,11 +261,19 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                     NeededCode += 1;
             }
         }
-        else//럭이 아닐때
+        else//럭이 아닐때//피로도, 일반 장비의 경우 그냥 1티어 전꺼를 리턴함
         {//EquipType이 신발이나 장신구라면 NeedCode를 바꾸지 않음
             if (EquipType != (int)EEquipType.TypeBoots && EquipType != (int)EEquipType.TypeAcc)
             {
-                NeededCode = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + MultiType;
+                if(EquipStateType == (int)EEquipStateType.StateSTA || EquipStateType == (int)EEquipStateType.StateNormal)
+                    NeededCode = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + MultiType;
+                else
+                {
+                    if(EquipTier >= 1)
+                        NeededCode = (EquipEventType * IsEventEquipMultipleNum) + ((EquipTier - 1) * TierMultipleNum) + MultiType;
+                    else
+                        NeededCode = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + MultiType;
+                }
 
                 if (MultiType == 0)//0이 나올수 없지만 혹시나 0이 나온다면 안정 타입으로
                     NeededCode += 1;
@@ -300,22 +308,31 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         int SpriteNum = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + (EquipStateType * StateTypeMultipleNum) + (EquipType * TypeMultipleNum);
         int EventNum = EquipCode;
 
-        if (!EquipIncreaseState.ContainsKey(IncreaseInfoNum))//없으면
+        if (EquipEventType == (int)EIsEventEquip.NormalEquip)
+        {
+            if (!EquipIncreaseState.ContainsKey(IncreaseInfoNum))//없으면
+                return false;
+
+            if (!EquipSlot.ContainsKey(NormalSlotInfoNum) && !EquipSlot.ContainsKey(LuckSlotInfoNum))
+                return false;
+
+            if (!EquipDetail.ContainsKey(DetailNum))
+                return false;
+
+            if (!EquipSprite.ContainsKey(SpriteNum))
+                return false;
+        }
+        else if (EquipEventType == (int)EIsEventEquip.EventEquip)
+        {
+            if (!PlayerEventEquip.ContainsKey(EventNum))
+            {
+                return false;
+            }
+        }
+        else
             return false;
 
-        if (!EquipSlot.ContainsKey(NormalSlotInfoNum) && !EquipSlot.ContainsKey(LuckSlotInfoNum))
-            return false;
-
-        if (!EquipDetail.ContainsKey(DetailNum))
-            return false;
-
-        if (!EquipSprite.ContainsKey(SpriteNum))
-            return false;
-        
-        if (EquipEventType == (int)EIsEventEquip.EventEquip && !PlayerEventEquip.ContainsKey(EventNum))
-            return false;
-
-        return true;
+         return true;
     }
     //------------------------------------
     public EquipmentInfo GetPlayerEquipmentInfo(int EquipCode)//이것만 어떻게 바꾸면 될듯?

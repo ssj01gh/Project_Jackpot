@@ -122,6 +122,8 @@ public enum EBuffType
     Sloth,
     //분노
     Wrath,
+    //흡혈
+    LifeSteal,
     //불사//여기 위에 버프추가.
     UnDead,
     //Buff종류에 맞는 BuffList배열 생성을 위해있는것임
