@@ -75,4 +75,5 @@ public class LinkageEventInfo
     public bool OminousSword;
     public bool CleanOminousSword;
     public int PowwersCeremony;
+    public int GreatDevilKillCount;
 }

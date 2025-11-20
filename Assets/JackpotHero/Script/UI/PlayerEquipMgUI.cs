@@ -895,6 +895,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if (IsClickedInventorySlot == true && eventData.pointerEnter != null)
         {
             IsClickedInventorySlot = false;
+            DropDownItemCode = 0;
             Vector2 ClickedUIPos = eventData.pointerEnter.GetComponent<RectTransform>().anchoredPosition;
 
             if (PlayerEquipIndex != -1)//장비 칸에서 클릭했을때//장비칸에서 인벤토리 OR 장비칸
@@ -1479,8 +1480,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         ClickButton.GetComponent<RectTransform>().DOKill();
         ClickButton.SetActive(false);
+        Debug.Log(GachaResultEquipCode);
         //이 버튼을 누르면 버튼은 비활성화
-        int EquipmentTier = GachaResultEquipCode / 1000;
+        int EquipmentTier = (GachaResultEquipCode / 1000) % 10;
         // 1티어 장비라면 0번까지 활성화 , 흰색// 2티어 장비라면  1번까지 활성화, 파란색
         // 3티어 장비라면 2번까지 활성화, 보라색// 4티어 장비라면 3번까지 활성화, 노란색
         // 5티어 장비라면 4번까지 활성화, 

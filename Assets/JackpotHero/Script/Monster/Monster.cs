@@ -409,9 +409,9 @@ public class Monster : MonoBehaviour
         {
             MonTotalStatus.MonsterCurrentDUR = 0;
         }
-        if (MonTotalStatus.MonsterCurrentSPD < 0)
+        if (MonTotalStatus.MonsterCurrentSPD < 1)
         {
-            MonTotalStatus.MonsterCurrentSPD = 0;
+            MonTotalStatus.MonsterCurrentSPD = 1;
         }
         
     }

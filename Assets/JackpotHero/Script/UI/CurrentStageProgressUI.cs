@@ -21,8 +21,14 @@ public class CurrentStageProgressUI : MonoBehaviour
 
     public void SetCurrentStegeUI(PlayerInfo PInfo)
     {
-        float DetectNextFloorRatio = ((float)PInfo.DetectNextFloorPoint / (250f + PInfo.DetectNextFloorPoint)) * 100f;
         CurrentStageText.text = (PInfo.CurrentFloor).ToString() +"스테이지";
-        CurrentStageProgressText.text = "보스 등장 확률 : " + DetectNextFloorRatio.ToString("F1") + "%";
+        if(PInfo.DetectNextFloorPoint < 100)
+        {
+            CurrentStageProgressText.text = "탐색도 : " + PInfo.DetectNextFloorPoint + " / 100";
+        }
+        else
+        {
+            CurrentStageProgressText.text = "탐색도 : <color = red>100 / 100</color>";
+        }
     }
 }

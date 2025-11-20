@@ -173,6 +173,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             LkEv_Info.OminousSword = false;
             LkEv_Info.CleanOminousSword = false;
             LkEv_Info.PowwersCeremony = 0;
+            LkEv_Info.GreatDevilKillCount = 0;
 
             string classToJson = JsonUtility.ToJson(LkEv_Info, true);
             File.WriteAllText(path, classToJson);

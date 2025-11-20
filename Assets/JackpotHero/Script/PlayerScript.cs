@@ -272,8 +272,8 @@ public class PlayerScript : MonoBehaviour
             PlayerTotalState.TotalDUR = 0;
         if(PlayerTotalState.TotalRES < 0)
             PlayerTotalState.TotalRES = 0;
-        if(PlayerTotalState.TotalSPD < 0)
-            PlayerTotalState.TotalSPD = 0;
+        if(PlayerTotalState.TotalSPD < 1)
+            PlayerTotalState.TotalSPD = 1;
 
         //°ø°ÝÀÇ Æò±ÕÀûÀÌ »ó½Â·®
         AttackAverageIncrease = 0;

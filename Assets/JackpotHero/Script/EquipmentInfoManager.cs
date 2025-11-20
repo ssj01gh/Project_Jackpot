@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.Burst;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -463,7 +464,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                 break;
             case (int)EEquipStateType.StateRES:
                 int RESB = BootsBuffInt[(int)EEquipStateType.StateRES] * PlayerEquipTier;
-                int RESA = AccessoriesBuffInt[(int)EEquipStateType.StateRES] * PlayerEquipTier;
+                int RESA = 15 - AccessoriesBuffInt[(int)EEquipStateType.StateRES] * PlayerEquipTier;
                 AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{RESB}", RESB.ToString()).Replace("{RESA}", RESA.ToString());
                 break;
             case (int)EEquipStateType.StateSPD:
@@ -524,8 +525,29 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.AddLUKAmount = MonEquipmentStorage[EquipmentCode].AddLUKAmount;
         AssembleEquip.AddHPAmount = MonEquipmentStorage[EquipmentCode].AddHPAmount;
         AssembleEquip.AddTirednessAmount = MonEquipmentStorage[EquipmentCode].AddTirednessAmount;
-        AssembleEquip.EquipmentDetail = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
+        //94071 분노 첫번째 특행은 따로 확인 해줘야함
+        if(EquipmentCode == 94071)
+        {
+            string BeforeString = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
+            string WrathTag = "";
+            int WrathBuffCount = 7 - JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount;
+            if (JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount >= 6)
+                WrathTag = "Dead";
+            else
+                WrathTag = "Alive";
 
+            string Pattern = $@"\{{{WrathTag}\}}(.*?)\{{/{WrathTag}\}}";
+            Match WrathMatch = Regex.Match(BeforeString, Pattern, RegexOptions.Singleline);
+            if(WrathMatch.Success)
+            {
+                BeforeString = WrathMatch.Groups[1].Value;
+            }
+            AssembleEquip.EquipmentDetail = BeforeString.Replace("{WrathCount}", WrathBuffCount.ToString());
+        }
+        else
+        {
+            AssembleEquip.EquipmentDetail = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
+        }
         return AssembleEquip;
     }
 
@@ -596,15 +618,15 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         int EquipType = 0;
         int EquipMultiType = 0;
         //티어 = 천의 자리 // 장비 성향 = 백의 자리 // 장비 종류 = 십의 자리 // 곱 성향 = 일의자리
-        if (RandNum < TierOneNum)//여기에 들어가면 1티어 장비
+        if (RandNum < TierOneNum)//여기에 들어가면 1티어 장비     0미만
             EquipTier = (int)EEquipTier.TierOne;
-        else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//여기 2티어
+        else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//여기 2티어    0이상 0미만
             EquipTier = (int)EEquipTier.TierTwo;
-        else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//여기 3티어
+        else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//여기 3티어   0이상 53미만
             EquipTier = (int)EEquipTier.TierThree;
-        else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//여기 4티어
+        else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//여기 4티어  53이상 89 미만
             EquipTier = (int)EEquipTier.TierFour;
-        else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//여기 5티어
+        else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//여기 5티어   89이상 100미만
             EquipTier = (int)EEquipTier.TierFive;
         else if (RandNum >= TierFiveNum)//티어 6
             EquipTier = (int)EEquipTier.TierSix;
