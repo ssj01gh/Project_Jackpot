@@ -449,7 +449,7 @@ public class PlayerScript : MonoBehaviour
         int AccTier = (PlayerState.EquipAccessoriesCode / 1000) % 10;
         int IsEventAcc = PlayerState.EquipAccessoriesCode / 10000;
         int AccStateType = (PlayerState.EquipAccessoriesCode / 100) % 10;
-        int AccType = (IsEventBoots * 10) + BootsStateType;
+        int AccType = (IsEventBoots * 10) + AccStateType;
 
         if(BootsType == STREquip)
             PlayerBuff.BuffList[(int)EBuffType.OverCharge] += (BootsTier * 2);

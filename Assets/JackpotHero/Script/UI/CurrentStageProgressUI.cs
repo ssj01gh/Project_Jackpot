@@ -28,7 +28,7 @@ public class CurrentStageProgressUI : MonoBehaviour
         }
         else
         {
-            CurrentStageProgressText.text = "Å½»öµµ : <color = red>100 / 100</color>";
+            CurrentStageProgressText.text = "Å½»öµµ : <color=red>100 / 100</color>";
         }
     }
 }
