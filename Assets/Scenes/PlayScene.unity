@@ -34159,19 +34159,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -1303872472515561569, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_enableAutoSizing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -34207,7 +34211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3802112113248754416, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3802112113248754416, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_SizeDelta.y
@@ -73624,19 +73628,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -1303872472515561569, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_enableAutoSizing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -73672,7 +73680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3802112113248754416, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3802112113248754416, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_SizeDelta.y
@@ -110638,19 +110646,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_fontSize
-      value: 48
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -1303872472515561569, guid: c5addb532f7ac1a458e481f3df177ad4, type: 2}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_enableAutoSizing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566958104391832129, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -110686,7 +110698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3802112113248754416, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3802112113248754416, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_SizeDelta.y
@@ -110771,6 +110783,14 @@ PrefabInstance:
     - target: {fileID: 4761143415802011568, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682302764120600577, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682302764120600577, guid: 5b7e4d7cdd58ca8408b5ded96c63ecc2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -124835,13 +124855,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 833584486bbf58f4b931ee71c95e9116, type: 2}
   - {fileID: 11400000, guid: a0d549f49d13e594eaafa2595361c315, type: 2}
   - {fileID: 11400000, guid: 8a18cb742f23b38469c1e71e22baed01, type: 2}
+  - {fileID: 11400000, guid: 08582805ba76cc24d933ab03c873e805, type: 2}
   - {fileID: 11400000, guid: 641580ffe5c67404487835aebb3a68f5, type: 2}
   - {fileID: 11400000, guid: 069ac4dde4f62564faa01289fc3c8c57, type: 2}
   - {fileID: 11400000, guid: d2eef5c7c29294f44af9c547649a61ca, type: 2}
+  - {fileID: 11400000, guid: a7333e145af18ee4ab11c775a45146d1, type: 2}
   - {fileID: 11400000, guid: 48696092eeb720243895402395a811f6, type: 2}
   - {fileID: 11400000, guid: 9879c7a3201acea49bb2a1cdf29a9cff, type: 2}
   - {fileID: 11400000, guid: 854e0c7bd77a16844b04d83df5e5bc02, type: 2}
-  Tier03SpawnPatternSO: []
+  Tier03SpawnPatternSO:
+  - {fileID: 11400000, guid: 2d9b8ab584f42cc4ab6041de62c03abf, type: 2}
+  - {fileID: 11400000, guid: 83385d45517fd184abbac48748e88744, type: 2}
+  - {fileID: 11400000, guid: 9d877cc774a0b6344983e4c575e3bbca, type: 2}
+  - {fileID: 11400000, guid: ab1fa43618ff8af4497d7d2e3d66a7d3, type: 2}
+  - {fileID: 11400000, guid: d471dc7ccf7bffe41bcdd081ef2a495a, type: 2}
+  - {fileID: 11400000, guid: b1e78b3124323d8499a126bf204e0bc1, type: 2}
+  - {fileID: 11400000, guid: bfb7105363b52a743bd0530474a0ba6a, type: 2}
+  - {fileID: 11400000, guid: ded904e3be67bd64d9b8676ed8955435, type: 2}
+  - {fileID: 11400000, guid: 983c3407cc412f94585965bc845d03dd, type: 2}
+  - {fileID: 11400000, guid: 4e779e0acf440e144b7af3f6458008ba, type: 2}
+  - {fileID: 11400000, guid: 886da1762403ece4cbc31ee3d92746d1, type: 2}
   BossSpawnPatternSO:
   - {fileID: 11400000, guid: a7588940eb4a5a24aa2320dcfc1c3a14, type: 2}
   - {fileID: 11400000, guid: 574eff3d850efb547bfbfe9d27ede474, type: 2}
@@ -126788,7 +126821,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &378589427156864139
 RectTransform:
@@ -127878,7 +127911,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.85
+  m_fontSize: 47.5
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a2232226e93b54f9f018e3e210a353, type: 3}
+  m_Name: EventSO3021
+  m_EditorClassIdentifier: 
+  EventCode: 3021
+  EventTitle: "5\uBC88\uC758 \uAE30\uD68C"
+  EventImage: {fileID: 21300000, guid: cbed7da3cfbbbdb4cabe90513afb033d, type: 3}
+  EventDetail: "\"\uBCF4\uC548 \uCF54\uB4DC 5\uD68C \uC785\uB825\uC744 \uC2E4\uD328\uD588\uC2B5\uB2C8\uB2E4.\"\n\"\uBCF4\uC548
+    \uCCB4\uACC4\uB97C \uC2E4\uD589\uD569\uB2C8\uB2E4.\"\n\uCCA0\uCEE5 \uC18C\uB9AC\uC640
+    \uD568\uAED8 \uCCA0\uCC3D\uC774 \uC5F4\uB9AC\uB354\uB2C8\n\uBAAC\uC2A4\uD130\uB4E4\uC774
+    \uB098\uC635\uB2C8\uB2E4."
+  EventSelectionDetail:
+  - "\uC804\uD22C \uAC1C\uC2DC"
