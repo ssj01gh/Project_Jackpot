@@ -248,6 +248,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
                 break;
             case "STRHE":
+            case "ForestBracelet02":
                 if (DetailNum == 0)
                 {
                     EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffName;
@@ -488,6 +489,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
                 break;
             case "HPAR":
+            case "ForestBracelet01":
                 if (DetailNum == 0)
                 {
                     EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;

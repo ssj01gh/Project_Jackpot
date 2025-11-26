@@ -92,6 +92,7 @@ public class EquipmentDetailInfoUI : MonoBehaviour
                 BuffTypeNum = (int)EBuffType.UnDead;
                 break;
             case "STRHE":
+            case "ForestBracelet02":
                 BuffTypeNum = (int)EBuffType.Recharge;
                 break;
             case "MOverCharge":
@@ -135,6 +136,7 @@ public class EquipmentDetailInfoUI : MonoBehaviour
             case "MRegeneration":
             case "RESHE":
             case "HPAR":
+            case "ForestBracelet01":
                 BuffTypeNum = (int)EBuffType.Regeneration;
                 break;
             case "MSlow":

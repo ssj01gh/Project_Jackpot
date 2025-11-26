@@ -17,7 +17,6 @@ MonoBehaviour:
   EquipType: 0
   EquipmentName: "\uB3C5\uCE68 / \uD654\uC5FC\uCE68"
   EquipmentDetail: "\uD654\uC5FC\uC758 \uAE30\uC6B4\uC774 \uB458\uB7EC\uC9C4 \uCE68\uACFC
-    \uB3C5\uC774 \uC2A4\uBA70\uB098\uC624\uB294 \uCE68\uC785\uB2C8\uB2E4.\n\uACF5\uACA9\uC2DC
-    \uC801\uC5D0\uAC8C <link=\"RESWE01\"><color=green>\uB3C5</color></link> 5\uC2A4\uD0DD\uACFC
-    <link=\"RESWE02\"><color=green>\uD654\uC0C1</color></link> 3\uC2A4\uD0DD\uC744
-    \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    \uB3C5\uC774 \uC2A4\uBA70\uB098\uC624\uB294 \uCE68\uC785\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC801\uC5D0\uAC8C
+    <link=\"RESWE01\"><color=green>\uB3C5</color></link> 5\uC2A4\uD0DD\uACFC <link=\"RESWE02\"><color=green>\uD654\uC0C1</color></link>
+    3\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

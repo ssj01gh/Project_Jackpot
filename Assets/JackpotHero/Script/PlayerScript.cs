@@ -474,6 +474,12 @@ public class PlayerScript : MonoBehaviour
             PlayerBuff.BuffList[(int)EBuffType.PowerOfDeath] += (AccTier * 3);
         if (AccType == STAEquip)
             PlayerBuff.BuffList[(int)EBuffType.Petrification] += (AccTier * 2);
+
+        if(PlayerState.EquipAccessoriesCode == 26044)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 9;
+            PlayerBuff.BuffList[(int)EBuffType.Recharge] += 9;
+        }
     }
     public void GetBuffByAttack()
     {

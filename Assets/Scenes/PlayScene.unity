@@ -41964,6 +41964,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95935409495a9ad4db97d11dfef46534, type: 2}
   - {fileID: 11400000, guid: f87a00421d97f114c8446d96dd21e8e4, type: 2}
   - {fileID: 11400000, guid: 324ccd99f6682224bbb606fa5da9abe1, type: 2}
+  - {fileID: 11400000, guid: cb764ec3d4ab65140ab2af08ddd2de05, type: 2}
   MonWeaponSOs:
   - {fileID: 11400000, guid: 3bf7872cf330fbe49a5c1acfa214c0ad, type: 2}
   - {fileID: 11400000, guid: aff556ade9f11ea4e84002577d40dc38, type: 2}
@@ -49319,6 +49320,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95d7cb462653da940a0ef6bcbd845986, type: 2}
   - {fileID: 11400000, guid: 20646a5fb2ae59941a17c56384d6fcb9, type: 2}
   - {fileID: 11400000, guid: f858acef35eaf2947a0cb49ef0c5b54e, type: 2}
+  - {fileID: 11400000, guid: 4ef70efc5aed9c74a9dcf984d55b69e2, type: 2}
+  - {fileID: 11400000, guid: 64439af706fbb5b4bba08187042a3723, type: 2}
+  - {fileID: 11400000, guid: 29d75ce75c0fd8e429ac116b9b85d279, type: 2}
+  - {fileID: 11400000, guid: d2c5fe418ae648b4f8e42decf6d8cd20, type: 2}
+  - {fileID: 11400000, guid: 01211de2bb0bd764ca8ae5452379d6fe, type: 2}
   Stage01GameEvents:
   - {fileID: 11400000, guid: d2f1669c7ff7d5a45a530b742aef29f3, type: 2}
   - {fileID: 11400000, guid: dea346bf76ce0824bb16eea4ae4d5171, type: 2}
@@ -49326,8 +49332,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c14d2bb67138ea24393834442d3b9fba, type: 2}
   - {fileID: 11400000, guid: 4d0467de57c08664aaa0c26ce5ac1ce3, type: 2}
   - {fileID: 11400000, guid: a19b5f270d8c1784db33bbc55c6280d2, type: 2}
-  Stage02GameEvents: []
-  Stage03GameEvents: []
+  Stage02GameEvents:
+  - {fileID: 11400000, guid: eef655c30aeefb543b71b22bfe07f9a4, type: 2}
+  - {fileID: 11400000, guid: 03e7e023745cab640abceddde85b72ff, type: 2}
+  - {fileID: 11400000, guid: d1e69ffcc5100d44b9d71b1240dd431a, type: 2}
+  - {fileID: 11400000, guid: 87b1c3ff600ef334aabd7f00b1dcb469, type: 2}
+  - {fileID: 11400000, guid: 8ba2bcaf2f16dc1479cdaa32edafdeaa, type: 2}
+  - {fileID: 11400000, guid: 771d38919cf84fa41b3319f0e498628b, type: 2}
+  Stage03GameEvents:
+  - {fileID: 11400000, guid: 1c9bec21fcdc01e4f882e68cdcf20a03, type: 2}
+  - {fileID: 11400000, guid: 9d7299459fb868945bf6890c1763f928, type: 2}
+  - {fileID: 11400000, guid: f80ca685962265f4389ec8ae23d247fa, type: 2}
+  - {fileID: 11400000, guid: 4a67334e5997d4e4d96149904786e10f, type: 2}
+  - {fileID: 11400000, guid: 1564b83f996a25840ab6fd967a4d8e0c, type: 2}
+  - {fileID: 11400000, guid: 0415ca321c11ffc45a725c7e5c64988c, type: 2}
+  - {fileID: 11400000, guid: 2940f90f8d9656345a7baa332497105a, type: 2}
   Stage04GameEvents: []
   CommonFollowEvents:
   - {fileID: 11400000, guid: c7cb67bbbc1e8c44198cac3cf5123670, type: 2}
@@ -49371,6 +49390,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e79831751695cc489b6d1266bcc3a2c, type: 2}
   - {fileID: 11400000, guid: 8255601a884989b419f27e3706ad1b9a, type: 2}
   - {fileID: 11400000, guid: 8a91011720be9f44981696fb52b76cd7, type: 2}
+  - {fileID: 11400000, guid: 5f0c8727a4fe6874bb6e37f470db31c9, type: 2}
+  - {fileID: 11400000, guid: a9fa2e8c2bbbae24f917c47fb68000ec, type: 2}
+  - {fileID: 11400000, guid: 437bfe77f9b1c4440830eab0bc3238f3, type: 2}
+  - {fileID: 11400000, guid: 01c404955edcb4d4a9d6f962f0edb40d, type: 2}
+  - {fileID: 11400000, guid: e1d1eec4904822245b1c27b7c28f2b3c, type: 2}
+  - {fileID: 11400000, guid: 95ba0b168593b5f4bbf604b06648dbd0, type: 2}
+  - {fileID: 11400000, guid: 14033ba07975f784b96790939c940f2c, type: 2}
+  - {fileID: 11400000, guid: 8b80d6338f48a3d45965a3066193814b, type: 2}
   Stage01FollowEvents:
   - {fileID: 11400000, guid: 83e64411448a60c47ad566b892b1004a, type: 2}
   - {fileID: 11400000, guid: fade2176cccef5842bfa57f4732698d0, type: 2}
@@ -49389,8 +49416,49 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 09e1f68a45b9c65429300770d4e143da, type: 2}
   - {fileID: 11400000, guid: e9506038f0d017740a9561130d48287e, type: 2}
   - {fileID: 11400000, guid: fb536533c8c9af04481bbbe702aa8546, type: 2}
-  Stage02FollowEvents: []
-  Stage03FollowEvents: []
+  Stage02FollowEvents:
+  - {fileID: 11400000, guid: 43b0f7be0b485bf4e819e3947ab1f146, type: 2}
+  - {fileID: 11400000, guid: 40ba88a9c9deaad44b6897b682ce39c9, type: 2}
+  - {fileID: 11400000, guid: 071bb0b65b98cbf4eb11ff48bf539b6d, type: 2}
+  - {fileID: 11400000, guid: ec0bbfabf5c790a4bb671142aaf60beb, type: 2}
+  - {fileID: 11400000, guid: f8632c6836cdd844396f10704841ed17, type: 2}
+  - {fileID: 11400000, guid: 32318a8fe5ae36f45aa513421a59689e, type: 2}
+  - {fileID: 11400000, guid: cf2876e0c3977f240bd048f3722a3c94, type: 2}
+  - {fileID: 11400000, guid: 0fa4f7ab1c4057040945965179b20cd6, type: 2}
+  - {fileID: 11400000, guid: d56a656caa082f04ab60d59e6cf16b92, type: 2}
+  - {fileID: 11400000, guid: f3679235bed31b644a7fb2ac12a5ce0d, type: 2}
+  - {fileID: 11400000, guid: ac770762f56870847a03cea8d11368d0, type: 2}
+  - {fileID: 11400000, guid: fd11955f0175f8649904339a9064e926, type: 2}
+  - {fileID: 11400000, guid: 128bcaec56bc80c4eb3e61a187cc0f61, type: 2}
+  - {fileID: 11400000, guid: 4f4082bed04159349a44a55ccd15b246, type: 2}
+  - {fileID: 11400000, guid: a79c1ed3e5a0ce446ba93ce45d70b26d, type: 2}
+  - {fileID: 11400000, guid: 23568f3e6d41c3e448e1872d197d2d66, type: 2}
+  - {fileID: 11400000, guid: f9080796d19bb9e4293c404c895f1b07, type: 2}
+  - {fileID: 11400000, guid: 25c5c1afa55ca634cb77f256b25f0a3d, type: 2}
+  - {fileID: 11400000, guid: 5cf460d6668274f40a1b47e35f31b712, type: 2}
+  - {fileID: 11400000, guid: 3fa7b7b02cb0af34e99f864a1aecc9c0, type: 2}
+  - {fileID: 11400000, guid: 22b774eb6f2bdb5418d5a959b95c2d38, type: 2}
+  - {fileID: 11400000, guid: b993e0af8ed09054bb71084ec9e47479, type: 2}
+  - {fileID: 11400000, guid: c98f9665a9b344f41b78c6f913dab5e4, type: 2}
+  - {fileID: 11400000, guid: 02d8b45537def1743a12726d181fe063, type: 2}
+  Stage03FollowEvents:
+  - {fileID: 11400000, guid: 90583e3d80a2e3540a20640efc406f9b, type: 2}
+  - {fileID: 11400000, guid: 353250a83fc3ca842ae0294727c4906e, type: 2}
+  - {fileID: 11400000, guid: 015738ba0e0a34340bb0c8acca8a83ac, type: 2}
+  - {fileID: 11400000, guid: 0a86f2389b4769841a8fc523108fff12, type: 2}
+  - {fileID: 11400000, guid: 24ba712235c7f344a9eea14349ecf6e1, type: 2}
+  - {fileID: 11400000, guid: cfa5688ef8b08f24883c0d042ab60451, type: 2}
+  - {fileID: 11400000, guid: fd020d55115b0024d812ca3f0a6cdfcd, type: 2}
+  - {fileID: 11400000, guid: f499ac4577f75804a9f72282d9d5b7c8, type: 2}
+  - {fileID: 11400000, guid: feed9f446258a714483894cacedbfacc, type: 2}
+  - {fileID: 11400000, guid: 4f68992d16f87664b9be98a5e244e6d7, type: 2}
+  - {fileID: 11400000, guid: d933f20f43e90a64ea30018d9c0b6fd1, type: 2}
+  - {fileID: 11400000, guid: 04b4f6034827d924e8229444386630f9, type: 2}
+  - {fileID: 11400000, guid: 9726cc5fa069b15429780740db5f99fc, type: 2}
+  - {fileID: 11400000, guid: 1220e9471438ab04b8f0d3344b3c9f6e, type: 2}
+  - {fileID: 11400000, guid: c9d5b1eab305cd0489007a2326df5a71, type: 2}
+  - {fileID: 11400000, guid: a73978ce1a1f3324fbdf9039f049b931, type: 2}
+  - {fileID: 11400000, guid: ad8d03e707b19ce46b99dad05af8332b, type: 2}
   Stage04FollowEvents: []
 --- !u!1 &857333636
 GameObject:
@@ -57860,7 +57928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5aa5dcb57c8673e49a305cc2458c0da2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e667b1f223bbb8749b7dccc8d2309b45, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -8,7 +8,6 @@ public class LinkageEventDetailAction
     //---------------------------------Event8000
     public int Event8000(int ButtonType, int StageAverageReward,PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
     {
-        Debug.Log("IsInHere");
         //0. Æò±Õº¸»ó * 3, bk + 1
         //1. bk - 1
         //2. -Æò±Õº¸»ó bk - 2
