@@ -203,6 +203,20 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
 
+        if(JsonReadWriteManager.Instance.LkEv_Info.TradeWithDevil >= 1)
+        {
+            PlayerTotalState.WithOutBuffSTR += JsonReadWriteManager.Instance.LkEv_Info.TradeWithDevil;
+        }
+
+        if(JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson == true)
+        {
+            PlayerTotalState.WithOutBuffSTR += 1;
+            PlayerTotalState.WithOutBuffDUR += 1;
+            PlayerTotalState.WithOutBuffRES += 1;
+            PlayerTotalState.WithOutBuffSPD += 1;
+            PlayerTotalState.WithOutBuffLUK += 1;
+        }
+
         PlayerTotalState.TotalSTR = PlayerTotalState.WithOutBuffSTR;
         PlayerTotalState.TotalDUR = PlayerTotalState.WithOutBuffDUR;
         PlayerTotalState.TotalRES = PlayerTotalState.WithOutBuffRES;
@@ -435,6 +449,21 @@ public class PlayerScript : MonoBehaviour
         {
             PlayerBuff.BuffList[(int)EBuffType.Luck] += 3;
             JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony -= 1;
+        }
+        if(JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Regen >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 3;
+            JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Regen -= 1;
+        }
+        if(JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Poison >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Poison] += 5;
+            JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Poison -= 1;
+        }
+        if(JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Poison] += JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin;
+            JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin -= 1;
         }
     }
     protected void SetInitBuffByEquipmnet()

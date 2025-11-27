@@ -645,11 +645,150 @@ public class EventManager : MonoBehaviour
     }
     protected void Stage02ThemeEvent(int ButtonType)
     {
-
+        Stage02EventDetailAction Stage02Event = new Stage02EventDetailAction();
+        int FollowEventCode = 0;
+        int CurrentStageReward = (int)StageAverageRward[PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor - 1];
+        switch (CurrentEvent.EventCode)
+        {
+            case 2000:
+                FollowEventCode = Stage02Event.Event2000(ButtonType, PlayerMgr, UIMgr);
+                break;
+            case 2001:
+                FollowEventCode = Stage02Event.Event2001(ButtonType, PlayerMgr, UIMgr);
+                break;
+            case 2002:
+                FollowEventCode = Stage02Event.Event2002(ButtonType, PlayerMgr, UIMgr);
+                break;
+            case 2003:
+                FollowEventCode = Stage02Event.Event2003(ButtonType, PlayerMgr, UIMgr);
+                break;
+            case 2004:
+                FollowEventCode = Stage02Event.Event2004(ButtonType, PlayerMgr, UIMgr);
+                break;
+            case 2006:
+                FollowEventCode = Stage02Event.Event2006(ButtonType);
+                break;
+            case 2010:
+                FollowEventCode = Stage02Event.Event2010(ButtonType);
+                break;
+            case 2020:
+                FollowEventCode = Stage02Event.Event2020(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                break;
+            case 2021:
+                FollowEventCode = Stage02Event.Event2021(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                break;
+            case 2022:
+                FollowEventCode = Stage02Event.Event2022(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                break;
+            case 2025:
+                Stage02Event.Event2025(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2030:
+                FollowEventCode = Stage02Event.Event2030(PlayerMgr);
+                break;
+            case 2032:
+                Stage02Event.Event2032(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2040:
+                FollowEventCode = Stage02Event.Event2040(PlayerMgr);
+                break;
+            case 2043:
+                Stage02Event.Event2043(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2050:
+                FollowEventCode = Stage02Event.Event2050(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                break;
+            case 2051:
+            case 2054:
+                Stage02Event.Event2051(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2005:
+            case 2007:
+            case 2011:
+            case 2012:
+            case 2013:
+            case 2023:
+            case 2024:
+            case 2031:
+            case 2041:
+            case 2042:
+            case 2052:
+            case 2053:
+                CommonFollowEvent();
+                break;
+        }
+        if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
+            return;
+        else if (FollowEventStorage.ContainsKey(FollowEventCode))
+        {
+            CurrentEvent = FollowEventStorage[FollowEventCode];
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            UIMgr.E_UI.ActiveEventUI(this);
+        }
+        else if (FollowEventCode == 2000)
+        {
+            for(int i = 0; i < EventStorage[2].Count; i++)
+            {
+                if (EventStorage[2][i].EventCode == 2000)
+                {
+                    CurrentEvent = EventStorage[2][i];
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    UIMgr.E_UI.ActiveEventUI(this);
+                }
+            }
+        }
     }
     protected void Stage03ThemeEvent(int ButtonType)
     {
+        Stage03EventDetailAction Stage03Event = new Stage03EventDetailAction();
+        int FollowEventCode = 0;
+        int CurrentStageReward = (int)StageAverageRward[PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor - 1];
 
+        switch(CurrentEvent.EventCode)
+        {
+            case 3000:
+                FollowEventCode = Stage03Event.Event3000(ButtonType);
+                break;
+            case 3010:
+                FollowEventCode = Stage03Event.Event3010(ButtonType, PlayerMgr);
+                break;
+            case 3020:
+                FollowEventCode = Stage03Event.Event3020();
+                break;
+            case 3021:
+                Stage03Event.Event3021(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 3001:
+            case 3002:
+            case 3003:
+            case 3011:
+            case 3012:
+            case 3013:
+            case 3014:
+                CommonFollowEvent();
+                break;
+        }
+
+        if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
+            return;
+        else if (FollowEventStorage.ContainsKey(FollowEventCode))
+        {
+            CurrentEvent = FollowEventStorage[FollowEventCode];
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            UIMgr.E_UI.ActiveEventUI(this);
+        }
+        else if (FollowEventCode == 2000)
+        {
+            for (int i = 0; i < EventStorage[2].Count; i++)
+            {
+                if (EventStorage[2][i].EventCode == 2000)
+                {
+                    CurrentEvent = EventStorage[2][i];
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    UIMgr.E_UI.ActiveEventUI(this);
+                }
+            }
+        }
     }
     protected void Stage04ThemeEvent(int ButtonType)
     {

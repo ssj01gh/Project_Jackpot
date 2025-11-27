@@ -66,6 +66,7 @@ public class OptionInfo
 [System.Serializable]
 public class LinkageEventInfo
 {
+    public int TradeWithDevil;
     public bool TalkingMonster;
     public bool TalkingDirtGolem;
     public bool TotoRepayFavor;
@@ -76,4 +77,13 @@ public class LinkageEventInfo
     public bool CleanOminousSword;
     public int PowwersCeremony;
     public int GreatDevilKillCount;
+    public bool ForestBracelet;
+    public int ForestHut_Regen;
+    public int ForestHut_Poison;
+    public bool ML_GKPerson;
+    public bool ML_NorPerson;
+    public bool ML_BKPerson;
+    public int LetTheGameBegin;
+    public bool Lab_Security;
+    public bool Lab_Sphere;
 }

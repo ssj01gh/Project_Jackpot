@@ -34,7 +34,7 @@ public class CommonEventDetailAction
 
                 return 9001;
             case 2:
-                PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("STR", 2);
+                JsonReadWriteManager.Instance.LkEv_Info.TradeWithDevil += 2;
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
 
                 return 9001;

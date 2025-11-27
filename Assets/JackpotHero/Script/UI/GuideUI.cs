@@ -12,6 +12,7 @@ public enum EGuideMessage
     NotEnoughSTAMessage_RestQuality,
     NotEnoughEXP_PlayerUpgrade,
     NotEnoughEXP_ForgeEvent,
+    NoEnoughEnergy_FoggedForest,
 }
 
 public class GuideUI : MonoBehaviour
@@ -59,6 +60,10 @@ public class GuideUI : MonoBehaviour
                 break;
             case (int)EGuideMessage.NotEnoughEXP_ForgeEvent:
                 GuideMessageText.text = "경험치가 부족합니다.";
+                StartCoroutine(CountSeconds());
+                break;
+            case (int)EGuideMessage.NoEnoughEnergy_FoggedForest:
+                GuideMessageText.text = "안개 낀 숲을 탐색할 피로도가 부족합니다.";
                 StartCoroutine(CountSeconds());
                 break;
             default:

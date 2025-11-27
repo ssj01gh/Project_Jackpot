@@ -124954,6 +124954,11 @@ MonoBehaviour:
   EventSpawnPatternSO:
   - {fileID: 11400000, guid: 02b8e5c0d23c77847a2496a5f46d3979, type: 2}
   - {fileID: 11400000, guid: 60eea560d26fb8242816e0a6e51562c0, type: 2}
+  - {fileID: 11400000, guid: 085909fdb1b46b544872ffcfe09d1446, type: 2}
+  - {fileID: 11400000, guid: ae24fa5e03fb0e148aa50282284dff5b, type: 2}
+  - {fileID: 11400000, guid: 162753d024a500448bdddb1650f41481, type: 2}
+  - {fileID: 11400000, guid: 87437628a26b95443bb2fb57086ca42c, type: 2}
+  - {fileID: 11400000, guid: cbab5e25897182f408ff1c412b213c4b, type: 2}
 --- !u!1 &2112544618
 GameObject:
   m_ObjectHideFlags: 0
