@@ -66,6 +66,7 @@ public class OptionInfo
 [System.Serializable]
 public class LinkageEventInfo
 {
+    public bool IsMeetTalkingMonster;
     public int TradeWithDevil;
     public bool TalkingMonster;
     public bool TalkingDirtGolem;
@@ -86,4 +87,5 @@ public class LinkageEventInfo
     public int LetTheGameBegin;
     public bool Lab_Security;
     public bool Lab_Sphere;
+    public bool ReadyForBattle;
 }

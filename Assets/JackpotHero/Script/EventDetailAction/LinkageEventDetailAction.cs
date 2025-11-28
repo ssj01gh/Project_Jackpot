@@ -274,4 +274,84 @@ public class LinkageEventDetailAction
         }
         return 8100;
     }
+    //--------------------------------------------Event8110
+    public int Event8110(PlayerManager PlayerMgr)
+    {
+        int RandomSTA = Random.Range(-150, 151);
+        PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
+        SoundManager.Instance.PlaySFX("Buff_Healing");
+        return 8111;
+    }
+    //--------------------------------------------Event8120
+    public int Event8120()
+    {
+        return 8121;
+    }
+    //--------------------------------------------Event8130
+    public int Event8130()
+    {
+        return 8131;
+    }
+    //--------------------------------------------Event8140
+    public int Event8140(int ButtonType, PlayerManager PlayerMgr)
+    {
+        //0. 전투개시                           8141
+        //1. 체력, 피로도 소 회복           8142
+        int RandomHP = Random.Range(-15, 16);
+        int RandomSTA = Random.Range(-150, 151);
+        switch (ButtonType)
+        {
+            case 0:
+                return 8141;
+            case 1:
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
+                SoundManager.Instance.PlaySFX("Buff_Healing");
+                return 8142;
+        }
+
+        return 8140;
+    }
+    public void Event8141(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
+    {
+        int CurrentEventMonsterSpawnPatternCode = 3300;//이런것도 바끼어야 할려나
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
+        PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
+        UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
+        BattleMgr.InitCurrentBattleMonsters();
+        BattleMgr.InitMonsterNPlayerActiveGuage();
+        BattleMgr.ProgressBattle();
+    }
+    //--------------------------------------------Event8150
+    public int Event8150(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    {
+        //0. 전투                 8151
+        //1. 이탈                 8152
+        //2. 경험치 중          8153
+        int RandomReward = Random.Range(-(StageAverageReward / 2), (StageAverageReward / 2) + 1);
+        switch(ButtonType)
+        {
+            case 0:
+                return 8151;
+            case 1:
+                return 8152;
+            case 2:
+                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount((StageAverageReward * 2) + RandomReward);
+                UIMgr.GI_UI.ActiveGettingUI(0, true);
+                return 8153;
+        }
+        return 8150;
+    }
+    public void Event8151(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
+    {
+        int CurrentEventMonsterSpawnPatternCode = 3301;//이런것도 바끼어야 할려나
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
+        PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
+        UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
+        BattleMgr.InitCurrentBattleMonsters();
+        BattleMgr.InitMonsterNPlayerActiveGuage();
+        BattleMgr.ProgressBattle();
+    }
 }

@@ -184,6 +184,21 @@ public class EventManager : MonoBehaviour
             return;
         }
 
+        if(JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster == false)
+        {//한번도 만나지 못했다면
+            for(int i = 0;  i < EventStorage[EventTheme].Count; i++)
+            {
+                if (EventStorage[EventTheme][i].EventCode == 9020)
+                {
+                    CurrentEvent = EventStorage[EventTheme][i];
+                    P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster = true;
+                    JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+                    return;
+                }
+            }
+        }
+
         //DetailOfEvents는 1000 ~ 로 됨 1테마라면 1000~ 2테마 라면 2000~식이다
         if (DetailOfEvents != 0)//이벤트가 결정된 상태로 게임을 껏다 켰으면
         {
@@ -362,6 +377,35 @@ public class EventManager : MonoBehaviour
                     else
                         FindNChangeEvent(8070);
                     
+                }
+                break;
+            case 2000:
+                if(JsonReadWriteManager.Instance.LkEv_Info.ForestBracelet == true)
+                {
+                    FindNChangeEvent(8110);
+                }
+                break;
+            case 2040:
+                if(JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson == true || 
+                    JsonReadWriteManager.Instance.LkEv_Info.ML_NorPerson == true)
+                {//선 혹은 중립일때
+                    FindNChangeEvent(8120);
+                }
+                else if(JsonReadWriteManager.Instance.LkEv_Info.ML_BKPerson == true)
+                {//악일때
+                    FindNChangeEvent(8130);
+                }
+                break;
+            case 3020:
+                if(JsonReadWriteManager.Instance.LkEv_Info.Lab_Security == true)
+                {
+                    FindNChangeEvent(8140);
+                }
+                break;
+            case 3040:
+                if(JsonReadWriteManager.Instance.LkEv_Info.Lab_Sphere == true)
+                {
+                    FindNChangeEvent(8150);
                 }
                 break;
         }
@@ -551,6 +595,27 @@ public class EventManager : MonoBehaviour
             case 8100:
                 FollowEventCode = LinkageEvent.Event8100(ButtonType, PlayerMgr);
                 break;
+            case 8110:
+                FollowEventCode = LinkageEvent.Event8110(PlayerMgr);
+                break;
+            case 8120:
+                FollowEventCode = LinkageEvent.Event8120();
+                break;
+            case 8130:
+                FollowEventCode = LinkageEvent.Event8130();
+                break;
+            case 8140:
+                FollowEventCode = LinkageEvent.Event8140(ButtonType, PlayerMgr);
+                break;
+            case 8141:
+                LinkageEvent.Event8141(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 8150:
+                FollowEventCode = LinkageEvent.Event8150(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                break;
+            case 8151:
+                LinkageEvent.Event8151(PlayerMgr, UIMgr, BattleMgr);
+                break;
             case 8001:
             case 8002:
             case 8003:
@@ -569,6 +634,12 @@ public class EventManager : MonoBehaviour
             case 8081:
             case 8091:
             case 8101:
+            case 8111:
+            case 8121:
+            case 8131:
+            case 8142:
+            case 8152:
+            case 8153:
                 CommonFollowEvent();
                 break;
         }
@@ -758,6 +829,24 @@ public class EventManager : MonoBehaviour
             case 3021:
                 Stage03Event.Event3021(PlayerMgr, UIMgr, BattleMgr);
                 break;
+            case 3030:
+                FollowEventCode = Stage03Event.Event3030(ButtonType, PlayerMgr);
+                break;
+            case 3031:
+                Stage03Event.Event3031(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 3040:
+                FollowEventCode = Stage03Event.Event3040(ButtonType);
+                break;
+            case 3041:
+                Stage03Event.Event3041(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 3050:
+                FollowEventCode = Stage03Event.Event3050(ButtonType);
+                break;
+            case 3060:
+                FollowEventCode = Stage03Event.Event3060(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                break;
             case 3001:
             case 3002:
             case 3003:
@@ -765,6 +854,13 @@ public class EventManager : MonoBehaviour
             case 3012:
             case 3013:
             case 3014:
+            case 3032:
+            case 3042:
+            case 3051:
+            case 3052:
+            case 3061:
+            case 3062:
+            case 3063:
                 CommonFollowEvent();
                 break;
         }

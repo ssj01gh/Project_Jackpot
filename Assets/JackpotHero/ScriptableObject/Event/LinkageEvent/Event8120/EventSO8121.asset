@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EventSO8121
   m_EditorClassIdentifier: 
   EventCode: 8121
-  EventTitle: "\uC815\uCCB4\uBD88\uBA85\uC758 \uC2DC\uC120"
+  EventTitle: "\uC628\uD654\uD55C \uC2DC\uC120"
   EventImage: {fileID: 21300000, guid: 8798bcfa88ad0dd469b6e5988a0e4260, type: 3}
   EventDetail: "\uC2DC\uC120\uC5D0\uC11C \uB290\uAEF4\uC9C0\uB294 \uAE30\uC6B4\uC774
     \uD55C\uCE35 \uB354 \uC628\uD654\uD574\uC84C\uC2B5\uB2C8\uB2E4."

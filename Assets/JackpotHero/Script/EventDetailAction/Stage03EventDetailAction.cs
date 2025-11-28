@@ -74,13 +74,94 @@ public class Stage03EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-----------------------------------------Event3030
-    public int Event3030(int ButtonType)
+    public int Event3030(int ButtonType, PlayerManager PlayerMgr)
     {
-        //0. 전투 개시 gk + 2
-        //1. 이탈
+        //0. 전투 개시 gk + 2 // 3031
+        //1. 이탈                 // 3032
+        switch (ButtonType)
+        {
+            case 0:
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 3;
+                return 3031;
+            case 1:
+                return 3032;
+        }
         return 3030;
     }
+
+    public void Event3031(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
+    {
+        int CurrentEventMonsterSpawnPatternCode = 3150;//이런것도 바끼어야 할려나
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
+        PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
+        UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
+        BattleMgr.InitCurrentBattleMonsters();
+        BattleMgr.InitMonsterNPlayerActiveGuage();
+        BattleMgr.ProgressBattle();
+    }
     //-----------------------------------------Event3040
+    public int Event3040(int ButtonType)
+    {
+        //0. 전투 개시 3041
+        //1. 이탈         3042
+        switch(ButtonType)
+        {
+            case 0:
+                return 3041;
+            case 1:
+                return 3042;
+        }
+        return 3040;
+    }
+    public void Event3041(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
+    {
+        int CurrentEventMonsterSpawnPatternCode = 3301;//이런것도 바끼어야 할려나
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
+        PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
+        UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
+        BattleMgr.InitCurrentBattleMonsters();
+        BattleMgr.InitMonsterNPlayerActiveGuage();
+        BattleMgr.ProgressBattle();
+    }
     //-----------------------------------------Event3050
+    public int Event3050(int ButtonType)
+    {
+        //0. 이탈                                                 3051
+        //1. 마주한다. -> 보스 전투 시작시 도핑 부여   3052
+        switch (ButtonType)
+        {
+            case 0:
+                return 3051;
+            case 1:
+                JsonReadWriteManager.Instance.LkEv_Info.ReadyForBattle = true;
+                return 3052;
+        }
+        return 3050;
+    }
     //-----------------------------------------Event3060
+    public int Event3060(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    {
+        //1.이탈                  //조건에 따라 3061 Or 3063
+        //2. 경험치 상 + bk + 3// 3062
+        int RandomReward = Random.Range(-(StageAverageReward * 3 / 4), (StageAverageReward * 3 / 4) + 1);
+        switch(ButtonType)
+        {
+            case 0:
+                if (JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster == true &&
+                    JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem == true)
+                {//토토의 이름을 알때
+                    return 3063;
+                }
+                else//토토의 이름을 모를때
+                    return 3061;
+            case 1:
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
+                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount((StageAverageReward * 3) + RandomReward);
+                UIMgr.GI_UI.ActiveGettingUI(0, true);
+                return 3062;
+        }
+        return 3060;
+    }
 }

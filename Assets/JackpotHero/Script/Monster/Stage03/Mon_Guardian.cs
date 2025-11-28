@@ -18,6 +18,10 @@ public class Mon_Guardian : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        if(JsonReadWriteManager.Instance.LkEv_Info.ReadyForBattle == true)
+        {
+            MonsterBuff.BuffList[(int)EBuffType.CorruptSerum] = 99;
+        }
         int RandNum = Random.Range(0, 2);
         if(RandNum == 0)
         {

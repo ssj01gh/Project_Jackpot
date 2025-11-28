@@ -27,7 +27,11 @@ public class Mon_Administrator : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
-        
+        if (JsonReadWriteManager.Instance.LkEv_Info.ReadyForBattle == true)
+        {
+            MonsterBuff.BuffList[(int)EBuffType.CorruptSerum] = 99;
+        }
+
         MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
         AdministratorNextAction = (int)EAdministratorState.OverChargeServant;
         
