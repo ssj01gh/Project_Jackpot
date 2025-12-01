@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Stage01EventDetailAction
 {
-    protected int Stage01AverageReward = 28;
     //-------------------------------------------------Event1000
-    public int Event1000(int ButtonType, PlayerManager PlayerMgr)
+    public int Event1000(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //0. 아무일 없음
         //1. 50% 체력 +30 50% 체력 -30
+        Getting = "";
+        Losing = "";
         int RandomHP = Random.Range(-15, 16);
         switch (ButtonType)
         {
@@ -20,12 +21,14 @@ public class Stage01EventDetailAction
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
                 {//독초
+                    Losing = "체력 소모 : " + (30 + RandomHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandomHP);
                     SoundManager.Instance.PlaySFX("Buff_Consume");
                     return 1002;
                 }
                 else if(Rand == 1)
                 {//약초
+                    Getting = "체력 회복 : " + (30 + RandomHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     return 1003;
@@ -35,10 +38,12 @@ public class Stage01EventDetailAction
         return 1000;
     }
     //-------------------------------------------------Event1010
-    public int Event1010(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event1010(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0. 아무일 없음
         //1. 50% 경험치 56/ 50% 전투
+        Getting = "";
+        Losing = "";
         switch(ButtonType)
         {
             case 0:
@@ -48,9 +53,10 @@ public class Stage01EventDetailAction
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
                 {//기습성공
-                    int RewardRange = (int)(Stage01AverageReward / 4);
-                    PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(Stage01AverageReward + Random.Range(-RewardRange, RewardRange +1));
-
+                    int RewardRange = (int)(StageAverageReward / 4);
+                    int RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
+                    Getting = "경험치 획득 : " + RandomReward.ToString();
+                    PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                     UIMgr.GI_UI.ActiveGettingUI(0, true);
                     return 1012;
                 }
@@ -74,11 +80,13 @@ public class Stage01EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-------------------------------------------------Event1020
-    public int Event1020(int ButtonType, PlayerManager PlayerMgr)
+    public int Event1020(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //0. 앞으로 2번의 전투동안 행운 3 부여 50% // 전투 50%
         //1. 주술사와 전투
         //2. 아무일 없음
+        Getting = "";
+        Losing = "";
         switch(ButtonType)
         {
             case 0:
@@ -87,6 +95,7 @@ public class Stage01EventDetailAction
                 {//훔치기 성공
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                     JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony = 2;
+                    Getting = "전투 2회 동안 전투 시작시 행운 3스택 보유";
                     return 1021;
                 }
                 else
@@ -112,10 +121,12 @@ public class Stage01EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-------------------------------------------------Event1030
-    public int Event1030(int ButtonType, PlayerManager PlayerMgr)
+    public int Event1030(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //0. 힘, 내구, 속도 중 레벨 낮은거 1렙업, 피로도 -300
         //1. 전투
+        Getting = "";
+        Losing = "";
         int RandSTA = Random.Range(-150, 151);
         switch(ButtonType)
         {
@@ -127,14 +138,17 @@ public class Stage01EventDetailAction
                 int SmallestLevel = Mathf.Min(STRLevel, DURLevel, SPDLevel);
                 if(SmallestLevel == STRLevel)
                 {
+                    Getting = "힘 레벨 1 상승";
                     PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("STR", 1);
                 }
                 else if(SmallestLevel == DURLevel)
                 {
+                    Getting = "내구 레벨 1 상승";
                     PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("DUR", 1);
                 }
                 else if(SmallestLevel == SPDLevel)
                 {
+                    Getting = "속도 레벨 1 상승";
                     PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("SPD", 1);
                 }
                 return 1031;
@@ -156,30 +170,36 @@ public class Stage01EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-------------------------------------------------Event1040
-    public int Event1040(int ButtonType, PlayerManager PlayerMgr)
+    public int Event1040(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //0. 피로도 300회복
         //2. 탐색 수치 증가
+        Getting = "";
+        Losing = "";
         int RandSTA = Random.Range(-150, 151);
         switch (ButtonType)
         {
             case 0:
+                Getting = "피로도 회복 : " + (300 + RandSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 1041;
             case 1:
-                //1 ~ 7 까지중 랜덤으로
-                int RandomIncrease = Random.Range(1, 8);
+                //1 ~ 20 까지중 랜덤으로
+                int RandomIncrease = Random.Range(1, 20);
+                Getting = "탐색도 상승 : " + RandomIncrease.ToString();
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandomIncrease;
                 return 1042;
         }
         return 1040;
     }
     //-------------------------------------------------Event1050
-    public int Event1050(int ButtonType, PlayerManager PlayerMgr)
+    public int Event1050(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //0. 50% 체력 소모30 // 50% 피로도 회복 300
         //1. 피로도 소모 300
+        Getting = "";
+        Losing = "";
         int RandHP = Random.Range(-15, 16);
         int RandSTA = Random.Range(-150, 151);
         switch(ButtonType)
@@ -188,16 +208,19 @@ public class Stage01EventDetailAction
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
                 {//부딪힘
+                    Losing = "체력 소모 : " + (30 + RandHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandHP);
                     return 1051;
                 }
                 else
                 {//안부딪힘
+                    Getting = "피로도 회복 : " + (300 + RandSTA).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandSTA);
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     return 1052;
                 }
             case 1:
+                Losing = "피로도 소모 : " + (300 + RandSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandSTA);
                 return 1053;
         }

@@ -15,7 +15,7 @@ MonoBehaviour:
   EventCode: 2004
   EventTitle: "\uC0DD\uBA85\uC774 \uB290\uAEF4\uC9C0\uB294 \uC232"
   EventImage: {fileID: 21300000, guid: bfc6e98c11c03a649a13748d9b12a0e8, type: 3}
-  EventDetail: "\uB118\uCE58\uB294 \uC0DD\uBA85 \uB290\uAEF4\uC9C0\uB294 \uD314\uCC0C\uAC00
-    \uB098\uBB34\uC5D0 \uAC78\uB824\uC788\uC2B5\uB2C8\uB2E4."
+  EventDetail: "<color=red>{Losing}</color>\n\uB118\uCE58\uB294 \uC0DD\uBA85 \uB290\uAEF4\uC9C0\uB294
+    \uD314\uCC0C\uAC00 \uB098\uBB34\uC5D0 \uAC78\uB824\uC788\uC2B5\uB2C8\uB2E4."
   EventSelectionDetail:
   - "\uD314\uCC0C\uB97C \uCC59\uAE34\uB2E4."

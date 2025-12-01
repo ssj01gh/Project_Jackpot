@@ -15,7 +15,8 @@ MonoBehaviour:
   EventCode: 1041
   EventTitle: "\uC2DC\uC6D0\uD55C \uD734\uC2DD"
   EventImage: {fileID: 21300000, guid: 12dbb4f76765df3418a5e36b91084149, type: 3}
-  EventDetail: "\uC88B\uC740 \uADF8\uB298\uC5D0\uC11C \uCDA9\uBD84\uD55C \uD734\uC2DD\uC744
-    \uCDE8\uD588\uC2B5\uB2C8\uB2E4.\n\uD53C\uB85C\uAC00 \uD480\uB838\uC2B5\uB2C8\uB2E4."
+  EventDetail: "<color=green>{Getting}</color>\n\uC88B\uC740 \uADF8\uB298\uC5D0\uC11C
+    \uCDA9\uBD84\uD55C \uD734\uC2DD\uC744 \uCDE8\uD588\uC2B5\uB2C8\uB2E4.\n\uD53C\uB85C\uAC00
+    \uD480\uB838\uC2B5\uB2C8\uB2E4."
   EventSelectionDetail:
   - "\uADF8\uB298\uC744 \uB5A0\uB098\uB2E4."

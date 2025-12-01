@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stage03EventDetailAction
 {
     //-----------------------------------------Event3000
-    public int Event3000(int ButtonType)
+    public int Event3000(int ButtonType, ref string Getting, ref string Losing)
     {
         //0.1. 0과 1은 상관없은 50% 독X 50% 독 10
         //2. 독 5
@@ -33,7 +33,7 @@ public class Stage03EventDetailAction
         return 3000;
     }
     //-----------------------------------------Event3010
-    public int Event3010(int ButtonType, PlayerManager PlayerMgr)
+    public int Event3010(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //0.JsonEvent 등록 보안체계 // 3011
         //1. 피로 회복 + 소 // 3012
@@ -126,7 +126,7 @@ public class Stage03EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-----------------------------------------Event3050
-    public int Event3050(int ButtonType)
+    public int Event3050(int ButtonType, ref string Getting, ref string Losing)
     {
         //0. 이탈                                                 3051
         //1. 마주한다. -> 보스 전투 시작시 도핑 부여   3052
@@ -141,7 +141,7 @@ public class Stage03EventDetailAction
         return 3050;
     }
     //-----------------------------------------Event3060
-    public int Event3060(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event3060(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //1.이탈                  //조건에 따라 3061 Or 3063
         //2. 경험치 상 + bk + 3// 3062

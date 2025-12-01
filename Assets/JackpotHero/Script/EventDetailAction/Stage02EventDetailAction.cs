@@ -5,14 +5,17 @@ using UnityEngine;
 public class Stage02EventDetailAction
 {
     //-----------------------------------------Event2000
-    public int Event2000(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2000(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0. 피로도 +300 +-150 -> 이벤트 2005로
         //1. 피로도 -300 +-150 -> 이벤트 2001로
+        Getting = "";
+        Losing = "";
         int RandomSTA = Random.Range(-150, 151);
         switch(ButtonType)
         {
             case 0:
+                Getting = "피로도 회복 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 2005;
@@ -22,21 +25,25 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2000;
                 }
+                Losing = "피로도 소모 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 return 2001;
         }    
 
         return 2000;
     }
-    public int Event2001(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2001(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0. 피로도 +300 +-150 -> 이벤트 2005로
         //1. 피로도 -300 +-150 -> 50% 이벤트 2006로 50% 2002로
+        Getting = "";
+        Losing = "";
         int RandomSTA = Random.Range(-150, 151);
         int RandomPath = Random.Range(0, 2);//0~1
         switch (ButtonType)
         {
             case 0:
+                Getting = "피로도 회복 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 2005;
@@ -46,6 +53,7 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2001;
                 }
+                Losing = "피로도 소모 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 if (RandomPath == 0)//0걸리면 2002
                 {
@@ -58,15 +66,18 @@ public class Stage02EventDetailAction
         }
         return 2001;
     }
-    public int Event2002(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2002(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0. 피로도 +300 +-150 -> 이벤트 2005로
         //1. 피로도 -300 +-150 -> 75% 이벤트 2006로 25% 2003로
+        Getting = "";
+        Losing = "";
         int RandomSTA = Random.Range(-150, 151);
         int RandomPath = Random.Range(0, 4);//0~3
         switch (ButtonType)
         {
             case 0:
+                Getting = "피로도 회복 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 2005;
@@ -76,6 +87,7 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2002;
                 }
+                Losing = "피로도 소모 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 if (RandomPath == 0)
                 {//이거 걸리면 2003
@@ -88,15 +100,18 @@ public class Stage02EventDetailAction
         }
         return 2002;
     }
-    public int Event2003(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2003(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0. 피로도 +300 +-150 -> 이벤트 2005로
         //1. 피로도 -300 +-150 -> 90% 이벤트 2006로 10% 2004로
+        Getting = "";
+        Losing = "";
         int RandomSTA = Random.Range(-150, 151);
         int RandomPath = Random.Range(0, 10);//0 ~ 9
         switch (ButtonType)
         {
             case 0:
+                Getting = "피로도 회복 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 2005;
@@ -106,6 +121,7 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2003;
                 }
+                Losing = "피로도 소모 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 if (RandomPath == 0)
                 {//이거 걸리면 2004
@@ -118,9 +134,11 @@ public class Stage02EventDetailAction
         }
         return 2002;
     }
-    public int Event2004(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2004(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0. 장비 획득 -> 이벤트 2007로
+        Getting = "";
+        Losing = "";
         int ForestBukelt = 26044;
         switch (ButtonType)
         {
@@ -130,14 +148,10 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2004;
                 }
-                switch (ButtonType)
-                {
-                    case 0:
-                        PlayerMgr.GetPlayerInfo().PutEquipmentToInven(ForestBukelt);
-                        UIMgr.GI_UI.ActiveGettingUI(ForestBukelt);
-                        JsonReadWriteManager.Instance.LkEv_Info.ForestBracelet = true;
-                        return 2007;
-                }
+                Getting = "장비 획득 : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(ForestBukelt).EquipmentName;
+                PlayerMgr.GetPlayerInfo().PutEquipmentToInven(ForestBukelt);
+                UIMgr.GI_UI.ActiveGettingUI(ForestBukelt);
+                JsonReadWriteManager.Instance.LkEv_Info.ForestBracelet = true;
                 return 2007;
         }
         return 2002;
@@ -153,9 +167,11 @@ public class Stage02EventDetailAction
         return 2006;
     }
     //-----------------------------------------Event2010
-    public int Event2010(int ButtonType)
+    public int Event2010(int ButtonType, ref string Getting, ref string Losing)
     {
         //0.다시 2000으로
+        Getting = "";
+        Losing = "";
         int RandNum = Random.Range(0, 2);//0~1
         switch (ButtonType)
         {
@@ -164,12 +180,14 @@ public class Stage02EventDetailAction
             case 0:
                 if(RandNum == 0)//재생
                 {
+                    Getting = "전투 2회 동안 전투 시작시 재생 3스택 보유";
                     JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Regen = 2;
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     return 2011;
                 }
                 else//독
                 {
+                    Losing = "전투 2회 동안 전투 시작시 독 5스택 보유";
                     JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Poison = 2;
                     SoundManager.Instance.PlaySFX("Buff_Consume");
                     return 2012;
@@ -180,7 +198,7 @@ public class Stage02EventDetailAction
         return 2010;
     }
     //-----------------------------------------Event2020
-    public int Event2020(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2020(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0.75% 경험치 +하 +- 하 / 4 2021 25% 전투 2025
         //1.그냥 탐색 2024
@@ -207,7 +225,7 @@ public class Stage02EventDetailAction
         }
         return 2020;
     }
-    public int Event2021(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2021(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0.50% 경험치 +하 +- 하 / 4 2022 50% 전투 2025
         //1.그냥 탐색 2023
@@ -234,7 +252,7 @@ public class Stage02EventDetailAction
         }
         return 2021;
     }
-    public int Event2022(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2022(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0.25% 경험치 +하 +- 하 / 4 2022 75% 전투 2025
         //1.그냥 탐색 2023
@@ -273,7 +291,7 @@ public class Stage02EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-----------------------------------------Event2030
-    public int Event2030(PlayerManager PlayerMgr)
+    public int Event2030(PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //버튼 뭘 누르던 상관 없이 33%확률로 전투 2032 // 회복 = 2031
         int RandomNum = Random.Range(0, 3);//0~2
@@ -303,12 +321,13 @@ public class Stage02EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-----------------------------------------Event2040
-    public int Event2040(PlayerManager PlayerMgr)
+    public int Event2040(PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //누를수 있는 버튼은 1개밖에 없음, 플레이어의 Gk와 BK 수치에 따라 이벤트 연계가 달라짐
         int PlayerGKP = (int)PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma;
         int PlayerBKP = (int)PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma;
         JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson = false;
+        JsonReadWriteManager.Instance.LkEv_Info.ML_NorPerson = false;
         JsonReadWriteManager.Instance.LkEv_Info.ML_BKPerson = false;
         if (PlayerGKP - PlayerBKP >= 3)
         {//선인//2041
@@ -339,7 +358,7 @@ public class Stage02EventDetailAction
         BattleMgr.ProgressBattle();
     }
     //-----------------------------------------Event2050
-    public int Event2050(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
+    public int Event2050(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0.거인과 전투 gk + 3 // 2051 // 조건 만족시 2054
         //1.그냥 이탈               // 2052
