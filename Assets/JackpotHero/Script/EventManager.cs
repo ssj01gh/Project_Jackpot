@@ -35,7 +35,9 @@ public class EventManager : MonoBehaviour
     private readonly float[] StageAverageRward = new float[4] { 28, 101, 313, 816 };
     public EventSO CurrentEvent { protected set; get; }
 
+    [HideInInspector]
     public string Getting = "";
+    [HideInInspector]
     public string Losing = "";
     private void Awake()
     {
@@ -413,6 +415,18 @@ public class EventManager : MonoBehaviour
                     FindNChangeEvent(8150);
                 }
                 break;
+            case 2050:
+                if(JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingGiant == true)
+                {
+                    FindNChangeEvent(8160);
+                }
+                break;
+            case 3060:
+                if(JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingDopple == true)
+                {
+                    FindNChangeEvent(8170);
+                }
+                break;
         }
     }
 
@@ -621,6 +635,12 @@ public class EventManager : MonoBehaviour
             case 8151:
                 LinkageEvent.Event8151(PlayerMgr, UIMgr, BattleMgr);
                 break;
+            case 8160:
+                FollowEventCode = LinkageEvent.Event8160(ButtonType, PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 8170:
+                FollowEventCode = LinkageEvent.Event8170(ButtonType, PlayerMgr, ref Getting, ref Losing);
+                break;
             case 8001:
             case 8002:
             case 8003:
@@ -645,6 +665,10 @@ public class EventManager : MonoBehaviour
             case 8142:
             case 8152:
             case 8153:
+            case 8161:
+            case 8162:
+            case 8171:
+            case 8172:
                 CommonFollowEvent();
                 break;
         }
@@ -794,7 +818,15 @@ public class EventManager : MonoBehaviour
                 break;
         }
         if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
+        {
+            if(FollowEventCode == 2022)
+            {
+                CurrentEvent = FollowEventStorage[FollowEventCode];
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                UIMgr.E_UI.ActiveEventUI(this);
+            }
             return;
+        }
         else if (FollowEventStorage.ContainsKey(FollowEventCode))
         {
             CurrentEvent = FollowEventStorage[FollowEventCode];

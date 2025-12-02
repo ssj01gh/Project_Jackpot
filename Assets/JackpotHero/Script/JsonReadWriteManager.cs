@@ -182,10 +182,12 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             LkEv_Info.ML_GKPerson = false;
             LkEv_Info.ML_NorPerson = false;
             LkEv_Info.ML_BKPerson = false;
+            LkEv_Info.IsMeetTalkingGiant = false;
             LkEv_Info.LetTheGameBegin = 0;
             LkEv_Info.Lab_Security = false;
             LkEv_Info.Lab_Sphere = false;
             LkEv_Info.ReadyForBattle = false;
+            LkEv_Info.IsMeetTalkingDopple = false;
 
             string classToJson = JsonUtility.ToJson(LkEv_Info, true);
             File.WriteAllText(path, classToJson);

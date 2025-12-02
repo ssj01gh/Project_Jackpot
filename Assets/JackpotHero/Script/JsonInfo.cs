@@ -84,8 +84,10 @@ public class LinkageEventInfo
     public bool ML_GKPerson;
     public bool ML_NorPerson;
     public bool ML_BKPerson;
+    public bool IsMeetTalkingGiant;
     public int LetTheGameBegin;
     public bool Lab_Security;
     public bool Lab_Sphere;
     public bool ReadyForBattle;
+    public bool IsMeetTalkingDopple;
 }

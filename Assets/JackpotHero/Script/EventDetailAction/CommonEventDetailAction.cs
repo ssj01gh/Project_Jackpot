@@ -41,7 +41,7 @@ public class CommonEventDetailAction
                 Getting = "영구적으로 힘 기초 능력치 2 증가";
                 JsonReadWriteManager.Instance.LkEv_Info.TradeWithDevil += 2;
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
-
+                PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();
                 return 9001;
             case 3:
                 return 9002;

@@ -64,8 +64,8 @@ public class LinkageEventDetailAction
                 {
                     return 8004;
                 }
-                Getting = "장비 획득 : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CursedSword).EquipmentName;
-                Losing = "장비 소모 : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(SmallCursedSword).EquipmentName;
+                Getting = "장비 획득 : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(SmallCursedSword).EquipmentName;
+                Losing = "장비 소모 : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CursedSword).EquipmentName;
                 UIMgr.GI_UI.ActiveGettingUI(SmallCursedSword);
                 JsonReadWriteManager.Instance.LkEv_Info.CleanOminousSword = true;
                 return 8003;
@@ -407,5 +407,52 @@ public class LinkageEventDetailAction
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
+    }
+    //--------------------------------------------Event8160
+    public int Event8160(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
+    {
+        //0. 피로도 회복                 8161
+        //1. 탐색도 상승                 8162
+        Getting = "";
+        Losing = "";
+        int RandomSTA = Random.Range(-150, 151);
+        switch (ButtonType)
+        {
+            case 0:
+                Getting = "피로도 회복 : " + (300 + RandomSTA).ToString();
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
+                SoundManager.Instance.PlaySFX("Buff_Healing");
+                return 8161;
+            case 1:
+                //1 ~ 20 까지중 랜덤으로
+                int RandomIncrease = Random.Range(1, 20);
+                Getting = "탐색도 상승 : " + RandomIncrease.ToString();
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandomIncrease;
+                return 8162;
+        }
+        return 8160;
+    }
+    //--------------------------------------------Event8170
+    public int Event8170(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
+    {
+        //0. 피로도, 체력 회복                 8171
+        //1. 이탈                 8172
+        Getting = "";
+        Losing = "";
+        int RandomHP = Random.Range(-15, 16);
+        int RandomSTA = Random.Range(-150, 151);
+        switch (ButtonType)
+        {
+            case 0:
+                Getting = "체력 회복 : " + (30 + RandomHP).ToString() + "\n" +
+                    "피로도 회복 : " + (300 + RandomSTA).ToString();
+                PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
+                PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
+                SoundManager.Instance.PlaySFX("Buff_Healing");
+                return 8171;
+            case 1:
+                return 8172;
+        }
+        return 8170;
     }
 }

@@ -9,6 +9,8 @@ public class Stage03EventDetailAction
     {
         //0.1. 0과 1은 상관없은 50% 독X 50% 독 10
         //2. 독 5
+        Getting = "";
+        Losing = "";
         int RandNum = Random.Range(0, 2);//0~1
         switch(ButtonType)
         {
@@ -22,11 +24,17 @@ public class Stage03EventDetailAction
                 }
                 else
                 {//독 3002
+                    Losing = "전투 10회 동안 전투 시작시 독 보유\n" +
+                        "독 스택은 남은 독 부여 횟수만큼 부여\n" +
+                        "10회 : 10스택, 9회 : 9스택....";
                     SoundManager.Instance.PlaySFX("Buff_Consume");
                     JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin = 10;
                     return 3002;
                 }
             case 2://3003
+                Losing = "전투 5회 동안 전투 시작시 독 보유\n" +
+                        "독 스택은 남은 독 부여 횟수만큼 부여\n" +
+                        "5회 : 5스택, 4회 : 4스택....";
                 JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin = 5;
                 return 3003;
         }
@@ -39,6 +47,8 @@ public class Stage03EventDetailAction
         //1. 피로 회복 + 소 // 3012
         //2.JsonEvent 등록 이상한 구체 // 3013
         //3. 이탈                         // 3014
+        Getting = "";
+        Losing = "";
         int RandomSTA = Random.Range(-150, 151);
         switch(ButtonType)
         {
@@ -46,6 +56,7 @@ public class Stage03EventDetailAction
                 JsonReadWriteManager.Instance.LkEv_Info.Lab_Security = true;
                 return 3011;
             case 1:
+                Getting = "피로도 회복 : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 3012;
@@ -130,11 +141,14 @@ public class Stage03EventDetailAction
     {
         //0. 이탈                                                 3051
         //1. 마주한다. -> 보스 전투 시작시 도핑 부여   3052
+        Getting = "";
+        Losing = "";
         switch (ButtonType)
         {
             case 0:
                 return 3051;
             case 1:
+                Losing = "보스가 등장시 도핑버프 보유";
                 JsonReadWriteManager.Instance.LkEv_Info.ReadyForBattle = true;
                 return 3052;
         }
@@ -145,6 +159,9 @@ public class Stage03EventDetailAction
     {
         //1.이탈                  //조건에 따라 3061 Or 3063
         //2. 경험치 상 + bk + 3// 3062
+        Getting = "";
+        Losing = "";
+        JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingDopple = true;
         int RandomReward = Random.Range(-(StageAverageReward * 3 / 4), (StageAverageReward * 3 / 4) + 1);
         switch(ButtonType)
         {
@@ -157,6 +174,7 @@ public class Stage03EventDetailAction
                 else//토토의 이름을 모를때
                     return 3061;
             case 1:
+                Getting = "경험치 획득 : " + ((StageAverageReward * 3) + RandomReward).ToString();
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount((StageAverageReward * 3) + RandomReward);
                 UIMgr.GI_UI.ActiveGettingUI(0, true);

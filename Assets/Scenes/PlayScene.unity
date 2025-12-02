@@ -49325,6 +49325,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29d75ce75c0fd8e429ac116b9b85d279, type: 2}
   - {fileID: 11400000, guid: d2c5fe418ae648b4f8e42decf6d8cd20, type: 2}
   - {fileID: 11400000, guid: 01211de2bb0bd764ca8ae5452379d6fe, type: 2}
+  - {fileID: 11400000, guid: aed0528d2eef83448a30a074f8760558, type: 2}
+  - {fileID: 11400000, guid: 9e04bae37e6e0e94b8b4c01bda4baf86, type: 2}
   Stage01GameEvents:
   - {fileID: 11400000, guid: d2f1669c7ff7d5a45a530b742aef29f3, type: 2}
   - {fileID: 11400000, guid: dea346bf76ce0824bb16eea4ae4d5171, type: 2}
@@ -49398,6 +49400,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95ba0b168593b5f4bbf604b06648dbd0, type: 2}
   - {fileID: 11400000, guid: 14033ba07975f784b96790939c940f2c, type: 2}
   - {fileID: 11400000, guid: 8b80d6338f48a3d45965a3066193814b, type: 2}
+  - {fileID: 11400000, guid: 417052a904b1c914fa421b8b0a3d2469, type: 2}
+  - {fileID: 11400000, guid: 69b9e68b6d6b0364b844dd479f88691b, type: 2}
+  - {fileID: 11400000, guid: 96947571c9d91b14e825d0e4f3d4fac0, type: 2}
+  - {fileID: 11400000, guid: 8f0983aec67221c4ab72faaedea15bae, type: 2}
   Stage01FollowEvents:
   - {fileID: 11400000, guid: 83e64411448a60c47ad566b892b1004a, type: 2}
   - {fileID: 11400000, guid: fade2176cccef5842bfa57f4732698d0, type: 2}

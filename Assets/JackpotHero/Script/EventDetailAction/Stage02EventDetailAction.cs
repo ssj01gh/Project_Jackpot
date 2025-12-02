@@ -202,6 +202,8 @@ public class Stage02EventDetailAction
     {
         //0.75% 경험치 +하 +- 하 / 4 2021 25% 전투 2025
         //1.그냥 탐색 2024
+        Getting = "";
+        Losing = "";
         int RandNum = Random.Range(0, 4);//0~4
         int RandomRewardRange = 0;
         int RandomReward = 0;
@@ -216,6 +218,7 @@ public class Stage02EventDetailAction
                 {
                     RandomRewardRange = StageAverageReward / 4;
                     RandomReward = StageAverageReward + Random.Range(-RandomRewardRange, RandomRewardRange + 1);
+                    Getting = "경험치 획득 : " + RandomReward.ToString();
                     PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                     UIMgr.GI_UI.ActiveGettingUI(0, true);
                     return 2021;
@@ -229,6 +232,8 @@ public class Stage02EventDetailAction
     {
         //0.50% 경험치 +하 +- 하 / 4 2022 50% 전투 2025
         //1.그냥 탐색 2023
+        Getting = "";
+        Losing = "";
         int RandNum = Random.Range(0, 2);//0~1
         int RandomRewardRange = 0;
         int RandomReward = 0;
@@ -243,6 +248,7 @@ public class Stage02EventDetailAction
                 {
                     RandomRewardRange = StageAverageReward / 4;
                     RandomReward = StageAverageReward + Random.Range(-RandomRewardRange, RandomRewardRange + 1);
+                    Getting = "경험치 획득 : " + RandomReward.ToString();
                     PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                     UIMgr.GI_UI.ActiveGettingUI(0, true);
                     return 2022;
@@ -256,6 +262,8 @@ public class Stage02EventDetailAction
     {
         //0.25% 경험치 +하 +- 하 / 4 2022 75% 전투 2025
         //1.그냥 탐색 2023
+        Getting = "";
+        Losing = "";
         int RandNum = Random.Range(0, 4);//0~3
         int RandomRewardRange = 0;
         int RandomReward = 0;
@@ -266,6 +274,7 @@ public class Stage02EventDetailAction
                 {
                     RandomRewardRange = StageAverageReward / 4;
                     RandomReward = StageAverageReward + Random.Range(-RandomRewardRange, RandomRewardRange + 1);
+                    Getting = "경험치 획득 : " + RandomReward.ToString();
                     PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                     UIMgr.GI_UI.ActiveGettingUI(0, true);
                     return 2022;
@@ -281,7 +290,7 @@ public class Stage02EventDetailAction
     }
     public void Event2025(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
     {
-        int CurrentEventMonsterSpawnPatternCode = 2150;//이런것도 바끼어야 할려나
+        int CurrentEventMonsterSpawnPatternCode = 2150;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
@@ -294,6 +303,8 @@ public class Stage02EventDetailAction
     public int Event2030(PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //버튼 뭘 누르던 상관 없이 33%확률로 전투 2032 // 회복 = 2031
+        Getting = "";
+        Losing = "";
         int RandomNum = Random.Range(0, 3);//0~2
         int RandomHPAverage = Random.Range(-15, 16);
         int RandomSTAAverage = Random.Range(-150, 151);
@@ -304,6 +315,8 @@ public class Stage02EventDetailAction
         else
         {//회복
             SoundManager.Instance.PlaySFX("Buff_Healing");
+            Getting = "체력 회복 : " + (30 + RandomHPAverage).ToString() + "\n" +
+                "피로도 회복 : " + (300 + RandomSTAAverage).ToString();
             PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHPAverage);
             PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTAAverage);
             return 2031;
@@ -324,6 +337,8 @@ public class Stage02EventDetailAction
     public int Event2040(PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
         //누를수 있는 버튼은 1개밖에 없음, 플레이어의 Gk와 BK 수치에 따라 이벤트 연계가 달라짐
+        Getting = "";
+        Losing = "";
         int PlayerGKP = (int)PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma;
         int PlayerBKP = (int)PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma;
         JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson = false;
@@ -331,6 +346,7 @@ public class Stage02EventDetailAction
         JsonReadWriteManager.Instance.LkEv_Info.ML_BKPerson = false;
         if (PlayerGKP - PlayerBKP >= 3)
         {//선인//2041
+            Getting = "영구적으로 힘, 내구, 회복, 속도, 행운의\n기초 능력치 1증가";
             JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson = true;
             PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();
             return 2041;
@@ -363,8 +379,11 @@ public class Stage02EventDetailAction
         //0.거인과 전투 gk + 3 // 2051 // 조건 만족시 2054
         //1.그냥 이탈               // 2052
         //2.경험치 상 bk + 3    //2053
+        Getting = "";
+        Losing = "";
         int RandomRewardRange = 0;
         int RandomReward = 0;
+        JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingGiant = true;
         switch (ButtonType)
         {
             case 0:
@@ -381,6 +400,7 @@ public class Stage02EventDetailAction
             case 2:
                 RandomRewardRange = StageAverageReward * 3 / 4;
                 RandomReward = (StageAverageReward * 3) + Random.Range(-RandomRewardRange, RandomRewardRange + 1);
+                Getting = "경험치 획득 : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;

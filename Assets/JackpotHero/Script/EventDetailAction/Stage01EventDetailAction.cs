@@ -151,6 +151,7 @@ public class Stage01EventDetailAction
                     Getting = "속도 레벨 1 상승";
                     PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("SPD", 1);
                 }
+                PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();
                 return 1031;
             case 1:
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
