@@ -1,14 +1,16 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+//using static System.Net.Mime.MediaTypeNames;
 
 public class EventUIScript : MonoBehaviour
 {
     public TextMeshProUGUI EventTitle;
-    public Image EventImage;
+    public Image UIEventImage;
     public TextMeshProUGUI EventDetail;
     public GameObject[] EventSelectionButtons;
     public TextMeshProUGUI[] EventSelectionTexts;
@@ -27,12 +29,31 @@ public class EventUIScript : MonoBehaviour
     public void ActiveEventUI(EventManager EventMgr)
     {
         EventTitle.text = EventMgr.CurrentEvent.EventTitle;
-        EventImage.sprite = EventMgr.CurrentEvent.EventImage;
+        UIEventImage.sprite = EventMgr.CurrentEvent.EventImage;
         EventDetail.text = EventMgr.CurrentEvent.EventDetail;
-        foreach(GameObject Obj in EventSelectionButtons)
+        if(EventMgr.Getting == "")
         {
-            Obj.SetActive(false);
+            //{Getting}
+            EventDetail.text = Regex.Replace(EventDetail.text, @".*\{Getting\}.*\n?", EventMgr.Getting, RegexOptions.Multiline);
         }
+        else
+        {
+            EventDetail.text = Regex.Replace(EventDetail.text, "{Getting}", EventMgr.Getting);
+        }
+        if (EventMgr.Losing == "")
+        {
+            //{Losing}
+            EventDetail.text = Regex.Replace(EventDetail.text, @".*\{Losing\}.*\n?", EventMgr.Losing, RegexOptions.Multiline);
+        }
+        else
+        {
+            EventDetail.text = Regex.Replace(EventDetail.text, "{Losing}", EventMgr.Losing);
+        }
+
+            foreach (GameObject Obj in EventSelectionButtons)
+            {
+                Obj.SetActive(false);
+            }
         for(int i = 0; i < EventMgr.CurrentEvent.EventSelectionDetail.Length; i++)
         {
             EventSelectionButtons[i].SetActive(true);

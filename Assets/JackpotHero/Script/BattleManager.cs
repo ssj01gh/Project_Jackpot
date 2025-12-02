@@ -101,6 +101,9 @@ public class BattleManager : MonoBehaviour
         //스폰 패턴이 저장된후 다시 저장
         PlayerMgr.GetPlayerInfo().SetInitBuffByMonsters(MonMgr.GetActiveMonsters());
         PlayerMgr.GetPlayerInfo().SetInitBuff();
+        //적용된 버프에 따라 스텟 계산
+        MonMgr.SetActiveMonstersStatus();
+        PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();
         //플레이어의 상태에 맞는 버프를 적용 시켜야함
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
     }
@@ -255,7 +258,13 @@ public class BattleManager : MonoBehaviour
         }
         if (MonMgr.GetActiveMonsters().Count <= 0)
         {
-            Debug.Log("Winner");
+            Debug.Log("Winner");//여기서 대악마들이 쓰러졌는지 확인하면 될듯?
+            if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4000 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4001 ||
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4002 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4003||
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4004 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4005)
+            {
+                JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount += 1;
+            }
             PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
             //현재의 상대가 보스라는것을 확일할 방법이 있는가? 엑셀 참고//보스 200이상 300미만
             if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails % 1000 >= 200 &&

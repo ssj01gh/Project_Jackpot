@@ -13,12 +13,14 @@ public class MonsterManager : MonoBehaviour
     public GameObject[] MonsterPrefabs;
     public MonSpawnPattern[] Tier01SpawnPatternSO;
     public MonSpawnPattern[] Tier02SpawnPatternSO;
+    public MonSpawnPattern[] Tier03SpawnPatternSO;
     public MonSpawnPattern[] BossSpawnPatternSO;
     public MonSpawnPattern[] EventSpawnPatternSO;
 
     protected Dictionary<string, List<GameObject>> MonsterStorage = new Dictionary<string, List<GameObject>>();
     protected Dictionary<int, List<MonSpawnPattern>> Tier01PatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
     protected Dictionary<int, List<MonSpawnPattern>> Tier02PatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
+    protected Dictionary<int, List<MonSpawnPattern>> Tier03PatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
     protected Dictionary<int, List<MonSpawnPattern>> BossPatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
     protected Dictionary<int, List<MonSpawnPattern>> EventPatternStorage = new Dictionary<int, List<MonSpawnPattern>>();
     protected List<GameObject> ActiveMonsters = new List<GameObject>();
@@ -95,6 +97,21 @@ public class MonsterManager : MonoBehaviour
                 Tier02PatternStorage[PatternThemeNum].Add(MSPattern);
             }
         }
+        foreach(MonSpawnPattern MSPattern in Tier03SpawnPatternSO)
+        {
+            int PatternThemeNum = MSPattern.SpawnPatternID / 1000;
+            //저장된 테마가 없을경우
+            if (!Tier03PatternStorage.ContainsKey(PatternThemeNum))
+            {
+                List<MonSpawnPattern> MonTier03SpawnList = new List<MonSpawnPattern>();
+                MonTier03SpawnList.Add(MSPattern);
+                Tier03PatternStorage.Add(PatternThemeNum, MonTier03SpawnList);
+            }
+            else
+            {
+                Tier03PatternStorage[PatternThemeNum].Add(MSPattern);
+            }
+        }
         //SaveBossSpawnPattern
         foreach(MonSpawnPattern MSPattern in BossSpawnPatternSO)
         {
@@ -148,6 +165,7 @@ public class MonsterManager : MonoBehaviour
         int DetailOfEvents = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
         int CurrentSearchPoint = PMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint;//0 -> 1티어 100% 40 -> 2티어 100%
         //패턴을 결정하기 전에 이미 정해진 패턴이 있다면 리턴 -> 이미 스폰 패턴이 결정된 상태(껏다 킨거임)
+        //탐색도 ~40까지는 백퍼 1티어 ~80까지는 1티어 2티어 혼용 80~ 3티어까지 혼용
         if(DetailOfEvents % 1000 < 100 && DetailOfEvents % 1000 >= 0)
         {//0~99이라면 1티어 // 0 ~ 99임 0이면 패턴을 결정해야 되는거임
             for (int i = 0; i < Tier01PatternStorage[ThemeNum].Count; i++)
@@ -159,8 +177,8 @@ public class MonsterManager : MonoBehaviour
                 }
             }
         }
-        else if(DetailOfEvents % 1000 >= 100 && DetailOfEvents % 1000 < 200 )
-        {//100 ~ 199라면 2티어
+        else if(DetailOfEvents % 1000 >= 100 && DetailOfEvents % 1000 < 149 )
+        {//100 ~ 149까지 2티어
             for (int i = 0; i < Tier02PatternStorage[ThemeNum].Count; i++)
             {
                 if (Tier02PatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
@@ -170,7 +188,18 @@ public class MonsterManager : MonoBehaviour
                 }
             }
         }
-        else if(DetailOfEvents % 1000 >= 200 && DetailOfEvents % 1000 < 300)
+        else if(DetailOfEvents % 1000 >= 150 && DetailOfEvents % 1000 < 200)
+        {//150 ~ 199까지 3티어
+            for (int i = 0; i < Tier03PatternStorage[ThemeNum].Count; i++)
+            {
+                if (Tier03PatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
+                {
+                    CurrentSpawnPattern = Tier03PatternStorage[ThemeNum][i];
+                    return;
+                }
+            }
+        }
+        else if (DetailOfEvents % 1000 >= 200 && DetailOfEvents % 1000 < 300)
         {//보스전일때 껏다 키면 여기로 들어옴//200 ~ 299라면 보스
             for (int i = 0; i < BossPatternStorage[ThemeNum].Count; i++)
             {
@@ -181,9 +210,9 @@ public class MonsterManager : MonoBehaviour
                 }
             }
         }
-        else if(DetailOfEvents % 1000 >= 300 && DetailOfEvents % 1000 < 400)
+        else if (DetailOfEvents % 1000 >= 300 && DetailOfEvents % 1000 < 400)
         {//300 ~ 399라면 이벤트 몬스터 스폰
-            for(int i = 0; i < EventPatternStorage[ThemeNum].Count; i++)
+            for (int i = 0; i < EventPatternStorage[ThemeNum].Count; i++)
             {
                 if (EventPatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
                 {
@@ -194,32 +223,49 @@ public class MonsterManager : MonoBehaviour
         }
 
         //위에서 걸러지지 않았다면 새로 결정
-        int RandNum = Random.Range(0, 41);
-        if(RandNum >= CurrentSearchPoint)
-        {//여기가 1티어
-            if(Tier01PatternStorage.ContainsKey(ThemeNum))
-            {//해당 테마를 지니고 있을때
-                RandNum = Random.Range(0, Tier01PatternStorage[ThemeNum].Count);
-                CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][RandNum];
-                PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
-                return;
-            }
-        }
-        else
-        {//여기가 2티어
-            if (Tier02PatternStorage.ContainsKey(ThemeNum))
-            {//해당 테마를 지니고 있을때
-                RandNum = Random.Range(0, Tier02PatternStorage[ThemeNum].Count);
-                CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][RandNum];
-                PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
-                return;
-            }
-        }
+        int RandNum;
+        if(CurrentSearchPoint < 40)//0~39 //1티어 패턴만
+            RandNum = 1;
+        else if(CurrentSearchPoint >= 40 && CurrentSearchPoint <= 79)//40~79 //1~2티어 패턴 중 하나
+            RandNum = Random.Range(1, 3);//1~2
+        else//80~ // 1~3티어 패턴중 하나
+            RandNum = Random.Range(1, 4);//1~3
 
+        switch(RandNum)
+        {
+            case 1:
+                if(Tier01PatternStorage.ContainsKey(ThemeNum))
+                {
+                    RandNum = Random.Range(0, Tier01PatternStorage[ThemeNum].Count);
+                    CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][RandNum];
+                    PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                    return;
+                }
+                break;
+            case 2:
+                if (Tier02PatternStorage.ContainsKey(ThemeNum))
+                {
+                    RandNum = Random.Range(0, Tier02PatternStorage[ThemeNum].Count);
+                    CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][RandNum];
+                    PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                    return;
+                }
+                break;
+            case 3:
+                if (Tier03PatternStorage.ContainsKey(ThemeNum))
+                {
+                    RandNum = Random.Range(0, Tier03PatternStorage[ThemeNum].Count);
+                    CurrentSpawnPattern = Tier03PatternStorage[ThemeNum][RandNum];
+                    PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                    return;
+                }
+                break;
+        }
         //여기 까지 온거면 ThemeNum가 없는거임
-        Debug.Log("NoThemeNum");
+        Debug.Log("NoMonsterPattern");
     }
 
     public void SpawnCurrentSpawnPatternMonster()

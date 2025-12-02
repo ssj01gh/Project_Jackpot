@@ -15,7 +15,8 @@ MonoBehaviour:
   EventCode: 1012
   EventTitle: "\uC554\uC0B4 \uC131\uACF5"
   EventImage: {fileID: 21300000, guid: f1df08fd0e553004caab81bcb443573f, type: 3}
-  EventDetail: "\uD1A0\uAE68\uBE44 \uBB34\uB9AC\uB97C \uBCC4\uB2E4\uB978 \uC804\uD22C
-    \uC5C6\uC774\n\uC4F0\uB7EC\uD2B8\uB9AC\uB294 \uB370 \uC131\uACF5\uD588\uC2B5\uB2C8\uB2E4."
+  EventDetail: "<color=green>{Getting}</color>\n\uD1A0\uAE68\uBE44 \uBB34\uB9AC\uB97C
+    \uBCC4\uB2E4\uB978 \uC804\uD22C \uC5C6\uC774\n\uC4F0\uB7EC\uD2B8\uB9AC\uB294
+    \uB370 \uC131\uACF5\uD588\uC2B5\uB2C8\uB2E4."
   EventSelectionDetail:
   - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."

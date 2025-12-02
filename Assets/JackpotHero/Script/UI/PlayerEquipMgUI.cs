@@ -248,6 +248,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
                 break;
             case "STRHE":
+            case "ForestBracelet02":
                 if (DetailNum == 0)
                 {
                     EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Recharge).BuffName;
@@ -488,6 +489,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 }
                 break;
             case "HPAR":
+            case "ForestBracelet01":
                 if (DetailNum == 0)
                 {
                     EquipBuffDetailExplainTitleText.text = BuffInfoManager.Instance.GetBuffInfo((int)EBuffType.Regeneration).BuffName;
@@ -895,6 +897,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if (IsClickedInventorySlot == true && eventData.pointerEnter != null)
         {
             IsClickedInventorySlot = false;
+            DropDownItemCode = 0;
             Vector2 ClickedUIPos = eventData.pointerEnter.GetComponent<RectTransform>().anchoredPosition;
 
             if (PlayerEquipIndex != -1)//장비 칸에서 클릭했을때//장비칸에서 인벤토리 OR 장비칸
@@ -918,8 +921,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             }
                             else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//비어있지 않을떄//잠겨 있지 않으면서 비어있지 않을때
                             {
-                                if(CurrentBringItemCode / 10000 == 
-                                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] / 10000)//비어있지 않았을때 장비의 타입이 같다면
+                                if((CurrentBringItemCode / 10) % 10 == 
+                                    (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] / 10) % 10)//비어있지 않았을때 장비의 타입이 같다면
                                 {//바꾸기
                                     //떨어뜨리는 곳의 index번호와 장비 코드를 저장
                                     DropDownSlotIndex = i;
@@ -1101,7 +1104,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
                                 if(DropDownItemCode == 0)//비어있다면//맞게 넣어야 하는디.....
                                 {
-                                    if(CurrentBringItemCode / 10000 == 1 && DropDownSlotIndex == (int)EPlayerEquip.Weapon)
+                                    if ((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeWeapon && DropDownSlotIndex == (int)EPlayerEquip.Weapon)
                                     {//CurrentBringItemCode의 앞자리가 1 : 무기 -> 1이라면 인덱스 3번 칸일때 ok -> 넣기
                                         //넣기
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode = CurrentBringItemCode;
@@ -1111,7 +1114,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                         //원래 칸은 비우고
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
-                                    else if(CurrentBringItemCode / 10000 == 2 && DropDownSlotIndex == (int)EPlayerEquip.Armor)
+                                    else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeArmor && DropDownSlotIndex == (int)EPlayerEquip.Armor)
                                     {//CurrentBringItemCode의 앞자리가 2 : 갑옷 -> 2라면 인덱스 1번 칸일때 ok -> 넣기
                                         //넣기
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode = CurrentBringItemCode;
@@ -1121,7 +1124,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                         //원래 칸은 비우고
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
-                                    else if(CurrentBringItemCode / 10000 == 3 && DropDownSlotIndex == (int)EPlayerEquip.Helmet)
+                                    else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeHelmet && DropDownSlotIndex == (int)EPlayerEquip.Helmet)
                                     {//CurrentBringItemCode의 앞자리가 3 : 투구 -> 3이라면 인덱스 0번 칸일때 ok -> 넣기
                                         //넣기
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode = CurrentBringItemCode;
@@ -1131,7 +1134,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                         //원래 칸은 비우고
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
-                                    else if(CurrentBringItemCode / 10000 == 4 && DropDownSlotIndex == (int)EPlayerEquip.Boots)
+                                    else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeBoots && DropDownSlotIndex == (int)EPlayerEquip.Boots)
                                     {//CurrentBringItemCode의 앞자리가 4 : 신발 -> 4라면 인덱스 2번 칸일때 ok -> 넣기
                                         //넣기
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode = CurrentBringItemCode;
@@ -1141,9 +1144,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                         //원래 칸은 비우고
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
-                                    else if(CurrentBringItemCode / 10000 == 5 && DropDownSlotIndex == (int)EPlayerEquip.Accessories)
+                                    else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeAcc && DropDownSlotIndex == (int)EPlayerEquip.Accessories)
                                     {//CurrentBringItemCode의 앞자리가 5 : 장신구 -> 5라면 인덱스 4번 칸 일때 ok -> 넣기
-                                        //넣기
+                                     //넣기
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode = CurrentBringItemCode;
                                         PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
                                         PlayerEquipImages[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
@@ -1157,7 +1160,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                         InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
                                     }
                                 }
-                                else if(CurrentBringItemCode / 10000 == DropDownItemCode / 10000)//같은 타입의 장비라면 교체
+                                else if((CurrentBringItemCode / 10) % 10 == (DropDownItemCode / 10) % 10)//같은 타입의 장비라면 교체
                                 {//바꾸기
                                     //인벤토리 장비 -> 착용 장비
                                     PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
@@ -1479,8 +1482,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         ClickButton.GetComponent<RectTransform>().DOKill();
         ClickButton.SetActive(false);
+        Debug.Log(GachaResultEquipCode);
         //이 버튼을 누르면 버튼은 비활성화
-        int EquipmentTier = GachaResultEquipCode / 1000;
+        int EquipmentTier = (GachaResultEquipCode / 1000) % 10;
         // 1티어 장비라면 0번까지 활성화 , 흰색// 2티어 장비라면  1번까지 활성화, 파란색
         // 3티어 장비라면 2번까지 활성화, 보라색// 4티어 장비라면 3번까지 활성화, 노란색
         // 5티어 장비라면 4번까지 활성화, 

@@ -15,7 +15,7 @@ MonoBehaviour:
   EventCode: 8002
   EventTitle: "\uD68C\uAC1C"
   EventImage: {fileID: 21300000, guid: 4373fdf1fc867eb40843d79a26fba54c, type: 3}
-  EventDetail: "\uB2F9\uC2E0\uC740 \uAE30\uB3C4\uD6C4 \uB9C8\uC74C\uC774 \uAC00\uBCBC\uC6CC\uC9D0\uC744
-    \uB290\uB08D\uB2C8\uB2E4."
+  EventDetail: "<color=red>{Losing}</color>\n\uB2F9\uC2E0\uC740 \uAE30\uB3C4\uD6C4
+    \uB9C8\uC74C\uC774 \uAC00\uBCBC\uC6CC\uC9D0\uC744 \uB290\uB08D\uB2C8\uB2E4."
   EventSelectionDetail:
   - "\uBD84\uC218\uB97C \uB5A0\uB09C\uB2E4."

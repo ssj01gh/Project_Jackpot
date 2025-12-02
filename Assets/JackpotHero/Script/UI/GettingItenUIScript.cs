@@ -40,7 +40,7 @@ public class GettingItenUIScript : MonoBehaviour
         string GettingType = "EXP";
         if(IsEXP == false)
         {
-            switch (EquipmentCode / 10000)
+            switch ((EquipmentCode / 10) % 10)
             {
                 case 1://¹«±â
                     GettingType = "Weapon";

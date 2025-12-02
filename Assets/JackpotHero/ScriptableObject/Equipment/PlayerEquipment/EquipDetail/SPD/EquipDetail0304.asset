@@ -17,5 +17,6 @@ MonoBehaviour:
   EquipType: 4
   EquipmentName: "\uC57D\uBB3C \uC8FC\uC0AC\uAE30"
   EquipmentDetail: "\uC5B4\uB5A0\uD55C \uC57D\uBB3C\uC774 \uB4E4\uC5B4\uC788\uB294
-    \uC8FC\uC0AC\uAE30\uC785\uB2C8\uB2E4.\n\uC804\uD22C \uC2DC\uC791\uC2DC <link=\"SPDAC\"><color=green>\uB3C4\uD551</color></link>
-    {SPDA}\uC2A4\uD0DD\uC744 \uC5BB\uC2B5\uB2C8\uB2E4."
+    \uC8FC\uC0AC\uAE30\uC785\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
+    <link=\"SPDAC\"><color=green>\uB3C4\uD551</color></link> {SPDA}\uC2A4\uD0DD\uC744
+    \uBD80\uC5EC\uD569\uB2C8\uB2E4."

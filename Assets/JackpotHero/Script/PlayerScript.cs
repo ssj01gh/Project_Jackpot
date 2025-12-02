@@ -203,6 +203,20 @@ public class PlayerScript : MonoBehaviour
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipShoesCode).AddLUKAmount +
             EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).AddLUKAmount;
 
+        if(JsonReadWriteManager.Instance.LkEv_Info.TradeWithDevil >= 1)
+        {
+            PlayerTotalState.WithOutBuffSTR += JsonReadWriteManager.Instance.LkEv_Info.TradeWithDevil;
+        }
+
+        if(JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson == true)
+        {
+            PlayerTotalState.WithOutBuffSTR += 1;
+            PlayerTotalState.WithOutBuffDUR += 1;
+            PlayerTotalState.WithOutBuffRES += 1;
+            PlayerTotalState.WithOutBuffSPD += 1;
+            PlayerTotalState.WithOutBuffLUK += 1;
+        }
+
         PlayerTotalState.TotalSTR = PlayerTotalState.WithOutBuffSTR;
         PlayerTotalState.TotalDUR = PlayerTotalState.WithOutBuffDUR;
         PlayerTotalState.TotalRES = PlayerTotalState.WithOutBuffRES;
@@ -272,8 +286,8 @@ public class PlayerScript : MonoBehaviour
             PlayerTotalState.TotalDUR = 0;
         if(PlayerTotalState.TotalRES < 0)
             PlayerTotalState.TotalRES = 0;
-        if(PlayerTotalState.TotalSPD < 0)
-            PlayerTotalState.TotalSPD = 0;
+        if(PlayerTotalState.TotalSPD < 1)
+            PlayerTotalState.TotalSPD = 1;
 
         //°ø°ÝÀÇ Æò±ÕÀûÀÌ »ó½Â·®
         AttackAverageIncrease = 0;
@@ -436,6 +450,21 @@ public class PlayerScript : MonoBehaviour
             PlayerBuff.BuffList[(int)EBuffType.Luck] += 3;
             JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony -= 1;
         }
+        if(JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Regen >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 3;
+            JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Regen -= 1;
+        }
+        if(JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Poison >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Poison] += 5;
+            JsonReadWriteManager.Instance.LkEv_Info.ForestHut_Poison -= 1;
+        }
+        if(JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Poison] += JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin;
+            JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin -= 1;
+        }
     }
     protected void SetInitBuffByEquipmnet()
     {
@@ -449,7 +478,7 @@ public class PlayerScript : MonoBehaviour
         int AccTier = (PlayerState.EquipAccessoriesCode / 1000) % 10;
         int IsEventAcc = PlayerState.EquipAccessoriesCode / 10000;
         int AccStateType = (PlayerState.EquipAccessoriesCode / 100) % 10;
-        int AccType = (IsEventBoots * 10) + BootsStateType;
+        int AccType = (IsEventBoots * 10) + AccStateType;
 
         if(BootsType == STREquip)
             PlayerBuff.BuffList[(int)EBuffType.OverCharge] += (BootsTier * 2);
@@ -474,6 +503,12 @@ public class PlayerScript : MonoBehaviour
             PlayerBuff.BuffList[(int)EBuffType.PowerOfDeath] += (AccTier * 3);
         if (AccType == STAEquip)
             PlayerBuff.BuffList[(int)EBuffType.Petrification] += (AccTier * 2);
+
+        if(PlayerState.EquipAccessoriesCode == 26044)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 9;
+            PlayerBuff.BuffList[(int)EBuffType.Recharge] += 9;
+        }
     }
     public void GetBuffByAttack()
     {

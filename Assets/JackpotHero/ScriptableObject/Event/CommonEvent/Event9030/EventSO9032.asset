@@ -15,7 +15,7 @@ MonoBehaviour:
   EventCode: 9032
   EventTitle: "\uC7A5\uB840\uC2DD"
   EventImage: {fileID: 21300000, guid: 8d2621eab87931a4e99caf2eaa5f5dd4, type: 3}
-  EventDetail: "\uB2F9\uC2E0\uC740 \uC5B4\uB290 \uD0D0\uD5D8\uAC00\uC758 \uC7A5\uB840\uC2DD\uC744
-    \uCE58\uB800\uC2B5\uB2C8\uB2E4."
+  EventDetail: "<color=green>{Getting}</color>\n<color=red>{Losing}</color>\n\uB2F9\uC2E0\uC740
+    \uC5B4\uB290 \uD0D0\uD5D8\uAC00\uC758 \uC7A5\uB840\uC2DD\uC744 \uCE58\uB800\uC2B5\uB2C8\uB2E4."
   EventSelectionDetail:
   - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."

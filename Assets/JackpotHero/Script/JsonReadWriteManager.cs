@@ -164,6 +164,8 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         string path = Application.persistentDataPath + "/" + FileName + ".json";
         if(!File.Exists(path) || IsRestartGame == true)
         {
+            LkEv_Info.IsMeetTalkingMonster = false;
+            LkEv_Info.TradeWithDevil = 0;
             LkEv_Info.TalkingMonster = false;
             LkEv_Info.TalkingDirtGolem = false;
             LkEv_Info.TotoRepayFavor = false;
@@ -173,6 +175,19 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             LkEv_Info.OminousSword = false;
             LkEv_Info.CleanOminousSword = false;
             LkEv_Info.PowwersCeremony = 0;
+            LkEv_Info.GreatDevilKillCount = 0;
+            LkEv_Info.ForestBracelet = false;
+            LkEv_Info.ForestHut_Regen = 0;
+            LkEv_Info.ForestHut_Poison = 0;
+            LkEv_Info.ML_GKPerson = false;
+            LkEv_Info.ML_NorPerson = false;
+            LkEv_Info.ML_BKPerson = false;
+            LkEv_Info.IsMeetTalkingGiant = false;
+            LkEv_Info.LetTheGameBegin = 0;
+            LkEv_Info.Lab_Security = false;
+            LkEv_Info.Lab_Sphere = false;
+            LkEv_Info.ReadyForBattle = false;
+            LkEv_Info.IsMeetTalkingDopple = false;
 
             string classToJson = JsonUtility.ToJson(LkEv_Info, true);
             File.WriteAllText(path, classToJson);

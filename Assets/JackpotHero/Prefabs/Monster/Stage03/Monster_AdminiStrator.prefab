@@ -148,7 +148,7 @@ MonoBehaviour:
   MonsterAnotherEquipmentCode: 856b0100866b0100
   MonsterShieldPos: {fileID: 3712609004761415353}
   HpSliderPos: {fileID: 593374256164039861}
-  HpsliderWidth: 400
+  HpsliderWidth: 200
   BuffPosUpperHp: 0.5
   ActionPosUpperHP: 1
   CanSummonMonsterIDs:

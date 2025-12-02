@@ -19,7 +19,8 @@ public class Mon_Wrath : Monster
     {
         base.InitMonsterState();
         //나중에 여기서 쓰러트린 7죄종 갯수만큼 분노를 차감하면 될듯?
-        MonsterBuff.BuffList[(int)EBuffType.Wrath] = 3;
+        int WrathCount = 7 - JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount;
+        MonsterBuff.BuffList[(int)EBuffType.Wrath] = WrathCount;
         SetWrathActionState();
     }
 

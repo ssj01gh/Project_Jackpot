@@ -17,5 +17,5 @@ MonoBehaviour:
   EquipType: 0
   EquipmentName: "\uC138\uAC80"
   EquipmentDetail: "\uD53C\uC758 \uC77C\uC871\uC758 \uB9C8\uBC95\uC73C\uB85C \uC81C\uB828\uD55C
-    \uC138\uAC80\uC785\uB2C8\uB2E4.\n\uACF5\uACA9\uC2DC <link=\"HPWE\"><color=green>\uD761\uD608</color></link>
-    3\uC2A4\uD0DD\uC744 \uC5BB\uC2B5\uB2C8\uB2E4."
+    \uC138\uAC80\uC785\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
+    <link=\"HPWE\"><color=green>\uD761\uD608</color></link> 3\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."

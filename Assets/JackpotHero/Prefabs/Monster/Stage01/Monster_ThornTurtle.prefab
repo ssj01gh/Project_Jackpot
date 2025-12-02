@@ -128,7 +128,9 @@ MonoBehaviour:
   MonsterHead: {fileID: 21300000, guid: c8ec790c80fb54246bf4e31e42d11ca4, type: 3}
   MonsterBody: {fileID: 1353208036126087317}
   MonsterAnimator: {fileID: 7276026354411407932}
+  IsHaveAttackAnimation: 0
   IsTierOne: 0
+  IsSummonTier: 0
   MonsterBaseHP: 68
   HPVarianceAmount: 0
   MonsterBaseATK: 3
@@ -146,12 +148,14 @@ MonoBehaviour:
   MonsterAnotherEquipmentCode: 4164010042640100
   MonsterShieldPos: {fileID: 8721190489267515470}
   HpSliderPos: {fileID: 2873444611350990420}
-  HpsliderWidth: 420
+  HpsliderWidth: 200
   BuffPosUpperHp: 0.5
   ActionPosUpperHP: 1
   CanSummonMonsterIDs: []
   SummonMonsterCount: 0
   MonsterCurrentState: 0
+  AdditionalEXP: 0
+  MasterMonster: {fileID: 0}
 --- !u!1 &8718538906800177956
 GameObject:
   m_ObjectHideFlags: 0

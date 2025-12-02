@@ -34,6 +34,11 @@ public class EventManager : MonoBehaviour
     private const int EventTheme = 9;
     private readonly float[] StageAverageRward = new float[4] { 28, 101, 313, 816 };
     public EventSO CurrentEvent { protected set; get; }
+
+    [HideInInspector]
+    public string Getting = "";
+    [HideInInspector]
+    public string Losing = "";
     private void Awake()
     {
         InitEvent();
@@ -184,6 +189,21 @@ public class EventManager : MonoBehaviour
             return;
         }
 
+        if(JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster == false)
+        {//한번도 만나지 못했다면
+            for(int i = 0;  i < EventStorage[EventTheme].Count; i++)
+            {
+                if (EventStorage[EventTheme][i].EventCode == 9020)
+                {
+                    CurrentEvent = EventStorage[EventTheme][i];
+                    P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster = true;
+                    JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+                    return;
+                }
+            }
+        }
+
         //DetailOfEvents는 1000 ~ 로 됨 1테마라면 1000~ 2테마 라면 2000~식이다
         if (DetailOfEvents != 0)//이벤트가 결정된 상태로 게임을 껏다 켰으면
         {
@@ -267,8 +287,8 @@ public class EventManager : MonoBehaviour
                             }
                             else
                             {
-                                int CursedSword = 17001;
-                                int SmallCursedSword = 17002;
+                                int CursedSword = 23000;
+                                int SmallCursedSword = 24001;
                                 bool IsHaveCursedSword = false;
                                 if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == CursedSword ||
                                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == SmallCursedSword)
@@ -322,8 +342,10 @@ public class EventManager : MonoBehaviour
                 break;
             case 9050:
                 if (JsonReadWriteManager.Instance.LkEv_Info.OminousSword == true &&
-                    JsonReadWriteManager.Instance.LkEv_Info.CleanOminousSword == false)
-                {
+                    JsonReadWriteManager.Instance.LkEv_Info.CleanOminousSword == false &&
+                    JsonReadWriteManager.Instance.LkEv_Info.TotoCursedSword)
+                {//여기에서 이미 토토에게 검이 정화되러 가지고 갔으면.....
+                    //+토토와 저주받은 검이 == false 일때 바꿔야함
                     FindNChangeEvent(8000);
                 }
                 break;
@@ -362,6 +384,47 @@ public class EventManager : MonoBehaviour
                     else
                         FindNChangeEvent(8070);
                     
+                }
+                break;
+            case 2000:
+                if(JsonReadWriteManager.Instance.LkEv_Info.ForestBracelet == true)
+                {
+                    FindNChangeEvent(8110);
+                }
+                break;
+            case 2040:
+                if(JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson == true || 
+                    JsonReadWriteManager.Instance.LkEv_Info.ML_NorPerson == true)
+                {//선 혹은 중립일때
+                    FindNChangeEvent(8120);
+                }
+                else if(JsonReadWriteManager.Instance.LkEv_Info.ML_BKPerson == true)
+                {//악일때
+                    FindNChangeEvent(8130);
+                }
+                break;
+            case 3020:
+                if(JsonReadWriteManager.Instance.LkEv_Info.Lab_Security == true)
+                {
+                    FindNChangeEvent(8140);
+                }
+                break;
+            case 3040:
+                if(JsonReadWriteManager.Instance.LkEv_Info.Lab_Sphere == true)
+                {
+                    FindNChangeEvent(8150);
+                }
+                break;
+            case 2050:
+                if(JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingGiant == true)
+                {
+                    FindNChangeEvent(8160);
+                }
+                break;
+            case 3060:
+                if(JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingDopple == true)
+                {
+                    FindNChangeEvent(8170);
                 }
                 break;
         }
@@ -443,25 +506,25 @@ public class EventManager : MonoBehaviour
         switch (CurrentEvent.EventCode)
         {
             case 9000:
-                FollowEventCode = CommonEvents.Event9000(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                FollowEventCode = CommonEvents.Event9000(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 9010:
-                FollowEventCode = CommonEvents.Event9010(ButtonType, CurrentStageReward, PlayerMgr);
+                FollowEventCode = CommonEvents.Event9010(ButtonType, CurrentStageReward, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 9020:
-                FollowEventCode = CommonEvents.Event9020(ButtonType, PlayerMgr);
+                FollowEventCode = CommonEvents.Event9020(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 9030:
-                FollowEventCode = CommonEvents.Event9030(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                FollowEventCode = CommonEvents.Event9030(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 9040:
-                FollowEventCode = CommonEvents.Event9040(ButtonType, CurrentStageReward, PlayerMgr);
+                FollowEventCode = CommonEvents.Event9040(ButtonType, CurrentStageReward, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 9050:
-                FollowEventCode = CommonEvents.Event9050(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                FollowEventCode = CommonEvents.Event9050(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 9060:
-                FollowEventCode = CommonEvents.Event9060(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                FollowEventCode = CommonEvents.Event9060(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 9070:
                 FollowEventCode = CommonEvents.Event9070(ButtonType, PlayerMgr, UIMgr);
@@ -473,7 +536,7 @@ public class EventManager : MonoBehaviour
                 FollowEventCode = CommonEvents.Event9071_4(ButtonType, CurrentEvent.EventCode, PlayerMgr, UIMgr);
                 break;
             case 9080:
-                FollowEventCode = CommonEvents.Event9080(ButtonType, PlayerMgr, UIMgr);
+                FollowEventCode = CommonEvents.Event9080(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 10000:
                 CommonEvents.Event10000(ButtonType, PlayerMgr);
@@ -519,37 +582,64 @@ public class EventManager : MonoBehaviour
         switch (CurrentEvent.EventCode)
         {
             case 8000:
-                FollowEventCode = LinkageEvent.Event8000(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                FollowEventCode = LinkageEvent.Event8000(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 8010:
-                FollowEventCode = LinkageEvent.Event8010(ButtonType, PlayerMgr);
+                FollowEventCode = LinkageEvent.Event8010(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 8020:
-                FollowEventCode = LinkageEvent.Event8020(ButtonType, CurrentStageReward, PlayerMgr, UIMgr);
+                FollowEventCode = LinkageEvent.Event8020(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 8030:
-                FollowEventCode = LinkageEvent.Event8030(ButtonType, PlayerMgr, UIMgr);
+                FollowEventCode = LinkageEvent.Event8030(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 8040:
-                FollowEventCode = LinkageEvent.Event8040(ButtonType, PlayerMgr);
+                FollowEventCode = LinkageEvent.Event8040(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 8050:
-                FollowEventCode = LinkageEvent.Event8050(ButtonType, PlayerMgr, UIMgr);
+                FollowEventCode = LinkageEvent.Event8050(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 8060:
-                FollowEventCode = LinkageEvent.Event8060(ButtonType, PlayerMgr);
+                FollowEventCode = LinkageEvent.Event8060(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 8070:
-                FollowEventCode = LinkageEvent.Event8070(ButtonType, PlayerMgr);
+                FollowEventCode = LinkageEvent.Event8070(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 8080:
                 FollowEventCode = LinkageEvent.Event8080();
                 break;
             case 8090:
-                FollowEventCode = LinkageEvent.Event8090(ButtonType, PlayerMgr);
+                FollowEventCode = LinkageEvent.Event8090(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 8100:
-                FollowEventCode = LinkageEvent.Event8100(ButtonType, PlayerMgr);
+                FollowEventCode = LinkageEvent.Event8100(ButtonType, PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 8110:
+                FollowEventCode = LinkageEvent.Event8110(PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 8120:
+                FollowEventCode = LinkageEvent.Event8120();
+                break;
+            case 8130:
+                FollowEventCode = LinkageEvent.Event8130();
+                break;
+            case 8140:
+                FollowEventCode = LinkageEvent.Event8140(ButtonType, PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 8141:
+                LinkageEvent.Event8141(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 8150:
+                FollowEventCode = LinkageEvent.Event8150(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 8151:
+                LinkageEvent.Event8151(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 8160:
+                FollowEventCode = LinkageEvent.Event8160(ButtonType, PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 8170:
+                FollowEventCode = LinkageEvent.Event8170(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 8001:
             case 8002:
@@ -569,6 +659,16 @@ public class EventManager : MonoBehaviour
             case 8081:
             case 8091:
             case 8101:
+            case 8111:
+            case 8121:
+            case 8131:
+            case 8142:
+            case 8152:
+            case 8153:
+            case 8161:
+            case 8162:
+            case 8171:
+            case 8172:
                 CommonFollowEvent();
                 break;
         }
@@ -590,32 +690,32 @@ public class EventManager : MonoBehaviour
         switch (CurrentEvent.EventCode)
         {
             case 1000:
-                FollowEventCode = Stage01Event.Event1000(ButtonType, PlayerMgr);
+                FollowEventCode = Stage01Event.Event1000(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 1010:
-                FollowEventCode = Stage01Event.Event1010(ButtonType, PlayerMgr, UIMgr);
+                FollowEventCode = Stage01Event.Event1010(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
                 break;
             case 1013:
                 Stage01Event.Event1013(PlayerMgr, UIMgr, BattleMgr);
                 break;
             case 1020:
-                FollowEventCode = Stage01Event.Event1020(ButtonType, PlayerMgr);
+                FollowEventCode = Stage01Event.Event1020(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 1022:
             case 1023:
                 Stage01Event.Event1022_3(PlayerMgr, UIMgr, BattleMgr);
                 break;
             case 1030:
-                FollowEventCode = Stage01Event.Event1030(ButtonType, PlayerMgr);
+                FollowEventCode = Stage01Event.Event1030(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 1032:
                 Stage01Event.Event1032(PlayerMgr, UIMgr, BattleMgr);
                 break;
             case 1040:
-                FollowEventCode = Stage01Event.Event1040(ButtonType, PlayerMgr);
+                FollowEventCode = Stage01Event.Event1040(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 1050:
-                FollowEventCode = Stage01Event.Event1050(ButtonType, PlayerMgr);
+                FollowEventCode = Stage01Event.Event1050(ButtonType, PlayerMgr, ref Getting, ref Losing);
                 break;
             case 1001:
             case 1002:
@@ -645,11 +745,183 @@ public class EventManager : MonoBehaviour
     }
     protected void Stage02ThemeEvent(int ButtonType)
     {
-
+        Stage02EventDetailAction Stage02Event = new Stage02EventDetailAction();
+        int FollowEventCode = 0;
+        int CurrentStageReward = (int)StageAverageRward[PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor - 1];
+        switch (CurrentEvent.EventCode)
+        {
+            case 2000:
+                FollowEventCode = Stage02Event.Event2000(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2001:
+                FollowEventCode = Stage02Event.Event2001(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2002:
+                FollowEventCode = Stage02Event.Event2002(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2003:
+                FollowEventCode = Stage02Event.Event2003(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2004:
+                FollowEventCode = Stage02Event.Event2004(ButtonType, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2006:
+                FollowEventCode = Stage02Event.Event2006(ButtonType);
+                break;
+            case 2010:
+                FollowEventCode = Stage02Event.Event2010(ButtonType, ref Getting, ref Losing);
+                break;
+            case 2020:
+                FollowEventCode = Stage02Event.Event2020(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2021:
+                FollowEventCode = Stage02Event.Event2021(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2022:
+                FollowEventCode = Stage02Event.Event2022(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2025:
+                Stage02Event.Event2025(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2030:
+                FollowEventCode = Stage02Event.Event2030(PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 2032:
+                Stage02Event.Event2032(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2040:
+                FollowEventCode = Stage02Event.Event2040(PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 2043:
+                Stage02Event.Event2043(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2050:
+                FollowEventCode = Stage02Event.Event2050(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 2051:
+            case 2054:
+                Stage02Event.Event2051(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 2005:
+            case 2007:
+            case 2011:
+            case 2012:
+            case 2013:
+            case 2023:
+            case 2024:
+            case 2031:
+            case 2041:
+            case 2042:
+            case 2052:
+            case 2053:
+                CommonFollowEvent();
+                break;
+        }
+        if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
+        {
+            if(FollowEventCode == 2022)
+            {
+                CurrentEvent = FollowEventStorage[FollowEventCode];
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                UIMgr.E_UI.ActiveEventUI(this);
+            }
+            return;
+        }
+        else if (FollowEventStorage.ContainsKey(FollowEventCode))
+        {
+            CurrentEvent = FollowEventStorage[FollowEventCode];
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            UIMgr.E_UI.ActiveEventUI(this);
+        }
+        else if (FollowEventCode == 2000)
+        {
+            for(int i = 0; i < EventStorage[2].Count; i++)
+            {
+                if (EventStorage[2][i].EventCode == 2000)
+                {
+                    CurrentEvent = EventStorage[2][i];
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    UIMgr.E_UI.ActiveEventUI(this);
+                }
+            }
+        }
     }
     protected void Stage03ThemeEvent(int ButtonType)
     {
+        Stage03EventDetailAction Stage03Event = new Stage03EventDetailAction();
+        int FollowEventCode = 0;
+        int CurrentStageReward = (int)StageAverageRward[PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor - 1];
 
+        switch(CurrentEvent.EventCode)
+        {
+            case 3000:
+                FollowEventCode = Stage03Event.Event3000(ButtonType, ref Getting, ref Losing);
+                break;
+            case 3010:
+                FollowEventCode = Stage03Event.Event3010(ButtonType, PlayerMgr, ref Getting, ref Losing);
+                break;
+            case 3020:
+                FollowEventCode = Stage03Event.Event3020();
+                break;
+            case 3021:
+                Stage03Event.Event3021(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 3030:
+                FollowEventCode = Stage03Event.Event3030(ButtonType, PlayerMgr);
+                break;
+            case 3031:
+                Stage03Event.Event3031(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 3040:
+                FollowEventCode = Stage03Event.Event3040(ButtonType);
+                break;
+            case 3041:
+                Stage03Event.Event3041(PlayerMgr, UIMgr, BattleMgr);
+                break;
+            case 3050:
+                FollowEventCode = Stage03Event.Event3050(ButtonType, ref Getting, ref Losing);
+                break;
+            case 3060:
+                FollowEventCode = Stage03Event.Event3060(ButtonType, CurrentStageReward, PlayerMgr, UIMgr, ref Getting, ref Losing);
+                break;
+            case 3001:
+            case 3002:
+            case 3003:
+            case 3011:
+            case 3012:
+            case 3013:
+            case 3014:
+            case 3032:
+            case 3042:
+            case 3051:
+            case 3052:
+            case 3061:
+            case 3062:
+            case 3063:
+                CommonFollowEvent();
+                break;
+        }
+
+        if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
+            return;
+        else if (FollowEventStorage.ContainsKey(FollowEventCode))
+        {
+            CurrentEvent = FollowEventStorage[FollowEventCode];
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            UIMgr.E_UI.ActiveEventUI(this);
+        }
+        else if (FollowEventCode == 2000)
+        {
+            for (int i = 0; i < EventStorage[2].Count; i++)
+            {
+                if (EventStorage[2][i].EventCode == 2000)
+                {
+                    CurrentEvent = EventStorage[2][i];
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    UIMgr.E_UI.ActiveEventUI(this);
+                }
+            }
+        }
     }
     protected void Stage04ThemeEvent(int ButtonType)
     {

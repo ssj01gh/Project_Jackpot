@@ -15,7 +15,8 @@ MonoBehaviour:
   EventCode: 8091
   EventTitle: "\uC62E\uACA8 \uBD99\uC740 \uC800\uC8FC"
   EventImage: {fileID: 21300000, guid: 42474d38ba4b35544ac18974af74ecac, type: 3}
-  EventDetail: "\uB4A4\uB2A6\uAC8C \uBC84\uB838\uB358 \uAC80\uC744 \uCC3E\uC544 \uBD24\uC9C0\uB9CC\n\uAC80\uC740
-    \uC774\uBBF8 \uC5C6\uC5B4\uC838 \uBC84\uB838\uC2B5\uB2C8\uB2E4."
+  EventDetail: "<color=red>{Losing}</color>\n\uB4A4\uB2A6\uAC8C \uBC84\uB838\uB358
+    \uAC80\uC744 \uCC3E\uC544 \uBD24\uC9C0\uB9CC\n\uAC80\uC740 \uC774\uBBF8 \uC5C6\uC5B4\uC838
+    \uBC84\uB838\uC2B5\uB2C8\uB2E4."
   EventSelectionDetail:
   - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."

@@ -16,6 +16,6 @@ MonoBehaviour:
   EquipStateType: 1
   EquipType: 0
   EquipmentName: "\uCCA0\uD1F4"
-  EquipmentDetail: "\uB54C\uB9AC\uB294\uB370 \uD2B9\uD654\uB41C \uBB34\uAE30\uC785\uB2C8\uB2E4.\n\uACF5\uACA9\uC2DC
-    \uC801\uC5D0\uAC8C <link=\"DURWE\"><color=green>\uACF5\uACA9\uB825 \uAC10\uC18C</color></link>
-    3\uC2A4\uD0DD\uC744 \uBD80\uC5EC \uD569\uB2C8\uB2E4."
+  EquipmentDetail: "\uB54C\uB9AC\uB294\uB370 \uD2B9\uD654\uB41C \uBB34\uAE30\uC785\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC801\uC5D0\uAC8C
+    <link=\"DURWE\"><color=green>\uACF5\uACA9\uB825 \uAC10\uC18C</color></link> 3\uC2A4\uD0DD\uC744
+    \uBD80\uC5EC \uD569\uB2C8\uB2E4."
