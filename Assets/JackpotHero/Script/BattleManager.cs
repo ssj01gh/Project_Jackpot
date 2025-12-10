@@ -151,6 +151,7 @@ public class BattleManager : MonoBehaviour
 
         //몬스터는 여기서 불사를 계산해야함
         List<int> RewardEXPs = MonMgr.CheckActiveMonstersRSurvive(PlayerMgr);//현재 스폰된 몬스터중 죽은 몬스터 정리//죽을때 Reward증가
+        PlayerMgr.GetPlayerInfo().CheckUnDeadBuff();
         if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack == -1)
         {//-1이란 것은 습격이 아니다 -> 보상을 획득 해야 한다.
             for (int i = 0; i < RewardEXPs.Count; i++)
@@ -894,74 +895,96 @@ public class BattleManager : MonoBehaviour
     {
         if (CurrentTurnObject.tag == "Player" && MonMgr.GetActiveMonsters().Count > 0)
         {
-            Vector3 PlayerBuffPos = PlayerMgr.GetPlayerInfo().gameObject.transform.position;
-            PlayerBuffPos.y += 1.5f;
-            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[BuffsType] > 0)
+            if (BuffsType == (int)EBuffType.UnDead && PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead] > 0)
             {
-                switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
+                Vector3 PlayerBuffPos = PlayerMgr.GetPlayerInfo().gameObject.transform.position;
+                PlayerBuffPos.y += 1.5f;
+                if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1)
                 {
-                    case (int)EBuffType.Poison:
-                        PlayerMgr.GetPlayerInfo().PlayerDamage(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison], true);
-                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] / 2;
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", PlayerBuffPos);
-                        break;
-                    case (int)EBuffType.Recharge:
-                        float RegenSTAAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxSTA - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA;
-                        RegenSTAAmount = RegenSTAAmount / 20;
-                        PlayerMgr.GetPlayerInfo().PlayerRegenSTA(RegenSTAAmount);
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_ReCharge", PlayerBuffPos);
-                        break;
-                    case (int)EBuffType.UnDead:
-                        if (PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1)
-                        {
-                            PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP = 1;
-                            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentHpRatio =
-                                PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP / PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP;
-                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead] = 0;
-                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerBuffPos);
-                        }
-                        else
-                        {//위의 조건이 아니라면 --
-                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead]--;
-                        }
-                        break;
-                    case (int)EBuffType.Cower:
-                        /*
-                        while(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 3)
-                        {
-                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] -= 3;
-                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
-                        }
-                        */
-                        break;
-                    case (int)EBuffType.Fear:
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerBuffPos);
-                        break;
-                    case (int)EBuffType.OverCharge:
-                        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.OverCharge] <= 1)
-                        {
-                            PlayerMgr.GetPlayerInfo().PlayerDamage(99999);
-                        }
-                        break;
+                    PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP = 1;
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentHpRatio =
+                        PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP / PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP;
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead] = 0;
+                    EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerBuffPos);
                 }
+                else
+                {//위의 조건이 아니라면 --
+                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead]--;
+                }
+            }
 
-                //독, 죽음의 저주, 불사, 무방비, 방어력, 회복력, 연속 타격, 위축, 공포, 축적 제외
-                //업보_선, 업보_악, 반사, 질투 제외
-                if (BuffsType != (int)EBuffType.Poison && BuffsType != (int)EBuffType.CurseOfDeath &&
-                    BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defenseless && 
-                    BuffsType != (int)EBuffType.Defense && BuffsType != (int)EBuffType.Resilience &&
-                    BuffsType != (int)EBuffType.ChainAttack && BuffsType != (int)EBuffType.Cower &&
-                    BuffsType != (int)EBuffType.Fear && BuffsType != (int)EBuffType.Charging &&
-                    BuffsType != (int)EBuffType.GoodKarma && BuffsType != (int)EBuffType.BadKarma &&
-                    BuffsType != (int)EBuffType.Reflect && BuffsType != (int)EBuffType.Envy)//독 과 죽음의 저주, 불사, 무방비, 방어력, 회복력 따로 계산
+            if (!(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1))
+            {
+                Vector3 PlayerBuffPos = PlayerMgr.GetPlayerInfo().gameObject.transform.position;
+                PlayerBuffPos.y += 1.5f;
+                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[BuffsType] > 0)
                 {
-                    PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[BuffsType]--;
+                    switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
+                    {
+                        case (int)EBuffType.Poison:
+                            PlayerMgr.GetPlayerInfo().PlayerDamage(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison], true);
+                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] / 2;
+                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", PlayerBuffPos);
+                            break;
+                        case (int)EBuffType.Recharge:
+                            float RegenSTAAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxSTA - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA;
+                            RegenSTAAmount = RegenSTAAmount / 20;
+                            PlayerMgr.GetPlayerInfo().PlayerRegenSTA(RegenSTAAmount);
+                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_ReCharge", PlayerBuffPos);
+                            break;
+                        case (int)EBuffType.Cower:
+                            /*
+                            while(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 3)
+                            {
+                                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] -= 3;
+                                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
+                            }
+                            */
+                            break;
+                        case (int)EBuffType.Fear:
+                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerBuffPos);
+                            break;
+                        case (int)EBuffType.OverCharge:
+                            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.OverCharge] <= 1)
+                            {
+                                PlayerMgr.GetPlayerInfo().PlayerDamage(99999);
+                            }
+                            break;
+                    }
+
+                    //독, 죽음의 저주, 불사, 무방비, 방어력, 회복력, 연속 타격, 위축, 공포, 축적 제외
+                    //업보_선, 업보_악, 반사, 질투 제외
+                    if (BuffsType != (int)EBuffType.Poison && BuffsType != (int)EBuffType.CurseOfDeath &&
+                        BuffsType != (int)EBuffType.UnDead && BuffsType != (int)EBuffType.Defenseless &&
+                        BuffsType != (int)EBuffType.Defense && BuffsType != (int)EBuffType.Resilience &&
+                        BuffsType != (int)EBuffType.ChainAttack && BuffsType != (int)EBuffType.Cower &&
+                        BuffsType != (int)EBuffType.Fear && BuffsType != (int)EBuffType.Charging &&
+                        BuffsType != (int)EBuffType.GoodKarma && BuffsType != (int)EBuffType.BadKarma &&
+                        BuffsType != (int)EBuffType.Reflect && BuffsType != (int)EBuffType.Envy)//독 과 죽음의 저주, 불사, 무방비, 방어력, 회복력 따로 계산
+                    {
+                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[BuffsType]--;
+                    }
                 }
+            
             }
         }
         else if (CurrentTurnObject.tag == "Monster")
         {
             Monster MonInfo = CurrentTurnObject.GetComponent<Monster>();
+            if(BuffsType == (int) EBuffType.UnDead && MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead] > 0)
+            {//이게 switch 위에 있어도 Undead는 제일 뒤에 계산됨, 함수 밖에서 BuffsType값을 주고있어서
+                MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
+                if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP < 1)
+                {
+                    MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP = 1;
+                    MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead] = 0;
+                    EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", MonInfo.gameObject.transform.position);
+                }
+                else
+                {
+                    MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
+                }
+            }
             if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP > 0 && MonInfo.MonsterBuff.BuffList[BuffsType] > 0)
             {//살아있는 놈들 중에서
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
@@ -984,21 +1007,6 @@ public class BattleManager : MonoBehaviour
                         {
                             MonInfo.MonsterBuff.BuffList[(int)EBuffType.CurseOfDeath]--;
                         }
-                        break;
-                    case (int)EBuffType.UnDead:
-                        MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
-                        /*
-                        if (MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP < 1)
-                        {
-                            MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP = 1;
-                            MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead] = 0;
-                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", MonInfo.gameObject.transform.position);
-                        }
-                        else
-                        {
-                            MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead]--;
-                        }
-                        */
                         break;
                     case (int)EBuffType.Servant:
                         if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.Servant] <= 1)
@@ -1056,7 +1064,8 @@ public class BattleManager : MonoBehaviour
 
     protected void BeforeBuffCalculate(int BuffsType)
     {
-        if (CurrentTurnObject.tag == "Player" && MonMgr.GetActiveMonsters().Count > 0)
+        //체력이 0 이하일때는 계산 X?
+        if (CurrentTurnObject.tag == "Player" && MonMgr.GetActiveMonsters().Count > 0 && !(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1))
         {
             Vector3 PlayerBuffPos = PlayerMgr.GetPlayerInfo().gameObject.transform.position;
             PlayerBuffPos.y += 1.5f;
@@ -1109,7 +1118,7 @@ public class BattleManager : MonoBehaviour
         else if (CurrentTurnObject.tag == "Monster")
         {
             Monster MonInfo = CurrentTurnObject.GetComponent<Monster>();
-            if (MonInfo.MonsterBuff.BuffList[BuffsType] > 0)
+            if (MonInfo.MonsterBuff.BuffList[BuffsType] > 0 && !(MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP < 1))
             {
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                 {

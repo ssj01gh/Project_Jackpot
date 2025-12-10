@@ -118,6 +118,7 @@ public class BattleUI : MonoBehaviour
     protected List<float> LowwerMGList = new List<float>();
     protected int PositiveLink = 0;
     protected int MergeCompleteCardCount = 0;
+    protected List<int> MagCardNumList = new List<int>();
 
     protected int CurrentMainBattlePhase;
     protected enum EMainBattlePhase
@@ -644,7 +645,10 @@ public class BattleUI : MonoBehaviour
         BaseAmountCardTitleText.text = "";//3번
         BaseAmountCardDetailText.text = "";//3번
         MagnificationCard.SetActive(false);//3번
-        InitAllMGCard();//3번
+        if (ActionObj.tag == "Monster")
+            InitAllMGCard(false);//3번
+        else
+            InitAllMGCard();
 
         //0. Attack, 1. Defense, 2. Rest, 3. Another 4.Charm
         //행동 상태에 맞는 모양 활성화 //4번 활성화
@@ -692,11 +696,21 @@ public class BattleUI : MonoBehaviour
         BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
         BaseAmountCard.GetComponent<RectTransform>().localScale = Vector2.one;
         BaseAmountCard.SetActive(true);//3번
+        if(ActionObj.tag == "Monster")
+        {
+            BaseAmountCard.GetComponent<Button>().interactable = false;
+            ClickTextObject.GetComponent<RectTransform>().DOKill();
+            ClickTextObject.SetActive(false);
+        }
+        else
+        {
+            BaseAmountCard.GetComponent<Button>().interactable = true;
+            ClickTextObject.SetActive(true);
+            ClickTextObject.GetComponent<RectTransform>().DOKill();
+            ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
+            ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        }
 
-        ClickTextObject.SetActive(true);
-        ClickTextObject.GetComponent<RectTransform>().DOKill();
-        ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-        ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
         switch (ActionString)
         {
             case "Charm":
@@ -719,10 +733,14 @@ public class BattleUI : MonoBehaviour
                 //특수 행동에 대한 설명?
                 break;
         }
-        //첫번째 카드를 클릭하고 애니메이션이 끝날때까지 대기
+        //첫번째 카드를 클릭하고 애니메이션이 끝날때까지 대기 //몬스터는 몇초뒤 자동 재생
         IsAnimateComplete = false;
-        if(CurrentMainBattlePhase != (int)EMainBattlePhase.SpecialAction)
+        if (CurrentMainBattlePhase != (int)EMainBattlePhase.SpecialAction)
         {
+            if (ActionObj.tag == "Monster")
+            {
+                DOVirtual.DelayedCall(1f, () => ClickAmountCard());
+            }
             while (true)
             {
                 yield return null;
@@ -753,15 +771,28 @@ public class BattleUI : MonoBehaviour
                 BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
                 BaseAmountCard.GetComponent<RectTransform>().localScale = Vector3.one;
                 BaseAmountCard.SetActive(true);
-
-                ClickTextObject.SetActive(true);
-                ClickTextObject.GetComponent<RectTransform>().DOKill();
-                ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                if (ActionObj.tag == "Monster")
+                {
+                    BaseAmountCard.GetComponent<Button>().interactable = false;
+                    ClickTextObject.GetComponent<RectTransform>().DOKill();
+                    ClickTextObject.SetActive(false);
+                }
+                else
+                {
+                    BaseAmountCard.GetComponent<Button>().interactable = true;
+                    ClickTextObject.SetActive(true);
+                    ClickTextObject.GetComponent<RectTransform>().DOKill();
+                    ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
+                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                }
                 BaseAmountCardTitleText.text = "추가 기초 수치";
                 BaseAmountCardDetailText.text = ((int)BattleResult.BaseAmountPlus).ToString();
             }
             //첫번째 카드를 클릭하고 애니메이션이 끝날때까지 대기
+            if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
+            {
+                DOVirtual.DelayedCall(1f, () => ClickAmountCard());
+            }
             while (BaseAmountCard.activeSelf == true)
             {
                 yield return null;
@@ -792,14 +823,20 @@ public class BattleUI : MonoBehaviour
             PositiveLink = 0;
             UpperMGList.Clear();
             LowwerMGList.Clear();
-
+            MagCardNumList.Clear();
+            //몬스터가 될경우 1초 뒤 0.2초 간격으로 하나씩 개봉?
             //BattleResult.Count만큼 활성화 및 위 아래의 카드 개봉시 수치 나누기
             SetMGCardActive(BattleResult.ResultMagnification);
             //클릭할 수 있는 카드는 활성화 되어있음
             //각 카드를 누를때마다 PositiveLink가 증가할지 0으로 될지 결정됨
             //각 카드가 몇번째 카드인지 확인할 수 있어야함 (왼쪽 위 부터 1번)
             //개방된 카드가 ResultMagnification.count 이상이 되면 다음으로 넘어감
-            while(true)
+            //ClickMagnificationCard(int)가 1초후 0.2초 간격으로 실행 ActionObj == Monster일 경우 MagCardNumList.Count만큼
+            if (ActionObj.tag == "Monster")
+            {
+                DOVirtual.DelayedCall(1f, () => ClickAmountCard());
+            }
+            while (true)
             {//개방된 카드가 ResultMagnification.count 이상이 되면 다음으로 넘어감
                 //
                 yield return null;
@@ -841,94 +878,6 @@ public class BattleUI : MonoBehaviour
                     break;
                 }
             }
-            /*
-            while (RepeatCount < BattleResult.ResultMagnification.Count)
-            {
-                yield return null;
-                //MagnificationCard.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                MagnificationCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
-                MagnificationCard.GetComponent<RectTransform>().localScale = Vector2.one;
-                MagnificationCard.SetActive(true);
-                MagnificationCard.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);//?카드로 초기화
-
-                IsOpenCard = false;
-                IsOpenAnimationComplete = false;
-                IsAnimateComplete = false;
-                //ClickTextObject.SetActive(true);
-                //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                ClickTextObject.SetActive(true);
-                ClickTextObject.GetComponent<RectTransform>().DOKill();
-                ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                //카드 공개의 50프로까지 진행될때까지 대기
-                while (true)
-                {
-                    yield return null;
-                    if (IsOpenCard == true)
-                    {
-                        //애니메이션이 50프로 까지 진행되면 카드에 결과 출력
-                        if (BattleResult.ResultMagnification[RepeatCount] >= 1)//긍정이라면
-                        {
-                            PositiveLink++;
-                        }
-                        else
-                        {
-                            PositiveLink = 0;
-                        }
-                        MagnificationCard.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(BattleResult.ResultMagnification[RepeatCount]);//0번째 결과 출력
-                        MagnificationCard.GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).OnComplete(() =>
-                        {
-                            //MagnificationCard.GetComponent<RectTransform>().DORotate
-                            PlayCardResultSound(PositiveLink);//계속 긍정이 되면 피치가 계속 올라감
-                            IsOpenAnimationComplete = true;
-                        });
-                        break;
-                    }
-                }
-
-                //숫자 카드가 다 나타날때 까지 대기
-                while (true)
-                {
-                    yield return null;
-                    if (IsOpenAnimationComplete == true)
-                    {
-                        //ClickTextObject.SetActive(true);
-                        //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                        ClickTextObject.SetActive(true);
-                        ClickTextObject.GetComponent<RectTransform>().DOKill();
-                        ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                        ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                        break;
-                    }
-                }
-
-                //이쪽이 곱 카드 표시하는곳
-                //카드 클릭 애니메이션이 진행될때까지 대기
-                while (true)
-                {
-                    yield return null;
-                    if (IsAnimateComplete == true)
-                    {
-                        //카드 클릭 애니메이션 재생이 끝나면 비활성화 후 결과값을 출력
-                        MagnificationCard.SetActive(false);
-                        float BeforeMagnification = TotalMagnification;
-                        TotalMagnification *= BattleResult.ResultMagnification[RepeatCount];
-                        if (BeforeMagnification != TotalMagnification)//*1이 아닐때
-                        {
-                            NumAudioSource = SoundManager.Instance.PlaySFX("Increase_Number");
-                        }
-                        DOTween.To(() => BeforeMagnification, x =>
-                        {
-                            BeforeMagnification = x;
-                            MagnificationText.text = BeforeMagnification.ToString("F2");
-                        }, TotalMagnification, 0.3f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
-                        //MagnificationText.text = TotalMagnification.ToString("F2");
-                        RepeatCount++;
-                        break;
-                    }
-                }
-            }
-            */
 
             //여기 왔다는것은 장비에의한 곱이 완료된거임
             CurrentMainBattlePhase = (int)EMainBattlePhase.EquipMagnificationComplete;
@@ -1425,7 +1374,7 @@ public class BattleUI : MonoBehaviour
         */
     }
 
-    protected void InitAllMGCard()
+    protected void InitAllMGCard(bool IsInteratable = true)
     {//초기화 == 일단 카드들 다 비활성화, 초기 상태로 되될리기
         UpperMGLine.SetActive(false);
         LowerMGLine.SetActive(false);
@@ -1433,7 +1382,7 @@ public class BattleUI : MonoBehaviour
         {
             obj.SetActive(false);
             obj.GetComponent<Image>().color = InitMGColor;
-            obj.GetComponent<Button>().interactable = true;
+            obj.GetComponent<Button>().interactable = IsInteratable;
         }
         foreach (GameObject obj in UpperMGVirtualCard)
         {
@@ -1446,7 +1395,7 @@ public class BattleUI : MonoBehaviour
         {
             obj.SetActive(false);
             obj.GetComponent<Image>().color = InitMGColor;
-            obj.GetComponent<Button>().interactable = true;
+            obj.GetComponent<Button>().interactable = IsInteratable;
         }
         foreach (GameObject obj in LowerMGVirtualCard)
         {
@@ -1462,8 +1411,9 @@ public class BattleUI : MonoBehaviour
     protected void SetMGCardActive(List<float> MagnificationList)
     {
         int ListCount = MagnificationList.Count;
-        int UpperInt = 0;
-        int LowwerInt = 0;
+        int UpperInt = 0;//0, 1, 2, 3
+        int LowwerInt = 0;//4, 5, 6, 7
+        //MagCardNumList.AddRange(new int[] { 1, 2, 3, 4 });
         switch (ListCount)
         {
             case 1:
@@ -1505,6 +1455,7 @@ public class BattleUI : MonoBehaviour
             {
                 UpperMGCard[i].SetActive(true);
                 UpperMGList.Add(MagnificationList[i]);
+                MagCardNumList.Add(i);//0~3까지 들어감
             }
         }
         if(LowwerInt != 0)
@@ -1513,6 +1464,7 @@ public class BattleUI : MonoBehaviour
             {
                 LowerMGCard[i].SetActive(true);
                 LowwerMGList.Add(MagnificationList[UpperInt + i]);
+                MagCardNumList.Add(i + 4);//4~7까지 들어감
             }
         }
     }
@@ -1660,6 +1612,10 @@ public class BattleUI : MonoBehaviour
         {
             MonsterStatusUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-390, 125);
             MonsterStatusUI.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { MonsterStatusUI.SetActive(false); });
+        }
+        foreach (Slider obj in MonsterHPSlider)
+        {
+            obj.gameObject.SetActive(false);
         }
         //몬스터 버프 표시 비활성화
         foreach (BuffImageUIContainer obj in MonsterBuffUI)
