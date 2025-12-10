@@ -27254,6 +27254,20 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 7bf683a10245f4a4ba25ffaa033debb7, type: 3}
     - {fileID: 21300000, guid: b85611e219351d94f98c4f09f20a2ff4, type: 3}
     - {fileID: 21300000, guid: 6bf075846155c984c89f4d93e82585f8, type: 3}
+  - StageBackGroundSprites:
+    - {fileID: 21300000, guid: 7b8e6eae56aa67f4bac863ff598734ed, type: 3}
+    - {fileID: 21300000, guid: a0a3d752c43a556499c17c39256cad94, type: 3}
+    - {fileID: 21300000, guid: 74369ae186846c74a97b8be1f7200211, type: 3}
+    - {fileID: 21300000, guid: c005c273e1e49534b9d482bb5797b953, type: 3}
+    - {fileID: 21300000, guid: 81e5588fd302de14e96a2e78a2ad3fe3, type: 3}
+    - {fileID: 21300000, guid: 341351501cadf95448b20e90fd7939f8, type: 3}
+  - StageBackGroundSprites:
+    - {fileID: 21300000, guid: c959e06f7fe17c246904cc84c80a7a12, type: 3}
+    - {fileID: 21300000, guid: 0bcb1941a69deb4459a72d65553cca81, type: 3}
+    - {fileID: 21300000, guid: 2a45f082b74a3b44d9b0adb00e10f17b, type: 3}
+    - {fileID: 21300000, guid: 9ee4f8416c2208c48ba7275edd71f0ee, type: 3}
+    - {fileID: 21300000, guid: 9ee4f8416c2208c48ba7275edd71f0ee, type: 3}
+    - {fileID: 21300000, guid: 9f1f5a384a924c64e8c06749f41a09c9, type: 3}
   RestBackGround: {fileID: 2070686835}
   Layer01_BackGround:
   - {fileID: 143260507}
@@ -37365,7 +37379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &652251706
 RectTransform:
   m_ObjectHideFlags: 0
@@ -127046,7 +127060,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.828, g: 0.54899997, b: 0.26549995, a: 1}
     m_PressedColor: {r: 0.587, g: 0.3892065, b: 0.1882228, a: 1}
     m_SelectedColor: {r: 0.72156864, g: 0.4784314, b: 0.23137257, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.72156864, g: 0.4784314, b: 0.23137257, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

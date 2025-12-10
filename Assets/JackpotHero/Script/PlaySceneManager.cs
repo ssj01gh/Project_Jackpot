@@ -133,7 +133,7 @@ public class PlaySceneManager : MonoBehaviour
         }
 
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-        UIMgr.BG_UI.MoveBackGround();
+        UIMgr.BG_UI.MoveBackGround(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
         StartCoroutine(CheckBackGroundMoveEnd());
     }
 

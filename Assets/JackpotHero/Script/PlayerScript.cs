@@ -720,6 +720,29 @@ public class PlayerScript : MonoBehaviour
 
         PlayerTotalState.CurrentHP -= RestDamage;
         PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
+        /*
+        if(PlayerTotalState.CurrentHP < 1 && PlayerBuff.BuffList[(int)EBuffType.UnDead] >= 1)
+        {
+            PlayerTotalState.CurrentHP = 1;
+            PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
+            PlayerBuff.BuffList[(int)EBuffType.UnDead] = 0;
+            Vector3 PlayerBuffPos = gameObject.transform.position;
+            PlayerBuffPos.y += 1.5f;
+            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerBuffPos);
+        }
+        */
+    }
+    public void CheckUnDeadBuff()
+    {
+        if(PlayerTotalState.CurrentHP < 1 && PlayerBuff.BuffList[(int)EBuffType.UnDead] >= 1)
+        {
+            PlayerTotalState.CurrentHP = 1;
+            PlayerState.CurrentHpRatio = PlayerTotalState.CurrentHP / PlayerTotalState.MaxHP;
+            PlayerBuff.BuffList[(int)EBuffType.UnDead] = 0;
+            Vector3 PlayerBuffPos = gameObject.transform.position;
+            PlayerBuffPos.y += 1.5f;
+            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerBuffPos);
+        }
     }
 
     public void PlayerGetShield(float ShieldPoint)//½¯µå°¡ »ý°åÀ»‹š
