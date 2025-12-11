@@ -18,7 +18,9 @@ public class Mon_ShortLegBird : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
-        MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] = 999;
+        //MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] = 999;
+        //MonsterBuff.BuffList[(int)EBuffType.ToughFist] = 999;
+        //MonsterBuff.BuffList[(int)EBuffType.Reflect] = 20;
         //공격 : 방어 = 1 : 1
         
         int RandNum = Random.Range(0, 2);
