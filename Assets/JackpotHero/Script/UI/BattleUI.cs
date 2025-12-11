@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -739,7 +738,7 @@ public class BattleUI : MonoBehaviour
         {
             if (ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(1f, () => ClickAmountCard());
+                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
             }
             while (true)
             {
@@ -791,7 +790,7 @@ public class BattleUI : MonoBehaviour
             //첫번째 카드를 클릭하고 애니메이션이 끝날때까지 대기
             if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(1f, () => ClickAmountCard());
+                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
             }
             while (BaseAmountCard.activeSelf == true)
             {
@@ -832,9 +831,23 @@ public class BattleUI : MonoBehaviour
             //각 카드가 몇번째 카드인지 확인할 수 있어야함 (왼쪽 위 부터 1번)
             //개방된 카드가 ResultMagnification.count 이상이 되면 다음으로 넘어감
             //ClickMagnificationCard(int)가 1초후 0.2초 간격으로 실행 ActionObj == Monster일 경우 MagCardNumList.Count만큼
+            for(int i = 0; i < MagCardNumList.Count; i++)
+            {
+                Debug.Log(MagCardNumList[i]);
+            }
             if (ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(1f, () => ClickAmountCard());
+                Sequence Seq = DOTween.Sequence();
+                
+                Seq.AppendInterval(0.5f); // 1초 대기
+                foreach (int i  in MagCardNumList)
+                {
+                    Seq.AppendCallback(() =>
+                    {
+                        ClickMagnificationCard(i);
+                    });
+                    Seq.AppendInterval(0.2f); // 0.2초 간격
+                }
             }
             while (true)
             {//개방된 카드가 ResultMagnification.count 이상이 되면 다음으로 넘어감
@@ -888,17 +901,30 @@ public class BattleUI : MonoBehaviour
                 BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
                 BaseAmountCard.GetComponent<RectTransform>().localScale = Vector3.one;
                 BaseAmountCard.SetActive(true);
-
+                if (ActionObj.tag == "Monster")
+                {
+                    BaseAmountCard.GetComponent<Button>().interactable = false;
+                    ClickTextObject.GetComponent<RectTransform>().DOKill();
+                    ClickTextObject.SetActive(false);
+                }
+                else
+                {
+                    BaseAmountCard.GetComponent<Button>().interactable = true;
+                    ClickTextObject.SetActive(true);
+                    ClickTextObject.GetComponent<RectTransform>().DOKill();
+                    ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
+                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                }
                 //ClickTextObject.SetActive(true);
                 //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                ClickTextObject.SetActive(true);
-                ClickTextObject.GetComponent<RectTransform>().DOKill();
-                ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
                 BaseAmountCardTitleText.text = "버프 배율";
                 BaseAmountCardDetailText.text = BattleResult.BuffMagnification.ToString("F2");
             }
 
+            if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
+            {
+                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+            }
             while (BaseAmountCard.activeSelf == true)
             {
                 yield return null;
@@ -976,18 +1002,30 @@ public class BattleUI : MonoBehaviour
                 BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
                 BaseAmountCard.GetComponent<RectTransform>().localScale = Vector2.one;
                 BaseAmountCard.SetActive(true);
-
+                if (ActionObj.tag == "Monster")
+                {
+                    BaseAmountCard.GetComponent<Button>().interactable = false;
+                    ClickTextObject.GetComponent<RectTransform>().DOKill();
+                    ClickTextObject.SetActive(false);
+                }
+                else
+                {
+                    BaseAmountCard.GetComponent<Button>().interactable = true;
+                    ClickTextObject.SetActive(true);
+                    ClickTextObject.GetComponent<RectTransform>().DOKill();
+                    ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
+                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                }
                 //ClickTextObject.SetActive(true);
                 //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                ClickTextObject.SetActive(true);
-                ClickTextObject.GetComponent<RectTransform>().DOKill();
-                ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-
                 BaseAmountCardTitleText.text = "추가 최종 수치";
                 BaseAmountCardDetailText.text = ((int)BattleResult.FinalResultAmountPlus).ToString();
             }
 
+            if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
+            {
+                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+            }
             while (BaseAmountCard.activeSelf == true)
             {
                 yield return null;
@@ -1013,7 +1051,11 @@ public class BattleUI : MonoBehaviour
         }
         else if(CurrentMainBattlePhase == (int)EMainBattlePhase.SpecialAction)
         {
-            while(true)
+            if (ActionObj.tag == "Monster")
+            {
+                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+            }
+            while (true)
             {
                 yield return null;
                 if(IsAnimateComplete == true)

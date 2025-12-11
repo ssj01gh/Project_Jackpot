@@ -91,3 +91,22 @@ public class LinkageEventInfo
     public bool ReadyForBattle;
     public bool IsMeetTalkingDopple;
 }
+
+[System.Serializable]
+public class TutorialInfo
+{
+    public bool TitleEarlyStrengthen;
+    public bool Research;
+    public bool ResearchOpenBag;
+    public bool ResearchSelectRest;
+    public bool Battle;
+    public bool BattlePlayerTurn;
+    public bool BattlePlayerTurnMagCard;
+    public bool BattleMonsterTurn;
+    public bool BattleSuddenAttack;
+    public bool Event;
+    public bool Camping;
+    public bool CampingRest;
+    public bool CampingLevelUp;
+    public bool CampingEquipment;
+}

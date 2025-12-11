@@ -33,6 +33,8 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     public OptionInfo O_Info;
     [HideInInspector]
     public LinkageEventInfo LkEv_Info;
+    [HideInInspector]
+    public TutorialInfo T_Info;
 
     protected int[] EarlyState_SDRSL = new int[8] { 0, 1, 2, 3, 4, 5, 5, 5 };
     protected int[] EarlyState_HP = new int[8] { 0, 20, 40, 60, 100, 100, 100, 100 };
@@ -49,6 +51,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         InitEarlyStrengthenInfo();
         InitOptionInfo();
         InitLinkageEventInfo();
+        InitTutorialInfo();
     }
     void Start()
     {
@@ -157,6 +160,37 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         //불러오기
         O_Info = JsonUtility.FromJson<OptionInfo>(File.ReadAllText(path));
     }
+
+    protected void InitTutorialInfo()
+    {
+        string FileName = "TutorialInfo";
+        string path = Application.persistentDataPath + "/" + FileName + ".json";
+        if (!File.Exists(path))//없으면 생성
+        {
+            //TutorialInfo Setting
+            T_Info.TitleEarlyStrengthen = false;
+            T_Info.Research = false;
+            T_Info.ResearchOpenBag = false;
+            T_Info.ResearchSelectRest = false;
+            T_Info.Battle = false;
+            T_Info.BattlePlayerTurn = false;
+            T_Info.BattlePlayerTurnMagCard = false;
+            T_Info.BattleMonsterTurn = false;
+            T_Info.BattleSuddenAttack = false;
+            T_Info.Event = false;
+            T_Info.Camping = false;
+            T_Info.Camping = false;
+            T_Info.CampingRest = false;
+            T_Info.CampingLevelUp = false;
+            T_Info.CampingEquipment = false;
+
+            string classToJson = JsonUtility.ToJson(T_Info, true);
+            File.WriteAllText(path, classToJson);
+        }
+        //불러오기
+        T_Info = JsonUtility.FromJson<TutorialInfo>(File.ReadAllText(path));
+    }
+
 
     public void InitLinkageEventInfo(bool IsRestartGame = false)
     {
