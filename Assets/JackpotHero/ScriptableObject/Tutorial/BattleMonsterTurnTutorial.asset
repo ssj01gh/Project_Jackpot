@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TutorialPages:
   - {fileID: 21300000, guid: 61fc027a615bbd046a63fdba3bb1f231, type: 3}
+  TutorialTextPos:
+  - {x: 0, y: 165}
+  TutorialText:
+  - "\uBAAC\uC2A4\uD130 \uD134 \uBC84\uD2BC\uC744 \uD074\uB9AD\uD558\uBA74\n\uBAAC\uC2A4\uD130\uAC00
+    \uD589\uB3D9\uC744 \uC2DC\uC791\uD569\uB2C8\uB2E4."

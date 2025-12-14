@@ -17,5 +17,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7bd2a94732f97c14b94b735646b82c52, type: 3}
   - {fileID: 21300000, guid: 841239235410dfb4abac256998c50775, type: 3}
   - {fileID: 21300000, guid: 7f099cff7afcb854da2e3505911156f0, type: 3}
-  TutorialTextPos: []
-  TutorialText: []
+  TutorialTextPos:
+  - {x: 560, y: -90}
+  - {x: 560, y: 80}
+  - {x: 175, y: -240}
+  - {x: 560, y: -290}
+  TutorialText:
+  - "\uD734\uC2DD\uC2DC \uC2B5\uACA9\uC774\n\uBC1C\uC0DD \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  - "\uC2AC\uB77C\uC774\uB354\uB97C \uD1B5\uD574\n\uD734\uC2DD\uD69F\uC218\uB97C\n\uC815\uD560
+    \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  - "\uD734\uC2DD\uD55C\uB2E4 \uBC84\uD2BC\uC744 \uD074\uB9AD\uC2DC\n\uC124\uC815\uB41C
+    \uD734\uC2DD \uD69F\uC218\uB9CC\uD07C\n\uD734\uC2DD\uC744 \uC2DC\uB3C4 \uD569\uB2C8\uB2E4."
+  - "\uD734\uC2DD\uD558\uC9C0 \uC54A\uB294\uB2E4 \uBC84\uD2BC \uD074\uB9AD\uC2DC\n\uD734\uC2DD
+    \uCD08\uAE30 \uD654\uBA74\uC73C\uB85C \uB3CC\uC544\uAC11\uB2C8\uB2E4."
