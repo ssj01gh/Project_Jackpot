@@ -11,6 +11,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
 {
     // Start is called before the first frame update
     public PlayerManager PlayerMgr;
+    public TutorialManager TutorialMgr;
     public GameObject InventoryPanel;
     public GameObject[] InventorySlots;
     public Image[] InventoryItemImage;
@@ -78,6 +79,11 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
                 //ex ) (21002 / 1000) = 21 -> 21 % 10 = 1; -> 1Æ¼¾î
                 TierTexts[i].text = GetTierText(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i]);
             }
+        }
+        if(JsonReadWriteManager.Instance.T_Info.ResearchOpenBag == false)
+        {
+            JsonReadWriteManager.Instance.T_Info.ResearchOpenBag = true;
+            TutorialMgr.StartTutorial("Tutorial/SearchingBag");
         }
     }
 

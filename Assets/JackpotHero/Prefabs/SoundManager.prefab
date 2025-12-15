@@ -135,6 +135,8 @@ MonoBehaviour:
     _Sound: {fileID: 8300000, guid: 1e514a594c36ad0489dc7384c9923dc4, type: 3}
   - SoundName: Item_Remove
     _Sound: {fileID: 8300000, guid: a1acdba5423f14840b305236378818e9, type: 3}
+  - SoundName: TextTyping
+    _Sound: {fileID: 8300000, guid: 97f5dc34b0c5a074db138104db3f7ab6, type: 3}
   BGMPlayer: {fileID: 8435020513809524899, guid: b7dcaff8e4b34c248b4b223a99b457df, type: 3}
   SFXPlayer: {fileID: 5025712520496327058, guid: 023de268e3bf6b9469534ac21f4a4a94, type: 3}
   UISFXPlayer: {fileID: 6139995416911395973, guid: 44f54ec906ee79546af9798ea6e89987, type: 3}

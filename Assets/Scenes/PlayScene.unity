@@ -19305,6 +19305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerMgr: {fileID: 1055906746}
+  TutorialMgr: {fileID: 595545310}
   InventoryPanel: {fileID: 166562956}
   InventorySlots:
   - {fileID: 1781087372115091583}
@@ -37545,6 +37546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229a1d75aa9d4dc4b8c263c4411128c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TutorialMgr: {fileID: 595545310}
   WorldCanvas: {fileID: 608426657}
   UI_StartOfBattle: {fileID: 640133206}
   PlayerActionSelectionBattleUI: {fileID: 1092958132}
@@ -40234,6 +40236,7 @@ MonoBehaviour:
   PlayerMgr: {fileID: 1055906746}
   MonMgr: {fileID: 2111926014}
   UIMgr: {fileID: 1076819014}
+  TutorialMgr: {fileID: 595545310}
 --- !u!4 &701492610
 Transform:
   m_ObjectHideFlags: 0
@@ -63564,6 +63567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerMgr: {fileID: 1055906746}
   MonMgr: {fileID: 2111926014}
+  TutorialMgr: {fileID: 595545310}
   PE_UI: {fileID: 1013576086}
   PSI_UI: {fileID: 451559109}
   CSP_UI: {fileID: 1300325660}
@@ -116744,7 +116748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -123305,7 +123309,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2072616465}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 595545310}
+        m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
+        m_MethodName: ClickTutorialButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2072616465
 MonoBehaviour:
   m_ObjectHideFlags: 0

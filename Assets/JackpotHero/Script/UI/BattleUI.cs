@@ -18,6 +18,8 @@ public class MonBrokenShield
 
 public class BattleUI : MonoBehaviour
 {
+    [SerializeField]
+    private TutorialManager TutorialMgr;
     public Canvas WorldCanvas;
     public GameObject UI_StartOfBattle;
     [Header("ActionSelectionUI")]
@@ -826,6 +828,11 @@ public class BattleUI : MonoBehaviour
             //몬스터가 될경우 1초 뒤 0.2초 간격으로 하나씩 개봉?
             //BattleResult.Count만큼 활성화 및 위 아래의 카드 개봉시 수치 나누기
             SetMGCardActive(BattleResult.ResultMagnification);
+            if(JsonReadWriteManager.Instance.T_Info.BattlePlayerTurnMagCard == false)
+            {
+                JsonReadWriteManager.Instance.T_Info.BattlePlayerTurnMagCard = true;
+                TutorialMgr.StartTutorial("Tutorial/PlayerMagCard");
+            }
             //클릭할 수 있는 카드는 활성화 되어있음
             //각 카드를 누를때마다 PositiveLink가 증가할지 0으로 될지 결정됨
             //각 카드가 몇번째 카드인지 확인할 수 있어야함 (왼쪽 위 부터 1번)
