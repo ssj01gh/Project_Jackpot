@@ -39,6 +39,8 @@ public class BattleManager : MonoBehaviour
     private MonsterManager MonMgr;
     [SerializeField]
     private PlaySceneUIManager UIMgr;
+    [SerializeField]
+    private TutorialManager TutorialMgr;
     // Start is called before the first frame update
     public GameObject CurrentTurnObject { protected set; get; }
     public BattleResultStates BattleResultStatus { protected set; get; } = new BattleResultStates();
@@ -302,6 +304,11 @@ public class BattleManager : MonoBehaviour
 
             //플레이어의 턴이 됬으니 살아있는 몬스터들의 연속 타격 초기화
             MonMgr.SetActiveMonsterChainAttack(false, false);
+            if(JsonReadWriteManager.Instance.T_Info.BattlePlayerTurn == false)
+            {
+                JsonReadWriteManager.Instance.T_Info.BattlePlayerTurn = true;
+                TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/BattlePlayerTurn");
+            }
         }
         else if (CurrentState == (int)EBattleStates.MonsterTurn)
         {
@@ -314,6 +321,22 @@ public class BattleManager : MonoBehaviour
             MonMgr.SetCurrentTargetMonster(BattleMgr.CurrentTurnObject.GetComponent<Monster>());
             BattleButtonClick("Monster");
             */
+            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack == -1)
+            {//습격이 아니고
+                if(JsonReadWriteManager.Instance.T_Info.BattleMonsterTurn == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.BattleMonsterTurn = true;
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/MonsterTurn");
+                }
+            }
+            else
+            {//습격이고 몬스터턴 (습격이면 어짜피 몬스터 턴이긴 함)
+                if(JsonReadWriteManager.Instance.T_Info.BattleSuddenAttack == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.BattleSuddenAttack = true;
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/BattleSuddenAttack");
+                }
+            }
         }
     }
 

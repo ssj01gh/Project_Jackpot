@@ -15,6 +15,7 @@ public class EarlyStrengthenSO
 
 public class EarlyStrengthenUI : MonoBehaviour
 {
+    public TutorialManager TutorialMgr;
     public EarlyStrengthenSO[] EarlyStrengthDatas;
     [Header("ESUI")]
     public TextMeshProUGUI PointRemain;
@@ -125,6 +126,11 @@ public class EarlyStrengthenUI : MonoBehaviour
             {
                 ButtonOutlineObject.SetActive(false);
             }
+        }
+        if(JsonReadWriteManager.Instance.T_Info.TitleEarlyStrengthen == false)
+        {
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Title");
+            JsonReadWriteManager.Instance.T_Info.TitleEarlyStrengthen = true;
         }
     }
 

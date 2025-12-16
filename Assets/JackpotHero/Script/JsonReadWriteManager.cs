@@ -364,5 +364,10 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         path = Application.persistentDataPath + "/" + FileName + ".json";
         classToJson = JsonUtility.ToJson(LkEv_Info, true);
         File.WriteAllText(path, classToJson);
+
+        FileName = "TutorialInfo";
+        path = Application.persistentDataPath + "/" + FileName + ".json";
+        classToJson = JsonUtility.ToJson(T_Info, true);
+        File.WriteAllText(path, classToJson);
     }
 }

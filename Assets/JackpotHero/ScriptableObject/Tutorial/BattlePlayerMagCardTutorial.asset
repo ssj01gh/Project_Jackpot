@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e29e66d9b3294eb6598bf34af9a1a, type: 3}
+  m_Name: BattlePlayerMagCardTutorial
+  m_EditorClassIdentifier: 
+  TutorialPages:
+  - {fileID: 21300000, guid: dd613b64fcba0764e84b1f3ea8d23a84, type: 3}
+  - {fileID: 21300000, guid: 9da33b7dc62a6534d9f400708fc0ba93, type: 3}
+  - {fileID: 21300000, guid: 96a624cc5eb333d4888888f344539712, type: 3}
+  TutorialTextPos:
+  - {x: 0, y: -420}
+  - {x: 0, y: -420}
+  - {x: -600, y: -245}
+  TutorialText:
+  - "\uBC30\uC728\uCE74\uB4DC\uB294 \n\uD589\uB3D9\uC758 \uCD5C\uC885 \uC218\uCE58\uC5D0\n\uB9C9\uB300\uD55C
+    \uC601\uD5A5\uC744 \uC90D\uB2C8\uB2E4."
+  - "\uD589\uC6B4\uC740 \uBC30\uC728 \uCE74\uB4DC\uC758\n\uACB0\uACFC\uC5D0 \uC601\uD5A5\uC744
+    \uC90D\uB2C8\uB2E4."
+  - "\uB098\uC62C \uC218 \uC788\uB294\n\uBC30\uC728 \uCE74\uB4DC\uC5D0 \uB300\uD55C\n\uC0C1\uC138
+    \uC815\uBCF4\uB294 \uC7A5\uBE44\uC5D0\uC11C\n\uD655\uC778\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4."

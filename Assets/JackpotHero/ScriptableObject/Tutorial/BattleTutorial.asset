@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e29e66d9b3294eb6598bf34af9a1a, type: 3}
+  m_Name: BattleTutorial
+  m_EditorClassIdentifier: 
+  TutorialPages:
+  - {fileID: 21300000, guid: b9887ccd69fcb0744be35b89bc1f8019, type: 3}
+  - {fileID: 21300000, guid: 7b91cc7b41662214e9f68871d5229efb, type: 3}
+  - {fileID: 21300000, guid: 5141a773977268d4e9ca4ad3bf4716c4, type: 3}
+  - {fileID: 21300000, guid: 863d80cb12e4b094a83e3d84d38ecac3, type: 3}
+  TutorialTextPos:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 420, y: 230}
+  - {x: -440, y: 245}
+  TutorialText:
+  - "\uC18D\uB3C4\uC5D0 \uB530\uB77C\n\uD589\uB3D9 \uC21C\uC11C\uAC00 \uC815\uD574\uC9D1\uB2C8\uB2E4.\n\n\uC815\uD574\uC9C4
+    \uC21C\uC11C\uC5D0 \uB530\uB77C\n\uD589\uB3D9 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+  - "\uC801\uC744 \uD074\uB9AD\uD558\uAC70\uB098 \uC21C\uC11C\uD45C \uC5D0\uC11C\n\uC801\uC758
+    \uCD08\uAC15\uD654\uB97C \uD074\uB9AD\uD558\uC5EC\n\uC801\uC758 \uC0C1\uC138
+    \uC815\uBCF4\uB97C\n\uD655\uC778 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+  - "\uC801\uC774 \uC790\uC2E0\uC758 \uCC28\uB840\uAC00 \uB42C\uC744\uB54C\n\uD560
+    \uD589\uB3D9\uC744 \uD655\uC778 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+  - "\uBC84\uD504\uC5D0 \uB9C8\uC6B0\uC2A4\uB97C \uC62C\uB9AC\uBA74\n\uBC84\uD504\uC758
+    \uC0C1\uC138 \uD6A8\uACFC\uB97C\n\uC54C \uC218 \uC788\uC2B5\uB2C8\uB2E4."

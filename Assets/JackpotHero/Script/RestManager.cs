@@ -24,6 +24,8 @@ public class RestManager : MonoBehaviour
     private PlaySceneUIManager UIMgr;
     [SerializeField]
     private BattleManager BattleMgr;
+    [SerializeField]
+    private TutorialManager TutorialMgr;
     
 
     public Slider TimeCountSlider;
@@ -68,6 +70,11 @@ public class RestManager : MonoBehaviour
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.R_UI.ActiveRestTimeSelectionUI(PlayerMgr.GetPlayerInfo());
+        if(JsonReadWriteManager.Instance.T_Info.CampingRest == false)
+        {
+            JsonReadWriteManager.Instance.T_Info.CampingRest = true;
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/CampingRest");
+        }
     }
     public void SetRestMgrRestResult()//휴식할 시간을 조절하고
     {
@@ -196,6 +203,11 @@ public class RestManager : MonoBehaviour
         InitUpgradeAfterStatus();
         SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.R_UI.ActivePlayerUpGradeUI(PlayerMgr.GetPlayerInfo());
+        if (JsonReadWriteManager.Instance.T_Info.CampingLevelUp == false)
+        {
+            JsonReadWriteManager.Instance.T_Info.CampingLevelUp = true;
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/CampingLevelUp");
+        }
     }
     protected void InitUpgradeAfterStatus()
     {
@@ -296,7 +308,6 @@ public class RestManager : MonoBehaviour
             AfterStatus.NeededEXP -= Mathf.CeilToInt(LevelUpgradeBasePoint * Mathf.Pow(LevelUpIncreaseRatio, AfterStatus.AfterLevel));
         }
     }
-
     public void PlayerUpgradeOKButton()
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
@@ -321,6 +332,11 @@ public class RestManager : MonoBehaviour
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.R_UI.ActivePlayerEquipMg();
+        if (JsonReadWriteManager.Instance.T_Info.CampingEquipment == false)
+        {
+            JsonReadWriteManager.Instance.T_Info.CampingEquipment = true;
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/CampingEquip");
+        }
     }
     public void InActiveEquipGambling()
     {

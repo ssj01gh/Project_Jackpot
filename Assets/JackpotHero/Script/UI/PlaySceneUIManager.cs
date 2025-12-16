@@ -9,7 +9,7 @@ public class PlaySceneUIManager : MonoBehaviour
 {
     public PlayerManager PlayerMgr;
     public MonsterManager MonMgr;
-
+    public TutorialManager TutorialMgr;
     //아...... UI 구조 잘짤껄.... 사운드 하나하나 다 넣어야 되네....
     public PlayerEquipmentUI PE_UI;
     public PlayerStateInfoUI PSI_UI;
@@ -61,6 +61,11 @@ public class PlaySceneUIManager : MonoBehaviour
                 ActionSelectionUI.SetActive(true);
                 ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.5f).SetEase(Ease.OutBack);
                 SoundManager.Instance.PlayBGM("BaseBGM");//빅토리 뜰때 바뀌는게 자연스러울듯? (이건 SelectionAction을 위해 남겨 놓고)
+                if(JsonReadWriteManager.Instance.T_Info.Research == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.Research = true;
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Searching");
+                }
                 break;
             case (int)EPlayerCurrentState.Battle:
                 if (ActionSelectionUI.activeSelf == true)
@@ -79,6 +84,11 @@ public class PlaySceneUIManager : MonoBehaviour
                     ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
                 }
                 //EventUI.SetActive(true);
+                if(JsonReadWriteManager.Instance.T_Info.Event == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.Event = true;
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Event");
+                }
                 break;
             case (int)EPlayerCurrentState.Rest:
                 if (ActionSelectionUI.activeSelf == true)
@@ -105,6 +115,11 @@ public class PlaySceneUIManager : MonoBehaviour
                             R_UI.ActiveRestActionSelection(); 
                             FadeUI.SetActive(false);
                             SoundManager.Instance.PlayBGM("RestBGM");
+                            if(JsonReadWriteManager.Instance.T_Info.Camping == false)
+                            {
+                                JsonReadWriteManager.Instance.T_Info.Camping = true;
+                                TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Camping");
+                            }
                         }); 
                     }); 
                 });
@@ -152,6 +167,11 @@ public class PlaySceneUIManager : MonoBehaviour
         RestSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
         RestSelectionUI.gameObject.SetActive(true);
         RestSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.3f).SetEase(Ease.OutBack);
+        if (JsonReadWriteManager.Instance.T_Info.ResearchSelectRest == false)
+        {
+            JsonReadWriteManager.Instance.T_Info.ResearchSelectRest = true;
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/SearchingRest");
+        }
     }
 
     public void NotRestButtonClick()

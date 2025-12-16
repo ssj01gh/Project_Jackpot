@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e29e66d9b3294eb6598bf34af9a1a, type: 3}
+  m_Name: SearchingBagTutorial
+  m_EditorClassIdentifier: 
+  TutorialPages:
+  - {fileID: 21300000, guid: 0c5a61638db6ed2478787266871bd8d7, type: 3}
+  - {fileID: 21300000, guid: 483dfd23570cba042872c75bc6e3ae9b, type: 3}
+  - {fileID: 21300000, guid: 8a491a36ecd0f134e8edf5a24446a226, type: 3}
+  TutorialTextPos:
+  - {x: 130, y: 210}
+  - {x: 0, y: 280}
+  - {x: -585, y: -45}
+  TutorialText:
+  - "\uAC00\uBC29\uC5D0\uC11C\uB294 \uAC00\uC9C0\uACE0 \uC788\uB294 \uC7A5\uBE44\uC758\n\uD2F0\uC5B4\uB9CC
+    \uC54C \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  - "\uC7A5\uCC29\uC911\uC778 \uC7A5\uBE44\uC640\n\uAD50\uD658\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
+  - "\uC7A5\uCC29\uC911\uC774 \uC544\uB2CC \uC7A5\uBE44\uB294\n\uAC00\uBC29\uC5D0\uC11C
+    \uCE78\uC744 \uC774\uB3D9\uD558\uAC70\uB098\n\uD3D0\uAE30\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
