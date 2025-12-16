@@ -83,7 +83,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
         if(JsonReadWriteManager.Instance.T_Info.ResearchOpenBag == false)
         {
             JsonReadWriteManager.Instance.T_Info.ResearchOpenBag = true;
-            TutorialMgr.StartTutorial("Tutorial/SearchingBag");
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/SearchingBag");
         }
     }
 

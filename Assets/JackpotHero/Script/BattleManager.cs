@@ -307,7 +307,7 @@ public class BattleManager : MonoBehaviour
             if(JsonReadWriteManager.Instance.T_Info.BattlePlayerTurn == false)
             {
                 JsonReadWriteManager.Instance.T_Info.BattlePlayerTurn = true;
-                TutorialMgr.StartTutorial("Tutorial/BattlePlayerTurn");
+                TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/BattlePlayerTurn");
             }
         }
         else if (CurrentState == (int)EBattleStates.MonsterTurn)
@@ -326,7 +326,7 @@ public class BattleManager : MonoBehaviour
                 if(JsonReadWriteManager.Instance.T_Info.BattleMonsterTurn == false)
                 {
                     JsonReadWriteManager.Instance.T_Info.BattleMonsterTurn = true;
-                    TutorialMgr.StartTutorial("Tutorial/MonsterTurn");
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/MonsterTurn");
                 }
             }
             else
@@ -334,7 +334,7 @@ public class BattleManager : MonoBehaviour
                 if(JsonReadWriteManager.Instance.T_Info.BattleSuddenAttack == false)
                 {
                     JsonReadWriteManager.Instance.T_Info.BattleSuddenAttack = true;
-                    TutorialMgr.StartTutorial("Tutorial/BattleSuddenAttack");
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/BattleSuddenAttack");
                 }
             }
         }

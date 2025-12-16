@@ -831,7 +831,7 @@ public class BattleUI : MonoBehaviour
             if(JsonReadWriteManager.Instance.T_Info.BattlePlayerTurnMagCard == false)
             {
                 JsonReadWriteManager.Instance.T_Info.BattlePlayerTurnMagCard = true;
-                TutorialMgr.StartTutorial("Tutorial/PlayerMagCard");
+                TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/PlayerMagCard");
             }
             //클릭할 수 있는 카드는 활성화 되어있음
             //각 카드를 누를때마다 PositiveLink가 증가할지 0으로 될지 결정됨

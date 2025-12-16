@@ -10,9 +10,13 @@ public class TutorialManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
+    private PlayerManager PlayerMgr;
+    [SerializeField]
     private Image TutorialImage;
     [SerializeField]
     private TextMeshProUGUI TutorialText;
+    [SerializeField]
+    private Button TutorialSkipButton;
 
     private TutorialSetSO CurrentTutorialInfo;
     private AsyncOperationHandle<TutorialSetSO> _Handle;
@@ -20,14 +24,26 @@ public class TutorialManager : MonoBehaviour
 
     private Coroutine TutorialTextCo;
     private float TextDelay = 0.06f;
-    private string NextKey = "";
-    public async void StartTutorial(string TutorialKey)//이걸로 튜토리얼이 시작됨
+    private List<string> ForLinkedTutorial = new List<string>();
+    private bool IsAfterTutorial = false;
+    public void SetLinkedTutorialNStartTutorial(string TutorialKey)//이걸 타이밍 맞게 부르면.....
+    {
+        SaveLinkedTutorialList(TutorialKey);
+        StartTutorial(TutorialKey);
+        IsAfterTutorial = false;
+    }
+    public async void StartTutorial(string TutorialKey)//이걸로 튜토리얼이 시작됨 외부 class에서 부르는거 위에 함수로 바꾸기
     {
         //이전 꺼 정리
         HideTutorialPage();
 
-        //여기에서 battle족은 특별 관리?
-        TutorialKey = CkeckTutorialForBattle(TutorialKey);
+        if(ForLinkedTutorial.Count >= 1)
+        {//뭐하나 라도 들어가 있다면
+            TutorialKey = ForLinkedTutorial[0];//주고 
+            ForLinkedTutorial.RemoveAt(0);//없애기(1번에 있는 놈을 0번으로 땡김 Or Count를 0으로 만듬)
+        }
+        if (ForLinkedTutorial.Count == 0)
+            ForLinkedTutorial.Clear();
 
         _Handle = Addressables.LoadAssetAsync<TutorialSetSO>(TutorialKey);
         await _Handle.Task;//불러 와질 때까지 비동기 대기
@@ -41,9 +57,10 @@ public class TutorialManager : MonoBehaviour
         CurrentTutorialInfo = _Handle.Result;
         CurrentTutorialIndex = 0;
         TutorialImage.gameObject.SetActive(true);
+        TutorialSkipButton.gameObject.SetActive(IsAfterTutorial);
         ApplyTutorialPage();//이게 실질적인 text랑 이미지 적용
     }
-    public void NextTutorial()//이건 글자 토토독이 끝났을때 클릭되면 작동되게
+    private void NextTutorial()//이건 글자 토토독이 끝났을때 클릭되면 작동되게
     {
         if (CurrentTutorialInfo == null)
             return;
@@ -51,16 +68,15 @@ public class TutorialManager : MonoBehaviour
         CurrentTutorialIndex++;
         if(CurrentTutorialIndex >= CurrentTutorialInfo.TutorialPages.Count)
         {
-            //여기서 튜토리얼을 끝낼지 아니면 다른 튜토리얼로 연결할지
-            if (NextKey == "")//이거면 연결된게 딱히 없음
-            {
+            if(ForLinkedTutorial.Count == 0)
+            {//뒤이어 나올 Tutorial이 아무것도 없다면
                 HideTutorialPage();
             }
             else
-            {//배틀에서 배틀 튜토리얼 안봤을때 튜토리얼 보고난 후의 플레이어턴, 몬스터턴, 습격 
-                StartTutorial(NextKey);
+            {//뒤이어 나올 Tutorial이 있다면
+                StartTutorial(ForLinkedTutorial[0]);
             }
-            return;
+                return;
         }
         ApplyTutorialPage();
     }
@@ -75,9 +91,16 @@ public class TutorialManager : MonoBehaviour
 
     private void HideTutorialPage()
     {
-        TutorialImage.sprite = null;
-        TutorialText.text = null;
-        TutorialImage.gameObject.SetActive(false);
+        TutorialTextSkip();
+
+        if(ForLinkedTutorial.Count == 0)//뒤에 이어질게 없을때만 끄기
+        {
+            TutorialImage.sprite = null;
+            TutorialText.text = null;
+            TutorialImage.gameObject.SetActive(false);
+            IsAfterTutorial = false;
+        }
+
 
         CurrentTutorialInfo = null;
         if(_Handle.IsValid())//살아있는 핸들이라면 해방
@@ -99,8 +122,44 @@ public class TutorialManager : MonoBehaviour
             NextTutorial();
         }
     }
+    public void ClickAllTutorialButton()
+    {//전체적 설명을 클릭했을때
+        //구분해야함 -> 타이틀 씬인지, 탐색, 전투, 이벤트, 휴식 인지
+        IsAfterTutorial = true;
+        if (PlayerMgr == null)
+        {//여기 들어오면 title씬
+            SaveLinkedTutorialList("Title");//여기서 플레이할 튜토리얼이 정해짐
+            //SaveLinkedTutorialList("Camping");
+        }
+        else
+        {//여기 들어오면 플레이씬
+            switch(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction)
+            {
+                case (int)EPlayerCurrentState.SelectAction:
+                    SaveLinkedTutorialList("Search");
+                    break;
+                case (int)EPlayerCurrentState.Battle:
+                    SaveLinkedTutorialList("Battle");
+                    break;
+                case (int)EPlayerCurrentState.OtherEvent:
+                    SaveLinkedTutorialList("Event");
+                    break;
+                case (int)EPlayerCurrentState.Rest:
+                    SaveLinkedTutorialList("Camping");
+                    break;
+                default:
+                    return;
+            }
+        }
+        StartTutorial(ForLinkedTutorial[0]);
+    }
+    public void CancelTutorial()
+    {
+        ForLinkedTutorial.Clear();
+        HideTutorialPage();
+    }
 
-    public void PlayTutorialText()
+    private void PlayTutorialText()
     {
         if (TutorialTextCo != null)
             StopCoroutine(TutorialTextCo);
@@ -141,58 +200,69 @@ public class TutorialManager : MonoBehaviour
         TutorialText.maxVisibleCharacters = int.MaxValue;
     }
 
-    private string CkeckTutorialForBattle(string TutorialKey)
+    private void SaveLinkedTutorialList(string CurrentSituation)
     {
-        string ReturnString = TutorialKey;
-        if (TutorialKey == "Tutorial/BattlePlayerTurn")
+        //버튼 클릭으로 들어오는 거면 여기에 들어와도 괜찮은데.....
+        //버튼 클릭용 호출을 냅둔것 처럼 함수 호출용으로 하나더 만든다?
+        ForLinkedTutorial.Clear();
+        switch (CurrentSituation)
         {
-            if (JsonReadWriteManager.Instance.T_Info.Battle == false)
-            {
-                JsonReadWriteManager.Instance.T_Info.Battle = true;
-                NextKey = TutorialKey;
-                ReturnString = "Tutorial/Battle";
-            }
-            else
-            {
-                NextKey = "";
-            }
-        }
-        else if (TutorialKey == "Tutorial/MonsterTurn")
-        {
-            if (JsonReadWriteManager.Instance.T_Info.Battle == false)
-            {
-                JsonReadWriteManager.Instance.T_Info.Battle = true;
-                NextKey = TutorialKey;
-                ReturnString = "Tutorial/Battle";
-            }
-            else
-            {
-                NextKey = "";
-            }
-        }
-        else if (TutorialKey == "Tutorial/BattleSuddenAttack")
-        {
-            if (JsonReadWriteManager.Instance.T_Info.Battle == false)
-            {
-                JsonReadWriteManager.Instance.T_Info.Battle = true;
-                NextKey = TutorialKey;
-                ReturnString = "Tutorial/Battle";
-            }
-            else
-            {
-                if(JsonReadWriteManager.Instance.T_Info.BattleMonsterTurn == false)
+            case "Title":
+                ForLinkedTutorial.Add("Tutorial/Title");
+                break;
+            case "Search":
+                ForLinkedTutorial.Add("Tutorial/Searching");
+                ForLinkedTutorial.Add("Tutorial/SearchingBag");
+                ForLinkedTutorial.Add("Tutorial/SearchingRest");
+                break;
+            case "Battle":
+                ForLinkedTutorial.Add("Tutorial/Battle");
+                ForLinkedTutorial.Add("Tutorial/BattlePlayerTurn");
+                ForLinkedTutorial.Add("Tutorial/PlayerMagCard");
+                ForLinkedTutorial.Add("Tutorial/MonsterTurn");
+                ForLinkedTutorial.Add("Tutorial/BattleSuddenAttack");
+                break;
+            case "Event":
+                ForLinkedTutorial.Add("Tutorial/Event");
+                break;
+            case "Camping":
+                ForLinkedTutorial.Add("Tutorial/Camping");
+                ForLinkedTutorial.Add("Tutorial/CampingRest");
+                ForLinkedTutorial.Add("Tutorial/CampingLevelUp");
+                ForLinkedTutorial.Add("Tutorial/CampingEquip");
+                break;
+            case "Tutorial/BattlePlayerTurn":
+                if(JsonReadWriteManager.Instance.T_Info.Battle == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.Battle = true;
+                    ForLinkedTutorial.Add("Tutorial/Battle");
+                    ForLinkedTutorial.Add("Tutorial/BattlePlayerTurn");
+                }//없으면 ForLinkTutorial.count = 0;
+                break;
+            case "Tutorial/MonsterTurn":
+                if (JsonReadWriteManager.Instance.T_Info.Battle == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.Battle = true;
+                    ForLinkedTutorial.Add("Tutorial/Battle");
+                    ForLinkedTutorial.Add("Tutorial/MonsterTurn");
+                }//없으면 ForLinkTutorial.count = 0;
+                break;
+            case "Tutorial/BattleSuddenAttack":
+                if(JsonReadWriteManager.Instance.T_Info.Battle == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.Battle = true;
+                    ForLinkedTutorial.Add("Tutorial/Battle");
+                }//없으면 ForLinkTutorial.count = 0;
+                if (JsonReadWriteManager.Instance.T_Info.BattleMonsterTurn == false)
                 {
                     JsonReadWriteManager.Instance.T_Info.BattleMonsterTurn = true;
-                    NextKey = "Tutorial/MonsterTurn";
+                    ForLinkedTutorial.Add("Tutorial/MonsterTurn");
+                }//없으면 ForLinkTutorial.count = 0;
+                if(ForLinkedTutorial.Count >= 1)
+                {//위에서 뭐하나라도 들어간거임
+                    ForLinkedTutorial.Add("Tutorial/BattleSuddenAttack");
                 }
-                else
-                    NextKey = "";
-            }
+                break;
         }
-        else
-        {
-            NextKey = "";
-        }
-        return ReturnString;
     }
 }

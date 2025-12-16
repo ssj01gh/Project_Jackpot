@@ -64,7 +64,7 @@ public class PlaySceneUIManager : MonoBehaviour
                 if(JsonReadWriteManager.Instance.T_Info.Research == false)
                 {
                     JsonReadWriteManager.Instance.T_Info.Research = true;
-                    TutorialMgr.StartTutorial("Tutorial/Searching");
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Searching");
                 }
                 break;
             case (int)EPlayerCurrentState.Battle:
@@ -84,6 +84,11 @@ public class PlaySceneUIManager : MonoBehaviour
                     ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
                 }
                 //EventUI.SetActive(true);
+                if(JsonReadWriteManager.Instance.T_Info.Event == false)
+                {
+                    JsonReadWriteManager.Instance.T_Info.Event = true;
+                    TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Event");
+                }
                 break;
             case (int)EPlayerCurrentState.Rest:
                 if (ActionSelectionUI.activeSelf == true)
@@ -110,6 +115,11 @@ public class PlaySceneUIManager : MonoBehaviour
                             R_UI.ActiveRestActionSelection(); 
                             FadeUI.SetActive(false);
                             SoundManager.Instance.PlayBGM("RestBGM");
+                            if(JsonReadWriteManager.Instance.T_Info.Camping == false)
+                            {
+                                JsonReadWriteManager.Instance.T_Info.Camping = true;
+                                TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Camping");
+                            }
                         }); 
                     }); 
                 });
@@ -160,7 +170,7 @@ public class PlaySceneUIManager : MonoBehaviour
         if (JsonReadWriteManager.Instance.T_Info.ResearchSelectRest == false)
         {
             JsonReadWriteManager.Instance.T_Info.ResearchSelectRest = true;
-            TutorialMgr.StartTutorial("Tutorial/SearchingRest");
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/SearchingRest");
         }
     }
 

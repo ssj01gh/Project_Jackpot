@@ -129,7 +129,7 @@ public class EarlyStrengthenUI : MonoBehaviour
         }
         if(JsonReadWriteManager.Instance.T_Info.TitleEarlyStrengthen == false)
         {
-            TutorialMgr.StartTutorial("Tutorial/Title");
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/Title");
             JsonReadWriteManager.Instance.T_Info.TitleEarlyStrengthen = true;
         }
     }
