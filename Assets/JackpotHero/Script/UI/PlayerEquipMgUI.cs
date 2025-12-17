@@ -81,12 +81,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     protected Color[] GachaTierLightColor = new Color[]
     {
-        new Color(1f,1f,1f),
-        new Color(0f,0.84f,1f),
-        new Color(0.87f,0f,1f),
-        new Color(1,0.92f,0f),
-        new Color(0.24f,1f,0f),
-        new Color(1f,0.71f,0.11f)
+        new Color(1f,1f,1f),//255,255,255
+        new Color(0f,0.84f,1f),//0,214,255
+        new Color(0.87f,0f,1f),//221,0,255
+        new Color(1,0.92f,0f),//255,234,0
+        new Color(0.24f,1f,0f),//61,255,0
+        new Color(1f,0.71f,0.11f)//255,181,28
     };
 
     protected Vector3[] GachaLightRot = new Vector3[] 
