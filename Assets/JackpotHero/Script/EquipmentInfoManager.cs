@@ -113,6 +113,21 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         { 0,14,54,27,5}, //9레벨
         { 0,0,53,36,11} };//10레벨
 
+    protected int[,] EquipmentGamblingDetail_Luck =
+    {
+        {95,5,0,0,0 }, //0레벨
+        { 89,11,0,0,0}, //1레벨
+        { 80,19,1,0,0}, //2레벨
+        { 68,27,5,0,0}, //3레벨
+        { 53,36,11,0,0}, //4레벨
+        { 35,44,20,1,0}, //5레벨
+        { 14,54,27,5,0}, //6레벨
+        { 0,53,36,11,0}, //7레벨
+        { 0,35,44,20,1}, //8레벨
+        { 0,14,54,27,5}, //9레벨
+        { 0,0,53,36,11}//10레벨
+    };
+
     protected int[] GamblingLevelUpCost = new int[10] { 30, 45, 70, 105, 160, 240, 360, 540, 810, 1215 };
     protected int[] GamblingGachaCost = new int[11] { 1, 2, 3, 5, 8, 12, 18, 27, 40, 60, 90 };
 

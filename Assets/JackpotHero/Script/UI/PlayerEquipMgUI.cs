@@ -67,6 +67,20 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject GetEquipClickButton;
     public Image EquipGachaResultImage;
     public GameObject[] EquipGachaLight;
+    public Image EquipGachaTrianglePlate;
+    public GameObject EquipGachaTriangleBlindObject;
+    [Header("EquipGacha_SelectCard")]
+    public GameObject GachaCardSelectObject;
+    public TextMeshProUGUI CardSelectTitle;
+    public GameObject[] GachaSelectCards;
+    public GameObject GachaConfirmButton;
+    public GameObject GachaAgainButton;
+    public TextMeshProUGUI RemainGachaText;
+    [Header("EquipGacha_Sprites")]
+    public Sprite[] GachaTrianglePlateSprites;
+    public Sprite[] GachaCardSprites;
+    public Sprite[] GachaTierGemSprites;
+    public Sprite[] GachaIconSprites;
     [Header("Equip_EquipBuffDetail")]
     public GameObject EquipBuffDetailExplainObject;//설명 나올 오브젝트
     public TextMeshProUGUI EquipBuffDetailExplainTitleText;//설명 제목
@@ -116,6 +130,45 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     protected Vector2 GamblingTargetPos = new Vector2(500, -350);
     //요 위의 좌표들에 정보 입력
 
+    //갓챠창 enum
+    protected enum ETriangleState
+    {
+        ZeroLightOn,
+        OneLightOn,
+        TwoLightOn,
+        ThreeLightOn,
+    }
+    protected enum EGachaTierGem
+    {
+        OneTierGem,
+        TwoTierGem,
+        ThreeTierGem,
+        FourTierGem,
+        FiveTierGem,
+        SixTierGem
+    }
+    protected enum EGachaIconNCard
+    {
+        StateType_STR,
+        StateType_DUR,
+        StateType_RES,
+        StateType_SPD,
+        StateType_LUK,
+        StateType_HP,
+        StateType_STA,
+        StateType_Normal,
+        EquipType_Weapon,
+        EquipType_Armor,
+        EquipType_Helmet,
+        EquipType_Shoes,
+        EquipType_Acc,
+        MultyType_Non,
+        MultyType_01,
+        MultyType_02,
+        MultyType_03,
+        OnlyForCard_BackCard
+    }
+
     protected const float GachaLightZVariation = 10f;
 
     protected bool IsClickedInventorySlot = false;
@@ -127,6 +180,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     protected int DropDownSlotIndex = 0;
     protected int DropDownItemCode = 0;
 
+    protected int GachaTierNum = 0;
+    protected int GachaStateTypeNum = 0;
+    protected int GachaEquipTypeNum = 0;
+    protected int GachaMultipleTypeNum = 0;
     protected int GachaResultEquipCode = 0;
 
     private int EquipCurrentLinkIndex = -1;
@@ -1430,11 +1487,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
 
     public void PressEquipGamblingGachaButton()//ActiveGacha
-    {
+    {//
         //경험치가 줄어든다.
         SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
         //초기화
+        EquipGachaTrianglePlate.gameObject.SetActive(true);//삼각형 판
+        EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ZeroLightOn];
+        EquipGachaTriangleBlindObject.SetActive(true);
         EquipGachaObject.SetActive(true);
         EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
         EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -1443,6 +1503,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
         ClickButton.SetActive(false);
         GetEquipClickButton.SetActive(false);
+        GachaCardSelectObject.SetActive(false);
 
         for(int i = 0; i < EquipGachaLight.Length; i++)
         {
@@ -1450,21 +1511,15 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             //EquipGachaLightOutline[i].color = GachaTierLightColor[0];
             EquipGachaLight[i].SetActive(false);
         }
-        /*
-        foreach (GameObject obj in EquipGachaLight)
-        {
-            //obj.GetComponent<Image>().color = GachaTierLightColor[0];
-            //obj.GetComponent<SpriteOutline>().color = GachaTierLightColor[0];
-            obj.SetActive(false);
-        }
-        */
         
         //결과로 나오는 장비의 이미지와 인벤토리에 미리 넣어둠, 어짜피 업데이트 하지 않으면 UI(인벤토리)에서는 안보이니까
         //GetGamblingEquipmentCode <- gambling 레벨에 맞는 장비 코드 반환
+        //이제 이거 필요 X 코드는 차근차근 완성되는 형태임
+        //여기 아래부터는 나중에 불러와야할 애들임
         GachaResultEquipCode = EquipmentInfoManager.Instance.GetGamblingEquipmentCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
-        EquipGachaResultImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
+        //EquipGachaResultImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
         //이건 나중에 활성화
-        PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);
+        //PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);
         //띄용띄용이 끝나면 클릭버튼 활성화
         EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
             OnComplete(() => { ActiveGachaClickButton(); });
