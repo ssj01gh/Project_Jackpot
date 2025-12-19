@@ -66,9 +66,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject ClickButton;
     public GameObject GetEquipClickButton;
     public Image EquipGachaResultImage;
+    public GameObject LightStorage;
     public GameObject[] EquipGachaLight;
     public Image EquipGachaTrianglePlate;
     public GameObject EquipGachaTriangleBlindObject;
+    public GameObject EquipGachaIcon_TierGem;
+    public GameObject EquipGachaIcon_StateType;
+    public GameObject EquipGachaIcon_EquipType;
+    public GameObject EquipGachaIcon_MultiType;
     [Header("EquipGacha_SelectCard")]
     public GameObject GachaCardSelectObject;
     public TextMeshProUGUI CardSelectTitle;
@@ -1492,9 +1497,15 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
         //초기화
+        //삼격형 판 초기화
         EquipGachaTrianglePlate.gameObject.SetActive(true);//삼각형 판
         EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ZeroLightOn];
+        EquipGachaIcon_TierGem.SetActive(false);
+        EquipGachaIcon_StateType.SetActive(false);
+        EquipGachaIcon_EquipType.SetActive(false);
+        EquipGachaIcon_MultiType.SetActive(false);
         EquipGachaTriangleBlindObject.SetActive(true);
+        //티어 보석 뽑는 UI 초기화
         EquipGachaObject.SetActive(true);
         EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
         EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
@@ -1503,6 +1514,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
         ClickButton.SetActive(false);
         GetEquipClickButton.SetActive(false);
+        //장비 성향, 장비 종류, 곱 성향 뽑는 UI 초기화(일단은 부모만 끄기)
         GachaCardSelectObject.SetActive(false);
 
         for(int i = 0; i < EquipGachaLight.Length; i++)
@@ -1516,11 +1528,13 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //GetGamblingEquipmentCode <- gambling 레벨에 맞는 장비 코드 반환
         //이제 이거 필요 X 코드는 차근차근 완성되는 형태임
         //여기 아래부터는 나중에 불러와야할 애들임
-        GachaResultEquipCode = EquipmentInfoManager.Instance.GetGamblingEquipmentCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+        //GachaResultEquipCode = EquipmentInfoManager.Instance.GetGamblingEquipmentCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
         //EquipGachaResultImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
         //이건 나중에 활성화
         //PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);
         //띄용띄용이 끝나면 클릭버튼 활성화
+        GachaTierNum = EquipmentInfoManager.Instance.GetGamblingTierCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+        EquipGachaResultImage.sprite = GachaTierGemSprites[GachaTierNum - 1];//GachaTierNum는 최소 1이 나옴
         EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
             OnComplete(() => { ActiveGachaClickButton(); });
 
@@ -1539,18 +1553,18 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         ClickButton.SetActive(false);
         Debug.Log(GachaResultEquipCode);
         //이 버튼을 누르면 버튼은 비활성화
-        int EquipmentTier = (GachaResultEquipCode / 1000) % 10;
         // 1티어 장비라면 0번까지 활성화 , 흰색// 2티어 장비라면  1번까지 활성화, 파란색
         // 3티어 장비라면 2번까지 활성화, 보라색// 4티어 장비라면 3번까지 활성화, 노란색
         // 5티어 장비라면 4번까지 활성화, 
         //미리 저장한 GachaResultEquipCode로 티어를 파악해 그것에 맞게 연출
         // 1티어 보다 낮은 장비는 없으므로 1은 바로 활성화
+        LightStorage.SetActive(true);
         EquipGachaLight[0].GetComponent<RectTransform>().localScale = new Vector3(1, 0, 1);
         EquipGachaLight[0].GetComponent<RectTransform>().eulerAngles = 
             GachaLightRot[0] + new Vector3(0, 0, Random.Range(-GachaLightZVariation, GachaLightZVariation));
         EquipGachaLight[0].SetActive(true);
         PlayEquipGachaLightSound(0);
-        EquipGachaLight[0].GetComponent<RectTransform>().DOScaleY(1, 0.3f).SetEase(Ease.OutExpo).OnComplete(() => { StartCoroutine(EquipGachaCoroutine(EquipmentTier)); });
+        EquipGachaLight[0].GetComponent<RectTransform>().DOScaleY(1, 0.3f).SetEase(Ease.OutExpo).OnComplete(() => { StartCoroutine(EquipGachaCoroutine(GachaTierNum)); });
     }
 
     IEnumerator EquipGachaCoroutine(int EquipmentTier)
@@ -1593,7 +1607,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             }
         }
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
-        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f).SetEase(Ease.Linear).OnComplete(() => { EndOfEquipGacha(); });
+        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f).SetEase(Ease.Linear).OnComplete(() => { EquipGachaOpenTierGem(); });
     }
     protected void ContinueOfEquipGacha(int CurrentEffectLevel)
     {
@@ -1638,10 +1652,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 break;
         }
     }
-
-    protected void EndOfEquipGacha()
+    protected void EquipGachaOpenTierGem()
     {
-
         EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(7f, 7f), 0.8f).
             OnComplete(() => 
             {
@@ -1653,12 +1665,55 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 };
                 EquipGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f).
                 OnComplete(() => 
-                { 
+                {
+                    LightStorage.SetActive(false);
                     GetEquipClickButton.SetActive(true);
                 }); });
     }
+    public void EquipGachaPhaseEndButton(int PhaseNum)//이게 이제 확정 버튼 같은거
+    {
+        //1페이지 끝(보석이 공개 되고 그 보석이 가운데에 박히면서 플레이트가 바뀌어야함)
+        //2페이즈 끝(장비 성향이 공개후 확정 되고 위쪽에 박히면서 플레이트가 바뀌어야함)
+        //3페이즈 끝(장비 종류가 공개후 확정 되고 왼쪽에 박히면서 플레이트가 바뀌어야함)
+        //4페이즈 끝(곱 성향이 공개후 확정 되고 오른쪽에 박히면서 플레이트가 바뀌어야함)
+        switch(PhaseNum)
+        {
+            case 1://1페이즈끝
+                EquipGachaPhaseOneEnd();
+                break;
+            case 2://2페이즈끝
+                break;
+            case 3://3페이즈끝
+                break;
+            case 4://4페이즈끝
+                break;
+            case 5://5페이즈끝(모든 요소가 함쳐진후 장비 공개됬을때)
+                PressGetEquipClickButton();
+                break;
+        }
+    }
+    protected void EquipGachaPhaseOneEnd()
+    {//(보석이 공개 되고 그 보석이 가운데에 박히면서 플레이트가 바뀌어야함)
+        //EquipmentImage를 이동후에 없애면서 초기화, Plate에 있는 이미지를 그 이미지로 바꾼다.
+        //그리고 다음 페이지로 자동 이동
+        GetEquipClickButton.SetActive(false);
+        EquipGachaResultImage.rectTransform.DOAnchorPosY(-115f, 0.5f).OnComplete(() => 
+        {
+            EquipGachaIcon_TierGem.SetActive(true);
+            EquipGachaIcon_TierGem.GetComponent<Image>().sprite = GachaTierGemSprites[GachaTierNum - 1];
+            EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.OneLightOn];
+            EquipGachaResultImage.rectTransform.position = Vector3.zero;
+            EquipGachaEquipmentObject.SetActive(false);
+            DOVirtual.DelayedCall(0.5f, () =>
+            {
+                //여기에서 다음꺼_ 장비 성향 뽑기를 진행 해야함
+            });
+        });
+    }
 
-    public void PressGetEquipClickButton()
+    //protected void EquipGacha
+
+    protected void PressGetEquipClickButton()//이건 마지막에 클릭되야함?
     {
         EquipGachaObject.SetActive(false);
         SetGambling();//이걸로 Gambling UI를 업데이트 하고
