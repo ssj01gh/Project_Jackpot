@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -77,7 +76,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     [Header("EquipGacha_SelectCard")]
     public GameObject GachaCardSelectObject;
     public TextMeshProUGUI CardSelectTitle;
+    public GameObject GachaCardStorage;
     public GameObject[] GachaSelectCards;
+    public GameObject GachaCardHighligh;
+    public GameObject GachaVirtualCard;
     public GameObject GachaConfirmButton;
     public GameObject GachaAgainButton;
     public TextMeshProUGUI RemainGachaText;
@@ -174,6 +176,15 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         OnlyForCard_BackCard
     }
 
+    protected enum EGachaPhase
+    {
+        GemPhase,
+        StatePhase,
+        TypePhase,
+        MultiplePhase,
+        EndPhase
+    }
+
     protected const float GachaLightZVariation = 10f;
 
     protected bool IsClickedInventorySlot = false;
@@ -190,6 +201,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     protected int GachaEquipTypeNum = 0;
     protected int GachaMultipleTypeNum = 0;
     protected int GachaResultEquipCode = 0;
+    protected int CurrentGachaPhase = 0;
+    protected List<int> RemainCardResult = new List<int>();
+    protected int RemainGachaCount = 0;
+    protected int SelectedGachaCardNum;
 
     private int EquipCurrentLinkIndex = -1;
     private int InvenCurrentLinkIndex = -1;
@@ -1551,13 +1566,13 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         ClickButton.GetComponent<RectTransform>().DOKill();
         ClickButton.SetActive(false);
-        Debug.Log(GachaResultEquipCode);
         //이 버튼을 누르면 버튼은 비활성화
         // 1티어 장비라면 0번까지 활성화 , 흰색// 2티어 장비라면  1번까지 활성화, 파란색
         // 3티어 장비라면 2번까지 활성화, 보라색// 4티어 장비라면 3번까지 활성화, 노란색
         // 5티어 장비라면 4번까지 활성화, 
         //미리 저장한 GachaResultEquipCode로 티어를 파악해 그것에 맞게 연출
         // 1티어 보다 낮은 장비는 없으므로 1은 바로 활성화
+        CurrentGachaPhase = (int)EGachaPhase.GemPhase;
         LightStorage.SetActive(true);
         EquipGachaLight[0].GetComponent<RectTransform>().localScale = new Vector3(1, 0, 1);
         EquipGachaLight[0].GetComponent<RectTransform>().eulerAngles = 
@@ -1670,27 +1685,72 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     GetEquipClickButton.SetActive(true);
                 }); });
     }
-    public void EquipGachaPhaseEndButton(int PhaseNum)//이게 이제 확정 버튼 같은거
+    public void EquipGachaPhaseEndButton()//이게 이제 확정 버튼 같은거
     {
         //1페이지 끝(보석이 공개 되고 그 보석이 가운데에 박히면서 플레이트가 바뀌어야함)
         //2페이즈 끝(장비 성향이 공개후 확정 되고 위쪽에 박히면서 플레이트가 바뀌어야함)
         //3페이즈 끝(장비 종류가 공개후 확정 되고 왼쪽에 박히면서 플레이트가 바뀌어야함)
         //4페이즈 끝(곱 성향이 공개후 확정 되고 오른쪽에 박히면서 플레이트가 바뀌어야함)
-        switch(PhaseNum)
+        switch(CurrentGachaPhase)
         {
-            case 1://1페이즈끝
+            case (int)EGachaPhase.GemPhase://1페이즈끝
                 EquipGachaPhaseOneEnd();
                 break;
-            case 2://2페이즈끝
+            case (int)EGachaPhase.StatePhase://2페이즈끝
+                EquipGachaPhaseTwoEnd();
                 break;
-            case 3://3페이즈끝
+            case (int)EGachaPhase.TypePhase://3페이즈끝
+                EquipGachaPhaseThreeEnd();
                 break;
-            case 4://4페이즈끝
+            case (int)EGachaPhase.MultiplePhase://4페이즈끝
                 break;
-            case 5://5페이즈끝(모든 요소가 함쳐진후 장비 공개됬을때)
+            case (int)EGachaPhase.EndPhase://5페이즈끝(모든 요소가 함쳐진후 장비 공개됬을때)
                 PressGetEquipClickButton();
                 break;
         }
+    }
+    public void EquipGachaAgainButton()
+    {
+        //활성화된 카드를 모았다가 다시 펼쳐야함
+        //그 과정에서 카드의 순서는 다시 랜덤이 됨
+        //다시뽑기 횟수를 차감해야함
+        //1. 다시뽑기를 누르면 텍스트와 버튼들이 사라지고 카드가 다시 뒤집힘, 하이라이트도 없앰
+        //2. 카드 뒤집기가 완료되면 중간으로 모음
+        //3. 조금뒤 다시 펼침
+        if(RemainGachaCount > 0)
+            RemainGachaCount--;
+
+        GachaConfirmButton.SetActive(false);
+        GachaAgainButton.SetActive(false);
+        RemainGachaText.gameObject.SetActive(false);
+        GachaCardHighligh.SetActive(false);
+        ReReverseAllOtherGachaCard().OnComplete(() =>//여기에 들어오면 
+        {
+            DecideGachaCardResult();//결과 바꾸기
+            SoundManager.Instance.PlaySFX("ReverseCard_Open");
+            GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
+            DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+             x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+            -168f,                          // 목표 값
+            0.5f).OnComplete(() =>
+            {
+                DOVirtual.DelayedCall(0.5f, () =>
+                {
+                    SoundManager.Instance.PlaySFX("ReverseCard_Open");
+                    GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
+                    DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+                     x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+                    20f,                          // 목표 값
+                    0.5f).OnComplete(() =>
+                    {
+                        for (int i = 0; i < 8; i++)
+                        {
+                            GachaSelectCards[i].GetComponent<Button>().interactable = true;
+                        }
+                    });
+                });
+            });
+        });
     }
     protected void EquipGachaPhaseOneEnd()
     {//(보석이 공개 되고 그 보석이 가운데에 박히면서 플레이트가 바뀌어야함)
@@ -1707,12 +1767,334 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             DOVirtual.DelayedCall(0.5f, () =>
             {
                 //여기에서 다음꺼_ 장비 성향 뽑기를 진행 해야함
+                EquipGachaPhaseTwoStart();
             });
         });
     }
+    protected void EquipGachaPhaseTwoStart()
+    {
+        CurrentGachaPhase = (int)EGachaPhase.StatePhase;
+        RemainGachaCount = 3;
+        DecideGachaCardResult();
+        GachaCardSelectObject.SetActive(true);
+        CardSelectTitle.text = "장비 성향";
+        GachaConfirmButton.SetActive(false);
+        GachaAgainButton.SetActive(false);
+        RemainGachaText.gameObject.SetActive(false);
+        GachaCardHighligh.SetActive(false);
+        GachaVirtualCard.SetActive(false);
+        for(int i = 0; i < GachaSelectCards.Length; i++)
+        {
+            GachaSelectCards[i].GetComponent<Button>().interactable = false;
+            GachaSelectCards[i].SetActive(false);
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            GachaSelectCards[i].SetActive(true);
+            GachaSelectCards[i].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
+        }
+        //카드가 등장할때도 애니메이션이 있으면 좋을것 같은데?//Horizontal layout group의 spacing 을 -168에서 20으로 쫙 펼침
+        SoundManager.Instance.PlaySFX("ReverseCard_Open");
+        GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
+        DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+         x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+        20f,                          // 목표 값
+        0.5f).OnComplete(() =>
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                GachaSelectCards[i].GetComponent<Button>().interactable = true;
+            }
+        });
+    }
+    protected void EquipGachaPhaseTwoEnd()
+    {//확정.
+        //스테이트 타입은 0~7까지//얻은 타입을 저장
+        //0. 날라가야 하는 버츄얼 카드를 해당 스프라이트로 교체후 활성화
+        //1. 해당 카드가 위치까지 날라가서(960,0) 비활성화, 삼각판 위의 해당 icon을 활성화 시킴
+        //2. 카드를 원래 위치로 
+        GachaStateTypeNum = RemainCardResult[SelectedGachaCardNum];//이건 0~7까지 자연스럽게 들어가게됨 나머지는 -몇을 해줘야 옳은 코드가 됨
+        GachaCardHighligh.SetActive(false);
+        GachaVirtualCard.GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[SelectedGachaCardNum]];
+        GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
+        GachaVirtualCard.GetComponent<RectTransform>().localScale = Vector2.one;
+        GachaVirtualCard.SetActive(true);
+        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(960, 0), 0.5f);
+        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
+        {
+            EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.TwoLightOn];
+            EquipGachaIcon_StateType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
+            EquipGachaIcon_StateType.SetActive(true);
+            GachaVirtualCard.SetActive(false);
+            //다시 뒤집고 모으기
+            ReReverseAllOtherGachaCard().OnComplete(() =>
+            {
+                SoundManager.Instance.PlaySFX("ReverseCard_Open");
+                GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
+                DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+                 x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+                -168f,                          // 목표 값
+                0.5f).OnComplete(() => { EquipGachaPhaseThreeStart(); });
+            });
+        });
+    }
+    protected void EquipGachaPhaseThreeStart()
+    {
+        CurrentGachaPhase = (int)EGachaPhase.TypePhase;
+        DecideGachaCardResult();
+        GachaCardSelectObject.SetActive(true);
+        CardSelectTitle.text = "장비 종류";
+        GachaConfirmButton.SetActive(false);
+        GachaAgainButton.SetActive(false);
+        RemainGachaText.gameObject.SetActive(false);
+        GachaCardHighligh.SetActive(false);
+        GachaVirtualCard.SetActive(false);
+        for (int i = 0; i < GachaSelectCards.Length; i++)
+        {
+            GachaSelectCards[i].GetComponent<Button>().interactable = false;
+            GachaSelectCards[i].SetActive(false);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            GachaSelectCards[i].SetActive(true);
+            GachaSelectCards[i].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
+        }
+        //카드가 등장할때도 애니메이션이 있으면 좋을것 같은데?//Horizontal layout group의 spacing 을 -168에서 20으로 쫙 펼침
+        SoundManager.Instance.PlaySFX("ReverseCard_Open");
+        GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
+        DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+         x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+        20f,                          // 목표 값
+        0.5f).OnComplete(() =>
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                GachaSelectCards[i].GetComponent<Button>().interactable = true;
+            }
+        });
+    }
+    protected void EquipGachaPhaseThreeEnd()
+    {
+        //720 -385
+        //스테이트 타입은 0~7까지//얻은 타입을 저장
+        //0. 날라가야 하는 버츄얼 카드를 해당 스프라이트로 교체후 활성화
+        //1. 해당 카드가 위치까지 날라가서(960,0) 비활성화, 삼각판 위의 해당 icon을 활성화 시킴
+        //2. 카드를 원래 위치로 
+        GachaEquipTypeNum = RemainCardResult[SelectedGachaCardNum] - 8;//이건 0~7까지 자연스럽게 들어가게됨 나머지는 -몇을 해줘야 옳은 코드가 됨
+        GachaCardHighligh.SetActive(false);
+        GachaVirtualCard.GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[SelectedGachaCardNum]];
+        GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
+        GachaVirtualCard.GetComponent<RectTransform>().localScale = Vector2.one;
+        GachaVirtualCard.SetActive(true);
+        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(720, -385), 0.5f);
+        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
+        {
+            EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ThreeLightOn];
+            EquipGachaIcon_EquipType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
+            EquipGachaIcon_EquipType.SetActive(true);
+            GachaVirtualCard.SetActive(false);
+            //다시 뒤집고 모으기
+            ReReverseAllOtherGachaCard().OnComplete(() =>
+            {
+                SoundManager.Instance.PlaySFX("ReverseCard_Open");
+                GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
+                DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+                 x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+                -168f,                          // 목표 값
+                0.5f).OnComplete(() => { EquipGachaPhaseFourStart(); });
+            });
+        });
+    }
+    protected void EquipGachaPhaseFourStart()
+    {
+        CurrentGachaPhase = (int)EGachaPhase.MultiplePhase;
+        //여기는 만약 전에 뽑은 장비의 종류가 신발 혹은 장신구였으면 Non카드 하나만 나옴
+        DecideGachaCardResult(GachaEquipTypeNum == (int)EEquipType.TypeBoots || GachaEquipTypeNum == (int)EEquipType.TypeAcc);
+        GachaCardSelectObject.SetActive(true);
+        CardSelectTitle.text = "곱 성향";
+        GachaConfirmButton.SetActive(false);
+        GachaAgainButton.SetActive(false);
+        RemainGachaText.gameObject.SetActive(false);
+        GachaCardHighligh.SetActive(false);
+        GachaVirtualCard.SetActive(false);
+        for (int i = 0; i < GachaSelectCards.Length; i++)
+        {
+            GachaSelectCards[i].GetComponent<Button>().interactable = false;
+            GachaSelectCards[i].SetActive(false);
+        }
+        for (int i = 0; i < RemainCardResult.Count; i++)
+        {
+            GachaSelectCards[i].SetActive(true);
+            GachaSelectCards[i].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
+        }
+        //카드가 등장할때도 애니메이션이 있으면 좋을것 같은데?//Horizontal layout group의 spacing 을 -168에서 20으로 쫙 펼침
+        if(GachaEquipTypeNum == (int)EEquipType.TypeBoots || GachaEquipTypeNum == (int)EEquipType.TypeAcc)
+        {
+            GachaAgainButton.GetComponent<Button>().interactable = false;
+            GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20;
+            for (int i = 0; i < RemainCardResult.Count; i++)
+            {
+                GachaSelectCards[i].GetComponent<Button>().interactable = true;
+            }
+        }
+        else
+        {
+            SoundManager.Instance.PlaySFX("ReverseCard_Open");
+            GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
+            DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+             x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+            20f,                          // 목표 값
+            0.5f).OnComplete(() =>
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    GachaSelectCards[i].GetComponent<Button>().interactable = true;
+                }
+            });
+        }
+    }
+    protected void EquipGachaPhaseFourEnd()
+    {
 
-    //protected void EquipGacha
+    }
+    protected void DecideGachaCardResult(bool IsShoesOrAcc = false)
+    {
+        RemainCardResult.Clear();
+        switch(CurrentGachaPhase)
+        {
+            case (int)EGachaPhase.StatePhase://0~7
+                for(int i = (int)EGachaIconNCard.StateType_STR; i < (int)EGachaIconNCard.StateType_Normal + 1; i++)
+                    RemainCardResult.Add(i);
+                break;
+            case (int)EGachaPhase.TypePhase://8~12(0~4)
+                for (int i = (int)EGachaIconNCard.EquipType_Weapon; i < (int)EGachaIconNCard.EquipType_Acc + 1; i++)
+                    RemainCardResult.Add(i);
+                break;
+            case (int)EGachaPhase.MultiplePhase://13~16(0~3)
+                if(IsShoesOrAcc == true)
+                {
+                    RemainCardResult.Add((int)EGachaIconNCard.MultyType_Non);
+                }
+                else
+                {
+                    for (int i = (int)EGachaIconNCard.MultyType_01; i < (int)EGachaIconNCard.MultyType_03 + 1; i++)
+                        RemainCardResult.Add(i);
+                }
+                break;
+            default:
+                break;
+        }
 
+        for(int i = RemainCardResult.Count - 1; i > 0; i-- )
+        {
+            int j = Random.Range(0, i + 1);
+
+            (RemainCardResult[i], RemainCardResult[j]) = (RemainCardResult[j], RemainCardResult[i]);
+        }
+    }
+    public void PressGachaCard(int GachaCardNum)//이건 카드(버튼)에 연결//0~7까지 가능
+    {
+        //SetEase에서 90도 까지 카드 넘어갈때 속도 점점 느려지게 해야할듯//outcubic
+        //
+        //클릭하면 넘어가는 애니메이션 발생, 화면에 보이지 않는 각도가 되면 sprite 변경
+        //LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() =>
+        //이게 안 보일때까지 되집는 식
+        //LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).OnComplete(() =>
+        //다른 카드들도 다 똑같이 해야함
+        //모든 카드들도 interatable 비활성화
+        //다 뒤집고 나니까 이게 구분이 안감.... 구분가게 하는방법..... 외각선?
+        SelectedGachaCardNum = GachaCardNum;
+        for (int i = 0; i < GachaSelectCards.Length; i++)
+        {
+            GachaSelectCards[i].GetComponent<Button>().interactable = false;
+        }
+        SoundManager.Instance.PlaySFX("ReverseCard_Open");
+        GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
+        {
+            GachaSelectCards[GachaCardNum].GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[GachaCardNum]];
+            GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
+            {
+                GachaCardHighligh.SetActive(true);
+                GachaCardHighligh.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().anchoredPosition;
+                DOVirtual.DelayedCall(0.3f, () =>
+                {
+                    //다른카드들 다 뒤집기
+                    ReverseAllOtherGachaCard(GachaCardNum);
+                });
+            });
+        });
+    }
+    protected void ReverseAllOtherGachaCard(int SelectionCard)
+    {
+        //SelectionCard말고 다 뒤집기
+        Sequence Seq = DOTween.Sequence();
+        for (int i = 0; i < GachaSelectCards.Length; i++)
+        {
+            if (i == SelectionCard)
+                continue;
+
+            if (GachaSelectCards[i].activeSelf == false)
+                continue;
+
+            int Num = i;
+            Seq.AppendCallback(() =>
+            {
+                ReverseGachaCard(Num);
+            });
+            Seq.AppendInterval(0.2f); // 0.2초 간격
+        }
+        Seq.OnComplete(() =>
+        {
+            GachaConfirmButton.SetActive(true);
+            GachaAgainButton.SetActive(true);
+            RemainGachaText.gameObject.SetActive(true);
+            RemainGachaText.text = "남은 횟수 : " + RemainGachaCount + "회";
+            if (RemainGachaCount > 0 && RemainCardResult.Count >= 2)
+                GachaAgainButton.GetComponent<Button>().interactable = true;
+            else
+                GachaAgainButton.GetComponent<Button>().interactable = false;
+            Seq.Kill();
+        });
+    }
+    protected void ReverseGachaCard(int ReverseCardNum)
+    {
+        SoundManager.Instance.PlaySFX("ReverseCard_Open");
+        GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
+        {
+            GachaSelectCards[ReverseCardNum].GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[ReverseCardNum]];
+            GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc);
+        });
+    }
+    protected Sequence ReReverseAllOtherGachaCard()
+    {
+        Sequence Seq = DOTween.Sequence();
+        for(int i = 0; i < GachaSelectCards.Length; i++)
+        {
+            //활성화 안된 놈들은 무시
+            if (GachaSelectCards[i].activeSelf == false)
+                continue;
+
+            int Num = i;
+            Seq.AppendCallback(() =>
+            {
+                ReReverseGachaCard(Num);
+            });
+            Seq.AppendInterval(0.2f); // 0.2초 간격
+        }
+        Seq.AppendInterval(0.5f);
+        return Seq;
+    }
+    protected void ReReverseGachaCard(int ReverseCardNum)
+    {
+        SoundManager.Instance.PlaySFX("ReverseCard_Open");
+        GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
+        {
+            GachaSelectCards[ReverseCardNum].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
+            GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc);
+        });
+    }
     protected void PressGetEquipClickButton()//이건 마지막에 클릭되야함?
     {
         EquipGachaObject.SetActive(false);
