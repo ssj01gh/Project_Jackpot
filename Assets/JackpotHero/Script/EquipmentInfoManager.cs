@@ -101,17 +101,34 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     { 3,3,2,3,0,3,2 };
     //95 5 0 0 0
     protected int[,] EquipmentGamblingDetail =
-    {{95,5,0,0,0 }, //0레벨
-        { 89,11,0,0,0}, //1레벨
-        { 80,19,1,0,0}, //2레벨
-        { 68,27,5,0,0}, //3레벨
-        { 53,36,11,0,0}, //4레벨
-        { 35,44,20,1,0}, //5레벨
-        { 14,54,27,5,0}, //6레벨
-        { 0,53,36,11,0}, //7레벨
-        { 0,35,44,20,1}, //8레벨
-        { 0,14,54,27,5}, //9레벨
-        { 0,0,53,36,11} };//10레벨
+    {
+        { 95,5,0,0,0,0 }, //0레벨
+        { 89,11,0,0,0,0 }, //1레벨
+        { 80,19,1,0,0,0 }, //2레벨
+        { 68,27,5,0,0,0 }, //3레벨
+        { 53,36,11,0,0,0 }, //4레벨
+        { 35,44,20,1,0,0 }, //5레벨
+        { 14,54,27,5,0,0 }, //6레벨
+        { 0,53,36,11,0,0 }, //7레벨
+        { 0,35,44,20,1,0 }, //8레벨
+        { 0,14,54,27,5,0 }, //9레벨
+        { 0,0,53,36,11,0 }//10레벨
+    };
+
+    protected int[,] EquipmentGamblingDetail_Luck =
+    {
+        { 66,32,2,0,0,0 }, //0레벨
+        { 63,34,3,0,0,0 }, //1레벨
+        { 57,37,6,0,0,0 }, //2레벨
+        { 47,39,12,2,0,0 }, //3레벨
+        { 37,41,19,3,0,0 }, //4레벨
+        { 25,41,27,7,0,0 }, //5레벨
+        { 9,42,35,12,2,0 }, //6레벨
+        { 0,37,41,19,3,0 }, //7레벨
+        { 0,25,41,27,7,0 }, //8레벨
+        { 0,9,42,35,12,2 }, //9레벨
+        { 0,0,37,41,19,3 }//10레벨
+    };
 
     protected int[] GamblingLevelUpCost = new int[10] { 30, 45, 70, 105, 160, 240, 360, 540, 810, 1215 };
     protected int[] GamblingGachaCost = new int[11] { 1, 2, 3, 5, 8, 12, 18, 27, 40, 60, 90 };
@@ -641,6 +658,41 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         int RandEquipNum = IsEventEquipMultipleNum + (EquipTier * TierMultipleNum) + (EquipStateType * StateTypeMultipleNum) + ((int)EquipType * TypeMultipleNum) + EquipMultiType;
 
         return RandEquipNum;
+    }
+
+    public int GetGamblingTierCode(int GamblingLevel)
+    {
+        int ResultTierCode = 1;
+        int RandNum = Random.Range(0, 100);//0부터 99까지 하나가 나옴
+        int TierOneNum = EquipmentGamblingDetail[GamblingLevel, 0];//0 <= RandNum < TierOneNum 까지 걸리면 1티어 장비
+        int TierTwoNum = EquipmentGamblingDetail[GamblingLevel, 1] + TierOneNum;//TierOneNum <= RandNum < TierTwoNum 까지 걸리면 2티어//나머지 동일
+        int TierThreeNum = EquipmentGamblingDetail[GamblingLevel, 2] + TierTwoNum;
+        int TierFourNum = EquipmentGamblingDetail[GamblingLevel, 3] + TierThreeNum;
+        int TierFiveNum = EquipmentGamblingDetail[GamblingLevel, 4] + TierFourNum;
+
+        if (JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel >= 7)
+        {
+            TierOneNum = EquipmentGamblingDetail_Luck[GamblingLevel, 0];
+            TierTwoNum = EquipmentGamblingDetail_Luck[GamblingLevel, 1] + TierOneNum;
+            TierThreeNum = EquipmentGamblingDetail_Luck[GamblingLevel, 2] + TierTwoNum;
+            TierFourNum = EquipmentGamblingDetail_Luck[GamblingLevel, 3] + TierThreeNum;
+            TierFiveNum = EquipmentGamblingDetail_Luck[GamblingLevel, 4] + TierFourNum;
+        }
+
+        if (RandNum < TierOneNum)//여기에 들어가면 1티어 장비     0미만
+            ResultTierCode = (int)EEquipTier.TierOne;
+        else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//여기 2티어    0이상 0미만
+            ResultTierCode = (int)EEquipTier.TierTwo;
+        else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//여기 3티어   0이상 53미만
+            ResultTierCode = (int)EEquipTier.TierThree;
+        else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//여기 4티어  53이상 89 미만
+            ResultTierCode = (int)EEquipTier.TierFour;
+        else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//여기 5티어   89이상 100미만
+            ResultTierCode = (int)EEquipTier.TierFive;
+        else if (RandNum >= TierFiveNum)//티어 6
+            ResultTierCode = (int)EEquipTier.TierSix;
+
+        return ResultTierCode;
     }
 
     public int GetGamblingLevelPercent(int Level, int Tier)
