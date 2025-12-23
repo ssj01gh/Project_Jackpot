@@ -73,6 +73,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject EquipGachaIcon_StateType;
     public GameObject EquipGachaIcon_EquipType;
     public GameObject EquipGachaIcon_MultiType;
+    public GameObject FinalEquipGachaCapsule;
+    public GameObject FinalEquipGachaButton;
+    public Image FinalEquipImage;
     [Header("EquipGacha_SelectCard")]
     public GameObject GachaCardSelectObject;
     public TextMeshProUGUI CardSelectTitle;
@@ -144,6 +147,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         OneLightOn,
         TwoLightOn,
         ThreeLightOn,
+        FourLightOn,
     }
     protected enum EGachaTierGem
     {
@@ -1379,6 +1383,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {//-> 왼쪽 Detail, 오른쪽 Detail다 출력 해야됨
          //같은 타입의 장비가 없으면 오른쪽은 출력 x
          //인벤의 장비 표시
+            if(CurrentBringItemCode == 0 || CurrentBringItemCode == -1)
+            {
+                return;
+            }
             EquipmentInfo UnEquipedEquipment = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
             int EquipedEquipmentCode;
             EquipDetail_InvenImage.gameObject.SetActive(true);
@@ -1450,6 +1458,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipRESText.text = "";
                 EquipDetail_EquipSPDText.text = "";
                 EquipDetail_EquipLUKText.text = "";
+                EquipDetail_EquipDetailText.text = "";
                 foreach (GameObject Obj in EquipDetail_EquipCardContainer)
                 {
                     Obj.SetActive(false);
@@ -1520,6 +1529,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGachaIcon_EquipType.SetActive(false);
         EquipGachaIcon_MultiType.SetActive(false);
         EquipGachaTriangleBlindObject.SetActive(true);
+        FinalEquipGachaCapsule.SetActive(false);
+        FinalEquipGachaButton.SetActive(false);
+        FinalEquipImage.gameObject.SetActive(false);
         //티어 보석 뽑는 UI 초기화
         EquipGachaObject.SetActive(true);
         EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
@@ -1703,9 +1715,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipGachaPhaseThreeEnd();
                 break;
             case (int)EGachaPhase.MultiplePhase://4페이즈끝
+                EquipGachaPhaseFourEnd();
                 break;
             case (int)EGachaPhase.EndPhase://5페이즈끝(모든 요소가 함쳐진후 장비 공개됬을때)
-                PressGetEquipClickButton();
+                EquipGachaEndPhaseEnd();
                 break;
         }
     }
@@ -1717,6 +1730,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //1. 다시뽑기를 누르면 텍스트와 버튼들이 사라지고 카드가 다시 뒤집힘, 하이라이트도 없앰
         //2. 카드 뒤집기가 완료되면 중간으로 모음
         //3. 조금뒤 다시 펼침
+        SoundManager.Instance.PlayUISFX("UI_Button");
+
         if(RemainGachaCount > 0)
             RemainGachaCount--;
 
@@ -1759,6 +1774,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GetEquipClickButton.SetActive(false);
         EquipGachaResultImage.rectTransform.DOAnchorPosY(-115f, 0.5f).OnComplete(() => 
         {
+            EquipGachaIcon_TierGem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -115f);
             EquipGachaIcon_TierGem.SetActive(true);
             EquipGachaIcon_TierGem.GetComponent<Image>().sprite = GachaTierGemSprites[GachaTierNum - 1];
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.OneLightOn];
@@ -1813,6 +1829,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //0. 날라가야 하는 버츄얼 카드를 해당 스프라이트로 교체후 활성화
         //1. 해당 카드가 위치까지 날라가서(960,0) 비활성화, 삼각판 위의 해당 icon을 활성화 시킴
         //2. 카드를 원래 위치로 
+        SoundManager.Instance.PlayUISFX("UI_Button");
         GachaStateTypeNum = RemainCardResult[SelectedGachaCardNum];//이건 0~7까지 자연스럽게 들어가게됨 나머지는 -몇을 해줘야 옳은 코드가 됨
         GachaCardHighligh.SetActive(false);
         GachaVirtualCard.GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[SelectedGachaCardNum]];
@@ -1824,6 +1841,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
         {
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.TwoLightOn];
+            EquipGachaIcon_StateType.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 145f);
             EquipGachaIcon_StateType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
             EquipGachaIcon_StateType.SetActive(true);
             GachaVirtualCard.SetActive(false);
@@ -1881,6 +1899,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //0. 날라가야 하는 버츄얼 카드를 해당 스프라이트로 교체후 활성화
         //1. 해당 카드가 위치까지 날라가서(960,0) 비활성화, 삼각판 위의 해당 icon을 활성화 시킴
         //2. 카드를 원래 위치로 
+        SoundManager.Instance.PlayUISFX("UI_Button");
         GachaEquipTypeNum = RemainCardResult[SelectedGachaCardNum] - 8;//이건 0~7까지 자연스럽게 들어가게됨 나머지는 -몇을 해줘야 옳은 코드가 됨
         GachaCardHighligh.SetActive(false);
         GachaVirtualCard.GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[SelectedGachaCardNum]];
@@ -1892,6 +1911,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
         {
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ThreeLightOn];
+            EquipGachaIcon_EquipType.GetComponent<RectTransform>().anchoredPosition = new Vector2(-240f, -240f);
             EquipGachaIcon_EquipType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
             EquipGachaIcon_EquipType.SetActive(true);
             GachaVirtualCard.SetActive(false);
@@ -1957,7 +1977,93 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     protected void EquipGachaPhaseFourEnd()
     {
+        //1200,-385
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        GachaMultipleTypeNum = RemainCardResult[SelectedGachaCardNum] - 13;
+        GachaCardHighligh.SetActive(false);
+        GachaVirtualCard.GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[SelectedGachaCardNum]];
+        GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
+        GachaVirtualCard.GetComponent<RectTransform>().localScale = Vector2.one;
+        GachaVirtualCard.SetActive(true);
+        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(1200, -385), 0.5f);
+        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
+        {
+            EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.FourLightOn];
+            EquipGachaIcon_MultiType.GetComponent<RectTransform>().anchoredPosition = new Vector2(240f, -240f);
+            EquipGachaIcon_MultiType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
+            EquipGachaIcon_MultiType.SetActive(true);
+            GachaVirtualCard.SetActive(false);
+            //재료가 옳은 칸에 다 들어가면.... blind 끄고, 카드도 끄고
+            ReReverseAllOtherGachaCard().OnComplete(() =>
+            {
+                if (GachaEquipTypeNum == (int)EEquipType.TypeBoots || GachaEquipTypeNum == (int)EEquipType.TypeAcc)
+                {
+                    GachaCardSelectObject.SetActive(false);
+                    EquipGachaTriangleBlindObject.SetActive(false);
+                    EquipGachaEndPhaseStart();
+                }
+                else
+                {
+                    SoundManager.Instance.PlaySFX("ReverseCard_Open");
+                    GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
+                    DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
+                     x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
+                    -168f,                          // 목표 값
+                    0.5f).OnComplete(() =>
+                    {
+                        GachaCardSelectObject.SetActive(false);
+                        EquipGachaTriangleBlindObject.SetActive(false);
+                        DOVirtual.DelayedCall(0.5f, () =>
+                        {
+                            EquipGachaEndPhaseStart();
+                        });
+                    });
+                }
+            });
+        });
+    }
+    protected void EquipGachaEndPhaseStart()
+    {
+        //판에 올라가 있는 아이콘이 모임... 가까이 갈수록 느려지게(0,-115로)..... 키이잉~쾅(그냥 GachaResult를 쓰면 될듯)? 소리가 있으면 좋겠는데?
+        //1. 합쳐지면서 중간에서 판의 중간에서 빛이 점점 커진다.
+        //2. 빛(흰색의 원)이 엄청 커진다음에는 페이드 인이 되면서 장비가 모습을 드러낸다.(삼각형 판에 있는 icon들은 모두 없어진 상태여야한다.)
+        //스케일이 0~9까지 커졌다가 30까지 커지고 페이드 인
+        //3. 장비를 클릭하면 획득한다.
+        SoundManager.Instance.PlaySFX("EquipGacha_Result");
+        CurrentGachaPhase = (int)EGachaPhase.EndPhase;
+        EquipGachaIcon_StateType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
+        EquipGachaIcon_EquipType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
+        EquipGachaIcon_MultiType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
+        FinalEquipGachaCapsule.transform.localScale = Vector3.zero;
+        FinalEquipGachaCapsule.GetComponent<Image>().color = Color.white;
+        FinalEquipGachaCapsule.SetActive(true);
+        FinalEquipGachaCapsule.transform.DOScale(new Vector3(9f, 9f, 9f), 0.5f).OnComplete(() =>
+        {
+            EquipGachaIcon_TierGem.SetActive(false);
+            EquipGachaIcon_StateType.SetActive(false);
+            EquipGachaIcon_EquipType.SetActive(false);
+            EquipGachaIcon_MultiType.SetActive(false);
+            GachaResultEquipCode = 10000 + (GachaTierNum * 1000) + (GachaStateTypeNum * 100) + (GachaEquipTypeNum * 10) +GachaMultipleTypeNum;
+            FinalEquipImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
+            FinalEquipImage.gameObject.SetActive(true);
+            FinalEquipGachaButton.SetActive(true);
+            FinalEquipGachaButton.GetComponent<Button>().interactable = false;
 
+            FinalEquipGachaCapsule.transform.DOScale(new Vector3(30f, 30f, 30f), 0.3f).OnComplete(() =>
+            {//화면을 덮을 정도로 커짐
+                FinalEquipGachaCapsule.GetComponent<Image>().DOFade(0f, 0.5f).OnComplete(() =>
+                {//페이드 인
+                    FinalEquipGachaCapsule.SetActive(false);
+                    FinalEquipGachaButton.GetComponent<Button>().interactable = true;
+                });
+            });
+        });
+    }
+    protected void EquipGachaEndPhaseEnd()
+    {
+        PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);//인벤토리에 넣고
+        PressGetEquipClickButton();
     }
     protected void DecideGachaCardResult(bool IsShoesOrAcc = false)
     {
