@@ -222,6 +222,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             LkEv_Info.Lab_Sphere = false;
             LkEv_Info.ReadyForBattle = false;
             LkEv_Info.IsMeetTalkingDopple = false;
+            LkEv_Info.Stage04EventCount = 0;
 
             string classToJson = JsonUtility.ToJson(LkEv_Info, true);
             File.WriteAllText(path, classToJson);

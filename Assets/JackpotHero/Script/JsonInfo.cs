@@ -90,6 +90,7 @@ public class LinkageEventInfo
     public bool Lab_Sphere;
     public bool ReadyForBattle;
     public bool IsMeetTalkingDopple;
+    public int Stage04EventCount;
 }
 
 [System.Serializable]

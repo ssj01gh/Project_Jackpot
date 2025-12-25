@@ -85,52 +85,60 @@ public class PlaySceneManager : MonoBehaviour
         //EngageMonster + OccurEvent ~ FullEventChange - 1 -> 다음 층으로 이동 이벤트
         //기댓값 11번째에 보스 이벤트를 만나게 1 ~ 19 사이로 오른다면 -> 평균값 10
         //이벤트가 결정된 다음에 포인트가 오른다 -> 결정 평균 10번째에 100이 되야 하고, 11번째에 보스 이벤트가 발생해야함
-
-        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint < 100)
+        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor == 4)
         {
-            int FullEventPoint = (int)EngageMonster + (int)OccurEvent;
-            int RandPoint = Random.Range(0, FullEventPoint);//0~299
-
-            if (RandPoint >= 0 && RandPoint < EngageMonster)//전투시작
-            {
-                //0~174 랜덤 값까지 걸리면 전투
-                int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint + 1);
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
-                Debug.Log("EngageMonster");
-            }
-            else if (RandPoint >= EngageMonster && RandPoint < EngageMonster + OccurEvent)//랜덤 이벤트 발생
-            {
-                //175 ~ 299 랜덤 값까지 걸리면 이벤트
-                int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint + 1);
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.OtherEvent;
-                Debug.Log("RandomEvent");
-            }
-            else
-            {
-                Debug.LogError("Error");
-                //예외처리
-            }
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.OtherEvent;
         }
         else
-        {//100일상 일때
-            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint >= 9999)//이게 되면 보스 이벤트를 완료했다는 뜻
+        {
+            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint < 100)
             {
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Boss_Battle;
-            }
-            else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint >= 100)//다음 층 발견
-            {
-                //다음층은 DetectNextFloorPoint가 100이 넘을때
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Boss_Event;
-                Debug.Log("ResearchNextFloor_Evnet");
+                int FullEventPoint = (int)EngageMonster + (int)OccurEvent;
+                int RandPoint = Random.Range(0, FullEventPoint);//0~299
+
+                if (RandPoint >= 0 && RandPoint < EngageMonster)//전투시작
+                {
+                    //0~174 랜덤 값까지 걸리면 전투
+                    int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint + 1);
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
+                    Debug.Log("EngageMonster");
+                }
+                else if (RandPoint >= EngageMonster && RandPoint < EngageMonster + OccurEvent)//랜덤 이벤트 발생
+                {
+                    //175 ~ 299 랜덤 값까지 걸리면 이벤트
+                    int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint + 1);
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.OtherEvent;
+                    Debug.Log("RandomEvent");
+                }
+                else
+                {
+                    Debug.LogError("Error");
+                    //예외처리
+                }
             }
             else
-            {
-                Debug.LogError("Error");
-                //예외처리
+            {//100일상 일때
+                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint >= 9999)//이게 되면 보스 이벤트를 완료했다는 뜻
+                {
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Boss_Battle;
+                }
+                else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint >= 100)//다음 층 발견
+                {
+                    //다음층은 DetectNextFloorPoint가 100이 넘을때
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Boss_Event;
+                    Debug.Log("ResearchNextFloor_Evnet");
+                }
+                else
+                {
+                    Debug.LogError("Error");
+                    //예외처리
+                }
             }
         }
+
+        
 
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
         UIMgr.BG_UI.MoveBackGround(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);

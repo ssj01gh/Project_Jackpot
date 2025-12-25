@@ -27764,6 +27764,13 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 9ee4f8416c2208c48ba7275edd71f0ee, type: 3}
     - {fileID: 21300000, guid: 9ee4f8416c2208c48ba7275edd71f0ee, type: 3}
     - {fileID: 21300000, guid: 9f1f5a384a924c64e8c06749f41a09c9, type: 3}
+  - StageBackGroundSprites:
+    - {fileID: 21300000, guid: 59dde47917ae7264e8f7bca39c87584f, type: 3}
+    - {fileID: 21300000, guid: 2d8c9b792177e4848a612463c8130eee, type: 3}
+    - {fileID: 21300000, guid: 203453206e7f7e1418f15806bd4820a1, type: 3}
+    - {fileID: 21300000, guid: 8cd41c0c779fbab40ac621cab06ad73f, type: 3}
+    - {fileID: 21300000, guid: 67facebcf9e050a40a5daacc2f4e5f09, type: 3}
+    - {fileID: 21300000, guid: 57d78816acdb4a348a69c692082e197d, type: 3}
   RestBackGround: {fileID: 2070686835}
   Layer01_BackGround:
   - {fileID: 143260507}
@@ -43429,6 +43436,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7b22e85457252a478b53a6b5de7e6d1, type: 2}
   - {fileID: 11400000, guid: bda55319f6a947c4ca936888ffd42391, type: 2}
   - {fileID: 11400000, guid: ee2ec08ced9f2ed4693e0bd5a7db0d4a, type: 2}
+  - {fileID: 11400000, guid: 6586489fd58a749428e99f34e069c8f9, type: 2}
   MonArmorSOs:
   - {fileID: 11400000, guid: d4a26aec5d863eb4da38221ca84f3366, type: 2}
   - {fileID: 11400000, guid: d84902394b698bd4999e8ef92a7f7895, type: 2}
@@ -43463,6 +43471,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f0e110aedd3f55f4eae04305ae6295d4, type: 2}
   - {fileID: 11400000, guid: c9cc0b3c95467e84f8895273bf02a789, type: 2}
   - {fileID: 11400000, guid: a9c2978e0ae427b4c84b4c828155e5a8, type: 2}
+  - {fileID: 11400000, guid: 56134af1ff9d29146b2886559537d3cc, type: 2}
   MonAnotherEquipSOs:
   - {fileID: 11400000, guid: 747d8cbf88059db43a90d8bf7c829836, type: 2}
   - {fileID: 11400000, guid: b525ef06226e5e74dafdfa3d1403771b, type: 2}
@@ -50922,7 +50931,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1564b83f996a25840ab6fd967a4d8e0c, type: 2}
   - {fileID: 11400000, guid: 0415ca321c11ffc45a725c7e5c64988c, type: 2}
   - {fileID: 11400000, guid: 2940f90f8d9656345a7baa332497105a, type: 2}
-  Stage04GameEvents: []
+  Stage04GameEvents:
+  - {fileID: 11400000, guid: 8ddba05b75c70294b9d2786eee7ef8d9, type: 2}
+  - {fileID: 11400000, guid: 3935adaf1db2bc64697111ddb08559b7, type: 2}
+  - {fileID: 11400000, guid: 621c70fc32073d04085e38359192eaf3, type: 2}
+  - {fileID: 11400000, guid: d7db6f379e734c84ab71037b7e37c59b, type: 2}
+  - {fileID: 11400000, guid: 451cb5fa297a90c408e16aab7d969ed5, type: 2}
+  - {fileID: 11400000, guid: fb4b70e5d26b9c647ab573d6f9917955, type: 2}
+  - {fileID: 11400000, guid: 3c71a7b69524d3348a2901704896bbdb, type: 2}
+  - {fileID: 11400000, guid: 03ebca90504398c4e97e3fa5986315ae, type: 2}
   CommonFollowEvents:
   - {fileID: 11400000, guid: c7cb67bbbc1e8c44198cac3cf5123670, type: 2}
   - {fileID: 11400000, guid: 63fe7df0f8c4dc24cb6066b0fbce113f, type: 2}
@@ -51038,7 +51055,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9d5b1eab305cd0489007a2326df5a71, type: 2}
   - {fileID: 11400000, guid: a73978ce1a1f3324fbdf9039f049b931, type: 2}
   - {fileID: 11400000, guid: ad8d03e707b19ce46b99dad05af8332b, type: 2}
-  Stage04FollowEvents: []
+  Stage04FollowEvents:
+  - {fileID: 11400000, guid: 577cbb72e95b98b489588592b007a02c, type: 2}
+  - {fileID: 11400000, guid: 6d40ee0b52fdf14449f184b045ae97e7, type: 2}
+  - {fileID: 11400000, guid: b07fdc73b932ca642bd1e9129f86cb26, type: 2}
+  - {fileID: 11400000, guid: 95ec5a07b8e995845aba30d6c0bbb666, type: 2}
+  - {fileID: 11400000, guid: 700bcc71cf23d7c4db1e7ba7debb1716, type: 2}
+  - {fileID: 11400000, guid: 292458a693ea9e045b93ca86fd869ae1, type: 2}
+  - {fileID: 11400000, guid: 367e898698cebda4fae393ac1459aa4d, type: 2}
+  - {fileID: 11400000, guid: 38e2f145720761c4d8a03351084236f8, type: 2}
+  - {fileID: 11400000, guid: 3cfd38469e1b7f44c84cad98d0d1c8ee, type: 2}
+  - {fileID: 11400000, guid: 566aee1fd1c520542b7cc8d077b34404, type: 2}
   Getting: 
   Losing: 
 --- !u!1 &853814277
@@ -128610,6 +128637,7 @@ MonoBehaviour:
   - {fileID: 2816280614747406496, guid: be984fa86d486b44a9515fb430c7aef7, type: 3}
   - {fileID: 2816280614747406496, guid: f45a519aae9d9844fa000a4ff81274f7, type: 3}
   - {fileID: 2816280614747406496, guid: c241f597bae4b4e4d9935938bf3bf99c, type: 3}
+  - {fileID: 2816280614747406496, guid: 7e58b500b455b2f499652eec6f6a388e, type: 3}
   Tier01SpawnPatternSO:
   - {fileID: 11400000, guid: 6c95c9adaa1399d4b81162c2e217cc27, type: 2}
   - {fileID: 11400000, guid: b746b94e810ff0649b45f0b84bdd260f, type: 2}
@@ -128620,12 +128648,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de7bf9c3ac402c7408d2bf27976abb28, type: 2}
   - {fileID: 11400000, guid: dcf4c67e88fe5304b9a82c08cfe3d552, type: 2}
   - {fileID: 11400000, guid: cb386033a4aa7144fa349a949028a418, type: 2}
-  - {fileID: 11400000, guid: 15363fc5c01e3314fb3c5ae50652d0d3, type: 2}
-  - {fileID: 11400000, guid: 4f1e2d202d5d8454cb8644705aefc94a, type: 2}
-  - {fileID: 11400000, guid: ae88d3b0fdf78cc41ad1f818cf6e37ba, type: 2}
-  - {fileID: 11400000, guid: 616a7603a8e9d2841ac09795fb5278a3, type: 2}
-  - {fileID: 11400000, guid: d610d8928198db449b3521b738ef4cc0, type: 2}
-  - {fileID: 11400000, guid: 1b0417fc8c87ef4448d4d0e4f3660cb5, type: 2}
+  - {fileID: 11400000, guid: 40bc9cad8c656fe49b669e1d8a64403e, type: 2}
   Tier02SpawnPatternSO:
   - {fileID: 11400000, guid: 833584486bbf58f4b931ee71c95e9116, type: 2}
   - {fileID: 11400000, guid: a0d549f49d13e594eaafa2595361c315, type: 2}
@@ -128638,6 +128661,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 48696092eeb720243895402395a811f6, type: 2}
   - {fileID: 11400000, guid: 9879c7a3201acea49bb2a1cdf29a9cff, type: 2}
   - {fileID: 11400000, guid: 854e0c7bd77a16844b04d83df5e5bc02, type: 2}
+  - {fileID: 11400000, guid: b107dc628aa1f65499224e3164f0e81f, type: 2}
   Tier03SpawnPatternSO:
   - {fileID: 11400000, guid: 2d9b8ab584f42cc4ab6041de62c03abf, type: 2}
   - {fileID: 11400000, guid: 83385d45517fd184abbac48748e88744, type: 2}
@@ -128650,6 +128674,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 983c3407cc412f94585965bc845d03dd, type: 2}
   - {fileID: 11400000, guid: 4e779e0acf440e144b7af3f6458008ba, type: 2}
   - {fileID: 11400000, guid: 886da1762403ece4cbc31ee3d92746d1, type: 2}
+  - {fileID: 11400000, guid: 6e7e05b9c12123e4abab4e1494e62ab6, type: 2}
   BossSpawnPatternSO:
   - {fileID: 11400000, guid: a7588940eb4a5a24aa2320dcfc1c3a14, type: 2}
   - {fileID: 11400000, guid: 574eff3d850efb547bfbfe9d27ede474, type: 2}
@@ -128657,6 +128682,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e17510a5f98a3a34db90aa5eb133bfbd, type: 2}
   - {fileID: 11400000, guid: 3a288b8ba8cc4a6448d77ee64e1e5237, type: 2}
   - {fileID: 11400000, guid: da4c229ca201250488f8401fc0564afa, type: 2}
+  - {fileID: 11400000, guid: 15363fc5c01e3314fb3c5ae50652d0d3, type: 2}
+  - {fileID: 11400000, guid: 4f1e2d202d5d8454cb8644705aefc94a, type: 2}
+  - {fileID: 11400000, guid: ae88d3b0fdf78cc41ad1f818cf6e37ba, type: 2}
+  - {fileID: 11400000, guid: 616a7603a8e9d2841ac09795fb5278a3, type: 2}
+  - {fileID: 11400000, guid: d610d8928198db449b3521b738ef4cc0, type: 2}
+  - {fileID: 11400000, guid: 1b0417fc8c87ef4448d4d0e4f3660cb5, type: 2}
   - {fileID: 11400000, guid: f9db22541f66c9b48a51111abed26dcf, type: 2}
   EventSpawnPatternSO:
   - {fileID: 11400000, guid: 02b8e5c0d23c77847a2496a5f46d3979, type: 2}
