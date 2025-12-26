@@ -166,7 +166,7 @@ public class MonsterManager : MonoBehaviour
         int CurrentSearchPoint = PMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint;//0 -> 1티어 100% 40 -> 2티어 100%
         //패턴을 결정하기 전에 이미 정해진 패턴이 있다면 리턴 -> 이미 스폰 패턴이 결정된 상태(껏다 킨거임)
         //탐색도 ~40까지는 백퍼 1티어 ~80까지는 1티어 2티어 혼용 80~ 3티어까지 혼용
-        if(DetailOfEvents % 1000 < 100 && DetailOfEvents % 1000 >= 0)
+        if(DetailOfEvents % 1000 < 100 && DetailOfEvents % 1000 >= 0 && DetailOfEvents != 0)
         {//0~99이라면 1티어 // 0 ~ 99임 0이면 패턴을 결정해야 되는거임
             for (int i = 0; i < Tier01PatternStorage[ThemeNum].Count; i++)
             {
@@ -222,48 +222,71 @@ public class MonsterManager : MonoBehaviour
             }
         }
 
+
         //위에서 걸러지지 않았다면 새로 결정
         int RandNum;
-        if(CurrentSearchPoint < 40)//0~39 //1티어 패턴만
-            RandNum = 1;
-        else if(CurrentSearchPoint >= 40 && CurrentSearchPoint <= 79)//40~79 //1~2티어 패턴 중 하나
-            RandNum = Random.Range(1, 3);//1~2
-        else//80~ // 1~3티어 패턴중 하나
-            RandNum = Random.Range(1, 4);//1~3
-
-        switch(RandNum)
+        if (ThemeNum == 4)
         {
-            case 1:
-                if(Tier01PatternStorage.ContainsKey(ThemeNum))
-                {
-                    RandNum = Random.Range(0, Tier01PatternStorage[ThemeNum].Count);
-                    CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][RandNum];
-                    PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
-                    return;
-                }
-                break;
-            case 2:
-                if (Tier02PatternStorage.ContainsKey(ThemeNum))
-                {
-                    RandNum = Random.Range(0, Tier02PatternStorage[ThemeNum].Count);
-                    CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][RandNum];
-                    PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
-                    return;
-                }
-                break;
-            case 3:
-                if (Tier03PatternStorage.ContainsKey(ThemeNum))
-                {
-                    RandNum = Random.Range(0, Tier03PatternStorage[ThemeNum].Count);
-                    CurrentSpawnPattern = Tier03PatternStorage[ThemeNum][RandNum];
-                    PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
-                    JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
-                    return;
-                }
-                break;
+            RandNum = Random.Range(0, 3);
+            switch(RandNum)
+            {
+                case 0:
+                    CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][0];
+                    break;
+                case 1:
+                    CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][0];
+                    break;
+                case 2:
+                    CurrentSpawnPattern = Tier03PatternStorage[ThemeNum][0];
+                    break;
+            }
+            PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+            JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
         }
+        else
+        {
+            if (CurrentSearchPoint < 40)//0~39 //1티어 패턴만
+                RandNum = 1;
+            else if (CurrentSearchPoint >= 40 && CurrentSearchPoint <= 79)//40~79 //1~2티어 패턴 중 하나
+                RandNum = Random.Range(1, 3);//1~2
+            else//80~ // 1~3티어 패턴중 하나
+                RandNum = Random.Range(1, 4);//1~3
+
+            switch (RandNum)
+            {
+                case 1:
+                    if (Tier01PatternStorage.ContainsKey(ThemeNum))
+                    {
+                        RandNum = Random.Range(0, Tier01PatternStorage[ThemeNum].Count);
+                        CurrentSpawnPattern = Tier01PatternStorage[ThemeNum][RandNum];
+                        PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                        JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                        return;
+                    }
+                    break;
+                case 2:
+                    if (Tier02PatternStorage.ContainsKey(ThemeNum))
+                    {
+                        RandNum = Random.Range(0, Tier02PatternStorage[ThemeNum].Count);
+                        CurrentSpawnPattern = Tier02PatternStorage[ThemeNum][RandNum];
+                        PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                        JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                        return;
+                    }
+                    break;
+                case 3:
+                    if (Tier03PatternStorage.ContainsKey(ThemeNum))
+                    {
+                        RandNum = Random.Range(0, Tier03PatternStorage[ThemeNum].Count);
+                        CurrentSpawnPattern = Tier03PatternStorage[ThemeNum][RandNum];
+                        PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentSpawnPattern.SpawnPatternID;
+                        JsonReadWriteManager.Instance.SavePlayerInfo(PMgr.GetPlayerInfo().GetPlayerStateInfo());//결정 된거 저장
+                        return;
+                    }
+                    break;
+            }
+        }
+
         //여기 까지 온거면 ThemeNum가 없는거임
         Debug.Log("NoMonsterPattern");
     }

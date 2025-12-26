@@ -66,7 +66,7 @@ public class BackGroundUI : MonoBehaviour
         if (ThemeNum - 1 >= BackGroundObjects.Length)
             return;
         */
-        if(ThemeNum != 1 && ThemeNum != 2 && ThemeNum != 3)
+        if(ThemeNum != 1 && ThemeNum != 2 && ThemeNum != 3 && ThemeNum != 4)
             ThemeNum = 1;
 
         //각 저장소에 아무것도 없는 곳에는 null(투명) 이미지을 등록

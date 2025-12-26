@@ -62,6 +62,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf4f23e0c5794b149bfec1aded22a2c5
+    m_Address: Event/Event9000
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb26ff65afbd66144b9ed9da1c21caf5
     m_Address: Tutorial/Event
     m_ReadOnly: 0
