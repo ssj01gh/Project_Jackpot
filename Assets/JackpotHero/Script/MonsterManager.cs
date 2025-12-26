@@ -166,7 +166,7 @@ public class MonsterManager : MonoBehaviour
         int CurrentSearchPoint = PMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint;//0 -> 1티어 100% 40 -> 2티어 100%
         //패턴을 결정하기 전에 이미 정해진 패턴이 있다면 리턴 -> 이미 스폰 패턴이 결정된 상태(껏다 킨거임)
         //탐색도 ~40까지는 백퍼 1티어 ~80까지는 1티어 2티어 혼용 80~ 3티어까지 혼용
-        if(DetailOfEvents % 1000 < 100 && DetailOfEvents % 1000 >= 0)
+        if(DetailOfEvents % 1000 < 100 && DetailOfEvents % 1000 >= 0 && DetailOfEvents != 0)
         {//0~99이라면 1티어 // 0 ~ 99임 0이면 패턴을 결정해야 되는거임
             for (int i = 0; i < Tier01PatternStorage[ThemeNum].Count; i++)
             {

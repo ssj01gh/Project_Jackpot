@@ -189,8 +189,9 @@ public class PlaySceneManager : MonoBehaviour
             case (int)EPlayerCurrentState.OtherEvent:
                 PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
                 SoundManager.Instance.PlayBGM("BaseBGM");
-                EventMgr.SetCurrentEvent();//현재 발생할 이벤트 설정
-                UIMgr.E_UI.ActiveEventUI(EventMgr);
+                EventMgr.SetAddresableEvent();
+                //EventMgr.SetCurrentEvent();//현재 발생할 이벤트 설정
+                //UIMgr.E_UI.ActiveEventUI(EventMgr);
                 break;
             case (int)EPlayerCurrentState.Rest:
                 //여기서는 즉각적으로 뭔가 결정할게 없긴함

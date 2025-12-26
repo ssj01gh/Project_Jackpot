@@ -2,6 +2,8 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class EventManager : MonoBehaviour
 {
@@ -30,6 +32,7 @@ public class EventManager : MonoBehaviour
     Dictionary<int, List<EventSO>> EventStorage = new Dictionary<int, List<EventSO>>();
     Dictionary<int, EventSO> FollowEventStorage = new Dictionary<int, EventSO>();
 
+    private AsyncOperationHandle<EventSO> _Handle;
     private const int BossTheme = 10;
     private const int EventTheme = 9;
     private readonly float[] StageAverageRward = new float[4] { 28, 101, 313, 816 };
@@ -171,6 +174,56 @@ public class EventManager : MonoBehaviour
                 FollowEventStorage.Add(FoEv.EventCode, FoEv);
         }
     }
+    public async void SetAddresableEvent(bool IsBossEvent = false)
+    {
+        PlayerScript P_Info = PlayerMgr.GetPlayerInfo();
+        int DetailOfEvents = P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails;
+        FreeEventHandle();
+
+        //보스 이벤트로 적용
+        if (IsBossEvent == true)
+        {
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(10000));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError("NoBossEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
+            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+            return;
+        }
+
+        if (DetailOfEvents == 9000)
+        {
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(DetailOfEvents));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                return;
+            }
+            CurrentEvent = _Handle.Result;
+            CheckLinkageEvent();
+            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+            return;//함수 종료
+        }
+    }
+    protected string GetAdressByEventCode(int EventCode)
+    {
+        return "Event/Event" + EventCode.ToString();
+    }
+    protected void FreeEventHandle()
+    {
+        if (_Handle.IsValid())//살아있는 핸들이라면 해방
+        {
+            Addressables.Release(_Handle);
+        }
+    }
 
     public void SetCurrentEvent(bool IsBossEvent = false)
     {
@@ -232,7 +285,6 @@ public class EventManager : MonoBehaviour
         //여기 온거면 이벤트를 새로 결정해야 되는거//공통 이벤트와 해당 층 이벤트 둘중하나.
         if (ThemeNum == 4)
         {
-            int Stage04EventNum = 0;
             //0 -> 4000//1 -> 4010//2 -> 4020//3 -> 4030//4 -> 4040//5 -> 4050//6 -> 4060//7 -> 4070//
             switch(JsonReadWriteManager.Instance.LkEv_Info.Stage04EventCount)
             {
