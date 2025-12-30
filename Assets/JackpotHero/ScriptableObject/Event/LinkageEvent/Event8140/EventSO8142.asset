@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 8142
   EventTitle: "\uBCF4\uC548 \uCF54\uB4DC \uC785\uB825 \uC644\uB8CC"
-  EventImage: {fileID: 21300000, guid: bad04122a8069644f9893fb291d357fe, type: 3}
+  EventImage: {fileID: 21300000, guid: cbf762c9d064eb84e93fa6adbcdfd543, type: 3}
   EventDetail: "<color=green>{Getting}</color>\n\"\uBCF4\uC548 \uCF54\uB4DC \uC785\uB825\uC774
     \uC644\uB8CC\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\"\n\uC228\uACA8\uC838 \uC788\uB358
     \uBB38\uC774 \uC5F4\uB9AC\uACE0\n\uADF8\uACF3\uC5D0\uB294 \uD734\uC2DD\uC744

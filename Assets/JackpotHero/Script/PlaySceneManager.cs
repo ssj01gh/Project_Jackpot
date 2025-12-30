@@ -114,7 +114,7 @@ public class PlaySceneManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Error");
+                    //Debug.LogError("Error");
                     //抗寇贸府
                 }
             }
@@ -132,7 +132,7 @@ public class PlaySceneManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Error");
+                    //Debug.LogError("Error");
                     //抗寇贸府
                 }
             }
@@ -199,8 +199,9 @@ public class PlaySceneManager : MonoBehaviour
             case (int)EPlayerCurrentState.Boss_Event:
                 SoundManager.Instance.PlayBGM("BaseBGM");
                 PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
-                EventMgr.SetCurrentEvent(true);
-                UIMgr.E_UI.ActiveEventUI(EventMgr);
+                EventMgr.SetAddresableEvent(true);
+                //EventMgr.SetCurrentEvent(true);
+                //UIMgr.E_UI.ActiveEventUI(EventMgr);
                 break;
             case (int)EPlayerCurrentState.Boss_Battle:
                 //SoundManager.Instance.PlayBGM("BossBattleBGM");

@@ -70,11 +70,11 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         if (!File.Exists(path) || IsRestartGame)//없으면 생성
         {
             //Player Equipment Setting
-            P_Info.EquipWeaponCode = 10001;
-            P_Info.EquipArmorCode = 20001;
-            P_Info.EquipHatCode = 30001;
-            P_Info.EquipShoesCode = 40001;
-            P_Info.EquipAccessoriesCode = 50001;
+            P_Info.EquipWeaponCode = 10802;
+            P_Info.EquipArmorCode = 10812;
+            P_Info.EquipHatCode = 10822;
+            P_Info.EquipShoesCode = 10830;
+            P_Info.EquipAccessoriesCode = 10840;
             //Player State Setting
             P_Info.CurrentHpRatio = 1f;
             P_Info.CurrentTirednessRatio = 1f;

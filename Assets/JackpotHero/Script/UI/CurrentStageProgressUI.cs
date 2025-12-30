@@ -21,14 +21,21 @@ public class CurrentStageProgressUI : MonoBehaviour
 
     public void SetCurrentStegeUI(PlayerInfo PInfo)
     {
-        CurrentStageText.text = (PInfo.CurrentFloor).ToString() +"½ºÅ×ÀÌÁö";
-        if(PInfo.DetectNextFloorPoint < 100)
+        CurrentStageText.text = (PInfo.CurrentFloor).ToString() + "½ºÅ×ÀÌÁö";
+        if (PInfo.CurrentFloor == 4)
         {
-            CurrentStageProgressText.text = "Å½»öµµ : " + PInfo.DetectNextFloorPoint + " / 100";
+            CurrentStageProgressText.text = "Å½»öµµ : <color=red>???</color>";
         }
         else
         {
-            CurrentStageProgressText.text = "Å½»öµµ : <color=red>100 / 100</color>";
+            if (PInfo.DetectNextFloorPoint < 100)
+            {
+                CurrentStageProgressText.text = "Å½»öµµ : " + PInfo.DetectNextFloorPoint + " / 100";
+            }
+            else
+            {
+                CurrentStageProgressText.text = "Å½»öµµ : <color=red>100 / 100</color>";
+            }
         }
     }
 }

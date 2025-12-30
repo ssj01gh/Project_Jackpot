@@ -1703,7 +1703,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //2페이즈 끝(장비 성향이 공개후 확정 되고 위쪽에 박히면서 플레이트가 바뀌어야함)
         //3페이즈 끝(장비 종류가 공개후 확정 되고 왼쪽에 박히면서 플레이트가 바뀌어야함)
         //4페이즈 끝(곱 성향이 공개후 확정 되고 오른쪽에 박히면서 플레이트가 바뀌어야함)
-        switch(CurrentGachaPhase)
+        GachaConfirmButton.SetActive(false);
+        GachaAgainButton.SetActive(false);
+        RemainGachaText.gameObject.SetActive(false);
+        switch (CurrentGachaPhase)
         {
             case (int)EGachaPhase.GemPhase://1페이즈끝
                 EquipGachaPhaseOneEnd();
