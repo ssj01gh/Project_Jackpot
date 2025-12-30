@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.Burst;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -697,7 +695,14 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
 
     public int GetGamblingLevelPercent(int Level, int Tier)
     {
-        return EquipmentGamblingDetail[Level, Tier];
+        if(JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel >= 7)
+        {
+            return EquipmentGamblingDetail_Luck[Level, Tier];
+        }
+        else
+        {
+            return EquipmentGamblingDetail[Level, Tier];
+        }
     }
 
     public int GetGamblingLevelUPCost(int Level)

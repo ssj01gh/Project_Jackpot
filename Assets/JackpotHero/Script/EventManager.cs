@@ -14,23 +14,30 @@ public class EventManager : MonoBehaviour
     [SerializeField]
     private BattleManager BattleMgr;
 
-    public EventSO[] CommonGameEvents;
-    public EventSO[] LinkageGameEvents;
-    public EventSO[] Stage01GameEvents;
-    public EventSO[] Stage02GameEvents;
-    public EventSO[] Stage03GameEvents;
-    public EventSO[] Stage04GameEvents;
+    //public EventSO[] CommonGameEvents;
+    //public EventSO[] LinkageGameEvents;
+    //public EventSO[] Stage01GameEvents;
+    //public EventSO[] Stage02GameEvents;
+    //public EventSO[] Stage03GameEvents;
+    //public EventSO[] Stage04GameEvents;
+    //
+    //public EventSO[] CommonFollowEvents;
+    //public EventSO[] LinkageFollowEvents;
+    //public EventSO[] Stage01FollowEvents;
+    //public EventSO[] Stage02FollowEvents;
+    //public EventSO[] Stage03FollowEvents;
+    //public EventSO[] Stage04FollowEvents;
 
-    public EventSO[] CommonFollowEvents;
-    public EventSO[] LinkageFollowEvents;
-    public EventSO[] Stage01FollowEvents;
-    public EventSO[] Stage02FollowEvents;
-    public EventSO[] Stage03FollowEvents;
-    public EventSO[] Stage04FollowEvents;
+    [Header("EventCodes")]
+    public int[] StartEventCodes;
+    public int[] FollowEventCodes;
+
     // Start is called before the first frame update
 
-    Dictionary<int, List<EventSO>> EventStorage = new Dictionary<int, List<EventSO>>();
-    Dictionary<int, EventSO> FollowEventStorage = new Dictionary<int, EventSO>();
+    //Dictionary<int, List<EventSO>> EventStorage = new Dictionary<int, List<EventSO>>();
+    //Dictionary<int, EventSO> FollowEventStorage = new Dictionary<int, EventSO>();
+    Dictionary<int, List<int>> EventCodeStorage = new Dictionary<int, List<int>>();
+    HashSet<int> FollowEventCodeStorage = new HashSet<int>();
 
     private AsyncOperationHandle<EventSO> _Handle;
     private const int BossTheme = 10;
@@ -60,6 +67,7 @@ public class EventManager : MonoBehaviour
     protected void InitEvent()
     {
         //CommonGameEvent
+        /*
         foreach(EventSO Ev in CommonGameEvents)
         {
             int ThemeNum = Ev.EventCode / 1000;
@@ -173,11 +181,31 @@ public class EventManager : MonoBehaviour
             if (!FollowEventStorage.ContainsKey(FoEv.EventCode))
                 FollowEventStorage.Add(FoEv.EventCode, FoEv);
         }
+        */
+
+        foreach (int EventCode in StartEventCodes)
+        {
+            int ThemeNum = EventCode / 1000;
+            if (!EventCodeStorage.ContainsKey(ThemeNum))
+            {
+                List<int> EventCodeList = new List<int>();
+                EventCodeList.Add(EventCode);
+                EventCodeStorage.Add(ThemeNum, EventCodeList);
+            }
+            else
+                EventCodeStorage[ThemeNum].Add(EventCode);
+        }
+
+        foreach(int FollowEventCode in FollowEventCodes)
+        {
+            FollowEventCodeStorage.Add(FollowEventCode);
+        }
     }
     public async void SetAddresableEvent(bool IsBossEvent = false)
     {
         PlayerScript P_Info = PlayerMgr.GetPlayerInfo();
         int DetailOfEvents = P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails;
+        int ThemeNum = DetailOfEvents / 1000;
         FreeEventHandle();
 
         //보스 이벤트로 적용
@@ -187,30 +215,135 @@ public class EventManager : MonoBehaviour
             await _Handle.Task;//불러 와질 때까지 비동기 대기
             if (_Handle.Status != AsyncOperationStatus.Succeeded)
             {
-                Debug.LogError("NoBossEvent");
+                //Debug.LogError("NoBossEvent");
                 return;
             }
             CurrentEvent = _Handle.Result;
             P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+            UIMgr.E_UI.ActiveEventUI(this);
             return;
         }
-
-        if (DetailOfEvents == 9000)
+        //말하는 몬스터를 한번도 본적이 없다면
+        if (JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster == false)
         {
-            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(DetailOfEvents));
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(9020));
             await _Handle.Task;//불러 와질 때까지 비동기 대기
-
             if (_Handle.Status != AsyncOperationStatus.Succeeded)
             {
+                //Debug.LogError("NoTalkingMonsterEvent");
                 return;
             }
             CurrentEvent = _Handle.Result;
-            CheckLinkageEvent();
             P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster = true;
             JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+            UIMgr.E_UI.ActiveEventUI(this);
+            return;
+        }
+        if (DetailOfEvents != 0)//이벤트가 결정된 상태로 게임을 껏다 켰으면
+        {//이벤트가 있는지 없는지 확인해야하는데.....
+            //이벤트 전체에서 있는지 확인 -> 이벤트 결과에서 있는지 확인.....
+            //시작 이벤트 전체 = EventCodeStorage[스테이지][코드]-> 스테이지가 정해지면 거기에서 랜덤으로 뽑는것 도 가능
+            //연계 이벤트 전체 = FollowEventCodeStroage[코드] -> 있는지 바로 검사 가능
+            for (int i = 0; i < EventCodeStorage[ThemeNum].Count; i++)
+            {
+                if (EventCodeStorage[ThemeNum][i] == DetailOfEvents)//겹치는게 있다면
+                {
+                    int EC = CheckLinkageAddresableEvent(DetailOfEvents);//여기서 연계이벤트가 있다면 코드가 바뀜
+                    _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(EC));
+                    await _Handle.Task;//불러 와질 때까지 비동기 대기
+                    if (_Handle.Status != AsyncOperationStatus.Succeeded)
+                    {
+                        //Debug.LogError("NoEvent");
+                        return;
+                    }
+                    CurrentEvent = _Handle.Result;
+                    P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+                    UIMgr.E_UI.ActiveEventUI(this);
+                    return;//함수 종료
+                }
+            }
+            if (FollowEventCodes.Contains(DetailOfEvents))
+            {
+                int EC = CheckLinkageAddresableEvent(DetailOfEvents);//여기서 연계이벤트가 있다면 코드가 바뀜
+                _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(EC));
+                await _Handle.Task;//불러 와질 때까지 비동기 대기
+                if (_Handle.Status != AsyncOperationStatus.Succeeded)
+                {
+                    //Debug.LogError("NoEvent");
+                    return;
+                }
+                CurrentEvent = _Handle.Result;
+                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+                UIMgr.E_UI.ActiveEventUI(this);
+                return;//함수 종료
+            }
+        }
+
+        if (P_Info.GetPlayerStateInfo().CurrentFloor == 4)
+        {
+            int Stage04EventCount = JsonReadWriteManager.Instance.LkEv_Info.Stage04EventCount;
+            int EC = EventCodeStorage[4][Stage04EventCount];
+            //0 -> 4000//1 -> 4010//2 -> 4020//3 -> 4030//4 -> 4040//5 -> 4050//6 -> 4060//7 -> 4070//
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(EC));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                //Debug.LogError("NoEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
+            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+            UIMgr.E_UI.ActiveEventUI(this);
             return;//함수 종료
+        }
+        else
+        {
+            int CurrentFloor = P_Info.GetPlayerStateInfo().CurrentFloor;
+            //현재 있는 스테이지의 이벤트 개수
+            int CurrentFloorEventCount = EventCodeStorage[CurrentFloor].Count;
+            //공통 이벤트 개수(9로 시작하는 것들)
+            int CommonEventCount = EventCodeStorage[EventTheme].Count;
+
+            int RandNum = Random.Range(0, CurrentFloorEventCount + CommonEventCount);
+            if (RandNum >= 0 && RandNum < CurrentFloorEventCount)
+            {//현재층 이벤트로 결정
+                RandNum = Random.Range(0, EventCodeStorage[CurrentFloor].Count);
+                int EC = CheckLinkageAddresableEvent(EventCodeStorage[CurrentFloor][RandNum]);
+                _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(EC));
+                await _Handle.Task;//불러 와질 때까지 비동기 대기
+                if (_Handle.Status != AsyncOperationStatus.Succeeded)
+                {
+                    //Debug.LogError("NoEvent");
+                    return;
+                }
+                CurrentEvent = _Handle.Result;
+                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+                UIMgr.E_UI.ActiveEventUI(this);
+                return;//함수 종료
+            }
+            else if (RandNum >= CurrentFloorEventCount && RandNum < CurrentFloorEventCount + CommonEventCount)
+            {//공통 이벤트로 결정
+                RandNum = Random.Range(0, EventCodeStorage[EventTheme].Count);
+                int EC = CheckLinkageAddresableEvent(EventCodeStorage[EventTheme][RandNum]);
+                _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(EC));
+                await _Handle.Task;//불러 와질 때까지 비동기 대기
+                if (_Handle.Status != AsyncOperationStatus.Succeeded)
+                {
+                    //Debug.LogError("NoEvent");
+                    return;
+                }
+                CurrentEvent = _Handle.Result;
+                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
+                UIMgr.E_UI.ActiveEventUI(this);
+                return;//함수 종료
+            }
         }
     }
     protected string GetAdressByEventCode(int EventCode)
@@ -224,7 +357,7 @@ public class EventManager : MonoBehaviour
             Addressables.Release(_Handle);
         }
     }
-
+    /*
     public void SetCurrentEvent(bool IsBossEvent = false)
     {
         PlayerScript P_Info = PlayerMgr.GetPlayerInfo();
@@ -345,7 +478,197 @@ public class EventManager : MonoBehaviour
         //여기로 넘어가면 아무것도 안된거-- 그러니까 오류가 발생한거
         Debug.Log("ThereIsNoEvent");
     }
+    */
+    protected int CheckLinkageAddresableEvent(int CurrentEventCode)
+    {
+        int ReturnEventCode = CurrentEventCode;
+        switch(CurrentEventCode)
+        {
+            case 9020:
+                if (JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster == true)
+                {
+                    if (JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem == true)
+                    {
+                        int Rand = Random.Range(0, 2);
+                        if (Rand == 0)
+                        {//토토와 은혜 갚기
+                            if (JsonReadWriteManager.Instance.LkEv_Info.TotoRepayFavor == true)
+                            {//토토와 은혜갚기가 완료됬다면 토토의 지원으로
+                                ReturnEventCode =FindNChangeAddresableEvent(9020, 8060);
+                            }
+                            else
+                            {//완료 안됬다면 토토의 은혜갚기로
+                                ReturnEventCode = FindNChangeAddresableEvent(9020, 8030);
+                            }
+                        }
+                        else
+                        {//토토와 저주받은 검// 토토와 축복받은 검
+                            if (JsonReadWriteManager.Instance.LkEv_Info.TotoBlessedSword == true)
+                            {//토토와 축복받은 검을 완료했으면 토토의 지원으로
+                                ReturnEventCode = FindNChangeAddresableEvent(9020, 8060);
+                            }
+                            else if (JsonReadWriteManager.Instance.LkEv_Info.TotoCursedSword == true)
+                            {//토토의 저주받은 검을 완료 했으면 토토와 축복받은 검으로 가야함
+                                ReturnEventCode = FindNChangeAddresableEvent(9020,8050);
+                            }
+                            else
+                            {
+                                int CursedSword = 23000;
+                                int SmallCursedSword = 24001;
+                                bool IsHaveCursedSword = false;
+                                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == CursedSword ||
+                                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == SmallCursedSword)
+                                    IsHaveCursedSword = true;
+                                else
+                                {
+                                    for (int i = 0; i < PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory.Length; i++)
+                                    {
+                                        if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] == CursedSword ||
+                                            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] == SmallCursedSword)
+                                        {
+                                            IsHaveCursedSword = true;
+                                            break;
+                                        }
+                                    }
+                                }
 
+                                if (IsHaveCursedSword == true)
+                                {//저주받은검, 저주가 옅어진 검을 가지고 있다면
+                                    ReturnEventCode = FindNChangeAddresableEvent(9020, 8040);
+                                }
+                                else
+                                {//안가지고 있으면 --> 토토의 은혜갚기 또는 토토의 지원으로 가야함
+                                    if (JsonReadWriteManager.Instance.LkEv_Info.TotoRepayFavor == true)
+                                    {//토토와 은혜갚기가 완료됬다면 토토의 지원으로
+                                        ReturnEventCode = FindNChangeAddresableEvent(9020, 8060);
+                                    }
+                                    else
+                                    {//완료 안됬다면 토토의 은혜갚기로
+                                        ReturnEventCode = FindNChangeAddresableEvent(9020, 8030);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ReturnEventCode = FindNChangeAddresableEvent(9020, 8010);
+                    }
+                }
+                break;
+            case 9030:
+                if (JsonReadWriteManager.Instance.LkEv_Info.RestInPeace == true)
+                {
+                    int Rand = Random.Range(0, 2);
+                    if (Rand == 0)
+                    {//여기에 걸려야 고인의 감사로
+                        ReturnEventCode = FindNChangeAddresableEvent(9030, 8020);
+                    }
+                }
+                break;
+            case 9050:
+                if (JsonReadWriteManager.Instance.LkEv_Info.OminousSword == true &&
+                    JsonReadWriteManager.Instance.LkEv_Info.CleanOminousSword == false &&
+                    JsonReadWriteManager.Instance.LkEv_Info.TotoCursedSword)
+                {//여기에서 이미 토토에게 검이 정화되러 가지고 갔으면.....
+                    //+토토와 저주받은 검이 == false 일때 바꿔야함
+                    ReturnEventCode = FindNChangeAddresableEvent(9050, 8000);
+                }
+                break;
+            case 9080:
+                if (JsonReadWriteManager.Instance.LkEv_Info.TotoBlessedSword == true)
+                {//8100으로
+                    ReturnEventCode = FindNChangeAddresableEvent(9080, 8100);
+                }
+                else if (JsonReadWriteManager.Instance.LkEv_Info.OminousSword == true)
+                {
+                    //불길한 검의 저주 8070
+                    //검이 없으면 8090으로
+                    int CursedSword = 17001;
+                    int SmallCursedSword = 17002;
+                    bool IsHaveCursedSword = false;
+                    if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == CursedSword ||
+                        PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == SmallCursedSword)
+                        IsHaveCursedSword = true;
+                    else
+                    {
+                        for (int i = 0; i < PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory.Length; i++)
+                        {
+                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] == CursedSword ||
+                                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] == SmallCursedSword)
+                            {
+                                IsHaveCursedSword = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (IsHaveCursedSword == false)
+                        ReturnEventCode = FindNChangeAddresableEvent(9080, 8090);
+                    else if (JsonReadWriteManager.Instance.LkEv_Info.CleanOminousSword == true)//옅어진 검의 저주 8080으로
+                        ReturnEventCode = FindNChangeAddresableEvent(9080, 8080);
+                    else
+                        ReturnEventCode = FindNChangeAddresableEvent(9080, 8070);
+
+                }
+                break;
+            case 2000:
+                if (JsonReadWriteManager.Instance.LkEv_Info.ForestBracelet == true)
+                {
+                    ReturnEventCode = FindNChangeAddresableEvent(2000, 8110);
+                }
+                break;
+            case 2040:
+                if (JsonReadWriteManager.Instance.LkEv_Info.ML_GKPerson == true ||
+                    JsonReadWriteManager.Instance.LkEv_Info.ML_NorPerson == true)
+                {//선 혹은 중립일때
+                    ReturnEventCode = FindNChangeAddresableEvent(2040, 8120);
+                }
+                else if (JsonReadWriteManager.Instance.LkEv_Info.ML_BKPerson == true)
+                {//악일때
+                    ReturnEventCode = FindNChangeAddresableEvent(2040, 8130);
+                }
+                break;
+            case 3020:
+                if (JsonReadWriteManager.Instance.LkEv_Info.Lab_Security == true)
+                {
+                    ReturnEventCode = FindNChangeAddresableEvent(3020, 8140);
+                }
+                break;
+            case 3040:
+                if (JsonReadWriteManager.Instance.LkEv_Info.Lab_Sphere == true)
+                {
+                    ReturnEventCode = FindNChangeAddresableEvent(3040, 8150);
+                }
+                break;
+            case 2050:
+                if (JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingGiant == true)
+                {
+                    ReturnEventCode = FindNChangeAddresableEvent(2050, 8160);
+                }
+                break;
+            case 3060:
+                if (JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingDopple == true)
+                {
+                    ReturnEventCode = FindNChangeAddresableEvent(3060, 8170);
+                }
+                break;
+        }
+        return ReturnEventCode;
+    }
+    protected int FindNChangeAddresableEvent(int CurrentEventCode ,int ChangeEventCode)
+    {
+        int EventTheme = ChangeEventCode / 1000;
+        for (int i = 0; i < EventCodeStorage[EventTheme].Count; i++)
+        {
+            if (EventCodeStorage[EventTheme][i] == ChangeEventCode)
+            {
+                return EventCodeStorage[EventTheme][i];
+            }
+        }
+        return CurrentEventCode;
+    }
+    /*
     protected void CheckLinkageEvent()//연계 이벤트 체크하는함수// 연계 이벤트 대부분은 여기서 결정될 예정
     {
         switch(CurrentEvent.EventCode)
@@ -521,7 +844,8 @@ public class EventManager : MonoBehaviour
                 break;
         }
     }
-
+    */
+    /*
     public void FindNChangeEvent(int EventC)
     {
         int EventTheme = EventC / 1000;
@@ -534,11 +858,12 @@ public class EventManager : MonoBehaviour
             }
         }
     }
-
+    */
     protected void EndOfEvent()
     {
         UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
         PlayerMgr.GetPlayerInfo().EndOfAction();//여기서 Action, ActionDetail이 초기화, 현재 행동 초기화
+        FreeEventHandle();
     }
 
     public void PressEventSelectionButton(int SelectionType)//이게 이제 이벤트의 결과 함수임
@@ -549,8 +874,9 @@ public class EventManager : MonoBehaviour
         UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
         PlayerMgr.GetPlayerInfo().EndOfAction();//여기서 Action, ActionDetail이 초기화, 현재 행동 초기화
         *///위에꺼 2개는 상태에 맞게 각각의 이벤트에서 발생해야 할듯 -> 장비를 얻고, EXP를 얻는건 괜찮지만 배틀로 가야한다면 대참사임
-        JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-        UIMgr.SetUI();
+          //이거 밑어꺼를 각 ThemeEvent 아래쪽에 박아야 할듯? 그래야 비동기 진행이랑 충돌 안할듯함
+        //JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+        //UIMgr.SetUI();
         //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();//갱신
         //StartCoroutine(CheckBackGroundMoveEnd(true));//여기에 들어가면 현재 상태에 맞게 ui가 생성되고 없어지고 함
         //SetUI와 전투를 위한 CheckBackGroundMoveEnd 코루틴임
@@ -590,7 +916,7 @@ public class EventManager : MonoBehaviour
         */
     }
 
-    protected void CommonThemeEvent(int ButtonType)
+    protected async void CommonThemeEvent(int ButtonType)
     {
         CommonEventDetailAction CommonEvents = new CommonEventDetailAction();
         int FollowEventCode = 0;
@@ -658,15 +984,28 @@ public class EventManager : MonoBehaviour
         }
 
         if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
-            return;
-        else if (FollowEventStorage.ContainsKey(FollowEventCode))
         {
-            CurrentEvent = FollowEventStorage[FollowEventCode];
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
+            return;
+        }
+        else if (FollowEventCodeStorage.Contains(FollowEventCode))
+        {
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(FollowEventCode));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                //Debug.LogError("NoEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
             UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
         }
     }
-    protected void LinkageThemeEvent(int ButtonType)
+    protected async void LinkageThemeEvent(int ButtonType)
     {
         LinkageEventDetailAction LinkageEvent = new LinkageEventDetailAction();
         int FollowEventCode = 0;
@@ -766,15 +1105,28 @@ public class EventManager : MonoBehaviour
         }
 
         if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
-            return;
-        else if (FollowEventStorage.ContainsKey(FollowEventCode))
         {
-            CurrentEvent = FollowEventStorage[FollowEventCode];
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
+            return;
+        }
+        else if (FollowEventCodeStorage.Contains(FollowEventCode))
+        {
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(FollowEventCode));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                //Debug.LogError("NoEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
             UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
         }
     }
-    protected void Stage01ThemeEvent(int ButtonType)
+    protected async void Stage01ThemeEvent(int ButtonType)
     {
         Stage01EventDetailAction Stage01Event = new Stage01EventDetailAction();
         int FollowEventCode = 0;
@@ -827,15 +1179,28 @@ public class EventManager : MonoBehaviour
         }
 
         if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
-            return;
-        else if (FollowEventStorage.ContainsKey(FollowEventCode))
         {
-            CurrentEvent = FollowEventStorage[FollowEventCode];
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
+            return;
+        }
+        else if (FollowEventCodeStorage.Contains(FollowEventCode))
+        {
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(FollowEventCode));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                //Debug.LogError("NoEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
             UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
         }
     }
-    protected void Stage02ThemeEvent(int ButtonType)
+    protected async void Stage02ThemeEvent(int ButtonType)
     {
         Stage02EventDetailAction Stage02Event = new Stage02EventDetailAction();
         int FollowEventCode = 0;
@@ -913,32 +1278,53 @@ public class EventManager : MonoBehaviour
         {
             if(FollowEventCode == 2022)
             {
-                CurrentEvent = FollowEventStorage[FollowEventCode];
+                _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(2022));
+                await _Handle.Task;//불러 와질 때까지 비동기 대기
+                if (_Handle.Status != AsyncOperationStatus.Succeeded)
+                {
+                    //Debug.LogError("NoEvent");
+                    return;
+                }
+                CurrentEvent = _Handle.Result;
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
                 UIMgr.E_UI.ActiveEventUI(this);
+                JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+                UIMgr.SetUI();
             }
             return;
         }
-        else if (FollowEventStorage.ContainsKey(FollowEventCode))
+        else if (FollowEventCodeStorage.Contains(FollowEventCode))
         {
-            CurrentEvent = FollowEventStorage[FollowEventCode];
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(FollowEventCode));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                //Debug.LogError("NoEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
             UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
         }
         else if (FollowEventCode == 2000)
         {
-            for(int i = 0; i < EventStorage[2].Count; i++)
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(2000));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
             {
-                if (EventStorage[2][i].EventCode == 2000)
-                {
-                    CurrentEvent = EventStorage[2][i];
-                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                    UIMgr.E_UI.ActiveEventUI(this);
-                }
+                //Debug.LogError("NoEvent");
+                return;
             }
+            CurrentEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
         }
     }
-    protected void Stage03ThemeEvent(int ButtonType)
+    protected async void Stage03ThemeEvent(int ButtonType)
     {
         Stage03EventDetailAction Stage03Event = new Stage03EventDetailAction();
         int FollowEventCode = 0;
@@ -995,27 +1381,28 @@ public class EventManager : MonoBehaviour
         }
 
         if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
-            return;
-        else if (FollowEventStorage.ContainsKey(FollowEventCode))
         {
-            CurrentEvent = FollowEventStorage[FollowEventCode];
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
+            return;
+        }
+        else if (FollowEventCodeStorage.Contains(FollowEventCode))
+        {
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(FollowEventCode));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                //Debug.LogError("NoEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
             UIMgr.E_UI.ActiveEventUI(this);
-        }
-        else if (FollowEventCode == 2000)
-        {
-            for (int i = 0; i < EventStorage[2].Count; i++)
-            {
-                if (EventStorage[2][i].EventCode == 2000)
-                {
-                    CurrentEvent = EventStorage[2][i];
-                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                    UIMgr.E_UI.ActiveEventUI(this);
-                }
-            }
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
         }
     }
-    protected void Stage04ThemeEvent(int ButtonType)
+    protected async void Stage04ThemeEvent(int ButtonType)
     {
         Stage04EventDetailAction Stage04Event = new Stage04EventDetailAction();
         int FollowEventCode = 0;
@@ -1074,12 +1461,25 @@ public class EventManager : MonoBehaviour
         }
 
         if (CurrentEvent.EventCode == FollowEventCode || FollowEventCode == 0)
-            return;
-        else if (FollowEventStorage.ContainsKey(FollowEventCode))
         {
-            CurrentEvent = FollowEventStorage[FollowEventCode];
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
+            return;
+        }
+        else if (FollowEventCodeStorage.Contains(FollowEventCode))
+        {
+            _Handle = Addressables.LoadAssetAsync<EventSO>(GetAdressByEventCode(FollowEventCode));
+            await _Handle.Task;//불러 와질 때까지 비동기 대기
+            if (_Handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                //Debug.LogError("NoEvent");
+                return;
+            }
+            CurrentEvent = _Handle.Result;
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
             UIMgr.E_UI.ActiveEventUI(this);
+            JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+            UIMgr.SetUI();
         }
     }
     protected void CommonFollowEvent()
