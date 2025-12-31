@@ -466,6 +466,10 @@ public class PlayerScript : MonoBehaviour
             JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin -= 1;
         }
     }
+    protected void SetInitBuffByKarma()
+    {
+
+    }
     protected void SetInitBuffByEquipmnet()
     {
         int STREquip = 10; int DUREquip = 11; int SPDEquip = 13; int LUKEquip = 14; int HPEquip = 15; int STAEquip = 16;

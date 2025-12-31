@@ -27,6 +27,8 @@ public class PlaySceneUIManager : MonoBehaviour
     public GameObject RestSelectionUI;
     public GameObject FadeUI;
     public RestUIScript R_UI;
+
+    public NonRestInventoryUIScript NonInven_UI;
     // Start is called before the first frame update
     private void Awake()
     {

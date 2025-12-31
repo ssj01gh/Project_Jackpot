@@ -24,6 +24,7 @@ public class CommonEventDetailAction
                 int RandomEquipment = EquipmentInfoManager.Instance.GetFixedTierRandomEquipmnet(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor + 1);
                 Getting = "¿Â∫Ò »πµÊ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName;
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(RandomEquipment);
+                UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 UIMgr.GI_UI.ActiveGettingUI(RandomEquipment);
 
@@ -145,6 +146,7 @@ public class CommonEventDetailAction
                 }
                 int RandomEquipment = EquipmentInfoManager.Instance.GetFixedTierRandomEquipmnet(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(RandomEquipment);
+                UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 //∞Ê«Ëƒ° »πµÊ
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
@@ -393,6 +395,7 @@ public class CommonEventDetailAction
             return CurrentEventCode;
 
         PlayerMgr.GetPlayerInfo().PutEquipmentToInven(RandomEquipmnetCode);
+        UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
         UIMgr.GI_UI.ActiveGettingUI(RandomEquipmnetCode);
         return 9075;
     }
@@ -417,6 +420,7 @@ public class CommonEventDetailAction
                 int OminousSwordCode = 23000;
                 Getting = "¿Â∫Ò »πµÊ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(OminousSwordCode).EquipmentName;
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(OminousSwordCode);
+                UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(OminousSwordCode);
                 JsonReadWriteManager.Instance.LkEv_Info.OminousSword = true;
 

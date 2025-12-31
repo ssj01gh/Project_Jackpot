@@ -131,6 +131,8 @@ public class RestManager : MonoBehaviour
 
     IEnumerator RestCheckCoroutine()
     {
+        //만약 MaxRestTime = 10 CurrentRestTime = 5라면
+        //전달 되는건 0.4 --> 0.5 에서 0.4까지 1초 동안 변경 --> 0.01이라는 수치가 0.1초동안 변경된다.
         yield return null;
         while(CurrentRestTime < MaxRestTime)
         {
@@ -157,8 +159,10 @@ public class RestManager : MonoBehaviour
                 //시계를 턴의 절반정도만 하고 습격시작
                 //DurationTime을 추가로 넣을수 있음 절반이 아닌 0.3 ~ 0.8까지 랜덤값을 주도록
                 //1 -> 1초, 0.5 -> 0.5초
+                //습격이 일어나도 동일하게 게이지가 줄어들게.....
+                //랜덤 값이 0.5가 나온다면..... 전달 되는 값은 0.45가 나와야 한다. 0.2라면 0.48, 0.8 이라면 0.42
                 float RandAmount = Random.Range(0.2f, 0.8f);
-                UIMgr.R_UI.SetLeftTimeTextNSlider(MaxRestTime - (CurrentRestTime + 1), (float)(MaxRestTime - (CurrentRestTime + 1) + RandAmount) / MaxRestTime, true, RandAmount);
+                UIMgr.R_UI.SetLeftTimeTextNSlider(MaxRestTime - (CurrentRestTime + 1), (float)(MaxRestTime - (CurrentRestTime + 1) + (1 - RandAmount)) / MaxRestTime, true, RandAmount);
                 while(true)
                 {
                     yield return null;
@@ -331,6 +335,7 @@ public class RestManager : MonoBehaviour
         SoundManager.Instance.PlayUISFX("UI_Button");
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
+        UIMgr.NonInven_UI.CloseNonRestInventory();
         UIMgr.R_UI.ActivePlayerEquipMg();
         if (JsonReadWriteManager.Instance.T_Info.CampingEquipment == false)
         {

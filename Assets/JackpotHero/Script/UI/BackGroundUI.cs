@@ -131,6 +131,7 @@ public class BackGroundUI : MonoBehaviour
         float MoveAmount = TargetMoveX * SpeedRatio;
         float TargetX = TargetObject.GetComponent<RectTransform>().anchoredPosition.x - MoveAmount;
 
+        TargetObject.GetComponent<RectTransform>().DOKill();
         //TargetMoveX = 1440;
 
         TargetObject.GetComponent<RectTransform>().
@@ -145,6 +146,9 @@ public class BackGroundUI : MonoBehaviour
                 }
                 LoopBackGround(SpeedRatio, TargetObject); 
             });
+        //이 함수들로 구름을 이동 시킬때 구름이 역주행 하는 버그가 있음.... 왜 그럴까?
+        //역주행 하는 이유 -> 목표 좌표가 현재 좌표 +5760으로 됬다. -> 이게 제일 확률이 높다?
+        //왜 5760이 되지?
     }
 
     public void MoveBackGround(int ThemeNum)

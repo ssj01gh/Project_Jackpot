@@ -147,6 +147,7 @@ public class LinkageEventDetailAction
             case 0:
                 Getting = "¿Â∫Ò »πµÊ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(HolySword).EquipmentName;
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(HolySword);
+                UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(HolySword);
                 JsonReadWriteManager.Instance.LkEv_Info.TotoRepayFavor = true;
                 return 8031;
@@ -211,6 +212,7 @@ public class LinkageEventDetailAction
             case 0:
                 Getting = "¿Â∫Ò »πµÊ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(BlessedSword).EquipmentName;
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(BlessedSword);
+                UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(BlessedSword);
                 JsonReadWriteManager.Instance.LkEv_Info.TotoBlessedSword = true;
                 return 8051;

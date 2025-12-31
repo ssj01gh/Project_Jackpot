@@ -150,6 +150,7 @@ public class Stage02EventDetailAction
                 }
                 Getting = "¿Â∫Ò »πµÊ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(ForestBukelt).EquipmentName;
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(ForestBukelt);
+                UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(ForestBukelt);
                 JsonReadWriteManager.Instance.LkEv_Info.ForestBracelet = true;
                 return 2007;
