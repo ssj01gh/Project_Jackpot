@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public enum EBattleStates
 {
@@ -53,7 +54,7 @@ public class BattleManager : MonoBehaviour
 
     protected bool IgnoreBuffProgressAtFirstBattleProgress = false;
 
-    private const int CurrentFinalStage = 1;
+    private const int CurrentFinalBossCode = 4206;
     public float CurrentSpawnPatternReward { protected set; get; }
 
     protected List<string> SpawnMonstersID = new List<string>();
@@ -262,11 +263,12 @@ public class BattleManager : MonoBehaviour
         if (MonMgr.GetActiveMonsters().Count <= 0)
         {
             Debug.Log("Winner");//여기서 대악마들이 쓰러졌는지 확인하면 될듯?
-            if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4000 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4001 ||
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4002 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4003||
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4004 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4005)
+            if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4200 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4201 ||
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4202 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4203||
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4204 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4205)
             {
                 JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount += 1;
+                Debug.Log("Json : " + JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount);
             }
             PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
             //현재의 상대가 보스라는것을 확일할 방법이 있는가? 엑셀 참고//보스 200이상 300미만
@@ -791,21 +793,39 @@ public class BattleManager : MonoBehaviour
         if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails % 1000 >= 200 &&
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails % 1000 < 300)//아닐때는 보스일때만임
         {//여기서 클릭 됬을때 보스일때 따로 연출을 넣어야 할듯?
-            Debug.Log("Boss");
-            //CurrentPlayerActionDetail로 구분하는건 끝났음 0으로 바꾸기//CurrentFloor도 늘리게
-            if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails / 1000 >= CurrentFinalStage)
-            {//현재 개방된 것 보다 크거나 같으면 게임 승리임
-                UIMgr.B_UI.ClickVictoryButton();
-                PlayerMgr.GetPlayerInfo().CalculateEarlyPoint();
-                UIMgr.B_UI.WinGame(PlayerMgr.GetPlayerInfo());
+            Debug.Log("Stage04Boss");
+            if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor == 4)
+            {
+                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == CurrentFinalBossCode)
+                {//현재 개방된 것 보다 크거나 같으면 게임 승리임
+                 //보스중에서도 마지막 분노만 여기로 들어오고
+                    UIMgr.B_UI.ClickVictoryButton();
+                    PlayerMgr.GetPlayerInfo().CalculateEarlyPoint();
+                    UIMgr.B_UI.WinGame(PlayerMgr.GetPlayerInfo());
+                }
+                else
+                {
+                    //다른 보스들은 여기로
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
+                    UIMgr.B_UI.ClickVictoryButton();
+                    UIMgr.GI_UI.ActiveGettingUI();
+                    UIMgr.SetUI();
+                    JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+                    //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
+                }
             }
             else
             {
+                Debug.Log("AnotherBoss");
+                //보스 중에서도 4스테이지 가 아니면 다른 스테이지로
                 PlayerMgr.GetPlayerInfo().WinBossBattle();
                 UIMgr.B_UI.ClickVictoryButton();//승리버튼 눌렀을때 UI끄고
                 UIMgr.BossBattleWinFade();//Fade해야함//여기에 SetUI랑 이것저것 있음
                 JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
             }
+            //CurrentPlayerActionDetail로 구분하는건 끝났음 0으로 바꾸기//CurrentFloor도 늘리게
+            
         }
         else
         {

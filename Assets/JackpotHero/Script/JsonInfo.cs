@@ -32,6 +32,11 @@ public class PlayerInfo
     public float GoodKarma;
     public float BadKarma;
     public int SaveRestQualityBySuddenAttack;
+
+    public bool IsValid()
+    {
+        return false;
+    }
 }
 
 [System.Serializable]
@@ -49,6 +54,11 @@ public class EarlyStrengthenInfo
     public int EarlyExperience;
     public int EarlyExperienceMagnification;
     public int EquipmentSuccessionLevel;
+
+    public bool IsValid()
+    {
+        return false;
+    }
 }
 //힘, 내구, 속도, 회복, 행운
 
@@ -61,6 +71,11 @@ public class OptionInfo
     public float UISFXVolume;
     public float ScreenResolutionWidth;
     public bool IsFullScreen;
+
+    public bool IsValid()
+    {
+        return false;
+    }
 }
 
 [System.Serializable]
@@ -91,6 +106,11 @@ public class LinkageEventInfo
     public bool ReadyForBattle;
     public bool IsMeetTalkingDopple;
     public int Stage04EventCount;
+
+    public bool IsValid()
+    {
+        return false;
+    }
 }
 
 [System.Serializable]
@@ -110,4 +130,9 @@ public class TutorialInfo
     public bool CampingRest;
     public bool CampingLevelUp;
     public bool CampingEquipment;
+
+    public bool IsValid()
+    {
+        return false;
+    }
 }
