@@ -96,6 +96,37 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
         InventoryPanel.SetActive(true);
         InventoryPanel.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.3f).OnComplete(() => { InventoryPanel.SetActive(false); });
     }
+    public void UpdateNonRestInventoryWhenOpen()
+    {
+        if (InventoryPanel.activeSelf == false)
+            return;
+
+        MouseFollowImage.gameObject.SetActive(false);
+        for (int i = 0; i < InventorySlots.Length; i++)
+        {
+            InventorySlots[i].GetComponent<Image>().color = UnActiveColor;
+            InventoryItemImage[i].gameObject.SetActive(false);
+            InventoryLockImage[i].SetActive(true);
+            TierTexts[i].text = "";
+        }
+
+        int CanUseInventory = (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIP");
+        for (int i = 0; i < CanUseInventory; i++)
+        {
+            InventorySlots[i].GetComponent<Image>().color = ActiveColor;
+            InventoryLockImage[i].SetActive(false);
+            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//비어있지 않을때
+            {
+                //코드에 맞는 이미지를 넣음
+                InventoryItemImage[i].gameObject.SetActive(true);
+                InventoryItemImage[i].sprite =
+                    EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i]).EquipmentImage;
+                //TierNum = (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] / 1000) % 10
+                //ex ) (21002 / 1000) = 21 -> 21 % 10 = 1; -> 1티어
+                TierTexts[i].text = GetTierText(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i]);
+            }
+        }
+    }
 
     public void OnPointerDown(PointerEventData eventData)
     {

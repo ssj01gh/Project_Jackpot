@@ -254,7 +254,7 @@ public class PlayerScript : MonoBehaviour
                     PlayerTotalState.TotalLUK += (PlayerBuff.BuffList[(int)EBuffType.Charging] * 15);
                     break;
                 case (int)EBuffType.GoodKarma:
-                    int IncreaseStateByGK = PlayerBuff.BuffList[(int)EBuffType.GoodKarma] * 3;
+                    int IncreaseStateByGK = PlayerBuff.BuffList[(int)EBuffType.GoodKarma];
                     PlayerTotalState.TotalSTR += IncreaseStateByGK;
                     PlayerTotalState.TotalDUR += IncreaseStateByGK;
                     PlayerTotalState.TotalRES += IncreaseStateByGK;
@@ -262,7 +262,7 @@ public class PlayerScript : MonoBehaviour
                     PlayerTotalState.TotalLUK += IncreaseStateByGK;
                     break;
                 case (int)EBuffType.BadKarma:
-                    int DecreaseStateByBK = PlayerBuff.BuffList[(int)EBuffType.BadKarma] * 3;
+                    int DecreaseStateByBK = PlayerBuff.BuffList[(int)EBuffType.BadKarma];
                     PlayerTotalState.TotalSTR -= DecreaseStateByBK;
                     PlayerTotalState.TotalDUR -= DecreaseStateByBK;
                     PlayerTotalState.TotalRES -= DecreaseStateByBK;
@@ -397,7 +397,7 @@ public class PlayerScript : MonoBehaviour
                 PlayerBuff.BuffList[i] = 0;
             }
         }
-        PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 10;
         SetInitBuffByEarlyUpgrade();
         /*
         스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨
@@ -410,6 +410,7 @@ public class PlayerScript : MonoBehaviour
             PlayerBuff.BuffList[(int)EBuffType.Defenseless] = 1;
         }
         SetInitBuffByEvent();
+        SetInitBuffByKarma();
         SetInitBuffByEquipmnet();
     }
     protected void SetInitBuffByEarlyUpgrade()
@@ -464,6 +465,14 @@ public class PlayerScript : MonoBehaviour
         {
             PlayerBuff.BuffList[(int)EBuffType.Poison] += JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin;
             JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin -= 1;
+        }
+    }
+    protected void SetInitBuffByKarma()
+    {
+        if(PlayerState.CurrentFloor == 4)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.GoodKarma] += (int)PlayerState.GoodKarma;
+            PlayerBuff.BuffList[(int)EBuffType.BadKarma] += (int)PlayerState.BadKarma;
         }
     }
     protected void SetInitBuffByEquipmnet()
@@ -616,7 +625,6 @@ public class PlayerScript : MonoBehaviour
         
         if(IsBossBattle == true)
         {
-
         }
         else
         {

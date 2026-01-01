@@ -21,7 +21,26 @@ public class CurrentStageProgressUI : MonoBehaviour
 
     public void SetCurrentStegeUI(PlayerInfo PInfo)
     {
-        CurrentStageText.text = (PInfo.CurrentFloor).ToString() + "스테이지";
+        switch(PInfo.CurrentFloor)
+        {
+            case 1:
+                CurrentStageText.text = "초원";
+                break;
+            case 2:
+                CurrentStageText.text = "숲";
+                break;
+            case 3:
+                CurrentStageText.text = "연금술 탑";
+                break;
+            case 4:
+                CurrentStageText.text = "이계";
+                break;
+            default:
+                CurrentStageText.text = "진실";
+                break;
+        }
+
+
         if (PInfo.CurrentFloor == 4)
         {
             CurrentStageProgressText.text = "탐색도 : <color=red>???</color>";

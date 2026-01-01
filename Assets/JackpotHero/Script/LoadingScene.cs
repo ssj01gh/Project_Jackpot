@@ -13,14 +13,18 @@ public class LoadingScene : MonoSingletonDontDestroy<LoadingScene>
     public GameObject LoadingStar;
     public GameObject FillObject;
     public Image FillImage;
+    public GameObject BlackBackGround;
+    public GameObject LoadingCard;
 
     //private Vector3 LoadingStarInitScale = Vector3.zero;
     //private Vector3 LoadingStarTargetScale = new Vector3(3f, 3f, 3f);
 
-    private Vector3 LoadingStarInitRotate = Vector3.zero;
-    private Vector2 LoadingStarInitSize = Vector2.zero;
-    private float LoadingStarRatio = 1.235f;
-    private Color LoadingStarInitColor = new Color(1f, 1f, 1f, 0f);
+    //private Vector3 LoadingStarInitRotate = Vector3.zero;
+    //private Vector2 LoadingStarInitSize = Vector2.zero;
+    //private float LoadingStarRatio = 1.235f;
+    //private Color LoadingStarInitColor = new Color(1f, 1f, 1f, 0f);
+
+    private Color LoadingBackGroundColor = new Color(0f, 0f, 0f, 0f);
     void Start()
     {
         LoadingCanvas.gameObject.SetActive(false);
@@ -42,7 +46,7 @@ public class LoadingScene : MonoSingletonDontDestroy<LoadingScene>
         //1. fade
         //2. y축 회전
         //3. 둘다
-
+        /*
         FillObject.SetActive(false);
         FillImage.fillAmount = 0f;
         //LoadingStar.GetComponent<RectTransform>().transform.localScale = LoadingStarInitScale;
@@ -65,7 +69,37 @@ public class LoadingScene : MonoSingletonDontDestroy<LoadingScene>
             FillObject.SetActive(true);
             StartCoroutine(DisplayProgressBar(SceneName));
         });
+        */
+        /*
+        FillObject.SetActive(false);
+        FillImage.fillAmount = 0f;
+        BlackBackGround.GetComponent<Image>().color = LoadingBackGroundColor;
+        BlackBackGround.SetActive(true);
 
+        LoadingCanvas.gameObject.SetActive(true);
+
+        BlackBackGround.GetComponent<Image>().DOFade(1f, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            FillObject.SetActive(true);
+            StartCoroutine(DisplayProgressBar(SceneName));
+        });
+        */
+        LoadingCard.SetActive(false);
+        LoadingCard.GetComponent<RectTransform>().localRotation = Quaternion.identity;
+        BlackBackGround.GetComponent<Image>().color = LoadingBackGroundColor;
+        BlackBackGround.SetActive(true);
+
+        LoadingCanvas.gameObject.SetActive(true);
+
+        BlackBackGround.GetComponent<Image>().DOFade(1f, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            LoadingCard.SetActive(true);
+            LoadingCard.GetComponent<RectTransform>().DOKill();
+            Vector3 OriginRotation = LoadingCard.GetComponent<RectTransform>().transform.eulerAngles;
+            LoadingCard.GetComponent<RectTransform>().transform.DORotate(new Vector3(0, 360f, OriginRotation.z), 2f, RotateMode.FastBeyond360)
+                .SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart); // 무한 반복
+            StartCoroutine(DisplayProgressBar(SceneName));
+        });
         //LoadingBackGround.SetActive(true);
         //LoadingAnimator.SetInteger("LoadingCanvasState", 0);
         //StartCoroutine(DisplayProgressBar(SceneName));
@@ -79,7 +113,7 @@ public class LoadingScene : MonoSingletonDontDestroy<LoadingScene>
         while (Operation.progress < 0.9f)
         {
             yield return null;
-            FillImage.fillAmount = Operation.progress;
+            //FillImage.fillAmount = Operation.progress;
         }
 
         Operation.allowSceneActivation = true;
@@ -91,6 +125,19 @@ public class LoadingScene : MonoSingletonDontDestroy<LoadingScene>
                 break;
         }
 
+        yield return new WaitForSeconds(0.5f);
+
+        while(!(Mathf.Abs(LoadingCard.GetComponent<RectTransform>().localEulerAngles.z) < 0.1f))
+        {
+            yield return null;
+        }
+        LoadingCard.GetComponent<RectTransform>().DOKill();
+        LoadingCard.SetActive(false);
+        BlackBackGround.GetComponent<Image>().DOFade(0f, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            LoadingCanvas.gameObject.SetActive(false);
+        });
+        /*
         while (FillImage.fillAmount < 1)
         {
             yield return null;
@@ -100,6 +147,12 @@ public class LoadingScene : MonoSingletonDontDestroy<LoadingScene>
         }
         //여기에 오면 다 FillImage가 다 찬거임
         FillObject.SetActive(false);
+        BlackBackGround.GetComponent<Image>().DOFade(0f, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            LoadingCanvas.gameObject.SetActive(false);
+        });
+        */
+        /*
         LoadingStar.GetComponent<RectTransform>().transform.eulerAngles = LoadingStarInitRotate;
 
         LoadingStar.GetComponent<Image>().DOFade(0f, 0.5f).SetEase(Ease.Linear);
@@ -109,6 +162,7 @@ public class LoadingScene : MonoSingletonDontDestroy<LoadingScene>
         {//다되면(화면을 다 가리면)로딩 시작
             LoadingCanvas.gameObject.SetActive(false);
         });
+        */
         yield break;
     }
     

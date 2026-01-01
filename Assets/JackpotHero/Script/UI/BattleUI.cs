@@ -1329,7 +1329,7 @@ public class BattleUI : MonoBehaviour
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             UpperMGVirtualCard[CardNum].SetActive(true);
             //뒤집는 애니메이션이 완료됬을때 카드를 
-            UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() => 
+            UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() => 
             {
                 if (UpperMGList[CardNum] >= 1)//긍정
                     PositiveLink++;
@@ -1338,7 +1338,7 @@ public class BattleUI : MonoBehaviour
 
                 UpperMGVirtualCard[CardNum].GetComponent<Image>().sprite = 
                 EquipmentInfoManager.Instance.GetEquipmentSlotSprite(UpperMGList[CardNum]);//클릭한 카드에 맞는 결과 출력
-                UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).OnComplete(() =>
+                UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
                     PlayCardResultSound(PositiveLink);//계속 긍정이 되면 피치가 계속 올라감
@@ -1354,7 +1354,7 @@ public class BattleUI : MonoBehaviour
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             LowerMGVirtualCard[FixedCardNum].SetActive(true);
             //뒤집는 애니메이션이 완료됬을때 카드를 
-            LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() =>
+            LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
             {
                 if (LowwerMGList[FixedCardNum] >= 1)//긍정
                     PositiveLink++;
@@ -1363,7 +1363,7 @@ public class BattleUI : MonoBehaviour
 
                 LowerMGVirtualCard[FixedCardNum].GetComponent<Image>().sprite =
                 EquipmentInfoManager.Instance.GetEquipmentSlotSprite(LowwerMGList[FixedCardNum]);//클릭한 카드에 맞는 결과 출력
-                LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).OnComplete(() =>
+                LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
                     PlayCardResultSound(PositiveLink);//계속 긍정이 되면 피치가 계속 올라감

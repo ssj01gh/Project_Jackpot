@@ -1,8 +1,9 @@
+using DG.Tweening.Plugins.Core.PathCore;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
-using JetBrains.Annotations;
+using UnityEngine;
 
 public enum EPlayerCurrentState
 {
@@ -69,45 +70,69 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         string path = Application.persistentDataPath + "/" + FileName + ".json";
         if (!File.Exists(path) || IsRestartGame)//없으면 생성
         {
-            //Player Equipment Setting
-            P_Info.EquipWeaponCode = 10802;
-            P_Info.EquipArmorCode = 10812;
-            P_Info.EquipHatCode = 10822;
-            P_Info.EquipShoesCode = 10830;
-            P_Info.EquipAccessoriesCode = 10840;
-            //Player State Setting
-            P_Info.CurrentHpRatio = 1f;
-            P_Info.CurrentTirednessRatio = 1f;
-            P_Info.ShieldAmount = 0f;
-            P_Info.Level = 0;
-            P_Info.HPLevel = 0;
-            P_Info.STALevel = 0;
-            P_Info.StrengthLevel = 0;
-            P_Info.DurabilityLevel = 0;
-            P_Info.SpeedLevel = 0;
-            P_Info.ResilienceLevel = 0;
-            P_Info.LuckLevel = 0;
-            //Player Inventory Setting
-            P_Info.Experience = 0;
-            P_Info.EquipmentGamblingLevel = 0;
-            P_Info.EquipmentInventory = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };//0이하는 인벤토리가 비어있는거임
-            P_Info.CurrentFloor = 0;
-            P_Info.DetectNextFloorPoint = 0;
-            //Player Current Action Type Setting
-            P_Info.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
-            P_Info.CurrentPlayerActionDetails = 0;
-            //PlayerRecordSetting
-            P_Info.KillNormalMonster = 0f;
-            P_Info.KillEliteMonster = 0f;
-            P_Info.GoodKarma = 0f;
-            P_Info.BadKarma = 0f;
-            P_Info.SaveRestQualityBySuddenAttack = -1;
-
-            string classToJson = JsonUtility.ToJson(P_Info, true);
-            File.WriteAllText(path, classToJson);
+            InitNWriteP_Info(path);
         }
         //불러오기
-        P_Info = JsonUtility.FromJson<PlayerInfo>(File.ReadAllText(path));
+        try
+        {
+            string PlayerInfoJson = File.ReadAllText(path);
+            PlayerInfo PInfo = JsonUtility.FromJson<PlayerInfo>(PlayerInfoJson);
+            if(PInfo == null)
+            {
+                //기본 정보로 바꿈(json이 문법적으로 잘못된 상태)
+                InitNWriteP_Info(path);
+            }
+            else
+            {
+                P_Info = PInfo;
+            }
+        }
+        catch
+        {
+            //json의 정보를 불러오는데 실패 했다면 json 파일을 다시 생성함
+            InitNWriteP_Info(path);
+        }
+        //P_Info = JsonUtility.FromJson<PlayerInfo>(File.ReadAllText(path));
+    }
+
+    protected void InitNWriteP_Info(string Path)
+    {
+        //Player Equipment Setting
+        P_Info.EquipWeaponCode = 10802;
+        P_Info.EquipArmorCode = 10812;
+        P_Info.EquipHatCode = 10822;
+        P_Info.EquipShoesCode = 10830;
+        P_Info.EquipAccessoriesCode = 10840;
+        //Player State Setting
+        P_Info.CurrentHpRatio = 1f;
+        P_Info.CurrentTirednessRatio = 1f;
+        P_Info.ShieldAmount = 0f;
+        P_Info.Level = 0;
+        P_Info.HPLevel = 0;
+        P_Info.STALevel = 0;
+        P_Info.StrengthLevel = 0;
+        P_Info.DurabilityLevel = 0;
+        P_Info.SpeedLevel = 0;
+        P_Info.ResilienceLevel = 0;
+        P_Info.LuckLevel = 0;
+        //Player Inventory Setting
+        P_Info.Experience = 0;
+        P_Info.EquipmentGamblingLevel = 0;
+        P_Info.EquipmentInventory = new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };//0이하는 인벤토리가 비어있는거임
+        P_Info.CurrentFloor = 0;
+        P_Info.DetectNextFloorPoint = 0;
+        //Player Current Action Type Setting
+        P_Info.CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
+        P_Info.CurrentPlayerActionDetails = 0;
+        //PlayerRecordSetting
+        P_Info.KillNormalMonster = 0f;
+        P_Info.KillEliteMonster = 0f;
+        P_Info.GoodKarma = 0f;
+        P_Info.BadKarma = 0f;
+        P_Info.SaveRestQualityBySuddenAttack = -1;
+
+        string classToJson = JsonUtility.ToJson(P_Info, true);
+        File.WriteAllText(Path, classToJson);
     }
     public void InitEarlyStrengthenInfo(bool IsRestartGame = false)
     {
@@ -136,8 +161,45 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             string classToJson = JsonUtility.ToJson(E_Info, true);
             File.WriteAllText(path, classToJson);
         }
-        //불러오기
-        E_Info = JsonUtility.FromJson<EarlyStrengthenInfo>(File.ReadAllText(path));
+
+        try
+        {
+            string EarlyInfo = File.ReadAllText(path);
+            EarlyStrengthenInfo EInfo = JsonUtility.FromJson<EarlyStrengthenInfo>(EarlyInfo);
+            if (EInfo == null)
+            {
+                //기본 정보로 바꿈(json이 문법적으로 잘못된 상태)
+                InitNWriteE_Info(path);
+            }
+            else
+            {
+                E_Info = EInfo;
+            }
+        }
+        catch
+        {
+            //json의 정보를 불러오는데 실패 했다면 json 파일을 다시 생성함
+            InitNWriteE_Info(path);
+        }
+    }
+
+    protected void InitNWriteE_Info(string Path)
+    {
+        E_Info.PlayerReachFloor = 0;
+        E_Info.PlayerEarlyPoint = 0;
+        E_Info.EarlyStrengthLevel = 0;
+        E_Info.EarlyDurabilityLevel = 0;
+        E_Info.EarlySpeedLevel = 0;
+        E_Info.EarlyResilienceLevel = 0;
+        E_Info.EarlyLuckLevel = 0;
+        E_Info.EarlyHpLevel = 0;
+        E_Info.EarlyTirednessLevel = 0;
+        E_Info.EarlyExperience = 0;
+        E_Info.EarlyExperienceMagnification = 0;
+        E_Info.EquipmentSuccessionLevel = 0;
+
+        string classToJson = JsonUtility.ToJson(E_Info, true);
+        File.WriteAllText(Path, classToJson);
     }
 
     protected void InitOptionInfo()
@@ -147,18 +209,43 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         if (!File.Exists(path))//없으면 생성
         {
             //OptinInfo Setting
-            O_Info.MasterVolume = 0.8f;
-            O_Info.BGMVolume = 0.8f;
-            O_Info.SFXVolume = 0.8f;
-            O_Info.UISFXVolume = 0.8f;
-            O_Info.ScreenResolutionWidth = 1920f;
-            O_Info.IsFullScreen = false;
+            InitNWriteO_Info(path);
+        }
 
-            string classToJson = JsonUtility.ToJson(O_Info, true);
-            File.WriteAllText(path, classToJson);
+        try
+        {
+            string Option_Info = File.ReadAllText(path);
+            OptionInfo OInfo = JsonUtility.FromJson<OptionInfo>(Option_Info);
+            if (OInfo == null)
+            {
+                //기본 정보로 바꿈(json이 문법적으로 잘못된 상태)
+                InitNWriteO_Info(path);
+            }
+            else
+            {
+                O_Info = OInfo;
+            }
+        }
+        catch
+        {
+            //json의 정보를 불러오는데 실패 했다면 json 파일을 다시 생성함
+            InitNWriteO_Info(path);
         }
         //불러오기
-        O_Info = JsonUtility.FromJson<OptionInfo>(File.ReadAllText(path));
+        //O_Info = JsonUtility.FromJson<OptionInfo>(File.ReadAllText(path));
+    }
+
+    protected void InitNWriteO_Info(string Path)
+    {
+        O_Info.MasterVolume = 0.8f;
+        O_Info.BGMVolume = 0.8f;
+        O_Info.SFXVolume = 0.8f;
+        O_Info.UISFXVolume = 0.8f;
+        O_Info.ScreenResolutionWidth = 1920f;
+        O_Info.IsFullScreen = false;
+
+        string classToJson = JsonUtility.ToJson(O_Info, true);
+        File.WriteAllText(Path, classToJson);
     }
 
     protected void InitTutorialInfo()
@@ -168,27 +255,52 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         if (!File.Exists(path))//없으면 생성
         {
             //TutorialInfo Setting
-            T_Info.TitleEarlyStrengthen = false;
-            T_Info.Research = false;
-            T_Info.ResearchOpenBag = false;
-            T_Info.ResearchSelectRest = false;
-            T_Info.Battle = false;
-            T_Info.BattlePlayerTurn = false;
-            T_Info.BattlePlayerTurnMagCard = false;
-            T_Info.BattleMonsterTurn = false;
-            T_Info.BattleSuddenAttack = false;
-            T_Info.Event = false;
-            T_Info.Camping = false;
-            T_Info.Camping = false;
-            T_Info.CampingRest = false;
-            T_Info.CampingLevelUp = false;
-            T_Info.CampingEquipment = false;
+            InitNWriteT_Info(path);
+        }
 
-            string classToJson = JsonUtility.ToJson(T_Info, true);
-            File.WriteAllText(path, classToJson);
+        try
+        {
+            string Tutorial_Info = File.ReadAllText(path);
+            TutorialInfo TInfo = JsonUtility.FromJson<TutorialInfo>(Tutorial_Info);
+            if (TInfo == null)
+            {
+                //기본 정보로 바꿈(json이 문법적으로 잘못된 상태)
+                InitNWriteT_Info(path);
+            }
+            else
+            {
+                T_Info = TInfo;
+            }
+        }
+        catch
+        {
+            //json의 정보를 불러오는데 실패 했다면 json 파일을 다시 생성함
+            InitNWriteT_Info(path);
         }
         //불러오기
-        T_Info = JsonUtility.FromJson<TutorialInfo>(File.ReadAllText(path));
+        //T_Info = JsonUtility.FromJson<TutorialInfo>(File.ReadAllText(path));
+    }
+
+    protected void InitNWriteT_Info(string Path)
+    {
+        T_Info.TitleEarlyStrengthen = false;
+        T_Info.Research = false;
+        T_Info.ResearchOpenBag = false;
+        T_Info.ResearchSelectRest = false;
+        T_Info.Battle = false;
+        T_Info.BattlePlayerTurn = false;
+        T_Info.BattlePlayerTurnMagCard = false;
+        T_Info.BattleMonsterTurn = false;
+        T_Info.BattleSuddenAttack = false;
+        T_Info.Event = false;
+        T_Info.Camping = false;
+        T_Info.Camping = false;
+        T_Info.CampingRest = false;
+        T_Info.CampingLevelUp = false;
+        T_Info.CampingEquipment = false;
+
+        string classToJson = JsonUtility.ToJson(T_Info, true);
+        File.WriteAllText(Path, classToJson);
     }
 
 
@@ -198,37 +310,62 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         string path = Application.persistentDataPath + "/" + FileName + ".json";
         if(!File.Exists(path) || IsRestartGame == true)
         {
-            LkEv_Info.IsMeetTalkingMonster = false;
-            LkEv_Info.TradeWithDevil = 0;
-            LkEv_Info.TalkingMonster = false;
-            LkEv_Info.TalkingDirtGolem = false;
-            LkEv_Info.TotoRepayFavor = false;
-            LkEv_Info.TotoCursedSword = false;
-            LkEv_Info.TotoBlessedSword = false;
-            LkEv_Info.RestInPeace = false;
-            LkEv_Info.OminousSword = false;
-            LkEv_Info.CleanOminousSword = false;
-            LkEv_Info.PowwersCeremony = 0;
-            LkEv_Info.GreatDevilKillCount = 0;
-            LkEv_Info.ForestBracelet = false;
-            LkEv_Info.ForestHut_Regen = 0;
-            LkEv_Info.ForestHut_Poison = 0;
-            LkEv_Info.ML_GKPerson = false;
-            LkEv_Info.ML_NorPerson = false;
-            LkEv_Info.ML_BKPerson = false;
-            LkEv_Info.IsMeetTalkingGiant = false;
-            LkEv_Info.LetTheGameBegin = 0;
-            LkEv_Info.Lab_Security = false;
-            LkEv_Info.Lab_Sphere = false;
-            LkEv_Info.ReadyForBattle = false;
-            LkEv_Info.IsMeetTalkingDopple = false;
-            LkEv_Info.Stage04EventCount = 0;
-
-            string classToJson = JsonUtility.ToJson(LkEv_Info, true);
-            File.WriteAllText(path, classToJson);
+            InitNWriteLKEv_Info(path);
         }
 
-        LkEv_Info = JsonUtility.FromJson<LinkageEventInfo>(File.ReadAllText(path));
+        try
+        {
+            string EventInfo = File.ReadAllText(path);
+            LinkageEventInfo EvInfo = JsonUtility.FromJson<LinkageEventInfo>(EventInfo);
+            if (EvInfo == null)
+            {
+                //기본 정보로 바꿈(json이 문법적으로 잘못된 상태)
+                InitNWriteLKEv_Info(path);
+            }
+            else
+            {
+                LkEv_Info = EvInfo;
+            }
+        }
+        catch
+        {
+            //json의 정보를 불러오는데 실패 했다면 json 파일을 다시 생성함
+            InitNWriteLKEv_Info(path);
+        }
+
+        //LkEv_Info = JsonUtility.FromJson<LinkageEventInfo>(File.ReadAllText(path));
+    }
+
+    protected void InitNWriteLKEv_Info(string Path)
+    {
+        LkEv_Info.IsMeetTalkingMonster = false;
+        LkEv_Info.TradeWithDevil = 0;
+        LkEv_Info.TalkingMonster = false;
+        LkEv_Info.TalkingDirtGolem = false;
+        LkEv_Info.TotoRepayFavor = false;
+        LkEv_Info.TotoCursedSword = false;
+        LkEv_Info.TotoBlessedSword = false;
+        LkEv_Info.RestInPeace = false;
+        LkEv_Info.OminousSword = false;
+        LkEv_Info.CleanOminousSword = false;
+        LkEv_Info.PowwersCeremony = 0;
+        LkEv_Info.GreatDevilKillCount = 0;
+        LkEv_Info.ForestBracelet = false;
+        LkEv_Info.ForestHut_Regen = 0;
+        LkEv_Info.ForestHut_Poison = 0;
+        LkEv_Info.ML_GKPerson = false;
+        LkEv_Info.ML_NorPerson = false;
+        LkEv_Info.ML_BKPerson = false;
+        LkEv_Info.IsMeetTalkingGiant = false;
+        LkEv_Info.LetTheGameBegin = 0;
+        LkEv_Info.Lab_Security = false;
+        LkEv_Info.Lab_Sphere = false;
+        LkEv_Info.ReadyForBattle = false;
+        LkEv_Info.IsMeetTalkingDopple = false;
+        LkEv_Info.Stage04EventCount = 0;
+
+        string classToJson = JsonUtility.ToJson(LkEv_Info, true);
+        File.WriteAllText(Path, classToJson);
     }
 
     public PlayerInfo GetCopyPlayerInfo()

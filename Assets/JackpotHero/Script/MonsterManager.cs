@@ -561,14 +561,15 @@ public class MonsterManager : MonoBehaviour
             {//몬스터의 턴이고, 공격이며, 현재턴의 몬스터가 특정 몬스터일때
                 if(CurrentTurnMon == ActiveMonsters[i].GetComponent<Monster>())
                 {
-                    switch(ActiveMonsters[i].GetComponent<Monster>().MonsterName)//임시로 짧다리새
-                    {
-                        /*
-                        case "ShortLegBird":
-                            ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] += 1;
-                            break;
-                        */
-                    }
+                    
+                    //switch(ActiveMonsters[i].GetComponent<Monster>().MonsterName)//임시로 짧다리새
+                    //{
+                    //    /*
+                    //    case "ShortLegBird":
+                    //        ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] += 1;
+                    //        break;
+                    //    */
+                    //}
                 }
             }
             else if(IsMonsterTurn == true && IsAttack == false)
