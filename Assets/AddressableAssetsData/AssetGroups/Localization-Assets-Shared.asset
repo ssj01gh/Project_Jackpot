@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 0bf474c436083a54790eeb72db37cfd7
+  m_SerializeEntries:
+  - m_GUID: 2b2cbc933fbbc274aa4a9447a3023380
+    m_Address: Assets/LocalizationAsset/TitleBaseButton/Title_BaseButton Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e4addc6709e942439cde07c06ad47f8
+    m_Address: Assets/LocalizationAsset/EarlyStrengthen Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5153ead8cd040e0499fc1d2378618085
+    m_Address: Assets/LocalizationAsset/EarlyStrengthen/ES_ShortText Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8af578243c9b62d4da17c2e4c9106279
+    m_Address: Assets/LocalizationAsset/OptionUI/Option_UI_Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: b1ea24feea8b6444fb437c22673bc7ff, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 96d936831b03a194688693c1929a2cf8, type: 2}
+    - {fileID: 11400000, guid: 44f08efe87498094abc16f872539ab98, type: 2}

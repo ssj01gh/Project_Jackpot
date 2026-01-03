@@ -1,10 +1,12 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using DG.Tweening;
+using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
+//using static System.Net.Mime.MediaTypeNames;
 
 [System.Serializable]
 public class EarlyStrengthenSO
@@ -499,6 +501,16 @@ public class EarlyStrengthenUI : MonoBehaviour
 
         DetailTitleText.text = ESDictionary[ButtonCode].EarlyDetailTitle;
         DetailText.text = ESDictionary[ButtonCode].DetailText;
+
+        StartCoroutine(Load(ButtonCode));
+    }
+
+    private IEnumerator Load(string key)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        var table = LocalizationSettings.StringDatabase.GetTable("EarlyStrengthen");
+        DetailText.text = table.GetEntry("Early_STR_01").GetLocalizedString();
     }
 
     public void LoadPlayScene()//여기서 바뀐 EarlyData를 JsonManager에 넘겨야함

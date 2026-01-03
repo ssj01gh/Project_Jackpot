@@ -1,0 +1,90 @@
+﻿Key,Korean(ko),English(en),Japanese(ja)
+Early_STR_00,"힘 수치를 5로 시작합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 5.
+
+STR affects attack damage
+during battle.","STRの数値を5で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+Early_STR_01,"힘 수치를 6으로 시작합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 6.
+
+STR affects attack damage
+during battle.","STRの数値を6で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+Early_STR_02,"힘 수치를 7로 시작합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 7.
+
+STR affects attack damage
+during battle.","STRの数値を7で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+Early_STR_03,"힘 수치를 8로 시작합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 8.
+
+STR affects attack damage
+during battle.","STRの数値を8で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+Early_STR_04,"힘 수치를 9로 시작합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 9.
+
+STR affects attack damage
+during battle.","STRの数値を9で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+Early_STR_05,"힘 수치를 10으로 시작합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 10.
+
+STR affects attack damage
+during battle.","STRの数値を10で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+Early_STR_06,"힘 수치를 10으로 시작합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 10.
+
+STR affects attack damage
+during battle.","STRの数値を10で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+Early_STR_07,"힘 수치를 10으로 시작합니다.
+
+전투 시작시 자신에게
+<link=""STR07""><color=green>넘치는 힘</color></link>을 부여합니다.
+
+힘은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 10.
+
+Give yourself
+<link=""STR07""><color=green>overwhelming power</color></link>at the start of battle
+
+STR affects attack damage
+during battle.","STRの数値を10で始めます。
+
+戦闘開始時に自分に
+<link=""STR07><color=green>""溢れる力</color></link>を与えます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
