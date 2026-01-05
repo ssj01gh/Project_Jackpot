@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: ES_DetailText Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: ES_DetailText
+  m_TableCollectionNameGuidString: b9e7aaa308cc5ed4bbc81577f71d46b7
+  m_Entries:
+  - m_Id: 28485229342720
+    m_Key: EST_ATK00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485267091456
+    m_Key: EST_ATK01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285760
+    m_Key: EST_ATK02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285761
+    m_Key: EST_ATK03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285762
+    m_Key: EST_ATK04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285763
+    m_Key: EST_ATK05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285764
+    m_Key: EST_ATK06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285765
+    m_Key: EST_ATK07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285766
+    m_Key: EST_DUR00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285767
+    m_Key: EST_DUR01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285768
+    m_Key: EST_DUR02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285769
+    m_Key: EST_DUR03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285770
+    m_Key: EST_DUR04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285771
+    m_Key: EST_DUR05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285772
+    m_Key: EST_DUR06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285773
+    m_Key: EST_DUR07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285774
+    m_Key: EST_SPD00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285775
+    m_Key: EST_SPD01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285776
+    m_Key: EST_SPD02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285777
+    m_Key: EST_SPD03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285778
+    m_Key: EST_SPD04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285779
+    m_Key: EST_SPD05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285780
+    m_Key: EST_SPD06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285781
+    m_Key: EST_SPD07
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8381884020315127815
+  references:
+    version: 2
+    RefIds:
+    - rid: 8381884020315127815
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1767608770053

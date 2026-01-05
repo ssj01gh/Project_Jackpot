@@ -1,0 +1,279 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ES_DetailText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: b9e7aaa308cc5ed4bbc81577f71d46b7, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 28485229342720
+    m_Localized: 'Start with a STR value of 5.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485267091456
+    m_Localized: 'Start with a STR value of 6.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285760
+    m_Localized: 'Start with a STR value of 7.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285761
+    m_Localized: 'Start with a STR value of 8.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285762
+    m_Localized: 'Start with a STR value of 9.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285763
+    m_Localized: 'Start with a STR value of 10.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285764
+    m_Localized: 'Start with a STR value of 10.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285765
+    m_Localized: 'Start with a STR value of 10.
+
+
+      Give yourself
+
+      <link="STR07"><color=green>Overwhelming
+      Power</color></link>at the start of battle.
+
+
+      STR affects attack damage
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285766
+    m_Localized: 'Start with a DUR value of 5.
+
+
+      DUR affects defense stats
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285767
+    m_Localized: 'Start with a DUR value of 6.
+
+
+      DUR affects defense stats
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285768
+    m_Localized: 'Start with a DUR value of 7.
+
+
+      DUR affects defense stats
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285769
+    m_Localized: 'Start with a DUR value of 8.
+
+
+      DUR affects defense stats
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285770
+    m_Localized: 'Start with a DUR value of 9.
+
+
+      DUR affects defense stats
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285771
+    m_Localized: 'Start with a DUR value of 10.
+
+
+      DUR affects defense stats
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285772
+    m_Localized: 'Start with a DUR value of 10.
+
+
+      DUR affects defense stats
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285773
+    m_Localized: 'Start with a DUR value of 5.
+
+
+      Give yourself
+
+      <link="DUR07"><color=green>ThornArmor</color></link>at
+      the start of battle.
+
+
+      DUR affects defense stats
+
+      during battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285774
+    m_Localized: 'Start with a SPD value of 5.
+
+
+      SPD affects action speed
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285775
+    m_Localized: 'Start with a SPD value of 6.
+
+
+      SPD affects action speed
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285776
+    m_Localized: 'Start with a SPD value of 7.
+
+
+      SPD affects action speed
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285777
+    m_Localized: 'Start with a SPD value of 8.
+
+
+      SPD affects action speed
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285778
+    m_Localized: 'Start with a SPD value of 9.
+
+
+      SPD affects action speed
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285779
+    m_Localized: 'Start with a SPD value of 10.
+
+
+      SPD affects action speed
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285780
+    m_Localized: 'Start with a SPD value of 10.
+
+
+      SPD affects action speed
+
+      during
+      battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285781
+    m_Localized: 'Start with a SPD value of 10.
+
+
+      Give enemies
+
+      <link="SPD07"><color=green>Defenseless</color></link>at
+      the start of battle
+
+
+      SPD affects action speed
+
+      during battle.'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

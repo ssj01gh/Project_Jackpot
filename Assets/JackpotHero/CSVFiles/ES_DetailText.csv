@@ -1,0 +1,268 @@
+﻿Key,Korean(ko),English(en),Japanese(ja)
+EST_ATK00,"STR 수치를 5로 시작합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 5.
+
+STR affects attack damage
+during battle.","STRの数値を5で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_ATK01,"STR 수치를 6으로 시작합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 6.
+
+STR affects attack damage
+during battle.","STRの数値を6で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_ATK02,"STR 수치를 7로 시작합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 7.
+
+STR affects attack damage
+during battle.","STRの数値を7で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_ATK03,"STR 수치를 8로 시작합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 8.
+
+STR affects attack damage
+during battle.","STRの数値を8で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_ATK04,"STR 수치를 9로 시작합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 9.
+
+STR affects attack damage
+during battle.","STRの数値を9で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_ATK05,"STR 수치를 10으로 시작합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 10.
+
+STR affects attack damage
+during battle.","STRの数値を10で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_ATK06,"STR 수치를 10으로 시작합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 10.
+
+STR affects attack damage
+during battle.","STRの数値を10で始めます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_ATK07,"STR 수치를 10으로 시작합니다.
+
+전투 시작시 자신에게
+<link=""STR07""><color=green>넘치는 힘</color></link>을 부여합니다.
+
+STR은 전투중 공격 데미지에
+영향을 줍니다.","Start with a STR value of 10.
+
+Give yourself
+<link=""STR07""><color=green>Overwhelming Power</color></link>at the start of battle.
+
+STR affects attack damage
+during battle.","STRの数値を10で始めます。
+
+戦闘開始時に自分に
+<link=""STR07""><color=green>溢れる力</color></link>を与えます。
+
+STRは戦闘中のダメージに
+影響を与えます。"
+EST_DUR00,"DUR 수치를 5로 시작합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 5.
+
+DUR affects defense stats
+during battle.","DUR数値を5で始めます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_DUR01,"DUR 수치를 6으로 시작합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 6.
+
+DUR affects defense stats
+during battle.","DUR数値を6で始めます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_DUR02,"DUR 수치를 7로 시작합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 7.
+
+DUR affects defense stats
+during battle.","DUR数値を7で始めます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_DUR03,"DUR 수치를 8로 시작합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 8.
+
+DUR affects defense stats
+during battle.","DUR数値を8で始めます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_DUR04,"DUR 수치를 9로 시작합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 9.
+
+DUR affects defense stats
+during battle.","DUR数値を9で始めます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_DUR05,"DUR 수치를 10으로 시작합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 10.
+
+DUR affects defense stats
+during battle.","DUR数値を10で始めます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_DUR06,"DUR 수치를 10으로 시작합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 10.
+
+DUR affects defense stats
+during battle.","DUR数値を10で始めます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_DUR07,"DUR 수치를 10으로 시작합니다.
+
+전투 시작시 자신에게
+<link=""DUR07""><color=green>가시 갑옷</color></link>을 부여합니다.
+
+DUR은 전투중 방어 수치에 
+영향을 줍니다.","Start with a DUR value of 5.
+
+Give yourself
+<link=""DUR07""><color=green>ThornArmor</color></link>at the start of battle.
+
+DUR affects defense stats
+during battle.","DUR数値を10で始めます。
+
+戦闘開始時に自分に
+<link=""DUR07""><color=green>とげの鎧</color></link>を与えます。
+
+DURは戦闘中の防御に
+影響を与えます。"
+EST_SPD00,"SPD 수치를 5로 시작합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 5.
+
+SPD affects action speed
+during battle.","SPD数値を5で始めます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"
+EST_SPD01,"SPD 수치를 6으로 시작합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 6.
+
+SPD affects action speed
+during battle.","SPD数値を6で始めます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"
+EST_SPD02,"SPD 수치를 7로 시작합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 7.
+
+SPD affects action speed
+during battle.","SPD数値を7で始めます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"
+EST_SPD03,"SPD 수치를 8로 시작합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 8.
+
+SPD affects action speed
+during battle.","SPD数値を8で始めます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"
+EST_SPD04,"SPD 수치를 9로 시작합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 9.
+
+SPD affects action speed
+during battle.","SPD数値を9で始めます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"
+EST_SPD05,"SPD 수치를 10으로 시작합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 10.
+
+SPD affects action speed
+during battle.","SPD数値を10で始めます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"
+EST_SPD06,"SPD 수치를 10으로 시작합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 10.
+
+SPD affects action speed
+during battle.","SPD数値を10で始めます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"
+EST_SPD07,"SPD 수치를 10으로 시작합니다.
+
+전투 시작시 적에게
+<link=""SPD07""><color=green>무방비</color></link>를 부여합니다.
+
+SPD는 전투중 행동 속도에 
+영향을 줍니다.","Start with a SPD value of 10.
+
+Give enemies
+<link=""SPD07""><color=green>Defenseless</color></link>at the start of battle
+
+SPD affects action speed
+during battle.","SPD数値を10で始めます。
+
+戦闘開始時に敵に
+<link=""SPD07""><color=green>無防備</color></link>を与えます。
+
+SPDは戦闘中の行動速度に
+影響を与えます。"

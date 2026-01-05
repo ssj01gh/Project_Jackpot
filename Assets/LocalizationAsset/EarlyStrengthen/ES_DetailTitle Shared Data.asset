@@ -1,0 +1,348 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: ES_DetailTitle Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: ES_DetailTitle
+  m_TableCollectionNameGuidString: 2f3f774848cf70341b13a8eaa54feba2
+  m_Entries:
+  - m_Id: 51644067840
+    m_Key: ESDT_ATK00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 166026932224
+    m_Key: ESDT_ATK01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 168036003840
+    m_Key: ESDT_ATK02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 169965383680
+    m_Key: ESDT_ATK03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173333409792
+    m_Key: ESDT_ATK04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 177351553024
+    m_Key: ESDT_ATK05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 179624865792
+    m_Key: ESDT_ATK06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 180358868992
+    m_Key: ESDT_ATK07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181105455104
+    m_Key: ESDT_DUR00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 181780738048
+    m_Key: ESDT_DUR01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 182409883648
+    m_Key: ESDT_DUR02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183076777984
+    m_Key: ESDT_DUR03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 183626231808
+    m_Key: ESDT_DUR04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 501407674368
+    m_Key: ESDT_DUR05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 503328665600
+    m_Key: ESDT_DUR06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 504326909952
+    m_Key: ESDT_DUR07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 533234053120
+    m_Key: ESDT_SPD00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 573373542400
+    m_Key: ESDT_SPD01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 583578284032
+    m_Key: ESDT_SPD02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 609629106176
+    m_Key: ESDT_SPD03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 619527663616
+    m_Key: ESDT_SPD04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 629178757120
+    m_Key: ESDT_SPD05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 639987478528
+    m_Key: ESDT_SPD06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 651010109440
+    m_Key: ESDT_SPD07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 661214851072
+    m_Key: ESDT_RES00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 699915694080
+    m_Key: ESDT_RES01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 708891504640
+    m_Key: ESDT_RES02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717179449344
+    m_Key: ESDT_RES03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 726654382080
+    m_Key: ESDT_RES04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 737391800320
+    m_Key: ESDT_RES05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 745751048192
+    m_Key: ESDT_RES06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 754827522048
+    m_Key: ESDT_RES07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 771114004480
+    m_Key: ESDT_LUK00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 830773784576
+    m_Key: ESDT_LUK01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 840227745792
+    m_Key: ESDT_LUK02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 849132253184
+    m_Key: ESDT_LUK03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 873111089152
+    m_Key: ESDT_LUK04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 883022229504
+    m_Key: ESDT_LUK05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 892039983104
+    m_Key: ESDT_LUK06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 900319539200
+    m_Key: ESDT_LUK07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 914160742400
+    m_Key: ESDT_HP00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 955931815936
+    m_Key: ESDT_HP01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 964278480896
+    m_Key: ESDT_HP02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 973107490816
+    m_Key: ESDT_HP03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 981579984896
+    m_Key: ESDT_HP04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1010252247040
+    m_Key: ESDT_HP05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1022008881152
+    m_Key: ESDT_HP06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1030498152448
+    m_Key: ESDT_HP07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1039994056704
+    m_Key: ESDT_STA00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1116082925568
+    m_Key: ESDT_STA01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1172953493504
+    m_Key: ESDT_STA02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1212908433408
+    m_Key: ESDT_STA03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1221213155328
+    m_Key: ESDT_STA04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1231665360896
+    m_Key: ESDT_STA05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1244801921024
+    m_Key: ESDT_STA06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1253974863872
+    m_Key: ESDT_STA07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1266851377152
+    m_Key: ESDT_EXP00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1300300951552
+    m_Key: ESDT_EXP01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1334480334848
+    m_Key: ESDT_EXP02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1344223703040
+    m_Key: ESDT_EXP03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1354151620608
+    m_Key: ESDT_EXP04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1361923665920
+    m_Key: ESDT_EXP05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1370215804928
+    m_Key: ESDT_EXP06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1378101096448
+    m_Key: ESDT_EXP07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1388796571648
+    m_Key: ESDT_EXPMG00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1425836470272
+    m_Key: ESDT_EXPMG01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1433671430144
+    m_Key: ESDT_EXPMG02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1441644802048
+    m_Key: ESDT_EXPMG03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1449819500544
+    m_Key: ESDT_EXPMG04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1457801261056
+    m_Key: ESDT_EXPMG05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1466085011456
+    m_Key: ESDT_EXPMG06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1474284875776
+    m_Key: ESDT_EXPMG07
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1483705282560
+    m_Key: ESDT_EQUIP00
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1526508154880
+    m_Key: ESDT_EQUIP01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1536272494592
+    m_Key: ESDT_EQUIP02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1546464653312
+    m_Key: ESDT_EQUIP03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1554966507520
+    m_Key: ESDT_EQUIP04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1563237675008
+    m_Key: ESDT_EQUIP05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1570716119040
+    m_Key: ESDT_EQUIP06
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1577989042176
+    m_Key: ESDT_EQUIP07
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8381884020315127810
+  references:
+    version: 2
+    RefIds:
+    - rid: 8381884020315127810
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1767590058399

@@ -22,8 +22,8 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4e4addc6709e942439cde07c06ad47f8
-    m_Address: Assets/LocalizationAsset/EarlyStrengthen Shared Data.asset
+  - m_GUID: 2f3f774848cf70341b13a8eaa54feba2
+    m_Address: Assets/LocalizationAsset/EarlyStrengthen/ES_DetailTitle Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -34,6 +34,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8af578243c9b62d4da17c2e4c9106279
     m_Address: Assets/LocalizationAsset/OptionUI/Option_UI_Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9e7aaa308cc5ed4bbc81577f71d46b7
+    m_Address: Assets/LocalizationAsset/EarlyStrengthen/ES_DetailText Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

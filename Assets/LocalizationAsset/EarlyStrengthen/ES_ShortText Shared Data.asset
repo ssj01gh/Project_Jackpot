@@ -31,6 +31,14 @@ MonoBehaviour:
     m_Key: ES_Short_RemainPoint
     m_Metadata:
       m_Items: []
+  - m_Id: 680399407280128
+    m_Key: ES_Short_GameStart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 680403937128448
+    m_Key: ES_Short_UpgradeCancel
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
