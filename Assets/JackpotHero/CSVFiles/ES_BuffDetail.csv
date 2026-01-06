@@ -1,0 +1,117 @@
+﻿Key,Korean(ko),English(en),Japanese(ja)
+ESBD_STR07,"<size=40>넘치는 힘</size>
+
+적을 공격시 적이 쓰러지면
+초과한 데미지 만큼
+다른 적들에게 데미지를 줍니다.","<size=40>OverwhelmingPower</size>
+
+When an enemy is defeated by an attack,
+excess damage is dealt to other enemies.","<size=40>溢れる力</size>
+
+敵を攻撃した際、
+敵を撃破すると、
+超過したダメージ分を
+他の敵に与えます。"
+ESBD_DUR07,"<size=40>가시 갑옷</size>
+
+공격을 받은 후 보호막이 남아 있다면
+남은 보호막 수치만큼 해당 적에게
+데미지를 줍니다.","<size=40>ThornArmor</size>
+
+If a shield remains after being attacked,
+deal damage to that enemy
+equal to the remaining shield value.","<size=40>とげの鎧</size>
+
+攻撃を受けた後、
+シールドが残っている場合、
+残りのシールド値分のダメージを
+その敵に与えます。"
+ESBD_RES07,"<size=40>상급 휴식</size>
+
+전투중 STA 회복시
+피로도 회복량의 10% 만큼
+체력을 회복합니다.","<size=40>AdvancedRest</size>
+
+Recover HP equal to
+10% of STA Recovery during combat.","<size=40>上級休憩</size>
+
+戦闘中にSTA回復時、
+その10％分のHPを回復します。"
+ESBD_SPD07,"<size=40>무방비</size>
+
+적의 공격을 통해 데미지를 받을때
+데미지를 2배로 받습니다.
+자신의 턴이 됬을때
+효과가 종료 됩니다.","<size=40>Defenseless</size>
+
+When taking damage from enemy attacks,
+damage taken is doubled.
+This effect ends at the start of your turn.","<size=40>無防備</size>
+
+敵から受けるダメージが2倍になります。
+自身のターン開始時に効果は終了します。"
+ESBD_HP07,"<size=40>피의 일족</size>
+
+전투중 공격, 방어, STA회복의
+수치 계산시 최대 체력의 3% 만큼의
+기초 수치를 추가합니다.","<size=40>Bloodline</size>
+
+Add a base value equal to 3% of max HP
+to attack, defense, and STA recovery calculations
+during combat.","<size=40>血の一族</size>
+
+戦闘中の攻撃・防御・STA回復の
+数値計算時、最大HPの3％分を
+基礎値に加算します。"
+ESBD_STA07,"<size=40>피로도 조절</size>
+
+현재 피로도에 비례하여
+피로도 사용량이
+최대 90% 감소합니다.","<size=40>TiredControll</size>
+
+STA consumption is reduced
+in proportion to current STA,
+up to a maximum of 90%.","<size=40>疲労度調整</size>
+
+現在のSTAに比例して、
+STAの消費量が最大90％減少します。"
+ESBD_EXP07,"<size=40>착취</size>
+
+전투중 공격으로 준 데미지의
+20%만큼 경험치로 수집합니다.","<size=40>Exploitation</size>
+
+Collect EXP equal to
+20% of the damage dealt
+by attacks during combat.","<size=40>搾取</size>
+
+戦闘中に攻撃で与えたダメージの
+20％分をEXPとして獲得します。"
+ESBD_EXPMG07,"<size=40>경험의 힘</size>
+
+전투중 공격, 방어, STA회복의
+수치 계산시 경험치의 10%만큼
+최종 수치를 추가합니다.","<size=40>EXPPower</size>
+
+Add a final bonus equal to 10% of EXP
+to attack, defense, and STA recovery calculation
+during combat.","<size=40>経験の力</size>
+
+戦闘中の攻撃・防御・STA回復の
+数値計算時、EXPの10％分を
+最終値に加算します。"
+ESBD_EQUIP07,"<size=40>웨폰 마스터</size>
+
+전투중 공격, 방어, STA회복의
+수치 계산시 자신이 가지고 있는
+모든 장비의 티어 수치만큼의
+기초 수치를 추가합니다.","<size=40>WeaponMaster</size>
+
+Add a base value equal to
+the total tier of all items you own
+to attack, defense, and STA recovery calculations
+during combat.","<size=40>ウェポンマスター</size>
+
+戦闘中の攻撃・防御・STA回復の
+数値計算時、自身が所持している
+すべての装備のティア数値分を
+基礎値に加算します。"

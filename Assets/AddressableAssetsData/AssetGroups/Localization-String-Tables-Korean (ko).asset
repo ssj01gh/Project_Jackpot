@@ -35,6 +35,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ko
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 920f994406a8d03439812fe70e493685
+    m_Address: ES_BuffDetail_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 96a0c062aa82c704b95a092c436ab355
     m_Address: Option_UI_Table_ko
     m_ReadOnly: 1

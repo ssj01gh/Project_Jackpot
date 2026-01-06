@@ -1,268 +1,924 @@
 ﻿Key,Korean(ko),English(en),Japanese(ja)
-EST_ATK00,"STR 수치를 5로 시작합니다.
+EST_ATK00,"STR을 5로 시작합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 5.
+영향을 줍니다.","Start with STR : 5
 
 STR affects attack damage
-during battle.","STRの数値を5で始めます。
+during combat.","STRは5で開始します
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_ATK01,"STR 수치를 6으로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_ATK01,"STR을 6으로 시작합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 6.
+영향을 줍니다.","Start with STR : 6
 
 STR affects attack damage
-during battle.","STRの数値を6で始めます。
+during combat.","STRは6で開始します
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_ATK02,"STR 수치를 7로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_ATK02,"STR을 7로 시작합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 7.
+영향을 줍니다.","Start with STR : 7
 
 STR affects attack damage
-during battle.","STRの数値を7で始めます。
+during combat.","STRは7で開始します
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_ATK03,"STR 수치를 8로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_ATK03,"STR을 8로 시작합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 8.
+영향을 줍니다.","Start with STR : 8
 
 STR affects attack damage
-during battle.","STRの数値を8で始めます。
+during combat.","STRは8で開始します
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_ATK04,"STR 수치를 9로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_ATK04,"STR을 9로 시작합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 9.
+영향을 줍니다.","Start with STR : 9
 
 STR affects attack damage
-during battle.","STRの数値を9で始めます。
+during combat.","STRは9で開始します
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_ATK05,"STR 수치를 10으로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_ATK05,"STR을 10으로 시작합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 10.
+영향을 줍니다.","Start with STR : 10
 
 STR affects attack damage
-during battle.","STRの数値を10で始めます。
+during combat.","STRは10で開始します
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_ATK06,"STR 수치를 10으로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_ATK06,"STR을 10으로 시작합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 10.
+영향을 줍니다.","Start with STR : 10
 
 STR affects attack damage
-during battle.","STRの数値を10で始めます。
+during combat.","STRは10で開始します
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_ATK07,"STR 수치를 10으로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_ATK07,"STR을 10으로 시작합니다.
 
 전투 시작시 자신에게
 <link=""STR07""><color=green>넘치는 힘</color></link>을 부여합니다.
 
 STR은 전투중 공격 데미지에
-영향을 줍니다.","Start with a STR value of 10.
+영향을 줍니다.","Start with STR : 10
 
 Give yourself
-<link=""STR07""><color=green>Overwhelming Power</color></link>at the start of battle.
+<link=""STR07""><color=green>Overwhelming Power</color></link> at the start of combat.
 
 STR affects attack damage
-during battle.","STRの数値を10で始めます。
+during combat.","STRは10で開始します
 
 戦闘開始時に自分に
 <link=""STR07""><color=green>溢れる力</color></link>を与えます。
 
-STRは戦闘中のダメージに
-影響を与えます。"
-EST_DUR00,"DUR 수치를 5로 시작합니다.
+STRは戦闘中の攻撃ダメージに
+影響します。"
+EST_DUR00,"DUR을 5로 시작합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 5.
+영향을 줍니다.","Start with DUR : 5
 
 DUR affects defense stats
-during battle.","DUR数値を5で始めます。
+during combat.","DURは5で開始します
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_DUR01,"DUR 수치를 6으로 시작합니다.
+影響します。"
+EST_DUR01,"DUR을 6으로 시작합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 6.
+영향을 줍니다.","Start with DUR : 6
 
 DUR affects defense stats
-during battle.","DUR数値を6で始めます。
+during combat.","DURは6で開始します
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_DUR02,"DUR 수치를 7로 시작합니다.
+影響します。"
+EST_DUR02,"DUR을 7로 시작합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 7.
+영향을 줍니다.","Start with DUR : 7
 
 DUR affects defense stats
-during battle.","DUR数値を7で始めます。
+during combat.","DURは7で開始します
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_DUR03,"DUR 수치를 8로 시작합니다.
+影響します。"
+EST_DUR03,"DUR을 8로 시작합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 8.
+영향을 줍니다.","Start with DUR : 8
 
 DUR affects defense stats
-during battle.","DUR数値を8で始めます。
+during combat.","DURは8で開始します
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_DUR04,"DUR 수치를 9로 시작합니다.
+影響します。"
+EST_DUR04,"DUR을 9로 시작합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 9.
+영향을 줍니다.","Start with DUR : 9
 
 DUR affects defense stats
-during battle.","DUR数値を9で始めます。
+during combat.","DURは9で開始します
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_DUR05,"DUR 수치를 10으로 시작합니다.
+影響します。"
+EST_DUR05,"DUR을 10으로 시작합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 10.
+영향을 줍니다.","Start with DUR : 10
 
 DUR affects defense stats
-during battle.","DUR数値を10で始めます。
+during combat.","DURは10で開始します
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_DUR06,"DUR 수치를 10으로 시작합니다.
+影響します。"
+EST_DUR06,"DUR을 10으로 시작합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 10.
+영향을 줍니다.","Start with DUR : 10
 
 DUR affects defense stats
-during battle.","DUR数値を10で始めます。
+during combat.","DURは10で開始します
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_DUR07,"DUR 수치를 10으로 시작합니다.
+影響します。"
+EST_DUR07,"DUR을 10로 시작합니다.
 
 전투 시작시 자신에게
 <link=""DUR07""><color=green>가시 갑옷</color></link>을 부여합니다.
 
 DUR은 전투중 방어 수치에 
-영향을 줍니다.","Start with a DUR value of 5.
+영향을 줍니다.","Start with DUR : 10
 
 Give yourself
-<link=""DUR07""><color=green>ThornArmor</color></link>at the start of battle.
+<link=""DUR07""><color=green>ThornArmor</color></link> at the start of combat.
 
 DUR affects defense stats
-during battle.","DUR数値を10で始めます。
+during combat.","DURは10で開始します
 
 戦闘開始時に自分に
 <link=""DUR07""><color=green>とげの鎧</color></link>を与えます。
 
 DURは戦闘中の防御に
-影響を与えます。"
-EST_SPD00,"SPD 수치를 5로 시작합니다.
+影響します。"
+EST_SPD00,"SPD를 5로 시작합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 5.
+영향을 줍니다.","Start with SPD : 5
 
 SPD affects action speed
-during battle.","SPD数値を5で始めます。
+during combat.","SPDは5で開始します
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
-EST_SPD01,"SPD 수치를 6으로 시작합니다.
+影響します。"
+EST_SPD01,"SPD를 6으로 시작합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 6.
+영향을 줍니다.","Start with SPD : 6
 
 SPD affects action speed
-during battle.","SPD数値を6で始めます。
+during combat.","SPDは6で開始します
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
-EST_SPD02,"SPD 수치를 7로 시작합니다.
+影響します。"
+EST_SPD02,"SPD를 7로 시작합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 7.
+영향을 줍니다.","Start with SPD : 7
 
 SPD affects action speed
-during battle.","SPD数値を7で始めます。
+during combat.","SPDは7で開始します
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
-EST_SPD03,"SPD 수치를 8로 시작합니다.
+影響します。"
+EST_SPD03,"SPD를 8로 시작합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 8.
+영향을 줍니다.","Start with SPD : 8
 
 SPD affects action speed
-during battle.","SPD数値を8で始めます。
+during combat.","SPDは8で開始します
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
-EST_SPD04,"SPD 수치를 9로 시작합니다.
+影響します。"
+EST_SPD04,"SPD를 9로 시작합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 9.
+영향을 줍니다.","Start with SPD : 9
 
 SPD affects action speed
-during battle.","SPD数値を9で始めます。
+during combat.","SPDは9で開始します
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
-EST_SPD05,"SPD 수치를 10으로 시작합니다.
+影響します。"
+EST_SPD05,"SPD를 10으로 시작합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 10.
+영향을 줍니다.","Start with SPD : 10
 
 SPD affects action speed
-during battle.","SPD数値を10で始めます。
+during combat.","SPDは10で開始します
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
-EST_SPD06,"SPD 수치를 10으로 시작합니다.
+影響します。"
+EST_SPD06,"SPD를 10으로 시작합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 10.
+영향을 줍니다.","Start with SPD : 10
 
 SPD affects action speed
-during battle.","SPD数値を10で始めます。
+during combat.","SPDは10で開始します
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
-EST_SPD07,"SPD 수치를 10으로 시작합니다.
+影響します。"
+EST_SPD07,"SPD를 10으로 시작합니다.
 
 전투 시작시 적에게
 <link=""SPD07""><color=green>무방비</color></link>를 부여합니다.
 
 SPD는 전투중 행동 속도에 
-영향을 줍니다.","Start with a SPD value of 10.
+영향을 줍니다.","Start with SPD : 10
 
 Give enemies
-<link=""SPD07""><color=green>Defenseless</color></link>at the start of battle
+<link=""SPD07""><color=green>Defenseless</color></link> at the start of combat.
 
 SPD affects action speed
-during battle.","SPD数値を10で始めます。
+during combat.","SPDは10で開始します
 
 戦闘開始時に敵に
 <link=""SPD07""><color=green>無防備</color></link>を与えます。
 
 SPDは戦闘中の行動速度に
-影響を与えます。"
+影響します。"
+EST_RES00,"RES를 5로 시작합니다.
+
+RES는 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 5
+
+RES affects STA Recovery
+during combat.","RESは5で開始します
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_RES01,"RES를 6으로 시작합니다.
+
+RES는 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 6
+
+RES affects STA Recovery
+during combat.","RESは6で開始します
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_RES02,"RES를 7로 시작합니다.
+
+RES는 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 7
+
+RES affects STA Recovery
+during combat.","RESは7で開始します
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_RES03,"RES를 8로 시작합니다.
+
+RES는 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 8
+
+RES affects STA Recovery
+during combat.","RESは8で開始します
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_RES04,"RES를 9로 시작합니다.
+
+RES는 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 9
+
+RES affects STA Recovery
+during combat.","RESは9で開始します
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_RES05,"RES를 10으로 시작합니다.
+
+RES는 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 10
+
+RES affects STA Recovery
+during combat.","RESは10で開始します
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_RES06,"RES를 10으로 시작합니다.
+
+RES는 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 10
+
+RES affects STA Recovery
+during combat.","RESは10で開始します
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_RES07,"RES를 10으로 시작합니다.
+
+전투 시작시 자신에게
+<link=""RES07""><color=green>상급 휴식</color></link>을 부여합니다.
+
+RES은 전투중 STA 회복에 
+영향을 줍니다.","Start with RES : 10
+
+Give yourself
+<link=""RES07""><color=green>AdvancedRest</color></link> at the start of combat.
+
+RES affects STA Recovery
+during combat.","RESは10で開始します
+
+戦闘開始時に自分に
+<link=""RES07""><color=green>上級休憩</color></link>を与えます。
+
+RESは戦闘中のSTA回復に
+影響します。"
+EST_LUK00,"LUK를 0으로 시작합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 0
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは0で開始します
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_LUK01,"LUK를 1로 시작합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 1
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは1で開始します
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_LUK02,"LUK를 2로 시작합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 2
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは2で開始します
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_LUK03,"LUK를 3으로 시작합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 3
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは3で開始します
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_LUK04,"LUK를 4로 시작합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 4
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは4で開始します
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_LUK05,"LUK를 5로 시작합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 5
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは5で開始します
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_LUK06,"LUK를 5로 시작합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 5
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは5で開始します
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_LUK07,"LUK를 5로 시작합니다.
+
+장비뽑기시 높은 등급의
+장비를 뽑을 확률이 증가합니다.
+
+LUK는 전투중 공격, 방어, STA 회복의
+최종 수치에 영향을 줍니다.","Start with LUK : 5
+
+Increases the chance of obtaining
+high-Tier equipment when using
+equipmnet gacha.
+
+LUK affects the final value of
+attack, defense, and STA Recovery
+during combat.","LUKは5で開始します。
+
+装備ガチャ時、高ティアの
+装備が出現する確率が上昇します。
+
+LUKは戦闘中の攻撃、防御、STA回復の
+最終数値に影響します。"
+EST_HP00,"HP를 100으로 시작합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 100
+
+You lose when your HP reaches 0.","HPは100で開始します。
+
+HPが0になると敗北します。"
+EST_HP01,"HP를 120으로 시작합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 120
+
+You lose when your HP reaches 0.","HPは120で開始します。
+
+HPが0になると敗北します。"
+EST_HP02,"HP를 140으로 시작합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 140
+
+You lose when your HP reaches 0.","HPは140で開始します。
+
+HPが0になると敗北します。"
+EST_HP03,"HP를 160으로 시작합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 160
+
+You lose when your HP reaches 0.","HPは160で開始します。
+
+HPが0になると敗北します。"
+EST_HP04,"HP를 180으로 시작합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 180
+
+You lose when your HP reaches 0.","HPは180で開始します。
+
+HPが0になると敗北します。"
+EST_HP05,"HP를 200으로 시작합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 200
+
+You lose when your HP reaches 0.","HPは200で開始します。
+
+HPが0になると敗北します。"
+EST_HP06,"HP를 200으로 시작합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 200
+
+You lose when your HP reaches 0.","HPは200で開始します。
+
+HPが0になると敗北します。"
+EST_HP07,"HP를 200으로 시작합니다.
+
+전투 시작시 자신에게
+<link=""HP07""><color=green>피의 일족</color></link>을 부여합니다.
+
+HP가 0이 될시 패배합니다.","Start with HP : 200
+
+Give yourself
+<link=""HP07""><color=green>Bloodline</color></link> at the start of combat.
+
+You lose when your HP reaches 0.","HPは200で開始します。
+
+戦闘開始時に自分に
+<link=""HP07""><color=green>血の一族</color></link>を与えます。
+
+HPが0になると敗北します。"
+EST_STA00,"STA를 1000으로 시작합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 1000
+
+STA is a resource used to
+perform actions in combat.","STAは1000で開始します。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_STA01,"STA를 1200으로 시작합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 1200
+
+STA is a resource used to
+perform actions in combat.","STAは1200で開始します。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_STA02,"STA를 1400으로 시작합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 1400
+
+STA is a resource used to
+perform actions in combat.","STAは1400で開始します。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_STA03,"STA를 1600으로 시작합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 1600
+
+STA is a resource used to
+perform actions in combat.","STAは1600で開始します。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_STA04,"STA를 1800으로 시작합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 1800
+
+STA is a resource used to
+perform actions in combat.","STAは1800で開始します。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_STA05,"STA를 2000으로 시작합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 2000
+
+STA is a resource used to
+perform actions in combat.","STAは2000で開始します。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_STA06,"STA를 2000으로 시작합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 2000
+
+STA is a resource used to
+perform actions in combat.","STAは1000で開始します。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_STA07,"STA를 2000으로 시작합니다.
+
+전투 시작시 자신에게
+<link=""STA07""><color=green>피로도 조절</color></link>을 부여합니다.
+
+STA는 전투시
+행동을 하기위한 자원입니다.","Start with STA : 2000
+
+Give yourself
+<link=""STA07""><color=green>TiredControll</color></link> at the start of combat.
+
+STA is a resource used to
+perform actions in combat.","STAは1000で開始します。
+
+戦闘開始時に自分に
+<link=""STA07""><color=green>疲労度調整</color></link>を与えます。
+
+STAは戦闘時に行動する
+ための資源です。"
+EST_EXP00,"EXP를 0으로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 0
+
+EXP is a resource used to
+strengthen the player.","EXPは0で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXP01,"EXP를 30으로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 30
+
+EXP is a resource used to
+strengthen the player.","EXPは30で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXP02,"EXP를 60으로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 60
+
+EXP is a resource used to
+strengthen the player.","EXPは60で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXP03,"EXP를 90으로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 90
+
+EXP is a resource used to
+strengthen the player.","EXPは90で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXP04,"EXP를 120으로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 120
+
+EXP is a resource used to
+strengthen the player.","EXPは120で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXP05,"EXP를 150으로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 150
+
+EXP is a resource used to
+strengthen the player.","EXPは150で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXP06,"EXP를 150으로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 150
+
+EXP is a resource used to
+strengthen the player.","EXPは150で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXP07,"EXP를 150으로 시작합니다.
+
+전투 시작시 자신에게
+<link=""EXP07""><color=green>착취</color></link>를 부여합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","Start with EXP : 150
+
+Give yourself
+<link=""EXP07""><color=green>Exploitation</color></link> at the start of combat.
+
+EXP is a resource used to
+strengthen the player.","EXPは0で開始します。
+
+戦闘開始時に自分に
+<link=""EXP07""><color=green>搾取</color></link>を与えます。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG00,"EXP 획득량을 
+100%로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 100%.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は100％で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG01,"EXP 획득량을 
+105%로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 105%.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は105％で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG02,"EXP 획득량을 
+110%로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 110%.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は110％で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG03,"EXP 획득량을 
+115%로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 115%.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は115％で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG04,"EXP 획득량을 
+120%로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 120%.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は120％で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG05,"EXP 획득량을 
+125%로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 125%.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は125％で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG06,"EXP 획득량을 
+125%로 시작합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 125%.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は125％で開始します。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EXPMG07,"EXP 획득량을 
+125%로 시작합니다.
+
+전투 시작시 자신에게
+<link=""EXPMG07""><color=green>경험의 힘</color></link>을 부여합니다.
+
+EXP는 플레이어를
+강하게 하기 위한 재화입니다.","EXP gain starts at 125%.
+
+Give yourself
+<link=""EXPMG07""><color=green>EXPPower</color></link> at the start of combat.
+
+EXP is a resource used to
+strengthen the player.","EXP獲得量は125％で開始します。
+
+戦闘開始時に自分に
+<link=""EXPMG07""><color=green>経験の力</color></link>を与えます。
+
+EXPはプレイヤーを強くする
+ための資源です。"
+EST_EQUIP00,"인벤토리 4칸으로 
+시작합니다.
+
+패배 혹은 승리시 
+소지한 장비중
+랜덤한 0개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 4 inventory slots.
+
+After victory or defeat, 0 random equipment
+can be carried over to the next game.","インベントリは4枠で開始します。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで0個を次のゲームに
+引き継ぐことができます。"
+EST_EQUIP01,"인벤토리 6칸으로 
+시작합니다.
+
+패배 혹은 승리시 
+소지한 장비중
+랜덤한 0개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 6 inventory slots.
+
+After victory or defeat, 0 random equipment
+can be carried over to the next game.","インベントリは6枠で開始します。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで0個を次のゲームに
+引き継ぐことができます。"
+EST_EQUIP02,"인벤토리 8칸으로 
+시작합니다.
+
+패배 혹은 승리시 
+소지한 장비중
+랜덤한 1개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 8 inventory slots.
+
+After victory or defeat, 1 random equipment
+can be carried over to the next game.","インベントリは8枠で開始します。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで1個を次のゲームに
+引き継ぐことができます。"
+EST_EQUIP03,"인벤토리 10칸으로 
+시작합니다.
+
+패배 혹은 승리시 
+소지한 장비중
+랜덤한 2개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 10 inventory slots.
+
+After victory or defeat, 2 random equipment
+can be carried over to the next game.","インベントリは10枠で開始します。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで2個を次のゲームに
+引き継ぐことができます。"
+EST_EQUIP04,"인벤토리 12칸으로 
+시작합니다.
+
+패배 혹은 승리시 
+소지한 장비중
+랜덤한 3개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 12 inventory slots.
+
+After victory or defeat, 3 random equipment
+can be carried over to the next game.","インベントリは12枠で開始します。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで3個を次のゲームに
+引き継ぐことができます。"
+EST_EQUIP05,"인벤토리 12칸으로 
+시작합니다.
+
+패배 혹은 승리시 
+소지한 장비중
+랜덤한 4개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 12 inventory slots.
+
+After victory or defeat, 4 random equipment
+can be carried over to the next game.","インベントリは12枠で開始します。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで4個を次のゲームに
+引き継ぐことができます。"
+EST_EQUIP06,"인벤토리 12칸으로 
+시작합니다.
+
+패배 혹은 승리시 
+소지한 장비중
+랜덤한 4개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 12 inventory slots.
+
+After victory or defeat, 4 random equipment
+can be carried over to the next game.","インベントリは4枠で開始します。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで4個を次のゲームに
+引き継ぐことができます。"
+EST_EQUIP07,"인벤토리 12칸으로 
+시작합니다.
+
+전투 시작시 자신에게
+<link=""EQUIP07""><color=green>웨폰 마스터</color></link>를 부여합니다.
+
+패배 혹은 승리시 
+소지한 장비중 
+랜덤한 4개의 장비를
+다음 게임으로 넘겨 줄 수 있습니다.","Start with 12 inventory slots.
+
+Give yourself
+<link=""EQUIP07""><color=green>WeaponMaster</color></link> at the start of combat.
+
+After victory or defeat, 4 random equipment
+can be carried over to the next game.","インベントリは4枠で開始します。
+
+戦闘開始時に自分に
+<link=""EQUIP07""><color=green>ウェポンマスター</color></link>を与えます。
+
+勝利または敗北時、
+所持している装備の中から
+ランダムで4個を次のゲームに
+引き継ぐことができます。"

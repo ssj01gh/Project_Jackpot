@@ -4,6 +4,7 @@ using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Settings;
 
 public class EarlyStrengthTextLink : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EarlyStrengthTextLink : MonoBehaviour
     public TextMeshProUGUI DetailExplainText;
 
     private int CurrentLinkIndex = -1;
+    private Coroutine _Corou;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,9 @@ public class EarlyStrengthTextLink : MonoBehaviour
     ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
          */
         DetailExplainObject.SetActive(true);
+        DetailExplainText.text = "";
+        _Corou = StartCoroutine(Load(id));
+        /*
         switch (id)
         {
             case "STR07":
@@ -102,7 +107,7 @@ public class EarlyStrengthTextLink : MonoBehaviour
                 DetailExplainText.text =
                     "<size=40>피의 일족</size>" + "\r\n\r\n" +
                     "전투중 모든 수치 계산시" + "\r\n" +
-                    "최대 체력의 5% 만큼의" + "\r\n" +
+                    "최대 체력의 3% 만큼의" + "\r\n" +
                     "기초 수치가 추가됩니다.";
                 break;
             case "STA07":
@@ -134,12 +139,38 @@ public class EarlyStrengthTextLink : MonoBehaviour
                     "기초 수치가 추가 됩니다.";
                 break;
         }
+        */
         //Debug.Log($"마우스 올라감: {id}");
+    }
+
+    private IEnumerator Load(string key)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        string BuffDetailKey = "ESBD_" + key;
+        var BuffDetailTable = LocalizationSettings.StringDatabase.GetTable("ES_BuffDetail");
+        DetailExplainText.text = BuffDetailTable.GetEntry(BuffDetailKey).GetLocalizedString();
+        /*
+        string DetailTitleKey = "ESDT_" + key;
+        var DetailTitleTable = LocalizationSettings.StringDatabase.GetTable("ES_DetailTitle");
+        DetailTitleText.text = DetailTitleTable.GetEntry(DetailTitleKey).GetLocalizedString();
+
+        //이거 키 넘어가나 확인해 봐야것는디
+        string DetialTextKey = "EST_" + key;
+        var DetailTextTable = LocalizationSettings.StringDatabase.GetTable("ES_DetailText");
+        DetailText.text = DetailTextTable.GetEntry(DetialTextKey).GetLocalizedString();
+        */
     }
 
     private void OnLinkExit(string id)
     {
         DetailExplainObject.SetActive(false);
+
+        if(_Corou != null)
+        {
+            StopCoroutine(_Corou);
+            _Corou = null;
+        }
         // 예: 원래 색상 복구, 툴팁 숨기기 등
         //Debug.Log($"마우스 벗어남: {id}");
     }
