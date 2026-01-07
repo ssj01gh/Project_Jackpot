@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using TMPro;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Localization.Settings;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class TutorialManager : MonoBehaviour
     private float TextDelay = 0.06f;
     private List<string> ForLinkedTutorial = new List<string>();
     private bool IsAfterTutorial = false;
+
+    private Coroutine TutorialLanCor;
     public void SetLinkedTutorialNStartTutorial(string TutorialKey)//이걸 타이밍 맞게 부르면.....
     {
         SaveLinkedTutorialList(TutorialKey);
@@ -84,14 +87,30 @@ public class TutorialManager : MonoBehaviour
     private void ApplyTutorialPage()
     {
         TutorialImage.sprite = CurrentTutorialInfo.TutorialPages[CurrentTutorialIndex];
-        TutorialText.text = CurrentTutorialInfo.TutorialText[CurrentTutorialIndex];
+        TutorialText.text = "";
         TutorialText.rectTransform.anchoredPosition = CurrentTutorialInfo.TutorialTextPos[CurrentTutorialIndex];
+        TutorialLanCor = StartCoroutine(Load(CurrentTutorialInfo.TutorialText[CurrentTutorialIndex]));
+    }
+
+    private IEnumerator Load(string TutorialKey)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        var TutorialTable = LocalizationSettings.StringDatabase.GetTable("TutorialText");
+        TutorialText.text = TutorialTable.GetEntry(TutorialKey).GetLocalizedString();
+
         PlayTutorialText();//글자 토도독, 버튼 누르면 스킵되게
     }
 
     private void HideTutorialPage()
     {
         TutorialTextSkip();
+
+        if(TutorialLanCor != null)
+        {
+            StopCoroutine(TutorialLanCor);
+            TutorialLanCor = null;
+        }
 
         if(ForLinkedTutorial.Count == 0)//뒤에 이어질게 없을때만 끄기
         {
@@ -164,7 +183,7 @@ public class TutorialManager : MonoBehaviour
         if (TutorialTextCo != null)
             StopCoroutine(TutorialTextCo);
 
-        TutorialText.text = CurrentTutorialInfo.TutorialText[CurrentTutorialIndex];
+        //TutorialText.text = CurrentTutorialInfo.TutorialText[CurrentTutorialIndex];
         TutorialText.maxVisibleCharacters = 0;
 
         TutorialTextCo = StartCoroutine(TextCoroutine());

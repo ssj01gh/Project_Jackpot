@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: PlaySceneShortText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 075a89f4268554d42ac1df1faa30a3f3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 18425180160
+    m_Localized: Explore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20207759360
+    m_Localized: Maintenance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5065561206784
+    m_Localized: A camp for maintenance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5171211530240
+    m_Localized: Poor Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5663853506560
+    m_Localized: Inadequate Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5969161089024
+    m_Localized: Normal Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6051562385408
+    m_Localized: Good Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6131832975360
+    m_Localized: Perfect Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5174080434176
+    m_Localized: 'Rest Ambush Risk
+
+      55%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5665732554752
+    m_Localized: 'Rest Ambush Risk
+
+      35%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5970352271360
+    m_Localized: 'Rest Ambush Risk
+
+      20%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6059313459200
+    m_Localized: 'Rest Ambush Risk
+
+      10%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6132541812736
+    m_Localized: 'Rest Ambush Risk
+
+      5%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5505090711552
+    m_Localized: 'Camp Setup STA
+
+      0'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5666449780736
+    m_Localized: 'Camp Setup STA
+
+      100'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5971128217600
+    m_Localized: 'Camp Setup STA
+
+      250'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6060705968128
+    m_Localized: 'Camp Setup STA
+
+      450'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6133208707072
+    m_Localized: 'Camp Setup STA
+
+      700'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

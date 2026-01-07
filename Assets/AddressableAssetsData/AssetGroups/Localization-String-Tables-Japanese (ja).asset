@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: b2b66808b2c476f468f63258f4504ae1
   m_SerializeEntries:
+  - m_GUID: 388a664cec25ed54494fe05b09168cf6
+    m_Address: PlaySceneShortText_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e69b61b011acce4fb7a83255cba5d83
     m_Address: ES_BuffDetail_ja
     m_ReadOnly: 1
@@ -37,6 +43,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8596b4279cc84246bfea0fe7eae9b5f
     m_Address: Option_UI_Table_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca99adb881469d245a7853b9fc90ef78
+    m_Address: TutorialText_ja
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja

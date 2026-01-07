@@ -47,8 +47,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8716cac1fc74b8148bb426da37be4f9b
+    m_Address: PlaySceneShortText_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f79b056291346748b46964e9bbcb6bb
     m_Address: ES_DetailText_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4d5f5af8207c804bac74da124263f83
+    m_Address: TutorialText_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

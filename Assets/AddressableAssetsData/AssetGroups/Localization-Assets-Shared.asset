@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 0bf474c436083a54790eeb72db37cfd7
   m_SerializeEntries:
+  - m_GUID: 075a89f4268554d42ac1df1faa30a3f3
+    m_Address: Assets/LocalizationAsset/PlaySceneShortText/PlaySceneShortText Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2b2cbc933fbbc274aa4a9447a3023380
     m_Address: Assets/LocalizationAsset/TitleBaseButton/Title_BaseButton Shared Data.asset
     m_ReadOnly: 1
@@ -34,6 +40,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 731b938e484fcfa47b99629fc4b89f5e
     m_Address: Assets/LocalizationAsset/EarlyStrengthen/ES_BuffDetail Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 739e03781d36f6b44affd09095b9307e
+    m_Address: Assets/LocalizationAsset/Tutorial/TutorialText Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

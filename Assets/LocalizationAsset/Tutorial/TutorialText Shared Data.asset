@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: TutorialText Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: TutorialText
+  m_TableCollectionNameGuidString: 739e03781d36f6b44affd09095b9307e
+  m_Entries:
+  - m_Id: 17707954176
+    m_Key: TT_BMTT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120000
+    m_Key: TT_BPMCT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120001
+    m_Key: TT_BPMCT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120002
+    m_Key: TT_BPMCT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120003
+    m_Key: TT_BPTT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120004
+    m_Key: TT_BPTT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120005
+    m_Key: TT_BPTT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120006
+    m_Key: TT_BPTT04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120007
+    m_Key: TT_BSAT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120008
+    m_Key: TT_BSAT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120009
+    m_Key: TT_BT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120010
+    m_Key: TT_BT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120011
+    m_Key: TT_BT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120012
+    m_Key: TT_BT04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120013
+    m_Key: TT_CET01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120014
+    m_Key: TT_CET02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120015
+    m_Key: TT_CET03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120016
+    m_Key: TT_CET04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120017
+    m_Key: TT_CLUT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120018
+    m_Key: TT_CLUT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120019
+    m_Key: TT_CLUT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120020
+    m_Key: TT_CLUT04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120021
+    m_Key: TT_CRT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120022
+    m_Key: TT_CRT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120023
+    m_Key: TT_CRT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120024
+    m_Key: TT_CRT04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120025
+    m_Key: TT_CT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120026
+    m_Key: TT_CT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314304
+    m_Key: TT_CT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314305
+    m_Key: TT_CT04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314306
+    m_Key: TT_ET01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314307
+    m_Key: TT_ET02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314308
+    m_Key: TT_SBT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314309
+    m_Key: TT_SBT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314310
+    m_Key: TT_SBT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314311
+    m_Key: TT_SRT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314312
+    m_Key: TT_SRT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314313
+    m_Key: TT_SRT03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314314
+    m_Key: TT_SRT04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314315
+    m_Key: TT_ST01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314316
+    m_Key: TT_ST02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314317
+    m_Key: TT_ST03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314318
+    m_Key: TT_ST04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314319
+    m_Key: TT_TT01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314320
+    m_Key: TT_TT02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314321
+    m_Key: TT_TT03
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8381884070969212929
+  references:
+    version: 2
+    RefIds:
+    - rid: 8381884070969212929
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1767782732687

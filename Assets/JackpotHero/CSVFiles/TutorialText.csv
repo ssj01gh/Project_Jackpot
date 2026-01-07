@@ -1,0 +1,296 @@
+﻿Key,Korean(ko),English(en),Japanese(ja)
+TT_BMTT01,"몬스터 턴 버튼을 클릭하면
+몬스터가 행동을 시작합니다.","Click the Monster Turn button
+to start the monster's actions.","敵ターンボタンをクリックすると、
+敵が行動を開始します。"
+TT_BPMCT01,"배율 카드는
+행동의 최종 수치에
+막대한 영향을 줍니다.","Multiplier cards
+have a significant impact on
+the final values of actions.","倍率カードは
+行動の最終数値に
+大きな影響を与えます。"
+TT_BPMCT02,"LUK는 배율 카드의
+결과에 영향을 줍니다.","LUK affects the outcome
+of multiplier cards.","LUKは倍率カードの
+結果に影響します。"
+TT_BPMCT03,"나올 수 있는
+배율 카드에 대한
+상세 정보는 장비에서
+확인이 가능합니다.","You can check
+detailed information
+on available multiplier cards
+in Equipment.","出現する可能性のある
+倍率カードの詳細情報は、
+装備で確認できます。"
+TT_BPTT01,"플레이어 차례가 되면
+공격, 방어, STA회복
+행동이 가능합니다.","On the plyaer's turn,
+you can perform
+Attack, Defend, and STA Recovery action.","プレイヤーのターンになると、
+攻撃・防御・STA回復の
+行動が可能です。"
+TT_BPTT02,"공격은 플레이어의
+무기, STR에 영향을 받습니다.","Attack is affected
+by the player's weapon and STR.","攻撃はプレイヤーの
+武器とSTRの影響を受けます。"
+TT_BPTT03,"방어는 플레이어의
+갑옷, DUR에 영향을 받습니다.","Defense is affected
+by the player's armor and DUR.","防御はプレイヤーの
+鎧とDURの影響を受けます。"
+TT_BPTT04,"STA 회복은 플레이어의
+투구, RES에 영향을 받습니다.","STA Recovery is affectd
+by the player's helmet and RES.","STA回復はプレイヤーの
+兜とRESの影響を受けます。"
+TT_BSAT01,"습격시 몬스터 부터
+행동을 시작합니다.","When ambushed,
+the monster takes the first action.","奇襲時は敵から
+行動を開始します。"
+TT_BSAT02,"플레이어는 무방비를 얻고
+전투가 시작됩니다.","The player gaine Vulnerable,
+and the battle begins.","プレイヤーは無防備状態になり、
+戦闘が開始されます。"
+TT_BT01,"SPD에 따라
+행동 순서가 정해집니다.
+
+정해진 순서에 따라
+행동 가능합니다.","Turn order is
+determined by SPD.
+
+Actions are taken
+in that order.","SPDに応じて
+行動順が決まります。
+
+決められた順番に従って
+行動できます。"
+TT_BT02,"적을 클릭하거나 순서표에서
+적의 초상화를 클릭하여
+적의 상세 정보를
+확인 가능합니다.","You can view detailed information
+about an enemy
+by clicking the enemy
+or its portrait in the turn order.","敵をクリックするか、
+行動順リストの
+敵の肖像をクリックすると、
+敵の詳細情報を
+確認できます。"
+TT_BT03,"적이 자신의 차례가 됬을때
+할 행동을 확인 가능합니다.","You can view the action
+the enemy will take on its turn.","敵が自身のターンになった際に
+行う行動を確認できます。"
+TT_BT04,"버프에 마우스를 올리면
+버프의 상세 효과를
+알 수 있습니다.","Hover over a buff
+to view its detailed effects.","バフにマウスを合わせると、
+バフの詳細効果を
+確認できます。"
+TT_CET01,"장비의 드래그 앤 드랍으로
+장비 교체와 이동, 폐기가
+가능합니다.","You can replace, move, or discard
+equipment by dragging and dropping it.","装備をドラッグ＆ドロップすることで、
+装備の交換・移動・廃棄が可能です。"
+TT_CET02,"장비 클릭시
+장비의 상세 정보가
+표시됩니다.","Click an equipment to view
+its detailed information.","装備をクリックすると、
+装備の詳細情報が
+表示されます。"
+TT_CET03,"장비 뽑기 버튼으로
+장비를 얻을 수 있습니다.","You can obtain equipment
+using the equipment gacha button.","装備ガチャボタンで
+装備を入手できます。"
+TT_CET04,"장비 뽑기 강화로
+더 좋은 품질의 장비를
+얻을 수 있습니다.","By upgrading equipment gacha,
+you can obtain
+higer-tier equipment.","装備ガチャを
+強化することで、
+より高ティアの装備を
+入手できます。"
+TT_CLUT01,"(+)버튼클릭시
+EXP를 사용하여
+각 능력치를
+강화 할수 있습니다.","By clicking the (+) button,
+you can use EXP
+to upgrade each stat.","（＋）ボタンを
+クリックすると、
+EXPを使用して
+各能力値を
+強化できます"
+TT_CLUT02,"(-)버튼 클릭시
+각 능력치를
+내릴 수 있습니다.
+
+사용했던 EXP는
+돌려 받습니다.","By clicking the (-) button,
+you can lower each stat.
+
+The EXP you spent
+will be refunded.","（－）ボタンを
+クリックすると、
+各能力値を
+下げることができます。
+
+使用したEXPは
+返却されます。"
+TT_CLUT03,"적용 버튼 클릭시
+능력치 변화를
+확정합니다.","Click the Apply button
+to confirm the stat changes.","適用ボタンを
+クリックすると、
+能力値の変更が確定します。"
+TT_CLUT04,"강화 취소 버튼 클릭시
+능력치 변화를 취소 하고
+정비 초기 화면으로
+돌아갑니다.","Click Cancel Upgrade
+to discard stat changes
+and return to the Maintenance screen.","強化キャンセルボタンを
+クリックすると、
+能力値の変更をキャンセルし、
+整備の初期画面に戻ります。"
+TT_CRT01,"휴식시 습격이
+발생 할 수 있습니다.","An ambush can occur
+during rest.","休息中に奇襲が
+発生する可能性があります。"
+TT_CRT02,"슬라이더를 통해
+휴식 횟수를
+정할 수 있습니다.","Use the slider to set the
+number of rests.","スライダーを使って
+休息回数を
+設定できます。"
+TT_CRT03,"휴식한다 버튼을 클릭시
+설정된 휴식 횟수만큼
+휴식을 시도 합니다.","Click the Rest button
+to attempt resting
+the set number of times.","「休息する」ボタンを
+クリックすると、
+設定した回数分の
+休息を試みます。"
+TT_CRT04,"휴식하지 않는다 버튼 클릭시
+정비 초기 화면으로 돌아갑니다.","Click the Do Not Rest button
+to return to the Maintenance screen.","「休息しない」ボタンを
+クリックすると、
+整備の初期画面に戻ります。"
+TT_CT01,"휴식에서
+HP와 STA를
+회복 가능합니다.","You can recover
+HP and STA while resting.","休息によって
+HPとSTAを
+回復できます。"
+TT_CT02,"능력치 강화에서
+경험치를 사용하여
+스탯을 상승시킬 수 있습니다.","You can spend EXP
+to increase your stats
+in Stat Upgrades.","能力値強化で
+EXPを使用して、
+ステータスを
+上昇させることができます。"
+TT_CT03,"장비 관리에서
+장착중인 장비를 바꾸고
+새로운 장비를
+얻을 수 있습니다.","In Equipment Management,
+you can change equipped items
+and obtain new equipment.","装備管理では、
+装備中の装備を変更したり、
+新しい装備を
+入手したりできます。"
+TT_CT04,"정비 종료를 클릭시
+탐색으로 되돌아 갑니다.","Click Exit Maintenance
+to return to Exploration.","「整備終了」をクリックすると、
+探索に戻ります。"
+TT_ET01,"현재 이벤트에 대한
+행동을 선택 가능합니다.","You can choose an action
+for the current event.","現在のイベントに
+対する行動を
+選択できます。"
+TT_ET02,"선택지에 따라 얻을 수 있는
+보상과 대가가 달라집니다.","Different choices lead to
+different rewards and costs.","選択肢によって、
+得られる報酬と
+代償が異なります。"
+TT_SBT01,"가방에서는 가지고 있는 장비의
+티어만 알 수 있습니다.","The Bag shows only the tier
+of the equipment you own.","バッグでは、所持している装備の
+ティアのみを確認できます。"
+TT_SBT02,"장착중인 장비와
+교환할 수 없습니다.","Equipped items
+cannot be exchanged.","装備中の装備とは
+交換できません。"
+TT_SBT03,"장착중이 아닌 장비는
+가방에서 칸을 이동하거나
+폐기 할 수 있습니다.","Unequipped items can be
+moved within the Bag or discarded.","装備していない装備は、
+バッグ内で枠を移動したり、
+廃棄したりできます。"
+TT_SRT01,"정비를 위한 야영지를
+펼칠 수 있습니다.","You can set up
+a camp for maintenance.","整備を行うための
+野営地を設営できます。"
+TT_SRT02,"야영지에서는 장착중인
+장비를 바꿀 수 있습니다.","At the camp,
+you can change
+your equipped item.","野営地では、
+装備中の装備を
+変更できます。"
+TT_SRT03,"야영지에서 휴식을 통해
+HP와 STA를
+회복 할 수 있습니다.","At the camp,
+you can recover
+HP and STA by resting.","野営地では、
+休息によって
+HPとSTAを回復できます。"
+TT_STRT04,"야영지의 품질에 따라
+휴식시 습격 확률이
+달라집니다.","The chance of being ambushed
+while resting varies depending
+on the quality of the camp.","野営地の品質によって、
+休息時の奇襲発生確率が
+変わります。"
+TT_ST01,"HP와 STA, 장비의 상태를
+확인 할 수 있습니다.","You can check the status of
+your HP, STA, and equipment.","HPやSTA、装備の
+状態を確認できます。"
+TT_ST02,"장착중인 장비를 눌러
+장비의 상세한 정보를
+알 수 있습니다.","Click equipped equipment
+to view its detailed information.","装備中の装備を
+クリックすると、
+装備の詳細情報を
+確認できます。"
+TT_ST03,"현재 스테이지와
+탐색도를 확인 가능합니다.
+
+탐색을 통해 탐색도가 올라가며
+탐색도가 100이 되면 탐색시
+보스와의 전투가 발생합니다.","You can view the current stage
+and exploration progress.
+
+Exploring increases progress,
+and when it reaches 100,
+a boss battle is triggered
+during exploration.","現在のステージと
+探索度を確認できます。
+
+探索を行うことで探索度が上昇し、
+探索度が100になると、
+探索中にボスとの戦闘が発生します。"
+TT_ST04,"탐색을 할지 정비를 할지
+결정 가능합니다.","You can choose whether
+to explore or perform maintenance.","探索を行うか、
+整備を行うかを
+選択できます。"
+TT_TT01,"새로운 게임을 이어가기 전
+강화 포인트를 사용하여
+강화를 할 수 있습니다.","Before continuing to a new game,
+you can use upgrade points
+to apply upgrades.","新しいゲームを続ける前に、
+強化ポイントを使用して
+強化を行うことができます。"
+TT_TT02,"각 노드의 (+)(-) 버튼을 클릭해
+강화 할 수 있습니다.","You can upgrade each node
+by clicking the (+) and (–) buttons.","各ノードの（＋）（－）ボタンを
+クリックして、強化できます。"
+TT_TT03,"각 노드를 클릭해
+상세 효과를 확인 가능합니다.","Click each node to view
+its detailed effects.","各ノードをクリックすると、
+詳細効果を確認できます。"

@@ -265,7 +265,7 @@ MonoBehaviour:
 
       Give enemies
 
-      <link="SPD07"><color=green>Defenseless</color></link>
+      <link="SPD07"><color=green>Vulnerable</color></link>
       at the start of combat.
 
 

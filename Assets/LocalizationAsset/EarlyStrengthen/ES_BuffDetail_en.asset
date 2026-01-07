@@ -52,7 +52,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997315
-    m_Localized: '<size=40>Defenseless</size>
+    m_Localized: '<size=40>Vulnerable</size>
 
 
       When taking damage from enemy
