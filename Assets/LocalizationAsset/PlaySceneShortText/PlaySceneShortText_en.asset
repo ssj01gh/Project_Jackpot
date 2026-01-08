@@ -110,6 +110,34 @@ MonoBehaviour:
       700'
     m_Metadata:
       m_Items: []
+  - m_Id: 247896158629888
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 250839553404928
+    m_Localized: 'Exploration :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364723094286336
+    m_Localized: Grassland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364725036249088
+    m_Localized: Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364726273568768
+    m_Localized: "Alchemist\u2019s Tower"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364727968067584
+    m_Localized: Otherworld
+    m_Metadata:
+      m_Items: []
+  - m_Id: 365039667769344
+    m_Localized: The Truth
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

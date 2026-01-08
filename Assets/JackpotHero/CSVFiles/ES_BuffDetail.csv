@@ -8,10 +8,9 @@ ESBD_STR07,"<size=40>넘치는 힘</size>
 When an enemy is defeated by an attack,
 excess damage is dealt to other enemies.","<size=40>溢れる力</size>
 
-敵を攻撃した際、
-敵を撃破すると、
-超過したダメージ分を
-他の敵に与えます。"
+敵を倒すと、
+あまったダメージが
+他の敵に入ります。"
 ESBD_DUR07,"<size=40>가시 갑옷</size>
 
 공격을 받은 후 보호막이 남아 있다면
@@ -22,10 +21,10 @@ If a shield remains after being attacked,
 deal damage to that enemy
 equal to the remaining shield value.","<size=40>とげの鎧</size>
 
-攻撃を受けた後、
-シールドが残っている場合、
-残りのシールド値分のダメージを
-その敵に与えます。"
+攻撃を受けたあと、
+シールドが残っていると、
+そのぶんのダメージを
+敵に与えます。"
 ESBD_RES07,"<size=40>상급 휴식</size>
 
 전투중 STA 회복시
@@ -36,20 +35,22 @@ Recover HP equal to
 10% of STA Recovery during combat.","<size=40>上級休憩</size>
 
 戦闘中にSTA回復時、
-その10％分のHPを回復します。"
+その10％ぶんのHPを回復します。"
 ESBD_SPD07,"<size=40>무방비</size>
 
 적의 공격을 통해 데미지를 받을때
 데미지를 2배로 받습니다.
 자신의 턴이 됬을때
-효과가 종료 됩니다.","<size=40>Defenseless</size>
+효과가 종료 됩니다.","<size=40>Vulnerable</size>
 
 When taking damage from enemy attacks,
 damage taken is doubled.
 This effect ends at the start of your turn.","<size=40>無防備</size>
 
-敵から受けるダメージが2倍になります。
-自身のターン開始時に効果は終了します。"
+敵から受けるダメージが
+2倍になります。
+自身のターン開始時に
+効果が終わります。"
 ESBD_HP07,"<size=40>피의 일족</size>
 
 전투중 공격, 방어, STA회복의
@@ -61,7 +62,7 @@ to attack, defense, and STA recovery calculations
 during combat.","<size=40>血の一族</size>
 
 戦闘中の攻撃・防御・STA回復の
-数値計算時、最大HPの3％分を
+計算時、最大HPの3％ぶんを
 基礎値に加算します。"
 ESBD_STA07,"<size=40>피로도 조절</size>
 
@@ -73,7 +74,7 @@ STA consumption is reduced
 in proportion to current STA,
 up to a maximum of 90%.","<size=40>疲労度調整</size>
 
-現在のSTAに比例して、
+現在のSTAに応じて、
 STAの消費量が最大90％減少します。"
 ESBD_EXP07,"<size=40>착취</size>
 
@@ -85,7 +86,7 @@ Collect EXP equal to
 by attacks during combat.","<size=40>搾取</size>
 
 戦闘中に攻撃で与えたダメージの
-20％分をEXPとして獲得します。"
+20％ぶんをEXPとして獲得します。"
 ESBD_EXPMG07,"<size=40>경험의 힘</size>
 
 전투중 공격, 방어, STA회복의
@@ -97,7 +98,7 @@ to attack, defense, and STA recovery calculation
 during combat.","<size=40>経験の力</size>
 
 戦闘中の攻撃・防御・STA回復の
-数値計算時、EXPの10％分を
+計算時、EXPの10％ぶんを
 最終値に加算します。"
 ESBD_EQUIP07,"<size=40>웨폰 마스터</size>
 
@@ -112,6 +113,6 @@ to attack, defense, and STA recovery calculations
 during combat.","<size=40>ウェポンマスター</size>
 
 戦闘中の攻撃・防御・STA回復の
-数値計算時、自身が所持している
-すべての装備のティア数値分を
+計算時、所持している
+すべての装備のティア数値ぶんを
 基礎値に加算します。"

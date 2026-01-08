@@ -84,7 +84,7 @@ STR affects attack damage
 during combat.","STRは10で開始します
 
 戦闘開始時に自分に
-<link=""STR07""><color=green>溢れる力</color></link>を与えます。
+<link=""STR07""><color=green>溢れる力</color></link>を付与します。
 
 STRは戦闘中の攻撃ダメージに
 影響します。"
@@ -173,7 +173,7 @@ DUR affects defense stats
 during combat.","DURは10で開始します
 
 戦闘開始時に自分に
-<link=""DUR07""><color=green>とげの鎧</color></link>を与えます。
+<link=""DUR07""><color=green>とげの鎧</color></link>を付与します。
 
 DURは戦闘中の防御に
 影響します。"
@@ -256,13 +256,13 @@ SPD는 전투중 행동 속도에
 영향을 줍니다.","Start with SPD : 10
 
 Give enemies
-<link=""SPD07""><color=green>Defenseless</color></link> at the start of combat.
+<link=""SPD07""><color=green>Vulnerable</color></link> at the start of combat.
 
 SPD affects action speed
 during combat.","SPDは10で開始します
 
 戦闘開始時に敵に
-<link=""SPD07""><color=green>無防備</color></link>を与えます。
+<link=""SPD07""><color=green>無防備</color></link>を付与します。
 
 SPDは戦闘中の行動速度に
 影響します。"
@@ -351,7 +351,7 @@ RES affects STA Recovery
 during combat.","RESは10で開始します
 
 戦闘開始時に自分に
-<link=""RES07""><color=green>上級休憩</color></link>を与えます。
+<link=""RES07""><color=green>上級休憩</color></link>を付与します。
 
 RESは戦闘中のSTA回復に
 影響します。"
@@ -365,7 +365,7 @@ attack, defense, and STA Recovery
 during combat.","LUKは0で開始します
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_LUK01,"LUK를 1로 시작합니다.
 
 LUK는 전투중 공격, 방어, STA 회복의
@@ -376,7 +376,7 @@ attack, defense, and STA Recovery
 during combat.","LUKは1で開始します
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_LUK02,"LUK를 2로 시작합니다.
 
 LUK는 전투중 공격, 방어, STA 회복의
@@ -387,7 +387,7 @@ attack, defense, and STA Recovery
 during combat.","LUKは2で開始します
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_LUK03,"LUK를 3으로 시작합니다.
 
 LUK는 전투중 공격, 방어, STA 회복의
@@ -398,7 +398,7 @@ attack, defense, and STA Recovery
 during combat.","LUKは3で開始します
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_LUK04,"LUK를 4로 시작합니다.
 
 LUK는 전투중 공격, 방어, STA 회복의
@@ -409,7 +409,7 @@ attack, defense, and STA Recovery
 during combat.","LUKは4で開始します
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_LUK05,"LUK를 5로 시작합니다.
 
 LUK는 전투중 공격, 방어, STA 회복의
@@ -420,7 +420,7 @@ attack, defense, and STA Recovery
 during combat.","LUKは5で開始します
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_LUK06,"LUK를 5로 시작합니다.
 
 LUK는 전투중 공격, 방어, STA 회복의
@@ -431,7 +431,7 @@ attack, defense, and STA Recovery
 during combat.","LUKは5で開始します
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_LUK07,"LUK를 5로 시작합니다.
 
 장비뽑기시 높은 등급의
@@ -448,11 +448,11 @@ LUK affects the final value of
 attack, defense, and STA Recovery
 during combat.","LUKは5で開始します。
 
-装備ガチャ時、高ティアの
+装備ガチャ時、高いティアの
 装備が出現する確率が上昇します。
 
 LUKは戦闘中の攻撃、防御、STA回復の
-最終数値に影響します。"
+最終値に影響します。"
 EST_HP00,"HP를 100으로 시작합니다.
 
 HP가 0이 될시 패배합니다.","Start with HP : 100
@@ -515,7 +515,7 @@ Give yourself
 You lose when your HP reaches 0.","HPは200で開始します。
 
 戦闘開始時に自分に
-<link=""HP07""><color=green>血の一族</color></link>を与えます。
+<link=""HP07""><color=green>血の一族</color></link>を付与します。
 
 HPが0になると敗北します。"
 EST_STA00,"STA를 1000으로 시작합니다.
@@ -603,7 +603,7 @@ STA is a resource used to
 perform actions in combat.","STAは1000で開始します。
 
 戦闘開始時に自分に
-<link=""STA07""><color=green>疲労度調整</color></link>を与えます。
+<link=""STA07""><color=green>疲労度調整</color></link>を付与します。
 
 STAは戦闘時に行動する
 ための資源です。"
@@ -692,7 +692,7 @@ EXP is a resource used to
 strengthen the player.","EXPは0で開始します。
 
 戦闘開始時に自分に
-<link=""EXP07""><color=green>搾取</color></link>を与えます。
+<link=""EXP07""><color=green>搾取</color></link>を付与します。
 
 EXPはプレイヤーを強くする
 ための資源です。"
@@ -789,7 +789,7 @@ EXP is a resource used to
 strengthen the player.","EXP獲得量は125％で開始します。
 
 戦闘開始時に自分に
-<link=""EXPMG07""><color=green>経験の力</color></link>を与えます。
+<link=""EXPMG07""><color=green>経験の力</color></link>を付与します。
 
 EXPはプレイヤーを強くする
 ための資源です。"
@@ -805,7 +805,7 @@ After victory or defeat, 0 random equipment
 can be carried over to the next game.","インベントリは4枠で開始します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで0個を次のゲームに
 引き継ぐことができます。"
 EST_EQUIP01,"인벤토리 6칸으로 
@@ -820,7 +820,7 @@ After victory or defeat, 0 random equipment
 can be carried over to the next game.","インベントリは6枠で開始します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで0個を次のゲームに
 引き継ぐことができます。"
 EST_EQUIP02,"인벤토리 8칸으로 
@@ -835,7 +835,7 @@ After victory or defeat, 1 random equipment
 can be carried over to the next game.","インベントリは8枠で開始します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで1個を次のゲームに
 引き継ぐことができます。"
 EST_EQUIP03,"인벤토리 10칸으로 
@@ -850,7 +850,7 @@ After victory or defeat, 2 random equipment
 can be carried over to the next game.","インベントリは10枠で開始します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで2個を次のゲームに
 引き継ぐことができます。"
 EST_EQUIP04,"인벤토리 12칸으로 
@@ -865,7 +865,7 @@ After victory or defeat, 3 random equipment
 can be carried over to the next game.","インベントリは12枠で開始します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで3個を次のゲームに
 引き継ぐことができます。"
 EST_EQUIP05,"인벤토리 12칸으로 
@@ -880,7 +880,7 @@ After victory or defeat, 4 random equipment
 can be carried over to the next game.","インベントリは12枠で開始します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで4個を次のゲームに
 引き継ぐことができます。"
 EST_EQUIP06,"인벤토리 12칸으로 
@@ -892,10 +892,10 @@ EST_EQUIP06,"인벤토리 12칸으로
 다음 게임으로 넘겨 줄 수 있습니다.","Start with 12 inventory slots.
 
 After victory or defeat, 4 random equipment
-can be carried over to the next game.","インベントリは4枠で開始します。
+can be carried over to the next game.","インベントリは12枠で開始します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで4個を次のゲームに
 引き継ぐことができます。"
 EST_EQUIP07,"인벤토리 12칸으로 
@@ -913,12 +913,12 @@ Give yourself
 <link=""EQUIP07""><color=green>WeaponMaster</color></link> at the start of combat.
 
 After victory or defeat, 4 random equipment
-can be carried over to the next game.","インベントリは4枠で開始します。
+can be carried over to the next game.","インベントリは12枠で開始します。
 
 戦闘開始時に自分に
-<link=""EQUIP07""><color=green>ウェポンマスター</color></link>を与えます。
+<link=""EQUIP07""><color=green>ウェポンマスター</color></link>を付与します。
 
 勝利または敗北時、
-所持している装備の中から
+持っている装備の中から
 ランダムで4個を次のゲームに
 引き継ぐことができます。"
