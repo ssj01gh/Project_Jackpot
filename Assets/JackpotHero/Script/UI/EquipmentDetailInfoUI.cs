@@ -258,8 +258,10 @@ public class EquipmentDetailInfoUI : MonoBehaviour
         //Debug.Log($"마우스 벗어남: {id}");
     }
 
-    public void ActiveEquipmentDetailInfoUI(EquipmentInfo EquipInfo, bool IsPlayerEquipment)
+    public void ActiveEquipmentDetailInfoUI(EquipmentInfo EquipInfo, int EquipmentCode, bool IsPlayerEquipment)
     {
+        //이 함수를 async로 만들고 EquipInfo가 아니라 코드를 받아오고
+        //여기서 EquipmentInfo에 대한 정보를 받는다?
         gameObject.SetActive(true);
 
         foreach(GameObject obj in CardContainers)

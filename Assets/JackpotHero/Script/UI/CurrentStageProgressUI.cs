@@ -49,7 +49,6 @@ public class CurrentStageProgressUI : MonoBehaviour
                 LanKey = "PS_SCStageError";
                 break;
         }
-        LanKey = "PS_SCStage01";
         StartCoroutine(Load(LanKey));
         //PlaySceneShortText
 
@@ -68,11 +67,26 @@ public class CurrentStageProgressUI : MonoBehaviour
                 CurrentStageProgressText.text = "<color=red>100 / 100</color>";
             }
         }
+       //Debug.Log(LocalizationSettings.SelectedLocale.Identifier.Code);
+    }
+    public void ChangeStageLanguage()
+    {
+        if (LanKey == "")
+            return;
+
+        if (CSTextCor != null)
+        {
+            StopCoroutine(CSTextCor);
+            CSTextCor = null;
+        }
+        StartCoroutine(Load(LanKey));
     }
 
     private IEnumerator Load(string key)
     {
+        yield return new WaitForSeconds(0.1f);
         yield return LocalizationSettings.InitializationOperation;
+        //Debug.Log(LocalizationSettings.SelectedLocale.Identifier.Code);
 
         var BuffDetailTable = LocalizationSettings.StringDatabase.GetTable("PlaySceneShortText");
         CurrentStageText.text = BuffDetailTable.GetEntry(key).GetLocalizedString();

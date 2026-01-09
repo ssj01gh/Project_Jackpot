@@ -1,7 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.Burst;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -89,10 +90,18 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     protected Dictionary<int, EquipSpriteSO> EquipSprite = new Dictionary<int, EquipSpriteSO>();
     protected Dictionary<int, EquipmentSO> PlayerEventEquip = new Dictionary<int, EquipmentSO>();
 
-    protected string[] PlayerEquipTierName = new string[7]
-    { "½ÃÀÛÀÇ ", "ÀúÇ°ÁúÀÇ ", "Æò¹üÇÑ ", "°íÇ°ÁúÀÇ ", "°­È­µÈ ", "¸¶¹ıÀÇ ", "¿µ¿øÇÑ " };
-    protected string[] PlayerEquipMultiTypeName = new string[4]
-    { "","¾ÈÁ¤ÀûÀÎ ","±ÕÇüÀûÀÎ ","Æø¹ßÀûÀÎ " };
+    protected string[] PlayerEquipTierNameKO = new string[7]
+    { "ì‹œì‘ì˜ ", "ì €í’ˆì§ˆì˜ ", "í‰ë²”í•œ ", "ê³ í’ˆì§ˆì˜ ", "ê°•í™”ëœ ", "ë§ˆë²•ì˜ ", "ì˜ì›í•œ " };
+    protected string[] PlayerEquipMultiTypeNameKO = new string[4]
+    { "","ì•ˆì •ì ì¸ ","ê· í˜•ì ì¸ ","í­ë°œì ì¸ " };
+    protected string[] PlayerEquipTierNameEN = new string[7]
+    {"Initiateâ€™s ","Low-quality ","Common ","High-quality ","Reinforced ","Enchanted ","Eternal "};
+    protected string[] PlayerEquipMultiTypeNameEN = new string[4]
+    {"","Stable ","Balanced ","í­ë°œì ì¸ "};
+    protected string[] PlayerEquipTierNameJA = new string[7]
+    {"å§‹ã¾ã‚Šã® ","ä½å“è³ªã® ","ä¸€èˆ¬çš„ãª ","é«˜å“è³ªã® ","å¼·åŒ–ã•ã‚ŒãŸ ","é­”æ³•ã® ","æ°¸é ã® "};
+    protected string[] PlayerEquipMultiTypeNameJA = new string[4]
+    {"","å®‰å®šã—ãŸ ","ãƒãƒ©ãƒ³ã‚¹ã®å–ã‚ŒãŸ ","çˆ†ç™ºçš„ãª "};
     protected int[] BootsBuffInt = new int[7]
     { 2,40,2,1,1,1,2 };
     protected int[] AccessoriesBuffInt = new int[7]
@@ -100,32 +109,32 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     //95 5 0 0 0
     protected int[,] EquipmentGamblingDetail =
     {
-        { 95,5,0,0,0,0 }, //0·¹º§
-        { 89,11,0,0,0,0 }, //1·¹º§
-        { 80,19,1,0,0,0 }, //2·¹º§
-        { 68,27,5,0,0,0 }, //3·¹º§
-        { 53,36,11,0,0,0 }, //4·¹º§
-        { 35,44,20,1,0,0 }, //5·¹º§
-        { 14,54,27,5,0,0 }, //6·¹º§
-        { 0,53,36,11,0,0 }, //7·¹º§
-        { 0,35,44,20,1,0 }, //8·¹º§
-        { 0,14,54,27,5,0 }, //9·¹º§
-        { 0,0,53,36,11,0 }//10·¹º§
+        { 95,5,0,0,0,0 }, //0ë ˆë²¨
+        { 89,11,0,0,0,0 }, //1ë ˆë²¨
+        { 80,19,1,0,0,0 }, //2ë ˆë²¨
+        { 68,27,5,0,0,0 }, //3ë ˆë²¨
+        { 53,36,11,0,0,0 }, //4ë ˆë²¨
+        { 35,44,20,1,0,0 }, //5ë ˆë²¨
+        { 14,54,27,5,0,0 }, //6ë ˆë²¨
+        { 0,53,36,11,0,0 }, //7ë ˆë²¨
+        { 0,35,44,20,1,0 }, //8ë ˆë²¨
+        { 0,14,54,27,5,0 }, //9ë ˆë²¨
+        { 0,0,53,36,11,0 }//10ë ˆë²¨
     };
 
     protected int[,] EquipmentGamblingDetail_Luck =
     {
-        { 66,32,2,0,0,0 }, //0·¹º§
-        { 63,34,3,0,0,0 }, //1·¹º§
-        { 57,37,6,0,0,0 }, //2·¹º§
-        { 47,39,12,2,0,0 }, //3·¹º§
-        { 37,41,19,3,0,0 }, //4·¹º§
-        { 25,41,27,7,0,0 }, //5·¹º§
-        { 9,42,35,12,2,0 }, //6·¹º§
-        { 0,37,41,19,3,0 }, //7·¹º§
-        { 0,25,41,27,7,0 }, //8·¹º§
-        { 0,9,42,35,12,2 }, //9·¹º§
-        { 0,0,37,41,19,3 }//10·¹º§
+        { 66,32,2,0,0,0 }, //0ë ˆë²¨
+        { 63,34,3,0,0,0 }, //1ë ˆë²¨
+        { 57,37,6,0,0,0 }, //2ë ˆë²¨
+        { 47,39,12,2,0,0 }, //3ë ˆë²¨
+        { 37,41,19,3,0,0 }, //4ë ˆë²¨
+        { 25,41,27,7,0,0 }, //5ë ˆë²¨
+        { 9,42,35,12,2,0 }, //6ë ˆë²¨
+        { 0,37,41,19,3,0 }, //7ë ˆë²¨
+        { 0,25,41,27,7,0 }, //8ë ˆë²¨
+        { 0,9,42,35,12,2 }, //9ë ˆë²¨
+        { 0,0,37,41,19,3 }//10ë ˆë²¨
     };
 
     protected int[] GamblingLevelUpCost = new int[10] { 30, 45, 70, 105, 160, 240, 360, 540, 810, 1215 };
@@ -219,7 +228,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         for (int i = 0; i < MonWeaponSOs.Length; i++)
         {
             int i_EquipmentCode = MonWeaponSOs[i].EquipmentCode;
-            if (!MonEquipmentStorage.ContainsKey(i_EquipmentCode))//ÇØ´ç ÄÚµåÀÇ Àåºñ°¡ ¾ø´Ù¸é
+            if (!MonEquipmentStorage.ContainsKey(i_EquipmentCode))//í•´ë‹¹ ì½”ë“œì˜ ì¥ë¹„ê°€ ì—†ë‹¤ë©´
             {
                 MonEquipmentStorage.Add(i_EquipmentCode, MonWeaponSOs[i]);
             }
@@ -228,7 +237,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         for (int i = 0; i < MonArmorSOs.Length; i++)
         {
             int i_EquipmentCode = MonArmorSOs[i].EquipmentCode;
-            if (!MonEquipmentStorage.ContainsKey(i_EquipmentCode))//ÇØ´ç ÄÚµåÀÇ Àåºñ°¡ ¾ø´Ù¸é
+            if (!MonEquipmentStorage.ContainsKey(i_EquipmentCode))//í•´ë‹¹ ì½”ë“œì˜ ì¥ë¹„ê°€ ì—†ë‹¤ë©´
             {
                 MonEquipmentStorage.Add(i_EquipmentCode, MonArmorSOs[i]);
             }
@@ -237,7 +246,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         for (int i = 0; i < MonAnotherEquipSOs.Length; i++)
         {
             int i_EquipmentCode = MonAnotherEquipSOs[i].EquipmentCode;
-            if (!MonEquipmentStorage.ContainsKey(i_EquipmentCode))//ÇØ´ç ÄÚµåÀÇ Àåºñ°¡ ¾ø´Ù¸é
+            if (!MonEquipmentStorage.ContainsKey(i_EquipmentCode))//í•´ë‹¹ ì½”ë“œì˜ ì¥ë¹„ê°€ ì—†ë‹¤ë©´
             {
                 MonEquipmentStorage.Add(i_EquipmentCode, MonAnotherEquipSOs[i]);
             }
@@ -245,7 +254,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     }
     public Sprite GetEquipmentSlotSprite(float SlotAmount)
     {
-        if(!EquipmentSlotSpriteStorage.ContainsKey(SlotAmount))//¾ø´Ù¸é
+        if(!EquipmentSlotSpriteStorage.ContainsKey(SlotAmount))//ì—†ë‹¤ë©´
         {
             return EquipmentSlotSpriteStorage[-1];
         }
@@ -263,22 +272,22 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         int NeededCode = 0;
 
         if(EquipStateType == (int)EEquipStateType.StateLUK)
-        {//·°ÀÏ¶§
-            //EquipTypeÀÌ ½Å¹ßÀÌ³ª Àå½Å±¸°¡ ¾Æ´Ï¶ó¸é NeedCode¸¦ ¹Ù²Ş
+        {//ëŸ­ì¼ë•Œ
+            //EquipTypeì´ ì‹ ë°œì´ë‚˜ ì¥ì‹ êµ¬ê°€ ì•„ë‹ˆë¼ë©´ NeedCodeë¥¼ ë°”ê¿ˆ
             if(EquipType != (int)EEquipType.TypeBoots && EquipType != (int)EEquipType.TypeAcc)
             {
-                if (EquipTier != (int)EEquipTier.TierZero)//0Æ¼¾î´Â Çà¿îÀÌ ¾øÀ½
+                if (EquipTier != (int)EEquipTier.TierZero)//0í‹°ì–´ëŠ” í–‰ìš´ì´ ì—†ìŒ
                     NeededCode = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + 
                         MultiType + 3;
                 else
                     NeededCode = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + MultiType;
 
-                if (MultiType == 0)//0ÀÌ ³ª¿Ã¼ö ¾øÁö¸¸ È¤½Ã³ª 0ÀÌ ³ª¿Â´Ù¸é ¾ÈÁ¤ Å¸ÀÔÀ¸·Î
+                if (MultiType == 0)//0ì´ ë‚˜ì˜¬ìˆ˜ ì—†ì§€ë§Œ í˜¹ì‹œë‚˜ 0ì´ ë‚˜ì˜¨ë‹¤ë©´ ì•ˆì • íƒ€ì…ìœ¼ë¡œ
                     NeededCode += 1;
             }
         }
-        else//·°ÀÌ ¾Æ´Ò¶§//ÇÇ·Îµµ, ÀÏ¹İ ÀåºñÀÇ °æ¿ì ±×³É 1Æ¼¾î Àü²¨¸¦ ¸®ÅÏÇÔ
-        {//EquipTypeÀÌ ½Å¹ßÀÌ³ª Àå½Å±¸¶ó¸é NeedCode¸¦ ¹Ù²ÙÁö ¾ÊÀ½
+        else//ëŸ­ì´ ì•„ë‹ë•Œ//í”¼ë¡œë„, ì¼ë°˜ ì¥ë¹„ì˜ ê²½ìš° ê·¸ëƒ¥ 1í‹°ì–´ ì „êº¼ë¥¼ ë¦¬í„´í•¨
+        {//EquipTypeì´ ì‹ ë°œì´ë‚˜ ì¥ì‹ êµ¬ë¼ë©´ NeedCodeë¥¼ ë°”ê¾¸ì§€ ì•ŠìŒ
             if (EquipType != (int)EEquipType.TypeBoots && EquipType != (int)EEquipType.TypeAcc)
             {
                 if(EquipStateType == (int)EEquipStateType.StateSTA || EquipStateType == (int)EEquipStateType.StateNormal)
@@ -291,7 +300,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                         NeededCode = (EquipEventType * IsEventEquipMultipleNum) + (EquipTier * TierMultipleNum) + MultiType;
                 }
 
-                if (MultiType == 0)//0ÀÌ ³ª¿Ã¼ö ¾øÁö¸¸ È¤½Ã³ª 0ÀÌ ³ª¿Â´Ù¸é ¾ÈÁ¤ Å¸ÀÔÀ¸·Î
+                if (MultiType == 0)//0ì´ ë‚˜ì˜¬ìˆ˜ ì—†ì§€ë§Œ í˜¹ì‹œë‚˜ 0ì´ ë‚˜ì˜¨ë‹¤ë©´ ì•ˆì • íƒ€ì…ìœ¼ë¡œ
                     NeededCode += 1;
             }
         }
@@ -326,7 +335,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
 
         if (EquipEventType == (int)EIsEventEquip.NormalEquip)
         {
-            if (!EquipIncreaseState.ContainsKey(IncreaseInfoNum))//¾øÀ¸¸é
+            if (!EquipIncreaseState.ContainsKey(IncreaseInfoNum))//ì—†ìœ¼ë©´
                 return false;
 
             if (!EquipSlot.ContainsKey(NormalSlotInfoNum) && !EquipSlot.ContainsKey(LuckSlotInfoNum))
@@ -351,47 +360,19 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
          return true;
     }
     //------------------------------------
-    public EquipmentInfo GetPlayerEquipmentInfo(int EquipCode)//ÀÌ°Í¸¸ ¾î¶»°Ô ¹Ù²Ù¸é µÉµí?
+    public EquipmentInfo GetPlayerEquipmentInfo(int EquipCode)//ì´ê²ƒë§Œ ì–´ë–»ê²Œ ë°”ê¾¸ë©´ ë ë“¯?
     {
-        //EquipCode°¡ 0ÀÏ¶§(ºñ¾îÀÖÀ»¶§)¿¹¿Ü Ã³¸®µµ ÇØ¾ßµÉ°Í °°Àºµ¥?
 
-
-
-        //¿©±â¿¡¼­ EquipmentCode°¡ µé¾î¿À´Â Á¤º¸´ë·Î EquipmentSO¸¦ ¸ÂÃç¼­ retrun ÇØÁÖ¸é µÉµíÇÔ
-
-        //IncreaseState => StateType * 10 + EquipType
-        //PlayerEqupSlot => EquipTier * 10 + EquipMultiType
-        //PlayerEquipDetailSo => StateType * 10 + EquipType
-        //EquipSprite => EquipTier * 100 + StateType * 10 + EquipType
-        /*
-        public int EquipmentType;//ÀåºñÀÇ Á¾·ù -> ½ÊÀÇ ÀÚ¸®                          //
-        public int EquipmentTier;//ÀåºñÀÇ Æ¼¾î -> ÃµÀÇ ÀÚ¸®                          //
-        public int EquipmentCode;//ÀåºñÄÚµå? ÀÌ°Ç ±»ÀÌ? ->ÀÌ°Ç 0À¸·Î            //
-        public string EquipmentName;//Àåºñ ÀÌ¸§ = Àåºñ Æ¼¾î Á¾·ù + °ö ¼ºÇâ + ÀåºñÀÌ¸§-> PlayerEquipDetailSo¿¡¼­        //
-        public float SpendTiredness;//»ç¿ëÇÏ´Â ÇÇ·Îµµ, ÁÖ¾îÁø Á¤º¸¿¡ Æ¼¾î °öÇÏ±â, (0Æ¼¾î Á¦¿Ü)-> EqupIncreaseSO¿¡¼­     //
-        public EquipmentSlot[] EquipmentSlots; // ½½·Ô ->EqupSlotSo¿¡¼­                 //
-        public Sprite EquipmentImage;//Àåºñ ÀÌ¹ÌÁö -> EquipSpriteSo¿¡¼­                //
-        public int AddSTRAmount;//º¯È­ÇÏ´Â Èû ¼öÄ¡ , ÁÖ¾îÁø Á¤º¸¿¡ Æ¼¾î °öÇÏ±â ½ºÅÈ °ü·ÃÀº ´Ù ¶È°°ÀÌ->EqupIncreaseSO¿¡¼­
-        public int AddDURAmount;//º¯È­ÇÏ´Â ³»±¸ ¼öÄ¡ ->EqupIncreaseSO¿¡¼­
-        public int AddRESAmount;//º¯È­ÇÏ´Â È¸º¹ ¼öÄ¡ ->EqupIncreaseSO¿¡¼­
-        public int AddSPDAmount;//º¯È­ÇÏ´Â ¼Óµµ ¼öÄ¡ ->EqupIncreaseSO¿¡¼­
-        public int AddLUKAmount;//º¯È­ÇÏ´Â Çà¿î ¼öÄ¡ ->EqupIncreaseSO¿¡¼­
-        public float AddHPAmount;//º¯È­ÇÏ´Â Ã¼·Â ¼öÄ¡ -> 0À¸·Î
-        public float AddTirednessAmount;//º¯È­ÇÏ´Â ÇÇ·Îµµ ¼öÄ¡ -> 0À¸·Î
-        [TextArea(10, 20)]
-        public string EquipmentDetail;//Àåºñ »ó¼¼ ¼³¸í -> EquipDetailSo¿¡¼­
-         * */
-
-        //½Å¹ß°ú Àå½Å±¸ÀÇ °æ¿ì ¾ÈÁ¤ÀûÀÎ, ÀÌ·±°Å »©°í, ½½·Ôµµ »©°í
+        //ì‹ ë°œê³¼ ì¥ì‹ êµ¬ì˜ ê²½ìš° ì•ˆì •ì ì¸, ì´ëŸ°ê±° ë¹¼ê³ , ìŠ¬ë¡¯ë„ ë¹¼ê³ 
         int PlayerEquipEventType = (EquipCode / IsEventEquipMultipleNum);
         int PlayerEquipTier = (EquipCode / TierMultipleNum) % 10;
         int PlayerEquipStateType = (EquipCode / StateTypeMultipleNum) % 10;
         int PlayerEquipType = (EquipCode / TypeMultipleNum) % 10;
         int PlayerEquipMultiType = (EquipCode % 10);
         EquipmentInfo AssembleEquip = new EquipmentInfo();
-        //º¸°üÇÏ°í ÀÖ´Â ÄÚµåÁß ÇÏ³ª¶óµµ false(ÀÖÁö ¾ÊÀ½ÀÌ ¶á´Ù¸é)nullÀ» ¸®ÅÏÇÏ°Ô
+        //ë³´ê´€í•˜ê³  ìˆëŠ” ì½”ë“œì¤‘ í•˜ë‚˜ë¼ë„ false(ìˆì§€ ì•ŠìŒì´ ëœ¬ë‹¤ë©´)nullì„ ë¦¬í„´í•˜ê²Œ
         if (EquipCode == 0 || !CheckIsCorrectEquipCode(EquipCode))
-        {//¿ÇÁö ¾ÊÀº ÄÚµå°¡ µé¾î¿À¸é ÀÌ°É ¸®ÅÏÇÏ°Ô ÇÏ°í ½ÍÀºµ¥....//µÑÁß ÇÏ³ª¶óµµ true¸é empty ¹İÈ¯
+        {//ì˜³ì§€ ì•Šì€ ì½”ë“œê°€ ë“¤ì–´ì˜¤ë©´ ì´ê±¸ ë¦¬í„´í•˜ê²Œ í•˜ê³  ì‹¶ì€ë°....//ë‘˜ì¤‘ í•˜ë‚˜ë¼ë„ trueë©´ empty ë°˜í™˜
             AssembleEquip.EquipmentType = PlayerEventEquip[0].EquipmentType;
             AssembleEquip.EquipmentTier = PlayerEventEquip[0].EquipmentTier;
             AssembleEquip.EquipmentCode = PlayerEventEquip[0].EquipmentCode;
@@ -413,8 +394,8 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         
         if (PlayerEquipEventType == (int)EIsEventEquip.EventEquip)
         {
-            //¿©±â¼­ ÀÌº¥Æ® Àåºñ´Â ÀûÀıÇÏ°Ô °¡°øÀ» ÇØ¾ßÇÒµí
-            //TypeÇÏ°í Tier´Â ²À ¸Â°Ô µé¾î°¡ ÀÖ¾î¾ßÇÔ
+            //ì—¬ê¸°ì„œ ì´ë²¤íŠ¸ ì¥ë¹„ëŠ” ì ì ˆí•˜ê²Œ ê°€ê³µì„ í•´ì•¼í• ë“¯
+            //Typeí•˜ê³  TierëŠ” ê¼­ ë§ê²Œ ë“¤ì–´ê°€ ìˆì–´ì•¼í•¨
             AssembleEquip.EquipmentType = PlayerEquipType;
             AssembleEquip.EquipmentTier = PlayerEquipTier;
             AssembleEquip.EquipmentCode = 0;
@@ -438,10 +419,21 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.EquipmentType = PlayerEquipType;
         AssembleEquip.EquipmentTier = PlayerEquipTier;
         AssembleEquip.EquipmentCode = 0;
-        AssembleEquip.EquipmentName = PlayerEquipTierName[PlayerEquipTier] + PlayerEquipMultiTypeName[PlayerEquipMultiType] +
-            GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentName;
+        if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+        {//ì˜ì–´ë¡œ
+            AssembleEquip.EquipmentName = PlayerEquipTierNameEN[PlayerEquipTier] + PlayerEquipMultiTypeNameEN[PlayerEquipMultiType];
+        }
+        else if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+        {//ì¼ë³¸ì–´ë¡œ
+            AssembleEquip.EquipmentName = PlayerEquipTierNameJA[PlayerEquipTier] + PlayerEquipMultiTypeNameJA[PlayerEquipMultiType];
+        }
+        else
+        {//í•œê¸€ë¡œ
+            AssembleEquip.EquipmentName = PlayerEquipTierNameKO[PlayerEquipTier] + PlayerEquipMultiTypeNameKO[PlayerEquipMultiType];
+        }
+            AssembleEquip.EquipmentName += GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentName;
 
-        if (PlayerEquipTier < 1)//0Æ¼¾î
+        if (PlayerEquipTier < 1)//0í‹°ì–´
         {
             AssembleEquip.SpendTiredness = GetEquipIncreseInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).SpendTired;
             AssembleEquip.AddSTRAmount = 0;
@@ -508,20 +500,13 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         }
 
         return AssembleEquip;
-        /*
-        if (!EquipmentStorage.ContainsKey(EquipCode))//EquipmentStorage¿¡ ¾øÀ¸¸é 0¹ø Àåºñ(¾Æ¹«°Íµµ ¾Æ´Ñ°Í)Àü´Ş
-        {
-            return EquipmentStorage[0];
-        }
-        return EquipmentStorage[EquipCode];
-        */
     }
 
     public EquipmentInfo GetMonEquipmentInfo(int EquipmentCode)
     {
         EquipmentInfo AssembleEquip = new EquipmentInfo();
 
-        if (!MonEquipmentStorage.ContainsKey(EquipmentCode))//MonEquipmentStroage¿¡ ¾øÀ¸¸é 0¹ø Àåºñ(¾Æ¹«°Íµµ ¾Æ´Ñ°Í)Àü´Ş
+        if (!MonEquipmentStorage.ContainsKey(EquipmentCode))//MonEquipmentStroageì— ì—†ìœ¼ë©´ 0ë²ˆ ì¥ë¹„(ì•„ë¬´ê²ƒë„ ì•„ë‹Œê²ƒ)ì „ë‹¬
         {
             EquipmentCode = 0;
         }
@@ -540,7 +525,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.AddLUKAmount = MonEquipmentStorage[EquipmentCode].AddLUKAmount;
         AssembleEquip.AddHPAmount = MonEquipmentStorage[EquipmentCode].AddHPAmount;
         AssembleEquip.AddTirednessAmount = MonEquipmentStorage[EquipmentCode].AddTirednessAmount;
-        //94071 ºĞ³ë Ã¹¹øÂ° Æ¯ÇàÀº µû·Î È®ÀÎ ÇØÁà¾ßÇÔ
+        //94071 ë¶„ë…¸ ì²«ë²ˆì§¸ íŠ¹í–‰ì€ ë”°ë¡œ í™•ì¸ í•´ì¤˜ì•¼í•¨
         if(EquipmentCode == 94071)
         {
             string BeforeString = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
@@ -566,10 +551,10 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         return AssembleEquip;
     }
 
-    public int GetFixedTierRandomEquipmnet(int Tier)//Á¤ÇØÁø Æ¼¾î¿¡¼­ ·£´ıÇÑ Àåºñ ¸®ÅÏ
+    public int GetFixedTierRandomEquipmnet(int Tier)//ì •í•´ì§„ í‹°ì–´ì—ì„œ ëœë¤í•œ ì¥ë¹„ ë¦¬í„´
     {
-        //Æ¼¾î°¡ Á¤ÇØÁ® ÀÖ´Ù¸é -> ÃµÀÇ ÀÚ¸®¼ö´Â Á¤ÇØÁø°ÍÀÌ´Ù
-        //±×·¸´Ù¸é ¹éÀÇ ÀÚ¸® (0~7)(Àåºñ ¼ºÇâ), ½ÊÀÇ ÀÚ¸® (0~4)(ÀåºñÁ¾·ù), ÀÏÀÇ ÀÚ¸® (1~3(½Å¹ß È¤Àº Àå½Å±¸¶ó¸é 0)) (°ö¼ºÇâ)À» Á¤ÇÑ´Ù.
+        //í‹°ì–´ê°€ ì •í•´ì ¸ ìˆë‹¤ë©´ -> ì²œì˜ ìë¦¬ìˆ˜ëŠ” ì •í•´ì§„ê²ƒì´ë‹¤
+        //ê·¸ë ‡ë‹¤ë©´ ë°±ì˜ ìë¦¬ (0~7)(ì¥ë¹„ ì„±í–¥), ì‹­ì˜ ìë¦¬ (0~4)(ì¥ë¹„ì¢…ë¥˜), ì¼ì˜ ìë¦¬ (1~3(ì‹ ë°œ í˜¹ì€ ì¥ì‹ êµ¬ë¼ë©´ 0)) (ê³±ì„±í–¥)ì„ ì •í•œë‹¤.
         int RandEquipNum = 0;
         int EquipStateType = Random.Range((int)EEquipStateType.StateSTR, (int)EEquipStateType.StateNormal + 1);
         int EquipType = Random.Range((int)EEquipType.TypeWeapon, (int)EEquipType.TypeAcc + 1);
@@ -585,9 +570,9 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     }
 
     public int GetFixedTierNTypeRandomEquipment(int Tier, EEquipType EquipType)
-    {//Æ¼¾î¿Í Àåºñ Á¾·ù°¡ Á¤ÇØÁø °÷¿¡¼­ ·£´ı
-        //Æ¼¾î¿Í Àåºñ Á¾·ù°¡ Á¤ÇØ Á³´Ù -> ÃµÀÇ ÀÚ¸®¼ö¿Í ½ÊÀÇ ÀÚ¸®¼ö°¡ Á¤ÇØÁ³´Ù.
-        //±×·¸´Ù¸é ¹éÀÇ ÀÚ¸® (0~7)(Àåºñ ¼ºÇâ), ÀÏÀÇ ÀÚ¸® (1~3(½Å¹ß È¤Àº Àå½Å±¸¶ó¸é 0)) (°ö¼ºÇâ)À» Á¤ÇÑ´Ù.
+    {//í‹°ì–´ì™€ ì¥ë¹„ ì¢…ë¥˜ê°€ ì •í•´ì§„ ê³³ì—ì„œ ëœë¤
+        //í‹°ì–´ì™€ ì¥ë¹„ ì¢…ë¥˜ê°€ ì •í•´ ì¡Œë‹¤ -> ì²œì˜ ìë¦¬ìˆ˜ì™€ ì‹­ì˜ ìë¦¬ìˆ˜ê°€ ì •í•´ì¡Œë‹¤.
+        //ê·¸ë ‡ë‹¤ë©´ ë°±ì˜ ìë¦¬ (0~7)(ì¥ë¹„ ì„±í–¥), ì¼ì˜ ìë¦¬ (1~3(ì‹ ë°œ í˜¹ì€ ì¥ì‹ êµ¬ë¼ë©´ 0)) (ê³±ì„±í–¥)ì„ ì •í•œë‹¤.
         int RandEquipNum = 0;
 
         int EquipStateType = Random.Range((int)EEquipStateType.StateSTR, (int)EEquipStateType.StateNormal + 1);
@@ -601,30 +586,30 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         return RandEquipNum;
     }
 
-    public int GetGamblingEquipmentCode(int GamblingLevel)//ÇÃ·¹ÀÌ¾îÀÇ °×ºí¸µ ·¹º§¿¡ ¸ÂÃç¼­ ·£´ıÇÑ ÀåºñÀÇ ÄÚµå¸¦ ¸®ÅÏÇÔ//ÀÌ°Ô º¸Åë Àåºñ¸¦ ¾ò´Â°ÍÀÓ
-    {//±×·¯´Ï±î ¿©±â¼­ Early°­È­¿¡ µû¸¥ 1Æ¼¾î »ó½ÂµÈ ÀåºñÀÇ È¹µæÀÌ È®·üÀûÀ¸·Î ÀÏ¾î³ª¾ßÇÔ
-        int RandNum = Random.Range(0, 100);//0ºÎÅÍ 99±îÁö ÇÏ³ª°¡ ³ª¿È
-        int TierOneNum = EquipmentGamblingDetail[GamblingLevel, 0];//0 <= RandNum < TierOneNum ±îÁö °É¸®¸é 1Æ¼¾î Àåºñ
-        int TierTwoNum = EquipmentGamblingDetail[GamblingLevel, 1] + TierOneNum;//TierOneNum <= RandNum < TierTwoNum ±îÁö °É¸®¸é 2Æ¼¾î//³ª¸ÓÁö µ¿ÀÏ
+    public int GetGamblingEquipmentCode(int GamblingLevel)//í”Œë ˆì´ì–´ì˜ ê²œë¸”ë§ ë ˆë²¨ì— ë§ì¶°ì„œ ëœë¤í•œ ì¥ë¹„ì˜ ì½”ë“œë¥¼ ë¦¬í„´í•¨//ì´ê²Œ ë³´í†µ ì¥ë¹„ë¥¼ ì–»ëŠ”ê²ƒì„
+    {//ê·¸ëŸ¬ë‹ˆê¹Œ ì—¬ê¸°ì„œ Earlyê°•í™”ì— ë”°ë¥¸ 1í‹°ì–´ ìƒìŠ¹ëœ ì¥ë¹„ì˜ íšë“ì´ í™•ë¥ ì ìœ¼ë¡œ ì¼ì–´ë‚˜ì•¼í•¨
+        int RandNum = Random.Range(0, 100);//0ë¶€í„° 99ê¹Œì§€ í•˜ë‚˜ê°€ ë‚˜ì˜´
+        int TierOneNum = EquipmentGamblingDetail[GamblingLevel, 0];//0 <= RandNum < TierOneNum ê¹Œì§€ ê±¸ë¦¬ë©´ 1í‹°ì–´ ì¥ë¹„
+        int TierTwoNum = EquipmentGamblingDetail[GamblingLevel, 1] + TierOneNum;//TierOneNum <= RandNum < TierTwoNum ê¹Œì§€ ê±¸ë¦¬ë©´ 2í‹°ì–´//ë‚˜ë¨¸ì§€ ë™ì¼
         int TierThreeNum = EquipmentGamblingDetail[GamblingLevel, 2] + TierTwoNum;
         int TierFourNum = EquipmentGamblingDetail[GamblingLevel, 3] + TierThreeNum;
         int TierFiveNum = EquipmentGamblingDetail[GamblingLevel, 4] + TierFourNum;
 
-        //¸¸¾à JsonReadWriteManagerÀÇ E_info.LukÀÇ ·¹º§ÀÌ 7ÀÌ»óÀÌ¶ó¸é 5ÆÛ¼¾Æ® È®·ü·Î ¹ß»ı
+        //ë§Œì•½ JsonReadWriteManagerì˜ E_info.Lukì˜ ë ˆë²¨ì´ 7ì´ìƒì´ë¼ë©´ 5í¼ì„¼íŠ¸ í™•ë¥ ë¡œ ë°œìƒ
         if (JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel >= 7)
         {
             int RandLuk = Random.Range(0, 99);
-            if(RandLuk < 5)//Àåºñ 1Æ¼¾î »ó½Â ´çÃ· -> 1Æ¼¾î¶ó¸é 2Æ¼¾î·Î....5Æ¼¾î ¶ó¸é 6Æ¼¾î·Î
+            if(RandLuk < 5)//ì¥ë¹„ 1í‹°ì–´ ìƒìŠ¹ ë‹¹ì²¨ -> 1í‹°ì–´ë¼ë©´ 2í‹°ì–´ë¡œ....5í‹°ì–´ ë¼ë©´ 6í‹°ì–´ë¡œ
             {
-                if (RandNum < TierOneNum)//1Æ¼¾î´Â 2Æ¼¾î·Î
+                if (RandNum < TierOneNum)//1í‹°ì–´ëŠ” 2í‹°ì–´ë¡œ
                     RandNum = TierOneNum + 1;
-                else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//2Æ¼¾î´Â 3Æ¼¾î·Î
+                else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//2í‹°ì–´ëŠ” 3í‹°ì–´ë¡œ
                     RandNum = TierTwoNum + 1;
-                else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//3Æ¼¾î´Â 4Æ¼¾î·Î
+                else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//3í‹°ì–´ëŠ” 4í‹°ì–´ë¡œ
                     RandNum = TierThreeNum + 1;
-                else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//4Æ¼¾î´Â 5Æ¼¾î·Î
+                else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//4í‹°ì–´ëŠ” 5í‹°ì–´ë¡œ
                     RandNum = TierFourNum + 1;
-                else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//5Æ¼¾î´Â 6Æ¼¾î·Î
+                else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//5í‹°ì–´ëŠ” 6í‹°ì–´ë¡œ
                     RandNum = TierFiveNum + 1;
             }
         }
@@ -632,18 +617,18 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         int EquipStateType = 0;
         int EquipType = 0;
         int EquipMultiType = 0;
-        //Æ¼¾î = ÃµÀÇ ÀÚ¸® // Àåºñ ¼ºÇâ = ¹éÀÇ ÀÚ¸® // Àåºñ Á¾·ù = ½ÊÀÇ ÀÚ¸® // °ö ¼ºÇâ = ÀÏÀÇÀÚ¸®
-        if (RandNum < TierOneNum)//¿©±â¿¡ µé¾î°¡¸é 1Æ¼¾î Àåºñ     0¹Ì¸¸
+        //í‹°ì–´ = ì²œì˜ ìë¦¬ // ì¥ë¹„ ì„±í–¥ = ë°±ì˜ ìë¦¬ // ì¥ë¹„ ì¢…ë¥˜ = ì‹­ì˜ ìë¦¬ // ê³± ì„±í–¥ = ì¼ì˜ìë¦¬
+        if (RandNum < TierOneNum)//ì—¬ê¸°ì— ë“¤ì–´ê°€ë©´ 1í‹°ì–´ ì¥ë¹„     0ë¯¸ë§Œ
             EquipTier = (int)EEquipTier.TierOne;
-        else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//¿©±â 2Æ¼¾î    0ÀÌ»ó 0¹Ì¸¸
+        else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//ì—¬ê¸° 2í‹°ì–´    0ì´ìƒ 0ë¯¸ë§Œ
             EquipTier = (int)EEquipTier.TierTwo;
-        else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//¿©±â 3Æ¼¾î   0ÀÌ»ó 53¹Ì¸¸
+        else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//ì—¬ê¸° 3í‹°ì–´   0ì´ìƒ 53ë¯¸ë§Œ
             EquipTier = (int)EEquipTier.TierThree;
-        else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//¿©±â 4Æ¼¾î  53ÀÌ»ó 89 ¹Ì¸¸
+        else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//ì—¬ê¸° 4í‹°ì–´  53ì´ìƒ 89 ë¯¸ë§Œ
             EquipTier = (int)EEquipTier.TierFour;
-        else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//¿©±â 5Æ¼¾î   89ÀÌ»ó 100¹Ì¸¸
+        else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//ì—¬ê¸° 5í‹°ì–´   89ì´ìƒ 100ë¯¸ë§Œ
             EquipTier = (int)EEquipTier.TierFive;
-        else if (RandNum >= TierFiveNum)//Æ¼¾î 6
+        else if (RandNum >= TierFiveNum)//í‹°ì–´ 6
             EquipTier = (int)EEquipTier.TierSix;
 
         EquipStateType = Random.Range((int)EEquipStateType.StateSTR, (int)EEquipStateType.StateNormal + 1);
@@ -661,9 +646,9 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     public int GetGamblingTierCode(int GamblingLevel)
     {
         int ResultTierCode = 1;
-        int RandNum = Random.Range(0, 100);//0ºÎÅÍ 99±îÁö ÇÏ³ª°¡ ³ª¿È
-        int TierOneNum = EquipmentGamblingDetail[GamblingLevel, 0];//0 <= RandNum < TierOneNum ±îÁö °É¸®¸é 1Æ¼¾î Àåºñ
-        int TierTwoNum = EquipmentGamblingDetail[GamblingLevel, 1] + TierOneNum;//TierOneNum <= RandNum < TierTwoNum ±îÁö °É¸®¸é 2Æ¼¾î//³ª¸ÓÁö µ¿ÀÏ
+        int RandNum = Random.Range(0, 100);//0ë¶€í„° 99ê¹Œì§€ í•˜ë‚˜ê°€ ë‚˜ì˜´
+        int TierOneNum = EquipmentGamblingDetail[GamblingLevel, 0];//0 <= RandNum < TierOneNum ê¹Œì§€ ê±¸ë¦¬ë©´ 1í‹°ì–´ ì¥ë¹„
+        int TierTwoNum = EquipmentGamblingDetail[GamblingLevel, 1] + TierOneNum;//TierOneNum <= RandNum < TierTwoNum ê¹Œì§€ ê±¸ë¦¬ë©´ 2í‹°ì–´//ë‚˜ë¨¸ì§€ ë™ì¼
         int TierThreeNum = EquipmentGamblingDetail[GamblingLevel, 2] + TierTwoNum;
         int TierFourNum = EquipmentGamblingDetail[GamblingLevel, 3] + TierThreeNum;
         int TierFiveNum = EquipmentGamblingDetail[GamblingLevel, 4] + TierFourNum;
@@ -677,17 +662,17 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
             TierFiveNum = EquipmentGamblingDetail_Luck[GamblingLevel, 4] + TierFourNum;
         }
 
-        if (RandNum < TierOneNum)//¿©±â¿¡ µé¾î°¡¸é 1Æ¼¾î Àåºñ     0¹Ì¸¸
+        if (RandNum < TierOneNum)//ì—¬ê¸°ì— ë“¤ì–´ê°€ë©´ 1í‹°ì–´ ì¥ë¹„     0ë¯¸ë§Œ
             ResultTierCode = (int)EEquipTier.TierOne;
-        else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//¿©±â 2Æ¼¾î    0ÀÌ»ó 0¹Ì¸¸
+        else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//ì—¬ê¸° 2í‹°ì–´    0ì´ìƒ 0ë¯¸ë§Œ
             ResultTierCode = (int)EEquipTier.TierTwo;
-        else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//¿©±â 3Æ¼¾î   0ÀÌ»ó 53¹Ì¸¸
+        else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//ì—¬ê¸° 3í‹°ì–´   0ì´ìƒ 53ë¯¸ë§Œ
             ResultTierCode = (int)EEquipTier.TierThree;
-        else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//¿©±â 4Æ¼¾î  53ÀÌ»ó 89 ¹Ì¸¸
+        else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//ì—¬ê¸° 4í‹°ì–´  53ì´ìƒ 89 ë¯¸ë§Œ
             ResultTierCode = (int)EEquipTier.TierFour;
-        else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//¿©±â 5Æ¼¾î   89ÀÌ»ó 100¹Ì¸¸
+        else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//ì—¬ê¸° 5í‹°ì–´   89ì´ìƒ 100ë¯¸ë§Œ
             ResultTierCode = (int)EEquipTier.TierFive;
-        else if (RandNum >= TierFiveNum)//Æ¼¾î 6
+        else if (RandNum >= TierFiveNum)//í‹°ì–´ 6
             ResultTierCode = (int)EEquipTier.TierSix;
 
         return ResultTierCode;

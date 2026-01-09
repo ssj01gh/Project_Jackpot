@@ -218,7 +218,7 @@ public class PlaySceneUIManager : MonoBehaviour
             return;
         }
         EDI_UI.gameObject.transform.position = ClickedButton.gameObject.transform.position;
-        EDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipCode), true);
+        EDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipCode), EquipCode, true);
     }
 
     public void MonEquipmentButtonClick()
@@ -256,7 +256,7 @@ public class PlaySceneUIManager : MonoBehaviour
         }
 
         MEDI_UI.gameObject.transform.position = ClickedButton.gameObject.transform.position;
-        MEDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetMonEquipmentInfo(EquipCode), false);
+        MEDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetMonEquipmentInfo(EquipCode), EquipCode, false);
     }
 
     public void PlayerDefeat()//지거나 게임에서 이기거나

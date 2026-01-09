@@ -25,6 +25,13 @@ public enum EPlayerRestQuality
     Perfect
 }
 
+public enum ELanguageNum
+{
+    Korean,
+    English,
+    Japanese
+}
+
 public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManager>
 {
     [HideInInspector]
