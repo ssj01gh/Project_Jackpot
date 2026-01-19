@@ -19,3 +19,13 @@ MonoBehaviour:
   EquipmentDetail: "\uD53C\uC758 \uC77C\uC871\uC758 \uB9C8\uBC95\uC73C\uB85C \uC81C\uB828\uD55C
     \uC138\uAC80\uC785\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"HPWE\"><color=green>\uD761\uD608</color></link> 3\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Rapier
+  EquipmnetDetailEN: 'A rapier forged with the magic of the Bloodline.
+
+
+    On Attack
+
+    Give
+    yourself 3 stack of <link="HPWE"><color=green>Lifesteal</color></link>.'
+  EquipmnetNameJA: "\u30EC\u30A4\u30D4\u30A2"
+  EquipmnetDetailJA: "\u8840\u306E\u4E00\u65CF\u306E\u9B54\u6CD5\u3067\u935B\u3048\u3089\u308C\u305F\u30EC\u30A4\u30D4\u30A2\u3067\u3059\u3002\n\n\u653B\u6483\u6642\n\u81EA\u5206\u306B<link=\"HPWE\"><color=green>\u5438\u8840</color></link>3\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

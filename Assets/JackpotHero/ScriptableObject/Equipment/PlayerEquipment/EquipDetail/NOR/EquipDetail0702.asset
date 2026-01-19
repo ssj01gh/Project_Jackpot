@@ -18,3 +18,8 @@ MonoBehaviour:
   EquipmentName: "\uCCA0 \uD22C\uAD6C"
   EquipmentDetail: "\uC0AC\uC6A9\uC790\uB97C \uD53C\uB85C\uB3C4\uB97C \uD480\uC5B4\uC8FC\uB294
     \uB9C8\uBC95\uC774 \uAC78\uB9B0 \uD22C\uAD6C\uC785\uB2C8\uB2E4."
+  EquipmentNameEN: Iron Helm
+  EquipmnetDetailEN: "A helmet enchanted with magic that relieves the wearer\u2019s
+    fatigue."
+  EquipmnetNameJA: "\u9244\u306E\u515C"
+  EquipmnetDetailJA: "\u4F7F\u7528\u8005\u306E\u75B2\u52B4\u3092\u548C\u3089\u3052\u308B\u9B54\u6CD5\u304C\u304B\u3051\u3089\u308C\u305F\u515C\u3067\u3059\u3002"

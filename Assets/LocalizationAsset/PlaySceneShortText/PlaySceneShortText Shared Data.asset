@@ -115,6 +115,42 @@ MonoBehaviour:
     m_Key: PS_SCStageError
     m_Metadata:
       m_Items: []
+  - m_Id: 4233811780562944
+    m_Key: PS_SC_WeaponSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233813244375040
+    m_Key: PS_SC_ArmorSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233814599135232
+    m_Key: PS_SC_HelmetSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233815903563776
+    m_Key: PS_SC_BootsSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233817161854976
+    m_Key: PS_SC_AccSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234163695251456
+    m_Key: PS_SC_MonWeaponSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234164869656576
+    m_Key: PS_SC_MonArmorSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234165775626240
+    m_Key: PS_SC_MonAccSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234240392294400
+    m_Key: PS_SC_EquipSTAError
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

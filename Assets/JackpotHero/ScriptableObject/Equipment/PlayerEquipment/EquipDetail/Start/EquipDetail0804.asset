@@ -15,6 +15,12 @@ MonoBehaviour:
   IsEventEquip: 1
   EquipStateType: 8
   EquipType: 4
-  EquipmentName: "\uC7A5\uC2E0\uAD6C"
+  EquipmentName: "\uD32C\uB358\uD2B8"
   EquipmentDetail: "\uC2DC\uC791\uC758 \uC7A5\uC2E0\uAD6C\uC785\uB2C8\uB2E4.\n\uC790\uC2E0\uC744
     \uAFB8\uBBF8\uB294\uB370\uC5D0 \uC0AC\uC6A9\uB429\uB2C8\uB2E4."
+  EquipmentNameEN: Pendant
+  EquipmnetDetailEN: 'An accessory of beginnings.
+
+    Used for personal adornment.'
+  EquipmnetNameJA: "\u30DA\u30F3\u30C0\u30F3\u30C8"
+  EquipmnetDetailJA: "\u59CB\u307E\u308A\u306E\u88C5\u98FE\u54C1\u3067\u3059\u3002\n\u81EA\u5206\u3092\u98FE\u308B\u305F\u3081\u306E\u3082\u306E\u3067\u3059\u3002"

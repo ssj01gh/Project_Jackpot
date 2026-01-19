@@ -414,7 +414,6 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
 
             return AssembleEquip;
         }
-
         //(number / (int)Mathf.Pow(10, position)) % 10;
         AssembleEquip.EquipmentType = PlayerEquipType;
         AssembleEquip.EquipmentTier = PlayerEquipTier;
@@ -498,7 +497,6 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
                 AssembleEquip.EquipmentDetail = BeforeDetailString;
                 break;
         }
-
         return AssembleEquip;
     }
 

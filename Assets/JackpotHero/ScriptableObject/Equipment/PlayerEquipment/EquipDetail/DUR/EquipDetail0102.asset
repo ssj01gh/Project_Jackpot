@@ -17,6 +17,11 @@ MonoBehaviour:
   EquipType: 2
   EquipmentName: "\uD310\uAE08 \uD22C\uAD6C"
   EquipmentDetail: "\uBA38\uB9AC\uC640 \uC5BC\uAD74\uC744 \uBCF4\uD638\uD574 \uC8FC\uB294
-    \uD22C\uAD6C\uC785\uB2C8\uB2E4.\n\n\uD734\uC2DD\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
+    \uD22C\uAD6C\uC785\uB2C8\uB2E4.\n\nSTA\uD68C\uBCF5\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"DURHE\"><color=green>\uC7AC\uC0DD\uD615 \uAC11\uC637</color></link> 5\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Plate Helm
+  EquipmnetDetailEN: "A helmet that protects the head and face.\n\nOn STA Recovery\nGive
+    yourself 5 stack of <link=\"DURHE\"><color=green>RegenArmor</color></link>.\r"
+  EquipmnetNameJA: "\u30D7\u30EC\u30FC\u30C8\u30D8\u30EB\u30E0"
+  EquipmnetDetailJA: "\u982D\u3068\u9854\u3092\u5B88\u308B\u515C\u3067\u3059\u3002\n\nSTA\u56DE\u5FA9\u6642\n\u81EA\u5206\u306B<link=\"DURHE\"><color=green>\u518D\u751F\u306E\u93A7</color></link>3\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

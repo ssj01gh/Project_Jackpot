@@ -15,8 +15,18 @@ MonoBehaviour:
   IsEventEquip: 1
   EquipStateType: 5
   EquipType: 3
-  EquipmentName: "\uC77C\uC871\uC758 \uBC1C \uC7A5\uC2DD"
+  EquipmentName: "\uC77C\uC871\uC758 \uBC1C\uBAA9\uC7A5\uC2DD"
   EquipmentDetail: "\uD53C\uC758 \uC77C\uC871\uC758 \uB9C8\uBC95\uC73C\uB85C \uB9CC\uB4E0
-    \uBD89\uC740\uC0C9 \uBC1C \uC7A5\uC2DD\uC785\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
-    <link=\"HPBO\"><color=green>\uBD88\uC0AC</color></link> {HPB}\uC2A4\uD0DD\uC744
-    \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    \uBD89\uC740\uC0C9 \uBC1C\uBAA9 \uC7A5\uC2DD\uC785\uB2C8\uB2E4.\n\n\uC804\uD22C
+    \uC2DC\uC791\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C <link=\"HPBO\"><color=green>\uBD88\uC0AC</color></link>
+    {HPB}\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Tribal Anklet
+  EquipmnetDetailEN: 'A red anklet crafted with the magic of the Bloodline.
+
+
+    At
+    Battle Start
+
+    Give yourself {HPB} stack of <link="HPBO"><color=green>UnDead</color></link>.'
+  EquipmnetNameJA: "\u4E00\u65CF\u306E\u30A2\u30F3\u30AF\u30EC\u30C3\u30C8"
+  EquipmnetDetailJA: "\u8840\u306E\u4E00\u65CF\u306E\u9B54\u6CD5\u3067\u4F5C\u3089\u308C\u305F\u8D64\u3044\u30A2\u30F3\u30AF\u30EC\u30C3\u30C8\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\n\u81EA\u5206\u306B<link=\"HPBO\"><color=green>\u4E0D\u6B7B</color></link>{HPB}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

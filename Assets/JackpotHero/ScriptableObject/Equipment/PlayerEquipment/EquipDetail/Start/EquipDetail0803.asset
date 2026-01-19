@@ -15,6 +15,13 @@ MonoBehaviour:
   IsEventEquip: 1
   EquipStateType: 8
   EquipType: 3
-  EquipmentName: "\uC7A5\uD654"
-  EquipmentDetail: "\uC2DC\uC791\uC758 \uC7A5\uD654\uC785\uB2C8\uB2E4.\n\uBC1C\uC774
+  EquipmentName: "\uBD80\uCE20"
+  EquipmentDetail: "\uC2DC\uC791\uC758 \uBD80\uCE20\uC785\uB2C8\uB2E4.\n\uBC1C\uC774
     \uB2E4\uCE58\uC9C0 \uC54A\uAC8C \uB3C4\uC640\uC90D\uB2C8\uB2E4."
+  EquipmentNameEN: Boots
+  EquipmnetDetailEN: 'Boots of beginnings.
+
+    They help protect your feet from
+    injury.'
+  EquipmnetNameJA: "\u30D6\u30FC\u30C4"
+  EquipmnetDetailJA: "\u59CB\u307E\u308A\u306E\u30D6\u30FC\u30C4\u3067\u3059\u3002\n\u8DB3\u3092\u50B7\u3064\u3051\u306A\u3044\u3088\u3046\u306B\u3057\u3066\u304F\u308C\u307E\u3059\u3002"

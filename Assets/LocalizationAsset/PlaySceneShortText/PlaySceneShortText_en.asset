@@ -138,6 +138,42 @@ MonoBehaviour:
     m_Localized: The Truth
     m_Metadata:
       m_Items: []
+  - m_Id: 4234240392294400
+    m_Localized: ???
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233811780562944
+    m_Localized: 'STA on Attack : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233813244375040
+    m_Localized: 'STA on Defense : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233814599135232
+    m_Localized: STA is not consumed when recovering STA.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233815903563776
+    m_Localized: Boots do not consume STA.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233817161854976
+    m_Localized: Accessories do not consume STA.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234163695251456
+    m_Localized: "The monster\u2019s attack."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234164869656576
+    m_Localized: "The monster\u2019s defense."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234165775626240
+    m_Localized: "The monster\u2019s special attack."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

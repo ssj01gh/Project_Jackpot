@@ -20,3 +20,11 @@ MonoBehaviour:
     \uBF08 \uBAA9\uAC78\uC774\uC785\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"STRAC\"><color=green>\uB2E8\uB2E8\uD55C \uC8FC\uBA39</color></link> {STRA}\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Bone Necklace
+  EquipmnetDetailEN: 'Bone Necklace imbued with the shamanic magic of a warrior culture.
+
+
+    At
+    Battle Start'
+  EquipmnetNameJA: "\u9AA8\u306E\u9996\u98FE\u308A"
+  EquipmnetDetailJA: "\u6226\u58EB\u6587\u660E\u306E\u546A\u8853\u3092\u5BBF\u3057\u305F\u9AA8\u306E\u9996\u98FE\u308A\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642"

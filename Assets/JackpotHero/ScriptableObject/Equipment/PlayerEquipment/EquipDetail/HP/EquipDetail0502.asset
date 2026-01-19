@@ -15,8 +15,13 @@ MonoBehaviour:
   IsEventEquip: 1
   EquipStateType: 5
   EquipType: 2
-  EquipmentName: "\uC77C\uC871\uC758 \uBA38\uB9AC \uC7A5\uC2DD"
+  EquipmentName: "\uC77C\uC871\uC758 \uBA38\uB9AC\uC7A5\uC2DD"
   EquipmentDetail: "\uD53C\uC758 \uC77C\uC871\uC758 \uB9C8\uBC95\uC73C\uB85C \uB9CC\uB4E0
-    \uBD89\uC740\uC0C9 \uB9AC\uBCF8 \uC7A5\uC2DD\uC785\uB2C8\uB2E4.\n\n\uD734\uC2DD\uC2DC\n\uC801
+    \uBD89\uC740\uC0C9 \uB9AC\uBCF8\uC785\uB2C8\uB2E4.\n\nSTA\uD68C\uBCF5\uC2DC\n\uC801
     \uBAA8\uB450\uC5D0\uAC8C <link=\"HPHE\"><color=green>\uB9E4\uD639</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Tribal Ribbon
+  EquipmnetDetailEN: "A red ribbon crafted with the magic of the Bloodline.\n\nOn
+    STA Recovery\nGive all enemies 1 stack of <link=\"HPHE\"><color=green>Charm</color></link>.\r"
+  EquipmnetNameJA: "\u4E00\u65CF\u306E\u30EA\u30DC\u30F3"
+  EquipmnetDetailJA: "\u8840\u306E\u4E00\u65CF\u306E\u9B54\u6CD5\u3067\u4F5C\u3089\u308C\u305F\u8D64\u3044\u30EA\u30DC\u30F3\u3067\u3059\u3002\n\nSTA\u56DE\u5FA9\u6642\n\u3059\u3079\u3066\u306E\u6575\u306B<link=\"HPHE\"><color=green>\u9B45\u60D1</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002\r"

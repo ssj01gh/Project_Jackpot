@@ -20,3 +20,13 @@ MonoBehaviour:
     \uBC29\uD328\uC785\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"DURAC\"><color=green>\uB2E8\uB2E8\uD55C \uD53C\uBD80</color></link> {DURA}\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Tower Shield
+  EquipmnetDetailEN: 'A shield designed to cover the entire body.
+
+
+    At Battle
+    Start
+
+    Give yourself {DURA} stack of <link="DURAC"><color=green>ToughSkin</color></link>.'
+  EquipmnetNameJA: "\u30BF\u30EF\u30FC\u30B7\u30FC\u30EB\u30C9"
+  EquipmnetDetailJA: "\u5168\u8EAB\u3092\u8986\u3048\u308B\u3088\u3046\u306B\u4F5C\u3089\u308C\u305F\u30B7\u30FC\u30EB\u30C9\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\n\u81EA\u5206\u306B<link=\"DURAC\"><color=green>\u786C\u3044\u808C</color></link>{DURA}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"
