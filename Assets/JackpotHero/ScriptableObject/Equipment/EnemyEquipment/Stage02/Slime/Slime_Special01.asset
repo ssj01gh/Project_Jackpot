@@ -28,3 +28,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC2AC\uB77C\uC784\uC740 \uBD84\uC5F4\uC744 \uD1B5\uD574 \uBC88\uC2DD\uD569\uB2C8\uB2E4.\n\n\uD2B9\uC218
     \uD589\uB3D9 : \uBD84\uC5F4\n\uC0C8\uB07C \uC2AC\uB77C\uC784\uC744 \uC18C\uD658\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Split
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u5206\u88C2"
+  EquipmentDetailJA: 

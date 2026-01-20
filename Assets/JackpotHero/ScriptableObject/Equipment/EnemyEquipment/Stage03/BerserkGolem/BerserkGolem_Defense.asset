@@ -56,3 +56,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uACE8\uB818\uC758 \uBAB8\uC5D0 \uD750\uB974\uB294 \uC5D0\uB108\uC9C0\uB294
     \uBAB8\uCCB4\uB97C \uB354\uC6B1 \uB2E8\uB2E8\uD788 \uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Hardened Body
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u786C\u5316\u3057\u305F\u8EAB\u4F53"
+  EquipmentDetailJA: 

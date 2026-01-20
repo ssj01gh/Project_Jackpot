@@ -56,3 +56,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uB098\uBB34\uB97C \uD1B5\uC9F8\uB85C \uAC00\uACF5\uD55C \uB454\uAE30\uB97C
     \uD718\uB458\uB7EC \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Swing
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u632F\u308A\u56DE\u3057"
+  EquipmentDetailJA: 

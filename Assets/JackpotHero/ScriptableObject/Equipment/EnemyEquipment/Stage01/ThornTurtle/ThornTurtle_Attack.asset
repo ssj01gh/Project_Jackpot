@@ -37,3 +37,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uAC70\uB300\uD55C \uBAB8\uCCB4\uB97C \uBD80\uB52A\uD600 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Body Slam
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u4F53\u5F53\u305F\u308A"
+  EquipmentDetailJA: 

@@ -24,6 +24,9 @@ MonoBehaviour:
   EquipmnetDetailEN: 'A dagger that enables swift attacks.
 
 
-    On Attack'
+    On Attack
+
+    Give
+    yourself 1 stack of <link="SPDWE"><color=green>ChainAttack</color></link>.'
   EquipmnetNameJA: "\u30C0\u30AC\u30FC"
-  EquipmnetDetailJA: "\u7D20\u65E9\u3044\u653B\u6483\u3092\u53EF\u80FD\u306B\u3059\u308B\u30C0\u30AC\u30FC\u3067\u3059\u3002\n\n\u653B\u6483\u6642"
+  EquipmnetDetailJA: "\u7D20\u65E9\u3044\u653B\u6483\u3092\u53EF\u80FD\u306B\u3059\u308B\u30C0\u30AC\u30FC\u3067\u3059\u3002\n\n\u653B\u6483\u6642\n\u81EA\u5206\u306B<link=\"SPDWE\"><color=green>\u9023\u7D9A\u6253\u6483</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

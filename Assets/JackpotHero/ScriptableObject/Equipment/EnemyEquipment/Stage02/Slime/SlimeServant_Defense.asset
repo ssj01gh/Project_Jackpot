@@ -38,3 +38,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC5F0\uC57D\uD55C \uC824\uB9AC\uB85C \uC774\uB8E8\uC5B4\uC9C4
     \uBAB8\uCCB4\uB85C \uD53C\uD574\uB97C \uD761\uC218\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Shock Absorption
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u885D\u6483\u5438\u53CE"
+  EquipmentDetailJA: 

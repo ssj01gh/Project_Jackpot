@@ -24,6 +24,9 @@ MonoBehaviour:
   EquipmnetDetailEN: 'Sandals made from lightweight materials.
 
 
-    At Battle Start'
+    At Battle Start
+
+    Give
+    yourself {SPDB} stack of <link="SPDBO"><color=green>Haste</color></link>.'
   EquipmnetNameJA: "\u6697\u6BBA\u8005\u306E\u30B5\u30F3\u30C0\u30EB"
-  EquipmnetDetailJA: "\u8EFD\u3044\u7D20\u6750\u3067\u4F5C\u3089\u308C\u305F\u30B5\u30F3\u30C0\u30EB\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642"
+  EquipmnetDetailJA: "\u8EFD\u3044\u7D20\u6750\u3067\u4F5C\u3089\u308C\u305F\u30B5\u30F3\u30C0\u30EB\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\n\u81EA\u5206\u306B<link=\"SPDBO\"><color=green>\u8FC5\u901F</color></link>{SPDB}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

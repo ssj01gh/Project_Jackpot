@@ -39,3 +39,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uADF8\uB7F0 \uACF5\uACA9, \uC548\uB9DE\uC544 \uC904\uAC74\uB385~"
+  EquipmentNameEN: Missed Me!
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u5F53\u305F\u3089\u306A\u3044\u3088\u301C\u3093\uFF01"
+  EquipmentDetailJA: 

@@ -55,3 +55,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uC2EB\uC5B4! \uC544\uD508\uAC70 \uB354\uB294 \uC2EB\uC5B4!"
+  EquipmentNameEN: "I Don\u2019t Want It to Hurt..."
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u75DB\u3044\u306E\u30A4\u30E4\u3060\u2026"
+  EquipmentDetailJA: 

@@ -57,3 +57,7 @@ MonoBehaviour:
   EquipmentDetail: "\uD1B1\uC73C\uB85C \uC368\uB294 \uACF5\uACA9\uC744 \uC2E4\uD589\uD569\uB2C8\uB2E4.\n\n\uACF5\uACA9
     : \uC370\uAE30\n\uC801\uC5D0\uAC8C <link=\"MAttackDebbuff\"><color=green>\uACF5\uACA9\uB825
     \uAC10\uC18C</color></link> 2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Cleave
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u65AC\u308A\u88C2\u304D"
+  EquipmentDetailJA: 

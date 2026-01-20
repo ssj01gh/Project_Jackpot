@@ -42,3 +42,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uB545\uC5D0\uC11C \uBFCC\uB9AC\uB97C \uBF51\uC544\uB0B4 \uD6C4\uB824\uCE69\uB2C8\uB2E4."
+  EquipmentNameEN: Root Strike
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u6839\u53E9\u304D"
+  EquipmentDetailJA: 

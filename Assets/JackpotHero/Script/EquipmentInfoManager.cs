@@ -399,7 +399,6 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
             AssembleEquip.EquipmentType = PlayerEquipType;
             AssembleEquip.EquipmentTier = PlayerEquipTier;
             AssembleEquip.EquipmentCode = 0;
-            AssembleEquip.EquipmentName = PlayerEventEquip[EquipCode].EquipmentName;
             AssembleEquip.SpendTiredness = PlayerEventEquip[EquipCode].SpendTiredness;
             AssembleEquip.EquipmentSlots = PlayerEventEquip[EquipCode].EquipmentSlots;
             AssembleEquip.EquipmentImage = PlayerEventEquip[EquipCode].EquipmentImage;
@@ -410,7 +409,22 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
             AssembleEquip.AddLUKAmount = PlayerEventEquip[EquipCode].AddLUKAmount;
             AssembleEquip.AddHPAmount = PlayerEventEquip[EquipCode].AddHPAmount;
             AssembleEquip.AddTirednessAmount = PlayerEventEquip[EquipCode].AddTirednessAmount;
-            AssembleEquip.EquipmentDetail = PlayerEventEquip[EquipCode].EquipmentDetail;
+
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            {//영어로
+                AssembleEquip.EquipmentName = PlayerEventEquip[EquipCode].EquipmentNameEN;
+                AssembleEquip.EquipmentDetail = PlayerEventEquip[EquipCode].EquipmentDetailEN;
+            }
+            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            {//일본어로
+                AssembleEquip.EquipmentName = PlayerEventEquip[EquipCode].EquipmentNameJA;
+                AssembleEquip.EquipmentDetail = PlayerEventEquip[EquipCode].EquipmentDetailJA;
+            }
+            else
+            {//한글로
+                AssembleEquip.EquipmentName = PlayerEventEquip[EquipCode].EquipmentName;
+                AssembleEquip.EquipmentDetail = PlayerEventEquip[EquipCode].EquipmentDetail;
+            }
 
             return AssembleEquip;
         }
@@ -421,16 +435,18 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
         {//영어로
             AssembleEquip.EquipmentName = PlayerEquipTierNameEN[PlayerEquipTier] + PlayerEquipMultiTypeNameEN[PlayerEquipMultiType];
+            AssembleEquip.EquipmentName += GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentNameEN;
         }
         else if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
         {//일본어로
             AssembleEquip.EquipmentName = PlayerEquipTierNameJA[PlayerEquipTier] + PlayerEquipMultiTypeNameJA[PlayerEquipMultiType];
+            AssembleEquip.EquipmentName += GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmnetNameJA;
         }
         else
         {//한글로
             AssembleEquip.EquipmentName = PlayerEquipTierNameKO[PlayerEquipTier] + PlayerEquipMultiTypeNameKO[PlayerEquipMultiType];
-        }
             AssembleEquip.EquipmentName += GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentName;
+        }
 
         if (PlayerEquipTier < 1)//0티어
         {
@@ -454,9 +470,17 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.EquipmentImage = GetEquipSpriteInfo(PlayerEquipEventType, PlayerEquipTier, PlayerEquipStateType, PlayerEquipType).EquipSprite;
         AssembleEquip.AddHPAmount = 0;
         AssembleEquip.AddTirednessAmount = 0;
-        string BeforeDetailString = GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentDetail;
+
+        string BeforeDetailString = "";
+        if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            BeforeDetailString = GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmnetDetailEN;
+        else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            BeforeDetailString = GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmnetDetailJA;
+        else
+            BeforeDetailString = GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentDetail;
+        //GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentDetail;
         //AssembleEquip.EquipmentDetail = BeforeDetailString.Replace()
-        switch(PlayerEquipStateType)
+        switch (PlayerEquipStateType)
         {
             case (int)EEquipStateType.StateSTR:
                 int STRB = BootsBuffInt[(int)EEquipStateType.StateSTR] * PlayerEquipTier;
@@ -512,7 +536,8 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.EquipmentType = MonEquipmentStorage[EquipmentCode].EquipmentType;
         AssembleEquip.EquipmentTier = MonEquipmentStorage[EquipmentCode].EquipmentTier;
         AssembleEquip.EquipmentCode = MonEquipmentStorage[EquipmentCode].EquipmentCode;
-        AssembleEquip.EquipmentName = MonEquipmentStorage[EquipmentCode].EquipmentName;
+        //AssembleEquip.EquipmentName = MonEquipmentStorage[EquipmentCode].EquipmentName;
+        AssembleEquip.EquipmentName = "";
         AssembleEquip.SpendTiredness = MonEquipmentStorage[EquipmentCode].SpendTiredness;
         AssembleEquip.EquipmentSlots = MonEquipmentStorage[EquipmentCode].EquipmentSlots;
         AssembleEquip.EquipmentImage = MonEquipmentStorage[EquipmentCode].EquipmentImage;
@@ -523,8 +548,9 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.AddLUKAmount = MonEquipmentStorage[EquipmentCode].AddLUKAmount;
         AssembleEquip.AddHPAmount = MonEquipmentStorage[EquipmentCode].AddHPAmount;
         AssembleEquip.AddTirednessAmount = MonEquipmentStorage[EquipmentCode].AddTirednessAmount;
+        AssembleEquip.EquipmentDetail = "";
         //94071 분노 첫번째 특행은 따로 확인 해줘야함
-        if(EquipmentCode == 94071)
+        if (EquipmentCode == 94071)
         {
             string BeforeString = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
             string WrathTag = "";

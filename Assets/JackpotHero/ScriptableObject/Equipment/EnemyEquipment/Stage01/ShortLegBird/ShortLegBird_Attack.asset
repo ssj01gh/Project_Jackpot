@@ -38,3 +38,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uBA38\uB9AC\uB97C \uBE60\uB974\uAC8C \uC6C0\uC9C1\uC5EC \uC801\uC744
     \uCACD\uB2C8\uB2E4."
+  EquipmentNameEN: Peck
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u3064\u3064\u304D"
+  EquipmentDetailJA: 

@@ -38,3 +38,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC7AC\uBE60\uB978 \uBAB8\uB180\uB9BC\uC73C\uB85C \uD53C\uD574\uB97C
     \uC904\uC785\uB2C8\uB2E4."
+  EquipmentNameEN: Evasion
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u56DE\u907F"
+  EquipmentDetailJA: 

@@ -40,3 +40,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC740\uBC00\uD55C \uC6C0\uC9C1\uC784\uC73C\uB85C \uC801\uC744
     \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Sneak Stab
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u4E0D\u610F\u6253\u3061"
+  EquipmentDetailJA: 

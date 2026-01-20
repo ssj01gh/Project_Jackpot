@@ -25,6 +25,9 @@ MonoBehaviour:
 
 
     On
-    Defense'
+    Defense
+
+    Give yourself <link="STRAR"><color=green>UnDead</color></link> equal
+    to 5% of barrier.'
   EquipmnetNameJA: "\u6226\u58EB\u306E\u80A9\u5F53\u3066"
-  EquipmnetDetailJA: "\u6226\u58EB\u6587\u660E\u306E\u546A\u8853\u3092\u5BBF\u3057\u305F\u80A9\u5F53\u3066\u3067\u3059\u3002\n\n\u9632\u5FA1\u6642"
+  EquipmnetDetailJA: "\u6226\u58EB\u6587\u660E\u306E\u546A\u8853\u3092\u5BBF\u3057\u305F\u80A9\u5F53\u3066\u3067\u3059\u3002\n\n\u9632\u5FA1\u6642\n\u81EA\u5206\u306B<link=\"STRAR\"><color=green>\u4E0D\u6B7B</color></link>\u3092\u30D0\u30EA\u30A2\u306E5%\u3060\u3051\u306E\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

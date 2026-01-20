@@ -25,6 +25,9 @@ MonoBehaviour:
 
 
     At
-    Battle Start'
+    Battle Start
+
+    Give all enemies {RESA} stack of <link="RESAC"><color=green>Curse
+    Of Death</color></link>.'
   EquipmnetNameJA: "\u9B54\u5C0E\u66F8"
-  EquipmnetDetailJA: "\u6B63\u4F53\u4E0D\u660E\u306E\u77E5\u8B58\u304C\u8A18\u3055\u308C\u305F\u795E\u79D8\u7684\u306A\u9B54\u5C0E\u66F8\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642"
+  EquipmnetDetailJA: "\u6B63\u4F53\u4E0D\u660E\u306E\u77E5\u8B58\u304C\u8A18\u3055\u308C\u305F\u795E\u79D8\u7684\u306A\u9B54\u5C0E\u66F8\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\n\u3059\u3079\u3066\u306E\u6575\u306B<link=\"RESAC\"><color=green>\u6B7B\u306E\u546A\u3044</color></link>{RESA}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

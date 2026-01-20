@@ -49,3 +49,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uB108\uAC00 \uAC00\uC9C4 \uACBD\uD5D8\uC740 \uB0B4\uAC00 \uAC00\uC9C8
     \uAC70\uC57C!"
+  EquipmentNameEN: Gold, Come On Out!
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u91D1\u3088\u3001\u51FA\u3066\u3053\u30FC\u3044\uFF01"
+  EquipmentDetailJA: 

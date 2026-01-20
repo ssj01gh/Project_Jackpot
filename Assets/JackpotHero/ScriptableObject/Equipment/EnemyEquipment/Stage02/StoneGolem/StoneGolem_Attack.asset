@@ -56,3 +56,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uBAB8\uC744 \uC774\uB8E8\uACE0 \uC788\uB294 \uB2E8\uB2E8\uD55C
     \uBC14\uC704\uB97C \uB358\uC838 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Stone Throw
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u6295\u77F3"
+  EquipmentDetailJA: 

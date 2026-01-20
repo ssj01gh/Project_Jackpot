@@ -20,6 +20,7 @@ MonoBehaviour:
     <link=\"STRHE\"><color=green>\uAE30\uCDA9\uC804</color></link> 3\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: "Warrior\u2019s Bone Helm"
-  EquipmnetDetailEN: "A helmet made from a monster\u2019s skull.\n\nOn STA Recovery"
+  EquipmnetDetailEN: "A helmet made from a monster\u2019s skull.\n\nOn STA Recovery\nGive
+    yourself 3 stack of <link=\"STRHE\"><color=green>Recharge</color></link>."
   EquipmnetNameJA: "\u6226\u58EB\u306E\u9AA8\u515C"
-  EquipmnetDetailJA: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u9AA8\u304B\u3089\u4F5C\u3089\u308C\u305F\u515C\u3067\u3059\u3002\n\nSTA\u56DE\u5FA9\u6642"
+  EquipmnetDetailJA: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u9AA8\u304B\u3089\u4F5C\u3089\u308C\u305F\u515C\u3067\u3059\u3002\n\nSTA\u56DE\u5FA9\u6642\n\u81EA\u5206\u306B<link=\"STRHE\"><color=green>\u5145\u6E80</color></link>3\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

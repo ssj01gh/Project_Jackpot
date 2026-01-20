@@ -38,3 +38,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uBB34\uC5C7\uC774\uB4E0 \uB179\uC77C \uC218 \uC788\uB294 \uCC44\uC561\uC758
     \uD6A8\uACFC\uAC00 \uC57D\uD574\uC84C\uC9C0\uB9CC\n\uC5EC\uC804\uD788 \uC704\uD611\uC801\uC785\uB2C8\uB2E4."
+  EquipmentNameEN: Melt
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u6EB6\u89E3"
+  EquipmentDetailJA: 

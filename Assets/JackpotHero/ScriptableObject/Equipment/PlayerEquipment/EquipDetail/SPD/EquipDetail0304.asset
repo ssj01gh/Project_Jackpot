@@ -25,6 +25,8 @@ MonoBehaviour:
 
 
     At Battle
-    Start'
+    Start
+
+    Give yourself {SPDA} stack of <link="SPDAC"><color=green>Doping</color></link>.'
   EquipmnetNameJA: "\u85AC\u5264\u6CE8\u5C04\u5668"
-  EquipmnetDetailJA: "\u4F55\u3089\u304B\u306E\u85AC\u304C\u5165\u3063\u305F\u6CE8\u5C04\u5668\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642"
+  EquipmnetDetailJA: "\u4F55\u3089\u304B\u306E\u85AC\u304C\u5165\u3063\u305F\u6CE8\u5C04\u5668\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\n\u81EA\u5206\u306B<link=\"SPDAC\"><color=green>\u30C9\u30FC\u30D4\u30F3\u30B0</color></link>{SPDA}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"
