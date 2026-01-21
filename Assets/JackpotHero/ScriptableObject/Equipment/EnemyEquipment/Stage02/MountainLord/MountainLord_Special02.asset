@@ -29,10 +29,14 @@ MonoBehaviour:
   EquipmentDetail: "\uC0B0\uAD70\uC740 \uC801\uC758 \uC218\uC900\uC5D0 \uB9DE\uCDB0\uC11C
     \uD798\uC744 \uC870\uC808 \uD558\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\n\uC804\uD22C\uC911
     \uC801\uC774 \uD734\uC2DD\uC744 \uCDE8\uD560\uC2DC \uBD84\uC2E0\uC5D0\uAC8C \uB354
-    \uB9CE\uC740 \uD798\uC744 \uC90D\uB2C8\uB2E4.\n\n\uC804\uD22C\uC911 \uC801 \uD734\uC2DD
+    \uB9CE\uC740 \uD798\uC744 \uC90D\uB2C8\uB2E4.\n\n\uC804\uD22C\uC911 \uC801 STA\uD68C\uBCF5
     : \uC0B0\uC758 \uC8FC\uC778\n\uBD84\uC2E0\uC5D0\uAC8C <link=\"MMountainLord\"><color=green>\uC0B0\uAD70</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Lord of the Mountain
-  EquipmentDetailEN: 
-  EquipmentNameJA: "\u5C71\u306E\u4E3B"
-  EquipmentDetailJA: 
+  EquipmentDetailEN: "The Mountain Lord adjusts its power to match the enemy\u2019s
+    level.\nIf the enemy takes a rest during battle, \nit grants more power to its
+    avatar.\n\nEnemy STA Recovery : Lord of the Mountain\nGive avatar 1 stack of
+    <link=\"MMountainLord\"><color=green>Mountain Lord</color></link>."
+  EquipmentNameJA: "\u5C71\u306E\u738B"
+  EquipmentDetailJA: "\u5C71\u541B\u306F\u3001\u6575\u306E\u529B\u91CF\u306B\u5408\u308F\u305B\u3066\u529B\u3092\u8ABF\u6574\u3057\u3066\u3044\u307E\u3059\u3002\n\u6226\u95D8\u4E2D\u306B\u6575\u304C\u4F11\u606F\u3092\u53D6\u308B\u3068\u3001\u5206\u8EAB\u306B\u3055\u3089\u306A\u308B\u529B\u3092\u4E0E\u3048\u307E\u3059\u3002\n\n\u6575\u306ESTA\u56DE\u5FA9
+    : \u5C71\u306E\u4E3B\n\u5206\u8EAB\u306B<link=\"MMountainLord\"><color=green>\u5C71\u306E\u738B</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

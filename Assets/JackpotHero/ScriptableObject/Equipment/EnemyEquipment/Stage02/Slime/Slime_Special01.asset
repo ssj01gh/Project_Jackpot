@@ -29,6 +29,13 @@ MonoBehaviour:
   EquipmentDetail: "\uC2AC\uB77C\uC784\uC740 \uBD84\uC5F4\uC744 \uD1B5\uD574 \uBC88\uC2DD\uD569\uB2C8\uB2E4.\n\n\uD2B9\uC218
     \uD589\uB3D9 : \uBD84\uC5F4\n\uC0C8\uB07C \uC2AC\uB77C\uC784\uC744 \uC18C\uD658\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Split
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'Slimes reproduce through division.
+
+
+    Special Action : Split
+
+    Summons
+    a slime hatchling.'
   EquipmentNameJA: "\u5206\u88C2"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u30B9\u30E9\u30A4\u30E0\u306F\u5206\u88C2\u306B\u3088\u3063\u3066\u5897\u6B96\u3057\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u5206\u88C2\n\u5B50\u30B9\u30E9\u30A4\u30E0\u3092\u53EC\u559A\u3057\u307E\u3059\u3002"

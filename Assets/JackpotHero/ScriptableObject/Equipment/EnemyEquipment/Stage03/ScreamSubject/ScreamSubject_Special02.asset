@@ -31,3 +31,17 @@ MonoBehaviour:
     \uB098\uC635\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9 : \uC18C\uB984\uB07C\uCE58\uB294
     \uBE44\uBA85\n\uC801\uC5D0\uAC8C <link=\"MCower\"><color=green>\uC704\uCD95</color></link>
     2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Chilling Scream
+  EquipmentDetailEN: 'A maddened scream pours forth from
+
+    the countless mouths
+    growing from its flesh.
+
+
+    Special Action : Chilling Scream
+
+    Give enemy
+    2 stack of <link="MCower"><color=green>Cower</color></link>.'
+  EquipmentNameJA: "\u6226\u6144\u306E\u53EB\u3073"
+  EquipmentDetailJA: "\u8089\u584A\u306B\u751F\u3048\u305F\u7121\u6570\u306E\u53E3\u304B\u3089\u3001\n\u72C2\u6C17\u3058\u307F\u305F\u53EB\u3073\u304C\u6EA2\u308C\u51FA\u3057\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u6226\u6144\u306E\u53EB\u3073\n\u6575\u306B<link=\"MCower\"><color=green>\u840E\u7E2E</color></link>2\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

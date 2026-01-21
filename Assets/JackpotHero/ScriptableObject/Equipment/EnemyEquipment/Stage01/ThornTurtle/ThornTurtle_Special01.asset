@@ -31,6 +31,9 @@ MonoBehaviour:
     : \uC0DD\uCCB4 \uAC11\uC637\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MUnbreakableArmor\"><color=green>\uBD88\uAD74\uC758
     \uAC11\uC637</color></link> 99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Living Armor
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "The spiked turtle\u2019s shell does not break easily.\n\nAt
+    Battle Start : Living Armor\nGive yourself 99 stack of <link=\"MUnbreakableArmor\"><color=green>Unbreakable
+    Armor</color></link>."
   EquipmentNameJA: "\u751F\u4F53\u88C5\u7532"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u3068\u3052\u4E80\u306E\u7532\u7F85\u306F\u7C21\u5358\u306B\u306F\u58CA\u308C\u307E\u305B\u3093\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u751F\u4F53\u88C5\u7532\n\u81EA\u5206\u306B<link=\"MUnbreakableArmor\"><color=green>\u4E0D\u58CA\u306E\u93A7</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

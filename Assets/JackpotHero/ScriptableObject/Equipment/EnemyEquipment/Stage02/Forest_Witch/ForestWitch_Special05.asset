@@ -26,11 +26,18 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uC232\uC758 \uB9C8\uB140\uAC00 \uC720\uB9AC\uBCD1\uC774 \uB4E4\uC5B4\uC788\uB294
-    \uCE58\uB8CC\uC57D\uC744 \uB9C8\uC2ED\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9
-    : \uC7AC\uC0DD \uD3EC\uC158\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MRegeneration\"><color=green>\uC7AC\uC0DD</color></link>
+  EquipmentDetail: "\uC232\uC758 \uB9C8\uB140\uAC00 \uD50C\uB77C\uC2A4\uD06C\uC5D0
+    \uB4E4\uC5B4\uC788\uB294 \uCE58\uB8CC\uC57D\uC744 \uB9C8\uC2ED\uB2C8\uB2E4.\n\n\uD2B9\uC218
+    \uD589\uB3D9 : \uC7AC\uC0DD \uD3EC\uC158\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MRegeneration\"><color=green>\uC7AC\uC0DD</color></link>
     5\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Regeneration Potion
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'The Forest Witch drinks a healing potion from a flask.
+
+
+    Special
+    Action : Regeneration Potion
+
+    Give yourself 5 stack of <link="MRegeneration"><color=green>Regeneration</color></link>.'
   EquipmentNameJA: "\u518D\u751F\u306E\u30DD\u30FC\u30B7\u30E7\u30F3"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u68EE\u306E\u9B54\u5973\u304C\u3001\u30D5\u30E9\u30B9\u30B3\u306B\u5165\u3063\u305F\u56DE\u5FA9\u85AC\u3092\u98F2\u307F\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u518D\u751F\u306E\u30DD\u30FC\u30B7\u30E7\u30F3\n\u81EA\u5206\u306B<link=\"MRegeneration\"><color=green>\u518D\u751F</color></link>5\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

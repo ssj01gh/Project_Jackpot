@@ -38,8 +38,8 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uADF8\uB7F0 \uACF5\uACA9, \uC548\uB9DE\uC544 \uC904\uAC74\uB385~"
+  EquipmentDetail: "\"\uADF8\uB7F0 \uACF5\uACA9, \uC548\uB9DE\uC544 \uC904\uAC74\uB385~\""
   EquipmentNameEN: Missed Me!
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "\u201CToo slow~ That won\u2019t hit me!\u201D"
   EquipmentNameJA: "\u5F53\u305F\u3089\u306A\u3044\u3088\u301C\u3093\uFF01"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u300C\u305D\u3093\u306A\u653B\u6483\u3001\u5F53\u305F\u3063\u3066\u3042\u3052\u306A\u3044\u3082\u3093\u306D\uFF5E\u300D"

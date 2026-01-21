@@ -47,6 +47,8 @@ MonoBehaviour:
   EquipmentDetail: "\uBAB8\uCCB4\uB97C \uB36E\uACE0 \uC788\uB294 \uAECD\uC9C8\uC744
     \uB2E8\uB2E8\uD558\uAC8C \uB9CC\uB4E4\uC5B4\n\uACF5\uACA9\uC744 \uB9C9\uC2B5\uB2C8\uB2E4."
   EquipmentNameEN: Shell Hardening
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'Hardens the shell covering its body
+
+    to block attacks.'
   EquipmentNameJA: "\u6BBB\u786C\u5316"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u4F53\u3092\u8986\u3046\u6BBB\u3092\u786C\u5316\u3055\u305B\u3001\u653B\u6483\u3092\u9632\u304E\u307E\u3059\u3002"

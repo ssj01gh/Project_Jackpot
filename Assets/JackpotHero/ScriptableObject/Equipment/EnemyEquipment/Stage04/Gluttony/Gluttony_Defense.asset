@@ -70,3 +70,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uD2B9\uC720\uC758 \uB2E8\uB2E8\uD55C \uAECD\uC9C8\uC740 \uC801\uC758
     \uACF5\uACA9\uC744 \uBC29\uC5B4\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Chitinous Skin
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u30AD\u30C1\u30F3\u8CEA\u306E\u76AE\u819A"
+  EquipmentDetailJA: 

@@ -70,3 +70,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uD669\uAE08\uC73C\uB85C \uD654\uB824\uD558\uAC8C \uAD6C\uBBFC
     \uAE43\uD138\uB85C\n\uC801\uC758 \uACF5\uACA9\uC744 \uBC29\uC5B4\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Golden Feathers
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u9EC4\u91D1\u306E\u7FBD\u6BDB"
+  EquipmentDetailJA: 

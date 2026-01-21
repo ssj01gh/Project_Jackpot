@@ -30,6 +30,13 @@ MonoBehaviour:
     \uD589\uB3D9 : \uB3C5 \uC8FC\uC785\n\uC801\uC5D0\uAC8C <link=\"MPoison\"><color=green>\uB3C5</color></link>
     4\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Poison Injection
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'Injects poison into the enemy.
+
+
+    Special Action : Poison
+    Injection
+
+    Give enemy 4 stack of <link="MPoison"><color=green>Poison</color></link>.'
   EquipmentNameJA: "\u6BD2\u6CE8\u5165"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u6575\u306B\u6BD2\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u6BD2\u6CE8\u5165\n\u6575\u306B<link=\"MPoison\"><color=green>\u6BD2</color></link>4\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

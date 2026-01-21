@@ -43,6 +43,6 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC790\uC2E0\uC758 \uBFCC\uB9AC\uB97C \uD718\uB458\uB7EC \uACF5\uACA9\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Root Strike
-  EquipmentDetailEN: 
+  EquipmentDetailEN: Swings its roots to attack.
   EquipmentNameJA: "\u6839\u53E9\u304D"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u81EA\u8EAB\u306E\u6839\u3092\u632F\u308A\u56DE\u3057\u3066\u653B\u6483\u3057\u307E\u3059\u3002"

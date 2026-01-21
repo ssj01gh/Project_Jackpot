@@ -77,3 +77,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uB450\uD130\uC6B4 \uAC00\uC8FD\uC740 \uC660\uB9CC\uD55C \uCDA9\uACA9\uC744
     \uD761\uC218\uD574 \uBC84\uB9BD\uB2C8\uB2E4."
+  EquipmentNameEN: Thick Hide
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u5206\u539A\u3044\u76AE"
+  EquipmentDetailJA: 

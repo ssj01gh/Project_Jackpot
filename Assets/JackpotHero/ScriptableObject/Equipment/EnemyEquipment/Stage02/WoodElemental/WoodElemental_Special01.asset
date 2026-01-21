@@ -31,6 +31,14 @@ MonoBehaviour:
     \uAECD\uC9C8\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MToughSkin\"><color=green>\uB2E8\uB2E8\uD55C
     \uD53C\uBD80</color></link> 99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Hardened Shell
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'The Wood Elemental has a hard shell.
+
+
+    At Battle Start
+    : Hardened Shell
+
+    Give yourself 99 stack of <link="MToughSkin"><color=green>Tough
+    Skin</color></link>.'
   EquipmentNameJA: "\u786C\u3044\u6BBB"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u6A39\u970A\u306F\u786C\u3044\u6BBB\u3092\u6301\u3063\u3066\u3044\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u786C\u3044\u6BBB\n\u81EA\u5206\u306B<link=\"MToughSkin\"><color=green>\u786C\u3044\u808C</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

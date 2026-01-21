@@ -69,3 +69,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uC801\uC744 \uD658\uC0C1\uC73C\uB85C \uC18D\uC774\uACE0 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Deception
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u6B3A\u304D"
+  EquipmentDetailJA: 

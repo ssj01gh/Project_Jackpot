@@ -51,6 +51,9 @@ MonoBehaviour:
     \uBAB8\uCCB4\uC785\uB2C8\uB2E4.\n\uC57D\uD558\uC9C0\uB9CC \uAE30\uBCF8\uC801\uC778
     \uB0B4\uAD6C\uB3C4\uB294 \uC788\uC2B5\uB2C8\uB2E4."
   EquipmentNameEN: Steel Body
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'A body that supports and moves the tools.
+
+    It is fragile,
+    but has basic durability.'
   EquipmentNameJA: "\u92FC\u9244\u306E\u30DC\u30C7\u30A3"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u30C4\u30FC\u30EB\u3092\u652F\u3048\u3001\u52D5\u304B\u3059\u305F\u3081\u306E\u80F4\u4F53\u3067\u3059\u3002\n\u8106\u3044\u3067\u3059\u304C\u3001\u6700\u4F4E\u9650\u306E\u8010\u4E45\u6027\u306F\u3042\u308A\u307E\u3059\u3002"

@@ -70,3 +70,8 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC801\uC758 \uC0C9\uC744 \uBE7C\uC557\uC544 \uC790\uC2E0\uACFC
     \uB611\uAC19\uC740\n\uBB34\uCC44\uC0C9\uC73C\uB85C \uB9CC\uB4E4\uACE0\uC790 \uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Color Drain
+  EquipmentDetailEN: "Steals the enemy\u2019s color, trying to turn them\ninto the
+    same colorless form as itself."
+  EquipmentNameJA: "\u8272\u596A\u3044"
+  EquipmentDetailJA: "\u6575\u306E\u8272\u3092\u596A\u3044\u3001\n\u81EA\u8EAB\u3068\u540C\u3058\u7121\u5F69\u8272\u306B\u5909\u3048\u3088\u3046\u3068\u3057\u307E\u3059\u3002"

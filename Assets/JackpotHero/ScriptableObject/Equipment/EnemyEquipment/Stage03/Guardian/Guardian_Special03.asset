@@ -30,3 +30,15 @@ MonoBehaviour:
     \uCCB4\uB825\uC5D0 \uD53C\uD574 : \uD589\uB3D9 \uB300\uC751 : \uB0B4\uAD6C\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"MDurabilityAdaptation\"><color=green>\uC801\uC751 : \uB0B4\uAD6C</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: 'Action Response: Durability'
+  EquipmentDetailEN: 'The Guardian adapts to the battle situation.
+
+
+    Taking damage
+    : Action Response: Durability
+
+    Give yourself 1 stack of <link="MDurabilityAdaptation"><color=green>Adaptation
+    : DUR</color></link>.'
+  EquipmentNameJA: "\u884C\u52D5\u5BFE\u5FDC\uFF1A\u8010\u4E45"
+  EquipmentDetailJA: "\u5B88\u8B77\u8005\u306F\u6226\u95D8\u72B6\u6CC1\u306B\u9069\u5FDC\u3057\u307E\u3059\u3002\n\n\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u305F\u6642
+    : \u884C\u52D5\u5BFE\u5FDC\uFF1A\u8010\u4E45\n\u81EA\u5206\u306B<link=\"MDurabilityAdaptation\"><color=green>\u9069\u5FDC:DUR</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

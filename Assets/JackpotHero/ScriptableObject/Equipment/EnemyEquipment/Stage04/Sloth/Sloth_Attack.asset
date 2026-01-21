@@ -77,3 +77,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uCEE4\uB2E4\uB780 \uD06C\uAE30\uC758 \uC55E\uBC1C\uB85C \uC801\uC744
     \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Rend
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u5F15\u304D\u88C2\u304D"
+  EquipmentDetailJA: 

@@ -31,6 +31,13 @@ MonoBehaviour:
     \uD134 : \uC704\uD611\n\uC801\uC5D0\uAC8C <link=\"MCower\"><color=green>\uC704\uCD95</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Intimidation
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'The aura emitted by the avatar causes the enemy to shrink back.
+
+
+    On
+    Its Turn : Intimidation
+
+    Give enemy 1 stack of <link="MCower"><color=green>Cower</color></link>.'
   EquipmentNameJA: "\u5A01\u5687"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u5206\u8EAB\u304C\u653E\u3064\u6C17\u914D\u306F\u3001\u6575\u3092\u840E\u7E2E\u3055\u305B\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3
+    : \u5A01\u5687\n\u6575\u306B<link=\"MCower\"><color=green>\u840E\u7E2E</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

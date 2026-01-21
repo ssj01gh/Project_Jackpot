@@ -44,6 +44,6 @@ MonoBehaviour:
   EquipmentDetail: "\uC801\uC758 \uACF5\uACA9\uC744 \uD53C\uD574 \uD53C\uD574\uB97C
     \uCD5C\uC18C\uD654 \uD569\uB2C8\uB2E4."
   EquipmentNameEN: Evasion
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "Evades the enemy\u2019s attack to minimize damage."
   EquipmentNameJA: "\u56DE\u907F"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u6575\u306E\u653B\u6483\u3092\u907F\u3051\u3001\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u3092\u6700\u5C0F\u9650\u306B\u6291\u3048\u307E\u3059\u3002"

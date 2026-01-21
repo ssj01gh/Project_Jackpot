@@ -39,6 +39,6 @@ MonoBehaviour:
   EquipmentDetail: "\uC5F0\uC57D\uD55C \uC824\uB9AC\uB85C \uC774\uB8E8\uC5B4\uC9C4
     \uBAB8\uCCB4\uB85C \uD53C\uD574\uB97C \uD761\uC218\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Shock Absorption
-  EquipmentDetailEN: 
+  EquipmentDetailEN: Absorbs damage with its soft, fragile gelatinous body.
   EquipmentNameJA: "\u885D\u6483\u5438\u53CE"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u8106\u3044\u30BC\u30EA\u30FC\u72B6\u306E\u4F53\u3067\u30C0\u30E1\u30FC\u30B8\u3092\u5438\u53CE\u3057\u307E\u3059\u3002"

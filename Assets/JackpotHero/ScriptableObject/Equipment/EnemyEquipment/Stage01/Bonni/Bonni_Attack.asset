@@ -38,6 +38,6 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uBA38\uB9AC\uC5D0 \uB09C \uBFD4\uB85C \uC801\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Stab
-  EquipmentDetailEN: 
+  EquipmentDetailEN: Attacks the enemy with its horns.
   EquipmentNameJA: "\u7A81\u304D"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u982D\u306E\u89D2\u3067\u6575\u3092\u653B\u6483\u3057\u307E\u3059\u3002"

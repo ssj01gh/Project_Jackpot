@@ -30,3 +30,14 @@ MonoBehaviour:
     \uD589\uB3D9 : \uC9C8\uD22C\n\uC801\uC774 \uC9C0\uB2C8\uACE0 \uC788\uB294 \uBAA8\uB4E0
     \uC7A5\uBE44 \uD2F0\uC5B4 \uD569\uC758 \uC77C\uC815 \uC218\uCE58\uB9CC\uD07C\n\uC801\uC5D0\uAC8C
     <link=\"MEnvy\"><color=green>\uC9C8\uD22C</color></link> \uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Envy
+  EquipmentDetailEN: 'Envy envies you.
+
+
+    Special Action : Envy
+
+    Give enemy
+    "" equal to 5% of barrier.'
+  EquipmentNameJA: "\u5AC9\u59AC"
+  EquipmentDetailJA: "\u5AC9\u59AC\u306F\u3001\u3042\u306A\u305F\u3092\u5AC9\u59AC\u3059\u308B\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u5AC9\u59AC"

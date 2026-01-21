@@ -35,3 +35,13 @@ MonoBehaviour:
     : \uC18D\uB3C4</color></link>, <link=\"MCopyLuck\"><color=green>\uBCF5\uC0AC
     : \uD589\uC6B4</color></link> \uC911\n\uBCF5\uC0AC \uD558\uC9C0 \uBABB\uD55C
     \uC2A4\uD0EF\uC744 \uBCF5\uC0AC\uD558\uC5EC \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Replication
+  EquipmentDetailEN: "The Doppelganger attempts to\ntransform into an exact copy
+    of the enemy.\nIt copies and adopts the stats\ngained through the enemy\u2019s
+    growth.\n\nSpecial Action : Replication\nCopies and applies to itself any stats
+    it failed to copy\nfrom <link=\"MCopyStrength\"><color=green>Copy : STR</color></link>,
+    <link=\"MCopyDurability\"><color=green>Copy : DUR</color></link>, <link=\"MCopySpeed\"><color=green>Copy
+    : SPD</color></link>,\n<link=\"MCopyLuck\"><color=green>Copy : LUK</color></link>."
+  EquipmentNameJA: "\u8907\u88FD"
+  EquipmentDetailJA: "\u30C9\u30C3\u30DA\u30EB\u30B2\u30F3\u30AC\u30FC\u306F\u3001\u6575\u3068\u540C\u3058\u59FF\u306B\u306A\u308D\u3046\u3068\u3057\u307E\u3059\u3002\n\u6210\u9577\u306B\u3088\u3063\u3066\u5909\u5316\u3057\u305F\u30B9\u30C6\u30FC\u30BF\u30B9\u3092\u30B3\u30D4\u30FC\u3057\u3066\u53D6\u308A\u8FBC\u307F\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u8907\u88FD\n\u81EA\u5206\u306B<link=\"MCopyStrength\"><color=green>\u30B3\u30D4\u30FC:STR</color></link>\u30FB<link=\"MCopyDurability\"><color=green>\u30B3\u30D4\u30FC:DUR</color></link>\u30FB<link=\"MCopySpeed\"><color=green>\u30B3\u30D4\u30FC:SPD</color></link>\u30FB<link=\"MCopyLuck\"><color=green>\u30B3\u30D4\u30FC:LUK</color></link>\u306E\u3046\u3061\u3001\n\u30B3\u30D4\u30FC\u3067\u304D\u3066\u3044\u306A\u3044\u30B9\u30C6\u30FC\u30BF\u30B9\u3092\u30B3\u30D4\u30FC\u3057\u3066\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

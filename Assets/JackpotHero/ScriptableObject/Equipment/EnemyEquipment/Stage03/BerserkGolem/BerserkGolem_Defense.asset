@@ -57,6 +57,7 @@ MonoBehaviour:
   EquipmentDetail: "\uACE8\uB818\uC758 \uBAB8\uC5D0 \uD750\uB974\uB294 \uC5D0\uB108\uC9C0\uB294
     \uBAB8\uCCB4\uB97C \uB354\uC6B1 \uB2E8\uB2E8\uD788 \uD569\uB2C8\uB2E4."
   EquipmentNameEN: Hardened Body
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "The energy flowing through the golem\u2019s body further hardens
+    its form."
   EquipmentNameJA: "\u786C\u5316\u3057\u305F\u8EAB\u4F53"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u30B4\u30FC\u30EC\u30E0\u306E\u4F53\u3092\u6D41\u308C\u308B\u30A8\u30CD\u30EB\u30AE\u30FC\u304C\u3001\u4F53\u3092\u3055\u3089\u306B\u786C\u5316\u3055\u305B\u307E\u3059\u3002"

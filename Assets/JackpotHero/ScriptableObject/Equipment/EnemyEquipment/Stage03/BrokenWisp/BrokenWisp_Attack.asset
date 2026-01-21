@@ -54,8 +54,8 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uB0B4 \uACC1\uC73C\uB85C \uB2E4\uAC00 \uC624\uC9C0\uB9C8!"
+  EquipmentDetail: "\"\uB0B4 \uACC1\uC73C\uB85C \uB2E4\uAC00 \uC624\uC9C0\uB9C8!\""
   EquipmentNameEN: "Don\u2019t Come Any Closer!!!!"
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "\u201CStay back! I said stay back!\u201D"
   EquipmentNameJA: "\u6765\u308B\u306A\u3041\u3041!!!!"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u300C\u6765\u308B\u306A\uFF01 \u8FD1\u3065\u304F\u306A\uFF01\u300D"

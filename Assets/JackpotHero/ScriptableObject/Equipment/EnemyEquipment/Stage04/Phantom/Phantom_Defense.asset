@@ -63,3 +63,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uAC80\uC740 \uC548\uAC1C\uC758 \uC0DD\uBA85\uCCB4\uB294\n\uBC29\uC5B4\uB97C
     \uD560 \uC0DD\uAC01\uC774 \uC5C6\uC5B4 \uBCF4\uC785\uB2C8\uB2E4."
+  EquipmentNameEN: Misty Body
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u9727\u306E\u8EAB\u4F53"
+  EquipmentDetailJA: 

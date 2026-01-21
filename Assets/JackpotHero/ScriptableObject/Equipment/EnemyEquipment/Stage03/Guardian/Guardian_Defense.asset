@@ -62,3 +62,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uB2E8\uB2E8\uD55C \uBAB8\uCCB4\uB85C \uACF5\uACA9\uC744 \uBC29\uC5B4\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Active Defense
+  EquipmentDetailEN: Defends against attacks with its hardened body.
+  EquipmentNameJA: "\u80FD\u52D5\u9632\u5FA1"
+  EquipmentDetailJA: "\u786C\u3044\u4F53\u3067\u653B\u6483\u3092\u9632\u304E\u307E\u3059\u3002"

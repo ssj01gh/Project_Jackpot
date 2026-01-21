@@ -32,6 +32,16 @@ MonoBehaviour:
     : \uC138\uD3EC \uC7AC\uC0DD\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MRegeneration\"><color=green>\uC7AC\uC0DD</color></link>
     5\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Cell Regeneration
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'Slimes are creatures with exceptional regenerative abilities.
+
+    When
+    they take heavy damage, they recover quickly.
+
+
+    Special Action : Cell Regeneration
+
+    Give
+    yourself 5 stack of <link="MRegeneration"><color=green>Regeneration</color></link>.'
   EquipmentNameJA: "\u7D30\u80DE\u518D\u751F"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u30B9\u30E9\u30A4\u30E0\u306F\u518D\u751F\u529B\u306B\u512A\u308C\u305F\u751F\u7269\u3067\u3059\u3002\n\u5927\u304D\u306A\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u305F\u6642\u3001\u7D20\u65E9\u304F\u56DE\u5FA9\u3057\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u7D30\u80DE\u518D\u751F\n\u81EA\u5206\u306B<link=\"MRegeneration\"><color=green>\u518D\u751F</color></link>5\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

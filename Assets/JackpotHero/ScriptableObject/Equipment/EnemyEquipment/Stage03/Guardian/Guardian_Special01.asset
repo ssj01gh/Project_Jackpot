@@ -30,3 +30,10 @@ MonoBehaviour:
     2\uD134 \uC5F0\uC18D \uD589\uB3D9 : \uD589\uB3D9 \uB300\uC751 : \uC18D\uB3C4\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"MSpeedAdaptation\"><color=green>\uC801\uC751 : \uC18D\uB3C4</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: 'Action Response: Speed'
+  EquipmentDetailEN: "The Guardian adapts to the battle situation.\n\nEnemy acts
+    for two consecutive turns : Action Response: Speed\nGive yourself 1 stack of
+    <link=\"MSpeedAdaptation\"><color=green>Adaptation : SPD</color></link>.\r"
+  EquipmentNameJA: "\u884C\u52D5\u5BFE\u5FDC\uFF1A\u901F\u5EA6"
+  EquipmentDetailJA: "\u5B88\u8B77\u8005\u306F\u6226\u95D8\u72B6\u6CC1\u306B\u9069\u5FDC\u3057\u307E\u3059\u3002\n\n\u6575\u304C2\u30BF\u30FC\u30F3\u9023\u7D9A\u3067\u884C\u52D5\u3057\u305F\u6642
+    : \u884C\u52D5\u5BFE\u5FDC\uFF1A\u901F\u5EA6\n\u81EA\u5206\u306B<link=\"MSpeedAdaptation\"><color=green>\u9069\u5FDC:SPD</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

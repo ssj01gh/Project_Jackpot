@@ -70,3 +70,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC801\uC744 \uD658\uC0C1\uC73C\uB85C \uC18D\uC5EC \uAC00\uC9DC\uB97C
     \uACF5\uACA9\uD558\uAC8C \uB9CC\uB4ED\uB2C8\uB2E4."
+  EquipmentNameEN: False Body
+  EquipmentDetailEN: 
+  EquipmentNameJA: "\u507D\u308A\u306E\u8EAB\u4F53"
+  EquipmentDetailJA: 

@@ -51,6 +51,7 @@ MonoBehaviour:
     \uC804\uD574\uC838 \uB0B4\uB824\uC624\uB294\n\uBC29\uC5B4\uC220\uB85C \uC801\uC758
     \uACF5\uACA9\uC744 \uB9C9\uC544\uB0C5\uB2C8\uB2E4."
   EquipmentNameEN: Prairie Defense
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "Blocks the enemy\u2019s attack using defensive techniques\npassed
+    down through generations of the Prairie Knights."
   EquipmentNameJA: "\u30D7\u30EC\u30FC\u30EA\u30FC\u9632\u5FA1\u8853"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u30D7\u30EC\u30EA\u30FC\u9A0E\u58EB\u306B\u4EE3\u3005\u4F1D\u308F\u308B\u9632\u5FA1\u8853\u3067\u3001\n\u6575\u306E\u653B\u6483\u3092\u9632\u304E\u307E\u3059\u3002"

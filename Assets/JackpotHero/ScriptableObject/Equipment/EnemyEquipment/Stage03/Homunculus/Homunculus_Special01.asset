@@ -32,3 +32,18 @@ MonoBehaviour:
     \uD53C\uBD80</color></link>, <link=\"MToughFist\"><color=green>\uB2E8\uB2E8\uD55C
     \uC8FC\uBA39</color></link>, <link=\"MLuck\"><color=green>\uD589\uC6B4</color></link>
     \uC911\n\uD558\uB098\uB97C 99\uC2A4\uD0DD \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Artificial Lifeform
+  EquipmentDetailEN: 'Artificially created homunculus are born
+
+    with special
+    abilities.
+
+
+    At Battle Start : Artificial Lifeform
+
+    Give yourself 99
+    stack of <link="MToughSkin"><color=green>Tough Skin</color></link> OR <link="MToughFist"><color=green>Tough
+    Fist</color></link> OR <link="MLuck"><color=green>Luck</color></link.'
+  EquipmentNameJA: "\u4EBA\u5DE5\u751F\u547D\u4F53"
+  EquipmentDetailJA: "\u4EBA\u5DE5\u7684\u306B\u751F\u307E\u308C\u305F\u30DB\u30E0\u30F3\u30AF\u30EB\u30B9\u306F\u3001\n\u7279\u6B8A\u306A\u80FD\u529B\u3092\u6301\u3063\u3066\u751F\u307E\u308C\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u4EBA\u5DE5\u751F\u547D\u4F53\n\u81EA\u5206\u306B<link=\"MToughSkin\"><color=green>\u786C\u3044\u808C</color></link>\u30FB<link=\"MToughFist\"><color=green>\u5805\u3044\u62F3</color></link>\u30FB<link=\"MLuck\"><color=green>\u904B</color></link>\u306E\u3044\u305A\u308C\u304B\u309299\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

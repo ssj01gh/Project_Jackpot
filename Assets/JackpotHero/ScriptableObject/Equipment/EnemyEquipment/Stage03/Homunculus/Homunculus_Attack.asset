@@ -15,7 +15,7 @@ MonoBehaviour:
   EquipmentType: 0
   EquipmentTier: 0
   EquipmentCode: 73051
-  EquipmentName: "\uB09C\uC7C1\uC774\uC758 \uACF5\uACA9"
+  EquipmentName: "\uAC80\uC740 \uCD09\uC218"
   SpendTiredness: 0
   EquipmentSlots:
   - IsPositive: 0000010101
@@ -70,3 +70,10 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uD50C\uB77C\uC2A4\uD06C\uC758 \uAD6C\uBA4D\uC73C\uB85C \uBE60\uC838\uB098\uC628\n\uC791\uC740
     \uCD09\uC218\uB97C \uD718\uB458\uB7EC \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Black Tentacles
+  EquipmentDetailEN: 'Attacks by swinging small tentacles
+
+    that emerge from holes
+    in the flask.'
+  EquipmentNameJA: "\u9ED2\u3044\u89E6\u624B"
+  EquipmentDetailJA: "\u30D5\u30E9\u30B9\u30B3\u306E\u7A74\u304B\u3089\u4F38\u3073\u305F\n\u5C0F\u3055\u306A\u89E6\u624B\u3092\u632F\u308B\u3063\u3066\u653B\u6483\u3057\u307E\u3059\u3002"

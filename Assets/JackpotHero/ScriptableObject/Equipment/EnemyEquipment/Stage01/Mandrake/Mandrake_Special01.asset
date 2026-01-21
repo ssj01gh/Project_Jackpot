@@ -31,6 +31,14 @@ MonoBehaviour:
     \uD589\uB3D9 : \uC8FD\uC74C\uC758 \uC678\uCE68\n\uC801\uC5D0\uAC8C <link=\"MCurseOfDeath\"><color=green>\uC8FD\uC74C\uC758
     \uC800\uC8FC</color></link> 10\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Cry of Death
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'Lets out a chilling scream to curse the enemy.
+
+
+    Special
+    Action : Cry of Death
+
+    Give enemy 10 stack of <link="MCurseOfDeath"><color=green>Curse
+    Of Death</color></link>.'
   EquipmentNameJA: "\u6B7B\u306E\u5486\u54EE"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u4E0D\u6C17\u5473\u306A\u53EB\u3073\u58F0\u3092\u4E0A\u3052\u3001\u6575\u306B\u546A\u3044\u3092\u4E0E\u3048\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u6B7B\u306E\u5486\u54EE\n\u6575\u306B<link=\"MCurseOfDeath\"><color=green>\u6B7B\u306E\u546A\u3044</color></link>10\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"
