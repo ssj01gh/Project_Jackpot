@@ -70,6 +70,6 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC801\uC744 \uD658\uC0C1\uC73C\uB85C \uC18D\uC774\uACE0 \uACF5\uACA9\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Deception
-  EquipmentDetailEN: 
+  EquipmentDetailEN: Deceives the enemy with illusions and attacks.
   EquipmentNameJA: "\u6B3A\u304D"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u5E7B\u5F71\u3067\u6575\u3092\u60D1\u308F\u305B\u3001\u653B\u6483\u3057\u307E\u3059\u3002"

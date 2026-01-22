@@ -37,7 +37,7 @@ MonoBehaviour:
     At Battle Start
     : Hardened Shell
 
-    Give yourself 99 stack of <link="MToughSkin"><color=green>Tough
+    Applies itself 99 stack of <link="MToughSkin"><color=green>Tough
     Skin</color></link>.'
   EquipmentNameJA: "\u786C\u3044\u6BBB"
   EquipmentDetailJA: "\u6A39\u970A\u306F\u786C\u3044\u6BBB\u3092\u6301\u3063\u3066\u3044\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642

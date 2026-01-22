@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 162082585, guid: dc81a3f30e658a2469f3fb2d38eb3234, type: 3}
   BuffName: "\uC0C9\uC695"
-  BuffDetail: "\uC790\uC2E0\uC758 \uD134\uB9C8\uB2E4\n\uC0C1\uB300\uC5D0\uAC8C\n\uB9E4\uD6391\uC744
-    \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  BuffDetail: "\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC801\uC5D0\uAC8C \uB9E4\uD639
+    1\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  BuffNameEN: Lust
+  BuffDetailEN: 
+  BuffNameJA: "\u8272\u6B32"
+  BuffDetailJA: 

@@ -35,8 +35,8 @@ MonoBehaviour:
 
     At Battle Start : Mine Now!
 
-    Give
-    yourself 99 stack of <link="MPlunder"><color=green>Plunder</color></link>.'
+    Applies
+    itself 99 stack of <link="MPlunder"><color=green>Plunder</color></link>.'
   EquipmentNameJA: "\u305C\u30FC\u3093\u3076\u30DC\u30AF\u306E\uFF01"
   EquipmentDetailJA: "\u9EC4\u91D1\u306E\u9B3C\u706B\u306F\u6B32\u5F35\u308A\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
     : \u305C\u30FC\u3093\u3076\u30DC\u30AF\u306E\uFF01\n\u81EA\u5206\u306B<link=\"MPlunder\"><color=green>\u7565\u596A</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

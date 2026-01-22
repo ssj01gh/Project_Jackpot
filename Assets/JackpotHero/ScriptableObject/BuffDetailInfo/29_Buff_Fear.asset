@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 1139492143, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uACF5\uD3EC"
-  BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9 \uC120\uD0DD \uB2E8\uACC4\uC5D0\uC11C\n\uD53C\uB85C\uB3C4
-    \uD68C\uBCF5\uC744 \uAC15\uC81C\uD569\uB2C8\uB2E4.\n\n\uD589\uB3D9 \uC120\uD0DD
-    \uB2E8\uACC4\uC5D0\uC11C\n\uD53C\uB85C\uB3C4 \uD68C\uBCF5\uC2DC \uC2A4\uD0DD
-    -1"
+  BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9 \uC120\uD0DD \uB2E8\uACC4\uC5D0\uC11C\nSTA\uD68C\uBCF5\uC744
+    \uAC15\uC81C\uD569\uB2C8\uB2E4.\n\nSTA\uD68C\uBCF5\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Fear
+  BuffDetailEN: 
+  BuffNameJA: "\u6050\u6016"
+  BuffDetailJA: 

@@ -27,7 +27,7 @@ MonoBehaviour:
     On
     Attack
 
-    Give enemy 5 stack of <link="RESWE01"><color=green>Poison</color></link>
+    Applies enemy 5 stack of <link="RESWE01"><color=green>Poison</color></link>
     and
 
     3 stack of <link="RESWE02"><color=green>Burn</color></link>.'

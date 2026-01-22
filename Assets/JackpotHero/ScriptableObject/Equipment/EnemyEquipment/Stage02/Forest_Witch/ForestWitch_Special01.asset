@@ -37,7 +37,7 @@ MonoBehaviour:
 
     Special Action : Burn Potion
 
-    Give enemy 4 stack of <link="MBurn"><color=green>Burn</color></link>.'
+    Applies enemy 4 stack of <link="MBurn"><color=green>Burn</color></link>.'
   EquipmentNameJA: "\u706B\u50B7\u306E\u30DD\u30FC\u30B7\u30E7\u30F3"
   EquipmentDetailJA: "\u68EE\u306E\u9B54\u5973\u304C\u3001\u708E\u306E\u63FA\u3089\u3081\u304F\u30D5\u30E9\u30B9\u30B3\u3092\u6575\u306B\u6295\u3052\u3064\u3051\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
     : \u706B\u50B7\u306E\u30DD\u30FC\u30B7\u30E7\u30F3\n\u6575\u306B<link=\"MBurn\"><color=green>\u3084\u3051\u3069</color></link>4\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002\r"

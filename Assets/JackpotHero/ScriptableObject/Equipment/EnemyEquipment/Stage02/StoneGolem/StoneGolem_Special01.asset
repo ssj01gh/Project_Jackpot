@@ -37,7 +37,7 @@ MonoBehaviour:
     At Battle Start
     : Stone Fist
 
-    Give yourself 99 stack of <link="MToughFist"><color=green>Tough
+    Applies itself 99 stack of <link="MToughFist"><color=green>Tough
     Fist</color></link>.'
   EquipmentNameJA: "\u77F3\u62F3"
   EquipmentDetailJA: "\u30B9\u30C8\u30FC\u30F3\u30B4\u30FC\u30EC\u30E0\u306F\u786C\u3044\u5CA9\u3067\u3067\u304D\u3066\u3044\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642

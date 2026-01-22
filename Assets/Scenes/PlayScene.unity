@@ -16007,6 +16007,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -55
       objectReference: {fileID: 0}
+    - target: {fileID: 415785053877421397, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d440c12e343d6ec4eb12d57995e4dec1, type: 2}
+    - target: {fileID: 415785053877421397, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 415785053877421397, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2078870220172279580, guid: 12b18181be52b524892004e1dd33551c, type: 3}
       propertyPath: m_Name
       value: BuffDetailUI
@@ -16014,6 +16026,14 @@ PrefabInstance:
     - target: {fileID: 2078870220172279580, guid: 12b18181be52b524892004e1dd33551c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820023422766172531, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d440c12e343d6ec4eb12d57995e4dec1, type: 2}
+    - target: {fileID: 2820023422766172531, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6506520258571354377, guid: 12b18181be52b524892004e1dd33551c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -18524,6 +18544,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -55
       objectReference: {fileID: 0}
+    - target: {fileID: 415785053877421397, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d440c12e343d6ec4eb12d57995e4dec1, type: 2}
+    - target: {fileID: 415785053877421397, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 415785053877421397, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2078870220172279580, guid: 12b18181be52b524892004e1dd33551c, type: 3}
       propertyPath: m_Name
       value: BuffDetailUI
@@ -18531,6 +18563,14 @@ PrefabInstance:
     - target: {fileID: 2078870220172279580, guid: 12b18181be52b524892004e1dd33551c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820023422766172531, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d440c12e343d6ec4eb12d57995e4dec1, type: 2}
+    - target: {fileID: 2820023422766172531, guid: 12b18181be52b524892004e1dd33551c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6506520258571354377, guid: 12b18181be52b524892004e1dd33551c, type: 3}
       propertyPath: m_SizeDelta.y

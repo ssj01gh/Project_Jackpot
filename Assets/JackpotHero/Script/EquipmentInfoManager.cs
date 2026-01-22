@@ -537,7 +537,6 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.EquipmentTier = MonEquipmentStorage[EquipmentCode].EquipmentTier;
         AssembleEquip.EquipmentCode = MonEquipmentStorage[EquipmentCode].EquipmentCode;
         //AssembleEquip.EquipmentName = MonEquipmentStorage[EquipmentCode].EquipmentName;
-        AssembleEquip.EquipmentName = "";
         AssembleEquip.SpendTiredness = MonEquipmentStorage[EquipmentCode].SpendTiredness;
         AssembleEquip.EquipmentSlots = MonEquipmentStorage[EquipmentCode].EquipmentSlots;
         AssembleEquip.EquipmentImage = MonEquipmentStorage[EquipmentCode].EquipmentImage;
@@ -548,11 +547,26 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         AssembleEquip.AddLUKAmount = MonEquipmentStorage[EquipmentCode].AddLUKAmount;
         AssembleEquip.AddHPAmount = MonEquipmentStorage[EquipmentCode].AddHPAmount;
         AssembleEquip.AddTirednessAmount = MonEquipmentStorage[EquipmentCode].AddTirednessAmount;
+        AssembleEquip.EquipmentName = "";
         AssembleEquip.EquipmentDetail = "";
+        if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            AssembleEquip.EquipmentName = MonEquipmentStorage[EquipmentCode].EquipmentNameEN;
+        else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            AssembleEquip.EquipmentName = MonEquipmentStorage[EquipmentCode].EquipmentNameJA;
+        else
+            AssembleEquip.EquipmentName = MonEquipmentStorage[EquipmentCode].EquipmentName;
+
         //94071 분노 첫번째 특행은 따로 확인 해줘야함
         if (EquipmentCode == 94071)
         {
-            string BeforeString = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
+            string BeforeString = "";
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                BeforeString = MonEquipmentStorage[EquipmentCode].EquipmentDetailEN;
+            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                BeforeString = MonEquipmentStorage[EquipmentCode].EquipmentDetailJA;
+            else
+                BeforeString = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
+
             string WrathTag = "";
             int WrathBuffCount = 7 - JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount;
             if (JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount >= 6)
@@ -570,7 +584,12 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         }
         else
         {
-            AssembleEquip.EquipmentDetail = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                AssembleEquip.EquipmentDetail = MonEquipmentStorage[EquipmentCode].EquipmentDetailEN;
+            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                AssembleEquip.EquipmentDetail = MonEquipmentStorage[EquipmentCode].EquipmentDetailJA;
+            else
+                AssembleEquip.EquipmentDetail = MonEquipmentStorage[EquipmentCode].EquipmentDetail;
         }
         return AssembleEquip;
     }

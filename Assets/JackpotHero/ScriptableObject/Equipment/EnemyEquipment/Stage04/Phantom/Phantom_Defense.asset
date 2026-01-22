@@ -64,6 +64,9 @@ MonoBehaviour:
   EquipmentDetail: "\uAC80\uC740 \uC548\uAC1C\uC758 \uC0DD\uBA85\uCCB4\uB294\n\uBC29\uC5B4\uB97C
     \uD560 \uC0DD\uAC01\uC774 \uC5C6\uC5B4 \uBCF4\uC785\uB2C8\uB2E4."
   EquipmentNameEN: Misty Body
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'The creature of black mist shows
+
+    no intention of defending
+    itself.'
   EquipmentNameJA: "\u9727\u306E\u8EAB\u4F53"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u9ED2\u3044\u9727\u306E\u751F\u547D\u4F53\u306F\u3001\n\u9632\u5FA1\u3059\u308B\u6C17\u304C\u306A\u3044\u3088\u3046\u3067\u3059\u3002"

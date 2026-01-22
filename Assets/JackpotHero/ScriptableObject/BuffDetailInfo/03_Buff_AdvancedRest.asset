@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 543056986, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uC0C1\uAE09 \uD734\uC2DD"
-  BuffDetail: "\uC804\uD22C\uC911 \uD53C\uB85C\uB3C4 \uD68C\uBCF5\uC2DC\n\uD68C\uBCF5\uD55C
-    \uD53C\uB85C\uB3C4 \uC218\uCE58\uC758\n10% \uB9CC\uD07C \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
+  BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9, STA\uD68C\uBCF5\uC2DC\n\uD68C\uBCF5\uD55C
+    STA\uC218\uCE58\uC758\n10% \uB9CC\uD07C \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Advanced Rest
+  BuffDetailEN: "During battle, \nwhen an action STA Recovery, \nrestores HP equal
+    to \n10% of the recovered STA."
+  BuffNameJA: "\u4E0A\u7D1A\u4F11\u61A9"
+  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001STA\u56DE\u5FA9\u884C\u52D5\u3092\u3057\u305F\u6642\u3001\n\u56DE\u5FA9\u3057\u305FSTA\u306E10%\u3076\u3093\nHP\u3092\u56DE\u5FA9\u3057\u307E\u3059\u3002"

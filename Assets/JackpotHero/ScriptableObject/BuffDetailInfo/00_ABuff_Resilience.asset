@@ -15,5 +15,11 @@ MonoBehaviour:
   BuffImage: {fileID: 21300000, guid: 9197cb07145154145b1648e2692be38c, type: 3}
   BuffName: "\uD68C\uBCF5\uB825"
   BuffDetail: "\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uC2A4\uD0DD\uB9CC\uD07C
-    \uD53C\uB85C\uB3C4\uB97C \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\uC790\uC2E0\uC758
-    \uD134\uB9C8\uB2E4\n\uD604\uC7AC \uD68C\uBCF5\uC758 20%\uB9CC\uD07C \uC2A4\uD0DD"
+    STA\uB97C \uD68C\uBCF5\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uD604\uC7AC
+    RES\uC758 20%\uB9CC\uD07C \uC2A4\uD0DD"
+  BuffNameEN: Resilience
+  BuffDetailEN: 'At the start of its turn,
+
+    recovers STA equal to its stacks.'
+  BuffNameJA: "\u56DE\u5FA9\u529B"
+  BuffDetailJA: "\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\n\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093STA\u3092\u56DE\u5FA9\u3057\u307E\u3059\u3002\r"

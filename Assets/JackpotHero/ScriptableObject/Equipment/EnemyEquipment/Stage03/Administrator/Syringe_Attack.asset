@@ -67,7 +67,7 @@ MonoBehaviour:
     On
     Attack : Chemical Injection
 
-    Give enemy 5 stack of <link="MPoison"><color=green>Poison</color></link>,
+    Applies enemy 5 stack of <link="MPoison"><color=green>Poison</color></link>,
     OR 2 stack of <link="MWeakness"><color=green>Weakness</color></link>, OR 2 stack
     of <link="MSlow"><color=green>Slow</color></link>.'
   EquipmentNameJA: "\u85AC\u5264\u6CE8\u5165"

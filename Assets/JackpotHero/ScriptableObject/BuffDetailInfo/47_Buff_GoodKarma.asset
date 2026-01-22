@@ -15,3 +15,7 @@ MonoBehaviour:
   BuffImage: {fileID: 271611335, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uC5C5\uBCF4 : \uC120"
   BuffDetail: "\uC2A4\uD0DD\uB2F9 \uBAA8\uB4E0 \uC2A4\uD0EF\uC774\n1\uC529 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  BuffNameEN: 'Karma : Good'
+  BuffDetailEN: 
+  BuffNameJA: "\u30AB\u30EB\u30DE : \u5584"
+  BuffDetailJA: 

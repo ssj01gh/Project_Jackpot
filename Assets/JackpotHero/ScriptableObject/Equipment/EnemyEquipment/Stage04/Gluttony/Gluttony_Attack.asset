@@ -71,6 +71,6 @@ MonoBehaviour:
   EquipmentDetail: "\uB048\uC801\uC774\uB294 \uCE68\uC774 \uD758\uB7EC\uB098\uC624\uB294
     \uD131\uC73C\uB85C \uC801\uC744 \uBB3C\uC5B4 \uACF5\uACA9\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Gnaw
-  EquipmentDetailEN: 
+  EquipmentDetailEN: Bites the enemy with jaws dripping with sticky saliva.
   EquipmentNameJA: "\u565B\u307F\u7815\u304D"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u7C98\u3064\u304F\u553E\u6DB2\u304C\u5782\u308C\u308B\u984E\u3067\u3001\u6575\u306B\u565B\u307F\u3064\u3044\u3066\u653B\u6483\u3057\u307E\u3059\u3002"

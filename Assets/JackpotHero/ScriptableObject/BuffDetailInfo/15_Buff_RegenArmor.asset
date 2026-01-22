@@ -17,3 +17,7 @@ MonoBehaviour:
   BuffDetail: "\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uC2A4\uD0DD\uC5D0 \uD574\uB2F9\uD558\uB294\n\uBCF4\uD638\uB9C9\uC744
     \uC5BB\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD
     -1"
+  BuffNameEN: Regen Armor
+  BuffDetailEN: 
+  BuffNameJA: "\u518D\u751F\u306E\u93A7"
+  BuffDetailJA: 

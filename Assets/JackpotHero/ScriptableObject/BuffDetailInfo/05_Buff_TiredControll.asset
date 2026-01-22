@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 522560834, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uD53C\uB85C\uB3C4 \uC870\uC808"
-  BuffDetail: "\uC804\uD22C\uC911 \uD53C\uD574 \uC0AC\uC6A9\uB7C9\uC774\n\uD604\uC7AC
-    \uD53C\uB85C\uB3C4\uC5D0\n\uBE44\uB840\uD558\uC5EC \uAC10\uC18C\n\n\uC790\uC2E0\uC758
-    \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffDetail: "\uC804\uD22C\uC911 STA \uC0AC\uC6A9\uB7C9\uC774\n\uD604\uC7AC STA\uC5D0\n\uBE44\uB840\uD558\uC5EC
+    \uAC10\uC18C\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD
+    -1"
+  BuffNameEN: Fatigue Controll
+  BuffDetailEN: "During battle, \nSTA costs are reduced in\nproportion to current
+    STA."
+  BuffNameJA: "\u75B2\u52B4\u5EA6\u8ABF\u6574"
+  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001\n\u73FE\u5728\u306ESTA\u306B\u6BD4\u4F8B\u3057\u3066\nSTA\u306E\u4F7F\u7528\u91CF\u304C\u6E1B\u308A\u307E\u3059\u3002"

@@ -964,25 +964,9 @@ public class BattleManager : MonoBehaviour
                 {
                     switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                     {
-                        case (int)EBuffType.Poison:
-                            PlayerMgr.GetPlayerInfo().PlayerDamage(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison], true);
-                            PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] / 2;
-                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", PlayerBuffPos);
-                            break;
                         case (int)EBuffType.Recharge:
-                            float RegenSTAAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxSTA - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA;
-                            RegenSTAAmount = RegenSTAAmount / 20;
-                            PlayerMgr.GetPlayerInfo().PlayerRegenSTA(RegenSTAAmount);
-                            EffectManager.Instance.ActiveEffect("BattleEffect_Buff_ReCharge", PlayerBuffPos);
                             break;
                         case (int)EBuffType.Cower:
-                            /*
-                            while(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 3)
-                            {
-                                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] -= 3;
-                                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] += 1;
-                            }
-                            */
                             break;
                         case (int)EBuffType.Fear:
                             EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerBuffPos);
@@ -1033,11 +1017,6 @@ public class BattleManager : MonoBehaviour
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                 {
                     //재생 , 기충전, 화상, 독, 죽음의 저주, 재생형갑옷, 나약함, 불사(이놈은 마지막에 계산되야 될것 같은데)
-                    case (int)EBuffType.Poison:
-                        MonInfo.MonsterDamage(MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison]);
-                        MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison] = MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison] / 2;
-                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", MonInfo.gameObject.transform.position);
-                        break;
                     case (int)EBuffType.CurseOfDeath:
                         if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.CurseOfDeath] <= 1)
                         {
@@ -1117,6 +1096,11 @@ public class BattleManager : MonoBehaviour
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                 {
                     //재생 , 기충전, 화상, 독, 죽음의 저주, 재생형갑옷, 나약함, 불사(이놈은 마지막에 계산되야 될것 같은데)
+                    case (int)EBuffType.Poison:
+                        PlayerMgr.GetPlayerInfo().PlayerDamage(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison], true);
+                        PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] / 2;
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", PlayerBuffPos);
+                        break;
                     case (int)EBuffType.Resilience:
                         //PlayerRegenSTA
                         PlayerMgr.GetPlayerInfo().PlayerRegenSTA(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Resilience]);
@@ -1166,6 +1150,11 @@ public class BattleManager : MonoBehaviour
                 switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                 {
                     //재생 , 기충전, 화상, 독, 죽음의 저주, 재생형갑옷, 나약함, 불사(이놈은 마지막에 계산되야 될것 같은데)
+                    case (int)EBuffType.Poison:
+                        MonInfo.MonsterDamage(MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison]);
+                        MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison] = MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison] / 2;
+                        EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", MonInfo.gameObject.transform.position);
+                        break;
                     case (int)EBuffType.Burn:
                         float BurnDamage = MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP / 20;
                         MonInfo.MonsterDamage((int)BurnDamage);

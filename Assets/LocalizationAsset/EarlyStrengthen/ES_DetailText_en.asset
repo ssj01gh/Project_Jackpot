@@ -92,7 +92,7 @@ MonoBehaviour:
     m_Localized: 'Start with STR : 10
 
 
-      Give yourself
+      Applies itself
 
       <link="STR07"><color=green>Overwhelming
       Power</color></link> at the start of combat.
@@ -178,15 +178,16 @@ MonoBehaviour:
     m_Localized: 'Start with DUR : 10
 
 
-      Give yourself
+      Applies itself
 
-      <link="DUR07"><color=green>ThornArmor</color></link>
-      at the start of combat.
+      <link="DUR07"><color=green>Thorn
+      Armor</color></link> at the start of combat.
 
 
       DUR affects defense stats
 
-      during combat.'
+      during
+      combat.'
     m_Metadata:
       m_Items: []
   - m_Id: 28485271285774
@@ -263,7 +264,7 @@ MonoBehaviour:
     m_Localized: 'Start with SPD : 10
 
 
-      Give enemies
+      Applies enemy
 
       <link="SPD07"><color=green>Vulnerable</color></link>
       at the start of combat.
@@ -348,15 +349,16 @@ MonoBehaviour:
     m_Localized: 'Start with RES : 10
 
 
-      Give yourself
+      Applies itself
 
-      <link="RES07"><color=green>AdvancedRest</color></link>
-      at the start of combat.
+      <link="RES07"><color=green>Advanced
+      Rest</color></link> at the start of combat.
 
 
       RES affects STA Recovery
 
-      during combat.'
+      during
+      combat.'
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224836
@@ -516,7 +518,7 @@ MonoBehaviour:
     m_Localized: 'Start with HP : 200
 
 
-      Give yourself
+      Applies itself
 
       <link="HP07"><color=green>Bloodline</color></link>
       at the start of combat.
@@ -599,16 +601,16 @@ MonoBehaviour:
     m_Localized: 'Start with STA : 2000
 
 
-      Give yourself
+      Applies itself
 
-      <link="STA07"><color=green>TiredControll</color></link>
-      at the start of combat.
+      <link="STA07"><color=green>Fatigue
+      Controll</color></link> at the start of combat.
 
 
-      STA is a resource used to
+      STA is a resource used
+      to
 
-      perform actions
-      in combat.'
+      perform actions in combat.'
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224860
@@ -685,7 +687,7 @@ MonoBehaviour:
     m_Localized: 'Start with EXP : 150
 
 
-      Give yourself
+      Applies itself
 
       <link="EXP07"><color=green>Exploitation</color></link>
       at the start of combat.
@@ -771,16 +773,16 @@ MonoBehaviour:
     m_Localized: 'EXP gain starts at 125%.
 
 
-      Give yourself
+      Applies itself
 
-      <link="EXPMG07"><color=green>EXPPower</color></link>
-      at the start of combat.
+      <link="EXPMG07"><color=green>EXP
+      Power</color></link> at the start of combat.
 
 
-      EXP is a resource used to
+      EXP is a resource used
+      to
 
-      strengthen
-      the player.'
+      strengthen the player.'
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224876
@@ -857,16 +859,16 @@ MonoBehaviour:
     m_Localized: 'Start with 12 inventory slots.
 
 
-      Give yourself
+      Applies itself
 
-      <link="EQUIP07"><color=green>WeaponMaster</color></link>
-      at the start of combat.
+      <link="EQUIP07"><color=green>Weapon
+      Master</color></link> at the start of combat.
 
 
-      After victory or defeat, 4 random equipment
+      After victory or defeat,
+      4 random equipment
 
-      can
-      be carried over to the next game.'
+      can be carried over to the next game.'
     m_Metadata:
       m_Items: []
   references:

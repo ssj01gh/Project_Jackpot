@@ -32,8 +32,8 @@ MonoBehaviour:
     \uD798</color></link> 99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Power of Immortality
   EquipmentDetailEN: "The experiment that sought to control death\nachieved a certain
-    degree of success.\n\nAt Battle Start : Power of Immortality\nGive yourself 99
-    stack of <link=\"MPowerOfDeath\"><color=green>Power Of Death</color></link>.\r"
+    degree of success.\n\nAt Battle Start : Power of Immortality\nApplies itself
+    99 stack of <link=\"MPowerOfDeath\"><color=green>Power Of Death</color></link>.\r"
   EquipmentNameJA: "\u4E0D\u6B7B\u306E\u529B"
   EquipmentDetailJA: "\u6B7B\u3092\u6271\u304A\u3046\u3068\u3057\u305F\u5B9F\u9A13\u306F\u3001\n\u3042\u308B\u7A0B\u5EA6\u306E\u6210\u679C\u3092\u4E0A\u3052\u307E\u3057\u305F\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
     : \u4E0D\u6B7B\u306E\u529B\n\u81EA\u5206\u306B<link=\"MPowerOfDeath\"><color=green>\u6B7B\u306E\u529B</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

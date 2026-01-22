@@ -15,3 +15,7 @@ MonoBehaviour:
   BuffImage: {fileID: -1644042423, guid: d5d0bae72e7fd174f8ccda96a591db11, type: 3}
   BuffName: "\uBD84\uB178"
   BuffDetail: "\uC2A4\uD0DD\uB2F9 \uC790\uC2E0\uC758 \uC2A4\uD0EF\uC774\n10% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  BuffNameEN: Wrath
+  BuffDetailEN: 
+  BuffNameJA: "\u61A4\u6012"
+  BuffDetailJA: 

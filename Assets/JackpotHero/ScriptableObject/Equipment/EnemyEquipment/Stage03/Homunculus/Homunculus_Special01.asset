@@ -41,7 +41,7 @@ MonoBehaviour:
 
     At Battle Start : Artificial Lifeform
 
-    Give yourself 99
+    Applies itself 99
     stack of <link="MToughSkin"><color=green>Tough Skin</color></link> OR <link="MToughFist"><color=green>Tough
     Fist</color></link> OR <link="MLuck"><color=green>Luck</color></link.'
   EquipmentNameJA: "\u4EBA\u5DE5\u751F\u547D\u4F53"

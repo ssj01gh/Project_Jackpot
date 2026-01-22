@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 1863569177, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uB098\uC57D\uD568"
-  BuffDetail: "\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uD604\uC7AC \uD53C\uB85C\uB3C4\uC758\n5%\uC5D0
+  BuffDetail: "\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uD604\uC7AC STA\uC758\n5%\uC5D0
     \uD574\uB2F9\uD558\uB294\n\uD53C\uB85C\uB3C4\uB97C \uC783\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Weakness
+  BuffDetailEN: 
+  BuffNameJA: "\u5F31"
+  BuffDetailJA: 

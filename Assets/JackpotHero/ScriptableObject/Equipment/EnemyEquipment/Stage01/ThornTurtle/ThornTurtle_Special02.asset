@@ -37,7 +37,7 @@ MonoBehaviour:
     Special Action
     : Raise Spikes
 
-    Give yourself 3 stack of <link="MThornArmor"><color=green>Thorn
+    Applies itself 3 stack of <link="MThornArmor"><color=green>Thorn
     Armor</color></link>.'
   EquipmentNameJA: "\u68D8\u3092\u7ACB\u3066\u308B"
   EquipmentDetailJA: "\u3068\u3052\u4E80\u304C\u81EA\u8EAB\u306E\u3068\u3052\u3092\u6574\u3048\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5

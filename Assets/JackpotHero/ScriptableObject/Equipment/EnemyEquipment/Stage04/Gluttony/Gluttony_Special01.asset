@@ -29,9 +29,11 @@ MonoBehaviour:
   EquipmentDetail: "\uC2DD\uD0D0\uC740 \uC801\uC758 \uACF5\uACA9\uAE4C\uC9C0 \uC9D1\uC5B4
     \uC0BC\uD0B5\uB2C8\uB2E4.\n\n\uD53C\uD574\uB97C \uC785\uC744 \uC2DC : \uC2DD\uD0D0\n\uD53C\uD574\uB97C
     \uC785\uC9C0 \uC54A\uACE0 \uD574\uB2F9 \uC218\uCE58\uB9CC\uD07C \uC790\uC2E0\uC5D0\uAC8C
-    <link=\"MGluttony\"><color=green>\uC2DD\uD0D0</color></link> \uC2A4\uD0DD\uC744
-    \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    <link=\"MGluttony\"><color=green>\uC2DD\uD0D0</color></link>\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Gluttony
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "Gluttony devours even the enemy\u2019s attacks.\n\nTaking damage
+    : Gluttony\nTakes no damage and applies itself <link=\"MGluttony\"><color=green>Gluttony</color></link>
+    equal to that amount."
   EquipmentNameJA: "\u66B4\u98DF"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u66B4\u98DF\u306F\u3001\u6575\u306E\u653B\u6483\u3055\u3048\u3082\u55B0\u3089\u3044\u5C3D\u304F\u3057\u307E\u3059\u3002\n\n\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u305F\u6642
+    : \u66B4\u98DF\n\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u305A\u3001\u305D\u306E\u6570\u5024\u5206\u306E<link=\"MGluttony\"><color=green>\u66B4\u98DF</color></link>\u3092\u81EA\u8EAB\u306B\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

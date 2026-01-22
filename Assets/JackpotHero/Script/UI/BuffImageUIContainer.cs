@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class BuffImageUIContainer : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler
@@ -80,7 +81,7 @@ public class BuffImageUIContainer : MonoBehaviour , IPointerEnterHandler, IPoint
             {
                 BuffDetailInfoObject.SetActive(true);
                 BuffDetailInfoObject.transform.position = BuffObj.transform.position;
-                BuffDetailTitle.text = BuffInfoManager.Instance.GetBuffInfo(ActiveBuffTypeCode[i]).BuffName;
+                BuffDetailTitle.text = BuffInfoManager.Instance.GetBuffInfo(ActiveBuffTypeCode[i]).BuffName;//이렇게 받아온다.....
                 BuffDetailText.text = BuffInfoManager.Instance.GetBuffInfo(ActiveBuffTypeCode[i]).BuffDetail;
             }
         }

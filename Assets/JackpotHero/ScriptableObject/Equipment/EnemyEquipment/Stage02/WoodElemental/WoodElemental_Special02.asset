@@ -32,7 +32,7 @@ MonoBehaviour:
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: "Nature\u2019s Regeneration"
   EquipmentDetailEN: "The Wood Elemental is blessed by nature.\n\nAt Battle Start
-    : Nature\u2019s Regeneration\nGive yourself 99 stack of <link=\"MRegeneration\"><color=green>Regeneration</color></link>."
+    : Nature\u2019s Regeneration\nApplies itself 99 stack of <link=\"MRegeneration\"><color=green>Regeneration</color></link>."
   EquipmentNameJA: "\u81EA\u7136\u306E\u518D\u751F\u529B"
   EquipmentDetailJA: "\u81EA\u7136\u304C\u6A39\u970A\u3092\u795D\u798F\u3057\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
     : \u81EA\u7136\u306E\u518D\u751F\u529B\n\u81EA\u5206\u306B<link=\"MRegeneration\"><color=green>\u518D\u751F</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

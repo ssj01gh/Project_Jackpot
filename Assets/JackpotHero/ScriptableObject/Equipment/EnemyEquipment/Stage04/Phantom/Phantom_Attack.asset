@@ -70,6 +70,6 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uD3B8\uC548\uD55C \uD734\uC2DD\uC744 \uBC29\uD574\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Nightmare
-  EquipmentDetailEN: 
+  EquipmentDetailEN: Disrupts a comfortable rest.
   EquipmentNameJA: "\u60AA\u5922"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u5B89\u3089\u304B\u306A\u4F11\u606F\u3092\u59A8\u3052\u307E\u3059\u3002"

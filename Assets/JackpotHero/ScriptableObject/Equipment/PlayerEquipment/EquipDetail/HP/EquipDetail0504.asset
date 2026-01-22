@@ -27,7 +27,7 @@ MonoBehaviour:
     At
     Battle Start
 
-    Give yourself {HPA} stack of <link="HPAC"><color=green>Power
+    Applies itself {HPA} stack of <link="HPAC"><color=green>Power
     Of Death</color></link>.'
   EquipmnetNameJA: "\u4E00\u65CF\u306E\u30D6\u30EC\u30B9\u30EC\u30C3\u30C8"
   EquipmnetDetailJA: "\u8840\u306E\u4E00\u65CF\u306E\u9B54\u6CD5\u3067\u4F5C\u3089\u308C\u305F\u8D64\u3044\u30D6\u30EC\u30B9\u30EC\u30C3\u30C8\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\n\u81EA\u5206\u306B<link=\"HPAC\"><color=green>\u6B7B\u306E\u529B</color></link>{HPA}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

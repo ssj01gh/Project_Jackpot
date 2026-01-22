@@ -67,6 +67,16 @@ MonoBehaviour:
     : \uB9E4\uD639\n\uC801\uC5D0\uAC8C <link=\"MCharm\"><color=green>\uB9E4\uD639</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Charm
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'A wicked pink aura envelops the body, offering protection.
+
+    The
+    leaking energy also affects nearby enemies.
+
+
+    On Defense : Charm
+
+    Applies
+    enemy 1 stack of <link="MCharm"><color=green>Charm</color></link>.'
   EquipmentNameJA: "\u9B45\u4E86"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u6843\u8272\u306E\u90AA\u306A\u6C17\u914D\u304C\u8EAB\u4F53\u3092\u5305\u307F\u3001\u8EAB\u3092\u5B88\u308A\u307E\u3059\u3002\n\u6F0F\u308C\u51FA\u3057\u305F\u6C17\u914D\u306F\u3001\u6575\u306B\u3082\u5F71\u97FF\u3092\u4E0E\u3048\u307E\u3059\u3002\n\n\u9632\u5FA1\u6642
+    : \u9B45\u4E86\n\u6575\u306B<link=\"MCharm\"><color=green>\u9B45\u60D1</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

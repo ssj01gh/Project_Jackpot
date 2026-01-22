@@ -64,7 +64,7 @@ MonoBehaviour:
 
     On Attack : Slam Down
 
-    Give
+    Applies
     enemy 2 stack of <link="MDefenseDebuff"><color=green>Defense Debuff</color></link>.'
   EquipmentNameJA: "\u53E9\u304D\u3064\u3051"
   EquipmentDetailJA: "\u30CF\u30F3\u30DE\u30FC\u3092\u632F\u308A\u4E0B\u308D\u3057\u3066\u653B\u6483\u3057\u307E\u3059\u3002\n\n\u653B\u6483\u6642

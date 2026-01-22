@@ -25,7 +25,7 @@ MonoBehaviour:
 
     On Attack
 
-    Give
+    Applies
     enemy 3 stack of <link="DURWE"><color=green>AttackDebuff</color></link>.'
   EquipmnetNameJA: "\u30E1\u30A4\u30B9"
   EquipmnetDetailJA: "\u6253\u6483\u306B\u7279\u5316\u3057\u305F\u6B66\u5668\u3067\u3059\u3002\n\n\u653B\u6483\u6642\n\u6575\u306B<link=\"DURWE\"><color=green>\u653B\u6483\u30C7\u30D0\u30D5</color></link>3\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

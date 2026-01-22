@@ -63,7 +63,7 @@ MonoBehaviour:
 
     On Attack : Cleave
 
-    Give
+    Applies
     enemy 2 stack of <link="MAttackDebbuff"><color=green>Attack Debuff</color></link>.'
   EquipmentNameJA: "\u65AC\u308A\u88C2\u304D"
   EquipmentDetailJA: "\u30CE\u30B3\u30AE\u30EA\u3067\u5207\u308A\u88C2\u3044\u3066\u653B\u6483\u3057\u307E\u3059\u3002\n\n\u653B\u6483\u6642

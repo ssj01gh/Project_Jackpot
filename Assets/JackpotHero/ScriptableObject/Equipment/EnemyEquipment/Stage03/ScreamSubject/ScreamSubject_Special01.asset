@@ -38,8 +38,8 @@ MonoBehaviour:
 
     At Battle Start : Unstable Body
 
-    Give yourself 5 stack of <link="MSelfDestruct"><color=green>Self
-    Destruct</color></link>.'
+    Applies itself 5 stack of
+    <link="MSelfDestruct"><color=green>Self Destruct</color></link>.'
   EquipmentNameJA: "\u4E0D\u5B89\u5B9A\u306A\u8EAB\u4F53"
   EquipmentDetailJA: "\u4E0D\u5B89\u5B9A\u306A\u8EAB\u4F53\u306F\u3001\u3044\u3064\u7206\u767A\u3057\u3066\u3082\u304A\u304B\u3057\u304F\u306A\u3044\u7206\u5F3E\u306E\u3088\u3046\u306A\u3082\u306E\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
     : \u4E0D\u5B89\u5B9A\u306A\u8EAB\u4F53\n\u81EA\u5206\u306B<link=\"MSelfDestruct\"><color=green>\u81EA\u7206</color></link>5\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

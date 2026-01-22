@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 19418393997312
-    m_Localized: '<size=40>OverwhelmingPower</size>
+    m_Localized: '<size=40>Overwhelming Power</size>
 
 
       When an enemy is defeated
@@ -29,7 +29,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997313
-    m_Localized: '<size=40>ThornArmor</size>
+    m_Localized: '<size=40>Thorn Armor</size>
 
 
       If a shield remains after being
@@ -42,7 +42,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997314
-    m_Localized: '<size=40>AdvancedRest</size>
+    m_Localized: '<size=40>Advanced Rest</size>
 
 
       Recover HP equal to
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997317
-    m_Localized: '<size=40>TiredControll</size>
+    m_Localized: '<size=40>Fatigue Controll</size>
 
 
       STA consumption is reduced
@@ -102,7 +102,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997319
-    m_Localized: '<size=40>EXPPower</size>
+    m_Localized: '<size=40>EXP Power</size>
 
 
       Add a final bonus equal to 10%
@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997320
-    m_Localized: '<size=40>WeaponMaster</size>
+    m_Localized: '<size=40>Weapon Master</size>
 
 
       Add a base value equal to

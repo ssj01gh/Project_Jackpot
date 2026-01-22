@@ -31,6 +31,8 @@ MonoBehaviour:
     <link=\"MCharging\"><color=green>\uCD95\uC801</color></link> 1\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
   EquipmentNameEN: Dragon Heart
-  EquipmentDetailEN: 
+  EquipmentDetailEN: "The dragon\u2019s heart is a symbol of infinite power.\n\nSpecial
+    Action : Dragon Heart\nApplies itself 1 stack of <link=\"MCharging\"><color=green>Charging</color></link>.\r"
   EquipmentNameJA: "\u7ADC\u306E\u5FC3\u81D3"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u7ADC\u306E\u5FC3\u81D3\u306F\u3001\u7121\u9650\u306E\u529B\u306E\u8C61\u5FB4\u3067\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u7ADC\u306E\u5FC3\u81D3\n\u81EA\u5206\u306B<link=\"MCharging\"><color=green>\u84C4\u7A4D</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

@@ -15,3 +15,7 @@ MonoBehaviour:
   BuffImage: {fileID: 1572017714, guid: dc35476161bde8c4c9c2aa0a73735926, type: 3}
   BuffName: "\uC9C8\uD22C"
   BuffDetail: "\uC2A4\uD0DD\uC758 30% \uB9CC\uD07C\n\uC2A4\uD0EF\uC774 \uAC10\uC18C\uD569\uB2C8\uB2E4."
+  BuffNameEN: Envy
+  BuffDetailEN: 
+  BuffNameJA: "\u5AC9\u59AC"
+  BuffDetailJA: 

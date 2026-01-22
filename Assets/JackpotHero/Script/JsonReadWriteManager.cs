@@ -265,7 +265,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         O_Info.UISFXVolume = 0.8f;
         O_Info.ScreenResolutionWidth = 1920f;
         O_Info.IsFullScreen = false;
-        O_Info.CurrentLanguage = 0;
+        O_Info.CurrentLanguage = 1;
 
         string classToJson = JsonUtility.ToJson(O_Info, true);
         File.WriteAllText(Path, classToJson);

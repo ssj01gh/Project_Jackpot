@@ -71,6 +71,9 @@ MonoBehaviour:
   EquipmentDetail: "\uC801\uC744 \uD658\uC0C1\uC73C\uB85C \uC18D\uC5EC \uAC00\uC9DC\uB97C
     \uACF5\uACA9\uD558\uAC8C \uB9CC\uB4ED\uB2C8\uB2E4."
   EquipmentNameEN: False Body
-  EquipmentDetailEN: 
+  EquipmentDetailEN: 'Deceives the enemy with illusions,
+
+    causing them to attack
+    a decoy.'
   EquipmentNameJA: "\u507D\u308A\u306E\u8EAB\u4F53"
-  EquipmentDetailJA: 
+  EquipmentDetailJA: "\u5E7B\u5F71\u3067\u6575\u3092\u6B3A\u304D\u3001\u507D\u7269\u3092\u653B\u6483\u3055\u305B\u307E\u3059\u3002"

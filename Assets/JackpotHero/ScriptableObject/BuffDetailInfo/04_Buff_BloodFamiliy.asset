@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: -2039516159, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uD53C\uC758 \uC77C\uC871"
-  BuffDetail: "\uC804\uD22C\uC911 \uBAA8\uB4E0 \uC218\uCE58 \uACC4\uC0B0\uC5D0\n\uCD5C\uB300
-    \uCCB4\uB825\uC758 3%\uB9CC\uD07C\n\uAE30\uCD08 \uC218\uCE58 \uCD94\uAC00\n\n\uC790\uC2E0\uC758
-    \uD134 \uC885\uB8CC\n\uC2A4\uD0DD -1"
+  BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9 \uC218\uCE58 \uACC4\uC0B0\uC5D0\n\uCD5C\uB300
+    HP\uC758 3%\uB9CC\uD07C\n\uAE30\uCD08 \uC218\uCE58\uB97C \uCD94\uAC00\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
+    \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Bloodline
+  BuffDetailEN: "During battle, \nadds base stats\nequal to 3% of max HP\nto action
+    calculations."
+  BuffNameJA: "\u8840\u306E\u4E00\u65CF"
+  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001\u884C\u52D5\u306E\u6570\u5024\u8A08\u7B97\u306B\n\u6700\u5927HP\u306E3%\u3076\u3093\n\u57FA\u790E\u6570\u5024\u3092\u8FFD\u52A0\u3057\u307E\u3059\u3002"

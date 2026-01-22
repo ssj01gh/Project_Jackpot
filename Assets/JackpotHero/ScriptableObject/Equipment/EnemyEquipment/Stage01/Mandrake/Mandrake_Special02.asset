@@ -37,7 +37,7 @@ MonoBehaviour:
     Special
     Action : Cry of Misfortune
 
-    Give enemy 2 stack of <link="MMisfortune"><color=green>Misfortune</color></link>.'
+    Applies enemy 2 stack of <link="MMisfortune"><color=green>Misfortune</color></link>.'
   EquipmentNameJA: "\u4E0D\u5E78\u306E\u5486\u54EE"
   EquipmentDetailJA: "\u4E0D\u6C17\u5473\u306A\u53EB\u3073\u58F0\u3092\u4E0A\u3052\u3001\u6575\u306B\u546A\u3044\u3092\u4E0E\u3048\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
     : \u4E0D\u5E78\u306E\u5486\u54EE\n\u6575\u306B<link=\"MMisfortune\"><color=green>\u4E0D\u904B</color></link>2\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

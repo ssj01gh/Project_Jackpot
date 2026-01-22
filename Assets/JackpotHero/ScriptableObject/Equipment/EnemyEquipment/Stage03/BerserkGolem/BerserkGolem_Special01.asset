@@ -37,7 +37,7 @@ MonoBehaviour:
     At
     Battle Start : Raging Body
 
-    Give yourself 5 stack of <link="MOverCharge"><color=green>Over
+    Applies itself 5 stack of <link="MOverCharge"><color=green>Over
     Charge</color></link>.'
   EquipmentNameJA: "\u66B4\u8D70\u3059\u308B\u8EAB\u4F53"
   EquipmentDetailJA: "\u30B4\u30FC\u30EC\u30E0\u306F\u7D20\u65E9\u3044\u3082\u306E\u306E\u3001\u4ECA\u306B\u3082\u5D29\u308C\u305D\u3046\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
