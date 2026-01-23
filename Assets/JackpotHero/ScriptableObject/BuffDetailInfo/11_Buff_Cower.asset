@@ -19,6 +19,7 @@ MonoBehaviour:
     X 20\uB9CC\uD07C\nSTA\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC2A4\uD0DD
     -1"
   BuffNameEN: Cower
-  BuffDetailEN: 
+  BuffDetailEN: "When stacks reach 3, \nthey convert into \n1 stack of Fear.\nAt
+    the start of its turn, \nconsumes STA \nequal to stacks \xD7 20."
   BuffNameJA: "\u840E\u7E2E"
-  BuffDetailJA: 
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u304C3\u306B\u306A\u308B\u3068\u3001\n\u6050\u60161\u30B9\u30BF\u30C3\u30AF\u306B\u5909\u308F\u308A\u307E\u3059\u3002\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\n\u30B9\u30BF\u30C3\u30AF\xD720\u3076\u3093\u306E\nSTA\u3092\u6D88\u8CBB\u3057\u307E\u3059\u3002"

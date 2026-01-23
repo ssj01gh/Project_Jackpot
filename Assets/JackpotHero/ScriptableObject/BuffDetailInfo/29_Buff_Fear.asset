@@ -17,6 +17,7 @@ MonoBehaviour:
   BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9 \uC120\uD0DD \uB2E8\uACC4\uC5D0\uC11C\nSTA\uD68C\uBCF5\uC744
     \uAC15\uC81C\uD569\uB2C8\uB2E4.\n\nSTA\uD68C\uBCF5\uC2DC\n\uC2A4\uD0DD -1"
   BuffNameEN: Fear
-  BuffDetailEN: 
+  BuffDetailEN: "During battle, \nforces STA recovery\nduring the action selection
+    phase."
   BuffNameJA: "\u6050\u6016"
-  BuffDetailJA: 
+  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001\n\u884C\u52D5\u9078\u629E\u6BB5\u968E\u3067\nSTA\u56DE\u5FA9\u3092\u5F37\u5236\u3057\u307E\u3059\u3002"

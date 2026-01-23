@@ -15,9 +15,10 @@ MonoBehaviour:
   BuffImage: {fileID: 1509532219, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uACBD\uD5D8\uC758 \uD798"
   BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9 \uC218\uCE58\uACC4\uC0B0\uC5D0\n\uD604\uC7AC
-    EXP\uC758 1% \uB9CC\uD07C\uC744\n\uCD5C\uC885 \uC218\uCE58\uB97C \uCD94\uAC00\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
+    EXP\uC758 1% \uB9CC\uD07C\n\uCD5C\uC885 \uC218\uCE58\uB97C \uCD94\uAC00\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
   BuffNameEN: EXP Power
-  BuffDetailEN: 
+  BuffDetailEN: "During battle, \nadds final value\nequal to 1% of current EXP\nto
+    action calculations."
   BuffNameJA: "\u7D4C\u9A13\u306E\u529B"
-  BuffDetailJA: 
+  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001\u884C\u52D5\u306E\u6570\u5024\u8A08\u7B97\u306B\n\u73FE\u5728\u306EEXP\u306E1%\u3076\u3093\n\u6700\u7D42\u6570\u5024\u3092\u8FFD\u52A0\u3057\u307E\u3059\u3002"

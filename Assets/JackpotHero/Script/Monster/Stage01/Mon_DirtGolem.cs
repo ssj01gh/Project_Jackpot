@@ -19,7 +19,7 @@ public class Mon_DirtGolem : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
-        //MonsterBuff.BuffList[(int)EBuffType.UnDead] = 999;
+        //MonsterBuff.BuffList[(int)EBuffType.CurseOfDeath] = 1;
         //MonsterBuff.BuffList[(int)EBuffType.Plunder] = 99;
         //공격 : 방어 = 1 : 4
         //0~4

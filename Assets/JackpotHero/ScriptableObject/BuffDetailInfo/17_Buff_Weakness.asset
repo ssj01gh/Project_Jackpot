@@ -15,9 +15,9 @@ MonoBehaviour:
   BuffImage: {fileID: 1863569177, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uB098\uC57D\uD568"
   BuffDetail: "\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uD604\uC7AC STA\uC758\n5%\uC5D0
-    \uD574\uB2F9\uD558\uB294\n\uD53C\uB85C\uB3C4\uB97C \uC783\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
+    \uD574\uB2F9\uD558\uB294\nSTA\uB97C \uC783\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
   BuffNameEN: Weakness
-  BuffDetailEN: 
+  BuffDetailEN: "At the start of its turn, \nloses STA equal to \n5% of current STA."
   BuffNameJA: "\u5F31"
-  BuffDetailJA: 
+  BuffDetailJA: "\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\n\u73FE\u5728\u306ESTA\u306E5%\u3076\u3093\u306E\nSTA\u3092\u5931\u3044\u307E\u3059\u3002"

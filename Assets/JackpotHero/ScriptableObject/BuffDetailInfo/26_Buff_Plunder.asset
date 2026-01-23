@@ -14,12 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 1431215942, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uAC15\uD0C8"
-  BuffDetail: "\uC0C1\uB300\uC5D0\uAC8C \uD53C\uD574\uB97C \uC8FC\uB294 \uB300\uC2E0\nEXP\uB97C
-    \uBE8F\uC2B5\uB2C8\uB2E4.\n\uBE8F\uC744 EXP\uAC00 \uC5C6\uB2E4\uBA74\n\uD328\uD574\uB97C
+  BuffDetail: "\uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC8FC\uB294 \uB300\uC2E0\nEXP\uB97C
+    \uBE8F\uC2B5\uB2C8\uB2E4.\n\uBE8F\uC744 EXP\uAC00 \uC5C6\uB2E4\uBA74\n\uD53C\uD574\uB97C
     \uC90D\uB2C8\uB2E4.\n\n\uC4F0\uB7EC\uD2B8\uB9B4\uC2DC\n\uBE8F\uAE34 EXP\uC758\n50%\uB9CC
     \uBC18\uD658\uB429\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD
     -1"
   BuffNameEN: Plunder
-  BuffDetailEN: 
+  BuffDetailEN: 'Instead of dealing damage,
+
+    steals EXP from the enemy.
+
+    If
+    there is no EXP to steal,
+
+    deals damage instead.
+
+
+    When the unit that
+
+    stole
+    EXP is defeated,
+
+    only 50% of the
+
+    stolen EXP is returned.'
   BuffNameJA: "\u7565\u596A"
-  BuffDetailJA: 
+  BuffDetailJA: "\u6575\u306B\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u4EE3\u308F\u308A\u306B\u3001\nEXP\u3092\u596A\u3044\u307E\u3059\u3002\n\u596A\u3048\u308BEXP\u304C\u306A\u3044\u5834\u5408\u306F\u3001\n\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u307E\u3059\u3002\n\n\u3053\u306E\u52B9\u679C\u3067EXP\u3092\u596A\u3063\u305F\n\u81EA\u5206\u304C\u5012\u3055\u308C\u305F\u6642\u3001\n\u596A\u3063\u305FEXP\u306E50%\n\u306E\u307F\u304C\u8FD4\u9084\u3055\u308C\u307E\u3059\u3002"

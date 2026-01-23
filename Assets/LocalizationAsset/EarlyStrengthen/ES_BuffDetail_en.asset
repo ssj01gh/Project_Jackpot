@@ -48,7 +48,7 @@ MonoBehaviour:
       Recover HP equal to
 
       10%
-      of STA Recovery during combat.'
+      of STA Recovery by action during combat.'
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997315

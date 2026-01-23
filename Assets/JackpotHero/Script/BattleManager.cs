@@ -964,6 +964,19 @@ public class BattleManager : MonoBehaviour
                 {
                     switch (BuffsType)//1씩 줄어들지 않거나 데미지를 주거나 회복시키는것만
                     {
+                        case (int)EBuffType.CurseOfDeath:
+                            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath] <= 1)
+                            {
+                                float CurseOfDeathDamage = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP * 9 / 10;
+                                PlayerMgr.GetPlayerInfo().PlayerDamage(CurseOfDeathDamage);
+                                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath] = 0;
+                                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_CurseOfDeath", PlayerBuffPos);
+                            }
+                            else
+                            {
+                                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath]--;
+                            }
+                            break;
                         case (int)EBuffType.Recharge:
                             break;
                         case (int)EBuffType.Cower:

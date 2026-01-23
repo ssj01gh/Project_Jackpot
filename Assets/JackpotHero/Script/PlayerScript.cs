@@ -397,7 +397,7 @@ public class PlayerScript : MonoBehaviour
                 PlayerBuff.BuffList[i] = 0;
             }
         }
-        //PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 10;
+        PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath] = 1;
         SetInitBuffByEarlyUpgrade();
         /*
         스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨

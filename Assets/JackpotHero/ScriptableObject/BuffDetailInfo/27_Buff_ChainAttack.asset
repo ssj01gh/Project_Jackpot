@@ -19,6 +19,6 @@ MonoBehaviour:
     \uC774\uC678\uC758 \uD589\uB3D9\uC744 \uD558\uAC70\uB098\n\uC0C1\uB300\uC758
     \uD134\uC2DC \uC2A4\uD0DD \uCD08\uAE30\uD654"
   BuffNameEN: Chain Attack
-  BuffDetailEN: 
+  BuffDetailEN: "When attacking, \nadds base value\nequal to its stacks."
   BuffNameJA: "\u9023\u7D9A\u6253\u6483"
-  BuffDetailJA: 
+  BuffDetailJA: "\u653B\u6483\u6642\u3001\n\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093\u306E\n\u57FA\u790E\u6570\u5024\u3092\u8FFD\u52A0\u3057\u307E\u3059\u3002"
