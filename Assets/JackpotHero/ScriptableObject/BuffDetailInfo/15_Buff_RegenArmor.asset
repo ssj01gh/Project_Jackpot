@@ -18,6 +18,7 @@ MonoBehaviour:
     \uC5BB\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD
     -1"
   BuffNameEN: Regen Armor
-  BuffDetailEN: "At the start of its turn, \ngains barrier equal to \nits stacks."
+  BuffDetailEN: "At the start of its turn, \ngains barrier equal to \nits stacks.\n\nEnd
+    of its turn\r\nstaks -1"
   BuffNameJA: "\u518D\u751F\u306E\u93A7"
-  BuffDetailJA: "\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\n\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093\u306E\n\u30D0\u30EA\u30A2\u3092\u7372\u5F97\u3057\u307E\u3059\u3002"
+  BuffDetailJA: "\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\n\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093\u306E\n\u30D0\u30EA\u30A2\u3092\u7372\u5F97\u3057\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

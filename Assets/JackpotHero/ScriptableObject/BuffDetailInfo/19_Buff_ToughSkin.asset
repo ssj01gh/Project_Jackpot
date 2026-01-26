@@ -18,6 +18,6 @@ MonoBehaviour:
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
   BuffNameEN: Tough Skin
   BuffDetailEN: "When defending, \nthe amount of barrier\ngained is multiplied by
-    2."
+    2.\n\nEnd of its turn\r\nstaks -1"
   BuffNameJA: "\u786C\u3044\u808C"
-  BuffDetailJA: "\u9632\u5FA1\u6642\u3001\u7372\u5F97\u3059\u308B\n\u30D0\u30EA\u30A2\u91CF\u306F2\u500D\u306B\u306A\u308A\u307E\u3059\u3002"
+  BuffDetailJA: "\u9632\u5FA1\u6642\u3001\u7372\u5F97\u3059\u308B\n\u30D0\u30EA\u30A2\u91CF\u306F2\u500D\u306B\u306A\u308A\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

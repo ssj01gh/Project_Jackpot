@@ -174,6 +174,75 @@ MonoBehaviour:
     m_Localized: "The monster\u2019s special attack."
     m_Metadata:
       m_Items: []
+  - m_Id: 6802895688822784
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897173606400
+    m_Localized: Defense
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897945358336
+    m_Localized: STA Recovery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803000680640512
+    m_Localized: Enemies turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803579595255808
+    m_Localized: 'Chance variation
+
+      based on LUK.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813593433141248
+    m_Localized: 'No attack target has been selected.
+
+      Please click a face
+      icon in the turn order display or click the enemy you want to attack to select
+      a target.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813595148611584
+    m_Localized: 'Not enough STA.
+
+      Please recover STA by STA Recovery.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813703047081984
+    m_Localized: 'Not enough inventory slots to store equipment.
+
+      Please discard
+      equipment in your inventory to free up slots.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813704364093440
+    m_Localized: 'Not enough STA.
+
+      Please set up a low-quality camp.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813705962123264
+    m_Localized: Not enough EXP to enhance the player.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813707992166400
+    m_Localized: Not enough EXP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813710223536128
+    m_Localized: Not enough STA to explore the Misty Forest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826726067400704
+    m_Localized: Victory!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826729540284416
+    m_Localized: Claim EXP
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

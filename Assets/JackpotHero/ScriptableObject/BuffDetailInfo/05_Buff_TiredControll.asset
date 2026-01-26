@@ -19,6 +19,6 @@ MonoBehaviour:
     -1"
   BuffNameEN: Fatigue Controll
   BuffDetailEN: "During battle, \nSTA costs are reduced in\nproportion to current
-    STA."
+    STA.\n\nEnd of its turn\nstaks -1"
   BuffNameJA: "\u75B2\u52B4\u5EA6\u8ABF\u6574"
-  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001\n\u73FE\u5728\u306ESTA\u306B\u6BD4\u4F8B\u3057\u3066\nSTA\u306E\u4F7F\u7528\u91CF\u304C\u6E1B\u308A\u307E\u3059\u3002"
+  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001\n\u73FE\u5728\u306ESTA\u306B\u6BD4\u4F8B\u3057\u3066\nSTA\u306E\u4F7F\u7528\u91CF\u304C\u6E1B\u308A\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\n\u30B9\u30BF\u30C3\u30AF\u22121"

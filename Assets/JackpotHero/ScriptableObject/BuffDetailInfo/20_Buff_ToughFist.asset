@@ -17,6 +17,7 @@ MonoBehaviour:
   BuffDetail: "\uACF5\uACA9\uC2DC 2\uB97C \uACF1\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
   BuffNameEN: Tough Fist
-  BuffDetailEN: "When attacking, \ndamage dealt is multiplied by 2."
+  BuffDetailEN: "When attacking, \ndamage dealt is multiplied by 2.\n\nEnd of its
+    turn\r\nstaks -1"
   BuffNameJA: "\u5805\u3044\u62F3"
-  BuffDetailJA: "\u653B\u6483\u6642\u3001\u4E0E\u3048\u308B\u30C0\u30E1\u30FC\u30B8\u306F\n2\u500D\u306B\u306A\u308A\u307E\u3059\u3002"
+  BuffDetailJA: "\u653B\u6483\u6642\u3001\u4E0E\u3048\u308B\u30C0\u30E1\u30FC\u30B8\u306F\n2\u500D\u306B\u306A\u308A\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

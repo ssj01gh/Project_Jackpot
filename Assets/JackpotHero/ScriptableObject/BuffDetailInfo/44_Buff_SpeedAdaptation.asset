@@ -16,6 +16,8 @@ MonoBehaviour:
   BuffName: "\uC801\uC751 : \uC18D\uB3C4"
   BuffDetail: "\uC2A4\uD0DD\uC758 \uC81C\uACF1\uB9CC\uD07C\nSPD\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   BuffNameEN: 'Adaptation : SPD'
-  BuffDetailEN: 
+  BuffDetailEN: 'Increases SPD by
+
+    the square of its stacks.'
   BuffNameJA: "\u9069\u5FDC:SPD"
-  BuffDetailJA: 
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u6570\u306E\u4E8C\u4E57\u3076\u3093\u3001\nSPD\u304C\u5897\u52A0\u3057\u307E\u3059\u3002"

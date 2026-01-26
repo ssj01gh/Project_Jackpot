@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -30,25 +30,25 @@ public class BattleUI : MonoBehaviour
     public GameObject MonsterActionSelectionBattleUI;
     [Header("MainBattleUI")]
     public GameObject MainBattleUI;
-    public GameObject[] HeroineSprites;//7¹ø
-    public GameObject BaseAmountObject;//1¹ø
-    public TextMeshProUGUI BaseAmountText;//1¹ø
-    public GameObject MagnificationObject;//2¹ø
-    public TextMeshProUGUI MagnificationText;//2¹ø
-    public GameObject BaseAmountCard;//3¹ø
-    public TextMeshProUGUI BaseAmountCardTitleText;//3¹ø
-    public TextMeshProUGUI BaseAmountCardDetailText;//3¹ø
-    public GameObject MagnificationCard;//3¹ø
+    public GameObject[] HeroineSprites;//7ë²ˆ
+    public GameObject BaseAmountObject;//1ë²ˆ
+    public TextMeshProUGUI BaseAmountText;//1ë²ˆ
+    public GameObject MagnificationObject;//2ë²ˆ
+    public TextMeshProUGUI MagnificationText;//2ë²ˆ
+    public GameObject BaseAmountCard;//3ë²ˆ
+    public TextMeshProUGUI BaseAmountCardTitleText;//3ë²ˆ
+    public TextMeshProUGUI BaseAmountCardDetailText;//3ë²ˆ
+    public GameObject MagnificationCard;//3ë²ˆ
     public GameObject UpperMGLine;
     public GameObject LowerMGLine;
     public GameObject[] UpperMGCard;
     public GameObject[] UpperMGVirtualCard;
     public GameObject[] LowerMGCard;
     public GameObject[] LowerMGVirtualCard;
-    public GameObject[] ActionTypeObject;//4¹ø
-    public GameObject FinalCalculateObject;//4¹ø
-    public TextMeshProUGUI FinalCalculateText;//4¹ø
-    public GameObject ClickTextObject;//5¹ø
+    public GameObject[] ActionTypeObject;//4ë²ˆ
+    public GameObject FinalCalculateObject;//4ë²ˆ
+    public TextMeshProUGUI FinalCalculateText;//4ë²ˆ
+    public GameObject ClickTextObject;//5ë²ˆ
     public GameObject PlayerZone;
     public GameObject MonsterZone;
     //0. Normal # 1. ATK_Form # 2. DUR_Form # 3. RES_Form # 4. SPD_Form # 5. LUK_Form # 6. HP_Form # 7. STA_Form # 8. EXP_From # 9. EXPMG_Form # 10. EQUIP_Form
@@ -213,7 +213,7 @@ public class BattleUI : MonoBehaviour
         WinGameUI.SetActive(false);
     }
 
-    public void ActiveBattleUI()//ÀüÅõ¸¦ ½ÃÀÛÇÒ¶§ ÇÑ¹ø¸¸
+    public void ActiveBattleUI()//ì „íˆ¬ë¥¼ ì‹œì‘í• ë•Œ í•œë²ˆë§Œ
     {
         gameObject.SetActive(true);
 
@@ -229,7 +229,7 @@ public class BattleUI : MonoBehaviour
         });
     }
 
-    public void ActiveBattleSelectionUI(bool IsFear, float AttackAver, float DefenseAver, float RestAver)//ÇÃ·¹ÀÌ¾îÀÇ ÅÏÀÌ ¿Ã¶§¸¶´Ù
+    public void ActiveBattleSelectionUI(bool IsFear, float AttackAver, float DefenseAver, float RestAver)//í”Œë ˆì´ì–´ì˜ í„´ì´ ì˜¬ë•Œë§ˆë‹¤
     {
         if (PlayerActionSelectionBattleUI.activeSelf == true)
             return;
@@ -272,14 +272,14 @@ public class BattleUI : MonoBehaviour
         MonsterActionSelectionBattleUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1080);
         MonsterActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.4f).SetEase(Ease.OutBack);
     }
-    public void SetPlayerBattleUI(PlayerScript PlayerInfo)//½¯µå¶û ¹öÇÁ
+    public void SetPlayerBattleUI(PlayerScript PlayerInfo)//ì‰´ë“œë‘ ë²„í”„
     {
-        //ÀÏ´Ü ´Ù ²ô°í
+        //ì¼ë‹¨ ë‹¤ ë„ê³ 
         PlayerShield.SetActive(false);
         PlayerBrokenShieldObject.SetActive(false);
         PlayerBuffUI.InitBuffImage();
 
-        if(PlayerInfo.BeforeShield <= 0 && PlayerInfo.GetPlayerStateInfo().ShieldAmount > 0)//È°¼ºÈ­
+        if(PlayerInfo.BeforeShield <= 0 && PlayerInfo.GetPlayerStateInfo().ShieldAmount > 0)//í™œì„±í™”
         {
             SoundManager.Instance.PlaySFX("Shield_Appear");
             float ForUIBeforeShield = PlayerInfo.BeforeShield;
@@ -297,9 +297,9 @@ public class BattleUI : MonoBehaviour
             PlayerShield.GetComponent<RectTransform>().DOAnchorPos(InitShieldPos, 0.5f).SetEase(Ease.OutBack);
             PlayerShield.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
         }
-        else if(PlayerInfo.BeforeShield > 0 && PlayerInfo.GetPlayerStateInfo().ShieldAmount <= 0)//ºñÈ°¼ºÈ­
+        else if(PlayerInfo.BeforeShield > 0 && PlayerInfo.GetPlayerStateInfo().ShieldAmount <= 0)//ë¹„í™œì„±í™”
         {
-            //ºÎ½¤Áö´Â°ÍÃ³·³ »ı±ä ½¯µå ÃÊ±âÈ­
+            //ë¶€ìˆ´ì§€ëŠ”ê²ƒì²˜ëŸ¼ ìƒê¸´ ì‰´ë“œ ì´ˆê¸°í™”
             SoundManager.Instance.PlaySFX("Shield_Disappear");
             PlayerBrokenShieldObject.transform.position = PlayerInfo.ShieldUIPos.transform.position;
             PlayerBrokenShieldObject.SetActive(true);
@@ -334,7 +334,7 @@ public class BattleUI : MonoBehaviour
 
     public void SetMonsterBattleUI(List<GameObject> ActiveMonsters)
     {
-        //ÀÏ´Ü ´Ù²ô±â
+        //ì¼ë‹¨ ë‹¤ë„ê¸°
         foreach (GameObject obj in MonsterShield)
         {
             obj.SetActive(false);
@@ -391,7 +391,7 @@ public class BattleUI : MonoBehaviour
                 }
             }
 
-            if(Mon.BeforeMonsterShield <= 0 && Mon.GetMonsterCurrentStatus().MonsterCurrentShieldPoint > 0)//È°¼ºÈ­
+            if(Mon.BeforeMonsterShield <= 0 && Mon.GetMonsterCurrentStatus().MonsterCurrentShieldPoint > 0)//í™œì„±í™”
             {
                 SoundManager.Instance.PlaySFX("Shield_Appear");
                 float ForUIBeforeShield = Mon.BeforeMonsterShield;
@@ -409,9 +409,9 @@ public class BattleUI : MonoBehaviour
                 MonsterShield[i].GetComponent<RectTransform>().DOAnchorPos(InitShieldPos, 0.5f).SetEase(Ease.OutBack);
                 MonsterShield[i].GetComponent<CanvasGroup>().DOFade(1, 0.5f);
             }
-            else if(Mon.BeforeMonsterShield > 0 && Mon.GetMonsterCurrentStatus().MonsterCurrentShieldPoint <= 0)//ºñÈ°¼ºÈ­
+            else if(Mon.BeforeMonsterShield > 0 && Mon.GetMonsterCurrentStatus().MonsterCurrentShieldPoint <= 0)//ë¹„í™œì„±í™”
             {
-                //ºÎ½¤Áö´Â°ÍÃ³·³ »ı±ä ½¯µå ÃÊ±âÈ­
+                //ë¶€ìˆ´ì§€ëŠ”ê²ƒì²˜ëŸ¼ ìƒê¸´ ì‰´ë“œ ì´ˆê¸°í™”
                 SoundManager.Instance.PlaySFX("Shield_Disappear");
                 MonsterBrokenShieldObject[i].transform.position = Mon.MonsterShieldPos.transform.position;
                 MonsterBrokenShieldObject[i].SetActive(true);
@@ -469,7 +469,7 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void UnActiveMonsterBattleUI(GameObject Monster)//ÀÎ¼ö·Î µé¾î¿Â Monster¿¡ ÇØ´çÇÏ´Â UI¸¸ ÇØÁ¦ °¡´É?
+    public void UnActiveMonsterBattleUI(GameObject Monster)//ì¸ìˆ˜ë¡œ ë“¤ì–´ì˜¨ Monsterì— í•´ë‹¹í•˜ëŠ” UIë§Œ í•´ì œ ê°€ëŠ¥?
     {
 
     }
@@ -508,14 +508,14 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void DisplayMonsterDetailUI(Monster Mon)//CurrentTargetÀÌ ¹Ù²î¿´À»¶§ ºÒ·¯¿ÍÁü -> ±× È­»ìÇ¥µµ °°ÀÌ ÀÌµ¿//Á×Àº ¾ê¸¦ °¡¸®Å°¸é ²ô±â
+    public void DisplayMonsterDetailUI(Monster Mon)//CurrentTargetì´ ë°”ë€Œì˜€ì„ë•Œ ë¶ˆëŸ¬ì™€ì§ -> ê·¸ í™”ì‚´í‘œë„ ê°™ì´ ì´ë™//ì£½ì€ ì–˜ë¥¼ ê°€ë¦¬í‚¤ë©´ ë„ê¸°
     {
         MonsterEquipmentUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 100);
-        MonsterEquipmentUI.SetActive(true);//ÀÚµ¿ÀûÀ¸·Î ActiveAnimation
+        MonsterEquipmentUI.SetActive(true);//ìë™ì ìœ¼ë¡œ ActiveAnimation
         MonsterEquipmentUI.GetComponent<RectTransform>().DOAnchorPosY(-100, 0.4f).SetEase(Ease.OutBack);
 
         MonsterStatusUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-390, -125);
-        MonsterStatusUI.SetActive(true);//ÀÚµ¿ÀûÀ¸·Î Activeanimation
+        MonsterStatusUI.SetActive(true);//ìë™ì ìœ¼ë¡œ Activeanimation
         MonsterStatusUI.GetComponent<RectTransform>().DOAnchorPosY(125, 0.4f).SetEase(Ease.OutBack);
 
         SelectionArrow.SetActive(true);
@@ -550,29 +550,29 @@ public class BattleUI : MonoBehaviour
         MonsterSPDText.text = Mon.GetMonsterCurrentStatus().MonsterCurrentSPD.ToString();
         MonsterLUKText.text = Mon.GetMonsterCurrentStatus().MonsterCurrentLUK.ToString();
 
-        //ÆÄ¶ûÀÌ ±àÁ¤ »¡°­ÀÌ ºÎÁ¤
-        //Èû
+        //íŒŒë‘ì´ ê¸ì • ë¹¨ê°•ì´ ë¶€ì •
+        //í˜
         if (Mon.GetMonsterCurrentBaseStatus("STR") < Mon.GetMonsterCurrentStatus().MonsterCurrentATK)
             MonsterSTRText.color = Color.blue;
         else if(Mon.GetMonsterCurrentBaseStatus("STR") > Mon.GetMonsterCurrentStatus().MonsterCurrentATK)
             MonsterSTRText.color = Color.red;
         else
             MonsterSTRText.color = Color.white;
-        //³»±¸
+        //ë‚´êµ¬
         if (Mon.GetMonsterCurrentBaseStatus("DUR") < Mon.GetMonsterCurrentStatus().MonsterCurrentDUR)
             MonsterDURText.color = Color.blue;
         else if (Mon.GetMonsterCurrentBaseStatus("DUR") > Mon.GetMonsterCurrentStatus().MonsterCurrentDUR)
             MonsterDURText.color = Color.red;
         else
             MonsterDURText.color = Color.white;
-        //Çà¿î
+        //í–‰ìš´
         if (Mon.GetMonsterCurrentBaseStatus("LUK") < Mon.GetMonsterCurrentStatus().MonsterCurrentLUK)
             MonsterLUKText.color = Color.blue;
         else if (Mon.GetMonsterCurrentBaseStatus("LUK") > Mon.GetMonsterCurrentStatus().MonsterCurrentLUK)
             MonsterLUKText.color = Color.red;
         else
             MonsterLUKText.color = Color.white;
-        //¼Óµµ
+        //ì†ë„
         if (Mon.GetMonsterCurrentBaseStatus("SPD") < Mon.GetMonsterCurrentStatus().MonsterCurrentSPD)
             MonsterSPDText.color = Color.blue;
         else if (Mon.GetMonsterCurrentBaseStatus("SPD") > Mon.GetMonsterCurrentStatus().MonsterCurrentSPD)
@@ -596,9 +596,9 @@ public class BattleUI : MonoBehaviour
         SelectionArrow.SetActive(false);
     }
 
-    public void ActiveMainBattleUI(GameObject ActionObj, Monster CurrentTarget, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, bool IsThereShield, Action CallBack)//¸ŞÀÎ ÀüÅõ ½ÃÀÛ
-    {//(ÇöÀç Â÷·ÊÀÎ ¿ÀºêÁ§Æ®, Å¸°ÙÀÌ µÈ ¸ó½ºÅÍ(ÇÃ·¹ÀÌ¾î ÅÏÀÏ¶§), ¿ÀºêÁ§Æ®ÀÇ Çàµ¿, Çàµ¿ °á°ú, ¸ğµç Çàµ¿ÀÌ ³¡³ª°í ½ÇÇàÇÒ ÇÔ¼ö)
-        //ÇÊ¿äÇÑ°ÍÀº Effect¸¦ ºÒ·¯¿Ã ÇÃ·¹ÀÌ¾îÀÇ Vector¿Í ¸ó½ºÅÍÀÇ Vector ±»ÀÌ Player¿Í MonsterÀÇ ¸ğµç Á¤º¸¸¦ ¾È°¡Á® ¿Íµµ µÉµí?
+    public void ActiveMainBattleUI(GameObject ActionObj, Monster CurrentTarget, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, bool IsThereShield, Action CallBack)//ë©”ì¸ ì „íˆ¬ ì‹œì‘
+    {//(í˜„ì¬ ì°¨ë¡€ì¸ ì˜¤ë¸Œì íŠ¸, íƒ€ê²Ÿì´ ëœ ëª¬ìŠ¤í„°(í”Œë ˆì´ì–´ í„´ì¼ë•Œ), ì˜¤ë¸Œì íŠ¸ì˜ í–‰ë™, í–‰ë™ ê²°ê³¼, ëª¨ë“  í–‰ë™ì´ ëë‚˜ê³  ì‹¤í–‰í•  í•¨ìˆ˜)
+        //í•„ìš”í•œê²ƒì€ Effectë¥¼ ë¶ˆëŸ¬ì˜¬ í”Œë ˆì´ì–´ì˜ Vectorì™€ ëª¬ìŠ¤í„°ì˜ Vector êµ³ì´ Playerì™€ Monsterì˜ ëª¨ë“  ì •ë³´ë¥¼ ì•ˆê°€ì ¸ ì™€ë„ ë ë“¯?
         if (MainBattleUI.activeSelf == true)
             return;
 
@@ -621,38 +621,38 @@ public class BattleUI : MonoBehaviour
         MainBattleUI.GetComponent<CanvasGroup>().DOFade(1, 1);
 
         if(ActionString != "Attack" && ActionString != "Defense" &&  ActionString != "Rest" && ActionString != "Charm")
-        {//AnotherÀÏ¶§
+        {//Anotherì¼ë•Œ
             BaseAmountObject.SetActive(false);
             MagnificationObject.SetActive(false);
         }
         else
         {
-            //1¹ø È°¼ºÈ­
+            //1ë²ˆ í™œì„±í™”
             BaseAmountObject.SetActive(true);
             //BaseAmountObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 350);
             BaseAmountObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, 130);
             BaseAmountObject.GetComponent<RectTransform>().localScale = Vector2.one;
             BaseAmountText.text = "0";
 
-            //2¹ø È°¼ºÈ­
+            //2ë²ˆ í™œì„±í™”
             MagnificationObject.SetActive(true);
             //MagnificationObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 350);
             MagnificationObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(180, 130);
             MagnificationObject.GetComponent<RectTransform>().localScale = Vector2.one;
             MagnificationText.text = "1.00";
         }
-        //ÀÏ´Ü 3¹øµé ´Ù ºñÈ°¼ºÈ­ //¹ØÀÇ ÄÚ·çÆ¾¿¡¼­ ÇØ°áÇÒµí
-        BaseAmountCard.SetActive(false);//3¹ø
-        BaseAmountCardTitleText.text = "";//3¹ø
-        BaseAmountCardDetailText.text = "";//3¹ø
-        MagnificationCard.SetActive(false);//3¹ø
+        //ì¼ë‹¨ 3ë²ˆë“¤ ë‹¤ ë¹„í™œì„±í™” //ë°‘ì˜ ì½”ë£¨í‹´ì—ì„œ í•´ê²°í• ë“¯
+        BaseAmountCard.SetActive(false);//3ë²ˆ
+        BaseAmountCardTitleText.text = "";//3ë²ˆ
+        BaseAmountCardDetailText.text = "";//3ë²ˆ
+        MagnificationCard.SetActive(false);//3ë²ˆ
         if (ActionObj.tag == "Monster")
-            InitAllMGCard(false);//3¹ø
+            InitAllMGCard(false);//3ë²ˆ
         else
             InitAllMGCard();
 
         //0. Attack, 1. Defense, 2. Rest, 3. Another 4.Charm
-        //Çàµ¿ »óÅÂ¿¡ ¸Â´Â ¸ğ¾ç È°¼ºÈ­ //4¹ø È°¼ºÈ­
+        //í–‰ë™ ìƒíƒœì— ë§ëŠ” ëª¨ì–‘ í™œì„±í™” //4ë²ˆ í™œì„±í™”
         FinalCalculateObject.SetActive(true);
         //FinalCalculateObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 350);
         FinalCalculateObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 130);
@@ -684,7 +684,7 @@ public class BattleUI : MonoBehaviour
             TargetPos = CurrentTarget.gameObject.transform.position;
 
         StartCoroutine(ProgressMainBattle_UI(ActionObj, ActionString, BattleResult, PlayerPos, TargetPos, IsThereShield, CallBack));
-        //DoTween.OnComplete·Î ÇÏ¸é ÄÚ·çÆ¾À¸·Î ¾ÈÇÏ°í ÇÔ¼öµéÅ°¸® ÀÌº¥Æ®¼ºÀ» ¿¬°á°¡´ÉÇÏÁö ¾Ê³ª? ±×°Ô ´õ ¾ÈÁÁÀ¸·Á³ª?
+        //DoTween.OnCompleteë¡œ í•˜ë©´ ì½”ë£¨í‹´ìœ¼ë¡œ ì•ˆí•˜ê³  í•¨ìˆ˜ë“¤í‚¤ë¦¬ ì´ë²¤íŠ¸ì„±ì„ ì—°ê²°ê°€ëŠ¥í•˜ì§€ ì•Šë‚˜? ê·¸ê²Œ ë” ì•ˆì¢‹ìœ¼ë ¤ë‚˜?
     }
     IEnumerator ProgressMainBattle_UI(GameObject ActionObj, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, Vector2 TargetPos, bool IsThereShield, Action CallBack)
     {
@@ -692,11 +692,11 @@ public class BattleUI : MonoBehaviour
         CurrentMainBattlePhase = (int)EMainBattlePhase.Nothing;
         IsOpenCard = false;
         IsOpenAnimationComplete = false;
-        //¿ì¼± ±âÃÊ ¼öÄ¡(ÇöÀç ½ºÅİ)Ä«µå¸¦ ³ªÅ¸³ª°Ô ÇÑ´Ù.
+        //ìš°ì„  ê¸°ì´ˆ ìˆ˜ì¹˜(í˜„ì¬ ìŠ¤í…Ÿ)ì¹´ë“œë¥¼ ë‚˜íƒ€ë‚˜ê²Œ í•œë‹¤.
         //BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -80f);
         BaseAmountCard.GetComponent<RectTransform>().localScale = Vector2.one;
-        BaseAmountCard.SetActive(true);//3¹ø
+        BaseAmountCard.SetActive(true);//3ë²ˆ
         if(ActionObj.tag == "Monster")
         {
             BaseAmountCard.GetComponent<Button>().interactable = false;
@@ -716,25 +716,30 @@ public class BattleUI : MonoBehaviour
         {
             case "Charm":
             case "Attack":
-                BaseAmountCardTitleText.text = "ÇöÀç Èû";
+                BaseAmountCardTitleText.text = "STR";
                 BaseAmountCardDetailText.text = ((int)BattleResult.BaseAmount).ToString();
                 break;
             case "Defense":
-                BaseAmountCardTitleText.text = "ÇöÀç ³»±¸";
+                BaseAmountCardTitleText.text = "DUR";
                 BaseAmountCardDetailText.text = ((int)BattleResult.BaseAmount).ToString();
                 break;
             case "Rest":
-                BaseAmountCardTitleText.text = "ÇöÀç È¸º¹";
+                BaseAmountCardTitleText.text = "RES";
                 BaseAmountCardDetailText.text = ((int)BattleResult.BaseAmount).ToString();
                 break;
             default:
                 CurrentMainBattlePhase = (int)EMainBattlePhase.SpecialAction;
-                BaseAmountCardTitleText.text = "Æ¯¼ö Çàµ¿";
+                if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    BaseAmountCardTitleText.text = "Special Action";
+                else if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    BaseAmountCardTitleText.text = "ç‰¹æ®Šè¡Œå‹•";
+                else
+                    BaseAmountCardTitleText.text = "íŠ¹ìˆ˜ í–‰ë™";
                 BaseAmountCardDetailText.text = "";
-                //Æ¯¼ö Çàµ¿¿¡ ´ëÇÑ ¼³¸í?
+                //íŠ¹ìˆ˜ í–‰ë™ì— ëŒ€í•œ ì„¤ëª…?
                 break;
         }
-        //Ã¹¹øÂ° Ä«µå¸¦ Å¬¸¯ÇÏ°í ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³¯¶§±îÁö ´ë±â //¸ó½ºÅÍ´Â ¸îÃÊµÚ ÀÚµ¿ Àç»ı
+        //ì²«ë²ˆì§¸ ì¹´ë“œë¥¼ í´ë¦­í•˜ê³  ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚ ë•Œê¹Œì§€ ëŒ€ê¸° //ëª¬ìŠ¤í„°ëŠ” ëª‡ì´ˆë’¤ ìë™ ì¬ìƒ
         IsAnimateComplete = false;
         if (CurrentMainBattlePhase != (int)EMainBattlePhase.SpecialAction)
         {
@@ -747,9 +752,9 @@ public class BattleUI : MonoBehaviour
                 yield return null;
                 if (IsAnimateComplete == true)
                 {
-                    //¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³ª¸é 1¹øÀÇ ¼ö Áõ°¡, ºüÁ®³ª¿ä±â
+                    //ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚˜ë©´ 1ë²ˆì˜ ìˆ˜ ì¦ê°€, ë¹ ì ¸ë‚˜ìš”ê¸°
                     int BaseAmount = 0;
-                    if (BaseAmount != (int)BattleResult.BaseAmount)//°ªÀÌ ´Ù¸¦¶§
+                    if (BaseAmount != (int)BattleResult.BaseAmount)//ê°’ì´ ë‹¤ë¥¼ë•Œ
                     {
                         NumAudioSource = SoundManager.Instance.PlaySFX("Increase_Number");
                     }
@@ -764,7 +769,7 @@ public class BattleUI : MonoBehaviour
                     break;
                 }
             }
-            //Ãß°¡ ±âÃÊ ¼öÄ¡°¡ Á¸ÀçÇÑ´Ù¸é ´Ù½Ã È°¼ºÈ­
+            //ì¶”ê°€ ê¸°ì´ˆ ìˆ˜ì¹˜ê°€ ì¡´ì¬í•œë‹¤ë©´ ë‹¤ì‹œ í™œì„±í™”
             if (BattleResult.BaseAmountPlus > 0)
             {
                 IsAnimateComplete = false;
@@ -786,10 +791,15 @@ public class BattleUI : MonoBehaviour
                     ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
                     ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
                 }
-                BaseAmountCardTitleText.text = "Ãß°¡ ±âÃÊ ¼öÄ¡";
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    BaseAmountCardTitleText.text = "Additional Base Value";
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    BaseAmountCardTitleText.text = "è¿½åŠ åŸºç¤æ•°å€¤";
+                else
+                    BaseAmountCardTitleText.text = "ì¶”ê°€ ê¸°ì´ˆ ìˆ˜ì¹˜";
                 BaseAmountCardDetailText.text = ((int)BattleResult.BaseAmountPlus).ToString();
             }
-            //Ã¹¹øÂ° Ä«µå¸¦ Å¬¸¯ÇÏ°í ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³¯¶§±îÁö ´ë±â
+            //ì²«ë²ˆì§¸ ì¹´ë“œë¥¼ í´ë¦­í•˜ê³  ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚ ë•Œê¹Œì§€ ëŒ€ê¸°
             if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
             {
                 DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
@@ -799,7 +809,7 @@ public class BattleUI : MonoBehaviour
                 yield return null;
                 if (IsAnimateComplete)
                 {
-                    //¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³ª¸é 1¹øÀÇ ¼ö Áõ°¡, ºüÁ®³ª¿ä±â//¼ıÀÚ°¡ ÇÑ¹ø¿¡ º¯ÇÏ´Â°ÍÀÌ ¾Æ´Ñ Á¶±İ¾¿ º¯È­ÇÏ¸é ´õ ÁÁÀ»°Í °°±âµµ ÇÔ
+                    //ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚˜ë©´ 1ë²ˆì˜ ìˆ˜ ì¦ê°€, ë¹ ì ¸ë‚˜ìš”ê¸°//ìˆ«ìê°€ í•œë²ˆì— ë³€í•˜ëŠ”ê²ƒì´ ì•„ë‹Œ ì¡°ê¸ˆì”© ë³€í™”í•˜ë©´ ë” ì¢‹ì„ê²ƒ ê°™ê¸°ë„ í•¨
                     int BaseAmount = (int)BattleResult.BaseAmount;
                     if (BaseAmount != (int)(BattleResult.BaseAmount + BattleResult.BaseAmountPlus))
                     {
@@ -817,27 +827,27 @@ public class BattleUI : MonoBehaviour
                 }
             }
 
-            //2¹øÀ¸·Î ÇâÇÒ 3¹ø È°¼ºÈ­
-            //ÀÌ°É BattleResult.Count¸¸Å­ ¹İº¹ ½ÃÄÑ¾ßÇÔ
+            //2ë²ˆìœ¼ë¡œ í–¥í•  3ë²ˆ í™œì„±í™”
+            //ì´ê±¸ BattleResult.Countë§Œí¼ ë°˜ë³µ ì‹œì¼œì•¼í•¨
             float TotalMagnification = 1f;
             TotalOpenCard = 0;
             PositiveLink = 0;
             UpperMGList.Clear();
             LowwerMGList.Clear();
             MagCardNumList.Clear();
-            //¸ó½ºÅÍ°¡ µÉ°æ¿ì 1ÃÊ µÚ 0.2ÃÊ °£°İÀ¸·Î ÇÏ³ª¾¿ °³ºÀ?
-            //BattleResult.Count¸¸Å­ È°¼ºÈ­ ¹× À§ ¾Æ·¡ÀÇ Ä«µå °³ºÀ½Ã ¼öÄ¡ ³ª´©±â
+            //ëª¬ìŠ¤í„°ê°€ ë ê²½ìš° 1ì´ˆ ë’¤ 0.2ì´ˆ ê°„ê²©ìœ¼ë¡œ í•˜ë‚˜ì”© ê°œë´‰?
+            //BattleResult.Countë§Œí¼ í™œì„±í™” ë° ìœ„ ì•„ë˜ì˜ ì¹´ë“œ ê°œë´‰ì‹œ ìˆ˜ì¹˜ ë‚˜ëˆ„ê¸°
             SetMGCardActive(BattleResult.ResultMagnification);
             if(JsonReadWriteManager.Instance.T_Info.BattlePlayerTurnMagCard == false)
             {
                 JsonReadWriteManager.Instance.T_Info.BattlePlayerTurnMagCard = true;
                 TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/PlayerMagCard");
             }
-            //Å¬¸¯ÇÒ ¼ö ÀÖ´Â Ä«µå´Â È°¼ºÈ­ µÇ¾îÀÖÀ½
-            //°¢ Ä«µå¸¦ ´©¸¦¶§¸¶´Ù PositiveLink°¡ Áõ°¡ÇÒÁö 0À¸·Î µÉÁö °áÁ¤µÊ
-            //°¢ Ä«µå°¡ ¸î¹øÂ° Ä«µåÀÎÁö È®ÀÎÇÒ ¼ö ÀÖ¾î¾ßÇÔ (¿ŞÂÊ À§ ºÎÅÍ 1¹ø)
-            //°³¹æµÈ Ä«µå°¡ ResultMagnification.count ÀÌ»óÀÌ µÇ¸é ´ÙÀ½À¸·Î ³Ñ¾î°¨
-            //ClickMagnificationCard(int)°¡ 1ÃÊÈÄ 0.2ÃÊ °£°İÀ¸·Î ½ÇÇà ActionObj == MonsterÀÏ °æ¿ì MagCardNumList.Count¸¸Å­
+            //í´ë¦­í•  ìˆ˜ ìˆëŠ” ì¹´ë“œëŠ” í™œì„±í™” ë˜ì–´ìˆìŒ
+            //ê° ì¹´ë“œë¥¼ ëˆ„ë¥¼ë•Œë§ˆë‹¤ PositiveLinkê°€ ì¦ê°€í• ì§€ 0ìœ¼ë¡œ ë ì§€ ê²°ì •ë¨
+            //ê° ì¹´ë“œê°€ ëª‡ë²ˆì§¸ ì¹´ë“œì¸ì§€ í™•ì¸í•  ìˆ˜ ìˆì–´ì•¼í•¨ (ì™¼ìª½ ìœ„ ë¶€í„° 1ë²ˆ)
+            //ê°œë°©ëœ ì¹´ë“œê°€ ResultMagnification.count ì´ìƒì´ ë˜ë©´ ë‹¤ìŒìœ¼ë¡œ ë„˜ì–´ê°
+            //ClickMagnificationCard(int)ê°€ 1ì´ˆí›„ 0.2ì´ˆ ê°„ê²©ìœ¼ë¡œ ì‹¤í–‰ ActionObj == Monsterì¼ ê²½ìš° MagCardNumList.Countë§Œí¼
             for(int i = 0; i < MagCardNumList.Count; i++)
             {
                 Debug.Log(MagCardNumList[i]);
@@ -846,31 +856,31 @@ public class BattleUI : MonoBehaviour
             {
                 Sequence Seq = DOTween.Sequence();
                 
-                Seq.AppendInterval(0.5f); // 1ÃÊ ´ë±â
+                Seq.AppendInterval(0.5f); // 1ì´ˆ ëŒ€ê¸°
                 foreach (int i  in MagCardNumList)
                 {
                     Seq.AppendCallback(() =>
                     {
                         ClickMagnificationCard(i);
                     });
-                    Seq.AppendInterval(0.2f); // 0.2ÃÊ °£°İ
+                    Seq.AppendInterval(0.2f); // 0.2ì´ˆ ê°„ê²©
                 }
             }
             while (true)
-            {//°³¹æµÈ Ä«µå°¡ ResultMagnification.count ÀÌ»óÀÌ µÇ¸é ´ÙÀ½À¸·Î ³Ñ¾î°¨
+            {//ê°œë°©ëœ ì¹´ë“œê°€ ResultMagnification.count ì´ìƒì´ ë˜ë©´ ë‹¤ìŒìœ¼ë¡œ ë„˜ì–´ê°
                 //
                 yield return null;
                 if (TotalOpenCard >= BattleResult.ResultMagnification.Count)
-                {//¿©±â±îÁö ¿À¸é Ä«µå°¡ ´Ù °³¹æµÈ°ÅÀÓ
+                {//ì—¬ê¸°ê¹Œì§€ ì˜¤ë©´ ì¹´ë“œê°€ ë‹¤ ê°œë°©ëœê±°ì„
                     break;
                 }
 
             }
 
-            yield return new WaitForSeconds(0.3f);//Àá±ñ ±â´Ù·È´Ù°¡
+            yield return new WaitForSeconds(0.3f);//ì ê¹ ê¸°ë‹¤ë ¸ë‹¤ê°€
 
             MergeCompleteCardCount = 0;
-            //¸ğµç Active»óÅÂÀÇ VirtualÄ«µå°¡ ³¯¶ó°¡°Ô
+            //ëª¨ë“  Activeìƒíƒœì˜ Virtualì¹´ë“œê°€ ë‚ ë¼ê°€ê²Œ
             MergeToMagnificationSlot();
 
             while (true)
@@ -886,7 +896,7 @@ public class BattleUI : MonoBehaviour
                         TotalMagnification *= BattleResult.ResultMagnification[i];
                     }
 
-                    if (BeforeMagnification != TotalMagnification)//*1ÀÌ ¾Æ´Ò¶§
+                    if (BeforeMagnification != TotalMagnification)//*1ì´ ì•„ë‹ë•Œ
                     {
                         NumAudioSource = SoundManager.Instance.PlaySFX("Increase_Number");
                     }
@@ -899,9 +909,9 @@ public class BattleUI : MonoBehaviour
                 }
             }
 
-            //¿©±â ¿Ô´Ù´Â°ÍÀº Àåºñ¿¡ÀÇÇÑ °öÀÌ ¿Ï·áµÈ°ÅÀÓ
+            //ì—¬ê¸° ì™”ë‹¤ëŠ”ê²ƒì€ ì¥ë¹„ì—ì˜í•œ ê³±ì´ ì™„ë£Œëœê±°ì„
             CurrentMainBattlePhase = (int)EMainBattlePhase.EquipMagnificationComplete;
-            if (BattleResult.BuffMagnification != 1f)//¹öÇÁ¿¡ ÀÇÇÑ Áõ°¨ÀÌ Á¸Àç ÇÒ¶§
+            if (BattleResult.BuffMagnification != 1f)//ë²„í”„ì— ì˜í•œ ì¦ê°ì´ ì¡´ì¬ í• ë•Œ
             {
                 IsAnimateComplete = false;
                 //BaseAmountCard.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -924,7 +934,12 @@ public class BattleUI : MonoBehaviour
                 }
                 //ClickTextObject.SetActive(true);
                 //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                BaseAmountCardTitleText.text = "¹öÇÁ ¹èÀ²";
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    BaseAmountCardTitleText.text = "Buff Multiplier";
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    BaseAmountCardTitleText.text = "ãƒãƒ•å€ç‡";
+                else
+                    BaseAmountCardTitleText.text = "ë²„í”„ ë°°ìœ¨";
                 BaseAmountCardDetailText.text = BattleResult.BuffMagnification.ToString("F2");
             }
 
@@ -949,16 +964,16 @@ public class BattleUI : MonoBehaviour
                         BeforeMagnification = x;
                         MagnificationText.text = BeforeMagnification.ToString("F2");
                     }, TotalMagnification, 0.3f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
-                    //¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³ª¸é 1¹øÀÇ ¼ö Áõ°¡, ºüÁ®³ª¿ä±â//¼ıÀÚ°¡ ÇÑ¹ø¿¡ º¯ÇÏ´Â°ÍÀÌ ¾Æ´Ñ Á¶±İ¾¿ º¯È­ÇÏ¸é ´õ ÁÁÀ»°Í °°±âµµ ÇÔ
+                    //ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚˜ë©´ 1ë²ˆì˜ ìˆ˜ ì¦ê°€, ë¹ ì ¸ë‚˜ìš”ê¸°//ìˆ«ìê°€ í•œë²ˆì— ë³€í•˜ëŠ”ê²ƒì´ ì•„ë‹Œ ì¡°ê¸ˆì”© ë³€í™”í•˜ë©´ ë” ì¢‹ì„ê²ƒ ê°™ê¸°ë„ í•¨
                     //MagnificationText.text = TotalMagnification.ToString("F2");
                     CurrentMainBattlePhase = (int)EMainBattlePhase.BuffMagnificationComplete;
                     break;
                 }
             }
 
-            //¾à°£ ±â´Ù¸°´Ù
+            //ì•½ê°„ ê¸°ë‹¤ë¦°ë‹¤
             yield return new WaitForSeconds(0.3f);
-            //5¹ø ½ÇÇà
+            //5ë²ˆ ì‹¤í–‰
             IsAnimateComplete = false;
             BaseAmountObject.GetComponent<RectTransform>().DOAnchorPosX(0f, 0.5f);
             BaseAmountObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f);
@@ -991,7 +1006,7 @@ public class BattleUI : MonoBehaviour
                 }
             }
 
-            //FinalCalculateObject°¡ ³¡³¯¶§±îÁö ´ë±âÇÑ´Ù.
+            //FinalCalculateObjectê°€ ëë‚ ë•Œê¹Œì§€ ëŒ€ê¸°í•œë‹¤.
             while (true)
             {
                 yield return null;
@@ -1001,7 +1016,7 @@ public class BattleUI : MonoBehaviour
                     break;
                 }
             }
-            //FinalResultAmountPlus°¡ 1º¸´Ù Å©´Ù¸é AmountCard¸¦ ´Ù½Ã È°¼ºÈ­ ÇÑ´Ù.
+            //FinalResultAmountPlusê°€ 1ë³´ë‹¤ í¬ë‹¤ë©´ AmountCardë¥¼ ë‹¤ì‹œ í™œì„±í™” í•œë‹¤.
             if (BattleResult.FinalResultAmountPlus >= 1)
             {
                 IsAnimateComplete = false;
@@ -1025,7 +1040,12 @@ public class BattleUI : MonoBehaviour
                 }
                 //ClickTextObject.SetActive(true);
                 //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-                BaseAmountCardTitleText.text = "Ãß°¡ ÃÖÁ¾ ¼öÄ¡";
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    BaseAmountCardTitleText.text = "Additional final value";
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    BaseAmountCardTitleText.text = "è¿½åŠ æœ€çµ‚æ•°å€¤";
+                else
+                    BaseAmountCardTitleText.text = "ì¶”ê°€ ìµœì¢… ìˆ˜ì¹˜";
                 BaseAmountCardDetailText.text = ((int)BattleResult.FinalResultAmountPlus).ToString();
             }
 
@@ -1038,7 +1058,7 @@ public class BattleUI : MonoBehaviour
                 yield return null;
                 if (IsAnimateComplete)
                 {
-                    //¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³ª¸é 1¹øÀÇ ¼ö Áõ°¡, ºüÁ®³ª¿ä±â//¼ıÀÚ°¡ ÇÑ¹ø¿¡ º¯ÇÏ´Â°ÍÀÌ ¾Æ´Ñ Á¶±İ¾¿ º¯È­ÇÏ¸é ´õ ÁÁÀ»°Í °°±âµµ ÇÔ
+                    //ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚˜ë©´ 1ë²ˆì˜ ìˆ˜ ì¦ê°€, ë¹ ì ¸ë‚˜ìš”ê¸°//ìˆ«ìê°€ í•œë²ˆì— ë³€í•˜ëŠ”ê²ƒì´ ì•„ë‹Œ ì¡°ê¸ˆì”© ë³€í™”í•˜ë©´ ë” ì¢‹ì„ê²ƒ ê°™ê¸°ë„ í•¨
                     CurrentMainBattlePhase = (int)EMainBattlePhase.FinalPlusAmountComplete;
                     int BeforeFinalCalculate = (int)(BattleResult.FinalResultAmount - BattleResult.FinalResultAmountPlus);
                     if (BeforeFinalCalculate != (int)BattleResult.FinalResultAmount)
@@ -1072,19 +1092,19 @@ public class BattleUI : MonoBehaviour
                     CurrentMainBattlePhase = (int)EMainBattlePhase.FinalPlusAmountComplete;
                     break;
                 }
-                //¿©±â¼­ ºÎÅÍ
+                //ì—¬ê¸°ì„œ ë¶€í„°
             }
         }
         
-        //¾à°£ ±â´Ù¸°´Ù
+        //ì•½ê°„ ê¸°ë‹¤ë¦°ë‹¤
         yield return new WaitForSeconds(0.3f);
 
-        //Çàµ¿ÇÑ ÁÖÃ¼( ¸ó½ºÅÍ È¤Àº ÇÃ·¹ÀÌ¾î ¸Ó¸® À§ÂÊÀ¸·Î ÀÌµ¿ÇÑ´Ù)
+        //í–‰ë™í•œ ì£¼ì²´( ëª¬ìŠ¤í„° í˜¹ì€ í”Œë ˆì´ì–´ ë¨¸ë¦¬ ìœ„ìª½ìœ¼ë¡œ ì´ë™í•œë‹¤)
         IsAnimateComplete = false;
         if (ActionObj.tag == "Player")
         {
-            //ÇÃ·¹ÀÌ¾î ¸Ó¸®ÂÊÀ¸·Î (µé¾î¿Â PlayerActionTypePosÂÊÀ¸·Î ÀÌµ¿)
-            // ºÎ¸ğ RectTransform,¿ùµå ÁÂÇ¥ ¡æ ½ºÅ©¸° ÁÂÇ¥, ,°á°ú anchoredPosition 
+            //í”Œë ˆì´ì–´ ë¨¸ë¦¬ìª½ìœ¼ë¡œ (ë“¤ì–´ì˜¨ PlayerActionTypePosìª½ìœ¼ë¡œ ì´ë™)
+            // ë¶€ëª¨ RectTransform,ì›”ë“œ ì¢Œí‘œ â†’ ìŠ¤í¬ë¦° ì¢Œí‘œ, ,ê²°ê³¼ anchoredPosition 
             Vector2 AnchoredPos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(FinalCalculateObject.transform.parent as RectTransform,
                 Camera.main.WorldToScreenPoint(ActionObj.GetComponent<PlayerScript>().ActionTypePos.transform.position),
@@ -1112,23 +1132,23 @@ public class BattleUI : MonoBehaviour
                 break;
             }
         }
-        //¾à°£ ±â´Ù¸°´Ù
+        //ì•½ê°„ ê¸°ë‹¤ë¦°ë‹¤
         yield return new WaitForSeconds(0.3f);
         IsAnimateComplete = false;
-        //ÀÌ°Å¿¡ ´ëÇÑ ¿¹¿Ü»çÇ×Àº ³ªÁß¿¡ °è¼Ó ´Ã¾î³¯µí?
-        //°ø°İÇÑ ÁÖÃ¼°¡ ¾ÕÀ¸·Î °¬´Ù°¡ ¿À´Â °Å
-        if (ActionObj.tag == "Player" && ActionString == "Attack")//ÇÃ·¹ÀÌ¾îÀÏ °æ¿ì °ø°İÀÏ¶§¸¸
+        //ì´ê±°ì— ëŒ€í•œ ì˜ˆì™¸ì‚¬í•­ì€ ë‚˜ì¤‘ì— ê³„ì† ëŠ˜ì–´ë‚ ë“¯?
+        //ê³µê²©í•œ ì£¼ì²´ê°€ ì•ìœ¼ë¡œ ê°”ë‹¤ê°€ ì˜¤ëŠ” ê±°
+        if (ActionObj.tag == "Player" && ActionString == "Attack")//í”Œë ˆì´ì–´ì¼ ê²½ìš° ê³µê²©ì¼ë•Œë§Œ
         {
-            //¿©±â¿¡ µé¾î¿ÓÀ»¶§ »ó´ë°¡ ½¯µå°¡ ÀÖ´Ù¸é ¸·Èù°ÅÀÓ-> °ø°İÀÌ ¸·Èù ¼Ò¸®¸¦ ³½´Ù.
-            if(IsThereShield == true)//¸ó½ºÅÍ°¡ ½¯µå¸¦ °¡Áö°í ÀÖÀ»‹š -> ¸·Èù°ÅÀÓ
+            //ì—¬ê¸°ì— ë“¤ì–´ì™“ì„ë•Œ ìƒëŒ€ê°€ ì‰´ë“œê°€ ìˆë‹¤ë©´ ë§‰íŒê±°ì„-> ê³µê²©ì´ ë§‰íŒ ì†Œë¦¬ë¥¼ ë‚¸ë‹¤.
+            if(IsThereShield == true)//ëª¬ìŠ¤í„°ê°€ ì‰´ë“œë¥¼ ê°€ì§€ê³  ìˆì„ë–„ -> ë§‰íŒê±°ì„
             {
                 SoundManager.Instance.PlaySFX("Shield_Block");
             }
-            else//¾È°¡Áö°í ÀÖÀ»¶§ -> ¶ÕÀº°ÅÀÓ È¤Àº ¸ÅÈ¤»óÅÂ°Å³ª
+            else//ì•ˆê°€ì§€ê³  ìˆì„ë•Œ -> ëš«ì€ê±°ì„ í˜¹ì€ ë§¤í˜¹ìƒíƒœê±°ë‚˜
             {
                 EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", TargetPos + new Vector2(0,0.5f));
             }
-            //overwhelmingpower ÀÌ ÀÖÀ¸¸é »ç¹æÀ¸·Î ÆÛÁ®³ª°¡´Â ÀÌÆåÆ®°¡ ÀÖÀ¸¸é ÁÁÀ»µí?
+            //overwhelmingpower ì´ ìˆìœ¼ë©´ ì‚¬ë°©ìœ¼ë¡œ í¼ì ¸ë‚˜ê°€ëŠ” ì´í™íŠ¸ê°€ ìˆìœ¼ë©´ ì¢‹ì„ë“¯?
             ActionObj.transform.DOPunchPosition(new Vector3(1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             //PlayerZone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-350, 0), 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { IsAnimateComplete = true; });
         }
@@ -1146,17 +1166,17 @@ public class BattleUI : MonoBehaviour
 
             IsAnimateComplete = true;
         }
-        else if (ActionObj.tag == "Monster")//¸ó½ºÅÍÀÏ °æ¿ì °ø°İ + Æ¯¼ö Çàµ¿ÀÏ¶§¸¸
+        else if (ActionObj.tag == "Monster")//ëª¬ìŠ¤í„°ì¼ ê²½ìš° ê³µê²© + íŠ¹ìˆ˜ í–‰ë™ì¼ë•Œë§Œ
         {
             if (ActionString == "Attack")
             {
-                if (IsThereShield == true && ActionString == "Attack")//ÇÃ·¹ÀÌ¾î°¡ ½¯µå¸¦ °¡Áö°í ÀÖÀ»‹š -> ¸·Èù°ÅÀÓ
+                if (IsThereShield == true && ActionString == "Attack")//í”Œë ˆì´ì–´ê°€ ì‰´ë“œë¥¼ ê°€ì§€ê³  ìˆì„ë–„ -> ë§‰íŒê±°ì„
                 {
                     SoundManager.Instance.PlaySFX("Shield_Block");
                 }
-                else//ÇÃ·¹ÀÌ¾î°¡ ¾È°¡Áö°í ÀÖÀ»¶§ -> ¶ÕÀº°ÅÀÓ
+                else//í”Œë ˆì´ì–´ê°€ ì•ˆê°€ì§€ê³  ìˆì„ë•Œ -> ëš«ì€ê±°ì„
                 {
-                    EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", PlayerPos + new Vector2(0, 0.5f));//¸ó½ºÅÍÀÇ Á¾·ù¿¡ µû¶ó ´Ş¶óÁö¸é ÁÁÀ»ÁöµÎ
+                    EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", PlayerPos + new Vector2(0, 0.5f));//ëª¬ìŠ¤í„°ì˜ ì¢…ë¥˜ì— ë”°ë¼ ë‹¬ë¼ì§€ë©´ ì¢‹ì„ì§€ë‘
                 }
 
                 if(ActionObj.GetComponent<Monster>().IsHaveAttackAnimation == false)
@@ -1244,15 +1264,15 @@ public class BattleUI : MonoBehaviour
             }
         }
 
-        //¿©±â¿¡¼­ ¼ÒÈ¯?
+        //ì—¬ê¸°ì—ì„œ ì†Œí™˜?
         CallBack?.Invoke();
         Debug.Log("CoroutineEnd");
     }
 
     public void ClickAmountCard()
     {
-        if (CurrentMainBattlePhase == (int)EMainBattlePhase.Nothing || CurrentMainBattlePhase == (int)EMainBattlePhase.BaseAmountComplete)//¿ŞÂÊÀ¸·Î È¸ÀüÇÏ¸é¼­
-        {//±âÃÊ ¼öÄ¡ µµÂø ÁöÁ¡, //Ãß°¡ ±âÃÊ ¼öÄ¡ µµÂøÁöÁ¡
+        if (CurrentMainBattlePhase == (int)EMainBattlePhase.Nothing || CurrentMainBattlePhase == (int)EMainBattlePhase.BaseAmountComplete)//ì™¼ìª½ìœ¼ë¡œ íšŒì „í•˜ë©´ì„œ
+        {//ê¸°ì´ˆ ìˆ˜ì¹˜ ë„ì°© ì§€ì , //ì¶”ê°€ ê¸°ì´ˆ ìˆ˜ì¹˜ ë„ì°©ì§€ì 
             //BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-400, 350), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-180, 130), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
@@ -1261,7 +1281,7 @@ public class BattleUI : MonoBehaviour
             ClickTextObject.SetActive(false);
         }
         else if(CurrentMainBattlePhase == (int)EMainBattlePhase.EquipMagnificationComplete)
-        {//Àåºñ¿¡ ÀÇÇÑ °ö ¿Ï·á »óÅÂ¶ó¸é -> ¹öÇÁ¿¡ ÀÇÇÑ Ãß°¡ °öÀÓ
+        {//ì¥ë¹„ì— ì˜í•œ ê³± ì™„ë£Œ ìƒíƒœë¼ë©´ -> ë²„í”„ì— ì˜í•œ ì¶”ê°€ ê³±ì„
             //BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(400, 350), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
@@ -1270,7 +1290,7 @@ public class BattleUI : MonoBehaviour
             ClickTextObject.SetActive(false);
         }
         else if(CurrentMainBattlePhase == (int)EMainBattlePhase.MergeComplete || CurrentMainBattlePhase == (int)EMainBattlePhase.SpecialAction)
-        {//ÇÕÄ¡´Â°Ô ¿Ï·á »óÅÂ -> ÃÖÁ¾ Ãß°¡ ¼öÄ¡
+        {//í•©ì¹˜ëŠ”ê²Œ ì™„ë£Œ ìƒíƒœ -> ìµœì¢… ì¶”ê°€ ìˆ˜ì¹˜
             //BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 350), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 130), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
@@ -1280,14 +1300,14 @@ public class BattleUI : MonoBehaviour
         }
 
         /*
-        if(IsOpenAnimationComplete == false)//Ãß°¡ ±âÃÊ ¼öÄ¡
+        if(IsOpenAnimationComplete == false)//ì¶”ê°€ ê¸°ì´ˆ ìˆ˜ì¹˜
         {
             BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-400, 350), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
             BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
             ClickTextObject.SetActive(false);
         }
-        else if(IsOpenAnimationComplete == true)//Ãß°¡ ÃÖÁ¾ ¼öÄ¡
+        else if(IsOpenAnimationComplete == true)//ì¶”ê°€ ìµœì¢… ìˆ˜ì¹˜
         {
             BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 350), 0.5f);
             BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
@@ -1297,21 +1317,21 @@ public class BattleUI : MonoBehaviour
         */
     }
 
-    public void ClickMagnificationCard(int CardNum)//¿©´Â°Å ¿¬Ãâ
+    public void ClickMagnificationCard(int CardNum)//ì—¬ëŠ”ê±° ì—°ì¶œ
     {//UpperCard == 0 ~ 3 // LowwerCard == 4 ~ 7
-        //Å¬¸¯ ÅØ½ºÆ®¸¦ ¶ç¿ö¾ß ÇÏ·Á³ª? -> ÀÌ°Ç ÀÏ´Ü ³ªÁß¿¡ ÇÏ¸é µÉµí?
-        //ÀÏ´Ü Å¬¸¯µÇ¸é Å¬¸¯µÈ ´ç»çÀÚ´Â Åõ¸íÇØÁö°í ButtonInteratable false·Î
-        //, VirtualÄ«µåµéÀÌ µÚÁıÈ÷´Â ¿¬ÃâÀ»ÇÔ
+        //í´ë¦­ í…ìŠ¤íŠ¸ë¥¼ ë„ì›Œì•¼ í•˜ë ¤ë‚˜? -> ì´ê±´ ì¼ë‹¨ ë‚˜ì¤‘ì— í•˜ë©´ ë ë“¯?
+        //ì¼ë‹¨ í´ë¦­ë˜ë©´ í´ë¦­ëœ ë‹¹ì‚¬ìëŠ” íˆ¬ëª…í•´ì§€ê³  ButtonInteratable falseë¡œ
+        //, Virtualì¹´ë“œë“¤ì´ ë’¤ì§‘íˆëŠ” ì—°ì¶œì„í•¨
         /*
-        if(IsOpenCard == false)//¾ÆÁ÷ ¾È¿­¿´´Ù¸é//IsOpenCard¸¦ true·Î ÇÔ -> ÄÚ·çÆ¾¿¡¼­ °ª¿¡ ¸Â´Â Ä«µå·Î ¹Ù²ñ
+        if(IsOpenCard == false)//ì•„ì§ ì•ˆì—´ì˜€ë‹¤ë©´//IsOpenCardë¥¼ trueë¡œ í•¨ -> ì½”ë£¨í‹´ì—ì„œ ê°’ì— ë§ëŠ” ì¹´ë“œë¡œ ë°”ë€œ
         {
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             ClickTextObject.GetComponent<RectTransform>().DOKill();
             ClickTextObject.SetActive(false);
             MagnificationCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() => { IsOpenCard = true; });
         }
-        else if(IsOpenCard == true && IsOpenAnimationComplete == true && IsAnimateComplete == false)//Ä«µå°¡ °ø°³ µÇ°í, °ø°³ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³µÀ»¶§ Å¬¸¯ÇÏ¸é
-        {//ÀÌ°Ô ³¯¶ó°¡´Â°Å
+        else if(IsOpenCard == true && IsOpenAnimationComplete == true && IsAnimateComplete == false)//ì¹´ë“œê°€ ê³µê°œ ë˜ê³ , ê³µê°œ ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚¬ì„ë•Œ í´ë¦­í•˜ë©´
+        {//ì´ê²Œ ë‚ ë¼ê°€ëŠ”ê±°
             //MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(400, 350), 0.5f);
             MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
             MagnificationCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
@@ -1328,20 +1348,20 @@ public class BattleUI : MonoBehaviour
 
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             UpperMGVirtualCard[CardNum].SetActive(true);
-            //µÚÁı´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ¿Ï·á‰çÀ»¶§ Ä«µå¸¦ 
+            //ë’¤ì§‘ëŠ” ì• ë‹ˆë©”ì´ì…˜ì´ ì™„ë£Œë¬ì„ë•Œ ì¹´ë“œë¥¼ 
             UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() => 
             {
-                if (UpperMGList[CardNum] >= 1)//±àÁ¤
+                if (UpperMGList[CardNum] >= 1)//ê¸ì •
                     PositiveLink++;
-                else//ºÎÁ¤
+                else//ë¶€ì •
                     PositiveLink = 0;
 
                 UpperMGVirtualCard[CardNum].GetComponent<Image>().sprite = 
-                EquipmentInfoManager.Instance.GetEquipmentSlotSprite(UpperMGList[CardNum]);//Å¬¸¯ÇÑ Ä«µå¿¡ ¸Â´Â °á°ú Ãâ·Â
+                EquipmentInfoManager.Instance.GetEquipmentSlotSprite(UpperMGList[CardNum]);//í´ë¦­í•œ ì¹´ë“œì— ë§ëŠ” ê²°ê³¼ ì¶œë ¥
                 UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
-                    PlayCardResultSound(PositiveLink);//°è¼Ó ±àÁ¤ÀÌ µÇ¸é ÇÇÄ¡°¡ °è¼Ó ¿Ã¶ó°¨
+                    PlayCardResultSound(PositiveLink);//ê³„ì† ê¸ì •ì´ ë˜ë©´ í”¼ì¹˜ê°€ ê³„ì† ì˜¬ë¼ê°
                 });
             });
         }
@@ -1353,26 +1373,26 @@ public class BattleUI : MonoBehaviour
 
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             LowerMGVirtualCard[FixedCardNum].SetActive(true);
-            //µÚÁı´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ¿Ï·á‰çÀ»¶§ Ä«µå¸¦ 
+            //ë’¤ì§‘ëŠ” ì• ë‹ˆë©”ì´ì…˜ì´ ì™„ë£Œë¬ì„ë•Œ ì¹´ë“œë¥¼ 
             LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
             {
-                if (LowwerMGList[FixedCardNum] >= 1)//±àÁ¤
+                if (LowwerMGList[FixedCardNum] >= 1)//ê¸ì •
                     PositiveLink++;
-                else//ºÎÁ¤
+                else//ë¶€ì •
                     PositiveLink = 0;
 
                 LowerMGVirtualCard[FixedCardNum].GetComponent<Image>().sprite =
-                EquipmentInfoManager.Instance.GetEquipmentSlotSprite(LowwerMGList[FixedCardNum]);//Å¬¸¯ÇÑ Ä«µå¿¡ ¸Â´Â °á°ú Ãâ·Â
+                EquipmentInfoManager.Instance.GetEquipmentSlotSprite(LowwerMGList[FixedCardNum]);//í´ë¦­í•œ ì¹´ë“œì— ë§ëŠ” ê²°ê³¼ ì¶œë ¥
                 LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
-                    PlayCardResultSound(PositiveLink);//°è¼Ó ±àÁ¤ÀÌ µÇ¸é ÇÇÄ¡°¡ °è¼Ó ¿Ã¶ó°¨
+                    PlayCardResultSound(PositiveLink);//ê³„ì† ê¸ì •ì´ ë˜ë©´ í”¼ì¹˜ê°€ ê³„ì† ì˜¬ë¼ê°
                 });
             });
         }
     }
 
-    protected void MergeToMagnificationSlot()//ÇÕÃÄÁö´Â ¿¬Ãâ//Active‰ç´ø ¸ğµç VirtualÄ«µå
+    protected void MergeToMagnificationSlot()//í•©ì³ì§€ëŠ” ì—°ì¶œ//Activeë¬ë˜ ëª¨ë“  Virtualì¹´ë“œ
     {
         RectTransform CanvasRect = (RectTransform)WorldCanvas.transform;
         Vector3 TargetPivotWorldPos = MagnificationObject.transform.position;
@@ -1411,8 +1431,8 @@ public class BattleUI : MonoBehaviour
             });
         }
         /*
-        if (IsOpenCard == true && IsOpenAnimationComplete == true && IsAnimateComplete == false)//Ä«µå°¡ °ø°³ µÇ°í, °ø°³ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³µÀ»¶§ Å¬¸¯ÇÏ¸é
-        {//ÀÌ°Ô ³¯¶ó°¡´Â°Å
+        if (IsOpenCard == true && IsOpenAnimationComplete == true && IsAnimateComplete == false)//ì¹´ë“œê°€ ê³µê°œ ë˜ê³ , ê³µê°œ ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚¬ì„ë•Œ í´ë¦­í•˜ë©´
+        {//ì´ê²Œ ë‚ ë¼ê°€ëŠ”ê±°
          //MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(400, 350), 0.5f);
             MagnificationCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
             MagnificationCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
@@ -1424,7 +1444,7 @@ public class BattleUI : MonoBehaviour
     }
 
     protected void InitAllMGCard(bool IsInteratable = true)
-    {//ÃÊ±âÈ­ == ÀÏ´Ü Ä«µåµé ´Ù ºñÈ°¼ºÈ­, ÃÊ±â »óÅÂ·Î µÇµÉ¸®±â
+    {//ì´ˆê¸°í™” == ì¼ë‹¨ ì¹´ë“œë“¤ ë‹¤ ë¹„í™œì„±í™”, ì´ˆê¸° ìƒíƒœë¡œ ë˜ë ë¦¬ê¸°
         UpperMGLine.SetActive(false);
         LowerMGLine.SetActive(false);
         foreach (GameObject obj in UpperMGCard)
@@ -1453,7 +1473,7 @@ public class BattleUI : MonoBehaviour
             obj.GetComponent<RectTransform>().localScale = InitMGScale;
             obj.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);
         }
-        //MagnificationCard.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);//?Ä«µå·Î ÃÊ±âÈ­
+        //MagnificationCard.GetComponent<Image>().sprite = EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);//?ì¹´ë“œë¡œ ì´ˆê¸°í™”
         //EquipmentInfoManager.Instance.GetEquipmentSlotSprite(-1);
     }
 
@@ -1504,7 +1524,7 @@ public class BattleUI : MonoBehaviour
             {
                 UpperMGCard[i].SetActive(true);
                 UpperMGList.Add(MagnificationList[i]);
-                MagCardNumList.Add(i);//0~3±îÁö µé¾î°¨
+                MagCardNumList.Add(i);//0~3ê¹Œì§€ ë“¤ì–´ê°
             }
         }
         if(LowwerInt != 0)
@@ -1513,7 +1533,7 @@ public class BattleUI : MonoBehaviour
             {
                 LowerMGCard[i].SetActive(true);
                 LowwerMGList.Add(MagnificationList[UpperInt + i]);
-                MagCardNumList.Add(i + 4);//4~7±îÁö µé¾î°¨
+                MagCardNumList.Add(i + 4);//4~7ê¹Œì§€ ë“¤ì–´ê°
             }
         }
     }
@@ -1522,31 +1542,31 @@ public class BattleUI : MonoBehaviour
     {
         switch(PositiveLink)
         {
-            case 0://ºÎÁ¤
+            case 0://ë¶€ì •
                 SoundManager.Instance.PlaySFX("CardOpen_Negative");
                 break;
-            case 1://±àÁ¤ 1¿¬//µµ
+            case 1://ê¸ì • 1ì—°//ë„
                 SoundManager.Instance.PlaySFX("CardOpen_Link01");
                 break;
-            case 2://±àÁ¤ 2¿¬//·¹
+            case 2://ê¸ì • 2ì—°//ë ˆ
                 SoundManager.Instance.PlaySFX("CardOpen_Link02");
                 break;
-            case 3://±àÁ¤ 3¿¬//¹Ì
+            case 3://ê¸ì • 3ì—°//ë¯¸
                 SoundManager.Instance.PlaySFX("CardOpen_Link03");
                 break;
-            case 4://±àÁ¤ 4¿¬//ÆÄ
+            case 4://ê¸ì • 4ì—°//íŒŒ
                 SoundManager.Instance.PlaySFX("CardOpen_Link04");
                 break;
-            case 5://±àÁ¤ 5¿¬//¼Ö
+            case 5://ê¸ì • 5ì—°//ì†”
                 SoundManager.Instance.PlaySFX("CardOpen_Link05");
                 break;
-            case 6://±àÁ¤ 6¿¬//¶ó
+            case 6://ê¸ì • 6ì—°//ë¼
                 SoundManager.Instance.PlaySFX("CardOpen_Link06");
                 break;
-            case 7://±àÁ¤ 7¿¬//½Ã
+            case 7://ê¸ì • 7ì—°//ì‹œ
                 SoundManager.Instance.PlaySFX("CardOpen_Link07");
                 break;
-            case 8://±àÁ¤ 8¿¬//µµ
+            case 8://ê¸ì • 8ì—°//ë„
                 SoundManager.Instance.PlaySFX("CardOpen_Link08");
                 break;
             default:
@@ -1554,47 +1574,47 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void VictoryBattle(int RewardExperience)//½Â¸®ÇßÀ»¶§
+    public void VictoryBattle(int RewardExperience)//ìŠ¹ë¦¬í–ˆì„ë•Œ
     {
-        //Çàµ¿¼±ÅÃ UIºñÈ°¼ºÈ­
+        //í–‰ë™ì„ íƒ UIë¹„í™œì„±í™”
         if (PlayerActionSelectionBattleUI.activeSelf == true)
         {
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(-1080, 0.5f).OnComplete(() => { PlayerActionSelectionBattleUI.SetActive(false); });
         }
-        //¸ó½ºÅÍ ÅÏ ¹öÆ° UI ºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° í„´ ë²„íŠ¼ UI ë¹„í™œì„±í™”
         if (MonsterActionSelectionBattleUI.activeSelf == true)
         {
             MonsterActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(-1080, 0.5f).OnComplete(() => { MonsterActionSelectionBattleUI.SetActive(false); });
         }
-        //ÅÏ Ç¥½Ã UIºñÈ°¼ºÈ­
+        //í„´ í‘œì‹œ UIë¹„í™œì„±í™”
         if (DisplayTurnUI.activeSelf == true)
         {
             DisplayTurnUIImages[0].transform.parent.gameObject.GetComponent<RectTransform>().DOKill();
             DisplayTurnUI.GetComponent<CanvasGroup>().alpha = 1;
             DisplayTurnUI.GetComponent<CanvasGroup>().DOFade(0f, 0.5f).OnComplete(() => { DisplayTurnUI.SetActive(false); });
         }
-        //ÇÃ·¡ÀÌ¾î ¹öÇÁ Ç¥½Ã ºñÈ°¼ºÈ­
+        //í”Œë˜ì´ì–´ ë²„í”„ í‘œì‹œ ë¹„í™œì„±í™”
         PlayerBuffUI.InitBuffImage();
-        //¸ó½ºÅÍ ¼±ÅÃ UIºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ì„ íƒ UIë¹„í™œì„±í™”
         SelectionArrow.SetActive(false);
-        //¸ó½ºÅÍ Àåºñ UIºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ì¥ë¹„ UIë¹„í™œì„±í™”
         if (MonsterEquipmentUI.activeSelf == true)
         {
             MonsterEquipmentUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -100);
             MonsterEquipmentUI.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { MonsterEquipmentUI.SetActive(false); });
         }
-        //¸ó½ºÅÍ ½ºÅÈ UIºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ìŠ¤íƒ¯ UIë¹„í™œì„±í™”
         if (MonsterStatusUI.activeSelf == true)
         {
             MonsterStatusUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-390, 125);
             MonsterStatusUI.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { MonsterStatusUI.SetActive(false); });
         }
-        //¸ó½ºÅÍ ¹öÇÁ Ç¥½Ã ºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ë²„í”„ í‘œì‹œ ë¹„í™œì„±í™”
         foreach (BuffImageUIContainer obj in MonsterBuffUI)
         {
             obj.InitBuffImage();
         }
-        //¸ó½ºÅÍ ´ÙÀ½ Çàµ¿ Ç¥½Ã ºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ë‹¤ìŒ í–‰ë™ í‘œì‹œ ë¹„í™œì„±í™”
         for(int i = 0; i < MonsterAttackIcons.Length; i++)
         {
             if (MonsterAttackIcons.Length > i && MonsterAttackIcons[i].activeSelf == true)
@@ -1610,11 +1630,11 @@ public class BattleUI : MonoBehaviour
                 MonsterAnotherIcons[i].SetActive(false);
             }
         }
-        //ÀÌ°Ô ÀÌÁ¦ ½Â¸® ÇßÀ»¶§ ¿Ã¶ó¿À´Â°Å°í
+        //ì´ê²Œ ì´ì œ ìŠ¹ë¦¬ í–ˆì„ë•Œ ì˜¬ë¼ì˜¤ëŠ”ê±°ê³ 
         VictoryUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -1080);
         VictoryUI.SetActive(true);
         VictoryUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f).SetEase(Ease.OutBack);
-        VictoryText.text = "È¹µæ °æÇèÄ¡ : " + RewardExperience;
+        VictoryText.text = RewardExperience.ToString();
         SoundManager.Instance.PlayBGM("BaseBGM");
     }
 
@@ -1629,34 +1649,34 @@ public class BattleUI : MonoBehaviour
 
     public void DefeatBattle(PlayerScript PlayerInfo)
     {
-        //Çàµ¿¼±ÅÃ UIºñÈ°¼ºÈ­
+        //í–‰ë™ì„ íƒ UIë¹„í™œì„±í™”
         if (PlayerActionSelectionBattleUI.activeSelf == true)
         {
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(-1080, 0.5f).OnComplete(() => { PlayerActionSelectionBattleUI.SetActive(false); });
         }
-        //¸ó½ºÅÍ ÅÏ ¹öÆ° UI ºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° í„´ ë²„íŠ¼ UI ë¹„í™œì„±í™”
         if (MonsterActionSelectionBattleUI.activeSelf == true)
         {
             MonsterActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(-1080, 0.5f).OnComplete(() => { MonsterActionSelectionBattleUI.SetActive(false); });
         }
-        //ÅÏ Ç¥½Ã UIºñÈ°¼ºÈ­
+        //í„´ í‘œì‹œ UIë¹„í™œì„±í™”
         if (DisplayTurnUI.activeSelf == true)
         {
             DisplayTurnUIImages[0].transform.parent.gameObject.GetComponent<RectTransform>().DOKill();
             DisplayTurnUI.GetComponent<CanvasGroup>().alpha = 1;
             DisplayTurnUI.GetComponent<CanvasGroup>().DOFade(0f, 0.5f).OnComplete(() => { DisplayTurnUI.SetActive(false); });
         }
-        //ÇÃ·¡ÀÌ¾î ¹öÇÁ Ç¥½Ã ºñÈ°¼ºÈ­
+        //í”Œë˜ì´ì–´ ë²„í”„ í‘œì‹œ ë¹„í™œì„±í™”
         PlayerBuffUI.InitBuffImage();
-        //¸ó½ºÅÍ ¼±ÅÃ UIºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ì„ íƒ UIë¹„í™œì„±í™”
         SelectionArrow.SetActive(false);
-        //¸ó½ºÅÍ Àåºñ UIºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ì¥ë¹„ UIë¹„í™œì„±í™”
         if (MonsterEquipmentUI.activeSelf == true)
         {
             MonsterEquipmentUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -100);
             MonsterEquipmentUI.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { MonsterEquipmentUI.SetActive(false); });
         }
-        //¸ó½ºÅÍ ½ºÅÈ UIºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ìŠ¤íƒ¯ UIë¹„í™œì„±í™”
         if (MonsterStatusUI.activeSelf == true)
         {
             MonsterStatusUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-390, 125);
@@ -1666,12 +1686,12 @@ public class BattleUI : MonoBehaviour
         {
             obj.gameObject.SetActive(false);
         }
-        //¸ó½ºÅÍ ¹öÇÁ Ç¥½Ã ºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ë²„í”„ í‘œì‹œ ë¹„í™œì„±í™”
         foreach (BuffImageUIContainer obj in MonsterBuffUI)
         {
             obj.InitBuffImage();
         }
-        //¸ó½ºÅÍ ´ÙÀ½ Çàµ¿ Ç¥½Ã ºñÈ°¼ºÈ­
+        //ëª¬ìŠ¤í„° ë‹¤ìŒ í–‰ë™ í‘œì‹œ ë¹„í™œì„±í™”
         for (int i = 0; i < MonsterAttackIcons.Length; i++)
         {
             if (MonsterAttackIcons.Length > i && MonsterAttackIcons[i].activeSelf == true)
@@ -1691,34 +1711,25 @@ public class BattleUI : MonoBehaviour
         DefeatUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -1080);
         DefeatUI.SetActive(true);
         DefeatUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f).SetEase(Ease.OutBack);
-
-        DefeatEventTitle.text = "µµ´Ş ÃÖ´ë Ãş¼ö (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-            ")\r\nÀÏ¹İ ¸ó½ºÅÍ (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
-            ")\r\n¿¤¸®Æ® ¸ó½ºÅÍ (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
-            ")\r\n³²Àº °æÇèÄ¡ (" + PlayerInfo.GetPlayerStateInfo().Experience +
-            ")\r\n¼±ÇÑ ¿µÇâ·Â (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
+        /*
+        DefeatEventTitle.text = "ë„ë‹¬ ìµœëŒ€ ì¸µìˆ˜ (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
+            ")\r\nì¼ë°˜ ëª¬ìŠ¤í„° (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
+            ")\r\nì—˜ë¦¬íŠ¸ ëª¬ìŠ¤í„° (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
+            ")\r\në‚¨ì€ ê²½í—˜ì¹˜ (" + PlayerInfo.GetPlayerStateInfo().Experience +
+            ")\r\nì„ í•œ ì˜í–¥ë ¥ (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
         DefeatEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 2000) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillNormalMonster * 500) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillEliteMonster * 700) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GoodKarma * 200);
-        /*
-        DefeatEventTitle.text = "µµ´Ş ÃÖ´ë Ãş¼ö (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-            ")\r\nÁØ ÇÇÇØ (" + PlayerInfo.GetPlayerStateInfo().GiveDamage +
-            ")\r\n¹ŞÀº ÇÇÇØ (" + PlayerInfo.GetPlayerStateInfo().ReceiveDamage +
-            ")\r\nÃÖ´ë ÇÇÇØ (" + PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage +
-            ")\r\n³²Àº °æÇèÄ¡ (" +PlayerInfo.GetPlayerStateInfo().Experience +")";
-        DefeatEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor / 5) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GiveDamage / 1000) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().ReceiveDamage / 500) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage / 100) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience / 2000);
         */
-        EquipSuccessionText.text = "¼ÒÁöÇÑ ÀåºñÁß ·£´ıÇÑ " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "°³ÀÇ Àåºñ°¡ °è½ÂµË´Ï´Ù.";
-        DeafeatEarlyPoint.text = "±âÃÊ °­È­ Æ÷ÀÎÆ® : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
+        /*
+        EquipSuccessionText.text = "ì†Œì§€í•œ ì¥ë¹„ì¤‘ ëœë¤í•œ " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "ê°œì˜ ì¥ë¹„ê°€ ê³„ìŠ¹ë©ë‹ˆë‹¤.";
+        DeafeatEarlyPoint.text = "ê¸°ì´ˆ ê°•í™” í¬ì¸íŠ¸ : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
+        */
     }
 
-    public void WinGame(PlayerScript PlayerInfo)//ÀÌ°Ô ¿©±âÀÖ¾îµµ µÇ´ÂÁö´Â ¸ô°Ú´Âµ¥ ¾ÈÁÁÀ¸¸é ³ªÁß¿¡ ¿Å±âÁö ¹¹
+    public void WinGame(PlayerScript PlayerInfo)//ì´ê²Œ ì—¬ê¸°ìˆì–´ë„ ë˜ëŠ”ì§€ëŠ” ëª°ê² ëŠ”ë° ì•ˆì¢‹ìœ¼ë©´ ë‚˜ì¤‘ì— ì˜®ê¸°ì§€ ë­
     {
         if (PlayerActionSelectionBattleUI.activeSelf == true)
         {
@@ -1749,31 +1760,21 @@ public class BattleUI : MonoBehaviour
         WinGameUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -1080);
         WinGameUI.SetActive(true);
         WinGameUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.4f).SetEase(Ease.OutBack);
-        //Æ¯Á¤ Á¶°Ç¿¡ µû¶ó ½Â¸®¶ó´Â Á¦¸ñµµ ¹Ù²ğ¼ö ÀÖÁö ¾ÊÀ»±î? ÀÏ´Ü ±×´ë·Î ÁøÇà
-        WinEventTitle.text = "µµ´Ş ÃÖ´ë Ãş¼ö (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-            ")\r\nÀÏ¹İ ¸ó½ºÅÍ (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
-            ")\r\n¿¤¸®Æ® ¸ó½ºÅÍ (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
-            ")\r\n³²Àº °æÇèÄ¡ (" + PlayerInfo.GetPlayerStateInfo().Experience +
-            ")\r\n¼±ÇÑ ¿µÇâ·Â (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
+        //íŠ¹ì • ì¡°ê±´ì— ë”°ë¼ ìŠ¹ë¦¬ë¼ëŠ” ì œëª©ë„ ë°”ë€”ìˆ˜ ìˆì§€ ì•Šì„ê¹Œ? ì¼ë‹¨ ê·¸ëŒ€ë¡œ ì§„í–‰
+        WinEventTitle.text = "ë„ë‹¬ ìµœëŒ€ ì¸µìˆ˜ (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
+            ")\r\nì¼ë°˜ ëª¬ìŠ¤í„° (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
+            ")\r\nì—˜ë¦¬íŠ¸ ëª¬ìŠ¤í„° (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
+            ")\r\në‚¨ì€ ê²½í—˜ì¹˜ (" + PlayerInfo.GetPlayerStateInfo().Experience +
+            ")\r\nì„ í•œ ì˜í–¥ë ¥ (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
         WinEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 2000) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillNormalMonster * 500) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillEliteMonster * 700) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience) +
             "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GoodKarma * 200);
-        /*
-        WinEventTitle.text = "µµ´Ş ÃÖ´ë Ãş¼ö (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-            ")\r\nÁØ ÇÇÇØ (" + PlayerInfo.GetPlayerStateInfo().GiveDamage +
-            ")\r\n¹ŞÀº ÇÇÇØ (" + PlayerInfo.GetPlayerStateInfo().ReceiveDamage +
-            ")\r\nÃÖ´ë ÇÇÇØ (" + PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage +
-            ")\r\n³²Àº °æÇèÄ¡ (" + PlayerInfo.GetPlayerStateInfo().Experience + ")";
-        WinEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor / 5) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GiveDamage / 1000) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().ReceiveDamage / 500) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().MostPowerfulDamage / 100) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience / 2000);
-        */
-        WinEquipSuccessionText.text = "¼ÒÁöÇÑ ÀåºñÁß ·£´ıÇÑ " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "°³ÀÇ Àåºñ°¡ °è½ÂµË´Ï´Ù.";
-        WinEarlyPoint.text = "±âÃÊ °­È­ Æ÷ÀÎÆ® : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
+        
+        WinEquipSuccessionText.text = "ì†Œì§€í•œ ì¥ë¹„ì¤‘ ëœë¤í•œ " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "ê°œì˜ ì¥ë¹„ê°€ ê³„ìŠ¹ë©ë‹ˆë‹¤.";
+        WinEarlyPoint.text = "ê¸°ì´ˆ ê°•í™” í¬ì¸íŠ¸ : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
+        
     }
 
     public void ClickDefeatButton()

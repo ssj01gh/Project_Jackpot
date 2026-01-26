@@ -151,6 +151,62 @@ MonoBehaviour:
     m_Key: PS_SC_EquipSTAError
     m_Metadata:
       m_Items: []
+  - m_Id: 6802895688822784
+    m_Key: PS_SC_BattleAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897173606400
+    m_Key: PS_SC_BattleDefense
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897945358336
+    m_Key: PS_SC_BattleSTARecovery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803000680640512
+    m_Key: PS_SC_Battle_EnemyTurn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803579595255808
+    m_Key: PS_SC_Battle_Percent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813593433141248
+    m_Key: PS_GM_MissTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813595148611584
+    m_Key: PS_GM_BattleNoSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813703047081984
+    m_Key: PS_GM_NoInven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813704364093440
+    m_Key: PS_GM_CampingNoSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813705962123264
+    m_Key: PS_GM_LevelUPNoEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813707992166400
+    m_Key: PS_GM_NoEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813710223536128
+    m_Key: PS_GM_Fog_NoSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826726067400704
+    m_Key: PS_BattleVictory_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826729540284416
+    m_Key: PS_ClaimEXP
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

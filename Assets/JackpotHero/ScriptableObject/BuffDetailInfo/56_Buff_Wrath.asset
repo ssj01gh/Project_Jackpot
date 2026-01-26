@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: -1644042423, guid: d5d0bae72e7fd174f8ccda96a591db11, type: 3}
   BuffName: "\uBD84\uB178"
-  BuffDetail: "\uC2A4\uD0DD\uB2F9 \uC790\uC2E0\uC758 \uC2A4\uD0EF\uC774\n10% \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  BuffDetail: "\uC2A4\uD0DD X 10%\uB9CC\uD07C\n\uBAA8\uB4E0 \uC2A4\uD0EF\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
   BuffNameEN: Wrath
-  BuffDetailEN: 
+  BuffDetailEN: "All stats increase \nby stacks \xD7 10%."
   BuffNameJA: "\u61A4\u6012"
-  BuffDetailJA: 
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\xD710%\u3076\u3093\u3001\n\u3059\u3079\u3066\u306E\u30B9\u30C6\u30FC\u30BF\u30B9\u304C\n\u5897\u52A0\u3057\u307E\u3059\u3002"

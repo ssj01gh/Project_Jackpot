@@ -16,6 +16,6 @@ MonoBehaviour:
   BuffName: "\uC9C8\uD22C"
   BuffDetail: "\uC2A4\uD0DD\uC758 30% \uB9CC\uD07C\n\uC2A4\uD0EF\uC774 \uAC10\uC18C\uD569\uB2C8\uB2E4."
   BuffNameEN: Envy
-  BuffDetailEN: 
+  BuffDetailEN: "Stats decrease \nby 30% of its stacks."
   BuffNameJA: "\u5AC9\u59AC"
-  BuffDetailJA: 
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u306E30%\u3076\u3093\u3001\n\u30B9\u30C6\u30FC\u30BF\u30B9\u304C\u6E1B\u5C11\u3057\u307E\u3059\u3002"

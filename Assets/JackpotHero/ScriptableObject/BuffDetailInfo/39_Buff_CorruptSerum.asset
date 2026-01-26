@@ -17,6 +17,14 @@ MonoBehaviour:
   BuffDetail: "STR, DUR, SPD\uAC00\n3\uC529 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
   BuffNameEN: Doping
-  BuffDetailEN: 
+  BuffDetailEN: 'Increases STR, DUR,
+
+    and SPD by 3.
+
+
+    End of its turn
+
+    staks
+    -1'
   BuffNameJA: "\u30C9\u30FC\u30D4\u30F3\u30B0"
-  BuffDetailJA: 
+  BuffDetailJA: "STR\u3001DUR\u3001SPD\u304C\n\u305D\u308C\u305E\u308C3\u5897\u52A0\u3057\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

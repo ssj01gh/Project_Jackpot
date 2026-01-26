@@ -18,6 +18,7 @@ MonoBehaviour:
     \uC758\uD574 \uC0C1\uC2B9\uD55C\nLUK \uC0C1\uC2B9\uB7C9\uC744 \uC81C\uC678\uD55C\n\uC0C1\uB300\uC758
     LUK \uC0C1\uC2B9\uB7C9 \uB9CC\uD07C\n\uC2A4\uD0DD\uC744 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4."
   BuffNameEN: 'Copy : LUK'
-  BuffDetailEN: 
+  BuffDetailEN: "Increases LUK by\nan amount equal to its stacks.\n\nIncreases stacks
+    by\nthe enemy\u2019s LUK\nincrease amount,\nexcluding LUK gained\nfrom equipment."
   BuffNameJA: "\u30B3\u30D4\u30FC\uFF1ALUK"
-  BuffDetailJA: 
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093LUK\u304C\n\u5897\u52A0\u3057\u307E\u3059\u3002\n\n\u88C5\u5099\u306B\u3088\u3063\u3066\u4E0A\u6607\u3057\u305F\nLUK\u3092\u9664\u3044\u305F\u3001\n\u6575\u306ELUK\u4E0A\u6607\u91CF\u3076\u3093\n\u30B9\u30BF\u30C3\u30AF\u3092\u5897\u52A0\u3057\u307E\u3059\u3002"

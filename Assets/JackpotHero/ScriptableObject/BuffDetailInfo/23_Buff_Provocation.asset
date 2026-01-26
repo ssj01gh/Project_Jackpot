@@ -20,6 +20,12 @@ MonoBehaviour:
   BuffNameEN: Provocation
   BuffDetailEN: 'When an enemy attacks,
 
-    it is forced to target this unit.'
+    it is forced to target this unit.
+
+
+    End
+    of its turn
+
+    staks -1'
   BuffNameJA: "\u6311\u767A"
-  BuffDetailJA: "\u6575\u304C\u653B\u6483\u3059\u308B\u6642\u3001\n\u5FC5\u305A\u81EA\u5206\u3092\u653B\u6483\n\u3059\u308B\u3088\u3046\u306B\u3057\u307E\u3059\u3002"
+  BuffDetailJA: "\u6575\u304C\u653B\u6483\u3059\u308B\u6642\u3001\n\u5FC5\u305A\u81EA\u5206\u3092\u653B\u6483\n\u3059\u308B\u3088\u3046\u306B\u3057\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

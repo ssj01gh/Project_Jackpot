@@ -40,11 +40,11 @@ public class PlayerBattleActionSelection : MonoBehaviour, IPointerEnterHandler, 
         ActionPercentDetailUI.transform.position = eventData.pointerEnter.transform.position;
 
         if (UsefulInfo > 0)
-            ActionPercentDetailUIText.text = "¾à " + "<color=green>+" + UsefulInfo.ToString("F1") +"%"+ "</color>";
+            ActionPercentDetailUIText.text = "<color=green>+" + UsefulInfo.ToString("F1") +"%"+ "</color>";
         else if (UsefulInfo < 0)
-            ActionPercentDetailUIText.text = "¾à " + "<color=red>" + UsefulInfo.ToString("F1") +"%" +"</color>";
+            ActionPercentDetailUIText.text = "<color=red>" + UsefulInfo.ToString("F1") +"%" +"</color>";
         else
-            ActionPercentDetailUIText.text = "¾à " + UsefulInfo.ToString("F1") +"%";
+            ActionPercentDetailUIText.text = UsefulInfo.ToString("F1") +"%";
     }
 
     public void OnPointerExit(PointerEventData eventData)
