@@ -1,0 +1,876 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ES_DetailText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: b9e7aaa308cc5ed4bbc81577f71d46b7, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 28485229342720
+    m_Localized: 'Start with STR : 5
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485267091456
+    m_Localized: 'Start with STR : 6
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285760
+    m_Localized: 'Start with STR : 7
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285761
+    m_Localized: 'Start with STR : 8
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285762
+    m_Localized: 'Start with STR : 9
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285763
+    m_Localized: 'Start with STR : 10
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285764
+    m_Localized: 'Start with STR : 10
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285765
+    m_Localized: 'Start with STR : 10
+
+
+      Applies itself
+
+      <link="STR07"><color=green>Overwhelming
+      Power</color></link> at the start of combat.
+
+
+      STR affects attack damage
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285766
+    m_Localized: 'Start with DUR : 5
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285767
+    m_Localized: 'Start with DUR : 6
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285768
+    m_Localized: 'Start with DUR : 7
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285769
+    m_Localized: 'Start with DUR : 8
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285770
+    m_Localized: 'Start with DUR : 9
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285771
+    m_Localized: 'Start with DUR : 10
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285772
+    m_Localized: 'Start with DUR : 10
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285773
+    m_Localized: 'Start with DUR : 10
+
+
+      Applies itself
+
+      <link="DUR07"><color=green>Thorn
+      Armor</color></link> at the start of combat.
+
+
+      DUR affects defense stats
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285774
+    m_Localized: 'Start with SPD : 5
+
+
+      SPD affects action speed
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285775
+    m_Localized: 'Start with SPD : 6
+
+
+      SPD affects action speed
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285776
+    m_Localized: 'Start with SPD : 7
+
+
+      SPD affects action speed
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285777
+    m_Localized: 'Start with SPD : 8
+
+
+      SPD affects action speed
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285778
+    m_Localized: 'Start with SPD : 9
+
+
+      SPD affects action speed
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285779
+    m_Localized: 'Start with SPD : 10
+
+
+      SPD affects action speed
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285780
+    m_Localized: 'Start with SPD : 10
+
+
+      SPD affects action speed
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28485271285781
+    m_Localized: 'Start with SPD : 10
+
+
+      Applies enemy
+
+      <link="SPD07"><color=green>Vulnerable</color></link>
+      at the start of combat.
+
+
+      SPD affects action speed
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527089864704
+    m_Localized: 'Start with RES : 5
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527115030528
+    m_Localized: 'Start with RES : 6
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527115030529
+    m_Localized: 'Start with RES : 7
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527115030530
+    m_Localized: 'Start with RES : 8
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224832
+    m_Localized: 'Start with RES : 9
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224833
+    m_Localized: 'Start with RES : 10
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224834
+    m_Localized: 'Start with RES : 10
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224835
+    m_Localized: 'Start with RES : 10
+
+
+      Applies itself
+
+      <link="RES07"><color=green>Advanced
+      Rest</color></link> at the start of combat.
+
+
+      RES affects STA Recovery
+
+      during
+      combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224836
+    m_Localized: 'Start with LUK : 0
+
+
+      LUK affects the final value of
+
+      attack,
+      defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224837
+    m_Localized: 'Start with LUK : 1
+
+
+      LUK affects the final value of
+
+      attack,
+      defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224838
+    m_Localized: 'Start with LUK : 2
+
+
+      LUK affects the final value of
+
+      attack,
+      defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224839
+    m_Localized: 'Start with LUK : 3
+
+
+      LUK affects the final value of
+
+      attack,
+      defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224840
+    m_Localized: 'Start with LUK : 4
+
+
+      LUK affects the final value of
+
+      attack,
+      defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224841
+    m_Localized: 'Start with LUK : 5
+
+
+      LUK affects the final value of
+
+      attack,
+      defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224842
+    m_Localized: 'Start with LUK : 5
+
+
+      LUK affects the final value of
+
+      attack,
+      defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224843
+    m_Localized: 'Start with LUK : 5
+
+
+      Increases the chance of obtaining
+
+      high-Tier
+      equipment when using
+
+      equipmnet gacha.
+
+
+      LUK affects the final
+      value of
+
+      attack, defense, and STA Recovery
+
+      during combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224844
+    m_Localized: 'Start with HP : 100
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224845
+    m_Localized: 'Start with HP : 120
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224846
+    m_Localized: 'Start with HP : 140
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224847
+    m_Localized: 'Start with HP : 160
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224848
+    m_Localized: 'Start with HP : 180
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224849
+    m_Localized: 'Start with HP : 200
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224850
+    m_Localized: 'Start with HP : 200
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224851
+    m_Localized: 'Start with HP : 200
+
+
+      Applies itself
+
+      <link="HP07"><color=green>Bloodline</color></link>
+      at the start of combat.
+
+
+      You lose when your HP reaches 0.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224852
+    m_Localized: 'Start with STA : 1000
+
+
+      STA is a resource used to
+
+      perform
+      actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224853
+    m_Localized: 'Start with STA : 1200
+
+
+      STA is a resource used to
+
+      perform
+      actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224854
+    m_Localized: 'Start with STA : 1400
+
+
+      STA is a resource used to
+
+      perform
+      actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224855
+    m_Localized: 'Start with STA : 1600
+
+
+      STA is a resource used to
+
+      perform
+      actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224856
+    m_Localized: 'Start with STA : 1800
+
+
+      STA is a resource used to
+
+      perform
+      actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224857
+    m_Localized: 'Start with STA : 2000
+
+
+      STA is a resource used to
+
+      perform
+      actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224858
+    m_Localized: 'Start with STA : 2000
+
+
+      STA is a resource used to
+
+      perform
+      actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224859
+    m_Localized: 'Start with STA : 2000
+
+
+      Applies itself
+
+      <link="STA07"><color=green>Fatigue
+      Controll</color></link> at the start of combat.
+
+
+      STA is a resource used
+      to
+
+      perform actions in combat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224860
+    m_Localized: 'Start with EXP : 0
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224861
+    m_Localized: 'Start with EXP : 30
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224862
+    m_Localized: 'Start with EXP : 60
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224863
+    m_Localized: 'Start with EXP : 90
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224864
+    m_Localized: 'Start with EXP : 120
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224865
+    m_Localized: 'Start with EXP : 150
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224866
+    m_Localized: 'Start with EXP : 150
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224867
+    m_Localized: 'Start with EXP : 150
+
+
+      Applies itself
+
+      <link="EXP07"><color=green>Exploitation</color></link>
+      at the start of combat.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224868
+    m_Localized: 'EXP gain starts at 100%.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224869
+    m_Localized: 'EXP gain starts at 105%.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224870
+    m_Localized: 'EXP gain starts at 110%.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224871
+    m_Localized: 'EXP gain starts at 115%.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224872
+    m_Localized: 'EXP gain starts at 120%.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224873
+    m_Localized: 'EXP gain starts at 125%.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224874
+    m_Localized: 'EXP gain starts at 125%.
+
+
+      EXP is a resource used to
+
+      strengthen
+      the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224875
+    m_Localized: 'EXP gain starts at 125%.
+
+
+      Applies itself
+
+      <link="EXPMG07"><color=green>EXP
+      Power</color></link> at the start of combat.
+
+
+      EXP is a resource used
+      to
+
+      strengthen the player.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224876
+    m_Localized: 'Start with 4 inventory slots.
+
+
+      After victory or defeat,
+      0 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224877
+    m_Localized: 'Start with 6 inventory slots.
+
+
+      After victory or defeat,
+      0 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224878
+    m_Localized: 'Start with 8 inventory slots.
+
+
+      After victory or defeat,
+      1 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224879
+    m_Localized: 'Start with 10 inventory slots.
+
+
+      After victory or defeat,
+      2 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224880
+    m_Localized: 'Start with 12 inventory slots.
+
+
+      After victory or defeat,
+      3 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224881
+    m_Localized: 'Start with 12 inventory slots.
+
+
+      After victory or defeat,
+      4 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224882
+    m_Localized: 'Start with 12 inventory slots.
+
+
+      After victory or defeat,
+      4 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 302527119224883
+    m_Localized: 'Start with 12 inventory slots.
+
+
+      Applies itself
+
+      <link="EQUIP07"><color=green>Weapon
+      Master</color></link> at the start of combat.
+
+
+      After victory or defeat,
+      4 random equipment
+
+      can be carried over to the next game.'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 889759177, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uACFC\uBD80\uD558"
-  BuffDetail: "\uC18D\uB3C4\uAC00 20 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\uC2A4\uD0DD\uC774
-    0\uC774 \uB420\uC2DC\n\uC4F0\uB7EC\uC9D1\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134
-    \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffDetail: "SPD\uAC00 20 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\uC2A4\uD0DD\uC774 0\uC774
+    \uB420\uC2DC\n\uC4F0\uB7EC\uC9D1\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD
+    -1"
+  BuffNameEN: Over Charge
+  BuffDetailEN: "Increases SPD by 20.\nWhen stacks reach 0, \nit is defeated.\n\nEnd
+    of its turn\r\nstaks -1"
+  BuffNameJA: "\u904E\u8CA0\u8377"
+  BuffDetailJA: "SPD\u304C20\u5897\u52A0\u3057\u307E\u3059\u3002\n\u30B9\u30BF\u30C3\u30AF\u304C0\u306B\u306A\u308B\u3068\u3001\n\u5012\u308C\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

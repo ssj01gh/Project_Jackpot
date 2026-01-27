@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: -1838226700, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uC801\uC751 : \uB0B4\uAD6C"
-  BuffDetail: "\uC2A4\uD0DD\uC758 \uC81C\uACF1\uB9CC\uD07C\n\uB0B4\uAD6C\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\n\uC801\uC758
-    \uACF5\uACA9\uC73C\uB85C \uCCB4\uB825\uC5D0\n\uD53C\uD574\uB97C \uC785\uC740
-    \uACBD\uC6B0\n\uC2A4\uD0DD\uC774 1 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  BuffDetail: "\uC2A4\uD0DD\uC758 \uC81C\uACF1\uB9CC\uD07C\nDUR\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  BuffNameEN: 'Adaptation : DUR'
+  BuffDetailEN: 'Increases DUR by
+
+    the square of its stacks.'
+  BuffNameJA: "\u9069\u5FDC:DUR"
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u6570\u306E\u4E8C\u4E57\u3076\u3093\u3001\nDUR\u304C\u5897\u52A0\u3057\u307E\u3059\u3002"

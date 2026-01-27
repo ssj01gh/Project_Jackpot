@@ -18,3 +18,10 @@ MonoBehaviour:
   EquipmentName: "\uAC80"
   EquipmentDetail: "\uC2DC\uC791\uC758 \uAC80\uC785\uB2C8\uB2E4.\n\uD654\uB824\uD558\uC9C0\uB9CC
     \uC2E4\uC18D \uC5C6\uB294 \uBB34\uAE30\uC785\uB2C8\uB2E4."
+  EquipmentNameEN: Sword
+  EquipmnetDetailEN: 'A sword of beginnings.
+
+    It looks impressive, but lacks
+    substance.'
+  EquipmnetNameJA: "\u5263"
+  EquipmnetDetailJA: "\u59CB\u307E\u308A\u306E\u5263\u3067\u3059\u3002\n\u6D3E\u624B\u3067\u3059\u304C\u3001\u3042\u307E\u308A\u5F79\u306B\u306F\u7ACB\u3061\u307E\u305B\u3093\u3002"

@@ -147,7 +147,7 @@ public class PlaySceneManager : MonoBehaviour
 
     IEnumerator CheckBackGroundMoveEnd(bool IsIgnoreWhile = false)
     {
-        new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f);
         while(true)
         {
             yield return null;

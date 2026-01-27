@@ -26,7 +26,21 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uC232\uC758 \uB9C8\uB140\uAC00 \uD2B9\uC218\uD55C \uC57D\uBB3C\uC774
-    \uB4E4\uC5B4\uC788\uB294\n\uC720\uB9AC\uBCD1\uC744 \uB358\uC9D1\uB2C8\uB2E4.\n\n\uD2B9\uC218\uD589\uB3D9
+  EquipmentDetail: "\uC232\uC758 \uB9C8\uB140\uAC00 \uC801\uC5D0\uAC8C \uD2B9\uC218\uD55C
+    \uC57D\uBB3C\uC774 \uB4E4\uC5B4\uC788\uB294\n\uD50C\uB77C\uC2A4\uD06C\uC744 \uB358\uC9D1\uB2C8\uB2E4.\n\n\uD2B9\uC218\uD589\uB3D9
     : \uBB34\uB825\uD654 \uD3EC\uC158\n\uC801\uC5D0\uAC8C <link=\"MAttackDebuff\"><color=green>\uACF5\uACA9\uB825
     \uAC10\uC18C</color></link> 2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Weaken Potion
+  EquipmentDetailEN: 'The Forest Witch throws a flask
+
+    containing a special concoction
+    at the enemy.
+
+
+    Special Action : Weaken Potion
+
+    Applies enemy 2 stack
+    of <link="MAttackDebuff"><color=green>Attack Debuff</color></link>.'
+  EquipmentNameJA: "\u7121\u529B\u5316\u306E\u30DD\u30FC\u30B7\u30E7\u30F3"
+  EquipmentDetailJA: "\u68EE\u306E\u9B54\u5973\u304C\u3001\u7279\u6B8A\u306A\u85AC\u5264\u306E\u5165\u3063\u305F\n\u30D5\u30E9\u30B9\u30B3\u3092\u6575\u306B\u6295\u3052\u3064\u3051\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u7121\u529B\u5316\u306E\u30DD\u30FC\u30B7\u30E7\u30F3\n\u6575\u306B<link=\"MAttackDebuff\"><color=green>\u653B\u6483\u30C7\u30D0\u30D5</color></link>2\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002\r"

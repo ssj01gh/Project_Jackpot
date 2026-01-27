@@ -50,3 +50,9 @@ MonoBehaviour:
   EquipmentDetail: "\uBAB8\uC744 \uC774\uB8E8\uACE0 \uC788\uB294 \uBC14\uC704\uB97C
     \uB354\uC6B1 \uB2E8\uB2E8\uD558\uAC8C \uB9CC\uB4E4\uC5B4\n\uACF5\uACA9\uC744
     \uB9C9\uC2B5\uB2C8\uB2E4."
+  EquipmentNameEN: Harden
+  EquipmentDetailEN: 'Hardens the rocks that make up its body
+
+    to block attacks.'
+  EquipmentNameJA: "\u786C\u5316"
+  EquipmentDetailJA: "\u4F53\u3092\u69CB\u6210\u3059\u308B\u5CA9\u3092\u3055\u3089\u306B\u786C\u5316\u3055\u305B\u3001\n\u653B\u6483\u3092\u9632\u304E\u307E\u3059\u3002"

@@ -15,8 +15,21 @@ MonoBehaviour:
   IsEventEquip: 1
   EquipStateType: 2
   EquipType: 0
-  EquipmentName: "\uB3C5\uCE68 / \uD654\uC5FC\uCE68"
-  EquipmentDetail: "\uD654\uC5FC\uC758 \uAE30\uC6B4\uC774 \uB458\uB7EC\uC9C4 \uCE68\uACFC
-    \uB3C5\uC774 \uC2A4\uBA70\uB098\uC624\uB294 \uCE68\uC785\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC801\uC5D0\uAC8C
+  EquipmentName: "\uC7A5\uCE68"
+  EquipmentDetail: "\uD654\uC5FC\uC758 \uAE30\uC6B4\uACFC \uB3C5\uC774 \uC2A4\uBA70
+    \uB098\uC624\uB294 \uC7A5\uCE68\uC785\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC801\uC5D0\uAC8C
     <link=\"RESWE01\"><color=green>\uB3C5</color></link> 5\uC2A4\uD0DD\uACFC <link=\"RESWE02\"><color=green>\uD654\uC0C1</color></link>
     3\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Needle
+  EquipmnetDetailEN: 'A needle imbued with fiery energy and seeping with poison.
+
+
+    On
+    Attack
+
+    Applies enemy 5 stack of <link="RESWE01"><color=green>Poison</color></link>
+    and
+
+    3 stack of <link="RESWE02"><color=green>Burn</color></link>.'
+  EquipmnetNameJA: "\u9577\u91DD"
+  EquipmnetDetailJA: "\u708E\u306E\u6C17\u914D\u3068\u6BD2\u304C\u67D3\u307F\u51FA\u3059\u9577\u91DD\u3067\u3059\u3002\n\n\u653B\u6483\u6642\n\u6575\u306B<link=\"RESWE01\"><color=green>\u6BD2</color></link>5\u30B9\u30BF\u30C3\u30AF\u3068\n<link=\"RESWE02\"><color=green>\u3084\u3051\u3069</color></link>3\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

@@ -31,3 +31,17 @@ MonoBehaviour:
     \uC2DC\uC791 : \uD615\uC0C1 \uAE30\uC5B5 \uC554\uC11D\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"MRegenArmor\"><color=green>\uC7AC\uC0DD\uD615 \uAC11\uC637</color></link>
     15\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Form Memory Stone
+  EquipmentDetailEN: 'When the Stone Golem takes damage,
+
+    the core gem prevents
+    it from breaking apart.
+
+
+    At Battle Start : Form Memory Stone
+
+    Applies
+    itself 15 stack of <link="MRegenArmor"><color=green>Regen Armor</color></link>.'
+  EquipmentNameJA: "\u5F62\u72B6\u8A18\u61B6\u5CA9"
+  EquipmentDetailJA: "\u30B9\u30C8\u30FC\u30F3\u30B4\u30FC\u30EC\u30E0\u304C\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u3066\u3082\u3001\n\u4E2D\u5FC3\u306E\u5B9D\u77F3\u304C\u5D29\u58CA\u3092\u9632\u304E\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u5F62\u72B6\u8A18\u61B6\u5CA9\n\u81EA\u5206\u306B<link=\"MRegenArmor\"><color=green>\u518D\u751F\u306E\u93A7</color></link>15\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

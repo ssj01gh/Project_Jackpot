@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System.Collections.Generic;
+using System.Globalization;
 
 [System.Serializable]
 public class PlayerInfo
@@ -71,10 +72,26 @@ public class OptionInfo
     public float UISFXVolume;
     public float ScreenResolutionWidth;
     public bool IsFullScreen;
+    public int CurrentLanguage;
 
     public bool IsValid()
     {
         return false;
+    }
+
+    public string ReturnLanguageCode()
+    {
+        switch(CurrentLanguage)
+        {
+            case 0:
+                return "ko";
+            case 1:
+                return "en";
+            case 2:
+                return "ja";
+            default:
+                return "ko";
+        }
     }
 }
 

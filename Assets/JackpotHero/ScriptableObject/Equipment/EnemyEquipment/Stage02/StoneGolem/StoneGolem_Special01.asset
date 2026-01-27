@@ -30,3 +30,15 @@ MonoBehaviour:
     \uC774\uB8E8\uC5B4\uC838\uC788\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791
     : \uB3CC \uC8FC\uBA39\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MToughFist\"><color=green>\uB2E8\uB2E8\uD55C
     \uC8FC\uBA39</color></link> 99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Stone Fist
+  EquipmentDetailEN: 'Stone Golems are made of solid rock.
+
+
+    At Battle Start
+    : Stone Fist
+
+    Applies itself 99 stack of <link="MToughFist"><color=green>Tough
+    Fist</color></link>.'
+  EquipmentNameJA: "\u77F3\u62F3"
+  EquipmentDetailJA: "\u30B9\u30C8\u30FC\u30F3\u30B4\u30FC\u30EC\u30E0\u306F\u786C\u3044\u5CA9\u3067\u3067\u304D\u3066\u3044\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u77F3\u62F3\n\u81EA\u5206\u306B<link=\"MToughFist\"><color=green>\u5805\u3044\u62F3</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

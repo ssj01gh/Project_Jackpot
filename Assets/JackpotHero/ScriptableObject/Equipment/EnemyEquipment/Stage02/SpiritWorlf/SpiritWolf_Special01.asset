@@ -30,3 +30,10 @@ MonoBehaviour:
     \uACBD\uC9C1 \uC2DC\uD0B5\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9 : \uC6B8\uBD80
     \uC9D6\uC74C\n\uC801\uC5D0\uAC8C <link=\"MDefenseDebuff\"><color=green>\uBC29\uC5B4\uB825
     \uAC10\uC18C</color></link> 2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Howl
+  EquipmentDetailEN: "The predator\u2019s howl staggers the target.\n\nSpecial Action
+    : Howl\nApplies enemy 2 stack of <link=\"MDefenseDebuff\"><color=green>Defense
+    Debuff</color></link>."
+  EquipmentNameJA: "\u9060\u5420\u3048"
+  EquipmentDetailJA: "\u6355\u98DF\u8005\u306E\u9060\u5420\u3048\u304C\u3001\u6575\u3092\u786C\u76F4\u3055\u305B\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u9060\u5420\u3048\n\u6575\u306B<link=\"MDefenseDebuff\"><color=green>\u9632\u5FA1\u30C7\u30D0\u30D5</color></link>2\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

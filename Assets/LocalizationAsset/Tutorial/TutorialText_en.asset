@@ -1,0 +1,366 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: TutorialText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 739e03781d36f6b44affd09095b9307e, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 17707954176
+    m_Localized: 'Click the Monster Turn button
+
+      to start the monster''s actions.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120000
+    m_Localized: 'Multiplier cards
+
+      have a significant impact on
+
+      the
+      final values of actions.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120001
+    m_Localized: 'LUK affects the outcome
+
+      of multiplier cards.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120002
+    m_Localized: 'You can check
+
+      detailed information
+
+      on available multiplier
+      cards
+
+      in Equipment.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120003
+    m_Localized: 'On the plyaer''s turn,
+
+      you can perform
+
+      Attack, Defend,
+      and STA Recovery action.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120004
+    m_Localized: 'Attack is affected
+
+      by the player''s weapon and STR.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120005
+    m_Localized: 'Defense is affected
+
+      by the player''s armor and DUR.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120006
+    m_Localized: 'STA Recovery is affectd
+
+      by the player''s helmet and RES.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120007
+    m_Localized: 'When ambushed,
+
+      the monster takes the first action.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120008
+    m_Localized: 'The player gaine Vulnerable,
+
+      and the battle begins.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120009
+    m_Localized: 'Turn order is
+
+      determined by SPD.
+
+
+      Actions are taken
+
+      in
+      that order.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120010
+    m_Localized: 'You can view detailed information
+
+      about an enemy
+
+      by
+      clicking the enemy
+
+      or its portrait in the turn order.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120011
+    m_Localized: 'You can view the action
+
+      the enemy will take on its turn.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120012
+    m_Localized: 'Hover over a buff
+
+      to view its detailed effects.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120013
+    m_Localized: 'You can replace, move, or discard
+
+      equipment by dragging
+      and dropping it.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120014
+    m_Localized: 'Click an equipment to view
+
+      its detailed information.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120015
+    m_Localized: 'You can obtain equipment
+
+      using the equipment gacha button.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120016
+    m_Localized: 'By upgrading equipment gacha,
+
+      you can obtain
+
+      higer-tier
+      equipment.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120017
+    m_Localized: 'By clicking the (+) button,
+
+      you can use EXP
+
+      to upgrade
+      each stat.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120018
+    m_Localized: 'By clicking the (-) button,
+
+      you can lower each stat.
+
+
+      The
+      EXP you spent
+
+      will be refunded.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120019
+    m_Localized: 'Click the Apply button
+
+      to confirm the stat changes.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120020
+    m_Localized: 'Click Cancel
+
+      to discard stat changes
+
+      and return to
+      the Maintenance screen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120021
+    m_Localized: 'An ambush can occur
+
+      during rest.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120022
+    m_Localized: 'Use the slider to set the
+
+      number of rests.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120023
+    m_Localized: 'Click the Rest button
+
+      to attempt resting
+
+      the set
+      number of times.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120024
+    m_Localized: 'Click the Do Not Rest button
+
+      to return to the Maintenance
+      screen.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120025
+    m_Localized: 'You can recover
+
+      HP and STA while resting.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17733120026
+    m_Localized: 'You can spend EXP
+
+      to increase your stats
+
+      in Stat
+      Upgrades.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314304
+    m_Localized: 'In Equipment Management,
+
+      you can change equipped items
+
+      and
+      obtain new equipment.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314305
+    m_Localized: 'Click Exit Camping
+
+      to return to Exploration.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314306
+    m_Localized: 'You can choose an action
+
+      for the current event.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314307
+    m_Localized: 'Different choices lead to
+
+      different rewards and costs.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314308
+    m_Localized: 'The Bag shows only the tier
+
+      of the equipment you own.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314309
+    m_Localized: 'Equipped items
+
+      cannot be exchanged.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314310
+    m_Localized: 'Unequipped items can be
+
+      moved within the Bag or discarded.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314311
+    m_Localized: 'You can set up
+
+      a camp for maintenance.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314312
+    m_Localized: 'At the camp,
+
+      you can change
+
+      your equipped item.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314313
+    m_Localized: 'At the camp,
+
+      you can recover
+
+      HP and STA by resting.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314314
+    m_Localized: 'The chance of being ambushed
+
+      while resting varies depending
+
+      on
+      the quality of the camp.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314315
+    m_Localized: 'You can check the status of
+
+      your HP, STA, and equipment.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314316
+    m_Localized: 'Click equipped equipment
+
+      to view its detailed information.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314317
+    m_Localized: 'You can view the current stage
+
+      and exploration progress.
+
+
+      Exploring
+      increases progress,
+
+      and when it reaches 100,
+
+      a boss battle is
+      triggered
+
+      during exploration.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314318
+    m_Localized: 'You can choose whether
+
+      to explore or perform maintenance.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314319
+    m_Localized: 'Before continuing to a new game,
+
+      you can use upgrade points
+
+      to
+      apply upgrades.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314320
+    m_Localized: "You can upgrade each node\nby clicking the (+) and (\u2013) buttons."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17737314321
+    m_Localized: 'Click each node to view
+
+      its detailed effects.'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

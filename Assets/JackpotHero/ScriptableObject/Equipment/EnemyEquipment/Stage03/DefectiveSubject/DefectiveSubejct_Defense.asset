@@ -56,3 +56,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC720\uCCB4\uCC98\uB7FC \uD750\uB974\uB294 \uC0B4\uB369\uC774\uB294
     \uD53C\uD574\uB97C \uD761\uC218\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Amorphous Body
+  EquipmentDetailEN: The fluid-like flowing flesh absorbs damage.
+  EquipmentNameJA: "\u4E0D\u5B9A\u5F62\u306E\u8EAB\u4F53"
+  EquipmentDetailJA: "\u6D41\u4F53\u306E\u3088\u3046\u306B\u6D41\u308C\u308B\u8089\u4F53\u304C\u3001\u30C0\u30E1\u30FC\u30B8\u3092\u5438\u53CE\u3057\u307E\u3059\u3002"

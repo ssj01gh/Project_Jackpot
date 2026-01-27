@@ -28,6 +28,12 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uD0D0\uC695\uC740 \uC801\uC758 \uD0D0\uC695\uC5D0 \uBC18\uC751\uD558\uC5EC
     \uAC15\uD574\uC9D1\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9 : \uD0D0\uC695\n\uC801\uC774
-    \uC9C0\uB2C8\uACE0 \uC788\uB294 EXP\uC758 \uC77C\uC815 \uC218\uCE58\uB9CC\uD07C\n\uC790\uC2E0\uC5D0\uAC8C
-    <link=\"MGreed\"><color=green>\uD0D0\uC695</color></link> \uC2A4\uD0DD\uC744
-    \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    \uC9C0\uB2C8\uACE0 \uC788\uB294 EXP\uC758 5%~20%\uB9CC\uD07C\n\uC790\uC2E0\uC5D0\uAC8C
+    <link=\"MGreed\"><color=green>\uD0D0\uC695</color></link>\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Greed
+  EquipmentDetailEN: "Greed grows stronger in response to the enemy\u2019s greed.\n\nSpecial
+    Action : Greed\nApplies itself <link=\"MGreed\"><color=green>Greed</color></link>
+    equal to 5%\u201320% of the enemy\u2019s EXP."
+  EquipmentNameJA: "\u5F37\u6B32"
+  EquipmentDetailJA: "\u5F37\u6B32\u306F\u3001\u6575\u306E\u5F37\u6B32\u306B\u53CD\u5FDC\u3057\u3066\u5F37\u5316\u3055\u308C\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u5F37\u6B32\n\u6575\u304C\u6240\u6301\u3057\u3066\u3044\u308BEXP\u306E5%\uFF5E20%\u5206\u306E<link=\"MGreed\"><color=green>\u5F37\u6B32</color></link>\u3092\u3001\u81EA\u8EAB\u306B\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

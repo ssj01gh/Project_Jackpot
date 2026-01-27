@@ -43,3 +43,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uC801\uC744 \uAE68\uBB3C\uC5B4 \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Bite
+  EquipmentDetailEN: Bites the enemy to attack.
+  EquipmentNameJA: "\u565B\u307F\u3064\u304D"
+  EquipmentDetailJA: "\u6575\u3092\u565B\u3093\u3067\u653B\u6483\u3057\u307E\u3059\u3002"

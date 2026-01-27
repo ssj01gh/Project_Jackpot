@@ -11,4 +11,10 @@ public class PlayerEquipDetailSO : ScriptableObject
     public string EquipmentName;
     [TextArea(10, 20)]
     public string EquipmentDetail;
+    public string EquipmentNameEN;
+    [TextArea(10, 20)]
+    public string EquipmnetDetailEN;
+    public string EquipmnetNameJA;
+    [TextArea(10, 20)]
+    public string EquipmnetDetailJA;
 }

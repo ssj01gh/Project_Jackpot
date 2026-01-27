@@ -30,3 +30,14 @@ MonoBehaviour:
     \uC801\uC5D0\uAC8C \uC800\uC8FC\uB97C \uB0B4\uB9BD\uB2C8\uB2E4.\n\n\uD2B9\uC218
     \uD589\uB3D9 : \uBD88\uD589\uC758 \uC678\uCE68\n\uC801\uC5D0\uAC8C <link=\"MMisfortune\"><color=green>\uBD88\uC6B4</color></link>
     2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Cry of Misfortune
+  EquipmentDetailEN: 'Lets out a chilling scream to curse the enemy.
+
+
+    Special
+    Action : Cry of Misfortune
+
+    Applies enemy 2 stack of <link="MMisfortune"><color=green>Misfortune</color></link>.'
+  EquipmentNameJA: "\u4E0D\u5E78\u306E\u5486\u54EE"
+  EquipmentDetailJA: "\u4E0D\u6C17\u5473\u306A\u53EB\u3073\u58F0\u3092\u4E0A\u3052\u3001\u6575\u306B\u546A\u3044\u3092\u4E0E\u3048\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u4E0D\u5E78\u306E\u5486\u54EE\n\u6575\u306B<link=\"MMisfortune\"><color=green>\u4E0D\u904B</color></link>2\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

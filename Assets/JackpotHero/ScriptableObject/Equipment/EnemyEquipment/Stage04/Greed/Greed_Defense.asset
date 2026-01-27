@@ -68,5 +68,12 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uD669\uAE08\uC73C\uB85C \uD654\uB824\uD558\uAC8C \uAD6C\uBBFC
+  EquipmentDetail: "\uD669\uAE08\uC73C\uB85C \uD654\uB824\uD558\uAC8C \uAFB8\uBBFC
     \uAE43\uD138\uB85C\n\uC801\uC758 \uACF5\uACA9\uC744 \uBC29\uC5B4\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Golden Feathers
+  EquipmentDetailEN: 'Defends against enemy attacks
+
+    with feathers lavishly adorned
+    in gold.'
+  EquipmentNameJA: "\u9EC4\u91D1\u306E\u7FBD\u6BDB"
+  EquipmentDetailJA: "\u9EC4\u91D1\u3067\u83EF\u3084\u304B\u306B\u98FE\u3089\u308C\u305F\u7FBD\u6BDB\u3067\u3001\n\u6575\u306E\u653B\u6483\u3092\u9632\u304E\u307E\u3059\u3002"

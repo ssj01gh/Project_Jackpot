@@ -30,3 +30,9 @@ MonoBehaviour:
     \uC8FD\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791 :
     \uBD88\uC0AC\uC758 \uC800\uC8FC\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MUnDead\"><color=green>\uBD88\uC0AC</color></link>
     99\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Curse of Immortality
+  EquipmentDetailEN: "The Wisp, broken by experiments, cannot die.\n\nAt Battle Start
+    : Curse of Immortality\nApplies itself 99 stack of <link=\"MUnDead\"><color=green>UnDead</color></link>.\r"
+  EquipmentNameJA: "\u4E0D\u6B7B\u306E\u546A\u3044"
+  EquipmentDetailJA: "\u5B9F\u9A13\u306B\u3088\u3063\u3066\u58CA\u308C\u305F\u9B3C\u706B\u306F\u3001\u6B7B\u306C\u3053\u3068\u304C\u3067\u304D\u307E\u305B\u3093\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u4E0D\u6B7B\u306E\u546A\u3044\n\u81EA\u5206\u306B<link=\"MUnDead\"><color=green>\u4E0D\u6B7B</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

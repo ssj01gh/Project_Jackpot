@@ -50,4 +50,10 @@ public class EquipmentSO : ScriptableObject
     public float AddTirednessAmount;
     [TextArea(10, 20)]
     public string EquipmentDetail;
+    public string EquipmentNameEN;
+    [TextArea(10, 20)]
+    public string EquipmentDetailEN;
+    public string EquipmentNameJA;
+    [TextArea(10, 20)]
+    public string EquipmentDetailJA;
 }

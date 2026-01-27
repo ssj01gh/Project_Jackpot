@@ -19,7 +19,5 @@ MonoBehaviour:
   - {x: -200, y: 0}
   - {x: 560, y: -140}
   TutorialText:
-  - "\uD604\uC7AC \uC774\uBCA4\uD2B8\uC5D0 \uB300\uD55C\n\uD589\uB3D9\uC744 \uC120\uD0DD
-    \uAC00\uB2A5\uD569\uB2C8\uB2E4."
-  - "\uC120\uD0DD\uC9C0\uC5D0 \uB530\uB77C \uC5BB\uC744 \uC218 \uC788\uB294\n\uBCF4\uC0C1\uACFC
-    \uB300\uAC00\uAC00 \uB2EC\uB77C\uC9D1\uB2C8\uB2E4."
+  - TT_ET01
+  - TT_ET02

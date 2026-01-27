@@ -70,3 +70,8 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC0C9\uC774 \uC5C6\uB294 \uBB34\uCC44\uC0C9\uC758 \uAC00\uC8FD\uC740\n\uC801\uC758
     \uACF5\uACA9\uC758 \uD2B9\uC0C9\uB9C8\uC800 \uC5C6\uC560\uBC84\uB9BD\uB2C8\uB2E4."
+  EquipmentNameEN: Colorless Hide
+  EquipmentDetailEN: "Its colorless, monochrome hide strips\neven the distinctive
+    traits from the enemy\u2019s attacks."
+  EquipmentNameJA: "\u7121\u5F69\u8272\u306E\u76AE"
+  EquipmentDetailJA: "\u8272\u306E\u306A\u3044\u7121\u5F69\u8272\u306E\u9769\u306F\u3001\n\u6575\u306E\u653B\u6483\u306E\u7279\u6027\u3055\u3048\u3082\u6D88\u3057\u53BB\u308A\u307E\u3059\u3002"

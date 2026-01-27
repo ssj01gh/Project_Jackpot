@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class TitleUIManager : MonoBehaviour
 {
     public OptionUI _OptionUI;
@@ -25,7 +24,7 @@ public class TitleUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     protected void StartLogoAnimation()

@@ -18,3 +18,9 @@ MonoBehaviour:
   EquipmentName: "\uBA38\uB9AC\uB048"
   EquipmentDetail: "\uC2DC\uC791\uC758 \uBA38\uB9AC\uB048\uC785\uB2C8\uB2E4.\n\uBA38\uB9AC\uB97C
     \uBB36\uB294\uB370\uC5D0 \uC0AC\uC6A9\uB429\uB2C8\uB2E4."
+  EquipmentNameEN: Hairband
+  EquipmnetDetailEN: 'A hairband of beginnings.
+
+    Used to tie hair.'
+  EquipmnetNameJA: "\u30D8\u30A2\u30D0\u30F3\u30C9"
+  EquipmnetDetailJA: "\u59CB\u307E\u308A\u306E\u30D8\u30A2\u30D0\u30F3\u30C9\u3067\u3059\u3002\n\u9AEA\u3092\u307E\u3068\u3081\u308B\u305F\u3081\u306E\u3082\u306E\u3067\u3059\u3002"

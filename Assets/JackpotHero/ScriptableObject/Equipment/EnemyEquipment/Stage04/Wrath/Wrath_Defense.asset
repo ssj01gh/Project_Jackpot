@@ -15,7 +15,7 @@ MonoBehaviour:
   EquipmentType: 0
   EquipmentTier: 0
   EquipmentCode: 84071
-  EquipmentName: "\uC6A9\uC758 \uAC00\uC8FD"
+  EquipmentName: "\uC6A9\uC758 \uBE44\uB298"
   SpendTiredness: 0
   EquipmentSlots:
   - IsPositive: 0000010101
@@ -61,6 +61,10 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uBD84\uB178\uAC00 \uC785\uC740 \uC0C1\uCC98\uB85C \uC778\uD574\n\uC6A9\uC774\uB77C\uB294
-    \uC774\uB984\uC5D0 \uAC78\uB9DE\uC9C0 \uC54A\uAC8C \uC57D\uD574\uC84C\uC9C0\uB9CC\n\uC5EC\uC804\uD788
-    \uD2BC\uD2BC\uD569\uB2C8\uB2E4."
+  EquipmentDetail: "\uC774\uC131\uC5C6\uB294 \uC0DD\uCCB4\uBCD1\uAE30 \uBD84\uB178\uB294\n\uBC29\uC5B4\uB97C
+    \uD560 \uC0DD\uAC01\uC774 \uC5C6\uC5B4 \uBCF4\uC785\uB2C8\uB2E4."
+  EquipmentNameEN: Dragon Scales
+  EquipmentDetailEN: "Wrath, a mindless bioweapon, \nshows no intention of defending
+    itself."
+  EquipmentNameJA: "\u9F8D\u306E\u9C57"
+  EquipmentDetailJA: "\u7406\u6027\u3092\u5931\u3063\u305F\u751F\u4F53\u5175\u5668\u30FB\u61A4\u6012\u306F\u3001\n\u9632\u5FA1\u3059\u308B\u6C17\u304C\u306A\u3044\u3088\u3046\u3067\u3059\u3002"

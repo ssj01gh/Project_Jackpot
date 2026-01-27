@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: -868636051, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uC704\uCD95"
-  BuffDetail: "\uC2A4\uD0DD\uC774 3\uC774 \uB420\uC2DC\n<color=green>\uACF5\uD3EC</color>
-    1\uC2A4\uD0DD\uC73C\uB85C \uBCC0\uD569\uB2C8\uB2E4.\n\uC790\uC2E0\uC758 \uD134
-    \uC2DC\uC791\uC2DC\n\uC2A4\uD0DD X 20\uB9CC\uD07C\n\uC2A4\uD14C\uBBF8\uB098\uB97C
-    \uC18C\uBAA8\uD569\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC \uC2A4\uD0DD -1"
+  BuffDetail: "\uC2A4\uD0DD\uC774 3\uC774 \uB420\uC2DC\n\uACF5\uD3EC 1\uC2A4\uD0DD\uC73C\uB85C
+    \uBCC0\uD569\uB2C8\uB2E4.\n\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uC2A4\uD0DD
+    X 20\uB9CC\uD07C\nSTA\uB97C \uC18C\uBAA8\uD569\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC2A4\uD0DD
+    -1"
+  BuffNameEN: Cower
+  BuffDetailEN: "When stacks reach 3, \nthey convert into \n1 stack of Fear.\nAt
+    the start of its turn, \nconsumes STA \nequal to stacks \xD7 20.\n\nOn Attack\nstaks
+    -1\r"
+  BuffNameJA: "\u840E\u7E2E"
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u304C3\u306B\u306A\u308B\u3068\u3001\n\u6050\u60161\u30B9\u30BF\u30C3\u30AF\u306B\u5909\u308F\u308A\u307E\u3059\u3002\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\n\u30B9\u30BF\u30C3\u30AF\xD720\u3076\u3093\u306E\nSTA\u3092\u6D88\u8CBB\u3057\u307E\u3059\u3002\n\n\u653B\u6483\u6642\n\u30B9\u30BF\u30C3\u30AF\u22121"

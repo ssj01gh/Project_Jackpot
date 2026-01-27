@@ -57,3 +57,14 @@ MonoBehaviour:
   EquipmentDetail: "\uD1B1\uC73C\uB85C \uC368\uB294 \uACF5\uACA9\uC744 \uC2E4\uD589\uD569\uB2C8\uB2E4.\n\n\uACF5\uACA9
     : \uC370\uAE30\n\uC801\uC5D0\uAC8C <link=\"MAttackDebbuff\"><color=green>\uACF5\uACA9\uB825
     \uAC10\uC18C</color></link> 2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Cleave
+  EquipmentDetailEN: 'Executes a sawing attack with a saw.
+
+
+    On Attack : Cleave
+
+    Applies
+    enemy 2 stack of <link="MAttackDebbuff"><color=green>Attack Debuff</color></link>.'
+  EquipmentNameJA: "\u65AC\u308A\u88C2\u304D"
+  EquipmentDetailJA: "\u30CE\u30B3\u30AE\u30EA\u3067\u5207\u308A\u88C2\u3044\u3066\u653B\u6483\u3057\u307E\u3059\u3002\n\n\u653B\u6483\u6642
+    : \u65AC\u308A\u88C2\u304D\n\u6575\u306B<link=\"MAttackDebbuff\"><color=green>\u653B\u6483\u30C7\u30D0\u30D5</color></link>2\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

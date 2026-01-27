@@ -1,10 +1,12 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using DG.Tweening;
+using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
+//using static System.Net.Mime.MediaTypeNames;
 
 [System.Serializable]
 public class EarlyStrengthenSO
@@ -105,8 +107,9 @@ public class EarlyStrengthenUI : MonoBehaviour
         SetEarlyStrengthenUI();
         //UI조정
         //gameObject.SetActive(true);
-        DetailTitleText.text = ESDictionary["ATK00"].EarlyDetailTitle;
-        DetailText.text = ESDictionary["ATK00"].DetailText;
+        StartCoroutine(Load("ATK00"));
+        //DetailTitleText.text = ESDictionary["ATK00"].EarlyDetailTitle;
+        //DetailText.text = ESDictionary["ATK00"].DetailText;
         gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1080);
         gameObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f).OnComplete(() => { StrengthenActiveAnimationEnd(); });
         //gameObject.GetComponent<Animator>().SetInteger("EarlyStrengthenState", 1);
@@ -490,6 +493,7 @@ public class EarlyStrengthenUI : MonoBehaviour
 
     public void LevelButtonClick(string ButtonCode)
     {
+        //ButtonCode == ATK00 ~ ATK07 ~~~
         if (!ESDictionary.ContainsKey(ButtonCode))
             return;
 
@@ -497,8 +501,24 @@ public class EarlyStrengthenUI : MonoBehaviour
         GameObject ClickButton = EventSystem.current.currentSelectedGameObject;
         ButtonOutlineObject.transform.position = ClickButton.transform.position;
 
-        DetailTitleText.text = ESDictionary[ButtonCode].EarlyDetailTitle;
-        DetailText.text = ESDictionary[ButtonCode].DetailText;
+        //DetailTitleText.text = ESDictionary[ButtonCode].EarlyDetailTitle;
+        //DetailText.text = ESDictionary[ButtonCode].DetailText;
+
+        StartCoroutine(Load(ButtonCode));
+    }
+
+    private IEnumerator Load(string key)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        string DetailTitleKey = "ESDT_" + key;
+        var DetailTitleTable = LocalizationSettings.StringDatabase.GetTable("ES_DetailTitle");
+        DetailTitleText.text = DetailTitleTable.GetEntry(DetailTitleKey).GetLocalizedString();
+
+        //이거 키 넘어가나 확인해 봐야것는디
+        string DetialTextKey = "EST_" + key;
+        var DetailTextTable = LocalizationSettings.StringDatabase.GetTable("ES_DetailText");
+        DetailText.text = DetailTextTable.GetEntry(DetialTextKey).GetLocalizedString();
     }
 
     public void LoadPlayScene()//여기서 바뀐 EarlyData를 JsonManager에 넘겨야함

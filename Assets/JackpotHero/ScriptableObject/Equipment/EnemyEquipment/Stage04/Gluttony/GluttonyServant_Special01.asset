@@ -30,3 +30,10 @@ MonoBehaviour:
     \uC0DD\uBB3C\uC785\uB2C8\uB2E4.\n\n\uC18C\uD658 : \uBD88\uC548\uC815\uD55C \uC0DD\uBB3C\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"MSelfDestruct\"><color=green>\uC790\uD3ED</color></link> 7\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Unstable Creature
+  EquipmentDetailEN: "Gluttony\u2019s summoned creature is unstable.\n\nSummoned
+    : Unstable Creature\nApplies itself 7 stack of <link=\"MSelfDestruct\"><color=green>Self
+    Destruct</color></link>."
+  EquipmentNameJA: "\u4E0D\u5B89\u5B9A\u306A\u751F\u7269"
+  EquipmentDetailJA: "\u66B4\u98DF\u306E\u53EC\u559A\u7363\u306F\u3001\u4E0D\u5B89\u5B9A\u306A\u5B58\u5728\u3067\u3059\u3002\n\n\u53EC\u559A\u6642
+    : \u4E0D\u5B89\u5B9A\u306A\u751F\u7269\n\u81EA\u5206\u306B<link=\"MSelfDestruct\"><color=green>\u81EA\u7206</color></link>7\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

@@ -17,3 +17,7 @@ MonoBehaviour:
   EquipType: 1
   EquipmentName: "\uCCA0 \uAC11\uC637"
   EquipmentDetail: "\uACF5\uACA9\uC744 \uB9C9\uC544\uC8FC\uB294 \uAC11\uC637\uC785\uB2C8\uB2E4."
+  EquipmentNameEN: Iron Armor
+  EquipmnetDetailEN: Armor that blocks attacks.
+  EquipmnetNameJA: "\u9244\u306E\u93A7"
+  EquipmnetDetailJA: "\u653B\u6483\u3092\u9632\u3050\u93A7\u3067\u3059\u3002"

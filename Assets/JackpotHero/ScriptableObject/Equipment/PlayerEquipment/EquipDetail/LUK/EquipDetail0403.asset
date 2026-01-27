@@ -16,7 +16,12 @@ MonoBehaviour:
   EquipStateType: 4
   EquipType: 3
   EquipmentName: "\uC2B9\uBD80\uC0AC \uAD6C\uB450"
-  EquipmentDetail: "\uAC80\uC740 \uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E4\uC5B4\uC9C4
+  EquipmentDetail: "\uD770\uC0C9 \uAC00\uC8FD\uC73C\uB85C \uB9CC\uB4E4\uC5B4\uC9C4
     \uAD6C\uB450\uC785\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791\uC2DC\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"LUKBO\"><color=green>\uD589\uC6B4</color></link> {LUKB}\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: "Gambler\u2019s Shoes"
+  EquipmnetDetailEN: "Shoes made of white leather.\n\nAt Battle Start\nApplies itself
+    {LUKB} stack of <link=\"LUKBO\"><color=green>Luck</color></link>.\r"
+  EquipmnetNameJA: "\u52DD\u8CA0\u5E2B\u306E\u9774"
+  EquipmnetDetailJA: "\u767D\u3044\u9769\u3067\u4F5C\u3089\u308C\u305F\u9774\u3067\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\n\u81EA\u5206\u306B<link=\"LUKBO\"><color=green>\u904B</color></link>{LUKB}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

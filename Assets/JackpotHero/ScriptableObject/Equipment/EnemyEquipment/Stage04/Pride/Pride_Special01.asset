@@ -30,5 +30,20 @@ MonoBehaviour:
     \uC54A\uC2B5\uB2C8\uB2E4.\n\uAD50\uB9CC\uC740 \uC790\uC2E0\uC758 \uD589\uB3D9\uC744
     \uB178\uCD9C \uC2DC\uD0A4\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791,
     \uD53C\uD574\uB97C \uBC1B\uC744 \uC2DC : \uAD50\uB9CC\n\uC790\uC2E0\uC5D0\uAC8C
-    \uD604\uC7AC \uCCB4\uB825\uC5D0 \uB530\uB77C <link=\"MPride\"><color=green>\uAD50\uB9CC</color></link>
-    \uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    \uD604\uC7AC \uCCB4\uB825\uC5D0 \uB530\uB77C <link=\"MPride\"><color=green>\uAD50\uB9CC</color></link>\uC744
+    \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Pride
+  EquipmentDetailEN: 'Pride is not bound by the order of battle.
+
+    Pride does
+    not reveal its actions.
+
+
+    At Battle Start, Taking damage : Pride
+
+    Applies
+    itself <link="MPride"><color=green>Pride</color></link> based on its current
+    HP.'
+  EquipmentNameJA: "\u50B2\u6162"
+  EquipmentDetailJA: "\u50B2\u6162\u306F\u3001\u6226\u95D8\u306E\u9806\u5E8F\u306B\u7E1B\u3089\u308C\u307E\u305B\u3093\u3002\n\u50B2\u6162\u306F\u3001\u81EA\u8EAB\u306E\u884C\u52D5\u3092\u660E\u304B\u3057\u307E\u305B\u3093\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642\u3001\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u305F\u6642
+    : \u50B2\u6162\n\u73FE\u5728\u306EHP\u306B\u5FDC\u3058\u3066\u3001\u81EA\u8EAB\u306B<link=\"MPride\"><color=green>\u50B2\u6162</color></link>\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

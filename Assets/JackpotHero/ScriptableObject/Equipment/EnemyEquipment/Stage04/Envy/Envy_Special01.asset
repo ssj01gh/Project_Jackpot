@@ -28,5 +28,11 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC9C8\uD22C\uB294 \uB2F9\uC2E0\uC744 \uC9C8\uD22C\uD569\uB2C8\uB2E4.\n\n\uD2B9\uC218
     \uD589\uB3D9 : \uC9C8\uD22C\n\uC801\uC774 \uC9C0\uB2C8\uACE0 \uC788\uB294 \uBAA8\uB4E0
-    \uC7A5\uBE44 \uD2F0\uC5B4 \uD569\uC758 \uC77C\uC815 \uC218\uCE58\uB9CC\uD07C\n\uC801\uC5D0\uAC8C
-    <link=\"MEnvy\"><color=green>\uC9C8\uD22C</color></link> \uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+    \uC7A5\uBE44 \uD2F0\uC5B4 \uD569\uC758 5%~20%\uB9CC\uD07C\n\uC801\uC5D0\uAC8C
+    <link=\"MEnvy\"><color=green>\uC9C8\uD22C</color></link>\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Envy
+  EquipmentDetailEN: "Envy envies you.\n\nSpecial Action : Envy\nApplies enemy <link=\"MEnvy\"><color=green>Envy</color></link>
+    By 5%\u201320% of the total tier \nof all equipment the enemy has"
+  EquipmentNameJA: "\u5AC9\u59AC"
+  EquipmentDetailJA: "\u5AC9\u59AC\u306F\u3001\u3042\u306A\u305F\u3092\u5AC9\u59AC\u3059\u308B\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u5AC9\u59AC\n\u6575\u304C\u6240\u6301\u3057\u3066\u3044\u308B\u3059\u3079\u3066\u306E\u88C5\u5099\u30C6\u30A3\u30A2\u5408\u8A08\u306E5%\uFF5E20%\u5206\u3001\n\u6575\u306B<link=\"MEnvy\"><color=green>\u5AC9\u59AC</color></link>\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

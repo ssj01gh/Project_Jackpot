@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class EquipmentDetailInfoUI : MonoBehaviour
@@ -258,8 +260,11 @@ public class EquipmentDetailInfoUI : MonoBehaviour
         //Debug.Log($"마우스 벗어남: {id}");
     }
 
-    public void ActiveEquipmentDetailInfoUI(EquipmentInfo EquipInfo, bool IsPlayerEquipment)
+    public void ActiveEquipmentDetailInfoUI(EquipmentInfo EquipInfo, int EquipmentCode, bool IsPlayerEquipment)
     {
+        //여기는 마지막에 불러와지는 함수여서..... 그냥 async로 바꾸고 받아 와도 될것 같기두.....
+        //이 함수를 async로 만들고 EquipInfo가 아니라 코드를 받아오고
+        //여기서 EquipmentInfo에 대한 정보를 받는다?
         gameObject.SetActive(true);
 
         foreach(GameObject obj in CardContainers)
@@ -267,16 +272,19 @@ public class EquipmentDetailInfoUI : MonoBehaviour
             obj.SetActive(false);
         }
 
-        int EquipCode = (EquipInfo.EquipmentType * 10000) + (EquipInfo.EquipmentTier * 1000) + EquipInfo.EquipmentCode;
-        if (EquipCode == 0)
+        //int EquipCode = (EquipInfo.EquipmentType * 10000) + (EquipInfo.EquipmentTier * 1000) + EquipInfo.EquipmentCode;
+        if (EquipmentCode == 0)
             return;
 
         gameObject.GetComponent<RectTransform>().localScale = Vector2.zero;
         gameObject.GetComponent<RectTransform>().DOScale(Vector2.one, 0.5f).SetEase(Ease.OutBack);
         ClickEquipImage.sprite = EquipInfo.EquipmentImage;
         ClickEquipName.text = EquipInfo.EquipmentName;
+        ClickEquipSpendSTA.text = "";
 
-        if(IsPlayerEquipment == true)
+        StartCoroutine(LoadEquipSpendSTA(EquipInfo.EquipmentType, (int)EquipInfo.SpendTiredness, EquipInfo.EquipmentCode));
+        /*
+        if (IsPlayerEquipment == true)
         {
             if (EquipInfo.EquipmentType == (int)EEquipType.TypeWeapon)
                 ClickEquipSpendSTA.text = "공격시 피로도 : " + EquipInfo.SpendTiredness.ToString();
@@ -301,7 +309,7 @@ public class EquipmentDetailInfoUI : MonoBehaviour
         {
             EquipCode = EquipInfo.EquipmentCode;
 
-            if(EquipCode >= 70000 && EquipCode < 80000)
+            if (EquipCode >= 70000 && EquipCode < 80000)
             {
                 ClickEquipSpendSTA.text = "해당 몬스터의 공격입니다.";
             }
@@ -313,11 +321,8 @@ public class EquipmentDetailInfoUI : MonoBehaviour
             {
                 ClickEquipSpendSTA.text = "해당 몬스터의 특수한 행동입니다.";
             }
-            else
-            {
-
-            }
         }
+        */
         //장비의 설명창
         ClickEquipDetailText.text = EquipInfo.EquipmentDetail.ToString();
         //이 밑에꺼는 나중에 버튼 클릭하면 열리게 설정만 해놓고
@@ -330,6 +335,47 @@ public class EquipmentDetailInfoUI : MonoBehaviour
             //활성화
             CardContainers[i].SetActive(true);
             CardContainers[i].GetComponent<EquipmentDetailCardContainerUI>().SetActiveCards(EquipInfo.EquipmentSlots[i].SlotState);
+        }
+    }
+
+    private IEnumerator LoadEquipSpendSTA(int EquipType, int SpendSTAAmount, int EquipCode)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        string EquipSTATableKey = "";
+
+        if (EquipCode >= 70000 && EquipCode < 80000)
+            EquipSTATableKey = "PS_SC_MonWeaponSTA";
+        else if (EquipCode >= 80000 && EquipCode < 90000)
+            EquipSTATableKey = "PS_SC_MonArmorSTA";
+        else if (EquipCode >= 90000 && EquipCode < 100000)
+            EquipSTATableKey = "PS_SC_MonAccSTA";
+        else
+        {
+            if (EquipType == (int)EEquipType.TypeWeapon)
+                EquipSTATableKey = "PS_SC_WeaponSTA";
+            else if (EquipType == (int)EEquipType.TypeArmor)
+                EquipSTATableKey = "PS_SC_ArmorSTA";
+            else if (EquipType == (int)EEquipType.TypeHelmet)
+                EquipSTATableKey = "PS_SC_HelmetSTA";
+            else if (EquipType == (int)EEquipType.TypeBoots)
+                EquipSTATableKey = "PS_SC_BootsSTA";
+            else if (EquipType == (int)EEquipType.TypeAcc)
+                EquipSTATableKey = "PS_SC_AccSTA";
+        }
+
+        if (EquipSTATableKey == "")
+            EquipSTATableKey = "PS_SC_EquipSTAError";
+
+        var TutorialTable = LocalizationSettings.StringDatabase.GetTable("PlaySceneShortText");
+        ClickEquipSpendSTA.text = TutorialTable.GetEntry(EquipSTATableKey).GetLocalizedString();
+
+        if(EquipCode == 0)
+        {//여기에서 사용하는 STA 기록
+            if (EquipType == (int)EEquipType.TypeWeapon)
+                ClickEquipSpendSTA.text += SpendSTAAmount.ToString();
+            else if (EquipType == (int)EEquipType.TypeArmor)
+                ClickEquipSpendSTA.text += SpendSTAAmount.ToString();
         }
     }
 

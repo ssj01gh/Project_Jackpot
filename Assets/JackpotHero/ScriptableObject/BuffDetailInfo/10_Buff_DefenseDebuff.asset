@@ -16,3 +16,8 @@ MonoBehaviour:
   BuffName: "\uBC29\uC5B4\uB825 \uAC10\uC18C"
   BuffDetail: "\uBC29\uC5B4\uC2DC 0.5\uB97C \uACF1\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Defense Debuff
+  BuffDetailEN: "When defending, \nthe amount of barrier\ngained is multiplied by
+    0.5.\n\nEnd of its turn\nstaks -1"
+  BuffNameJA: "\u9632\u5FA1\u30C7\u30D0\u30D5"
+  BuffDetailJA: "\u9632\u5FA1\u6642\u3001\u7372\u5F97\u3059\u308B\n\u30D0\u30EA\u30A2\u91CF\u306F0.5\u500D\u306B\u306A\u308A\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\n\u30B9\u30BF\u30C3\u30AF\u22121"

@@ -20,3 +20,13 @@ MonoBehaviour:
     \uD2B9\uD654\uB41C \uB300\uAC80\uC785\uB2C8\uB2E4.\n\n\uACF5\uACA9\uC2DC\n\uC801\uC5D0\uAC8C
     <link=\"STRWE\"><color=green>\uBC29\uC5B4\uB825 \uAC10\uC18C</color></link> 3\uC2A4\uD0DD\uC744
     \uBD80\uC5EC \uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Greatsword
+  EquipmnetDetailEN: 'A greatsword specialized more in smashing than slashing.
+
+
+    On
+    Attack
+
+    Applies enemy 3 stack of <link="STRWE"><color=green>DefenseDebuff</color></link>.'
+  EquipmnetNameJA: "\u5927\u5263"
+  EquipmnetDetailJA: "\u65AC\u308B\u3088\u308A\u3082\u53E9\u304D\u7815\u304F\u3053\u3068\u306B\u7279\u5316\u3057\u305F\u5927\u5263\u3067\u3059\u3002\n\n\u653B\u6483\u6642\n\u6575\u306B<link=\"STRWE\"><color=green>\u9632\u5FA1\u30C7\u30D0\u30D5</color></link>3\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

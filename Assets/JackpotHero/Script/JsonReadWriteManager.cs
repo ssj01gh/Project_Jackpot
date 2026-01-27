@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public enum EPlayerCurrentState
 {
@@ -22,6 +23,13 @@ public enum EPlayerRestQuality
     Good,
     VeryGood,
     Perfect
+}
+
+public enum ELanguageNum
+{
+    Korean,
+    English,
+    Japanese
 }
 
 public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManager>
@@ -53,6 +61,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         InitOptionInfo();
         InitLinkageEventInfo();
         InitTutorialInfo();
+        StartCoroutine(ChangeLanguageByOption());
     }
     void Start()
     {
@@ -62,6 +71,19 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     void Update()
     {
 
+    }
+    protected IEnumerator ChangeLanguageByOption()
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        foreach (var Locale in LocalizationSettings.AvailableLocales.Locales)
+        {
+            if (Locale.Identifier.Code == O_Info.ReturnLanguageCode())
+            {
+                LocalizationSettings.SelectedLocale = Locale;
+                break;
+            }
+        }
     }
     //이 함수는 게임을 새로 시작할때마다 계속 불러와질 예정
     public void InitPlayerInfo(bool IsRestartGame = false)
@@ -243,6 +265,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         O_Info.UISFXVolume = 0.8f;
         O_Info.ScreenResolutionWidth = 1920f;
         O_Info.IsFullScreen = false;
+        O_Info.CurrentLanguage = 1;
 
         string classToJson = JsonUtility.ToJson(O_Info, true);
         File.WriteAllText(Path, classToJson);

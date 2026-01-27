@@ -15,5 +15,21 @@ MonoBehaviour:
   BuffImage: {fileID: 1757085133, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uBD88\uC0AC"
   BuffDetail: "\uCCB4\uB825\uC774 1 \uC544\uB798\uB85C \uB5A8\uC5B4\uC9C8\uB54C\n\uCCB4\uB825\uC774
-    1\uC774 \uB429\uB2C8\uB2E4.\n\n\uD6A8\uACFC \uBC1C\uB3D9\uC2DC \uBC84\uD504 \uC885\uB8CC\n\uC790\uC2E0\uC758
-    \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+    1\uC774 \uB429\uB2C8\uB2E4.\n\n\uD6A8\uACFC \uBC1C\uB3D9\uC2DC\n\uBC84\uD504
+    \uC885\uB8CC\n\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: UnDead
+  BuffDetailEN: 'When HP would drop below 1,
+
+    it becomes 1 instead.
+
+
+    On
+    buff activation
+
+    Buff ends
+
+    End of its turn
+
+    staks -1'
+  BuffNameJA: "\u4E0D\u6B7B"
+  BuffDetailJA: "HP\u304C1\u672A\u6E80\u306B\u306A\u308B\u6642\u3001\nHP\u306F1\u306B\u306A\u308A\u307E\u3059\u3002\n\n\u30D0\u30D5\u306E\u52B9\u679C\u304C\u767A\u52D5\u3057\u305F\u6642\n\u30D0\u30D5\u7D42\u4E86\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121\r"

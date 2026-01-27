@@ -30,3 +30,8 @@ MonoBehaviour:
     \uC6C0\uC9C1\uC774\uAE30 \uD798\uB4E4\uAC8C \uB9CC\uB4ED\uB2C8\uB2E4.\n\n\uD2B9\uC218
     \uD589\uB3D9 : \uBD80\uB3D9\uC758 \uC228\uACB0\n\uC801\uC5D0\uAC8C <link=\"MPetrification\"><color=green>\uC11D\uD654</color></link>
     5\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Immovable Breath
+  EquipmentDetailEN: "A breath imbued with Sloth\u2019s aura\nmakes it difficult
+    for the enemy to move.\n\nSpecial Action\nApplies enemy 5 stack of <link=\"MPetrification\"><color=green>Petrification</color></link>."
+  EquipmentNameJA: "\u4E0D\u52D5\u306E\u606F\u5439"
+  EquipmentDetailJA: "\u6020\u60F0\u306E\u6C17\u914D\u3092\u5E2F\u3073\u305F\u5410\u606F\u304C\u3001\n\u6575\u306E\u52D5\u304D\u3092\u920D\u3089\u305B\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5\n\u6575\u306B<link=\"MPetrification\"><color=green>\u77F3\u5316</color></link>5\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

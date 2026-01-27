@@ -68,5 +68,11 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uD314\uCC98\uB7FC \uC790\uC720\uC790\uC81C\uB85C \uD718\uC5B4\uC9C0\uB294
-    \uBAB8\uCCB4\uB294\n\uD53C\uD574\uB97C \uD6A8\uACFC\uC801\uC73C\uB85C \uD761\uC218\uD569\uB2C8\uB2E4."
+  EquipmentDetail: "\uC790\uC720\uC790\uC81C\uB85C \uD718\uC5B4\uC9C0\uB294 \uBAB8\uCCB4\uB294\n\uD53C\uD574\uB97C
+    \uD6A8\uACFC\uC801\uC73C\uB85C \uD761\uC218\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Amorphous Body
+  EquipmentDetailEN: 'Its freely flexible body
+
+    effectively absorbs damage.'
+  EquipmentNameJA: "\u4E0D\u5B9A\u5F62\u306E\u8EAB\u4F53"
+  EquipmentDetailJA: "\u81EA\u5728\u306B\u3057\u306A\u308B\u4F53\u306F\u3001\n\u30C0\u30E1\u30FC\u30B8\u3092\u52B9\u679C\u7684\u306B\u5438\u53CE\u3057\u307E\u3059\u3002"

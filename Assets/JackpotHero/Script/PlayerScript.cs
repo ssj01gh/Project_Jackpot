@@ -397,7 +397,9 @@ public class PlayerScript : MonoBehaviour
                 PlayerBuff.BuffList[i] = 0;
             }
         }
-        //PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 99;
         SetInitBuffByEarlyUpgrade();
         /*
         스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨
@@ -487,7 +489,7 @@ public class PlayerScript : MonoBehaviour
         int AccTier = (PlayerState.EquipAccessoriesCode / 1000) % 10;
         int IsEventAcc = PlayerState.EquipAccessoriesCode / 10000;
         int AccStateType = (PlayerState.EquipAccessoriesCode / 100) % 10;
-        int AccType = (IsEventBoots * 10) + AccStateType;
+        int AccType = (IsEventAcc * 10) + AccStateType;
 
         if(BootsType == STREquip)
             PlayerBuff.BuffList[(int)EBuffType.OverCharge] += (BootsTier * 2);
@@ -876,25 +878,10 @@ public class PlayerScript : MonoBehaviour
             JsonReadWriteManager.Instance.E_Info.PlayerReachFloor = PlayerState.CurrentFloor;
 
         EarlyPoint += JsonReadWriteManager.Instance.E_Info.PlayerReachFloor;
-
-        if (JsonReadWriteManager.Instance.P_Info.KillNormalMonster / 4 > 5)
-            EarlyPoint += 5;
-        else
-            EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillNormalMonster / 4);
-
-        if (JsonReadWriteManager.Instance.P_Info.KillEliteMonster * 7 / 20 > 5)
-            EarlyPoint += 5;
-        else
-            EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillEliteMonster * 7 / 20);
-
+        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillNormalMonster / 4);
+        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillEliteMonster * 7 / 20);
         EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.Experience / 2000);
         EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.GoodKarma / 10);
-        /*
-        EarlyPoint += (int)(PlayerState.GiveDamage / 1000);
-        EarlyPoint += (int)(PlayerState.ReceiveDamage / 500);
-        EarlyPoint += (int)(PlayerState.MostPowerfulDamage / 100);
-        EarlyPoint += (int)(PlayerState.Experience / 2000);
-        */
 
         JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;//나머지 레벨들은 초기화 해야할듯? 나중에? 여기서하면 계승이 불가능
     }

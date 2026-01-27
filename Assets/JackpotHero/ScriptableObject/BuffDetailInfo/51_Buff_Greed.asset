@@ -16,3 +16,16 @@ MonoBehaviour:
   BuffName: "\uD0D0\uC695"
   BuffDetail: "\uC2A4\uD0DD\uB9CC\uD07C HP\uAC00\n\uC99D\uAC00\uD569\uB2C8\uB2E4.\n\uC2A4\uD0DD\uC758
     5%\uB9CC\uD07C\n\uBAA8\uB4E0 \uC2A4\uD0EF\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  BuffNameEN: Greed
+  BuffDetailEN: 'Increases HP
+
+    by an amount
+
+    equal to its stacks.
+
+    All
+    stats increase
+
+    by 5% of its stacks.'
+  BuffNameJA: "\u5F37\u6B32"
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093\u3001\nHP\u304C\u5897\u52A0\u3057\u307E\u3059\u3002\n\u30B9\u30BF\u30C3\u30AF\u306E5%\u3076\u3093\u3001\n\u3059\u3079\u3066\u306E\u30B9\u30C6\u30FC\u30BF\u30B9\u304C\n\u5897\u52A0\u3057\u307E\u3059\u3002"

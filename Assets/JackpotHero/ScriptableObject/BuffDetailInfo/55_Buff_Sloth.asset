@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: -1385435783, guid: 54dedd188e4116c4eb96f85faaa54839, type: 3}
   BuffName: "\uB098\uD0DC"
-  BuffDetail: "\uC2A4\uD0DD\uB2F9 \uD798\uACFC \uC18D\uB3C4\uAC00\n15%\uC529 \uAC10\uC18C\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
+  BuffDetail: "\uC2A4\uD0DD X 15%\uB9CC\uD07C\r\nSTR\uACFC SPD\uAC00 \uAC10\uC18C\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Sloth
+  BuffDetailEN: "STR and SPD are reduced\nby stacks \xD7 15%.\n\nEnd of its turn\r\nstaks
+    -1"
+  BuffNameJA: "\u6020\u60F0"
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\xD715%\u3076\u3093\u3001\nSTR\u3068SPD\u304C\u6E1B\u5C11\u3057\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

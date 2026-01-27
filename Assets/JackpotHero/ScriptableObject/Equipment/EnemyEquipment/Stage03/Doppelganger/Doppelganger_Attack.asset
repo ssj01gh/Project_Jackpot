@@ -70,3 +70,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uC798 \uD718\uC5B4\uC9C0\uB294 \uD314\uC744 \uCC44\uCC0D\uCC98\uB7FC
     \uD718\uB458\uB7EC\uC11C \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Amorphous Fist
+  EquipmentDetailEN: Attacks by swinging its flexible arms like whips.
+  EquipmentNameJA: "\u4E0D\u5B9A\u5F62\u306E\u62F3"
+  EquipmentDetailJA: "\u3057\u306A\u3084\u304B\u306A\u8155\u3092\u30E0\u30C1\u306E\u3088\u3046\u306B\u632F\u308B\u3063\u3066\u653B\u6483\u3057\u307E\u3059\u3002"

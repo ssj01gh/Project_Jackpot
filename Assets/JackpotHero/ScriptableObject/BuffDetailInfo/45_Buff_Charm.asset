@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 802492812, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uB9E4\uD639"
-  BuffDetail: "\uC2A4\uD0EF X 10%\uC758 \uD655\uB960\uB85C\n\uD589\uB3D9\uC2DC \uC2A4\uC2A4\uB85C\uC5D0\uAC8C\n\uD53C\uD574\uB97C
+  BuffDetail: "\uC2A4\uD0DD X 10%\uC758 \uD655\uB960\uB85C\n\uD589\uB3D9\uC2DC \uC2A4\uC2A4\uB85C\uC5D0\uAC8C\n\uD53C\uD574\uB97C
     \uC785\uD799\uB2C8\uB2E4.\n\n\uC2A4\uC2A4\uB85C\uB97C \uACF5\uACA9\uC2DC\n\uC785\uD78C
     \uD53C\uD574\uC758 10% \uB9CC\uD07C\n\uC2A4\uD0DD\uC744 \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Charm
+  BuffDetailEN: "When taking an action, \nhas a chance equal\nto stacks \xD7 10%
+    \nto deal damage to itself.\n\nWhen it damages itself,\nreduces stacks\nby an
+    amount equal to\n10% of the damage dealt.\n\nEnd of its turn\r\nstaks -1"
+  BuffNameJA: "\u9B45\u60D1"
+  BuffDetailJA: "\u884C\u52D5\u6642\u3001\u30B9\u30BF\u30C3\u30AF\xD710%\u306E\n\u78BA\u7387\u3067\u81EA\u5206\u306B\n\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u307E\u3059\u3002\n\n\u81EA\u5206\u3092\u653B\u6483\u3057\u305F\u6642\u3001\n\u4E0E\u3048\u305F\u30C0\u30E1\u30FC\u30B8\u306E10%\u3076\u3093\n\u30B9\u30BF\u30C3\u30AF\u3092\u6E1B\u5C11\u3057\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

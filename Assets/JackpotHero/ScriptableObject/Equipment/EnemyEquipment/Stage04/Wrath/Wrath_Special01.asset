@@ -27,10 +27,20 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "{Alive}\uBD84\uB178\uB294 \uC4F0\uB7EC\uD2B8\uB9AC\uC9C0 \uC54A\uC740
-    \uB098\uBA38\uC9C0 \uBCF4\uC2A4\uC5D0\uAC8C\uC11C\n\uD798\uC744 \uC804\uB2EC
-    \uBC1B\uACE0 \uC788\uC2B5\uB2C8\uB2E4,\n\n\uC804\uD22C \uC2DC\uC791 : \uBD84\uB178\n\uC790\uC2E0\uC5D0\uAC8C
+    \uB098\uBA38\uC9C0 \uC655\uC5D0\uAC8C\uC11C\n\uD798\uC744 \uC804\uB2EC \uBC1B\uACE0
+    \uC788\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C \uC2DC\uC791 : \uBD84\uB178\n\uC790\uC2E0\uC5D0\uAC8C
     <link=\"MWrath\"><color=green>\uBD84\uB178</color></link> {WrathCount}\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4.{/Alive}\n{Dead}\uBD84\uB178\uC5D0\uAC8C \uD798\uC744
-    \uC804\uB2EC\uD560 \uBCF4\uC2A4\uAC00 \uBAA8\uB450 \uC4F0\uB7EC\uC84C\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C
+    \uC804\uB2EC\uD560 \uC655 \uBAA8\uB450 \uC4F0\uB7EC\uC84C\uC2B5\uB2C8\uB2E4.\n\n\uC804\uD22C
     \uC2DC\uC791 : \uBD84\uB178\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MWrath\"><color=green>\uBD84\uB178</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4.{/Dead}"
+  EquipmentNameEN: Wrath
+  EquipmentDetailEN: "{Alive}Wrath receives power from\nthe remaining kings that
+    have not been defeated.\n\nAt Battle Start : Wrath\nApplies itself {WrathCount}
+    stack of <link=\"MWrath\"><color=green>Wrath</color></link>.{/Alive}\n{Dead}All
+    kings that empowered Wrath have been defeated.\n\nAt Battle Start : Wrath\nApplies
+    itself 1 stack of <link=\"MWrath\"><color=green>Wrath</color></link>.{/Dead}\r"
+  EquipmentNameJA: "\u61A4\u6012"
+  EquipmentDetailJA: "{Alive}\u61A4\u6012\u306F\u3001\u307E\u3060\u5012\u3055\u308C\u3066\u3044\u306A\u3044\u738B\u305F\u3061\u304B\u3089\u529B\u3092\u53D7\u3051\u53D6\u3063\u3066\u3044\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u61A4\u6012\n\u81EA\u5206\u306B<link=\"MWrath\"><color=green>\u61A4\u6012</color></link>{WrathCount}\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002{/Alive}\n{Dead}\u61A4\u6012\u306B\u529B\u3092\u4E0E\u3048\u308B\u738B\u306F\u3001\u3059\u3079\u3066\u5012\u3055\u308C\u307E\u3057\u305F\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u61A4\u6012\n\u81EA\u5206\u306B<link=\"MWrath\"><color=green>\u61A4\u6012</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002{/Dead}\r"

@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 1795081173, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uC5C5\uBCF4 : \uC545"
-  BuffDetail: "\uC2A4\uD0DD\uB2F9 \uBAA8\uB4E0 \uC2A4\uD0EF\uC774\n1\uC529 \uAC10\uC18C\uD569\uB2C8\uB2E4."
+  BuffDetail: "\uC2A4\uD0DD\uB9CC\uD07C \uBAA8\uB4E0 \uC2A4\uD0EF\uC774\n\uAC10\uC18C\uD569\uB2C8\uB2E4."
+  BuffNameEN: 'Karma : Evil'
+  BuffDetailEN: 'All stats Decreases by
+
+    an amount equal to its stacks.'
+  BuffNameJA: "\u30AB\u30EB\u30DE : \u60AA"
+  BuffDetailJA: "\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093\u3001\n\u3059\u3079\u3066\u306E\u30B9\u30C6\u30FC\u30BF\u30B9\u304C\n\u6E1B\u5C11\u3057\u307E\u3059\u3002"

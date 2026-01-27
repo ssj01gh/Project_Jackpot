@@ -1,0 +1,366 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: PlaySceneShortText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 075a89f4268554d42ac1df1faa30a3f3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 18425180160
+    m_Localized: Explore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20207759360
+    m_Localized: Maintenance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5065561206784
+    m_Localized: A camp for maintenance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5171211530240
+    m_Localized: Poor Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5663853506560
+    m_Localized: Inadequate Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5969161089024
+    m_Localized: Normal Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6051562385408
+    m_Localized: Good Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6131832975360
+    m_Localized: Perfect Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5174080434176
+    m_Localized: 'Rest Ambush Risk
+
+      55%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5665732554752
+    m_Localized: 'Rest Ambush Risk
+
+      35%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5970352271360
+    m_Localized: 'Rest Ambush Risk
+
+      20%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6059313459200
+    m_Localized: 'Rest Ambush Risk
+
+      10%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6132541812736
+    m_Localized: 'Rest Ambush Risk
+
+      5%'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5505090711552
+    m_Localized: 'Camp Setup STA
+
+      0'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5666449780736
+    m_Localized: 'Camp Setup STA
+
+      100'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5971128217600
+    m_Localized: 'Camp Setup STA
+
+      250'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6060705968128
+    m_Localized: 'Camp Setup STA
+
+      450'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6133208707072
+    m_Localized: 'Camp Setup STA
+
+      700'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 247896158629888
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 250839553404928
+    m_Localized: 'Exploration :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364723094286336
+    m_Localized: Grassland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364725036249088
+    m_Localized: Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364726273568768
+    m_Localized: "Alchemist\u2019s Tower"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364727968067584
+    m_Localized: Otherworld
+    m_Metadata:
+      m_Items: []
+  - m_Id: 365039667769344
+    m_Localized: The Truth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234240392294400
+    m_Localized: ???
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233811780562944
+    m_Localized: 'STA on Attack : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233813244375040
+    m_Localized: 'STA on Defense : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233814599135232
+    m_Localized: STA is not consumed when recovering STA.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233815903563776
+    m_Localized: Boots do not consume STA.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233817161854976
+    m_Localized: Accessories do not consume STA.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234163695251456
+    m_Localized: "The monster\u2019s attack."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234164869656576
+    m_Localized: "The monster\u2019s defense."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234165775626240
+    m_Localized: "The monster\u2019s special attack."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802895688822784
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897173606400
+    m_Localized: Defense
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897945358336
+    m_Localized: STA Recovery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803000680640512
+    m_Localized: Enemies turn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803579595255808
+    m_Localized: 'Chance variation
+
+      based on LUK.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813593433141248
+    m_Localized: 'No attack target has been selected.
+
+      Please click a face
+      icon in the turn order display or click the enemy you want to attack to select
+      a target.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813595148611584
+    m_Localized: 'Not enough STA.
+
+      Please recover STA by STA Recovery.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813703047081984
+    m_Localized: 'Not enough inventory slots to store equipment.
+
+      Please discard
+      equipment in your inventory to free up slots.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813704364093440
+    m_Localized: 'Not enough STA.
+
+      Please set up a low-quality camp.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813705962123264
+    m_Localized: Not enough EXP to enhance the player.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813707992166400
+    m_Localized: Not enough EXP.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813710223536128
+    m_Localized: Not enough STA to explore the Misty Forest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826726067400704
+    m_Localized: Victory!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826729540284416
+    m_Localized: Claim EXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140419049222144
+    m_Localized: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140808112861184
+    m_Localized: Defeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140945237241856
+    m_Localized: Highest Stage Reached
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140995652775936
+    m_Localized: Normal Monster Defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141043576893440
+    m_Localized: Elite Monster Defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141114330607616
+    m_Localized: Remaining EXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141146479947776
+    m_Localized: Positive Infuence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141205892263936
+    m_Localized: Total Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141275085697024
+    m_Localized: 'Random Equipment Inheritance : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141323899006976
+    m_Localized: 'Enhancement Point : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7205679206625280
+    m_Localized: Exploration Complete!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209669461929984
+    m_Localized: Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209670904770560
+    m_Localized: Stat Upgrades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209671747825664
+    m_Localized: Equipment Managment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209672519577600
+    m_Localized: Exit Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215340790083584
+    m_Localized: For each rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215343050813440
+    m_Localized: 'Recovers 10% of HP and STA.
+
+      No recovery occurs if ambushed.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215344812421120
+    m_Localized: Monster Ambush Chance per Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215377897091072
+    m_Localized: Rest Count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215379407040512
+    m_Localized: Take a Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215380740829184
+    m_Localized: Do Not Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227939774656512
+    m_Localized: Required EXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227943130099712
+    m_Localized: Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227946166775808
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908102352896
+    m_Localized: Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908974768128
+    m_Localized: Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243909767491584
+    m_Localized: Helmet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243910438580224
+    m_Localized: Boots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243912187604992
+    m_Localized: Accessory
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

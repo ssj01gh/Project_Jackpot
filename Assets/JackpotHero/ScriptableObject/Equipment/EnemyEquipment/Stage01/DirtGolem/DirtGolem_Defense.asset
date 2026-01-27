@@ -38,3 +38,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uBAB8\uC744 \uC6C5\uD06C\uB824 \uD759\uC744 \uB2E8\uB2E8\uD558\uAC8C
     \uD558\uC5EC \uBC29\uC5B4\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Crouch
+  EquipmentDetailEN: Crouches down and hardens the soil to defend itself.
+  EquipmentNameJA: "\u8EAB\u69CB\u3048\u308B"
+  EquipmentDetailJA: "\u4F53\u3092\u7E2E\u3081\u3001\u571F\u3092\u786C\u304F\u3057\u3066\u9632\u5FA1\u3057\u307E\u3059\u3002"

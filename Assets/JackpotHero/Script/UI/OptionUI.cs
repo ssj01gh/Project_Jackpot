@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class OptionUI : MonoBehaviour
@@ -14,6 +15,8 @@ public class OptionUI : MonoBehaviour
     public TMP_Dropdown ScreenResolutionUI;
     public Toggle WindowScreenToggle;
     public Toggle FullScreenToggle;
+    [Header("LanguageOption")]
+    public TMP_Dropdown LanguageUI;
     [Header("SoundOptionUI")]
     public Slider MasterSlider;
     public Slider BGMSlider;
@@ -44,6 +47,7 @@ public class OptionUI : MonoBehaviour
 
         SoundManager.Instance.PlayUISFX("UI_Button");
         SetScreenOptionUI();
+        SetLanguageOptionUI();
         SetSoundOptionUI();
 
         gameObject.SetActive(true);
@@ -67,6 +71,11 @@ public class OptionUI : MonoBehaviour
             WindowScreenToggle.isOn = true;
     }
 
+    protected void SetLanguageOptionUI()
+    {//초기화 상태
+        LanguageUI.value = JsonReadWriteManager.Instance.O_Info.CurrentLanguage;
+    }
+
     protected void SetSoundOptionUI()
     {
         MasterSlider.value = JsonReadWriteManager.Instance.O_Info.MasterVolume;
@@ -79,6 +88,19 @@ public class OptionUI : MonoBehaviour
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
         ScreenManager.Instance.SetScreenResolution(ScreenResolutionUI.value);
+    }
+    public void ChangeLanguageEvent()
+    {
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        JsonReadWriteManager.Instance.O_Info.CurrentLanguage = LanguageUI.value;
+        foreach (var Locale in LocalizationSettings.AvailableLocales.Locales)
+        {
+            if(Locale.Identifier.Code == JsonReadWriteManager.Instance.O_Info.ReturnLanguageCode())
+            {
+                LocalizationSettings.SelectedLocale = Locale;
+                return;
+            }
+        }
     }
 
     public void ChangeScreenModeEvent()

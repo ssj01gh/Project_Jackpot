@@ -19,6 +19,5 @@ MonoBehaviour:
   - {x: 0, y: 150}
   - {x: -460, y: -100}
   TutorialText:
-  - "\uC2B5\uACA9\uC2DC \uBAAC\uC2A4\uD130 \uBD80\uD130\n\uD589\uB3D9\uC744 \uC2DC\uC791\uD569\uB2C8\uB2E4."
-  - "\uD50C\uB808\uC774\uC5B4\uB294 \uBB34\uBC29\uBE44 \uBC84\uD504\uB97C \uBC1B\uACE0\n\uC804\uD22C\uAC00
-    \uC2DC\uC791 \uB429\uB2C8\uB2E4."
+  - TT_BSAT01
+  - TT_BSAT02

@@ -14,5 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 326455573, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uD589\uC6B4"
-  BuffDetail: "\uD589\uC6B4\uC774 10 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
+  BuffDetail: "LUK\uC774 10 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
     \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Luck
+  BuffDetailEN: 'Increases LUK by 10.
+
+
+    End of its turn
+
+    staks -1'
+  BuffNameJA: "\u904B"
+  BuffDetailJA: "LUK\u304C10\u5897\u52A0\u3057\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

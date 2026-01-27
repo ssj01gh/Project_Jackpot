@@ -32,3 +32,17 @@ MonoBehaviour:
     \uB192\uC744 \uACBD\uC6B0 \uD53C\uD574\uB97C \uC785\uC2B5\uB2C8\uB2E4.\n\uC2A4\uD0DD\uC774
     \uCD5C\uB300 \uCCB4\uB825\uBCF4\uB2E4 \uB0AE\uC744 \uACBD\uC6B0 \uC18C\uD658\uC218\uB97C
     \uC18C\uD658\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Swallow
+  EquipmentDetailEN: 'Attempts to absorb <link="MGluttony"><color=green>Gluttony</color></link>.
+
+
+    Special
+    Action : Swallow
+
+    If the stack exceeds maximum HP, it takes damage.
+
+    If
+    the stack is below maximum HP, it summons a minion.'
+  EquipmentNameJA: "\u98F2\u307F\u8FBC\u307F"
+  EquipmentDetailJA: "<link=\"MGluttony\"><color=green>\u66B4\u98DF</color></link>\u3092\u5438\u53CE\u3057\u3088\u3046\u3068\u3057\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u98F2\u307F\u8FBC\u307F\n\u30B9\u30BF\u30C3\u30AF\u304C\u6700\u5927HP\u3092\u8D85\u3048\u305F\u5834\u5408\u3001\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u307E\u3059\u3002\n\u30B9\u30BF\u30C3\u30AF\u304C\u6700\u5927HP\u3092\u4E0B\u56DE\u308B\u5834\u5408\u3001\u53EC\u559A\u7363\u3092\u53EC\u559A\u3057\u307E\u3059\u3002"

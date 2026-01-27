@@ -32,3 +32,11 @@ MonoBehaviour:
     \uBD80\uC5EC\uD569\uB2C8\uB2E4.\n\n\uD2B9\uC218 \uD589\uB3D9 : \uC74C\uC695\n\uC801\uC5D0\uAC8C
     <link=\"MCharm\"><color=green>\uB9E4\uD639</color></link> 1 ~ 3\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Lust
+  EquipmentDetailEN: "The aura emitted by Lust disrupts the mind.\n\nAt Battle Start
+    : Lust\nApplies itself 99 stack of <link=\"MLust\"><color=green>\uC74C\uC695</color></link>.\n\nSpecial
+    Action : Lust\nApplies enemy 1 stack of <link=\"MCharm\"><color=green>Charm</color></link>.\r"
+  EquipmentNameJA: "\u8272\u6B32"
+  EquipmentDetailJA: "\u8272\u6B32\u304C\u653E\u3064\u6C17\u914D\u304C\u3001\u7CBE\u795E\u3092\u4E71\u3057\u307E\u3059\u3002\n\n\u6226\u95D8\u958B\u59CB\u6642
+    : \u8272\u6B32\n\u81EA\u5206\u306B<link=\"MLust\"><color=green>\uC74C\uC695</color></link>99\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5
+    : \u8272\u6B32\n\u6575\u306B<link=\"MCharm\"><color=green>\u9B45\u60D1</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

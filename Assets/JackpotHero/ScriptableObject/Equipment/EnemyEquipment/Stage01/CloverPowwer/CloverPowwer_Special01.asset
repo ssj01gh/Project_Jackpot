@@ -30,3 +30,13 @@ MonoBehaviour:
     \uC790\uC2E0\uC758 \uD589\uC6B4\uC744 \uC99D\uAC00\uC2DC\uD0B5\uB2C8\uB2E4.\n\n\uD2B9\uC218
     \uD589\uB3D9 : \uD589\uC6B4\uAE30\uC6D0\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MLuck\"><color=green>\uD589\uC6B4</color></link>
     2\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Invoke Luck
+  EquipmentDetailEN: 'Performs a ritual dance to increase its luck.
+
+
+    Special
+    Action : Invoke Luck
+
+    Applies itself 2 stack of <link="MLuck"><color=green>Luck</color></link>.'
+  EquipmentNameJA: "\u5E78\u904B\u7948\u9858"
+  EquipmentDetailJA: "\u5E78\u904B\u3092\u7948\u308B\u8E0A\u308A\u3092\u8E0A\u308A\u3001\u81EA\u8EAB\u306E\u904B\u3092\u4E0A\u6607\u3055\u305B\u307E\u3059\u3002\n\n\u7279\u6B8A\u884C\u52D5\n\u81EA\u5206\u306B<link=\"MLuck\"><color=green>\u904B</color></link>2\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

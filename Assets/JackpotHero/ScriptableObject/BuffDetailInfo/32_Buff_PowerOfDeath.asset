@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuffImage: {fileID: 952321977, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uC8FD\uC74C\uC758 \uD798"
-  BuffDetail: "\uD604\uC7AC \uCCB4\uB825\uBE44\uC728\uC5D0 \uBE44\uB840\uD558\uC5EC\n\uD589\uB3D9\uC2DC
-    1~3\uC744 \uACF1\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD
-    -1"
+  BuffDetail: "\uC804\uD22C\uC911 \uD589\uB3D9 \uC218\uCE58 \uACC4\uC0B0\uC5D0\r\n\uD604\uC7AC
+    HP\uC5D0 \uBE44\uB840\uD558\uC5EC\r\n1~3\uC744 \uACF1\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
+    \uD134 \uC885\uB8CC\uC2DC\n\uC2A4\uD0DD -1"
+  BuffNameEN: Power Of Death
+  BuffDetailEN: "During battle, \naction calculations \nare multiplied by a value
+    \nbetween 1 and 3 \nbased on current HP.\n\nEnd of its turn\r\nstaks -1"
+  BuffNameJA: "\u6B7B\u306E\u529B"
+  BuffDetailJA: "\u6226\u95D8\u4E2D\u3001\u884C\u52D5\u306E\u6570\u5024\u8A08\u7B97\u306B\n\u5728\u306EHP\u306B\u5FDC\u3058\u3066\n1\uFF5E3\u500D\u3092\u639B\u3051\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u7D42\u4E86\u6642\r\n\u30B9\u30BF\u30C3\u30AF\u22121"

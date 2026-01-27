@@ -60,3 +60,16 @@ MonoBehaviour:
     5\uC2A4\uD0DD, <link=\"MWeakness\"><color=green>\uB098\uC57D\uD568</color></link>
     2\uC2A4\uD0DD, <link=\"MSlow\"><color=green>\uAC10\uC18D</color></link> 2\uC2A4\uD0DD
     \uC911\n\uD558\uB098\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Chemical Injection
+  EquipmentDetailEN: 'Injects an unidentified chemical using a syringe.
+
+
+    On
+    Attack : Chemical Injection
+
+    Applies enemy 5 stack of <link="MPoison"><color=green>Poison</color></link>,
+    OR 2 stack of <link="MWeakness"><color=green>Weakness</color></link>, OR 2 stack
+    of <link="MSlow"><color=green>Slow</color></link>.'
+  EquipmentNameJA: "\u85AC\u5264\u6CE8\u5165"
+  EquipmentDetailJA: "\u6CE8\u5C04\u5668\u3092\u4F7F\u3044\u3001\u6B63\u4F53\u4E0D\u660E\u306E\u85AC\u5264\u3092\u6CE8\u5C04\u3057\u307E\u3059\u3002\n\n\u653B\u6483\u6642
+    : \u85AC\u5264\u6CE8\u5165\n\u6575\u306B<link=\"MPoison\"><color=green>\u6BD2</color></link>5\u30B9\u30BF\u30C3\u30AF,<link=\"MWeakness\"><color=green>\u5F31</color></link>2\u30B9\u30BF\u30C3\u30AF,<link=\"MSlow\"><color=green>\u6E1B\u901F</color></link>2\u30B9\u30BF\u30C3\u30AF\n\u306E\u3044\u305A\u308C\u304B\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

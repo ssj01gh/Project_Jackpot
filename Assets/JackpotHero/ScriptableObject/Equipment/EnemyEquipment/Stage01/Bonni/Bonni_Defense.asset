@@ -38,3 +38,7 @@ MonoBehaviour:
   AddTirednessAmount: 0
   EquipmentDetail: "\uD138\uC744 \uBD80\uD480\uB9AC\uACE0 \uBAB8\uC744 \uC6C5\uD06C\uB824
     \uBC29\uC5B4\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Crouch
+  EquipmentDetailEN: Puffs up its fur and curls up to defend itself.
+  EquipmentNameJA: "\u8EAB\u69CB\u3048\u308B"
+  EquipmentDetailJA: "\u6BDB\u3092\u3075\u304F\u3089\u307E\u305B\u3001\u4F53\u3092\u7E2E\u3081\u3066\u9632\u5FA1\u3057\u307E\u3059\u3002"

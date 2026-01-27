@@ -62,3 +62,7 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uCE7C\uB85C \uBCA0\uB294 \uACF5\uACA9\uC744 \uC2E4\uD589\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Slash
+  EquipmentDetailEN: Executes a slashing attack with a blade.
+  EquipmentNameJA: "\u65AC\u6483"
+  EquipmentDetailJA: "\u5263\u3067\u65AC\u308A\u3064\u3051\u3066\u653B\u6483\u3057\u307E\u3059\u3002"

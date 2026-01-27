@@ -30,3 +30,17 @@ MonoBehaviour:
     \uCC44\uC6B0\uAE30 \uC704\uD574 \uB2E4\uB978 \uAC83 \uB4E4\uC744 \uD761\uC218\uD569\uB2C8\uB2E4.\n\n\uC544\uAD70
     \uC0AC\uB9DD : \uD761\uC218 \uC9C4\uD654\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MConsume\"><color=green>\uD761\uC218</color></link>
     1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Assimilative Evolution
+  EquipmentDetailEN: 'Imperfectly born homunculus
+
+    absorb other things to fill
+    what they lack.
+
+
+    Ally dies : Assimilative Evolution
+
+    Applies itself
+    1 stack of <link="MConsume"><color=green>Consume</color></link>.'
+  EquipmentNameJA: "\u5438\u53CE\u9032\u5316"
+  EquipmentDetailJA: "\u4E0D\u5B8C\u5168\u306B\u751F\u307E\u308C\u305F\u30DB\u30E0\u30F3\u30AF\u30EB\u30B9\u306F\u3001\n\u6B20\u640D\u3092\u88DC\u3046\u305F\u3081\u306B\u4ED6\u306E\u3082\u306E\u3092\u5438\u53CE\u3057\u307E\u3059\u3002\n\n\u5473\u65B9\u304C\u6B7B\u4EA1\u3057\u305F\u6642
+    : \u5438\u53CE\u9032\u5316\n\u81EA\u5206\u306B<link=\"MConsume\"><color=green>\u5438\u53CE</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

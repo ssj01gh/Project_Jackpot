@@ -1,0 +1,336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: PlaySceneShortText Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: PlaySceneShortText
+  m_TableCollectionNameGuidString: 075a89f4268554d42ac1df1faa30a3f3
+  m_Entries:
+  - m_Id: 18425180160
+    m_Key: PS_SC_Searching
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20207759360
+    m_Key: PS_SC_Maintenance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5065561206784
+    m_Key: PS_SC_RestTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5171211530240
+    m_Key: PS_SC_RQ01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5174080434176
+    m_Key: PS_SC_RQ01_Ambush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5505090711552
+    m_Key: PS_SC_RQ01_STA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5663853506560
+    m_Key: PS_SC_RQ02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5665732554752
+    m_Key: PS_SC_RQ02_Ambush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5666449780736
+    m_Key: PS_SC_RQ02_STA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5969161089024
+    m_Key: PS_SC_RQ03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5970352271360
+    m_Key: PS_SC_RQ03_Ambush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5971128217600
+    m_Key: PS_SC_RQ03_STA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6051562385408
+    m_Key: PS_SC_RQ04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6059313459200
+    m_Key: PS_SC_RQ04_Ambush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6060705968128
+    m_Key: PS_SC_RQ04_STA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6131832975360
+    m_Key: PS_SC_RQ05
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6132541812736
+    m_Key: PS_SC_RQ05_Ambush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6133208707072
+    m_Key: PS_SC_RQ05_STA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 247896158629888
+    m_Key: PS_SC_RestCancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 250839553404928
+    m_Key: PS_SCProgress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364723094286336
+    m_Key: PS_SCStage01
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364725036249088
+    m_Key: PS_SCStage02
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364726273568768
+    m_Key: PS_SCStage03
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364727968067584
+    m_Key: PS_SCStage04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 365039667769344
+    m_Key: PS_SCStageError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233811780562944
+    m_Key: PS_SC_WeaponSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233813244375040
+    m_Key: PS_SC_ArmorSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233814599135232
+    m_Key: PS_SC_HelmetSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233815903563776
+    m_Key: PS_SC_BootsSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4233817161854976
+    m_Key: PS_SC_AccSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234163695251456
+    m_Key: PS_SC_MonWeaponSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234164869656576
+    m_Key: PS_SC_MonArmorSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234165775626240
+    m_Key: PS_SC_MonAccSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4234240392294400
+    m_Key: PS_SC_EquipSTAError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802895688822784
+    m_Key: PS_SC_BattleAttack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897173606400
+    m_Key: PS_SC_BattleDefense
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6802897945358336
+    m_Key: PS_SC_BattleSTARecovery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803000680640512
+    m_Key: PS_SC_Battle_EnemyTurn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6803579595255808
+    m_Key: PS_SC_Battle_Percent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813593433141248
+    m_Key: PS_GM_MissTarget
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813595148611584
+    m_Key: PS_GM_BattleNoSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813703047081984
+    m_Key: PS_GM_NoInven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813704364093440
+    m_Key: PS_GM_CampingNoSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813705962123264
+    m_Key: PS_GM_LevelUPNoEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813707992166400
+    m_Key: PS_GM_NoEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6813710223536128
+    m_Key: PS_GM_Fog_NoSTA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826726067400704
+    m_Key: PS_BattleVictory_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6826729540284416
+    m_Key: PS_ClaimEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140419049222144
+    m_Key: PS_GoTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140808112861184
+    m_Key: PS_D_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140945237241856
+    m_Key: PS_Score_Floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140995652775936
+    m_Key: PS_Score_NorMon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141043576893440
+    m_Key: PS_Score_EliteMon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141114330607616
+    m_Key: PS_Score_RemainEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141146479947776
+    m_Key: PS_Score_GoodKarma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141205892263936
+    m_Key: PS_Score_TotalScore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141275085697024
+    m_Key: PS_Score_Succession
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141323899006976
+    m_Key: PS_Score_EarlyPoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7205679206625280
+    m_Key: PS_WinGame_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209669461929984
+    m_Key: PS_Camping_ButtonRest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209670904770560
+    m_Key: PS_Camping_ButtonUpgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209671747825664
+    m_Key: PS_Camping_ButtonEquipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209672519577600
+    m_Key: PS_Camping_ButtonEndCamping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215340790083584
+    m_Key: PS_Resting_DetailTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215343050813440
+    m_Key: PS_Resting_Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215344812421120
+    m_Key: PS_Resting_AttackTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215377897091072
+    m_Key: PS_Resting_Count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215379407040512
+    m_Key: PS_Resting_OKButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215380740829184
+    m_Key: PS_Resting_CancelButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227939774656512
+    m_Key: PS_Upgrade_NeededEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227943130099712
+    m_Key: PS_Upgrade_Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227946166775808
+    m_Key: PS_Upgrade_Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908102352896
+    m_Key: PS_EquipMg_WeaponText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908974768128
+    m_Key: PS_EquipMG_ArmorText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243909767491584
+    m_Key: PS_EquipMG_HelmetText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243910438580224
+    m_Key: PS_EquipMG_BootsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243912187604992
+    m_Key: PS_EquipMG_AccText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8381884070969212936
+  references:
+    version: 2
+    RefIds:
+    - rid: 8381884070969212936
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1767786291101

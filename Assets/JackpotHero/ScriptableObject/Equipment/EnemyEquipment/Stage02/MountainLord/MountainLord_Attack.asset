@@ -64,3 +64,8 @@ MonoBehaviour:
   EquipmentDetail: "\uC0B0\uAD70\uC740 \uC801\uC774 \uB2E4\uC74C \uB2E8\uACC4\uB85C
     \uB118\uC5B4\uAC08 \uC218 \uC788\uB294\uC9C0 \uC2DC\uD5D8\uD569\uB2C8\uB2E4.\n\uBD84\uC2E0\uC758
     \uC55E\uBC1C\uC744 \uD718\uB458\uB7EC \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: Trial of the Mountain Lord
+  EquipmentDetailEN: "The Mountain Lord tests whether\nthe enemy is ready to advance
+    to the next stage.\nIt attacks by swinging the avatar\u2019s forepaw."
+  EquipmentNameJA: "\u5C71\u4E3B\u306E\u8A66\u7DF4"
+  EquipmentDetailJA: "\u5C71\u541B\u306F\u3001\u6575\u304C\u6B21\u306E\u6BB5\u968E\u3078\u9032\u3081\u308B\u304B\u3092\u8A66\u3057\u307E\u3059\u3002\n\u5206\u8EAB\u306E\u524D\u811A\u3092\u632F\u308B\u3063\u3066\u653B\u6483\u3057\u307E\u3059\u3002"

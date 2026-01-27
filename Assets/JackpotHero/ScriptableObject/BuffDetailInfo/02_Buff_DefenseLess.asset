@@ -15,4 +15,17 @@ MonoBehaviour:
   BuffImage: {fileID: -1074198462, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uBB34\uBC29\uBE44"
   BuffDetail: "\uACF5\uACA9\uC744 \uBC1B\uC744\uB54C\n\uD53C\uD574\uB97C 2\uBC30\uB85C
-    \uBC1B\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134\uC5D0 \uC18C\uBA78"
+    \uBC1B\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uBC84\uD504
+    \uC885\uB8CC"
+  BuffNameEN: Vulnerable
+  BuffDetailEN: 'When taking damage,
+
+    takes double damage.
+
+
+    Start of its
+    turn
+
+    Buff ends'
+  BuffNameJA: "\u7121\u9632\u5099"
+  BuffDetailJA: "\u653B\u6483\u3092\u53D7\u3051\u308B\u6642\u3001\n\u53D7\u3051\u308B\u30C0\u30E1\u30FC\u30B8\u304C2\u500D\u306B\u306A\u308A\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\n\u30D0\u30D5\u7D42\u4E86"

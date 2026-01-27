@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class CurrentStageProgressUI : MonoBehaviour
 {
     public TextMeshProUGUI CurrentStageText;
     public TextMeshProUGUI CurrentStageProgressText;
     // Start is called before the first frame update
+    private Coroutine CSTextCor;
+    private string LanKey;
     void Start()
     {
         
@@ -21,40 +24,71 @@ public class CurrentStageProgressUI : MonoBehaviour
 
     public void SetCurrentStegeUI(PlayerInfo PInfo)
     {
-        switch(PInfo.CurrentFloor)
+        if(CSTextCor != null)
+        {
+            StopCoroutine(CSTextCor);
+            CSTextCor = null;
+        }
+        LanKey = "";
+        CurrentStageText.text = "";
+        switch (PInfo.CurrentFloor)
         {
             case 1:
-                CurrentStageText.text = "ÃÊ¿ø";
+                LanKey = "PS_SCStage01";
                 break;
             case 2:
-                CurrentStageText.text = "½£";
+                LanKey = "PS_SCStage02";
                 break;
             case 3:
-                CurrentStageText.text = "¿¬±Ý¼ú Å¾";
+                LanKey = "PS_SCStage03";
                 break;
             case 4:
-                CurrentStageText.text = "ÀÌ°è";
+                LanKey = "PS_SCStage04";
                 break;
             default:
-                CurrentStageText.text = "Áø½Ç";
+                LanKey = "PS_SCStageError";
                 break;
         }
-
+        StartCoroutine(Load(LanKey));
+        //PlaySceneShortText
 
         if (PInfo.CurrentFloor == 4)
         {
-            CurrentStageProgressText.text = "Å½»öµµ : <color=red>???</color>";
+            CurrentStageProgressText.text = "<color=red>???</color>";
         }
         else
         {
             if (PInfo.DetectNextFloorPoint < 100)
             {
-                CurrentStageProgressText.text = "Å½»öµµ : " + PInfo.DetectNextFloorPoint + " / 100";
+                CurrentStageProgressText.text = PInfo.DetectNextFloorPoint + " / 100";
             }
             else
             {
-                CurrentStageProgressText.text = "Å½»öµµ : <color=red>100 / 100</color>";
+                CurrentStageProgressText.text = "<color=red>100 / 100</color>";
             }
         }
+       //Debug.Log(LocalizationSettings.SelectedLocale.Identifier.Code);
+    }
+    public void ChangeStageLanguage()
+    {
+        if (LanKey == "")
+            return;
+
+        if (CSTextCor != null)
+        {
+            StopCoroutine(CSTextCor);
+            CSTextCor = null;
+        }
+        StartCoroutine(Load(LanKey));
+    }
+
+    private IEnumerator Load(string key)
+    {
+        yield return new WaitForSeconds(0.1f);
+        yield return LocalizationSettings.InitializationOperation;
+        //Debug.Log(LocalizationSettings.SelectedLocale.Identifier.Code);
+
+        var BuffDetailTable = LocalizationSettings.StringDatabase.GetTable("PlaySceneShortText");
+        CurrentStageText.text = BuffDetailTable.GetEntry(key).GetLocalizedString();
     }
 }

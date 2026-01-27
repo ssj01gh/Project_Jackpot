@@ -27,6 +27,18 @@ MonoBehaviour:
   AddHPAmount: 0
   AddTirednessAmount: 0
   EquipmentDetail: "\uC218\uD638\uC790\uB294 \uC804\uD22C \uC0C1\uD669\uC5D0 \uC801\uC751\uD569\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758
-    \uACF5\uACA9\uC774 \uC801\uC758 \uCCB4\uB825\uC5D0 \uD53C\uD574\uB97C \uC8FC\uC9C0
-    \uBABB\uD568 : \uD589\uB3D9 \uB300\uC751 : \uD798\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MStrengthAdaptation\"><color=green>\uC801\uC751
+    \uACF5\uACA9\uC774 \uC801\uC5D0\uAC8C \uD53C\uD574\uB97C \uC8FC\uC9C0 \uBABB\uD568
+    : \uD589\uB3D9 \uB300\uC751 : \uD798\n\uC790\uC2E0\uC5D0\uAC8C <link=\"MStrengthAdaptation\"><color=green>\uC801\uC751
     : \uD798</color></link> 1\uC2A4\uD0DD\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: 'Action Response: Power'
+  EquipmentDetailEN: 'The Guardian adapts to the battle situation.
+
+
+    Attack fails
+    to deal damage to the enemy : Action Response: Power
+
+    Applies itself 1 stack
+    of <link="MStrengthAdaptation"><color=green>Adaptation : STR</color></link>.'
+  EquipmentNameJA: "\u884C\u52D5\u5BFE\u5FDC\uFF1A\u529B"
+  EquipmentDetailJA: "\u5B88\u8B77\u8005\u306F\u6226\u95D8\u72B6\u6CC1\u306B\u9069\u5FDC\u3057\u307E\u3059\u3002\n\n\u653B\u6483\u304C\u6575\u306B\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u306A\u304B\u3063\u305F\u6642
+    : \u884C\u52D5\u5BFE\u5FDC\uFF1A\u529B\n\u81EA\u5206\u306B<link=\"MStrengthAdaptation\"><color=green>\u9069\u5FDC:STR</color></link>1\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

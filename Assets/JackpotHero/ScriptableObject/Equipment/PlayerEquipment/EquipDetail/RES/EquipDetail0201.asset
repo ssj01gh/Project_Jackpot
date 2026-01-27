@@ -20,3 +20,8 @@ MonoBehaviour:
     \uB85C\uBE0C\uC785\uB2C8\uB2E4.\n\n\uBC29\uC5B4\uC2DC\n\uC801 \uBAA8\uB450\uC5D0\uAC8C
     <link=\"RESAR\"><color=green>\uBD88\uC6B4</color></link> 3\uC2A4\uD0DD\uC744
     \uBD80\uC5EC\uD569\uB2C8\uB2E4."
+  EquipmentNameEN: "Witch\u2019s Robe"
+  EquipmnetDetailEN: "A witch\u2019s robe that curses enemies.\n\nOn Defense\nApplies
+    all enemies 3 stack of <link=\"RESAR\"><color=green>Misfortune</color></link>."
+  EquipmnetNameJA: "\u9B54\u5973\u306E\u30ED\u30FC\u30D6"
+  EquipmnetDetailJA: "\u6575\u306B\u546A\u3044\u3092\u304B\u3051\u308B\u9B54\u5973\u306E\u30ED\u30FC\u30D6\u3067\u3059\u3002\n\n\u9632\u5FA1\u6642\n\u3059\u3079\u3066\u306E\u6575\u306B<link=\"RESAR\"><color=green>\u4E0D\u904B</color></link>3\u30B9\u30BF\u30C3\u30AF\u3092\u4ED8\u4E0E\u3057\u307E\u3059\u3002"

@@ -15,5 +15,22 @@ MonoBehaviour:
   BuffImage: {fileID: 1559191660, guid: 4df4dfc313e7ec140b340186ac460ad4, type: 3}
   BuffName: "\uBC29\uC5B4\uB825"
   BuffDetail: "\uD53C\uD574\uB97C \uBC1B\uC744\uB54C \uC2A4\uD0DD\uB9CC\uD07C\n\uD53C\uD574\uB97C
-    \uB35C \uBC1B\uC2B5\uB2C8\uB2E4.\n\uC790\uC2E0\uC758 \uD134\uB9C8\uB2E4\n\uD604\uC7AC
-    \uB0B4\uAD6C\uC758 20%\uB9CC\uD07C \uC2A4\uD0DD\n"
+    \uB35C \uBC1B\uC2B5\uB2C8\uB2E4.\n\n\uC790\uC2E0\uC758 \uD134 \uC2DC\uC791\uC2DC\n\uD604\uC7AC
+    DUR\uC758 20%\uB9CC\uD07C \uC2A4\uD0DD\n"
+  BuffNameEN: Defense
+  BuffDetailEN: 'When taking damage,
+
+    reduces the damage
+
+    by the number of
+    stacks.
+
+
+    Start of its turn
+
+    Gains stacks equal to
+
+    20% of current
+    DUR.'
+  BuffNameJA: "\u9632\u5FA1\u529B"
+  BuffDetailJA: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u6642\u3001\n\u30B9\u30BF\u30C3\u30AF\u6570\u3076\u3093\u30C0\u30E1\u30FC\u30B8\u3092\u6E1B\u3089\u3057\u307E\u3059\u3002\n\n\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\n\u73FE\u5728DUR\u306E20%\u3076\u3093\u3001\n\u30B9\u30BF\u30C3\u30AF\u3092\u5F97\u307E\u3059\u3002"

@@ -1,10 +1,11 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
@@ -92,13 +93,13 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public Sprite[] GachaTierGemSprites;
     public Sprite[] GachaIconSprites;
     [Header("Equip_EquipBuffDetail")]
-    public GameObject EquipBuffDetailExplainObject;//¼³¸í ³ª¿Ã ¿ÀºêÁ§Æ®
-    public TextMeshProUGUI EquipBuffDetailExplainTitleText;//¼³¸í Á¦¸ñ
-    public TextMeshProUGUI EquipBuffDetailExplainDetailText;//¼³¸í »ó¼¼
+    public GameObject EquipBuffDetailExplainObject;//ì„¤ëª… ë‚˜ì˜¬ ì˜¤ë¸Œì íŠ¸
+    public TextMeshProUGUI EquipBuffDetailExplainTitleText;//ì„¤ëª… ì œëª©
+    public TextMeshProUGUI EquipBuffDetailExplainDetailText;//ì„¤ëª… ìƒì„¸
     [Header("Inven_EquipBuffDetail")]
-    public GameObject InvenBuffDetailExplainObject;//¼³¸í ³ª¿Ã ¿ÀºêÁ§Æ®
-    public TextMeshProUGUI InvenBuffDetailExplainTitleText;//¼³¸í Á¦¸ñ
-    public TextMeshProUGUI InvenBuffDetailExplainDetailText;//¼³¸í »ó¼¼
+    public GameObject InvenBuffDetailExplainObject;//ì„¤ëª… ë‚˜ì˜¬ ì˜¤ë¸Œì íŠ¸
+    public TextMeshProUGUI InvenBuffDetailExplainTitleText;//ì„¤ëª… ì œëª©
+    public TextMeshProUGUI InvenBuffDetailExplainDetailText;//ì„¤ëª… ìƒì„¸
 
     protected Color InventoryActiveColor = new Color(0.28f, 0.19f, 0.1f, 1f);
     protected Color InventoryUnActiveColor = new Color(0.78f, 0.78f, 0.78f, 0.5f);
@@ -123,24 +124,24 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         new Vector3(0,0,-300)
     };
 
-    //ÇÃ·¹ÀÌ¾î ÀåºñÃ¢ ÁÂÇ¥µé
+    //í”Œë ˆì´ì–´ ì¥ë¹„ì°½ ì¢Œí‘œë“¤
     protected Vector2 PlayerEquipInitPos = new Vector2(-1460, 740);
     protected Vector2 PlayerEquipTargetPos = new Vector2(-460,340);
-    //ÇÃ·¹ÀÌ¾î Àåºñ »ó¼¼ Á¤º¸ ÁÂÇ¥µé
+    //í”Œë ˆì´ì–´ ì¥ë¹„ ìƒì„¸ ì •ë³´ ì¢Œí‘œë“¤
     protected Vector2 EquipedEquipDetailInitPos = new Vector2(-1210, -730);
     protected Vector2 EquipedEquipDetailTargetPos = new Vector2(-710,-50);
-    //ÇÃ·¹ÀÌ¾î°¡ Å¬¸¯ÇÑ Àåºñ »ó¼¼ Á¤º¸ ÁÂÇ¥µé
+    //í”Œë ˆì´ì–´ê°€ í´ë¦­í•œ ì¥ë¹„ ìƒì„¸ ì •ë³´ ì¢Œí‘œë“¤
     protected Vector2 ClickedInvenDetailInitPos = new Vector2(-710,-730);
     protected Vector2 ClickedInvenDetailTargetPos = new Vector2(-210,-50);
-    //ÀÎº¥Åä¸® ÁÂÇ¥µé
+    //ì¸ë²¤í† ë¦¬ ì¢Œí‘œë“¤
     protected Vector2 InvenInitPos = new Vector2(1420, 890);
     protected Vector2 InvenTargetPos = new Vector2(500, 190);
-    //°«Ã­Ã¢ ÁÂÇ¥µé
+    //ê°“ì± ì°½ ì¢Œí‘œë“¤
     protected Vector2 GamblingInitPos = new Vector2(1420, -730);
     protected Vector2 GamblingTargetPos = new Vector2(500, -350);
-    //¿ä À§ÀÇ ÁÂÇ¥µé¿¡ Á¤º¸ ÀÔ·Â
+    //ìš” ìœ„ì˜ ì¢Œí‘œë“¤ì— ì •ë³´ ì…ë ¥
 
-    //°«Ã­Ã¢ enum
+    //ê°“ì± ì°½ enum
     protected enum ETriangleState
     {
         ZeroLightOn,
@@ -247,20 +248,20 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //EquipDetail_EquipDetailText
         //EquipDetail_InvenDetailText
         
-        // ¸µÅ© ÀÎµ¦½º¸¦ Ã£À½
+        // ë§í¬ ì¸ë±ìŠ¤ë¥¼ ì°¾ìŒ
         int EquiplinkIndex = TMP_TextUtilities.FindIntersectingLink(EquipDetail_EquipDetailText, mousePosition, Camera.main);
         int InvenLinkIndex = TMP_TextUtilities.FindIntersectingLink(EquipDetail_InvenDetailText, mousePosition, Camera.main);
 
         if (EquiplinkIndex != EquipCurrentLinkIndex)
         {
-            // ±âÁ¸ ¸µÅ©¿¡¼­ ¸¶¿ì½º°¡ ¹ş¾î³µÀ» ¶§
+            // ê¸°ì¡´ ë§í¬ì—ì„œ ë§ˆìš°ìŠ¤ê°€ ë²—ì–´ë‚¬ì„ ë•Œ
             if (EquipCurrentLinkIndex != -1)
             {
                 string oldID = EquipDetail_EquipDetailText.textInfo.linkInfo[EquipCurrentLinkIndex].GetLinkID();
                 OnLinkExit(oldID, 0);
             }
 
-            // »õ·Î¿î ¸µÅ©¿¡ ¸¶¿ì½º°¡ ¿Ã¶ó°¬À» ¶§
+            // ìƒˆë¡œìš´ ë§í¬ì— ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ê°”ì„ ë•Œ
             if (EquiplinkIndex != -1)
             {
                 string newID = EquipDetail_EquipDetailText.textInfo.linkInfo[EquiplinkIndex].GetLinkID();
@@ -271,14 +272,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
         if (InvenLinkIndex != InvenCurrentLinkIndex)
         {
-            // ±âÁ¸ ¸µÅ©¿¡¼­ ¸¶¿ì½º°¡ ¹ş¾î³µÀ» ¶§
+            // ê¸°ì¡´ ë§í¬ì—ì„œ ë§ˆìš°ìŠ¤ê°€ ë²—ì–´ë‚¬ì„ ë•Œ
             if (InvenCurrentLinkIndex != -1)
             {
                 string oldID = EquipDetail_InvenDetailText.textInfo.linkInfo[InvenCurrentLinkIndex].GetLinkID();
                 OnLinkExit(oldID, 1);
             }
 
-            // »õ·Î¿î ¸µÅ©¿¡ ¸¶¿ì½º°¡ ¿Ã¶ó°¬À» ¶§
+            // ìƒˆë¡œìš´ ë§í¬ì— ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ê°”ì„ ë•Œ
             if (InvenLinkIndex != -1)
             {
                 string newID = EquipDetail_InvenDetailText.textInfo.linkInfo[InvenLinkIndex].GetLinkID();
@@ -291,11 +292,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     private void OnLinkEnter(string id, int DetailNum)
     {
         /*
-         * DetailExplainText.text = "µµ´Ş ÃÖ´ë Ãş¼ö (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-    ")\r\nÀÏ¹İ ¸ó½ºÅÍ (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
-    ")\r\n¿¤¸®Æ® ¸ó½ºÅÍ (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
-    ")\r\n³²Àº °æÇèÄ¡ (" + PlayerInfo.GetPlayerStateInfo().Experience +
-    ")\r\n¼±ÇÑ ¿µÇâ·Â (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
+         * DetailExplainText.text = "ë„ë‹¬ ìµœëŒ€ ì¸µìˆ˜ (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
+    ")\r\nì¼ë°˜ ëª¬ìŠ¤í„° (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
+    ")\r\nì—˜ë¦¬íŠ¸ ëª¬ìŠ¤í„° (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
+    ")\r\në‚¨ì€ ê²½í—˜ì¹˜ (" + PlayerInfo.GetPlayerStateInfo().Experience +
+    ")\r\nì„ í•œ ì˜í–¥ë ¥ (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
          */
         if (DetailNum == 0)
             EquipBuffDetailExplainObject.SetActive(true);
@@ -644,7 +645,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 break;
         }
         
-        //Debug.Log($"¸¶¿ì½º ¿Ã¶ó°¨: {id}");
+        //Debug.Log($"ë§ˆìš°ìŠ¤ ì˜¬ë¼ê°: {id}");
     }
 
     private void OnLinkExit(string id, int DetailNum)
@@ -653,8 +654,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipBuffDetailExplainObject.SetActive(false);
         else 
             InvenBuffDetailExplainObject.SetActive(false);
-        // ¿¹: ¿ø·¡ »ö»ó º¹±¸, ÅøÆÁ ¼û±â±â µî
-        //Debug.Log($"¸¶¿ì½º ¹ş¾î³²: {id}");
+        // ì˜ˆ: ì›ë˜ ìƒ‰ìƒ ë³µêµ¬, íˆ´íŒ ìˆ¨ê¸°ê¸° ë“±
+        //Debug.Log($"ë§ˆìš°ìŠ¤ ë²—ì–´ë‚¨: {id}");
     }
 
     public void ActivePlayerEquipMg()
@@ -662,11 +663,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if(PlayerEquip.activeSelf == true && EquipInventory.activeSelf == true && EquipDetailInfo_Equip.activeSelf == true &&
             EquipDetailInfo_Inven.activeSelf == true && EquipGambling.activeSelf == true)
         {
-            return;//´Ù ÄÑÁ® ÀÖÀ¸¸é ¸®ÅÏ ¶§¸®±â
+            return;//ë‹¤ ì¼œì ¸ ìˆìœ¼ë©´ ë¦¬í„´ ë•Œë¦¬ê¸°
         }
         gameObject.SetActive(true);
         //SetPlayerEquip
-        //´Ù²¯´Ù°¡ ÇØ´çµÇ´Â°Å¸¸ Å°±â
+        //ë‹¤ê»ë‹¤ê°€ í•´ë‹¹ë˜ëŠ”ê±°ë§Œ í‚¤ê¸°
         for(int i = 0; i < PlayerEquipImages.Length; i++)
         {
             PlayerEquipImages[i].gameObject.SetActive(false);
@@ -707,7 +708,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         PlayerEquip.GetComponent<RectTransform>().DOAnchorPos(PlayerEquipTargetPos, 0.5f);
         //SetEquipInventory
         SetInventory(true);
-        //SetEquipDetailInfo_Equip//DetailÀÇ ÃÊ±â»óÅÂ´Â ºñ¾îÀÖ´Â °ÅÀÓ//ÈÄ¿¡ ÇÃ·¹ÀÌ¾îÀÇ Á¶ÀÛ¿¡ µû¶ó Á¤º¸ Ç¥½Ã
+        //SetEquipDetailInfo_Equip//Detailì˜ ì´ˆê¸°ìƒíƒœëŠ” ë¹„ì–´ìˆëŠ” ê±°ì„//í›„ì— í”Œë ˆì´ì–´ì˜ ì¡°ì‘ì— ë”°ë¼ ì •ë³´ í‘œì‹œ
         EquipDetail_EquipImage.gameObject.SetActive(false);
         EquipDetail_EquipTierText.text = "";
         EquipDetail_EquipNameText.text = "";
@@ -725,7 +726,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipDetailInfo_Equip.GetComponent<RectTransform>().anchoredPosition = EquipedEquipDetailInitPos;
         EquipDetailInfo_Equip.SetActive(true);
         EquipDetailInfo_Equip.GetComponent<RectTransform>().DOAnchorPos(EquipedEquipDetailTargetPos, 0.5f);
-        //SetEquipDetailInfo_Inven//DetailÀÇ ÃÊ±â»óÅÂ´Â ºñ¾îÀÖ´Â °ÅÀÓ//ÈÄ¿¡ ÇÃ·¹ÀÌ¾îÀÇ Á¶ÀÛ¿¡ µû¶ó Á¤º¸ Ç¥½Ã
+        //SetEquipDetailInfo_Inven//Detailì˜ ì´ˆê¸°ìƒíƒœëŠ” ë¹„ì–´ìˆëŠ” ê±°ì„//í›„ì— í”Œë ˆì´ì–´ì˜ ì¡°ì‘ì— ë”°ë¼ ì •ë³´ í‘œì‹œ
         EquipDetail_InvenImage.gameObject.SetActive(false);
         EquipDetail_InvenTierText.text = "";
         EquipDetail_InvenNameText.text = "";
@@ -748,7 +749,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     }
 
-    public void InActivePlayerEquipMg()// ºñÈ°¼ºÈ­ ‰çÀ»¶§ ÀúÀå
+    public void InActivePlayerEquipMg()// ë¹„í™œì„±í™” ë¬ì„ë•Œ ì €ì¥
     {
         if(PlayerEquip.activeSelf == true)
         {
@@ -781,50 +782,96 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     protected string GetTierText(int Code)
     {
-           return ((Code / 1000) % 10).ToString() + "Æ¼¾î";
+           return ((Code / 1000) % 10).ToString() + "T";
     }
 
-    protected void SetGambling(bool IsActive = false)//->ÀÌ°Å´Â ¹«¾ğ°¡ Çàµ¿ µÉ¶§¸¶´Ù °è¼Ó ¾÷µ¥ÀÌÆ® ÇØ¾ßÇÒµí?
-    {//ÀÏ´ÜÀº Àåºñ¸¦ Áı°í ³ùÀ»¶§(OnPointerUpÀÏ¶§ ÇÑ¹øÇØ¾ßÇÔ)(Àåºñ »Ì°í ³ª¼­µµ ±×·¸°í)
+    protected void SetGambling(bool IsActive = false)//->ì´ê±°ëŠ” ë¬´ì–¸ê°€ í–‰ë™ ë ë•Œë§ˆë‹¤ ê³„ì† ì—…ë°ì´íŠ¸ í•´ì•¼í• ë“¯?
+    {//ì¼ë‹¨ì€ ì¥ë¹„ë¥¼ ì§‘ê³  ë†¨ì„ë•Œ(OnPointerUpì¼ë•Œ í•œë²ˆí•´ì•¼í•¨)(ì¥ë¹„ ë½‘ê³  ë‚˜ì„œë„ ê·¸ë ‡ê³ )
         EXPAmountText.text = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience.ToString();
-        //»Ì±â ·¹º§¾÷ ¹öÆ°
+        //ë½‘ê¸° ë ˆë²¨ì—… ë²„íŠ¼
         if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel >= 10)
-        {//¸¸·¦ÀÏ °æ¿ì
+        {//ë§Œë©ì¼ ê²½ìš°
             EquipGamblingLevelUpButton.interactable = false;
-            EquipGamblingLevelUPButtonText.text = "MaxLevel";
+            EquipGamblingLevelUPButtonText.text = "Max Level";
         }
         else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 
             EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel))
-        {//°æÇèÄ¡°¡ ºÎÁ·ÇÒ °æ¿ì
+        {//ê²½í—˜ì¹˜ê°€ ë¶€ì¡±í•  ê²½ìš°
             EquipGamblingLevelUpButton.interactable = false;
-            EquipGamblingLevelUPButtonText.text = "°æÇèÄ¡ ºÎÁ·\r\n" +
-                "ÇÊ¿ä : " + EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel) + "°æÇèÄ¡";
+            EquipGamblingLevelUPButtonText.text = "";
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                EquipGamblingLevelUPButtonText.text = "Not enough EXP\r\nRequired EXP : ";
+            else if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                EquipGamblingLevelUPButtonText.text = "EXPä¸è¶³\r\nå¿…è¦EXP : ";
+            else
+                EquipGamblingLevelUPButtonText.text = "EXP ë¶€ì¡±\r\ní•„ìš” EXP : ";
+
+            if (EquipGamblingLevelUPButtonText.text != "")
+            {
+                EquipGamblingLevelUPButtonText.text += EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+            }
         }
-        else//¸¸·¦º¸´Ù ÀÛÀ»°æ¿ì
+        else//ë§Œë©ë³´ë‹¤ ì‘ì„ê²½ìš°
         {
             EquipGamblingLevelUpButton.interactable = true;
-            EquipGamblingLevelUPButtonText.text = "Àåºñ »Ì±â °­È­\r\n" + 
-                EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel) + " °æÇèÄ¡";
+            EquipGamblingLevelUPButtonText.text = "";
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                EquipGamblingLevelUPButtonText.text = "Equipment Gacha Enhancement\r\nEXP : ";
+            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                EquipGamblingLevelUPButtonText.text = "è£…å‚™ã‚¬ãƒãƒ£å¼·åŒ–\r\nEXP : ";
+            else
+                EquipGamblingLevelUPButtonText.text = "ì¥ë¹„ ë½‘ê¸° ê°•í™”\r\nEXP : ";
+
+            if (EquipGamblingLevelUPButtonText.text != "")
+            {
+                EquipGamblingLevelUPButtonText.text += EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+            }
         }
 
-        //»Ì±â ¹öÆ°
+        //ë½‘ê¸° ë²„íŠ¼
         if(PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)
-        {//ÀÎº¥Åä¸®°¡ ²ËÃ¡´Ù¸é
+        {//ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ë‹¤ë©´
             EquipGamblingButton.interactable = false;
-            EquipGamblingButtonText.text = "ÀÎº¥Åä¸®\r\n°ø°£ ºÎÁ·";
+            EquipGamblingButtonText.text = "";
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                EquipGamblingButtonText.text = "Not enough\r\nInventory";
+            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                EquipGamblingButtonText.text = "ã‚¤ãƒ³ãƒ™ãƒ³ãƒˆãƒª\r\nä¸è¶³";
+            else
+                EquipGamblingButtonText.text = "ì¸ë²¤í† ë¦¬\r\nê³µê°„ ë¶€ì¡±";
         }
         else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 
             EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel))
-        {//°æÇèÄ¡°¡ ºÎÁ·ÇÒ°æ¿ì
+        {//ê²½í—˜ì¹˜ê°€ ë¶€ì¡±í• ê²½ìš°
             EquipGamblingButton.interactable = false;
-            EquipGamblingButtonText.text = "°æÇèÄ¡ ºÎÁ·\r\n" +
-                "ÇÊ¿ä : " + EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel) + "°æÇèÄ¡";
+            EquipGamblingButtonText.text = "";
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                EquipGamblingButtonText.text = "Not enough EXP\r\nRequired EXP : ";
+            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                EquipGamblingButtonText.text = "EXPä¸è¶³\r\nå¿…è¦EXP : ";
+            else
+                EquipGamblingButtonText.text = "EXP ë¶€ì¡±\r\ní•„ìš” EXP : ";
+
+            if (EquipGamblingButtonText.text != "")
+            {
+                EquipGamblingButtonText.text += EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+            }
         }
         else
         {
             EquipGamblingButton.interactable = true;
-            EquipGamblingButtonText.text = "Àåºñ »Ì±â\r\n" + 
-                EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel) + " °æÇèÄ¡";
+            EquipGamblingButtonText.text = "";
+            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                EquipGamblingButtonText.text = "Equipment Gacha\r\nEXP : ";
+            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                EquipGamblingButtonText.text = "è£…å‚™ã‚¬ãƒãƒ£\r\nEXP : ";
+            else
+                EquipGamblingButtonText.text = "ì¥ë¹„ ë½‘ê¸°\r\nEXP : ";
+
+            if (EquipGamblingButtonText.text != "")
+            {
+                EquipGamblingButtonText.text += EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+            }
         }
 
 
@@ -857,9 +904,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {
             InventorySlots[i].GetComponent<Image>().color = InventoryActiveColor;
             LockObjects[i].SetActive(false);
-            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//ºñ¾îÀÖÁö ¾ÊÀ»¶§
+            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//ë¹„ì–´ìˆì§€ ì•Šì„ë•Œ
             {
-                //ÄÚµå¿¡ ¸Â´Â ÀÌ¹ÌÁö¸¦ ³ÖÀ½
+                //ì½”ë“œì— ë§ëŠ” ì´ë¯¸ì§€ë¥¼ ë„£ìŒ
                 InventorySlotsImage[i].gameObject.SetActive(true);
                 InventorySlotsImage[i].sprite =
                     EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i]).EquipmentImage;
@@ -877,7 +924,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         PlayerEquipIndex = -1;
-        if (eventData.pointerEnter != null && eventData.pointerEnter.tag == "InventorySlot")//¿©±â¼­ µé¾î¿À´Â ³ğÀÌ ¸î¹øÂ° SlotÀÎÁö ¾Ë¾Æ¾ßÇÔ
+        if (eventData.pointerEnter != null && eventData.pointerEnter.tag == "InventorySlot")//ì—¬ê¸°ì„œ ë“¤ì–´ì˜¤ëŠ” ë†ˆì´ ëª‡ë²ˆì§¸ Slotì¸ì§€ ì•Œì•„ì•¼í•¨
         {
             Vector2 ClickedUIPos = eventData.pointerEnter.GetComponent<RectTransform>().anchoredPosition;
             for(int i = 0; i <PlayerEquipSlots.Length; i++)
@@ -887,31 +934,31 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     switch (i)
                     {
                         case (int)EPlayerEquip.Helmet:
-                            if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode == 0)//ºñ¾îÀÖ´Ù¸é
+                            if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode == 0)//ë¹„ì–´ìˆë‹¤ë©´
                                 return;
                             else
                                 CurrentBringItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode;
                             break;
                         case (int)EPlayerEquip.Armor:
-                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode == 0)//ºñ¾îÀÖ´Ù¸é
+                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode == 0)//ë¹„ì–´ìˆë‹¤ë©´
                                 return;
                             else
                                 CurrentBringItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode;
                             break;
                         case (int)EPlayerEquip.Boots:
-                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode == 0)//ºñ¾îÀÖ´Ù¸é
+                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode == 0)//ë¹„ì–´ìˆë‹¤ë©´
                                 return;
                             else
                                 CurrentBringItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode;
                             break;
                         case (int)EPlayerEquip.Weapon:
-                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == 0)//ºñ¾îÀÖ´Ù¸é
+                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == 0)//ë¹„ì–´ìˆë‹¤ë©´
                                 return;
                             else
                                 CurrentBringItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
                             break;
                         case (int)EPlayerEquip.Accessories:
-                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode == 0)//ºñ¾îÀÖ´Ù¸é
+                            if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode == 0)//ë¹„ì–´ìˆë‹¤ë©´
                                 return;
                             else
                                 CurrentBringItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
@@ -928,35 +975,35 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     PlayerEquipImages[i].gameObject.SetActive(false);
                     PlayerEquipTierText[i].text = "";
                     DisplayEquipDetailInfo(true);
-                    //ÀåºñÄ­ ¾ÆÀÌÅÛ Å¬¸¯
+                    //ì¥ë¹„ì¹¸ ì•„ì´í…œ í´ë¦­
                     break;
                 }
             }
             
-            if(PlayerEquipIndex == -1)//¸¸¾à ÀåºñÃ¢Áß¿¡ Å¬¸¯ÇÑ ½½·ÔÀÌ ¾ø´Ù¸é ÀÎº¥Åä¸®µµ °Ë»ç
+            if(PlayerEquipIndex == -1)//ë§Œì•½ ì¥ë¹„ì°½ì¤‘ì— í´ë¦­í•œ ìŠ¬ë¡¯ì´ ì—†ë‹¤ë©´ ì¸ë²¤í† ë¦¬ë„ ê²€ì‚¬
             {
-                //ÀÎº¥Åä¸® ½½·ÔÀÎÁö °Ë»ç
+                //ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì¸ì§€ ê²€ì‚¬
                 for (int i = 0; i < InventorySlots.Length; i++)
                 {
                     if (Vector2.Distance(ClickedUIPos, InventorySlots[i].GetComponent<RectTransform>().anchoredPosition) <= 10)
                     {
-                        if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0 && LockObjects[i].activeSelf == false)//ºñ¾îÀÖÁö ¾ÊÀ»¶§//Àá°ÜÀÖÁö ¾ÊÀ»¶§
+                        if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0 && LockObjects[i].activeSelf == false)//ë¹„ì–´ìˆì§€ ì•Šì„ë•Œ//ì ê²¨ìˆì§€ ì•Šì„ë•Œ
                         {
                             SoundManager.Instance.PlayUISFX("Item_PickUp");
                             IsClickedInventorySlot = true;
-                            //µé°í ÀÖ´Â ¾ÆÀÌÅÛÀÇ Á¤º¸ ÀúÀå
+                            //ë“¤ê³  ìˆëŠ” ì•„ì´í…œì˜ ì •ë³´ ì €ì¥
                             CurrentClickedSlotIndex = i;
                             CurrentBringItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i];
-                            //¸¶¿ì½º¸¦ µû¶ó´Ù´Ï´Â ÀÌ¹ÌÁö¸¦ ¸¶¿ì½º À§Ä¡¿¡ À§Ä¡½ÃÅ°°í ÀÌ¹ÌÁö¸¦ ¹Ù²Ş
+                            //ë§ˆìš°ìŠ¤ë¥¼ ë”°ë¼ë‹¤ë‹ˆëŠ” ì´ë¯¸ì§€ë¥¼ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì— ìœ„ì¹˜ì‹œí‚¤ê³  ì´ë¯¸ì§€ë¥¼ ë°”ê¿ˆ
                             MouseFollowImage.gameObject.SetActive(true);
                             MouseFollowImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                             MoveUI(eventData);
-                            //Å¬¸¯ÇÑ ½½·ÔÀÇ ÀÌ¹ÌÁö¸¦ Àá½Ã ²¨µÒ
+                            //í´ë¦­í•œ ìŠ¬ë¡¯ì˜ ì´ë¯¸ì§€ë¥¼ ì ì‹œ êº¼ë‘ 
                             InventorySlotsImage[i].gameObject.SetActive(false);
-                            //Æ¼¾î ÅØ½ºÆ®µµ Àá½Ã ²¨µÒ
+                            //í‹°ì–´ í…ìŠ¤íŠ¸ë„ ì ì‹œ êº¼ë‘ 
                             InventorySlotTierTexts[i].text = "";
                         }
-                        //ÀÎº¥Åä¸®Ä­ ¾ÆÀÌÅÛ Å¬¸¯
+                        //ì¸ë²¤í† ë¦¬ì¹¸ ì•„ì´í…œ í´ë¦­
                         DisplayEquipDetailInfo(false);
                         break;
                     }
@@ -981,38 +1028,38 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             DropDownItemCode = 0;
             Vector2 ClickedUIPos = eventData.pointerEnter.GetComponent<RectTransform>().anchoredPosition;
 
-            if (PlayerEquipIndex != -1)//Àåºñ Ä­¿¡¼­ Å¬¸¯ÇßÀ»¶§//ÀåºñÄ­¿¡¼­ ÀÎº¥Åä¸® OR ÀåºñÄ­
+            if (PlayerEquipIndex != -1)//ì¥ë¹„ ì¹¸ì—ì„œ í´ë¦­í–ˆì„ë•Œ//ì¥ë¹„ì¹¸ì—ì„œ ì¸ë²¤í† ë¦¬ OR ì¥ë¹„ì¹¸
             {
-                if (eventData.pointerEnter.tag == "InventorySlot")//¸¶¿ì½º¸¦ ³õÀº °÷ÀÌ ½½·ÔÀÏ¶§
+                if (eventData.pointerEnter.tag == "InventorySlot")//ë§ˆìš°ìŠ¤ë¥¼ ë†“ì€ ê³³ì´ ìŠ¬ë¡¯ì¼ë•Œ
                 {
                     SoundManager.Instance.PlayUISFX("Item_PutDown");
                     bool IsEquipmentSlot = true;
-                    //ÀÎº¥Åä¸® Ä­ÀÎÁö °Ë»ç
+                    //ì¸ë²¤í† ë¦¬ ì¹¸ì¸ì§€ ê²€ì‚¬
                     for (int i = 0; i < InventorySlots.Length; i++)
                     {
                         if (Vector2.Distance(ClickedUIPos, InventorySlots[i].GetComponent<RectTransform>().anchoredPosition) <= 10)
                         {
-                            //¿©±â¿¡ ÇÑ¹øÀÌ¶óµµ µé¾î°¬´Ù´Â°Í = ¸¶¿ì½º¸¦ ¶© ½½·ÔÀÌ Àåºñ ½½·ÔÀÌ ¾Æ´Ô
+                            //ì—¬ê¸°ì— í•œë²ˆì´ë¼ë„ ë“¤ì–´ê°”ë‹¤ëŠ”ê²ƒ = ë§ˆìš°ìŠ¤ë¥¼ ë• ìŠ¬ë¡¯ì´ ì¥ë¹„ ìŠ¬ë¡¯ì´ ì•„ë‹˜
                             IsEquipmentSlot = false;
-                            if (LockObjects[i].activeSelf == true)//Àá°Ü ÀÖÀ»¶§
+                            if (LockObjects[i].activeSelf == true)//ì ê²¨ ìˆì„ë•Œ
                             {
-                                //¿ø·¡ À§Ä¡·Î
+                                //ì›ë˜ ìœ„ì¹˜ë¡œ
                                 PlayerEquipImages[PlayerEquipIndex].gameObject.SetActive(true);
                                 PlayerEquipTierText[PlayerEquipIndex].text = GetTierText(CurrentBringItemCode);
                             }
-                            else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//ºñ¾îÀÖÁö ¾ÊÀ»‹š//Àá°Ü ÀÖÁö ¾ÊÀ¸¸é¼­ ºñ¾îÀÖÁö ¾ÊÀ»¶§
+                            else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//ë¹„ì–´ìˆì§€ ì•Šì„ë–„//ì ê²¨ ìˆì§€ ì•Šìœ¼ë©´ì„œ ë¹„ì–´ìˆì§€ ì•Šì„ë•Œ
                             {
                                 if((CurrentBringItemCode / 10) % 10 == 
-                                    (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] / 10) % 10)//ºñ¾îÀÖÁö ¾Ê¾ÒÀ»¶§ ÀåºñÀÇ Å¸ÀÔÀÌ °°´Ù¸é
-                                {//¹Ù²Ù±â
-                                    //¶³¾î¶ß¸®´Â °÷ÀÇ index¹øÈ£¿Í Àåºñ ÄÚµå¸¦ ÀúÀå
+                                    (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] / 10) % 10)//ë¹„ì–´ìˆì§€ ì•Šì•˜ì„ë•Œ ì¥ë¹„ì˜ íƒ€ì…ì´ ê°™ë‹¤ë©´
+                                {//ë°”ê¾¸ê¸°
+                                    //ë–¨ì–´ëœ¨ë¦¬ëŠ” ê³³ì˜ indexë²ˆí˜¸ì™€ ì¥ë¹„ ì½”ë“œë¥¼ ì €ì¥
                                     DropDownSlotIndex = i;
                                     DropDownItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i];
-                                    //¶³¾î¶ß¸° °÷ÀÇ ½½·Ô¿¡ Áı¾ú´ø Àåºñ µ¤¾î ¾²±â
+                                    //ë–¨ì–´ëœ¨ë¦° ê³³ì˜ ìŠ¬ë¡¯ì— ì§‘ì—ˆë˜ ì¥ë¹„ ë®ì–´ ì“°ê¸°
                                     InventorySlotsImage[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                     InventorySlotTierTexts[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
                                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[DropDownSlotIndex] = CurrentBringItemCode;
-                                    //Áı¾ú´ø ½½·Ô¿¡ ¶³¾î¶ß¸°°÷ÀÇ Àåºñ ³Ö±â
+                                    //ì§‘ì—ˆë˜ ìŠ¬ë¡¯ì— ë–¨ì–´ëœ¨ë¦°ê³³ì˜ ì¥ë¹„ ë„£ê¸°
                                     PlayerEquipImages[PlayerEquipIndex].gameObject.SetActive(true);
                                     PlayerEquipImages[PlayerEquipIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(DropDownItemCode).EquipmentImage;
                                     PlayerEquipTierText[PlayerEquipIndex].text = GetTierText(DropDownItemCode);
@@ -1035,21 +1082,21 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                             break;
                                     }
                                 }
-                                else//°°Áö ¾Ê´Ù¸é
-                                {//¿ø·¡ À§Ä¡·Î
+                                else//ê°™ì§€ ì•Šë‹¤ë©´
+                                {//ì›ë˜ ìœ„ì¹˜ë¡œ
                                     PlayerEquipImages[PlayerEquipIndex].gameObject.SetActive(true);
                                     PlayerEquipTierText[PlayerEquipIndex].text = GetTierText(CurrentBringItemCode);
                                 }
                             }
-                            else//ºñ¾îÀÖ´Ù¸é
+                            else//ë¹„ì–´ìˆë‹¤ë©´
                             {
-                                //ºñ¾îÀÖ´Â °÷¿¡ ³Ö°í
+                                //ë¹„ì–´ìˆëŠ” ê³³ì— ë„£ê³ 
                                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] = CurrentBringItemCode;
                                 InventorySlotsImage[i].gameObject.SetActive(true);
                                 InventorySlotsImage[i].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                 InventorySlotTierTexts[i].text = GetTierText(CurrentBringItemCode);
-                                //Àåºñ Ä­Àº ºñ¿ì°í
-                                //ÀÌ¹Ì UI»óÀ¸·Î´Â ºñ¿öÁ® ÀÖÀ½
+                                //ì¥ë¹„ ì¹¸ì€ ë¹„ìš°ê³ 
+                                //ì´ë¯¸ UIìƒìœ¼ë¡œëŠ” ë¹„ì›Œì ¸ ìˆìŒ
                                 switch (PlayerEquipIndex)
                                 {
                                     case (int)EPlayerEquip.Helmet:
@@ -1073,16 +1120,16 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                         }
                     }
 
-                    if(IsEquipmentSlot == true)//Àåºñ ½½·ÔÀÌ¿³´Ù¸é
-                    {//¿ø·¡ ÀÚ¸®·Î
+                    if(IsEquipmentSlot == true)//ì¥ë¹„ ìŠ¬ë¡¯ì´ì—¿ë‹¤ë©´
+                    {//ì›ë˜ ìë¦¬ë¡œ
                         PlayerEquipImages[PlayerEquipIndex].gameObject.SetActive(true);
                         PlayerEquipTierText[PlayerEquipIndex].text = GetTierText(CurrentBringItemCode);
                     }
                 }
-                else if (eventData.pointerEnter.name == "TrashCan")//¸¶¿ì½º¸¦ ³õÀº °÷ÀÌ ¾²·¹±â ÅëÀÏ¶§
+                else if (eventData.pointerEnter.name == "TrashCan")//ë§ˆìš°ìŠ¤ë¥¼ ë†“ì€ ê³³ì´ ì“°ë ˆê¸° í†µì¼ë•Œ
                 {
                     SoundManager.Instance.PlayUISFX("Item_Remove");
-                    //ºñ¿ì±â
+                    //ë¹„ìš°ê¸°
                     switch (PlayerEquipIndex)
                     {
                         case (int)EPlayerEquip.Helmet:
@@ -1102,67 +1149,67 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             break;
                     }
                 }
-                else//¹½µµ ¾Æ´Ò¶§
-                {//¿ø·¡ ÀÚ¸®·Î
+                else//ë­£ë„ ì•„ë‹ë•Œ
+                {//ì›ë˜ ìë¦¬ë¡œ
                     SoundManager.Instance.PlayUISFX("Item_PutDown");
                     PlayerEquipImages[PlayerEquipIndex].gameObject.SetActive(true);
                     PlayerEquipTierText[PlayerEquipIndex].text = GetTierText(CurrentBringItemCode);
                 }
             }
-            else//Å¬¸¯(PointDown)ÇÑ ½½·ÔÀÌ ÀÎº¥Åä¸® ½½·ÔÀÏ¶§//ÀÎº¥Åä¸®¿¡¼­ ÀåºñÄ­ OR ÀÎº¥Åä¸®·Î
+            else//í´ë¦­(PointDown)í•œ ìŠ¬ë¡¯ì´ ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì¼ë•Œ//ì¸ë²¤í† ë¦¬ì—ì„œ ì¥ë¹„ì¹¸ OR ì¸ë²¤í† ë¦¬ë¡œ
             {
-                if (eventData.pointerEnter.tag == "InventorySlot")//¸¶¿ì½º¸¦ ³õÀº °÷ÀÌ ½½·ÔÀÏ¶§
+                if (eventData.pointerEnter.tag == "InventorySlot")//ë§ˆìš°ìŠ¤ë¥¼ ë†“ì€ ê³³ì´ ìŠ¬ë¡¯ì¼ë•Œ
                 {
                     SoundManager.Instance.PlayUISFX("Item_PutDown");
                     bool IsEquipmentSlot = true;
-                    //ÀÎº¥Åä¸® Ä­ÀÎÁö °Ë»ç
+                    //ì¸ë²¤í† ë¦¬ ì¹¸ì¸ì§€ ê²€ì‚¬
                     for (int i = 0; i < InventorySlots.Length; i++)
                     {
                         if (Vector2.Distance(ClickedUIPos, InventorySlots[i].GetComponent<RectTransform>().anchoredPosition) <= 10)
                         {
-                            //¿©±â¿¡ ÇÑ¹øÀÌ¶óµµ µé¾î°¬´Ù´Â°Í = ¸¶¿ì½º¸¦ ¶© ½½·ÔÀÌ Àåºñ ½½·ÔÀÌ ¾Æ´Ô
+                            //ì—¬ê¸°ì— í•œë²ˆì´ë¼ë„ ë“¤ì–´ê°”ë‹¤ëŠ”ê²ƒ = ë§ˆìš°ìŠ¤ë¥¼ ë• ìŠ¬ë¡¯ì´ ì¥ë¹„ ìŠ¬ë¡¯ì´ ì•„ë‹˜
                             IsEquipmentSlot = false;
-                            if (LockObjects[i].activeSelf == true)//Àá°Ü ÀÖÀ»¶§
+                            if (LockObjects[i].activeSelf == true)//ì ê²¨ ìˆì„ë•Œ
                             {
-                                //¿ø·¡ À§Ä¡·Î
+                                //ì›ë˜ ìœ„ì¹˜ë¡œ
                                 InventorySlotsImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                                 InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
                             }
-                            else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//ºñ¾îÀÖÁö ¾ÊÀ»‹š//Àá°Ü ÀÖÁö ¾ÊÀ¸¸é¼­ ºñ¾îÀÖÁö ¾ÊÀ»¶§
+                            else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)//ë¹„ì–´ìˆì§€ ì•Šì„ë–„//ì ê²¨ ìˆì§€ ì•Šìœ¼ë©´ì„œ ë¹„ì–´ìˆì§€ ì•Šì„ë•Œ
                             {
-                                //¶³¾î¶ß¸®´Â °÷ÀÇ ¹øÈ£¿Í ÀåºñÄÚµå¸¦ ÀúÀå
+                                //ë–¨ì–´ëœ¨ë¦¬ëŠ” ê³³ì˜ ë²ˆí˜¸ì™€ ì¥ë¹„ì½”ë“œë¥¼ ì €ì¥
                                 DropDownSlotIndex = i;
                                 DropDownItemCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[DropDownSlotIndex];
-                                //¶³¾î¶ß¸° °÷ÀÇ ½½·Ô¿¡ Áı¾ú´ø Àåºñ¸¦ µ¤¾î ¾²±â
+                                //ë–¨ì–´ëœ¨ë¦° ê³³ì˜ ìŠ¬ë¡¯ì— ì§‘ì—ˆë˜ ì¥ë¹„ë¥¼ ë®ì–´ ì“°ê¸°
                                 InventorySlotsImage[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                 InventorySlotTierTexts[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
                                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[DropDownSlotIndex] = CurrentBringItemCode;
-                                //Àåºñ¸¦ Áı¾ú´ø ½½·Ô¿¡ ¶³¾î¶ß¸° °÷ÀÇ Àåºñ¸¦ µ¤¾î ¾²±â
+                                //ì¥ë¹„ë¥¼ ì§‘ì—ˆë˜ ìŠ¬ë¡¯ì— ë–¨ì–´ëœ¨ë¦° ê³³ì˜ ì¥ë¹„ë¥¼ ë®ì–´ ì“°ê¸°
                                 InventorySlotsImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                                 InventorySlotsImage[CurrentClickedSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(DropDownItemCode).EquipmentImage;
                                 InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(DropDownItemCode);
                                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = DropDownItemCode;
                             }
-                            else//ºñ¾îÀÖ´Ù¸é
+                            else//ë¹„ì–´ìˆë‹¤ë©´
                             {
-                                //ºñ¾îÀÖ´Â °÷¿¡ ³Ö°í
+                                //ë¹„ì–´ìˆëŠ” ê³³ì— ë„£ê³ 
                                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] = CurrentBringItemCode;
                                 InventorySlotsImage[i].gameObject.SetActive(true);
                                 InventorySlotsImage[i].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                 InventorySlotTierTexts[i].text = GetTierText(CurrentBringItemCode);
-                                //¿ø·¡ Ä­Àº ºñ¿ì°í
+                                //ì›ë˜ ì¹¸ì€ ë¹„ìš°ê³ 
                                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                             }
                             break;
                         }
                     }
 
-                    if (IsEquipmentSlot == true)//Àåºñ ½½·ÔÀÌ¿³´Ù¸é
+                    if (IsEquipmentSlot == true)//ì¥ë¹„ ìŠ¬ë¡¯ì´ì—¿ë‹¤ë©´
                     {
                         for(int i = 0; i < PlayerEquipSlots.Length; i++)
                         {
                             if(Vector2.Distance(ClickedUIPos, PlayerEquipSlots[i].GetComponent<RectTransform>().anchoredPosition) <= 10)
-                            {//ÀåºñÄ­¿¡¼­ Å¬¸¯ÀÌ ¶§Á³À»¶§
+                            {//ì¥ë¹„ì¹¸ì—ì„œ í´ë¦­ì´ ë•Œì¡Œì„ë•Œ
                                 DropDownSlotIndex = i;
                                 switch (i)
                                 {
@@ -1183,67 +1230,67 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                         break;
                                 }
 
-                                if(DropDownItemCode == 0)//ºñ¾îÀÖ´Ù¸é//¸Â°Ô ³Ö¾î¾ß ÇÏ´Âµğ.....
+                                if(DropDownItemCode == 0)//ë¹„ì–´ìˆë‹¤ë©´//ë§ê²Œ ë„£ì–´ì•¼ í•˜ëŠ”ë””.....
                                 {
                                     if ((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeWeapon && DropDownSlotIndex == (int)EPlayerEquip.Weapon)
-                                    {//CurrentBringItemCodeÀÇ ¾ÕÀÚ¸®°¡ 1 : ¹«±â -> 1ÀÌ¶ó¸é ÀÎµ¦½º 3¹ø Ä­ÀÏ¶§ ok -> ³Ö±â
-                                        //³Ö±â
+                                    {//CurrentBringItemCodeì˜ ì•ìë¦¬ê°€ 1 : ë¬´ê¸° -> 1ì´ë¼ë©´ ì¸ë±ìŠ¤ 3ë²ˆ ì¹¸ì¼ë•Œ ok -> ë„£ê¸°
+                                        //ë„£ê¸°
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode = CurrentBringItemCode;
                                         PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
                                         PlayerEquipImages[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                         PlayerEquipTierText[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
-                                        //¿ø·¡ Ä­Àº ºñ¿ì°í
+                                        //ì›ë˜ ì¹¸ì€ ë¹„ìš°ê³ 
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
                                     else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeArmor && DropDownSlotIndex == (int)EPlayerEquip.Armor)
-                                    {//CurrentBringItemCodeÀÇ ¾ÕÀÚ¸®°¡ 2 : °©¿Ê -> 2¶ó¸é ÀÎµ¦½º 1¹ø Ä­ÀÏ¶§ ok -> ³Ö±â
-                                        //³Ö±â
+                                    {//CurrentBringItemCodeì˜ ì•ìë¦¬ê°€ 2 : ê°‘ì˜· -> 2ë¼ë©´ ì¸ë±ìŠ¤ 1ë²ˆ ì¹¸ì¼ë•Œ ok -> ë„£ê¸°
+                                        //ë„£ê¸°
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode = CurrentBringItemCode;
                                         PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
                                         PlayerEquipImages[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                         PlayerEquipTierText[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
-                                        //¿ø·¡ Ä­Àº ºñ¿ì°í
+                                        //ì›ë˜ ì¹¸ì€ ë¹„ìš°ê³ 
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
                                     else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeHelmet && DropDownSlotIndex == (int)EPlayerEquip.Helmet)
-                                    {//CurrentBringItemCodeÀÇ ¾ÕÀÚ¸®°¡ 3 : Åõ±¸ -> 3ÀÌ¶ó¸é ÀÎµ¦½º 0¹ø Ä­ÀÏ¶§ ok -> ³Ö±â
-                                        //³Ö±â
+                                    {//CurrentBringItemCodeì˜ ì•ìë¦¬ê°€ 3 : íˆ¬êµ¬ -> 3ì´ë¼ë©´ ì¸ë±ìŠ¤ 0ë²ˆ ì¹¸ì¼ë•Œ ok -> ë„£ê¸°
+                                        //ë„£ê¸°
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode = CurrentBringItemCode;
                                         PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
                                         PlayerEquipImages[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                         PlayerEquipTierText[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
-                                        //¿ø·¡ Ä­Àº ºñ¿ì°í
+                                        //ì›ë˜ ì¹¸ì€ ë¹„ìš°ê³ 
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
                                     else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeBoots && DropDownSlotIndex == (int)EPlayerEquip.Boots)
-                                    {//CurrentBringItemCodeÀÇ ¾ÕÀÚ¸®°¡ 4 : ½Å¹ß -> 4¶ó¸é ÀÎµ¦½º 2¹ø Ä­ÀÏ¶§ ok -> ³Ö±â
-                                        //³Ö±â
+                                    {//CurrentBringItemCodeì˜ ì•ìë¦¬ê°€ 4 : ì‹ ë°œ -> 4ë¼ë©´ ì¸ë±ìŠ¤ 2ë²ˆ ì¹¸ì¼ë•Œ ok -> ë„£ê¸°
+                                        //ë„£ê¸°
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode = CurrentBringItemCode;
                                         PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
                                         PlayerEquipImages[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                         PlayerEquipTierText[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
-                                        //¿ø·¡ Ä­Àº ºñ¿ì°í
+                                        //ì›ë˜ ì¹¸ì€ ë¹„ìš°ê³ 
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
                                     else if((CurrentBringItemCode / 10) % 10 == (int)EEquipType.TypeAcc && DropDownSlotIndex == (int)EPlayerEquip.Accessories)
-                                    {//CurrentBringItemCodeÀÇ ¾ÕÀÚ¸®°¡ 5 : Àå½Å±¸ -> 5¶ó¸é ÀÎµ¦½º 4¹ø Ä­ ÀÏ¶§ ok -> ³Ö±â
-                                     //³Ö±â
+                                    {//CurrentBringItemCodeì˜ ì•ìë¦¬ê°€ 5 : ì¥ì‹ êµ¬ -> 5ë¼ë©´ ì¸ë±ìŠ¤ 4ë²ˆ ì¹¸ ì¼ë•Œ ok -> ë„£ê¸°
+                                     //ë„£ê¸°
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode = CurrentBringItemCode;
                                         PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
                                         PlayerEquipImages[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                         PlayerEquipTierText[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
-                                        //¿ø·¡ Ä­Àº ºñ¿ì°í
+                                        //ì›ë˜ ì¹¸ì€ ë¹„ìš°ê³ 
                                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                                     }
                                     else
-                                    {//À§¿¡²¨¿¡ ÇØ´çÇÏÁö ¾Ê´Â´Ù¸é ¿ø·¡ ÀÚ¸®·Î
+                                    {//ìœ„ì—êº¼ì— í•´ë‹¹í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ì›ë˜ ìë¦¬ë¡œ
                                         InventorySlotsImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                                         InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
                                     }
                                 }
-                                else if((CurrentBringItemCode / 10) % 10 == (DropDownItemCode / 10) % 10)//°°Àº Å¸ÀÔÀÇ Àåºñ¶ó¸é ±³Ã¼
-                                {//¹Ù²Ù±â
-                                    //ÀÎº¥Åä¸® Àåºñ -> Âø¿ë Àåºñ
+                                else if((CurrentBringItemCode / 10) % 10 == (DropDownItemCode / 10) % 10)//ê°™ì€ íƒ€ì…ì˜ ì¥ë¹„ë¼ë©´ êµì²´
+                                {//ë°”ê¾¸ê¸°
+                                    //ì¸ë²¤í† ë¦¬ ì¥ë¹„ -> ì°©ìš© ì¥ë¹„
                                     PlayerEquipImages[DropDownSlotIndex].gameObject.SetActive(true);
                                     PlayerEquipImages[DropDownSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                                     PlayerEquipTierText[DropDownSlotIndex].text = GetTierText(CurrentBringItemCode);
@@ -1265,14 +1312,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                                             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode = CurrentBringItemCode;
                                             break;
                                     }
-                                    //Âø¿ë Àåºñ -> ÀÎº¥Åä¸® Àåºñ
+                                    //ì°©ìš© ì¥ë¹„ -> ì¸ë²¤í† ë¦¬ ì¥ë¹„
                                     InventorySlotsImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                                     InventorySlotsImage[CurrentClickedSlotIndex].sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(DropDownItemCode).EquipmentImage;
                                     InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(DropDownItemCode);
                                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = DropDownItemCode;
                                 }
                                 else
-                                {//¹½µµ ¾Æ´Ï¸é ¿ø·¡ ÀÚ¸®·Î
+                                {//ë­£ë„ ì•„ë‹ˆë©´ ì›ë˜ ìë¦¬ë¡œ
                                     InventorySlotsImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                                     InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
                                 }
@@ -1285,15 +1332,15 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                         */
                     }
                 }
-                else if (eventData.pointerEnter.name == "TrashCan")//¸¶¿ì½º¸¦ ³õÀº °÷ÀÌ ¾²·¹±â ÅëÀÏ¶§
+                else if (eventData.pointerEnter.name == "TrashCan")//ë§ˆìš°ìŠ¤ë¥¼ ë†“ì€ ê³³ì´ ì“°ë ˆê¸° í†µì¼ë•Œ
                 {
-                    //Àåºñ¸¦ Àâ¾Ò´ø ½½·Ô ºñ¿ì±â
+                    //ì¥ë¹„ë¥¼ ì¡ì•˜ë˜ ìŠ¬ë¡¯ ë¹„ìš°ê¸°
                     SoundManager.Instance.PlayUISFX("Item_Remove");
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[CurrentClickedSlotIndex] = 0;
                     InventorySlotTierTexts[CurrentClickedSlotIndex].text = "";
                 }
-                else//¹½µµ ¾Æ´Ò¶§
-                {//¿ø·¡ ÀÚ¸®·Î
+                else//ë­£ë„ ì•„ë‹ë•Œ
+                {//ì›ë˜ ìë¦¬ë¡œ
                     SoundManager.Instance.PlayUISFX("Item_PutDown");
                     InventorySlotsImage[CurrentClickedSlotIndex].gameObject.SetActive(true);
                     InventorySlotTierTexts[CurrentClickedSlotIndex].text = GetTierText(CurrentBringItemCode);
@@ -1321,11 +1368,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         MouseFollowImage.transform.position = gameObject.GetComponentInParent<Canvas>().transform.TransformPoint(localPoint);
     }
 
-    private void DisplayEquipDetailInfo(bool IsEquipedEquipment)//Àåºñ¸¦ Å¬¸¯ÇÏ¸é ÀÚ¼¼ÇÑ Á¤º¸¸¦ Ãâ·ÂÇÑ´Ù.
-    {//true¸é ÀåºñÄ­À» Å¬¸¯ÇÑ°Å°í, false¸é ÀÎº¥Åä¸®¸¦ Å¬¸¯ÇÑ°ÅÀÓ
-        if(IsEquipedEquipment == true)//ÀåºñÄ­¿¡ ÀÖ´Â ¾ÆÀÌÅÛ Å¬¸¯
-        {//-> ¿À¸¥ÂÊ Detail¸¸ Ãâ·ÂÇÏ¸é µÊ
-            //CurrentBringItemCode -> 0ÀÏ¶§´Â ¾È µé¾î¿È
+    private void DisplayEquipDetailInfo(bool IsEquipedEquipment)//ì¥ë¹„ë¥¼ í´ë¦­í•˜ë©´ ìì„¸í•œ ì •ë³´ë¥¼ ì¶œë ¥í•œë‹¤.
+    {//trueë©´ ì¥ë¹„ì¹¸ì„ í´ë¦­í•œê±°ê³ , falseë©´ ì¸ë²¤í† ë¦¬ë¥¼ í´ë¦­í•œê±°ì„
+        if(IsEquipedEquipment == true)//ì¥ë¹„ì¹¸ì— ìˆëŠ” ì•„ì´í…œ í´ë¦­
+        {//-> ì˜¤ë¥¸ìª½ Detailë§Œ ì¶œë ¥í•˜ë©´ ë¨
+            //CurrentBringItemCode -> 0ì¼ë•ŒëŠ” ì•ˆ ë“¤ì–´ì˜´
             EquipmentInfo EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode);
             EquipDetail_EquipImage.gameObject.SetActive(true);
             EquipDetail_EquipImage.sprite = EquipedEquipmentInfo.EquipmentImage;
@@ -1333,19 +1380,21 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
 
             int EquipType = (CurrentBringItemCode / 10) % 10;
-
+            StartCoroutine(LoadEquipSpendSTA(EquipType, (int)EquipedEquipmentInfo.SpendTiredness, true));
+            /*
             if (EquipType == (int)EEquipType.TypeWeapon)
-                EquipDetail_EquipSTAText.text = "°ø°İ½Ã ÇÇ·Îµµ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                EquipDetail_EquipSTAText.text = "ê³µê²©ì‹œ í”¼ë¡œë„ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
             else if (EquipType == (int)EEquipType.TypeArmor)
-                EquipDetail_EquipSTAText.text = "¹æ¾î½Ã ÇÇ·Îµµ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                EquipDetail_EquipSTAText.text = "ë°©ì–´ì‹œ í”¼ë¡œë„ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
             else if (EquipType == (int)EEquipType.TypeHelmet)
-                EquipDetail_EquipSTAText.text = "ÇÇ·Îµµ È¸º¹½Ã ÇÇ·Îµµ´Â »ç¿ëµÇÁö ¾Ê½À´Ï´Ù.";
+                EquipDetail_EquipSTAText.text = "í”¼ë¡œë„ íšŒë³µì‹œ í”¼ë¡œë„ëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
             else if (EquipType == (int)EEquipType.TypeBoots)
-                EquipDetail_EquipSTAText.text = "½Å¹ßÀº ÇÇ·Îµµ¸¦ »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.";
+                EquipDetail_EquipSTAText.text = "ì‹ ë°œì€ í”¼ë¡œë„ë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
             else if (EquipType == (int)EEquipType.TypeAcc)
-                EquipDetail_EquipSTAText.text = "Àå½Å±¸´Â ÇÇ·Îµµ¸¦ »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.";
+                EquipDetail_EquipSTAText.text = "ì¥ì‹ êµ¬ëŠ” í”¼ë¡œë„ë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
             else
                 EquipDetail_EquipSTAText.text = "";
+            */
 
             EquipDetail_EquipSTRText.text = EquipedEquipmentInfo.AddSTRAmount.ToString();
             EquipDetail_EquipDURText.text = EquipedEquipmentInfo.AddDURAmount.ToString();
@@ -1354,16 +1403,16 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_EquipLUKText.text = EquipedEquipmentInfo.AddLUKAmount.ToString();
             EquipDetail_EquipDetailText.text = EquipedEquipmentInfo.EquipmentDetail.ToString();
 
-            //È°¼ºÈ­ ÇÏ±âÀü¿¡ ÇÑ¹ø ´Ù ÃÊ±âÈ­
+            //í™œì„±í™” í•˜ê¸°ì „ì— í•œë²ˆ ë‹¤ ì´ˆê¸°í™”
             foreach(GameObject obj in EquipDetail_EquipCardContainer)
                 obj.SetActive(false);
             for (int i = 0; i < EquipedEquipmentInfo.EquipmentSlots.Length; i++)
             {
-                //È°¼ºÈ­
+                //í™œì„±í™”
                 EquipDetail_EquipCardContainer[i].SetActive(true);
                 EquipDetail_EquipCardContainer[i].GetComponent<EquipmentDetailCardContainerUI>().SetActiveCards(EquipedEquipmentInfo.EquipmentSlots[i].SlotState);
             }
-            //¿À¸¥ÂÊÀÇ Á¤º¸Ã¢Àº ¾Æ¿¹ ºñ¿ì±â
+            //ì˜¤ë¥¸ìª½ì˜ ì •ë³´ì°½ì€ ì•„ì˜ˆ ë¹„ìš°ê¸°
             EquipDetail_InvenImage.gameObject.SetActive(false);
             EquipDetail_InvenTierText.text = "";
             EquipDetail_InvenNameText.text = "";
@@ -1379,10 +1428,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 Obj.SetActive(false);
             }
         }
-        else//ÀÎº¥Åä¸®¿¡ ÀÖ´Â ¾ÆÀÌÅÛ Å¬¸¯
-        {//-> ¿ŞÂÊ Detail, ¿À¸¥ÂÊ Detail´Ù Ãâ·Â ÇØ¾ßµÊ
-         //°°Àº Å¸ÀÔÀÇ Àåºñ°¡ ¾øÀ¸¸é ¿À¸¥ÂÊÀº Ãâ·Â x
-         //ÀÎº¥ÀÇ Àåºñ Ç¥½Ã
+        else//ì¸ë²¤í† ë¦¬ì— ìˆëŠ” ì•„ì´í…œ í´ë¦­
+        {//-> ì™¼ìª½ Detail, ì˜¤ë¥¸ìª½ Detailë‹¤ ì¶œë ¥ í•´ì•¼ë¨
+         //ê°™ì€ íƒ€ì…ì˜ ì¥ë¹„ê°€ ì—†ìœ¼ë©´ ì˜¤ë¥¸ìª½ì€ ì¶œë ¥ x
+         //ì¸ë²¤ì˜ ì¥ë¹„ í‘œì‹œ
             if(CurrentBringItemCode == 0 || CurrentBringItemCode == -1)
             {
                 return;
@@ -1395,36 +1444,36 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_InvenNameText.text = UnEquipedEquipment.EquipmentName;
 
             int EquipType = (CurrentBringItemCode / 10) % 10;
-
-            //ÀåºñÀÇ Á¾·ù 10ÀÇ ÀÚ¸®
-            if (EquipType == (int)EEquipType.TypeWeapon)//¹«±â
+            StartCoroutine(LoadEquipSpendSTA(EquipType, (int)UnEquipedEquipment.SpendTiredness, false));
+            //ì¥ë¹„ì˜ ì¢…ë¥˜ 10ì˜ ìë¦¬
+            if (EquipType == (int)EEquipType.TypeWeapon)//ë¬´ê¸°
             {
-                EquipDetail_InvenSTAText.text = "°ø°İ½Ã ÇÇ·Îµµ : " + UnEquipedEquipment.SpendTiredness.ToString();
+                //EquipDetail_InvenSTAText.text = "ê³µê²©ì‹œ í”¼ë¡œë„ : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
             }
-            else if (EquipType == (int)EEquipType.TypeArmor)//¹æ¾î±¸
+            else if (EquipType == (int)EEquipType.TypeArmor)//ë°©ì–´êµ¬
             {
-                EquipDetail_InvenSTAText.text = "¹æ¾î½Ã ÇÇ·Îµµ : " + UnEquipedEquipment.SpendTiredness.ToString();
+                //EquipDetail_InvenSTAText.text = "ë°©ì–´ì‹œ í”¼ë¡œë„ : " + UnEquipedEquipment.SpendTiredness.ToString();
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode;
             }
-            else if (EquipType == (int)EEquipType.TypeHelmet)//Åõ±¸
+            else if (EquipType == (int)EEquipType.TypeHelmet)//íˆ¬êµ¬
             {
-                EquipDetail_InvenSTAText.text = "ÇÇ·Îµµ È¸º¹½Ã ÇÇ·Îµµ´Â »ç¿ëµÇÁö ¾Ê½À´Ï´Ù.";
+                //EquipDetail_InvenSTAText.text = "í”¼ë¡œë„ íšŒë³µì‹œ í”¼ë¡œë„ëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode;
             }
-            else if (EquipType == (int)EEquipType.TypeBoots)//½Å¹ß
+            else if (EquipType == (int)EEquipType.TypeBoots)//ì‹ ë°œ
             {
-                EquipDetail_InvenSTAText.text = "½Å¹ßÀº ÇÇ·Îµµ¸¦ »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.";
+                //EquipDetail_InvenSTAText.text = "ì‹ ë°œì€ í”¼ë¡œë„ë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode;
             }
-            else if (EquipType == (int)EEquipType.TypeAcc)//Àå½Å±¸
+            else if (EquipType == (int)EEquipType.TypeAcc)//ì¥ì‹ êµ¬
             {
-                EquipDetail_InvenSTAText.text = "Àå½Å±¸´Â ÇÇ·Îµµ¸¦ »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.";
+                //EquipDetail_InvenSTAText.text = "ì¥ì‹ êµ¬ëŠ” í”¼ë¡œë„ë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
                 EquipedEquipmentCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode;
             }
             else
             {
-                EquipDetail_InvenSTAText.text = "";
+                //EquipDetail_InvenSTAText.text = "";
                 EquipedEquipmentCode = 0;
             }
 
@@ -1435,20 +1484,20 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipDetail_InvenLUKText.text = UnEquipedEquipment.AddLUKAmount.ToString();
             EquipDetail_InvenDetailText.text = UnEquipedEquipment.EquipmentDetail.ToString();
 
-            //È°¼ºÈ­ ÇÏ±âÀü¿¡ ÇÑ¹ø ´Ù ÃÊ±âÈ­
+            //í™œì„±í™” í•˜ê¸°ì „ì— í•œë²ˆ ë‹¤ ì´ˆê¸°í™”
             foreach (GameObject obj in EquipDetail_InvenCardContainer)
                 obj.SetActive(false);
             for (int i = 0; i < UnEquipedEquipment.EquipmentSlots.Length; i++)
             {
-                //È°¼ºÈ­
+                //í™œì„±í™”
                 EquipDetail_InvenCardContainer[i].SetActive(true);
                 EquipDetail_InvenCardContainer[i].GetComponent<EquipmentDetailCardContainerUI>().SetActiveCards(UnEquipedEquipment.EquipmentSlots[i].SlotState);
             }
-            //°°Àº Å¸ÀÔÀÇ Àåºñ°¡ ÀÖ°Å³ª È¤Àº ¾ø°Å³ª
+            //ê°™ì€ íƒ€ì…ì˜ ì¥ë¹„ê°€ ìˆê±°ë‚˜ í˜¹ì€ ì—†ê±°ë‚˜
             EquipmentInfo EquipedEquipmentInfo = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(EquipedEquipmentCode);
-            if (EquipedEquipmentCode == 0)//³¢°í ÀÖ´Â Àåºñ°¡ ¾øÀ»¶§
+            if (EquipedEquipmentCode == 0)//ë¼ê³  ìˆëŠ” ì¥ë¹„ê°€ ì—†ì„ë•Œ
             {
-                //¾Æ¿¹ ºñ¿ì±â
+                //ì•„ì˜ˆ ë¹„ìš°ê¸°
                 EquipDetail_EquipImage.gameObject.SetActive(false);
                 EquipDetail_EquipTierText.text = "";
                 EquipDetail_EquipNameText.text = "";
@@ -1464,25 +1513,27 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     Obj.SetActive(false);
                 }
             }
-            else//³¢°í ÀÖ´Â Àåºñ°¡ ÀÖÀ»¶§
+            else//ë¼ê³  ìˆëŠ” ì¥ë¹„ê°€ ìˆì„ë•Œ
             {
                 EquipDetail_EquipImage.gameObject.SetActive(true);
                 EquipDetail_EquipImage.sprite = EquipedEquipmentInfo.EquipmentImage;
                 EquipDetail_EquipTierText.text = GetTierText(EquipedEquipmentCode);
                 EquipDetail_EquipNameText.text = EquipedEquipmentInfo.EquipmentName;
-
+                StartCoroutine(LoadEquipSpendSTA(EquipType, (int)EquipedEquipmentInfo.SpendTiredness, true));
+                /*
                 if (EquipType == (int)EEquipType.TypeWeapon)
-                    EquipDetail_EquipSTAText.text = "°ø°İ½Ã ÇÇ·Îµµ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                    EquipDetail_EquipSTAText.text = "ê³µê²©ì‹œ í”¼ë¡œë„ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
                 else if (EquipType == (int)EEquipType.TypeArmor)
-                    EquipDetail_EquipSTAText.text = "¹æ¾î½Ã ÇÇ·Îµµ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
+                    EquipDetail_EquipSTAText.text = "ë°©ì–´ì‹œ í”¼ë¡œë„ : " + EquipedEquipmentInfo.SpendTiredness.ToString();
                 else if (EquipType == (int)EEquipType.TypeHelmet)
-                    EquipDetail_EquipSTAText.text = "ÇÇ·Îµµ È¸º¹½Ã ÇÇ·Îµµ´Â »ç¿ëµÇÁö ¾Ê½À´Ï´Ù.";
+                    EquipDetail_EquipSTAText.text = "í”¼ë¡œë„ íšŒë³µì‹œ í”¼ë¡œë„ëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
                 else if (EquipType == (int)EEquipType.TypeBoots)
-                    EquipDetail_EquipSTAText.text = "½Å¹ßÀº ÇÇ·Îµµ¸¦ »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.";
+                    EquipDetail_EquipSTAText.text = "ì‹ ë°œì€ í”¼ë¡œë„ë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
                 else if (EquipType == (int)EEquipType.TypeAcc)
-                    EquipDetail_EquipSTAText.text = "Àå½Å±¸´Â ÇÇ·Îµµ¸¦ »ç¿ëÇÏÁö ¾Ê½À´Ï´Ù.";
+                    EquipDetail_EquipSTAText.text = "ì¥ì‹ êµ¬ëŠ” í”¼ë¡œë„ë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.";
                 else
                     EquipDetail_EquipSTAText.text = "";
+                */
 
                 EquipDetail_EquipSTRText.text = EquipedEquipmentInfo.AddSTRAmount.ToString();
                 EquipDetail_EquipDURText.text = EquipedEquipmentInfo.AddDURAmount.ToString();
@@ -1491,12 +1542,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipDetail_EquipLUKText.text = EquipedEquipmentInfo.AddLUKAmount.ToString();
                 EquipDetail_EquipDetailText.text = EquipedEquipmentInfo.EquipmentDetail.ToString();
 
-                //È°¼ºÈ­ ÇÏ±âÀü¿¡ ÇÑ¹ø ´Ù ÃÊ±âÈ­
+                //í™œì„±í™” í•˜ê¸°ì „ì— í•œë²ˆ ë‹¤ ì´ˆê¸°í™”
                 foreach (GameObject obj in EquipDetail_EquipCardContainer)
                     obj.SetActive(false);
                 for (int i = 0; i < EquipedEquipmentInfo.EquipmentSlots.Length; i++)
                 {
-                    //È°¼ºÈ­
+                    //í™œì„±í™”
                     EquipDetail_EquipCardContainer[i].SetActive(true);
                     EquipDetail_EquipCardContainer[i].GetComponent<EquipmentDetailCardContainerUI>().SetActiveCards(EquipedEquipmentInfo.EquipmentSlots[i].SlotState);
                 }
@@ -1504,11 +1555,51 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         }
     }
 
+    private IEnumerator LoadEquipSpendSTA(int EquipType, int SpendSTAAmount, bool IsEquipedEquipment)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        string EquipSTATableKey = "";
+
+        if (EquipType == (int)EEquipType.TypeWeapon)
+            EquipSTATableKey = "PS_SC_WeaponSTA";
+        else if (EquipType == (int)EEquipType.TypeArmor)
+            EquipSTATableKey = "PS_SC_ArmorSTA";
+        else if (EquipType == (int)EEquipType.TypeHelmet)
+            EquipSTATableKey = "PS_SC_HelmetSTA";
+        else if (EquipType == (int)EEquipType.TypeBoots)
+            EquipSTATableKey = "PS_SC_BootsSTA";
+        else if (EquipType == (int)EEquipType.TypeAcc)
+            EquipSTATableKey = "PS_SC_AccSTA";
+
+        if (EquipSTATableKey == "")
+            EquipSTATableKey = "PS_SC_EquipSTAError";
+
+        var EquipmentTable = LocalizationSettings.StringDatabase.GetTable("PlaySceneShortText");
+
+        if(IsEquipedEquipment == true)
+        {//ë¼ê³  ìˆëŠ” ì¥ë¹„
+            EquipDetail_EquipSTAText.text = EquipmentTable.GetEntry(EquipSTATableKey).GetLocalizedString();
+            if(EquipType == (int)EEquipType.TypeWeapon || EquipType == (int)EEquipType.TypeArmor)
+            {
+                EquipDetail_EquipSTAText.text += SpendSTAAmount.ToString();
+            }
+        }
+        else
+        {//ì¸ë²¤í† ë¦¬ ì† ì¥ë¹„
+            EquipDetail_InvenSTAText.text = EquipmentTable.GetEntry(EquipSTATableKey).GetLocalizedString();
+            if (EquipType == (int)EEquipType.TypeWeapon || EquipType == (int)EEquipType.TypeArmor)
+            {
+                EquipDetail_InvenSTAText.text += SpendSTAAmount.ToString();
+            }
+        }
+    }
+
     public void PressEquipGamblingLevelUPButton()
     {
-        //°æÇèÄ¡°¡ ÁÙ¾îµç´Ù. //°æÇèÄ¡°¡ ¸ÕÀú ÁÙ¾îµé¾î¾ßÁö ·¹º§¿¡ ¸Â´Â °æÇèÄ¡°¡ ÁÙ¾îµë
-        //ÇÃ·¹ÀÌ¾îÀÇ »Ì±â ·¹º§ÀÌ ¿À¸¥´Ù.
-        //SetGamblingÀ¸·Î ui¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+        //ê²½í—˜ì¹˜ê°€ ì¤„ì–´ë“ ë‹¤. //ê²½í—˜ì¹˜ê°€ ë¨¼ì € ì¤„ì–´ë“¤ì–´ì•¼ì§€ ë ˆë²¨ì— ë§ëŠ” ê²½í—˜ì¹˜ê°€ ì¤„ì–´ë“¬
+        //í”Œë ˆì´ì–´ì˜ ë½‘ê¸° ë ˆë²¨ì´ ì˜¤ë¥¸ë‹¤.
+        //SetGamblingìœ¼ë¡œ uië¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
         SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingLevelUPCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel++;
@@ -1517,12 +1608,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void PressEquipGamblingGachaButton()//ActiveGacha
     {//
-        //°æÇèÄ¡°¡ ÁÙ¾îµç´Ù.
+        //ê²½í—˜ì¹˜ê°€ ì¤„ì–´ë“ ë‹¤.
         SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
-        //ÃÊ±âÈ­
-        //»ï°İÇü ÆÇ ÃÊ±âÈ­
-        EquipGachaTrianglePlate.gameObject.SetActive(true);//»ï°¢Çü ÆÇ
+        //ì´ˆê¸°í™”
+        //ì‚¼ê²©í˜• íŒ ì´ˆê¸°í™”
+        EquipGachaTrianglePlate.gameObject.SetActive(true);//ì‚¼ê°í˜• íŒ
         EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ZeroLightOn];
         EquipGachaIcon_TierGem.SetActive(false);
         EquipGachaIcon_StateType.SetActive(false);
@@ -1532,16 +1623,16 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         FinalEquipGachaCapsule.SetActive(false);
         FinalEquipGachaButton.SetActive(false);
         FinalEquipImage.gameObject.SetActive(false);
-        //Æ¼¾î º¸¼® »Ì´Â UI ÃÊ±âÈ­
+        //í‹°ì–´ ë³´ì„ ë½‘ëŠ” UI ì´ˆê¸°í™”
         EquipGachaObject.SetActive(true);
-        EquipGachaEquipmentObject.SetActive(true);//Àåºñ¸¦ °¨Ãß°í ÀÖ´Â Ä¸½¶°ú Àåºñ ÀÌ¹ÌÁö¸¦ °¡Áö°í ÀÖ´Â ¿ÀºêÁ§Æ®
+        EquipGachaEquipmentObject.SetActive(true);//ì¥ë¹„ë¥¼ ê°ì¶”ê³  ìˆëŠ” ìº¡ìŠê³¼ ì¥ë¹„ ì´ë¯¸ì§€ë¥¼ ê°€ì§€ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸
         EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
         EquipGachaCapsule.GetComponent<Image>().color = Color.white;
         EquipGachaCapsule.SetActive(true);
         EquipGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
         ClickButton.SetActive(false);
         GetEquipClickButton.SetActive(false);
-        //Àåºñ ¼ºÇâ, Àåºñ Á¾·ù, °ö ¼ºÇâ »Ì´Â UI ÃÊ±âÈ­(ÀÏ´ÜÀº ºÎ¸ğ¸¸ ²ô±â)
+        //ì¥ë¹„ ì„±í–¥, ì¥ë¹„ ì¢…ë¥˜, ê³± ì„±í–¥ ë½‘ëŠ” UI ì´ˆê¸°í™”(ì¼ë‹¨ì€ ë¶€ëª¨ë§Œ ë„ê¸°)
         GachaCardSelectObject.SetActive(false);
 
         for(int i = 0; i < EquipGachaLight.Length; i++)
@@ -1551,17 +1642,17 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipGachaLight[i].SetActive(false);
         }
         
-        //°á°ú·Î ³ª¿À´Â ÀåºñÀÇ ÀÌ¹ÌÁö¿Í ÀÎº¥Åä¸®¿¡ ¹Ì¸® ³Ö¾îµÒ, ¾îÂ¥ÇÇ ¾÷µ¥ÀÌÆ® ÇÏÁö ¾ÊÀ¸¸é UI(ÀÎº¥Åä¸®)¿¡¼­´Â ¾Èº¸ÀÌ´Ï±î
-        //GetGamblingEquipmentCode <- gambling ·¹º§¿¡ ¸Â´Â Àåºñ ÄÚµå ¹İÈ¯
-        //ÀÌÁ¦ ÀÌ°Å ÇÊ¿ä X ÄÚµå´Â Â÷±ÙÂ÷±Ù ¿Ï¼ºµÇ´Â ÇüÅÂÀÓ
-        //¿©±â ¾Æ·¡ºÎÅÍ´Â ³ªÁß¿¡ ºÒ·¯¿Í¾ßÇÒ ¾ÖµéÀÓ
+        //ê²°ê³¼ë¡œ ë‚˜ì˜¤ëŠ” ì¥ë¹„ì˜ ì´ë¯¸ì§€ì™€ ì¸ë²¤í† ë¦¬ì— ë¯¸ë¦¬ ë„£ì–´ë‘ , ì–´ì§œí”¼ ì—…ë°ì´íŠ¸ í•˜ì§€ ì•Šìœ¼ë©´ UI(ì¸ë²¤í† ë¦¬)ì—ì„œëŠ” ì•ˆë³´ì´ë‹ˆê¹Œ
+        //GetGamblingEquipmentCode <- gambling ë ˆë²¨ì— ë§ëŠ” ì¥ë¹„ ì½”ë“œ ë°˜í™˜
+        //ì´ì œ ì´ê±° í•„ìš” X ì½”ë“œëŠ” ì°¨ê·¼ì°¨ê·¼ ì™„ì„±ë˜ëŠ” í˜•íƒœì„
+        //ì—¬ê¸° ì•„ë˜ë¶€í„°ëŠ” ë‚˜ì¤‘ì— ë¶ˆëŸ¬ì™€ì•¼í•  ì• ë“¤ì„
         //GachaResultEquipCode = EquipmentInfoManager.Instance.GetGamblingEquipmentCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
         //EquipGachaResultImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
-        //ÀÌ°Ç ³ªÁß¿¡ È°¼ºÈ­
+        //ì´ê±´ ë‚˜ì¤‘ì— í™œì„±í™”
         //PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);
-        //¶ç¿ë¶ç¿ëÀÌ ³¡³ª¸é Å¬¸¯¹öÆ° È°¼ºÈ­
+        //ë„ìš©ë„ìš©ì´ ëë‚˜ë©´ í´ë¦­ë²„íŠ¼ í™œì„±í™”
         GachaTierNum = EquipmentInfoManager.Instance.GetGamblingTierCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
-        EquipGachaResultImage.sprite = GachaTierGemSprites[GachaTierNum - 1];//GachaTierNum´Â ÃÖ¼Ò 1ÀÌ ³ª¿È
+        EquipGachaResultImage.sprite = GachaTierGemSprites[GachaTierNum - 1];//GachaTierNumëŠ” ìµœì†Œ 1ì´ ë‚˜ì˜´
         EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
             OnComplete(() => { ActiveGachaClickButton(); });
 
@@ -1578,12 +1669,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         ClickButton.GetComponent<RectTransform>().DOKill();
         ClickButton.SetActive(false);
-        //ÀÌ ¹öÆ°À» ´©¸£¸é ¹öÆ°Àº ºñÈ°¼ºÈ­
-        // 1Æ¼¾î Àåºñ¶ó¸é 0¹ø±îÁö È°¼ºÈ­ , Èò»ö// 2Æ¼¾î Àåºñ¶ó¸é  1¹ø±îÁö È°¼ºÈ­, ÆÄ¶õ»ö
-        // 3Æ¼¾î Àåºñ¶ó¸é 2¹ø±îÁö È°¼ºÈ­, º¸¶ó»ö// 4Æ¼¾î Àåºñ¶ó¸é 3¹ø±îÁö È°¼ºÈ­, ³ë¶õ»ö
-        // 5Æ¼¾î Àåºñ¶ó¸é 4¹ø±îÁö È°¼ºÈ­, 
-        //¹Ì¸® ÀúÀåÇÑ GachaResultEquipCode·Î Æ¼¾î¸¦ ÆÄ¾ÇÇØ ±×°Í¿¡ ¸Â°Ô ¿¬Ãâ
-        // 1Æ¼¾î º¸´Ù ³·Àº Àåºñ´Â ¾øÀ¸¹Ç·Î 1Àº ¹Ù·Î È°¼ºÈ­
+        //ì´ ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ ë²„íŠ¼ì€ ë¹„í™œì„±í™”
+        // 1í‹°ì–´ ì¥ë¹„ë¼ë©´ 0ë²ˆê¹Œì§€ í™œì„±í™” , í°ìƒ‰// 2í‹°ì–´ ì¥ë¹„ë¼ë©´  1ë²ˆê¹Œì§€ í™œì„±í™”, íŒŒë€ìƒ‰
+        // 3í‹°ì–´ ì¥ë¹„ë¼ë©´ 2ë²ˆê¹Œì§€ í™œì„±í™”, ë³´ë¼ìƒ‰// 4í‹°ì–´ ì¥ë¹„ë¼ë©´ 3ë²ˆê¹Œì§€ í™œì„±í™”, ë…¸ë€ìƒ‰
+        // 5í‹°ì–´ ì¥ë¹„ë¼ë©´ 4ë²ˆê¹Œì§€ í™œì„±í™”, 
+        //ë¯¸ë¦¬ ì €ì¥í•œ GachaResultEquipCodeë¡œ í‹°ì–´ë¥¼ íŒŒì•…í•´ ê·¸ê²ƒì— ë§ê²Œ ì—°ì¶œ
+        // 1í‹°ì–´ ë³´ë‹¤ ë‚®ì€ ì¥ë¹„ëŠ” ì—†ìœ¼ë¯€ë¡œ 1ì€ ë°”ë¡œ í™œì„±í™”
         CurrentGachaPhase = (int)EGachaPhase.GemPhase;
         LightStorage.SetActive(true);
         EquipGachaLight[0].GetComponent<RectTransform>().localScale = new Vector3(1, 0, 1);
@@ -1598,18 +1689,18 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         int CurrentEffectLevel = 1;
         bool IsAnimationEnd = false;
-        //¾Æ·¡²¨°¡ °è¼Ó ÇØ´çÇÏ´Â Æ¼¾î°¡ ³ª¿Ã¶§±îÁö ¹İº¹µÇ¾ßÇÔ
+        //ì•„ë˜êº¼ê°€ ê³„ì† í•´ë‹¹í•˜ëŠ” í‹°ì–´ê°€ ë‚˜ì˜¬ë•Œê¹Œì§€ ë°˜ë³µë˜ì•¼í•¨
         while (true)
         {
             yield return null;
             IsAnimationEnd = false;
             yield return new WaitForSeconds(0.3f);
 
-            if (EquipmentTier <= CurrentEffectLevel)//1Æ¼¾î¶ó¸é
+            if (EquipmentTier <= CurrentEffectLevel)//1í‹°ì–´ë¼ë©´
             {
                 break;
             }
-            else//1Æ¼¾î ÀÌ»óÀÏ¶§
+            else//1í‹°ì–´ ì´ìƒì¼ë•Œ
             {
                 EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f).SetEase(Ease.Linear).
                     OnComplete(() =>
@@ -1621,7 +1712,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                             IsAnimationEnd = true;
                             //EquipGachaCapsule.GetComponent<Image>().color = GachaTierLightColor[CurrentEffectLevel-1];
                             }); 
-                    });//ContinueOfGacha¿¡ int°ªÀ» Àü´ŞÈÄ¿¡ ++°¡µÊ
+                    });//ContinueOfGachaì— intê°’ì„ ì „ë‹¬í›„ì— ++ê°€ë¨
             }
 
             while(true)
@@ -1638,12 +1729,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     protected void ContinueOfEquipGacha(int CurrentEffectLevel)
     {
-        //ºûÀÌ Ãß°¡ µÇ°í, ºû »ö±òµµ ¹Ù²ñ
+        //ë¹›ì´ ì¶”ê°€ ë˜ê³ , ë¹› ìƒ‰ê¹”ë„ ë°”ë€œ
         for(int i = 0; i < CurrentEffectLevel + 1; i++)
         {
             EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[CurrentEffectLevel];
             if (EquipGachaLight[i].activeSelf == false)
-            {//false¸é Å°´Â°ÅÀÓ
+            {//falseë©´ í‚¤ëŠ”ê±°ì„
                 EquipGachaLight[i].GetComponent<RectTransform>().localScale = new Vector3(1, 0, 1);
                 EquipGachaLight[i].GetComponent<RectTransform>().eulerAngles =
                     GachaLightRot[i] + new Vector3(0, 0, Random.Range(-GachaLightZVariation, GachaLightZVariation));
@@ -1697,42 +1788,42 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     GetEquipClickButton.SetActive(true);
                 }); });
     }
-    public void EquipGachaPhaseEndButton()//ÀÌ°Ô ÀÌÁ¦ È®Á¤ ¹öÆ° °°Àº°Å
+    public void EquipGachaPhaseEndButton()//ì´ê²Œ ì´ì œ í™•ì • ë²„íŠ¼ ê°™ì€ê±°
     {
-        //1ÆäÀÌÁö ³¡(º¸¼®ÀÌ °ø°³ µÇ°í ±× º¸¼®ÀÌ °¡¿îµ¥¿¡ ¹ÚÈ÷¸é¼­ ÇÃ·¹ÀÌÆ®°¡ ¹Ù²î¾î¾ßÇÔ)
-        //2ÆäÀÌÁî ³¡(Àåºñ ¼ºÇâÀÌ °ø°³ÈÄ È®Á¤ µÇ°í À§ÂÊ¿¡ ¹ÚÈ÷¸é¼­ ÇÃ·¹ÀÌÆ®°¡ ¹Ù²î¾î¾ßÇÔ)
-        //3ÆäÀÌÁî ³¡(Àåºñ Á¾·ù°¡ °ø°³ÈÄ È®Á¤ µÇ°í ¿ŞÂÊ¿¡ ¹ÚÈ÷¸é¼­ ÇÃ·¹ÀÌÆ®°¡ ¹Ù²î¾î¾ßÇÔ)
-        //4ÆäÀÌÁî ³¡(°ö ¼ºÇâÀÌ °ø°³ÈÄ È®Á¤ µÇ°í ¿À¸¥ÂÊ¿¡ ¹ÚÈ÷¸é¼­ ÇÃ·¹ÀÌÆ®°¡ ¹Ù²î¾î¾ßÇÔ)
+        //1í˜ì´ì§€ ë(ë³´ì„ì´ ê³µê°œ ë˜ê³  ê·¸ ë³´ì„ì´ ê°€ìš´ë°ì— ë°•íˆë©´ì„œ í”Œë ˆì´íŠ¸ê°€ ë°”ë€Œì–´ì•¼í•¨)
+        //2í˜ì´ì¦ˆ ë(ì¥ë¹„ ì„±í–¥ì´ ê³µê°œí›„ í™•ì • ë˜ê³  ìœ„ìª½ì— ë°•íˆë©´ì„œ í”Œë ˆì´íŠ¸ê°€ ë°”ë€Œì–´ì•¼í•¨)
+        //3í˜ì´ì¦ˆ ë(ì¥ë¹„ ì¢…ë¥˜ê°€ ê³µê°œí›„ í™•ì • ë˜ê³  ì™¼ìª½ì— ë°•íˆë©´ì„œ í”Œë ˆì´íŠ¸ê°€ ë°”ë€Œì–´ì•¼í•¨)
+        //4í˜ì´ì¦ˆ ë(ê³± ì„±í–¥ì´ ê³µê°œí›„ í™•ì • ë˜ê³  ì˜¤ë¥¸ìª½ì— ë°•íˆë©´ì„œ í”Œë ˆì´íŠ¸ê°€ ë°”ë€Œì–´ì•¼í•¨)
         GachaConfirmButton.SetActive(false);
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
         switch (CurrentGachaPhase)
         {
-            case (int)EGachaPhase.GemPhase://1ÆäÀÌÁî³¡
+            case (int)EGachaPhase.GemPhase://1í˜ì´ì¦ˆë
                 EquipGachaPhaseOneEnd();
                 break;
-            case (int)EGachaPhase.StatePhase://2ÆäÀÌÁî³¡
+            case (int)EGachaPhase.StatePhase://2í˜ì´ì¦ˆë
                 EquipGachaPhaseTwoEnd();
                 break;
-            case (int)EGachaPhase.TypePhase://3ÆäÀÌÁî³¡
+            case (int)EGachaPhase.TypePhase://3í˜ì´ì¦ˆë
                 EquipGachaPhaseThreeEnd();
                 break;
-            case (int)EGachaPhase.MultiplePhase://4ÆäÀÌÁî³¡
+            case (int)EGachaPhase.MultiplePhase://4í˜ì´ì¦ˆë
                 EquipGachaPhaseFourEnd();
                 break;
-            case (int)EGachaPhase.EndPhase://5ÆäÀÌÁî³¡(¸ğµç ¿ä¼Ò°¡ ÇÔÃÄÁøÈÄ Àåºñ °ø°³‰çÀ»¶§)
+            case (int)EGachaPhase.EndPhase://5í˜ì´ì¦ˆë(ëª¨ë“  ìš”ì†Œê°€ í•¨ì³ì§„í›„ ì¥ë¹„ ê³µê°œë¬ì„ë•Œ)
                 EquipGachaEndPhaseEnd();
                 break;
         }
     }
     public void EquipGachaAgainButton()
     {
-        //È°¼ºÈ­µÈ Ä«µå¸¦ ¸ğ¾Ò´Ù°¡ ´Ù½Ã ÆîÃÄ¾ßÇÔ
-        //±× °úÁ¤¿¡¼­ Ä«µåÀÇ ¼ø¼­´Â ´Ù½Ã ·£´ıÀÌ µÊ
-        //´Ù½Ã»Ì±â È½¼ö¸¦ Â÷°¨ÇØ¾ßÇÔ
-        //1. ´Ù½Ã»Ì±â¸¦ ´©¸£¸é ÅØ½ºÆ®¿Í ¹öÆ°µéÀÌ »ç¶óÁö°í Ä«µå°¡ ´Ù½Ã µÚÁıÈû, ÇÏÀÌ¶óÀÌÆ®µµ ¾ø¾Ú
-        //2. Ä«µå µÚÁı±â°¡ ¿Ï·áµÇ¸é Áß°£À¸·Î ¸ğÀ½
-        //3. Á¶±İµÚ ´Ù½Ã ÆîÄ§
+        //í™œì„±í™”ëœ ì¹´ë“œë¥¼ ëª¨ì•˜ë‹¤ê°€ ë‹¤ì‹œ í¼ì³ì•¼í•¨
+        //ê·¸ ê³¼ì •ì—ì„œ ì¹´ë“œì˜ ìˆœì„œëŠ” ë‹¤ì‹œ ëœë¤ì´ ë¨
+        //ë‹¤ì‹œë½‘ê¸° íšŸìˆ˜ë¥¼ ì°¨ê°í•´ì•¼í•¨
+        //1. ë‹¤ì‹œë½‘ê¸°ë¥¼ ëˆ„ë¥´ë©´ í…ìŠ¤íŠ¸ì™€ ë²„íŠ¼ë“¤ì´ ì‚¬ë¼ì§€ê³  ì¹´ë“œê°€ ë‹¤ì‹œ ë’¤ì§‘í˜, í•˜ì´ë¼ì´íŠ¸ë„ ì—†ì•°
+        //2. ì¹´ë“œ ë’¤ì§‘ê¸°ê°€ ì™„ë£Œë˜ë©´ ì¤‘ê°„ìœ¼ë¡œ ëª¨ìŒ
+        //3. ì¡°ê¸ˆë’¤ ë‹¤ì‹œ í¼ì¹¨
         SoundManager.Instance.PlayUISFX("UI_Button");
 
         if(RemainGachaCount > 0)
@@ -1742,14 +1833,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
         GachaCardHighligh.SetActive(false);
-        ReReverseAllOtherGachaCard().OnComplete(() =>//¿©±â¿¡ µé¾î¿À¸é 
+        ReReverseAllOtherGachaCard().OnComplete(() =>//ì—¬ê¸°ì— ë“¤ì–´ì˜¤ë©´ 
         {
-            DecideGachaCardResult();//°á°ú ¹Ù²Ù±â
+            DecideGachaCardResult();//ê²°ê³¼ ë°”ê¾¸ê¸°
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
             DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
              x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-            -168f,                          // ¸ñÇ¥ °ª
+            -168f,                          // ëª©í‘œ ê°’
             0.5f).OnComplete(() =>
             {
                 DOVirtual.DelayedCall(0.5f, () =>
@@ -1758,7 +1849,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
                     DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                      x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-                    20f,                          // ¸ñÇ¥ °ª
+                    20f,                          // ëª©í‘œ ê°’
                     0.5f).OnComplete(() =>
                     {
                         for (int i = 0; i < 8; i++)
@@ -1771,9 +1862,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         });
     }
     protected void EquipGachaPhaseOneEnd()
-    {//(º¸¼®ÀÌ °ø°³ µÇ°í ±× º¸¼®ÀÌ °¡¿îµ¥¿¡ ¹ÚÈ÷¸é¼­ ÇÃ·¹ÀÌÆ®°¡ ¹Ù²î¾î¾ßÇÔ)
-        //EquipmentImage¸¦ ÀÌµ¿ÈÄ¿¡ ¾ø¾Ö¸é¼­ ÃÊ±âÈ­, Plate¿¡ ÀÖ´Â ÀÌ¹ÌÁö¸¦ ±× ÀÌ¹ÌÁö·Î ¹Ù²Û´Ù.
-        //±×¸®°í ´ÙÀ½ ÆäÀÌÁö·Î ÀÚµ¿ ÀÌµ¿
+    {//(ë³´ì„ì´ ê³µê°œ ë˜ê³  ê·¸ ë³´ì„ì´ ê°€ìš´ë°ì— ë°•íˆë©´ì„œ í”Œë ˆì´íŠ¸ê°€ ë°”ë€Œì–´ì•¼í•¨)
+        //EquipmentImageë¥¼ ì´ë™í›„ì— ì—†ì• ë©´ì„œ ì´ˆê¸°í™”, Plateì— ìˆëŠ” ì´ë¯¸ì§€ë¥¼ ê·¸ ì´ë¯¸ì§€ë¡œ ë°”ê¾¼ë‹¤.
+        //ê·¸ë¦¬ê³  ë‹¤ìŒ í˜ì´ì§€ë¡œ ìë™ ì´ë™
         GetEquipClickButton.SetActive(false);
         EquipGachaResultImage.rectTransform.DOAnchorPosY(-115f, 0.5f).OnComplete(() => 
         {
@@ -1785,7 +1876,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipGachaEquipmentObject.SetActive(false);
             DOVirtual.DelayedCall(0.5f, () =>
             {
-                //¿©±â¿¡¼­ ´ÙÀ½²¨_ Àåºñ ¼ºÇâ »Ì±â¸¦ ÁøÇà ÇØ¾ßÇÔ
+                //ì—¬ê¸°ì—ì„œ ë‹¤ìŒêº¼_ ì¥ë¹„ ì„±í–¥ ë½‘ê¸°ë¥¼ ì§„í–‰ í•´ì•¼í•¨
                 EquipGachaPhaseTwoStart();
             });
         });
@@ -1796,7 +1887,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         RemainGachaCount = 3;
         DecideGachaCardResult();
         GachaCardSelectObject.SetActive(true);
-        CardSelectTitle.text = "Àåºñ ¼ºÇâ";
+        CardSelectTitle.text = "ì¥ë¹„ ì„±í–¥";
         GachaConfirmButton.SetActive(false);
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
@@ -1812,12 +1903,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaSelectCards[i].SetActive(true);
             GachaSelectCards[i].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
         }
-        //Ä«µå°¡ µîÀåÇÒ¶§µµ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖÀ¸¸é ÁÁÀ»°Í °°Àºµ¥?//Horizontal layout groupÀÇ spacing À» -168¿¡¼­ 20À¸·Î ÂÓ ÆîÄ§
+        //ì¹´ë“œê°€ ë“±ì¥í• ë•Œë„ ì• ë‹ˆë©”ì´ì…˜ì´ ìˆìœ¼ë©´ ì¢‹ì„ê²ƒ ê°™ì€ë°?//Horizontal layout groupì˜ spacing ì„ -168ì—ì„œ 20ìœ¼ë¡œ ì«™ í¼ì¹¨
         SoundManager.Instance.PlaySFX("ReverseCard_Open");
         GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
         DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
          x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-        20f,                          // ¸ñÇ¥ °ª
+        20f,                          // ëª©í‘œ ê°’
         0.5f).OnComplete(() =>
         {
             for (int i = 0; i < 8; i++)
@@ -1827,13 +1918,13 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         });
     }
     protected void EquipGachaPhaseTwoEnd()
-    {//È®Á¤.
-        //½ºÅ×ÀÌÆ® Å¸ÀÔÀº 0~7±îÁö//¾òÀº Å¸ÀÔÀ» ÀúÀå
-        //0. ³¯¶ó°¡¾ß ÇÏ´Â ¹öÃò¾ó Ä«µå¸¦ ÇØ´ç ½ºÇÁ¶óÀÌÆ®·Î ±³Ã¼ÈÄ È°¼ºÈ­
-        //1. ÇØ´ç Ä«µå°¡ À§Ä¡±îÁö ³¯¶ó°¡¼­(960,0) ºñÈ°¼ºÈ­, »ï°¢ÆÇ À§ÀÇ ÇØ´ç iconÀ» È°¼ºÈ­ ½ÃÅ´
-        //2. Ä«µå¸¦ ¿ø·¡ À§Ä¡·Î 
+    {//í™•ì •.
+        //ìŠ¤í…Œì´íŠ¸ íƒ€ì…ì€ 0~7ê¹Œì§€//ì–»ì€ íƒ€ì…ì„ ì €ì¥
+        //0. ë‚ ë¼ê°€ì•¼ í•˜ëŠ” ë²„ì¸„ì–¼ ì¹´ë“œë¥¼ í•´ë‹¹ ìŠ¤í”„ë¼ì´íŠ¸ë¡œ êµì²´í›„ í™œì„±í™”
+        //1. í•´ë‹¹ ì¹´ë“œê°€ ìœ„ì¹˜ê¹Œì§€ ë‚ ë¼ê°€ì„œ(960,0) ë¹„í™œì„±í™”, ì‚¼ê°íŒ ìœ„ì˜ í•´ë‹¹ iconì„ í™œì„±í™” ì‹œí‚´
+        //2. ì¹´ë“œë¥¼ ì›ë˜ ìœ„ì¹˜ë¡œ 
         SoundManager.Instance.PlayUISFX("UI_Button");
-        GachaStateTypeNum = RemainCardResult[SelectedGachaCardNum];//ÀÌ°Ç 0~7±îÁö ÀÚ¿¬½º·´°Ô µé¾î°¡°ÔµÊ ³ª¸ÓÁö´Â -¸îÀ» ÇØÁà¾ß ¿ÇÀº ÄÚµå°¡ µÊ
+        GachaStateTypeNum = RemainCardResult[SelectedGachaCardNum];//ì´ê±´ 0~7ê¹Œì§€ ìì—°ìŠ¤ëŸ½ê²Œ ë“¤ì–´ê°€ê²Œë¨ ë‚˜ë¨¸ì§€ëŠ” -ëª‡ì„ í•´ì¤˜ì•¼ ì˜³ì€ ì½”ë“œê°€ ë¨
         GachaCardHighligh.SetActive(false);
         GachaVirtualCard.GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[SelectedGachaCardNum]];
         GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
@@ -1848,14 +1939,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipGachaIcon_StateType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
             EquipGachaIcon_StateType.SetActive(true);
             GachaVirtualCard.SetActive(false);
-            //´Ù½Ã µÚÁı°í ¸ğÀ¸±â
+            //ë‹¤ì‹œ ë’¤ì§‘ê³  ëª¨ìœ¼ê¸°
             ReReverseAllOtherGachaCard().OnComplete(() =>
             {
                 SoundManager.Instance.PlaySFX("ReverseCard_Open");
                 GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
                 DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                  x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-                -168f,                          // ¸ñÇ¥ °ª
+                -168f,                          // ëª©í‘œ ê°’
                 0.5f).OnComplete(() => { EquipGachaPhaseThreeStart(); });
             });
         });
@@ -1865,7 +1956,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         CurrentGachaPhase = (int)EGachaPhase.TypePhase;
         DecideGachaCardResult();
         GachaCardSelectObject.SetActive(true);
-        CardSelectTitle.text = "Àåºñ Á¾·ù";
+        CardSelectTitle.text = "ì¥ë¹„ ì¢…ë¥˜";
         GachaConfirmButton.SetActive(false);
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
@@ -1881,12 +1972,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaSelectCards[i].SetActive(true);
             GachaSelectCards[i].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
         }
-        //Ä«µå°¡ µîÀåÇÒ¶§µµ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖÀ¸¸é ÁÁÀ»°Í °°Àºµ¥?//Horizontal layout groupÀÇ spacing À» -168¿¡¼­ 20À¸·Î ÂÓ ÆîÄ§
+        //ì¹´ë“œê°€ ë“±ì¥í• ë•Œë„ ì• ë‹ˆë©”ì´ì…˜ì´ ìˆìœ¼ë©´ ì¢‹ì„ê²ƒ ê°™ì€ë°?//Horizontal layout groupì˜ spacing ì„ -168ì—ì„œ 20ìœ¼ë¡œ ì«™ í¼ì¹¨
         SoundManager.Instance.PlaySFX("ReverseCard_Open");
         GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
         DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
          x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-        20f,                          // ¸ñÇ¥ °ª
+        20f,                          // ëª©í‘œ ê°’
         0.5f).OnComplete(() =>
         {
             for (int i = 0; i < 5; i++)
@@ -1898,12 +1989,12 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     protected void EquipGachaPhaseThreeEnd()
     {
         //720 -385
-        //½ºÅ×ÀÌÆ® Å¸ÀÔÀº 0~7±îÁö//¾òÀº Å¸ÀÔÀ» ÀúÀå
-        //0. ³¯¶ó°¡¾ß ÇÏ´Â ¹öÃò¾ó Ä«µå¸¦ ÇØ´ç ½ºÇÁ¶óÀÌÆ®·Î ±³Ã¼ÈÄ È°¼ºÈ­
-        //1. ÇØ´ç Ä«µå°¡ À§Ä¡±îÁö ³¯¶ó°¡¼­(960,0) ºñÈ°¼ºÈ­, »ï°¢ÆÇ À§ÀÇ ÇØ´ç iconÀ» È°¼ºÈ­ ½ÃÅ´
-        //2. Ä«µå¸¦ ¿ø·¡ À§Ä¡·Î 
+        //ìŠ¤í…Œì´íŠ¸ íƒ€ì…ì€ 0~7ê¹Œì§€//ì–»ì€ íƒ€ì…ì„ ì €ì¥
+        //0. ë‚ ë¼ê°€ì•¼ í•˜ëŠ” ë²„ì¸„ì–¼ ì¹´ë“œë¥¼ í•´ë‹¹ ìŠ¤í”„ë¼ì´íŠ¸ë¡œ êµì²´í›„ í™œì„±í™”
+        //1. í•´ë‹¹ ì¹´ë“œê°€ ìœ„ì¹˜ê¹Œì§€ ë‚ ë¼ê°€ì„œ(960,0) ë¹„í™œì„±í™”, ì‚¼ê°íŒ ìœ„ì˜ í•´ë‹¹ iconì„ í™œì„±í™” ì‹œí‚´
+        //2. ì¹´ë“œë¥¼ ì›ë˜ ìœ„ì¹˜ë¡œ 
         SoundManager.Instance.PlayUISFX("UI_Button");
-        GachaEquipTypeNum = RemainCardResult[SelectedGachaCardNum] - 8;//ÀÌ°Ç 0~7±îÁö ÀÚ¿¬½º·´°Ô µé¾î°¡°ÔµÊ ³ª¸ÓÁö´Â -¸îÀ» ÇØÁà¾ß ¿ÇÀº ÄÚµå°¡ µÊ
+        GachaEquipTypeNum = RemainCardResult[SelectedGachaCardNum] - 8;//ì´ê±´ 0~7ê¹Œì§€ ìì—°ìŠ¤ëŸ½ê²Œ ë“¤ì–´ê°€ê²Œë¨ ë‚˜ë¨¸ì§€ëŠ” -ëª‡ì„ í•´ì¤˜ì•¼ ì˜³ì€ ì½”ë“œê°€ ë¨
         GachaCardHighligh.SetActive(false);
         GachaVirtualCard.GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[SelectedGachaCardNum]];
         GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
@@ -1918,14 +2009,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipGachaIcon_EquipType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
             EquipGachaIcon_EquipType.SetActive(true);
             GachaVirtualCard.SetActive(false);
-            //´Ù½Ã µÚÁı°í ¸ğÀ¸±â
+            //ë‹¤ì‹œ ë’¤ì§‘ê³  ëª¨ìœ¼ê¸°
             ReReverseAllOtherGachaCard().OnComplete(() =>
             {
                 SoundManager.Instance.PlaySFX("ReverseCard_Open");
                 GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
                 DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                  x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-                -168f,                          // ¸ñÇ¥ °ª
+                -168f,                          // ëª©í‘œ ê°’
                 0.5f).OnComplete(() => { EquipGachaPhaseFourStart(); });
             });
         });
@@ -1933,10 +2024,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     protected void EquipGachaPhaseFourStart()
     {
         CurrentGachaPhase = (int)EGachaPhase.MultiplePhase;
-        //¿©±â´Â ¸¸¾à Àü¿¡ »ÌÀº ÀåºñÀÇ Á¾·ù°¡ ½Å¹ß È¤Àº Àå½Å±¸¿´À¸¸é NonÄ«µå ÇÏ³ª¸¸ ³ª¿È
+        //ì—¬ê¸°ëŠ” ë§Œì•½ ì „ì— ë½‘ì€ ì¥ë¹„ì˜ ì¢…ë¥˜ê°€ ì‹ ë°œ í˜¹ì€ ì¥ì‹ êµ¬ì˜€ìœ¼ë©´ Nonì¹´ë“œ í•˜ë‚˜ë§Œ ë‚˜ì˜´
         DecideGachaCardResult(GachaEquipTypeNum == (int)EEquipType.TypeBoots || GachaEquipTypeNum == (int)EEquipType.TypeAcc);
         GachaCardSelectObject.SetActive(true);
-        CardSelectTitle.text = "°ö ¼ºÇâ";
+        CardSelectTitle.text = "ê³± ì„±í–¥";
         GachaConfirmButton.SetActive(false);
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
@@ -1952,7 +2043,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaSelectCards[i].SetActive(true);
             GachaSelectCards[i].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
         }
-        //Ä«µå°¡ µîÀåÇÒ¶§µµ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖÀ¸¸é ÁÁÀ»°Í °°Àºµ¥?//Horizontal layout groupÀÇ spacing À» -168¿¡¼­ 20À¸·Î ÂÓ ÆîÄ§
+        //ì¹´ë“œê°€ ë“±ì¥í• ë•Œë„ ì• ë‹ˆë©”ì´ì…˜ì´ ìˆìœ¼ë©´ ì¢‹ì„ê²ƒ ê°™ì€ë°?//Horizontal layout groupì˜ spacing ì„ -168ì—ì„œ 20ìœ¼ë¡œ ì«™ í¼ì¹¨
         if(GachaEquipTypeNum == (int)EEquipType.TypeBoots || GachaEquipTypeNum == (int)EEquipType.TypeAcc)
         {
             GachaAgainButton.GetComponent<Button>().interactable = false;
@@ -1968,7 +2059,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
             DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
              x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-            20f,                          // ¸ñÇ¥ °ª
+            20f,                          // ëª©í‘œ ê°’
             0.5f).OnComplete(() =>
             {
                 for (int i = 0; i < 5; i++)
@@ -1997,7 +2088,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipGachaIcon_MultiType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
             EquipGachaIcon_MultiType.SetActive(true);
             GachaVirtualCard.SetActive(false);
-            //Àç·á°¡ ¿ÇÀº Ä­¿¡ ´Ù µé¾î°¡¸é.... blind ²ô°í, Ä«µåµµ ²ô°í
+            //ì¬ë£Œê°€ ì˜³ì€ ì¹¸ì— ë‹¤ ë“¤ì–´ê°€ë©´.... blind ë„ê³ , ì¹´ë“œë„ ë„ê³ 
             ReReverseAllOtherGachaCard().OnComplete(() =>
             {
                 if (GachaEquipTypeNum == (int)EEquipType.TypeBoots || GachaEquipTypeNum == (int)EEquipType.TypeAcc)
@@ -2012,7 +2103,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = 20f;
                     DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                      x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
-                    -168f,                          // ¸ñÇ¥ °ª
+                    -168f,                          // ëª©í‘œ ê°’
                     0.5f).OnComplete(() =>
                     {
                         GachaCardSelectObject.SetActive(false);
@@ -2028,11 +2119,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     protected void EquipGachaEndPhaseStart()
     {
-        //ÆÇ¿¡ ¿Ã¶ó°¡ ÀÖ´Â ¾ÆÀÌÄÜÀÌ ¸ğÀÓ... °¡±îÀÌ °¥¼ö·Ï ´À·ÁÁö°Ô(0,-115·Î)..... Å°ÀÌÀ×~Äç(±×³É GachaResult¸¦ ¾²¸é µÉµí)? ¼Ò¸®°¡ ÀÖÀ¸¸é ÁÁ°Ú´Âµ¥?
-        //1. ÇÕÃÄÁö¸é¼­ Áß°£¿¡¼­ ÆÇÀÇ Áß°£¿¡¼­ ºûÀÌ Á¡Á¡ Ä¿Áø´Ù.
-        //2. ºû(Èò»öÀÇ ¿ø)ÀÌ ¾öÃ» Ä¿Áø´ÙÀ½¿¡´Â ÆäÀÌµå ÀÎÀÌ µÇ¸é¼­ Àåºñ°¡ ¸ğ½ÀÀ» µå·¯³½´Ù.(»ï°¢Çü ÆÇ¿¡ ÀÖ´Â iconµéÀº ¸ğµÎ ¾ø¾îÁø »óÅÂ¿©¾ßÇÑ´Ù.)
-        //½ºÄÉÀÏÀÌ 0~9±îÁö Ä¿Á³´Ù°¡ 30±îÁö Ä¿Áö°í ÆäÀÌµå ÀÎ
-        //3. Àåºñ¸¦ Å¬¸¯ÇÏ¸é È¹µæÇÑ´Ù.
+        //íŒì— ì˜¬ë¼ê°€ ìˆëŠ” ì•„ì´ì½˜ì´ ëª¨ì„... ê°€ê¹Œì´ ê°ˆìˆ˜ë¡ ëŠë ¤ì§€ê²Œ(0,-115ë¡œ)..... í‚¤ì´ì‰~ì¾…(ê·¸ëƒ¥ GachaResultë¥¼ ì“°ë©´ ë ë“¯)? ì†Œë¦¬ê°€ ìˆìœ¼ë©´ ì¢‹ê² ëŠ”ë°?
+        //1. í•©ì³ì§€ë©´ì„œ ì¤‘ê°„ì—ì„œ íŒì˜ ì¤‘ê°„ì—ì„œ ë¹›ì´ ì ì  ì»¤ì§„ë‹¤.
+        //2. ë¹›(í°ìƒ‰ì˜ ì›)ì´ ì—„ì²­ ì»¤ì§„ë‹¤ìŒì—ëŠ” í˜ì´ë“œ ì¸ì´ ë˜ë©´ì„œ ì¥ë¹„ê°€ ëª¨ìŠµì„ ë“œëŸ¬ë‚¸ë‹¤.(ì‚¼ê°í˜• íŒì— ìˆëŠ” iconë“¤ì€ ëª¨ë‘ ì—†ì–´ì§„ ìƒíƒœì—¬ì•¼í•œë‹¤.)
+        //ìŠ¤ì¼€ì¼ì´ 0~9ê¹Œì§€ ì»¤ì¡Œë‹¤ê°€ 30ê¹Œì§€ ì»¤ì§€ê³  í˜ì´ë“œ ì¸
+        //3. ì¥ë¹„ë¥¼ í´ë¦­í•˜ë©´ íšë“í•œë‹¤.
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
         CurrentGachaPhase = (int)EGachaPhase.EndPhase;
         EquipGachaIcon_StateType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
@@ -2054,9 +2145,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             FinalEquipGachaButton.GetComponent<Button>().interactable = false;
 
             FinalEquipGachaCapsule.transform.DOScale(new Vector3(30f, 30f, 30f), 0.3f).OnComplete(() =>
-            {//È­¸éÀ» µ¤À» Á¤µµ·Î Ä¿Áü
+            {//í™”ë©´ì„ ë®ì„ ì •ë„ë¡œ ì»¤ì§
                 FinalEquipGachaCapsule.GetComponent<Image>().DOFade(0f, 0.5f).OnComplete(() =>
-                {//ÆäÀÌµå ÀÎ
+                {//í˜ì´ë“œ ì¸
                     FinalEquipGachaCapsule.SetActive(false);
                     FinalEquipGachaButton.GetComponent<Button>().interactable = true;
                 });
@@ -2065,7 +2156,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     protected void EquipGachaEndPhaseEnd()
     {
-        PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);//ÀÎº¥Åä¸®¿¡ ³Ö°í
+        PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);//ì¸ë²¤í† ë¦¬ì— ë„£ê³ 
         PressGetEquipClickButton();
     }
     protected void DecideGachaCardResult(bool IsShoesOrAcc = false)
@@ -2103,17 +2194,17 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             (RemainCardResult[i], RemainCardResult[j]) = (RemainCardResult[j], RemainCardResult[i]);
         }
     }
-    public void PressGachaCard(int GachaCardNum)//ÀÌ°Ç Ä«µå(¹öÆ°)¿¡ ¿¬°á//0~7±îÁö °¡´É
+    public void PressGachaCard(int GachaCardNum)//ì´ê±´ ì¹´ë“œ(ë²„íŠ¼)ì— ì—°ê²°//0~7ê¹Œì§€ ê°€ëŠ¥
     {
-        //SetEase¿¡¼­ 90µµ ±îÁö Ä«µå ³Ñ¾î°¥¶§ ¼Óµµ Á¡Á¡ ´À·ÁÁö°Ô ÇØ¾ßÇÒµí//outcubic
+        //SetEaseì—ì„œ 90ë„ ê¹Œì§€ ì¹´ë“œ ë„˜ì–´ê°ˆë•Œ ì†ë„ ì ì  ëŠë ¤ì§€ê²Œ í•´ì•¼í• ë“¯//outcubic
         //
-        //Å¬¸¯ÇÏ¸é ³Ñ¾î°¡´Â ¾Ö´Ï¸ŞÀÌ¼Ç ¹ß»ı, È­¸é¿¡ º¸ÀÌÁö ¾Ê´Â °¢µµ°¡ µÇ¸é sprite º¯°æ
+        //í´ë¦­í•˜ë©´ ë„˜ì–´ê°€ëŠ” ì• ë‹ˆë©”ì´ì…˜ ë°œìƒ, í™”ë©´ì— ë³´ì´ì§€ ì•ŠëŠ” ê°ë„ê°€ ë˜ë©´ sprite ë³€ê²½
         //LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).OnComplete(() =>
-        //ÀÌ°Ô ¾È º¸ÀÏ¶§±îÁö µÇÁı´Â ½Ä
+        //ì´ê²Œ ì•ˆ ë³´ì¼ë•Œê¹Œì§€ ë˜ì§‘ëŠ” ì‹
         //LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).OnComplete(() =>
-        //´Ù¸¥ Ä«µåµéµµ ´Ù ¶È°°ÀÌ ÇØ¾ßÇÔ
-        //¸ğµç Ä«µåµéµµ interatable ºñÈ°¼ºÈ­
-        //´Ù µÚÁı°í ³ª´Ï±î ÀÌ°Ô ±¸ºĞÀÌ ¾È°¨.... ±¸ºĞ°¡°Ô ÇÏ´Â¹æ¹ı..... ¿Ü°¢¼±?
+        //ë‹¤ë¥¸ ì¹´ë“œë“¤ë„ ë‹¤ ë˜‘ê°™ì´ í•´ì•¼í•¨
+        //ëª¨ë“  ì¹´ë“œë“¤ë„ interatable ë¹„í™œì„±í™”
+        //ë‹¤ ë’¤ì§‘ê³  ë‚˜ë‹ˆê¹Œ ì´ê²Œ êµ¬ë¶„ì´ ì•ˆê°.... êµ¬ë¶„ê°€ê²Œ í•˜ëŠ”ë°©ë²•..... ì™¸ê°ì„ ?
         SelectedGachaCardNum = GachaCardNum;
         for (int i = 0; i < GachaSelectCards.Length; i++)
         {
@@ -2129,7 +2220,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 GachaCardHighligh.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().anchoredPosition;
                 DOVirtual.DelayedCall(0.3f, () =>
                 {
-                    //´Ù¸¥Ä«µåµé ´Ù µÚÁı±â
+                    //ë‹¤ë¥¸ì¹´ë“œë“¤ ë‹¤ ë’¤ì§‘ê¸°
                     ReverseAllOtherGachaCard(GachaCardNum);
                 });
             });
@@ -2137,7 +2228,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     protected void ReverseAllOtherGachaCard(int SelectionCard)
     {
-        //SelectionCard¸»°í ´Ù µÚÁı±â
+        //SelectionCardë§ê³  ë‹¤ ë’¤ì§‘ê¸°
         Sequence Seq = DOTween.Sequence();
         for (int i = 0; i < GachaSelectCards.Length; i++)
         {
@@ -2152,14 +2243,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             {
                 ReverseGachaCard(Num);
             });
-            Seq.AppendInterval(0.2f); // 0.2ÃÊ °£°İ
+            Seq.AppendInterval(0.2f); // 0.2ì´ˆ ê°„ê²©
         }
         Seq.OnComplete(() =>
         {
             GachaConfirmButton.SetActive(true);
             GachaAgainButton.SetActive(true);
             RemainGachaText.gameObject.SetActive(true);
-            RemainGachaText.text = "³²Àº È½¼ö : " + RemainGachaCount + "È¸";
+            RemainGachaText.text = "ë‚¨ì€ íšŸìˆ˜ : " + RemainGachaCount + "íšŒ";
             if (RemainGachaCount > 0 && RemainCardResult.Count >= 2)
                 GachaAgainButton.GetComponent<Button>().interactable = true;
             else
@@ -2181,7 +2272,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         Sequence Seq = DOTween.Sequence();
         for(int i = 0; i < GachaSelectCards.Length; i++)
         {
-            //È°¼ºÈ­ ¾ÈµÈ ³ğµéÀº ¹«½Ã
+            //í™œì„±í™” ì•ˆëœ ë†ˆë“¤ì€ ë¬´ì‹œ
             if (GachaSelectCards[i].activeSelf == false)
                 continue;
 
@@ -2190,7 +2281,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             {
                 ReReverseGachaCard(Num);
             });
-            Seq.AppendInterval(0.2f); // 0.2ÃÊ °£°İ
+            Seq.AppendInterval(0.2f); // 0.2ì´ˆ ê°„ê²©
         }
         Seq.AppendInterval(0.5f);
         return Seq;
@@ -2204,11 +2295,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc);
         });
     }
-    protected void PressGetEquipClickButton()//ÀÌ°Ç ¸¶Áö¸·¿¡ Å¬¸¯µÇ¾ßÇÔ?
+    protected void PressGetEquipClickButton()//ì´ê±´ ë§ˆì§€ë§‰ì— í´ë¦­ë˜ì•¼í•¨?
     {
         EquipGachaObject.SetActive(false);
-        SetGambling();//ÀÌ°É·Î Gambling UI¸¦ ¾÷µ¥ÀÌÆ® ÇÏ°í
-        SetInventory();//ÀÎº¥Åä¸®µµ ¾÷µ¥ÀÌÆ® ÇØ¾ßÇÔ
+        SetGambling();//ì´ê±¸ë¡œ Gambling UIë¥¼ ì—…ë°ì´íŠ¸ í•˜ê³ 
+        SetInventory();//ì¸ë²¤í† ë¦¬ë„ ì—…ë°ì´íŠ¸ í•´ì•¼í•¨
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
     }
 }
