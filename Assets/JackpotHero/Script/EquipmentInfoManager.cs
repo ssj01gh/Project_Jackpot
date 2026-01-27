@@ -99,9 +99,9 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     protected string[] PlayerEquipMultiTypeNameEN = new string[4]
     {"","Stable ","Balanced ","폭발적인 "};
     protected string[] PlayerEquipTierNameJA = new string[7]
-    {"始まりの ","低品質の ","一般的な ","高品質の ","強化された ","魔法の ","永遠の "};
+    {"始まりの","低品質の","一般的な","高品質の","強化された","魔法の","永遠の"};
     protected string[] PlayerEquipMultiTypeNameJA = new string[4]
-    {"","安定した ","バランスの取れた ","爆発的な "};
+    {"","安定した","バランスの取れた","爆発的な"};
     protected int[] BootsBuffInt = new int[7]
     { 2,40,2,1,1,1,2 };
     protected int[] AccessoriesBuffInt = new int[7]

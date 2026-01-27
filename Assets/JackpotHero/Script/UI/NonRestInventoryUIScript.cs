@@ -252,7 +252,7 @@ public class NonRestInventoryUIScript : MonoBehaviour, IPointerDownHandler, IDra
 
     private string GetTierText(int EquipmentCode)
     {
-        return ((EquipmentCode / 1000) % 10).ToString() + "Æ¼¾î";
+        return ((EquipmentCode / 1000) % 10).ToString() + "T";
         /*
         if ((EquipmentCode / 10000) == 2)
         {

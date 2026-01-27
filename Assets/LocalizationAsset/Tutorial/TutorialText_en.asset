@@ -180,12 +180,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17733120020
-    m_Localized: 'Click Cancel Upgrade
+    m_Localized: 'Click Cancel
 
       to discard stat changes
 
-      and
-      return to the Maintenance screen.'
+      and return to
+      the Maintenance screen.'
     m_Metadata:
       m_Items: []
   - m_Id: 17733120021
@@ -241,7 +241,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17737314305
-    m_Localized: 'Click Exit Maintenance
+    m_Localized: 'Click Exit Camping
 
       to return to Exploration.'
     m_Metadata:

@@ -243,6 +243,124 @@ MonoBehaviour:
     m_Localized: Claim EXP
     m_Metadata:
       m_Items: []
+  - m_Id: 7140419049222144
+    m_Localized: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140808112861184
+    m_Localized: Defeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140945237241856
+    m_Localized: Highest Stage Reached
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140995652775936
+    m_Localized: Normal Monster Defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141043576893440
+    m_Localized: Elite Monster Defeated
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141114330607616
+    m_Localized: Remaining EXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141146479947776
+    m_Localized: Positive Infuence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141205892263936
+    m_Localized: Total Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141275085697024
+    m_Localized: 'Random Equipment Inheritance : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141323899006976
+    m_Localized: 'Enhancement Point : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7205679206625280
+    m_Localized: Exploration Complete!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209669461929984
+    m_Localized: Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209670904770560
+    m_Localized: Stat Upgrades
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209671747825664
+    m_Localized: Equipment Managment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209672519577600
+    m_Localized: Exit Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215340790083584
+    m_Localized: For each rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215343050813440
+    m_Localized: 'Recovers 10% of HP and STA.
+
+      No recovery occurs if ambushed.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215344812421120
+    m_Localized: Monster Ambush Chance per Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215377897091072
+    m_Localized: Rest Count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215379407040512
+    m_Localized: Take a Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215380740829184
+    m_Localized: Do Not Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227939774656512
+    m_Localized: Required EXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227943130099712
+    m_Localized: Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227946166775808
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908102352896
+    m_Localized: Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908974768128
+    m_Localized: Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243909767491584
+    m_Localized: Helmet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243910438580224
+    m_Localized: Boots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243912187604992
+    m_Localized: Accessory
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

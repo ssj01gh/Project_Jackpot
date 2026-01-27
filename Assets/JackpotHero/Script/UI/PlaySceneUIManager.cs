@@ -264,6 +264,7 @@ public class PlaySceneUIManager : MonoBehaviour
         PE_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { PE_UI.gameObject.SetActive(false); });
         PSI_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { PSI_UI.gameObject.SetActive(false); });
         CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
+        NonInven_UI.gameObject.SetActive(false);
         SoundManager.Instance.PlayBGM("DefeatBGM");
     }
     //-------------------------------PressRestTimeUI

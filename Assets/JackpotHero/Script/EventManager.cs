@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class EventManager : MonoBehaviour
@@ -1485,6 +1486,16 @@ public class EventManager : MonoBehaviour
     protected void CommonFollowEvent()
     {
         EndOfEvent();
+    }
+
+    private IEnumerator Load(string EventKey)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        var EventTable = LocalizationSettings.StringDatabase.GetTable("TutorialText");
+        //TutorialText.text = TutorialTable.GetEntry(TutorialKey).GetLocalizedString();
+
+        //PlayTutorialText();//글자 토도독, 버튼 누르면 스킵되게
     }
     //------------------------------------------Event1060
     /*

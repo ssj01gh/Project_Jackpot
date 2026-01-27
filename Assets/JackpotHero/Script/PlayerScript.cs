@@ -397,9 +397,9 @@ public class PlayerScript : MonoBehaviour
                 PlayerBuff.BuffList[i] = 0;
             }
         }
-        PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 99;
-        PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
-        PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 99;
         SetInitBuffByEarlyUpgrade();
         /*
         스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨

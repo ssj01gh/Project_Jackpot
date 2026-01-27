@@ -96,16 +96,34 @@ public class BattleUI : MonoBehaviour
     public TextMeshProUGUI VictoryText;
     [Header("DefeatUI")]
     public GameObject DefeatUI;
-    public TextMeshProUGUI DefeatEventTitle;
-    public TextMeshProUGUI EquipSuccessionText;
-    public TextMeshProUGUI DefeatEventAmount;
-    public TextMeshProUGUI DeafeatEarlyPoint;
+    public TextMeshProUGUI D_FloorRealCount;
+    public TextMeshProUGUI D_FloorScore;
+    public TextMeshProUGUI D_NormalMonRealCount;
+    public TextMeshProUGUI D_NormalMonScore;
+    public TextMeshProUGUI D_EliteMonRealCount;
+    public TextMeshProUGUI D_EliteMonScore;
+    public TextMeshProUGUI D_RemainEXPRealCount;
+    public TextMeshProUGUI D_RemainEXPScore;
+    public TextMeshProUGUI D_GoodKarmaRealCount;
+    public TextMeshProUGUI D_GoodKarmaScore;
+    public TextMeshProUGUI D_TotalScore;
+    public TextMeshProUGUI D_SuccessionNum;
+    public TextMeshProUGUI D_EarlyPointScore;
     [Header("WinGameUI")]
     public GameObject WinGameUI;
-    public TextMeshProUGUI WinEventTitle;
-    public TextMeshProUGUI WinEquipSuccessionText;
-    public TextMeshProUGUI WinEventAmount;
-    public TextMeshProUGUI WinEarlyPoint;
+    public TextMeshProUGUI W_FloorRealCount;
+    public TextMeshProUGUI W_FloorScore;
+    public TextMeshProUGUI W_NormalMonRealCount;
+    public TextMeshProUGUI W_NormalMonScore;
+    public TextMeshProUGUI W_EliteMonRealCount;
+    public TextMeshProUGUI W_EliteMonScore;
+    public TextMeshProUGUI W_RemainEXPRealCount;
+    public TextMeshProUGUI W_RemainEXPScore;
+    public TextMeshProUGUI W_GoodKarmaRealCount;
+    public TextMeshProUGUI W_GoodKarmaScore;
+    public TextMeshProUGUI W_TotalScore;
+    public TextMeshProUGUI W_SuccessionNum;
+    public TextMeshProUGUI W_EarlyPointScore;
 
     //protected Dictionary<string, GameObject> MonSpritesStorage = new Dictionary<string, GameObject>();
     //protected Dictionary<string, Sprite> MonHeadSpriteStorage = new Dictionary<string, Sprite>();
@@ -1348,20 +1366,32 @@ public class BattleUI : MonoBehaviour
 
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             UpperMGVirtualCard[CardNum].SetActive(true);
+            //여기서 올려야할듯?
+            if (UpperMGList[CardNum] >= 1)//긍정
+                PositiveLink++;
+            else//부정
+                PositiveLink = 0;
+
+            int ClickedCardLink = PositiveLink;
             //뒤집는 애니메이션이 완료됬을때 카드를 
             UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() => 
             {
+                //이게 뒤집어 질때 늘어나면 안됨. 클릭됬을때 늘어나야 막 눌러도 소리의 피치가 점점 높아질듯함
+                //근디 전에 눌렀던 카드가 부정인데 다음에 눌렀던 카드가 긍정이면 1로 밑에 소리가 들어감.... 흠....
+                //변수를 하나 추가해서 걔를 전달해 줘야 할듯?
+                /*
                 if (UpperMGList[CardNum] >= 1)//긍정
                     PositiveLink++;
                 else//부정
                     PositiveLink = 0;
+                */
 
                 UpperMGVirtualCard[CardNum].GetComponent<Image>().sprite = 
                 EquipmentInfoManager.Instance.GetEquipmentSlotSprite(UpperMGList[CardNum]);//클릭한 카드에 맞는 결과 출력
                 UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
-                    PlayCardResultSound(PositiveLink);//계속 긍정이 되면 피치가 계속 올라감
+                    PlayCardResultSound(ClickedCardLink);//계속 긍정이 되면 피치가 계속 올라감
                 });
             });
         }
@@ -1373,20 +1403,22 @@ public class BattleUI : MonoBehaviour
 
             SoundManager.Instance.PlaySFX("ReverseCard_Open");
             LowerMGVirtualCard[FixedCardNum].SetActive(true);
+            if (LowwerMGList[FixedCardNum] >= 1)//긍정
+                PositiveLink++;
+            else//부정
+                PositiveLink = 0;
+
+            int ClickedCardLink = PositiveLink;
             //뒤집는 애니메이션이 완료됬을때 카드를 
             LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
             {
-                if (LowwerMGList[FixedCardNum] >= 1)//긍정
-                    PositiveLink++;
-                else//부정
-                    PositiveLink = 0;
 
                 LowerMGVirtualCard[FixedCardNum].GetComponent<Image>().sprite =
                 EquipmentInfoManager.Instance.GetEquipmentSlotSprite(LowwerMGList[FixedCardNum]);//클릭한 카드에 맞는 결과 출력
                 LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
-                    PlayCardResultSound(PositiveLink);//계속 긍정이 되면 피치가 계속 올라감
+                    PlayCardResultSound(ClickedCardLink);//계속 긍정이 되면 피치가 계속 올라감
                 });
             });
         }
@@ -1711,22 +1743,27 @@ public class BattleUI : MonoBehaviour
         DefeatUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -1080);
         DefeatUI.SetActive(true);
         DefeatUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f).SetEase(Ease.OutBack);
-        /*
-        DefeatEventTitle.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-            ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
-            ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
-            ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
-            ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
-        DefeatEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 2000) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillNormalMonster * 500) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillEliteMonster * 700) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GoodKarma * 200);
-        */
-        /*
-        EquipSuccessionText.text = "소지한 장비중 랜덤한 " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "개의 장비가 계승됩니다.";
-        DeafeatEarlyPoint.text = "기초 강화 포인트 : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
-        */
+        int FloorCount = JsonReadWriteManager.Instance.E_Info.PlayerReachFloor;
+        int NormalMonCount = (int)PlayerInfo.GetPlayerStateInfo().KillNormalMonster;
+        int EliteMonCount = (int)PlayerInfo.GetPlayerStateInfo().KillEliteMonster;
+        int RemainEXPCount = PlayerInfo.GetPlayerStateInfo().Experience;
+        int GoodKarmaCount = (int)PlayerInfo.GetPlayerStateInfo().GoodKarma;
+        //RealCount들
+        D_FloorRealCount.text = "(" + FloorCount + ")";
+        D_NormalMonRealCount.text = "(" + NormalMonCount + ")";
+        D_EliteMonRealCount.text = "(" + EliteMonCount + ")";
+        D_RemainEXPRealCount.text = "(" + RemainEXPCount + ")";
+        D_GoodKarmaRealCount.text = "(" + GoodKarmaCount + ")";
+        //Score들
+        D_FloorScore.text = (FloorCount * 1000).ToString();
+        D_NormalMonScore.text = (NormalMonCount * 250).ToString();
+        D_EliteMonScore.text = (EliteMonCount * 350).ToString();
+        D_RemainEXPScore.text = (RemainEXPCount / 2).ToString();
+        D_GoodKarmaScore.text = (GoodKarmaCount * 100).ToString();
+        //아래쪽 들
+        D_TotalScore.text = ((FloorCount * 1000) + (NormalMonCount * 250) + (EliteMonCount * 350) + (RemainEXPCount / 2) + (GoodKarmaCount * 100)).ToString();
+        D_SuccessionNum.text = ((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
+        D_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
     }
 
     public void WinGame(PlayerScript PlayerInfo)//이게 여기있어도 되는지는 몰겠는데 안좋으면 나중에 옮기지 뭐
@@ -1760,21 +1797,27 @@ public class BattleUI : MonoBehaviour
         WinGameUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -1080);
         WinGameUI.SetActive(true);
         WinGameUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.4f).SetEase(Ease.OutBack);
-        //특정 조건에 따라 승리라는 제목도 바뀔수 있지 않을까? 일단 그대로 진행
-        WinEventTitle.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-            ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
-            ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
-            ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
-            ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
-        WinEventAmount.text = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 2000) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillNormalMonster * 500) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().KillEliteMonster * 700) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().Experience) +
-            "\r\n" + (int)(PlayerInfo.GetPlayerStateInfo().GoodKarma * 200);
-        
-        WinEquipSuccessionText.text = "소지한 장비중 랜덤한 " + (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC") + "개의 장비가 계승됩니다.";
-        WinEarlyPoint.text = "기초 강화 포인트 : " + JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
-        
+        int FloorCount = JsonReadWriteManager.Instance.E_Info.PlayerReachFloor;
+        int NormalMonCount = (int)PlayerInfo.GetPlayerStateInfo().KillNormalMonster;
+        int EliteMonCount = (int)PlayerInfo.GetPlayerStateInfo().KillEliteMonster;
+        int RemainEXPCount = PlayerInfo.GetPlayerStateInfo().Experience;
+        int GoodKarmaCount = (int)PlayerInfo.GetPlayerStateInfo().GoodKarma;
+        //RealCount들
+        W_FloorRealCount.text = "(" + FloorCount + ")";
+        W_NormalMonRealCount.text = "(" + NormalMonCount + ")";
+        W_EliteMonRealCount.text = "(" + EliteMonCount + ")";
+        W_RemainEXPRealCount.text = "(" + RemainEXPCount + ")";
+        W_GoodKarmaRealCount.text = "(" + GoodKarmaCount + ")";
+        //Score들
+        W_FloorScore.text = (FloorCount * 1000).ToString();
+        W_NormalMonScore.text = (NormalMonCount * 250).ToString();
+        W_EliteMonScore.text = (EliteMonCount * 350).ToString();
+        W_RemainEXPScore.text = (RemainEXPCount / 2).ToString();
+        W_GoodKarmaScore.text = (GoodKarmaCount * 100).ToString();
+        //아래쪽 들
+        W_TotalScore.text = ((FloorCount * 1000) + (NormalMonCount * 250) + (EliteMonCount * 350) + (RemainEXPCount / 2) + (GoodKarmaCount * 100)).ToString();
+        W_SuccessionNum.text = ((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
+        W_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
     }
 
     public void ClickDefeatButton()

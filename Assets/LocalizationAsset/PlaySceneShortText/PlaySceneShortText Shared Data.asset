@@ -207,6 +207,122 @@ MonoBehaviour:
     m_Key: PS_ClaimEXP
     m_Metadata:
       m_Items: []
+  - m_Id: 7140419049222144
+    m_Key: PS_GoTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140808112861184
+    m_Key: PS_D_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140945237241856
+    m_Key: PS_Score_Floor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7140995652775936
+    m_Key: PS_Score_NorMon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141043576893440
+    m_Key: PS_Score_EliteMon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141114330607616
+    m_Key: PS_Score_RemainEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141146479947776
+    m_Key: PS_Score_GoodKarma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141205892263936
+    m_Key: PS_Score_TotalScore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141275085697024
+    m_Key: PS_Score_Succession
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7141323899006976
+    m_Key: PS_Score_EarlyPoint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7205679206625280
+    m_Key: PS_WinGame_Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209669461929984
+    m_Key: PS_Camping_ButtonRest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209670904770560
+    m_Key: PS_Camping_ButtonUpgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209671747825664
+    m_Key: PS_Camping_ButtonEquipment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7209672519577600
+    m_Key: PS_Camping_ButtonEndCamping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215340790083584
+    m_Key: PS_Resting_DetailTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215343050813440
+    m_Key: PS_Resting_Detail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215344812421120
+    m_Key: PS_Resting_AttackTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215377897091072
+    m_Key: PS_Resting_Count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215379407040512
+    m_Key: PS_Resting_OKButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7215380740829184
+    m_Key: PS_Resting_CancelButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227939774656512
+    m_Key: PS_Upgrade_NeededEXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227943130099712
+    m_Key: PS_Upgrade_Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7227946166775808
+    m_Key: PS_Upgrade_Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908102352896
+    m_Key: PS_EquipMg_WeaponText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243908974768128
+    m_Key: PS_EquipMG_ArmorText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243909767491584
+    m_Key: PS_EquipMG_HelmetText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243910438580224
+    m_Key: PS_EquipMG_BootsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7243912187604992
+    m_Key: PS_EquipMG_AccText
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
