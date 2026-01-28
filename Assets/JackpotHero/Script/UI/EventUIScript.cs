@@ -54,7 +54,7 @@ public class EventUIScript : MonoBehaviour
             {
                 Obj.SetActive(false);
             }
-        for(int i = 0; i < EventMgr.CurrentEvent.EventSelectionDetail.Length; i++)
+        for(int i = 0; i < EventMgr.CurrentEvent.EventSelectionDetail.Count; i++)
         {
             EventSelectionButtons[i].SetActive(true);
             EventSelectionTexts[i].text = EventMgr.CurrentEvent.EventSelectionDetail[i];

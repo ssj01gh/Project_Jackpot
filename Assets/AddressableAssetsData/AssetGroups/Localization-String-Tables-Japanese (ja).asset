@@ -29,6 +29,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ja
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d550a68236ac394ea2ba4ad11ab1f89
+    m_Address: EventDetailText_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88dd681bbfbf5664b80f0b2b4b880415
+    m_Address: EventSelectionDetailText_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c900c6b02cfb64458fd6e7f61ea3837
     m_Address: ES_DetailText_ja
     m_ReadOnly: 1
@@ -49,6 +61,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca99adb881469d245a7853b9fc90ef78
     m_Address: TutorialText_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cac59b6108fef5c4fbd45e722b6a01bf
+    m_Address: EventTitleText_ja
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja

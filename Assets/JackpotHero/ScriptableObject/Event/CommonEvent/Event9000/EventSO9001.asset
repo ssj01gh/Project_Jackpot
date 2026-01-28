@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: EventSO9001
   m_EditorClassIdentifier: 
   EventCode: 9001
-  EventTitle: "\uAC70\uB798 \uC2B9\uB099"
+  EventTitle: PS_ETT_9001
   EventImage: {fileID: 21300000, guid: 7fa0a749fd65ff5498633828324f9e18, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\n\"\uC88B\uC740 \uAC70\uB798 \uC600\uC5B4.\"\n\"\uB300\uAC00\uAC00
-    \uBB34\uC5C7 \uC774\uB0D0\uACE0?\"\n\"\uB098\uC544\uAC00\uB2E4 \uBCF4\uBA74 \uC54C\uAC8C
-    \uB418\uACA0\uC9C0.\"\n\uC815\uCCB4\uBD88\uBA85\uC758 \uB0A8\uC790\uB294 \uAC80\uC740\uC0C9
-    \uD3EC\uD0C8\uC5D0\n\uB4E4\uC5B4\uAC00\uBA70 \uC0AC\uB77C\uC84C\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_9001
   EventSelectionDetail:
-  - "\uAC70\uB798\uC758 \uB300\uAC00\uB294 \uBB34\uC5C7\uC77C\uAE4C\uC694."
+  - PS_ESDT_9001_1

@@ -44,7 +44,9 @@ public class EventManager : MonoBehaviour
     private const int BossTheme = 10;
     private const int EventTheme = 9;
     private readonly float[] StageAverageRward = new float[4] { 28, 101, 313, 816 };
-    public EventSO CurrentEvent { protected set; get; }
+    public EventSOInfo CurrentEvent { protected set; get; } = new EventSOInfo();
+    protected EventSO CurrentKeyEvent;
+    //protected EventSO CurrentKeyEvent = new EventSO();
 
     [HideInInspector]
     public string Getting = "";
@@ -219,10 +221,11 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoBossEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            CurrentKeyEvent = _Handle.Result;
+            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-            UIMgr.E_UI.ActiveEventUI(this);
+            StartCoroutine(LoadEvent());
+            //UIMgr.E_UI.ActiveEventUI(this);
             return;
         }
         //말하는 몬스터를 한번도 본적이 없다면
@@ -235,11 +238,11 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoTalkingMonsterEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            CurrentKeyEvent = _Handle.Result;
+            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster = true;
             JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-            UIMgr.E_UI.ActiveEventUI(this);
+            StartCoroutine(LoadEvent());
             return;
         }
         if (DetailOfEvents != 0)//이벤트가 결정된 상태로 게임을 껏다 켰으면
@@ -259,10 +262,10 @@ public class EventManager : MonoBehaviour
                         //Debug.LogError("NoEvent");
                         return;
                     }
-                    CurrentEvent = _Handle.Result;
-                    P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                    CurrentKeyEvent = _Handle.Result;
+                    P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
                     JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                    UIMgr.E_UI.ActiveEventUI(this);
+                    StartCoroutine(LoadEvent());
                     return;//함수 종료
                 }
             }
@@ -276,10 +279,10 @@ public class EventManager : MonoBehaviour
                     //Debug.LogError("NoEvent");
                     return;
                 }
-                CurrentEvent = _Handle.Result;
-                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                CurrentKeyEvent = _Handle.Result;
+                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
                 JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                UIMgr.E_UI.ActiveEventUI(this);
+                StartCoroutine(LoadEvent());
                 return;//함수 종료
             }
         }
@@ -296,10 +299,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+            CurrentKeyEvent = _Handle.Result;
+            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-            UIMgr.E_UI.ActiveEventUI(this);
+            StartCoroutine(LoadEvent());
             return;//함수 종료
         }
         else
@@ -322,10 +325,10 @@ public class EventManager : MonoBehaviour
                     //Debug.LogError("NoEvent");
                     return;
                 }
-                CurrentEvent = _Handle.Result;
-                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                CurrentKeyEvent = _Handle.Result;
+                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
                 JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                UIMgr.E_UI.ActiveEventUI(this);
+                StartCoroutine(LoadEvent());
                 return;//함수 종료
             }
             else if (RandNum >= CurrentFloorEventCount && RandNum < CurrentFloorEventCount + CommonEventCount)
@@ -339,10 +342,10 @@ public class EventManager : MonoBehaviour
                     //Debug.LogError("NoEvent");
                     return;
                 }
-                CurrentEvent = _Handle.Result;
-                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
+                CurrentKeyEvent = _Handle.Result;
+                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
                 JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                UIMgr.E_UI.ActiveEventUI(this);
+                StartCoroutine(LoadEvent());
                 return;//함수 종료
             }
         }
@@ -358,128 +361,6 @@ public class EventManager : MonoBehaviour
             Addressables.Release(_Handle);
         }
     }
-    /*
-    public void SetCurrentEvent(bool IsBossEvent = false)
-    {
-        PlayerScript P_Info = PlayerMgr.GetPlayerInfo();
-
-        int ThemeNum = P_Info.GetPlayerStateInfo().CurrentFloor;
-        int DetailOfEvents = P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails;
-        int CurrentFloorEventCount = 0;// = EventStorage[ThemeNum].Count;
-        int CommonEventCount = EventStorage[EventTheme].Count;
-        //보스 이벤트 라면 -> 보스 이벤트는 한개면 될듯 보스 이벤트 코드 = 10000
-        if(IsBossEvent == true)
-        {
-            CurrentEvent = EventStorage[BossTheme][0];
-            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-            return;
-        }
-
-        if(JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster == false)
-        {//한번도 만나지 못했다면
-            for(int i = 0;  i < EventStorage[EventTheme].Count; i++)
-            {
-                if (EventStorage[EventTheme][i].EventCode == 9020)
-                {
-                    CurrentEvent = EventStorage[EventTheme][i];
-                    P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                    JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingMonster = true;
-                    JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                    return;
-                }
-            }
-        }
-
-        //DetailOfEvents는 1000 ~ 로 됨 1테마라면 1000~ 2테마 라면 2000~식이다
-        if (DetailOfEvents != 0)//이벤트가 결정된 상태로 게임을 껏다 켰으면
-        {
-            int FixedEvnetThemeNum = DetailOfEvents / 1000;
-            for (int i = 0; i < EventStorage[FixedEvnetThemeNum].Count; i++)
-            {
-                if (EventStorage[FixedEvnetThemeNum][i].EventCode == DetailOfEvents)//겹치는게 있다면
-                {
-                    CurrentEvent = EventStorage[FixedEvnetThemeNum][i];
-                    CheckLinkageEvent();//연계가 있는 이벤트라면 연계가 어디까지 됬는지 체크해서 CurrentEvent를 바꿔줌
-                    P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                    JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                    return;//함수 종료
-                }
-            }
-            if (FollowEventStorage.ContainsKey(DetailOfEvents))
-            {
-                CurrentEvent = FollowEventStorage[DetailOfEvents];
-                CheckLinkageEvent();//연계가 있는 이벤트라면 연계가 어디까지 됬는지 체크해서 CurrentEvent를 바꿔줌
-                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                return;//함수 종료
-            }
-        }
-
-        //여기 온거면 이벤트를 새로 결정해야 되는거//공통 이벤트와 해당 층 이벤트 둘중하나.
-        if (ThemeNum == 4)
-        {
-            //0 -> 4000//1 -> 4010//2 -> 4020//3 -> 4030//4 -> 4040//5 -> 4050//6 -> 4060//7 -> 4070//
-            switch(JsonReadWriteManager.Instance.LkEv_Info.Stage04EventCount)
-            {
-                case 0:
-                    CurrentEvent = EventStorage[ThemeNum][0];
-                    break;
-                case 1:
-                    CurrentEvent = EventStorage[ThemeNum][1];
-                    break;
-                case 2:
-                    CurrentEvent = EventStorage[ThemeNum][2];
-                    break;
-                case 3:
-                    CurrentEvent = EventStorage[ThemeNum][3];
-                    break;
-                case 4:
-                    CurrentEvent = EventStorage[ThemeNum][4];
-                    break;
-                case 5:
-                    CurrentEvent = EventStorage[ThemeNum][5];
-                    break;
-                case 6:
-                    CurrentEvent = EventStorage[ThemeNum][6];
-                    break;
-                case 7:
-                    CurrentEvent = EventStorage[ThemeNum][7];
-                    break;
-            }
-            P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-            return;//함수 종료
-        }
-        else
-        {
-            int RandNum = Random.Range(0, CurrentFloorEventCount + CommonEventCount);
-            if (RandNum >= 0 && RandNum < CurrentFloorEventCount)
-            {//현재층 이벤트로 결정
-                RandNum = Random.Range(0, EventStorage[ThemeNum].Count);
-                CurrentEvent = EventStorage[ThemeNum][RandNum];
-                CheckLinkageEvent();
-                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                return;//함수 종료
-            }
-            else if (RandNum >= CurrentFloorEventCount && RandNum < CurrentFloorEventCount + CommonEventCount)
-            {//공통 이벤트로 결정
-                RandNum = Random.Range(0, EventStorage[EventTheme].Count);
-                CurrentEvent = EventStorage[EventTheme][RandNum];
-                CheckLinkageEvent();
-                P_Info.GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                JsonReadWriteManager.Instance.SavePlayerInfo(P_Info.GetPlayerStateInfo());
-                return;//함수 종료
-            }
-        }
-            
-
-
-        //여기로 넘어가면 아무것도 안된거-- 그러니까 오류가 발생한거
-        Debug.Log("ThereIsNoEvent");
-    }
-    */
     protected int CheckLinkageAddresableEvent(int CurrentEventCode)
     {
         int ReturnEventCode = CurrentEventCode;
@@ -999,11 +880,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            CurrentKeyEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-            UIMgr.SetUI();
+            StartCoroutine(LoadEvent(true));
         }
     }
     protected async void LinkageThemeEvent(int ButtonType)
@@ -1120,11 +1000,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            CurrentKeyEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-            UIMgr.SetUI();
+            StartCoroutine(LoadEvent(true));
         }
     }
     protected async void Stage01ThemeEvent(int ButtonType)
@@ -1194,11 +1073,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            CurrentKeyEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-            UIMgr.SetUI();
+            StartCoroutine(LoadEvent(true));
         }
     }
     protected async void Stage02ThemeEvent(int ButtonType)
@@ -1286,11 +1164,10 @@ public class EventManager : MonoBehaviour
                     //Debug.LogError("NoEvent");
                     return;
                 }
-                CurrentEvent = _Handle.Result;
-                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-                UIMgr.E_UI.ActiveEventUI(this);
+                CurrentKeyEvent = _Handle.Result;
+                PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
                 JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-                UIMgr.SetUI();
+                StartCoroutine(LoadEvent(true));
             }
             return;
         }
@@ -1303,11 +1180,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            CurrentKeyEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-            UIMgr.SetUI();
+            StartCoroutine(LoadEvent(true));
         }
         else if (FollowEventCode == 2000)
         {
@@ -1318,11 +1194,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            CurrentKeyEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-            UIMgr.SetUI();
+            StartCoroutine(LoadEvent(true));
         }
     }
     protected async void Stage03ThemeEvent(int ButtonType)
@@ -1396,11 +1271,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            CurrentKeyEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-            UIMgr.SetUI();
+            StartCoroutine(LoadEvent(true));
         }
     }
     protected async void Stage04ThemeEvent(int ButtonType)
@@ -1476,11 +1350,10 @@ public class EventManager : MonoBehaviour
                 //Debug.LogError("NoEvent");
                 return;
             }
-            CurrentEvent = _Handle.Result;
-            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEvent.EventCode;
-            UIMgr.E_UI.ActiveEventUI(this);
+            CurrentKeyEvent = _Handle.Result;
+            PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentKeyEvent.EventCode;
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
-            UIMgr.SetUI();
+            StartCoroutine(LoadEvent(true));
         }
     }
     protected void CommonFollowEvent()
@@ -1488,14 +1361,37 @@ public class EventManager : MonoBehaviour
         EndOfEvent();
     }
 
-    private IEnumerator Load(string EventKey)
+    private IEnumerator LoadEvent(bool IsUseSetUI = false)
     {
+        //CurrentEvent에 이미 코드가 들어가 있음..... 하나씩 딴거로 바꾼다?
+        //CurrentEvent = CurrentKeyEvent;
+        CurrentEvent.EventCode = CurrentKeyEvent.EventCode;
+        CurrentEvent.EventImage = CurrentKeyEvent.EventImage;
+        CurrentEvent.EventTitle = CurrentKeyEvent.EventTitle;
+        CurrentEvent.EventDetail = CurrentKeyEvent.EventDetail;
+        CurrentEvent.EventSelectionDetail.Clear();
+        for(int i = 0; i < CurrentKeyEvent.EventSelectionDetail.Length; i++)
+        {
+            CurrentEvent.EventSelectionDetail.Add(CurrentKeyEvent.EventSelectionDetail[i]);
+        }
+
         yield return LocalizationSettings.InitializationOperation;
 
-        var EventTable = LocalizationSettings.StringDatabase.GetTable("TutorialText");
-        //TutorialText.text = TutorialTable.GetEntry(TutorialKey).GetLocalizedString();
+        var EventTitleTable = LocalizationSettings.StringDatabase.GetTable("EventTitleText");
+        var EventDetailTable = LocalizationSettings.StringDatabase.GetTable("EventDetailText");
+        var EventSelectionDetailTable = LocalizationSettings.StringDatabase.GetTable("EventSelectionDetailText");
 
-        //PlayTutorialText();//글자 토도독, 버튼 누르면 스킵되게
+        CurrentEvent.EventTitle = EventTitleTable.GetEntry(CurrentEvent.EventTitle)?.GetLocalizedString();
+        CurrentEvent.EventDetail = EventDetailTable.GetEntry(CurrentEvent.EventDetail)?.GetLocalizedString();
+        for(int i = 0; i < CurrentEvent.EventSelectionDetail.Count; i++)
+        {
+            string EvetnSelectionDetailKey = CurrentEvent.EventSelectionDetail[i];
+            CurrentEvent.EventSelectionDetail[i] = EventSelectionDetailTable.GetEntry(EvetnSelectionDetailKey)?.GetLocalizedString();
+        }
+
+        UIMgr.E_UI.ActiveEventUI(this);
+        if(IsUseSetUI == true)
+            UIMgr.SetUI();
     }
     //------------------------------------------Event1060
     /*
