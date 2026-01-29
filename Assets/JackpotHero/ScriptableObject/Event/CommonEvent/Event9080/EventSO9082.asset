@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: EventSO9082
   m_EditorClassIdentifier: 
   EventCode: 9082
-  EventTitle: "\uADF8\uC800 \uB290\uB08C\uC77C \uBFD0"
+  EventTitle: PS_ETT_9082
   EventImage: {fileID: 21300000, guid: 6966903d1bcb6b349816ec3f73e296ed, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\n\uBD88\uAE38\uD574 \uBCF4\uC778\uB2E4\uB294
-    \uAC83\uC740 \uB290\uB08C\uC77C \uBFD0\n\uBF51\uC544 \uBCF4\uAE30 \uC804\uAE4C\uC9C0\uB294
-    \uC54C\uC9C0 \uBABB\uD569\uB2C8\uB2E4.\n\uB2F9\uC2E0\uC740 \uC6A9\uAC10\uD558\uAC8C
-    \uAC80\uC744 \uBF51\uC558\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_9082
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_9082_1

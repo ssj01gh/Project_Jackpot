@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO8070
   m_EditorClassIdentifier: 
   EventCode: 8070
-  EventTitle: "\uC800\uC8FC \uBC1B\uC740 \uAC80\uC758 \uC800\uC8FC"
+  EventTitle: PS_ETT_8070
   EventImage: {fileID: 21300000, guid: 59ec602da77fc9a4897dd5b3019f1646, type: 3}
-  EventDetail: "\uC800\uC8FC \uBC1B\uC740 \uAC80\uC744 \uBF51\uC740 \uD6C4\uB85C\n\uC545\uBABD\uACFC
-    \uBD88\uD589\uC5D0 \uC2DC\uB2EC\uB9AC\uACE0 \uC788\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_8070
   EventSelectionDetail:
-  - "\uBAB8\uC774 \uBED0\uADFC\uD558\uB2E4."
+  - PS_ESDT_8070

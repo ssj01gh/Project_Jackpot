@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: EventSO3020
   m_EditorClassIdentifier: 
   EventCode: 3020
-  EventTitle: "\uBCF4\uC548 \uCCB4\uACC4"
+  EventTitle: PS_ETT_3020
   EventImage: {fileID: 21300000, guid: cbf762c9d064eb84e93fa6adbcdfd543, type: 3}
-  EventDetail: "\"\uCE69\uC785\uC790 \uBC1C\uACAC\"\n\uC74C\uC131\uACFC \uD568\uAED8
-    \uB545\uC774 \uAEBC\uC9C0\uB294 \uB290\uB08C\uC774 \uB4E4\uB354\uB2C8\n\uCCA0\uCC3D\uC73C\uB85C
-    \uB9C9\uD600\uC788 \uBC29\uC5D0 \uB3C4\uCC29\uD588\uC2B5\uB2C8\uB2E4.\n\"\uBCF8
-    \uC5F0\uAE08\uC220 \uD0D1\uC758 \uC5F0\uAD6C\uC6D0\uC774\uC2DC\uB77C\uBA74\n\uBCF4\uC548
-    \uCF54\uB4DC\uB97C \uB9D0\uC500\uD574 \uC8FC\uC2ED\uC2DC\uC624.\""
+  EventDetail: PS_EDT_3020
   EventSelectionDetail:
-  - "\uC544\uBB34\uB7F0 \uC22B\uC790\uB098 \uB9D0\uD55C\uB2E4."
+  - PS_ESDT_3020_1

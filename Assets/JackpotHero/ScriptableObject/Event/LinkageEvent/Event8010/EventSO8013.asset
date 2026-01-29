@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: EventSO8013
   m_EditorClassIdentifier: 
   EventCode: 8013
-  EventTitle: "\uCE5C\uC808\uD55C \uC0AC\uB78C"
+  EventTitle: PS_ETT_8013
   EventImage: {fileID: 21300000, guid: f1337699792b4a34fb16c72158f2d5ec, type: 3}
-  EventDetail: "<color=red>{Losing}</color>\n\uB2F9\uC2E0\uC740 \uC21C\uC218\uD574
-    \uBCF4\uC774\uB294 \uD759\uACE8\uB818\uC744\n\uADF8\uB0E5 \uB458 \uC218 \uC5C6\uC5C8\uC2B5\uB2C8\uB2E4.\n\"\uD1A0\uD1A0
-    \uD2BC\uD2BC\uD574\uC694!!!\"\n\uD759\uACE8\uB818\uC758 \uB9CC\uB958\uC5D0\uB3C4
-    \uBD88\uAD6C\uD558\uACE0\n\uD568\uAED8 \uD759\uACE8\uB818\uC758 \uC2DD\uB7C9\uC744
-    \uCC44\uC9D1\uD558\uACE0 \uD5E4\uC5B4\uC84C\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_8013
   EventSelectionDetail:
-  - "\uB2E4\uC74C\uC5D0 \uB610 \uB9CC\uB098\uAE38 \uAE30\uB300\uD55C\uB2E4."
+  - PS_ESDT_8013_1

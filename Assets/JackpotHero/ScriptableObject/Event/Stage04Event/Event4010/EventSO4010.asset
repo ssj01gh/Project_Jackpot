@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: EventSO4010
   m_EditorClassIdentifier: 
   EventCode: 4010
-  EventTitle: "\uAD50\uB9CC\uC758 \uC601\uC5ED"
+  EventTitle: PS_ETT_4010
   EventImage: {fileID: 21300000, guid: 2d33fac2dfdfd024483f81cd6674aa5f, type: 3}
-  EventDetail: "\uC8FC\uBCC0\uC758 \uAE30\uC6B4\uC774 \uB2EC\uB77C\uC84C\uC2B5\uB2C8\uB2E4.\n\uCEE4\uB2E4\uB780
-    \uC131\uC774 \uBCF4\uC785\uB2C8\uB2E4.\n\uAD50\uB9CC\uC758 \uC601\uC5ED\uC73C\uB85C
-    \uB4E4\uC5B4\uC628 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_4010
   EventSelectionDetail:
-  - "\uC601\uC5ED\uC758 \uAE4A\uC219\uD788 \uB4E4\uC5B4\uAC04\uB2E4."
-  - "\uC601\uC5ED\uC5D0\uC11C \uBA40\uC5B4\uC9C4\uB2E4."
+  - PS_ESDT_4010_1
+  - PS_ESDT_4010_2

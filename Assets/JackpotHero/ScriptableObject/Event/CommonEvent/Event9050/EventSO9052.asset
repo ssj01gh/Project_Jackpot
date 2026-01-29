@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO9052
   m_EditorClassIdentifier: 
   EventCode: 9052
-  EventTitle: "\uD68C\uAC1C"
+  EventTitle: PS_ETT_9052
   EventImage: {fileID: 21300000, guid: fb972b2d3cc5d2c4b9bd461e97f3f6da, type: 3}
-  EventDetail: "<color=red>{Losing}</color>\n\uB2F9\uC2E0\uC740 \uAE30\uB3C4 \uD6C4
-    \uB9C8\uC74C\uC774 \uAC00\uBCBC\uC6CC\uC9D0\uC744 \uB290\uB08D\uB2C8\uB2E4."
+  EventDetail: PS_EDT_9052
   EventSelectionDetail:
-  - "\uBD84\uC218\uB97C \uB5A0\uB09C\uB2E4."
+  - PS_ESDT_9052_1

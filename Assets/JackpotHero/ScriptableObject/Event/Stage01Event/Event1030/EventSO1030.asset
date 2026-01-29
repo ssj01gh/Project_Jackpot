@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: EventSO1030
   m_EditorClassIdentifier: 
   EventCode: 1030
-  EventTitle: "\uC9C4\uC9DC \uD504\uB808\uB9AC\uB3C5 \uAE30\uC0AC"
+  EventTitle: PS_ETT_1030
   EventImage: {fileID: 21300000, guid: eb222176706b5974b9e238674072accb, type: 3}
-  EventDetail: "\uD504\uB808\uB9AC\uB3C5 \uAE30\uC0AC\uAC00 \uB098\uD0C0\uB0AC\uC2B5\uB2C8\uB2E4.\n\uB2F9\uC2E0\uC5D0\uAC8C
-    \uAC80\uC744 \uACA8\uB204\uC9C0\uB9CC \uC0B4\uAE30\uB294 \uB290\uAEF4\uC9C0\uC9C0
-    \uC54A\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_1030
   EventSelectionDetail:
-  - "\uB300\uB828\uD55C\uB2E4."
-  - "\uACF5\uACA9\uD55C\uB2E4."
+  - PS_ESDT_1030_1
+  - PS_ESDT_1030_2

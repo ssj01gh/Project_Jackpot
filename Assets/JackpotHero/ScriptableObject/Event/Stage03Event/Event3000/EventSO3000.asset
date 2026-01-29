@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: EventSO3000
   m_EditorClassIdentifier: 
   EventCode: 3000
-  EventTitle: "\uAC8C\uC784\uC744 \uC2DC\uC791\uD558\uC9C0"
+  EventTitle: PS_ETT_3000
   EventImage: {fileID: 21300000, guid: dde1d04b8a8ff8e428ff8d00170714c8, type: 3}
-  EventDetail: "\uAC11\uC791\uC2A4\uB7FD\uAC8C \uB4B7\uBAA9\uC774 \uB530\uB054\uAC70\uB9BD\uB2C8\uB2E4.\n\uC774\uC73D\uACE0
-    \uB208\uC55E\uC774 \uD750\uB9BF\uD574 \uC9C0\uAE30 \uC2DC\uC791\uD560\uB54C\n\uBD88\uCF8C\uD55C
-    \uBAA9\uC18C\uB9AC\uAC00 \uB4E4\uB824\uC635\uB2C8\uB2E4.\n\"\uAC8C\uC784\uC744
-    \uC2DC\uC791\uD558\uC9C0.\"\n\"\uB458\uC911 \uD558\uB098\uB294 \uD574\uB3C5\uC81C
-    \uD558\uB098\uB294 \uB3C5\uC774\uB2E4.\""
+  EventDetail: PS_EDT_3000
   EventSelectionDetail:
-  - "\uBE68\uAC04\uC0C9 \uC57D\uBB3C\uC744 \uC8FC\uC0AC\uD55C\uB2E4."
-  - "\uD30C\uB780\uC0C9 \uC57D\uBB3C\uC744 \uC8FC\uC0AC\uD55C\uB2E4."
-  - "\uC8FC\uC0AC\uD558\uC9C0 \uC54A\uB294\uB2E4."
+  - PS_ESDT_3000_1
+  - PS_ESDT_3000_2
+  - PS_ESDT_3000_3

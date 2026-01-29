@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO3001
   m_EditorClassIdentifier: 
   EventCode: 3001
-  EventTitle: "\uD574\uB3C5\uC81C"
+  EventTitle: PS_ETT_3001
   EventImage: {fileID: 21300000, guid: dde1d04b8a8ff8e428ff8d00170714c8, type: 3}
-  EventDetail: "\uC57D\uBB3C\uC744 \uC8FC\uC0AC\uD558\uC790 \uB208\uC55E\uC774 \uB2E4\uC2DC
-    \uC120\uBA85\uD574\uC9C0\uAE30 \uC2DC\uC791\uD569\uB2C8\uB2E4."
+  EventDetail: PS_EDT_3001
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_3001_1

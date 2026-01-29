@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO9041
   m_EditorClassIdentifier: 
   EventCode: 9041
-  EventTitle: "\uC88B\uC740 \uD488\uC9C8\uC758 \uD53C\uB85C\uD68C\uBCF5\uC81C"
+  EventTitle: PS_ETT_9041
   EventImage: {fileID: 21300000, guid: 5b038bb897f52e84dbdec1955e98937a, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\r\n<color=red>{Losing}</color>\n\uD53C\uB85C\uAC00
-    \uD68C\uBCF5\uB418\uB294\uAC8C \uB290\uAEF4\uC9D1\uB2C8\uB2E4."
+  EventDetail: PS_EDT_9041
   EventSelectionDetail:
-  - "\uBC14\uAD6C\uB2C8\uB97C \uB5A0\uB09C\uB2E4."
+  - PS_ESDT_9041_1

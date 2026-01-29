@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO8161
   m_EditorClassIdentifier: 
   EventCode: 8161
-  EventTitle: "\uAE4A\uC740 \uC232\uC18D\uC758 \uD734\uC2DD\uACF5\uAC04"
+  EventTitle: PS_ETT_8161
   EventImage: {fileID: 21300000, guid: 9bfec099fb2ac1642a25db95931d2ba4, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\n\uC232\uC18D\uC758 \uC2DC\uC6D0\uD55C
-    \uBC14\uB78C\uC774 \uBD88\uC5B4\uC635\uB2C8\uB2E4."
+  EventDetail: PS_EDT_8161
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_8161_1

@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: EventSO2011
   m_EditorClassIdentifier: 
   EventCode: 2011
-  EventTitle: "\uB9DB\uC788\uB294 \uC2A4\uD504"
+  EventTitle: PS_ETT_2011
   EventImage: {fileID: 21300000, guid: 68259fe8c63e9364283f2a7440910310, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\n\uB9DB\uC787\uB294 \uC2A4\uD504\uB97C
-    \uBA39\uC740 \uB2F9\uC2E0\uC740 \uB2F9\uBD84\uAC04\uC758 \uC804\uD22C\uC5D0\uC11C\n\uC6D0\uD560\uD788
-    \uC2F8\uC6B8 \uC218 \uC788\uC744 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_2011
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_2011_1

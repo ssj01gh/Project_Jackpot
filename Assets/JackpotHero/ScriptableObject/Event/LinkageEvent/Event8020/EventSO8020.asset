@@ -13,13 +13,8 @@ MonoBehaviour:
   m_Name: EventSO8020
   m_EditorClassIdentifier: 
   EventCode: 8020
-  EventTitle: "\uACE0\uC778\uC758 \uAC10\uC0AC"
+  EventTitle: PS_ETT_8020
   EventImage: {fileID: 21300000, guid: 741032f008d5d2649a88b9add189c11e, type: 3}
-  EventDetail: "\uB2F9\uC2E0\uC758 \uB208\uC55E\uC5D0 \uD55C \uC720\uB839\uC774 \uB098\uD0C0\uB0AC\uC2B5\uB2C8\uB2E4.\n\uC544\uBB34\uB808\uB3C4
-    \uC804\uC5D0 \uC7A5\uB840\uC2DD\uC744 \uCE58\uB904\uC900\n\uBC29\uCE58\uB41C
-    \uC2DC\uC2E0\uC758 \uC720\uB839\uC778\uB4EF \uD569\uB2C8\uB2E4.\n\"\uB098\uC5D0\uAC8C
-    \uBA85\uBCF5\uC744 \uBE4C\uC5B4\uC918\uC11C \uACE0\uB9D9\uB124\"\n\"\uC57D\uAC04\uC758
-    \uB3C4\uC6C0\uC774\uB77C\uB3C4 \uC8FC\uACE0 \uC2F6\uB124\uB9CC, \uBC1B\uC544\uC8FC\uC9C0
-    \uC54A\uACA0\uB098?\""
+  EventDetail: PS_EDT_8020
   EventSelectionDetail:
-  - "\uACBD\uD5D8\uCE58\uB97C \uBC1B\uB294\uB2E4."
+  - PS_ESDT_8020_1

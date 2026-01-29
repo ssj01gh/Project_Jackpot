@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: EventSO2041
   m_EditorClassIdentifier: 
   EventCode: 2041
-  EventTitle: "\uC120\uC778"
+  EventTitle: PS_ETT_2041
   EventImage: {fileID: 21300000, guid: 04c2c50b24659cd45a77dfffc2f4eb97, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\n\"\uADF8\uB300\uB294... \uC120\uC778\uC774\uAD70...\"\n\uC815\uCCB4\uBD88\uBA85\uC758
-    \uB208\uBE5B\uC758 \uC911\uC5BC\uAC70\uB9BC\uACFC \uD568\uAED8\n\uBAB8\uC5D0
-    \uD798\uC774 \uD758\uB7EC \uB4E4\uC5B4 \uC635\uB2C8\uB2E4."
+  EventDetail: PS_EDT_2041
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_2041_1

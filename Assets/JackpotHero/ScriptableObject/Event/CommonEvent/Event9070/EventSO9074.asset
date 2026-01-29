@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: EventSO9074
   m_EditorClassIdentifier: 
   EventCode: 9074
-  EventTitle: "\uC2E0\uBE44\uD55C \uB300\uC7A5\uAC04"
+  EventTitle: PS_ETT_9074
   EventImage: {fileID: 21300000, guid: 31de1e214f419184194c9bfebb649a2e, type: 3}
-  EventDetail: "\"\uC5B4\uB5A4 \uC885\uB958\uC758 \uC644\uBCBD\uD55C \uC7A5\uBE44\uB97C
-    \uC6D0\uD558\uC2DC\uC624?\""
+  EventDetail: PS_EDT_9074
   EventSelectionDetail:
-  - "\uBB34\uAE30 <color=green>+\uC7A5\uBE44 : 5\uD2F0\uC5B4 \uBB34\uAE30</color>"
-  - "\uAC11\uC637 <color=green>+\uC7A5\uBE44 : 5\uD2F0\uC5B4 \uAC11\uC637</color>"
-  - "\uD22C\uAD6C <color=green>+\uC7A5\uBE44 : 5\uD2F0\uC5B4 \uD22C\uAD6C</color>"
-  - "\uBD80\uCE20 <color=green>+\uC7A5\uBE44 : 5\uD2F0\uC5B4 \uBD80\uCE20</color>"
-  - "\uC7A5\uC2E0\uAD6C <color=green>+\uC7A5\uBE44 : 5\uD2F0\uC5B4 \uC7A5\uC2E0\uAD6C</color>"
+  - PS_ESDT_9074_1
+  - PS_ESDT_9074_2
+  - PS_ESDT_9074_3
+  - PS_ESDT_9074_4
+  - PS_ESDT_9074_5
