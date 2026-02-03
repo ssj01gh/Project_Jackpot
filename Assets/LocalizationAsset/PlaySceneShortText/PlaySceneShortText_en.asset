@@ -361,6 +361,30 @@ MonoBehaviour:
     m_Localized: Accessory
     m_Metadata:
       m_Items: []
+  - m_Id: 9764138401787904
+    m_Localized: Stat Affinity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764139899154432
+    m_Localized: Equipment Type
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764141501378560
+    m_Localized: Multiplier Affinity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764651444858880
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764649268015104
+    m_Localized: 'Attempts left : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764653269381120
+    m_Localized: Reroll
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

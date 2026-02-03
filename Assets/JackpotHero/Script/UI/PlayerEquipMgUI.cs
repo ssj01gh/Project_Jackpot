@@ -1887,7 +1887,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         RemainGachaCount = 3;
         DecideGachaCardResult();
         GachaCardSelectObject.SetActive(true);
-        CardSelectTitle.text = "장비 성향";
+        StartCoroutine(LoadGachaTitle("PS_CP_GachaStateType"));
+        //CardSelectTitle.text = "장비 성향";
         GachaConfirmButton.SetActive(false);
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
@@ -1956,7 +1957,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         CurrentGachaPhase = (int)EGachaPhase.TypePhase;
         DecideGachaCardResult();
         GachaCardSelectObject.SetActive(true);
-        CardSelectTitle.text = "장비 종류";
+        StartCoroutine(LoadGachaTitle("PS_CP_GachaEquipType"));
+        //CardSelectTitle.text = "장비 종류";
         GachaConfirmButton.SetActive(false);
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
@@ -2027,7 +2029,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //여기는 만약 전에 뽑은 장비의 종류가 신발 혹은 장신구였으면 Non카드 하나만 나옴
         DecideGachaCardResult(GachaEquipTypeNum == (int)EEquipType.TypeBoots || GachaEquipTypeNum == (int)EEquipType.TypeAcc);
         GachaCardSelectObject.SetActive(true);
-        CardSelectTitle.text = "곱 성향";
+        StartCoroutine(LoadGachaTitle("PS_CP_GachaMultiType"));
+        //CardSelectTitle.text = "곱 성향";
         GachaConfirmButton.SetActive(false);
         GachaAgainButton.SetActive(false);
         RemainGachaText.gameObject.SetActive(false);
@@ -2250,7 +2253,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaConfirmButton.SetActive(true);
             GachaAgainButton.SetActive(true);
             RemainGachaText.gameObject.SetActive(true);
-            RemainGachaText.text = "남은 횟수 : " + RemainGachaCount + "회";
+            //RemainGachaText.text = "남은 횟수 : " + RemainGachaCount + "회";
+            StartCoroutine(LoadGachaTitle(""));
             if (RemainGachaCount > 0 && RemainCardResult.Count >= 2)
                 GachaAgainButton.GetComponent<Button>().interactable = true;
             else
@@ -2301,5 +2305,22 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         SetGambling();//이걸로 Gambling UI를 업데이트 하고
         SetInventory();//인벤토리도 업데이트 해야함
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+    }
+
+    private IEnumerator LoadGachaTitle(string Gacha_TitleKey)
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        var PS_ShortTable = LocalizationSettings.StringDatabase.GetTable("PlaySceneShortText");
+
+        if(Gacha_TitleKey != "")
+        {
+            CardSelectTitle.text = PS_ShortTable.GetEntry(Gacha_TitleKey)?.GetLocalizedString();
+        }
+        else if(Gacha_TitleKey == "")
+        {
+            RemainGachaText.text = PS_ShortTable.GetEntry("PS_CP_GachaRemainCount")?.GetLocalizedString();
+            RemainGachaText.text += RemainGachaCount.ToString();
+        }
     }
 }
