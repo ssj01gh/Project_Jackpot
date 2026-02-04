@@ -19,27 +19,1047 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 247615266091008
-    m_Localized: aaaaaa
+    m_Localized: Demand equipment.
     m_Metadata:
       m_Items: []
   - m_Id: 247635491024896
-    m_Localized: bbbbbb
+    m_Localized: Demand experience.
     m_Metadata:
       m_Items: []
   - m_Id: 247637965664256
-    m_Localized: cccccc
+    m_Localized: Demand power.
     m_Metadata:
       m_Items: []
   - m_Id: 247640192839680
-    m_Localized: dddddd
+    m_Localized: Refuse.
     m_Metadata:
       m_Items: []
   - m_Id: 248301554888704
-    m_Localized: aaaaaaa
+    m_Localized: What will be the price of this deal?
     m_Metadata:
       m_Items: []
   - m_Id: 249172103655424
-    m_Localized: Keep Going
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373051740160
+    m_Localized: Use all.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711680
+    m_Localized: Use more.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711681
+    m_Localized: Use one.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711682
+    m_Localized: Show gratitude.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711683
+    m_Localized: Leave the basket.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711684
+    m_Localized: Keep Watching.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711685
+    m_Localized: Help.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711686
+    m_Localized: Help actively.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711687
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711688
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711689
+    m_Localized: You encounter a peculiar monster.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711690
+    m_Localized: Take equipment and experience.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711691
+    m_Localized: Take experience.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711692
+    m_Localized: Take experience and cremate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711693
+    m_Localized: Cremate.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711694
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711695
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711696
+    m_Localized: Use all.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711697
+    m_Localized: Use more.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711698
+    m_Localized: Use one.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711699
+    m_Localized: Show gratitude.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711700
+    m_Localized: Leave the basket.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711701
+    m_Localized: Collect the experience from the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711702
+    m_Localized: Offer a brief prayer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711703
+    m_Localized: Offer experience and pray.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711704
+    m_Localized: Leave the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711705
+    m_Localized: Leave the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711706
+    m_Localized: Absorb as much as possible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711707
+    m_Localized: Absorb a moderate amount.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711708
+    m_Localized: Pour experience into the spring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711709
+    m_Localized: The spring of experience disappears before your eyes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711710
+    m_Localized: The spring of experience disappears before your eyes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711711
+    m_Localized: The spring of experience disappears before your eyes.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711712
+    m_Localized: 'Ordinary equipment <color=red>-EXP : 120</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711713
+    m_Localized: 'Good equipment <color=red>-EXP : 300</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711714
+    m_Localized: 'Fine equipment <color=red>-EXP : 1050</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711715
+    m_Localized: 'Perfect equipment <color=red>-EXP : 3000</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711716
+    m_Localized: Leave the forge.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711717
+    m_Localized: 'Weapon <color=green>+Equipment : Tier 2 Weapon</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711718
+    m_Localized: 'Armor <color=green>+Equipment : Tier 2 Armor</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711719
+    m_Localized: 'Helmet <color=green>+Equipment : Tier 2 Helmet</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711720
+    m_Localized: 'Boots <color=green>+Equipment : Tier 2 Boots</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711721
+    m_Localized: 'Accessory <color=green>+Equipment : Tier 2 Accessory</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711722
+    m_Localized: 'Weapon <color=green>+Equipment : Tier 3 Weapon</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711723
+    m_Localized: 'Armor <color=green>+Equipment : Tier 3 Armor</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711724
+    m_Localized: 'Helmet <color=green>+Equipment : Tier 3 Helmet</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711725
+    m_Localized: 'Boots <color=green>+Equipment : Tier 3 Boots</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711726
+    m_Localized: 'Accessory <color=green>+Equipment : Tier 3 Accessory</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711727
+    m_Localized: 'Weapon <color=green>+Equipment : Tier 4 Weapon</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711728
+    m_Localized: 'Armor <color=green>+Equipment : Tier 4 Armor</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711729
+    m_Localized: 'Helmet <color=green>+Equipment : Tier 4 Helmet</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711730
+    m_Localized: 'Boots <color=green>+Equipment : Tier 4 Boots</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711731
+    m_Localized: 'Accessory <color=green>+Equipment : Tier 4 Accessory</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711732
+    m_Localized: 'Weapon <color=green>+Equipment : Tier 5 Weapon</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711733
+    m_Localized: 'Armor <color=green>+Equipment : Tier 5 Armor</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711734
+    m_Localized: 'Helmet <color=green>+Equipment : Tier 5 Helmet</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711735
+    m_Localized: 'Boots <color=green>+Equipment : Tier 5 Boots</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711736
+    m_Localized: 'Accessory <color=green>+Equipment : Tier 5 Accessory</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711737
+    m_Localized: Take the equipment and leave the forge.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711738
+    m_Localized: Leave the forge.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711739
+    m_Localized: Ignore it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711740
+    m_Localized: Take the sword.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711741
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711742
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711743
+    m_Localized: Collect the experience from the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711744
+    m_Localized: Offer a brief prayer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711745
+    m_Localized: Offer experience and pray.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711746
+    m_Localized: Immerse the cursed sword in the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711747
+    m_Localized: Leave the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711748
+    m_Localized: Leave the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711749
+    m_Localized: Leave the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711750
+    m_Localized: Leave the fountain.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711751
+    m_Localized: Demand a reward.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711752
+    m_Localized: "Ask if they\u2019ve been doing okay."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711753
+    m_Localized: Offer help.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711754
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711755
+    m_Localized: For some reason, you sense a sacred presence from the clay golem.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711756
+    m_Localized: You hope to meet it again someday.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711757
+    m_Localized: Receive experience.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711758
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711759
+    m_Localized: Receive a gift.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711760
+    m_Localized: You hope to meet it again someday.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711761
+    m_Localized: Give the cursed sword.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711762
+    m_Localized: Keep the cursed sword.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711763
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711764
+    m_Localized: Perhaps Toto has a way to purify it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711765
+    m_Localized: Receive the sword.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711766
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711767
+    m_Localized: Drink the water.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711768
+    m_Localized: "Rinse the grass on Toto\u2019s head with water."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711769
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711770
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711771
+    m_Localized: Your body feels stiff and sore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711772
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711773
+    m_Localized: You still feel tired, but less than before.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711774
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711775
+    m_Localized: Your body aches.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711776
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711777
+    m_Localized: Your body feels light.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711778
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711779
+    m_Localized: Enjoy the peace.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711780
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711781
+    m_Localized: Greet the source of the gaze.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711782
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711783
+    m_Localized: Glare toward the gaze.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711784
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711785
+    m_Localized: Say any number.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711786
+    m_Localized: 235711.....97?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711787
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711788
+    m_Localized: Take a short rest and explore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711789
+    m_Localized: Proceed down the corridor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711790
+    m_Localized: Go to another corridor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711791
+    m_Localized: Use the bomb you picked up.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711792
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711793
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711794
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711795
+    m_Localized: Take a seat.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711796
+    m_Localized: Move on.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711797
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711798
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711799
+    m_Localized: Enter.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711800
+    m_Localized: Do no enter.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711801
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711802
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711803
+    m_Localized: Move on.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711804
+    m_Localized: Eat.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711805
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711806
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711807
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711808
+    m_Localized: Move on.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711809
+    m_Localized: Attempt assassination.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711810
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711811
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711812
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711813
+    m_Localized: Attend secretly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711814
+    m_Localized: Disrupt the ritual.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711815
+    m_Localized: Move on.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711816
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711817
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711818
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711819
+    m_Localized: Quietly leave the ritual site.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711820
+    m_Localized: Spar.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711821
+    m_Localized: Attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711822
+    m_Localized: Compose yourself and continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711823
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711824
+    m_Localized: Take a rest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711825
+    m_Localized: Skip resting.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711826
+    m_Localized: Leave the shade.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711827
+    m_Localized: Leave the shade.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711828
+    m_Localized: Ignore it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711829
+    m_Localized: Avoid it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711830
+    m_Localized: Steady yourself and continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711831
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711832
+    m_Localized: Catch your breath and continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711833
+    m_Localized: Wait.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711834
+    m_Localized: Explore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711835
+    m_Localized: Wait.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711836
+    m_Localized: Explore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711837
+    m_Localized: Wait.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711838
+    m_Localized: Explore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711839
+    m_Localized: Wait.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711840
+    m_Localized: Explore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711841
+    m_Localized: Take the bracelet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711842
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711843
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711844
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711845
+    m_Localized: Eat and leave.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711846
+    m_Localized: Politely decline.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711847
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711848
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711849
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711850
+    m_Localized: Absorb the experience orbs.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711851
+    m_Localized: Move away from the tree.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711852
+    m_Localized: Absorb the experience orbs.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711853
+    m_Localized: Move away from the tree.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711854
+    m_Localized: Absorb the experience orbs.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711855
+    m_Localized: Move away from the tree.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711856
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711857
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711858
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711859
+    m_Localized: Pick the fruit on the left.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711860
+    m_Localized: Pick the fruit on the middle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711861
+    m_Localized: Pick the fruit on the right.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711862
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711863
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711864
+    m_Localized: Unable to move.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711865
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711866
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711867
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373072711868
+    m_Localized: Save the beaten giant.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905984
+    m_Localized: Leave the scene.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905985
+    m_Localized: Assassinate the beaten giant.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905986
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905987
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905988
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905989
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905990
+    m_Localized: Inject the red substance.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905991
+    m_Localized: Inject the blue substance.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905992
+    m_Localized: Do not inject.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905993
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905994
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905995
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905996
+    m_Localized: Read the <Alchemy Tower Security System> document.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905997
+    m_Localized: Drink the fatigue recovery potion.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905998
+    m_Localized: Pick up the oddly shaped sphere.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076905999
+    m_Localized: Leave without touching anything.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906000
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906001
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906002
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906003
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906004
+    m_Localized: Say any number.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906005
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906006
+    m_Localized: Break the capsule.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906007
+    m_Localized: Move on.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906008
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906009
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906010
+    m_Localized: Proceed down the corridor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906011
+    m_Localized: Go to another corridor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906012
+    m_Localized: Start combat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906013
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906014
+    m_Localized: Avoid the eye device.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906015
+    m_Localized: Face the eye device.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906016
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906017
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906018
+    m_Localized: Engage in a philosophical debate with the talking doppelganger.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906019
+    m_Localized: Attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906020
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906021
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906022
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906023
+    m_Localized: "Read what\u2019s written on the paper."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906024
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906025
+    m_Localized: Go deeper into the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906026
+    m_Localized: Move away from the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906027
+    m_Localized: Begin the battle with Pride.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906028
+    m_Localized: Continue exploring.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906029
+    m_Localized: Go deeper into the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906030
+    m_Localized: Move away from the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906031
+    m_Localized: Begin the battle with Greed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906032
+    m_Localized: Go deeper into the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906033
+    m_Localized: Move away from the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906034
+    m_Localized: Begin the battle with Envy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906035
+    m_Localized: Go deeper into the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906036
+    m_Localized: Move away from the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906037
+    m_Localized: Begin the battle with Lust.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906038
+    m_Localized: Go deeper into the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906039
+    m_Localized: Move away from the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906040
+    m_Localized: Begin the battle with Gluttony.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906041
+    m_Localized: Go deeper into the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906042
+    m_Localized: Move away from the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906043
+    m_Localized: Begin the battle with Sloth.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906044
+    m_Localized: Go deeper into the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906045
+    m_Localized: Move away from the realm.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906046
+    m_Localized: Begin the battle with Wrath.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906047
+    m_Localized: Begin the battle with Wrath.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2850373076906048
+    m_Localized: Prepare.
     m_Metadata:
       m_Items: []
   references:

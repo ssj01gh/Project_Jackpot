@@ -381,6 +381,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         LkEv_Info.ML_BKPerson = false;
         LkEv_Info.IsMeetTalkingGiant = false;
         LkEv_Info.LetTheGameBegin = 0;
+        LkEv_Info.LetTheGameBegin_DisInject = 0;
         LkEv_Info.Lab_Security = false;
         LkEv_Info.Lab_Sphere = false;
         LkEv_Info.ReadyForBattle = false;

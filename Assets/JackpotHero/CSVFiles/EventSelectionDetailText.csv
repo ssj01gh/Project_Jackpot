@@ -1,0 +1,262 @@
+﻿Key,Korean(ko),English(en),Japanese(ja)
+PS_ESDT_9000_1,장비를 요구한다.,Demand equipment.,装備を要求する。
+PS_ESDT_9000_2,경험을 요구한다.,Demand experience.,経験を要求する。
+PS_ESDT_9000_3,힘을 요구한다.,Demand power.,力を要求する。
+PS_ESDT_9000_4,거절한다.,Refuse.,拒否する。
+PS_ESDT_9001_1,거래의 대가는 무엇일까요.,What will be the price of this deal?,取引の代価は何でしょうか。
+PS_ESDT_9002_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_9010_1,모두 사용,Use all.,すべて使う。
+PS_ESDT_9010_2,더 사용,Use more.,さらに使う。
+PS_ESDT_9010_3,하나 사용,Use one.,一つ使う。
+PS_ESDT_9010_4,감사 표시,Show gratitude.,感謝を示す。
+PS_ESDT_9011_1,바구니를 떠난다.,Leave the basket.,かごを離れる。
+PS_ESDT_9020_1,지켜본다.,Keep Watching.,様子を見る。
+PS_ESDT_9020_2,도와준다.,Help.,助ける。
+PS_ESDT_9020_3,적극적으로 도와준다.,Help actively.,積極的に助ける。
+PS_ESDT_9021_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_9022_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_9023_1,특이한 몬스터를 만났습니다.,You encounter a peculiar monster.,珍しいモンスターに出会いました。
+PS_ESDT_9030_1,장비와 경험을 챙긴다.,Take equipment and experience.,装備と経験を回収する。
+PS_ESDT_9030_2,경험을 챙긴다.,Take experience.,経験を回収する。
+PS_ESDT_9030_3,경험을 챙기고 화장한다.,Take experience and cremate.,経験を回収して火葬する。
+PS_ESDT_9030_4,화장한다.,Cremate.,火葬する。
+PS_ESDT_9031_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_9032_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_9040_1,모두 사용,Use all.,すべて使う。
+PS_ESDT_9040_2,더 사용,Use more.,さらに使う。
+PS_ESDT_9040_3,하나 사용,Use one.,一つ使う。
+PS_ESDT_9040_4,감사 표시,Show gratitude.,感謝を示す。
+PS_ESDT_9041_1,바구니를 떠난다.,Leave the basket.,かごを離れる。
+PS_ESDT_9050_1,분수속 경험을 챙긴다.,Collect the experience from the fountain.,噴水の中の経験を回収する。
+PS_ESDT_9050_2,가볍게 기도한다.,Offer a brief prayer.,軽く祈る。
+PS_ESDT_9050_3,경험을 바치고 기도한다.,Offer experience and pray.,経験を捧げて祈る。
+PS_ESDT_9051_1,분수를 떠난다.,Leave the fountain.,噴水を離れる。
+PS_ESDT_9052_1,분수를 떠난다.,Leave the fountain.,噴水を離れる。
+PS_ESDT_9060_1,최대한 흡수한다.,Absorb as much as possible.,可能な限り吸収する。
+PS_ESDT_9060_2,적당히 흡수한다.,Absorb a moderate amount.,ほどほどに吸収する。
+PS_ESDT_9060_3,경험을 흘려보낸다.,Pour experience into the spring.,経験を泉に流す。
+PS_ESDT_9061_1,경험의 샘이 눈앞에서 사라졌다.,The spring of experience disappears before your eyes.,経験の泉が目の前から消えました。
+PS_ESDT_9062_1,경험의 샘이 눈앞에서 사라졌다.,The spring of experience disappears before your eyes.,経験の泉が目の前から消えました。
+PS_ESDT_9063_1,경험의 샘이 눈앞에서 사라졌다.,The spring of experience disappears before your eyes.,経験の泉が目の前から消えました。
+PS_ESDT_9070_1,평범한 장비 <color=red>-EXP : 120</color>,Ordinary equipment <color=red>-EXP : 120</color>,普通の装備 <color=red>-EXP : 120</color>
+PS_ESDT_9070_2,좋은 장비 <color=red>-EXP : 300</color>,Good equipment <color=red>-EXP : 300</color>,良い装備 <color=red>-EXP : 300</color>
+PS_ESDT_9070_3,뛰어난 장비 <color=red>-EXP : 1050</color>,Fine equipment <color=red>-EXP : 1050</color>,優れた装備 <color=red>-EXP : 1050</color>
+PS_ESDT_9070_4,완벽한 장비 <color=red>-EXP : 3000</color>,Perfect equipment <color=red>-EXP : 3000</color>,完璧な装備 <color=red>-EXP : 3000</color>
+PS_ESDT_9070_5,대장간을 떠난다.,Leave the forge.,鍛冶場を離れる。
+PS_ESDT_9071_1,무기 <color=green>+장비 : 2티어 무기</color>,Weapon <color=green>+Equipment : Tier 2 Weapon</color>,武器 <color=green>+装備 : Tier 2 武器</color>
+PS_ESDT_9071_2,갑옷 <color=green>+장비 : 2티어 갑옷</color>,Armor <color=green>+Equipment : Tier 2 Armor</color>,鎧 <color=green>+装備 : Tier 2 鎧</color>
+PS_ESDT_9071_3,투구 <color=green>+장비 : 2티어 투구</color>,Helmet <color=green>+Equipment : Tier 2 Helmet</color>,ヘルム <color=green>+装備 : Tier 2 ヘルム</color>
+PS_ESDT_9071_4,부츠 <color=green>+장비 : 2 티어 부츠</color>,Boots <color=green>+Equipment : Tier 2 Boots</color>,ブーツ <color=green>+装備 : Tier 2 ブーツ</color>
+PS_ESDT_9071_5,장신구 <color=green>+장비 : 2 티어 장신구</color>,Accessory <color=green>+Equipment : Tier 2 Accessory</color>,アクセサリー <color=green>+装備 : Tier 2 アクセサリー</color>
+PS_ESDT_9072_1,무기 <color=green>+장비 : 3티어 무기</color>,Weapon <color=green>+Equipment : Tier 3 Weapon</color>,武器 <color=green>+装備 : Tier 3 武器</color>
+PS_ESDT_9072_2,갑옷 <color=green>+장비 : 3티어 갑옷</color>,Armor <color=green>+Equipment : Tier 3 Armor</color>,鎧 <color=green>+装備 : Tier 3 鎧</color>
+PS_ESDT_9072_3,투구 <color=green>+장비 : 3티어 투구</color>,Helmet <color=green>+Equipment : Tier 3 Helmet</color>,ヘルム <color=green>+装備 : Tier 3 ヘルム</color>
+PS_ESDT_9072_4,부츠 <color=green>+장비 : 3티어 부츠</color>,Boots <color=green>+Equipment : Tier 3 Boots</color>,ブーツ <color=green>+装備 : Tier 3 ブーツ</color>
+PS_ESDT_9072_5,장신구 <color=green>+장비 : 3티어 장신구</color>,Accessory <color=green>+Equipment : Tier 3 Accessory</color>,アクセサリー <color=green>+装備 : Tier 3 アクセサリー</color>
+PS_ESDT_9073_1,무기 <color=green>+장비 : 4티어 무기</color>,Weapon <color=green>+Equipment : Tier 4 Weapon</color>,武器 <color=green>+装備 : Tier 4 武器</color>
+PS_ESDT_9073_2,갑옷 <color=green>+장비 : 4티어 갑옷</color>,Armor <color=green>+Equipment : Tier 4 Armor</color>,鎧 <color=green>+装備 : Tier 4 鎧</color>
+PS_ESDT_9073_3,투구 <color=green>+장비 : 4티어 투구</color>,Helmet <color=green>+Equipment : Tier 4 Helmet</color>,ヘルム <color=green>+装備 : Tier 4 ヘルム</color>
+PS_ESDT_9073_4,부츠 <color=green>+장비 : 4티어 부츠</color>,Boots <color=green>+Equipment : Tier 4 Boots</color>,ブーツ <color=green>+装備 : Tier 4 ブーツ</color>
+PS_ESDT_9073_5,장신구 <color=green>+장비 : 4티어 장신구</color>,Accessory <color=green>+Equipment : Tier 4 Accessory</color>,アクセサリー <color=green>+装備 : Tier 4 アクセサリー</color>
+PS_ESDT_9074_1,무기 <color=green>+장비 : 5티어 무기</color>,Weapon <color=green>+Equipment : Tier 5 Weapon</color>,武器 <color=green>+装備 : Tier 5 武器</color>
+PS_ESDT_9074_2,갑옷 <color=green>+장비 : 5티어 갑옷</color>,Armor <color=green>+Equipment : Tier 5 Armor</color>,鎧 <color=green>+装備 : Tier 5 鎧</color>
+PS_ESDT_9074_3,투구 <color=green>+장비 : 5티어 투구</color>,Helmet <color=green>+Equipment : Tier 5 Helmet</color>,ヘルム <color=green>+装備 : Tier 5 ヘルム</color>
+PS_ESDT_9074_4,부츠 <color=green>+장비 : 5티어 부츠</color>,Boots <color=green>+Equipment : Tier 5 Boots</color>,ブーツ <color=green>+装備 : Tier 5 ブーツ</color>
+PS_ESDT_9074_5,장신구 <color=green>+장비 : 5티어 장신구</color>,Accessory <color=green>+Equipment : Tier 5 Accessory</color>,アクセサリー <color=green>+装備 : Tier 5 アクセサリー</color>
+PS_ESDT_9075_1,장비를 받고 대장간을 떠난다.,Take the equipment and leave the forge.,装備を受け取り、鍛冶場を離れる。
+PS_ESDT_9076_1,대장간을 떠난다.,Leave the forge.,鍛冶場を離れる。
+PS_ESDT_9080_1,지나친다.,Ignore it.,通り過ぎる。
+PS_ESDT_9080_2,검을 잡는다.,Take the sword.,剣を取る。
+PS_ESDT_9081_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_9082_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8000_1,분수속 경험을 챙긴다.,Collect the experience from the fountain.,噴水の中の経験を回収する。
+PS_ESDT_8000_2,가볍게 기도한다.,Offer a brief prayer.,軽く祈る。
+PS_ESDT_8000_3,경험을 바치고 기도한다.,Offer experience and pray.,経験を捧げて祈る。
+PS_ESDT_8000_4,저주 받은 검을 분수에 담근다.,Immerse the cursed sword in the fountain.,呪われた剣を噴水に浸す。
+PS_ESDT_8001_1,분수를 떠난다.,Leave the fountain.,噴水を離れる。
+PS_ESDT_8002_1,분수를 떠난다.,Leave the fountain.,噴水を離れる。
+PS_ESDT_8003_1,분수를 떠난다.,Leave the fountain.,噴水を離れる。
+PS_ESDT_8004_1,분수를 떠난다.,Leave the fountain.,噴水を離れる。
+PS_ESDT_8010_1,대가를 받는다.,Demand a reward.,対価を求める。
+PS_ESDT_8010_2,안부를 묻는다.,Ask if they’ve been doing okay.,元気にしていたか聞く。
+PS_ESDT_8010_3,도움을 준다.,Offer help.,手を貸す。
+PS_ESDT_8011_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8012_1,어째서인지 흙골렘에게서 신성한 기운이 느껴진다.,"For some reason, you sense a sacred presence from the clay golem.",なぜか、土のゴーレムから神聖な気配を感じる。
+PS_ESDT_8013_1,다음에 또 만나길 기대한다.,You hope to meet it again someday.,また会える日を期待する。
+PS_ESDT_8020_1,경험을 받는다.,Receive experience.,経験を受け取る。
+PS_ESDT_8021_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8030_1,선물을 받는다.,Receive a gift.,贈り物を受け取る。
+PS_ESDT_8031_1,다음에 또 만나길 기대한다.,You hope to meet it again someday.,また会える日を期待する。
+PS_ESDT_8040_1,저주 받은 검을 건네준다.,Give the cursed sword.,呪われた剣を渡す。
+PS_ESDT_8040_2,저주 받은 검을 건네주지 않는다.,Keep the cursed sword.,呪われた剣を渡さない。
+PS_ESDT_8041_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8042_1,어쩌면 토토에게는 정화할 수단이 있는지도 모른다.,Perhaps Toto has a way to purify it.,もしかすると、トトには浄化する手段があるのかもしれない。
+PS_ESDT_8050_1,검을 받는다.,Receive the sword.,剣を受け取る。
+PS_ESDT_8051_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8060_1,물을 마신다.,Drink the water.,水を飲む。
+PS_ESDT_8060_2,물로 토토의 머리에 있는 풀잎을 씻어준다.,Rinse the grass on Toto’s head with water.,水でトトの頭の草を洗ってあげる。
+PS_ESDT_8061_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8062_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8070_1,몸이 뻐근하다.,Your body feels stiff and sore.,体がだるい。
+PS_ESDT_8071_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8080_1,몸이 비교적 가벼워진 것 같다.,"You still feel tired, but less than before.",まだ疲れはありますが、前よりはましです。
+PS_ESDT_8081_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8090_1,몸이 아프다.,Your body aches.,体が痛い。
+PS_ESDT_8091_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8100_1,몸이 가볍다.,Your body feels light.,体が軽い。
+PS_ESDT_8101_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8110_1,평화로움을 만끽한다.,Enjoy the peace.,平穏を満喫する。
+PS_ESDT_8111_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8120_1,시선이 느껴지는 쪽으로 인사한다.,Greet the source of the gaze.,視線を感じる方へ挨拶する。
+PS_ESDT_8121_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8130_1,시선이 느껴지는 쪽을 노려본다.,Glare toward the gaze.,視線を感じる方をにらみ返す。
+PS_ESDT_8131_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8140_1,아무런 숫자나 말한다.,Say any number.,適当な数字を言う。
+PS_ESDT_8140_2,235711.....97?,235711.....97?,235711.....97?
+PS_ESDT_8141_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_8142_1,잠시 휴식하고 탐색한다.,Take a short rest and explore.,少し休んで探索する。
+PS_ESDT_8150_1,복도 너머로 꼭 가봐야 한다.,Proceed down the corridor.,この先の廊下へ進む。
+PS_ESDT_8150_2,다른 복도로 간다.,Go to another corridor.,別の廊下へ行く。
+PS_ESDT_8150_3,주웠던 폭탄을 사용한다.,Use the bomb you picked up.,拾った爆弾を使う。
+PS_ESDT_8151_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_8152_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8153_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8160_1,앉아본다.,Take a seat.,座ってみる。
+PS_ESDT_8160_2,지나친다.,Move on.,通り過ぎる。
+PS_ESDT_8161_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8162_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8170_1,들어간다.,Enter.,入る。
+PS_ESDT_8170_2,들어가지 않는다.,Do no enter.,入らない。
+PS_ESDT_8171_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_8172_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1000_1,지나친다.,Move on.,通り過ぎる。
+PS_ESDT_1000_2,먹는다.,Eat.,食べる。
+PS_ESDT_1001_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1002_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1003_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1010_1,지나간다.,Move on.,通り過ぎる。
+PS_ESDT_1010_2,암살을 시도한다.,Attempt assassination.,暗殺を試みる。
+PS_ESDT_1011_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1012_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1013_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_1020_1,몰래 참석한다.,Attend secretly.,こっそり参加する。
+PS_ESDT_1020_2,의식을 방해한다.,Disrupt the ritual.,儀式を妨害する。
+PS_ESDT_1020_3,자나간다.,Move on.,通り過ぎる。
+PS_ESDT_1021_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1022_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_1023_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_1024_1,의식현장을 조용히 벗어난다.,Quietly leave the ritual site.,儀式の場を静かに立ち去る。
+PS_ESDT_1030_1,대련한다.,Spar.,手合わせする。
+PS_ESDT_1030_2,공격한다.,Attack.,攻撃する。
+PS_ESDT_1031_1,몸을 추스르고 계속해서 탐색한다.,Compose yourself and continue exploring.,体勢を立て直し、探索を続ける。
+PS_ESDT_1032_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_1040_1,휴식한다.,Take a rest.,休む。
+PS_ESDT_1040_2,휴식하지 않는다.,Skip resting.,休まない。
+PS_ESDT_1041_1,그늘을 떠난다.,Leave the shade.,日陰を離れる。
+PS_ESDT_1042_1,그늘을 떠난다.,Leave the shade.,日陰を離れる。
+PS_ESDT_1050_1,무시한다.,Ignore it.,無視する。
+PS_ESDT_1050_2,피한다.,Avoid it.,避ける。
+PS_ESDT_1051_1,몸을 추스르고 계속해서 탐색한다.,Steady yourself and continue exploring.,体を立て直し、探索を続ける。
+PS_ESDT_1052_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_1053_1,숨을 고르고 계속해서 탐색한다.,Catch your breath and continue exploring.,息を整え、探索を続ける。
+PS_ESDT_2000_1,기다린다.,Wait.,待つ。
+PS_ESDT_2000_2,탐색한다.,Explore.,探索する。
+PS_ESDT_2001_1,기다린다.,Wait.,待つ。
+PS_ESDT_2001_2,탐색한다.,Explore.,探索する。
+PS_ESDT_2002_1,기다린다.,Wait.,待つ。
+PS_ESDT_2002_2,탐색한다.,Explore.,探索する。
+PS_ESDT_2003_1,기다린다.,Wait.,待つ。
+PS_ESDT_2003_2,탐색한다.,Explore.,探索する。
+PS_ESDT_2004_1,팔찌를 챙긴다.,Take the bracelet.,ブレスレットを持っていく。
+PS_ESDT_2005_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2006_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2007_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2010_1,먹고간다.,Eat and leave.,食べていく。
+PS_ESDT_2010_2,정중히 거절한다.,Politely decline.,丁重に断る。
+PS_ESDT_2011_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2012_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2013_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2020_1,구슬로 된 경험을 흡수한다.,Absorb the experience orbs.,球状の経験を吸収する。
+PS_ESDT_2020_2,나무로부터 멀어진다.,Move away from the tree.,木から離れる。
+PS_ESDT_2021_1,구슬로 된 경험을 흡수한다.,Absorb the experience orbs.,球状の経験を吸収する。
+PS_ESDT_2021_2,나무로부터 멀어진다.,Move away from the tree.,木から離れる。
+PS_ESDT_2022_1,구슬로 된 경험을 흡수한다.,Absorb the experience orbs.,球状の経験を吸収する。
+PS_ESDT_2022_2,나무로부터 멀어진다.,Move away from the tree.,木から離れる。
+PS_ESDT_2023_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2024_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2025_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_2030_1,왼쪽의 열매를 딴다.,Pick the fruit on the left.,左の実を取る。
+PS_ESDT_2030_2,중간의 열매를 딴다.,Pick the fruit on the middle.,中央の実を取る。
+PS_ESDT_2030_3,오른쪽의 열매를 딴다.,Pick the fruit on the right.,右の実を取る。
+PS_ESDT_2031_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2032_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_2040_1,움질일 수 없다.,Unable to move.,動けない。
+PS_ESDT_2041_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2042_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2043_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_2050_1,맞고 있는 거인을 구한다.,Save the beaten giant.,殴られている巨人を助ける。
+PS_ESDT_2050_2,현장에서 멀어진다.,Leave the scene.,その場を離れる。
+PS_ESDT_2050_3,맞고 있는 거인을 암살한다.,Assassinate the beaten giant.,殴られている巨人を暗殺する。
+PS_ESDT_2051_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_2052_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2053_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_2054_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_3000_1,빨간색 약물을 주사한다.,Inject the red substance.,赤い薬剤を注射する。
+PS_ESDT_3000_2,파란색 약물을 주사한다.,Inject the blue substance.,青い薬剤を注射する。
+PS_ESDT_3000_3,주사하지 않는다.,Do not inject.,注射しない。
+PS_ESDT_3001_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3002_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3003_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3010_1,<연금술 탑의 보안체계> 서류를 읽는다.,Read the <Alchemy Tower Security System> document.,〈錬金術の塔のセキュリティシステム〉の書類を読む。
+PS_ESDT_3010_2,근처에 있는 피로 회복제를 먹는다.,Drink the fatigue recovery potion.,近くにある疲労回復剤を飲む。
+PS_ESDT_3010_3,특이하게 생긴 구체를 줍는다.,Pick up the oddly shaped sphere.,奇妙な形の球体を拾う。
+PS_ESDT_3010_4,아무것도 건드리지 않고 나간다.,Leave without touching anything.,何も触れずに出ていく。
+PS_ESDT_3011_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3012_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3013_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3014_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3020_1,아무런 숫자나 말한다.,Say any number.,適当な数字を言う。
+PS_ESDT_3021_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_3030_1,실험관들을 깨버린다.,Break the capsule.,実験槽を壊す。
+PS_ESDT_3030_2,지나친다.,Move on.,通り過ぎる。
+PS_ESDT_3031_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_3032_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3040_1,복도 너머로 꼭 가봐야한다.,Proceed down the corridor.,この先の廊下へ進む。
+PS_ESDT_3040_2,다른 복도로 간다.,Go to another corridor.,別の廊下へ行く。
+PS_ESDT_3041_1,전투 개시,Start combat,戦闘開始
+PS_ESDT_3042_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3050_1,눈을 피해간다.,Avoid the eye device.,目の装置を避ける。
+PS_ESDT_3050_2,눈을 마주한다.,Face the eye device.,目の装置と向き合う。
+PS_ESDT_3051_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3052_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3060_1,말하는 도플갱어와 철학적 토론을 한다.,Engage in a philosophical debate with the talking doppelganger.,話すドッペルゲンガーと哲学的な議論をする。
+PS_ESDT_3060_2,공격한다.,Attack.,攻撃する。
+PS_ESDT_3061_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3062_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_3063_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_4000_1,종이에 적힌 내용을 읽어본다.,Read what’s written on the paper.,紙に書かれた内容を読む。
+PS_ESDT_4001_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_4010_1,영역의 깊숙히 들어간다.,Go deeper into the realm.,領域の奥へ進む。
+PS_ESDT_4010_2,영역에서 멀어진다.,Move away from the realm.,領域から離れる。
+PS_ESDT_4011_1,교만과의 전투를 시작한다.,Begin the battle with Pride.,傲慢との戦闘を開始する。
+PS_ESDT_4012_1,계속해서 탐색한다.,Continue exploring.,探索を続ける。
+PS_ESDT_4020_1,영역의 깊숙히 들어간다.,Go deeper into the realm.,領域の奥へ進む。
+PS_ESDT_4020_2,영역에서 멀어진다.,Move away from the realm.,領域から離れる。
+PS_ESDT_4021_1,탐욕과의 전투를 시작한다.,Begin the battle with Greed.,強欲との戦闘を開始する。
+PS_ESDT_4030_1,영역의 깊숙히 들어간다.,Go deeper into the realm.,領域の奥へ進む。
+PS_ESDT_4030_2,영역에서 멀어진다.,Move away from the realm.,領域から離れる。
+PS_ESDT_4031_1,질투와의 전투를 시작한다.,Begin the battle with Envy.,嫉妬との戦闘を開始する。
+PS_ESDT_4040_1,영역의 깊숙히 들어간다.,Go deeper into the realm.,領域の奥へ進む。
+PS_ESDT_4040_2,영역에서 멀어진다.,Move away from the realm.,領域から離れる。
+PS_ESDT_4041_1,음욕과의 전투를 시작한다.,Begin the battle with Lust.,色欲との戦闘を開始する。
+PS_ESDT_4050_1,영역의 깊숙히 들어간다.,Go deeper into the realm.,領域の奥へ進む。
+PS_ESDT_4050_2,영역에서 멀어진다.,Move away from the realm.,領域から離れる。
+PS_ESDT_4051_1,식탐과의 전투를 시작한다.,Begin the battle with Gluttony.,暴食との戦闘を開始する。
+PS_ESDT_4060_1,역역의 깊숙히 들어간다.,Go deeper into the realm.,領域の奥へ進む。
+PS_ESDT_4060_2,영역에서 멀어진다.,Move away from the realm.,領域から離れる。
+PS_ESDT_4061_1,나태와의 전투를 시작한다.,Begin the battle with Sloth.,怠惰との戦闘を開始する。
+PS_ESDT_4070_1,영역의 깊숙히 들어간다.,Go deeper into the realm.,領域の奥へ進む。
+PS_ESDT_4070_2,영역에서 멀어진다.,Move away from the realm.,領域から離れる。
+PS_ESDT_4071_1,분노와의 전투를 시작한다.,Begin the battle with Wrath.,憤怒との戦闘を開始する。
+PS_ESDT_4072_1,분노와의 전투를 시작한다.,Begin the battle with Wrath.,憤怒との戦闘を開始する。
+PS_ESDT_10000_1,대비한다.,Prepare.,備える。

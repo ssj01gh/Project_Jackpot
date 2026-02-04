@@ -19,15 +19,703 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 249927233564672
-    m_Localized: Unkown Trade
+    m_Localized: An Unknown Deal
     m_Metadata:
       m_Items: []
   - m_Id: 251785608032256
-    m_Localized: TradeOK
+    m_Localized: Accept the Deal
     m_Metadata:
       m_Items: []
   - m_Id: 252443006464000
-    m_Localized: Trade NO
+    m_Localized: Reject the Deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547036766208
+    m_Localized: "Someone\u2019s Kindness"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932032
+    m_Localized: A High-Quality Healing Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932033
+    m_Localized: A Talking Monster?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932034
+    m_Localized: Keep Watching
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932035
+    m_Localized: A Little Help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932036
+    m_Localized: "A Monster\u2019s Hero"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932037
+    m_Localized: Rest in Peace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932038
+    m_Localized: Free?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932039
+    m_Localized: Funeral
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932040
+    m_Localized: "Someone\u2019s Kindness"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932041
+    m_Localized: A High-Quality Stamina Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932042
+    m_Localized: The Sacred Fountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932043
+    m_Localized: Desecration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932044
+    m_Localized: Penitence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932045
+    m_Localized: The Fountain of Experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932046
+    m_Localized: Why the Fountain Endures
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932047
+    m_Localized: The Fountain of Experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932048
+    m_Localized: For Those Who Come Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932049
+    m_Localized: The Mysterious Forge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932050
+    m_Localized: The Mysterious Forge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932051
+    m_Localized: The Mysterious Forge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932052
+    m_Localized: The Mysterious Forge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932053
+    m_Localized: The Mysterious Forge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932054
+    m_Localized: Equipment Crafting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932055
+    m_Localized: A Needless Commission
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932056
+    m_Localized: An Ominous Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932057
+    m_Localized: How to Avoid Misfortune
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932058
+    m_Localized: Just a Feeling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932059
+    m_Localized: The Sacred Fountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932060
+    m_Localized: Desecration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932061
+    m_Localized: Penitence
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932062
+    m_Localized: The Faded Curse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932063
+    m_Localized: Forgetfulness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932064
+    m_Localized: A Talking Clay Golem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932065
+    m_Localized: Returning the Kindness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932066
+    m_Localized: Just a Normal Talk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932067
+    m_Localized: A Kind Person
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932068
+    m_Localized: Gratitude of the Deceased
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932069
+    m_Localized: Passing on Experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932070
+    m_Localized: "Toto\u2019s Gratitude"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932071
+    m_Localized: Blessed Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932072
+    m_Localized: Toto and the Cursed Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932073
+    m_Localized: Purification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932074
+    m_Localized: Concern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932075
+    m_Localized: Toto and the Purified Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932076
+    m_Localized: The Fully Purified Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932077
+    m_Localized: "Toto\u2019s Support"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932078
+    m_Localized: Holy Pure Water
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932079
+    m_Localized: A Joyful Toto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932080
+    m_Localized: The Curse of the Cursed Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932081
+    m_Localized: The Curse of the Cursed Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932082
+    m_Localized: The Curse of the Faded Curse Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932083
+    m_Localized: The Curse of the Faded Curse Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932084
+    m_Localized: A Transferred Curse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932085
+    m_Localized: A Transferred Curse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932086
+    m_Localized: The Blessing of the Purified Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932087
+    m_Localized: The Blessing of the Purified Sword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932088
+    m_Localized: A Peaceful Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932089
+    m_Localized: A Peaceful Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932090
+    m_Localized: A Gentle Gaze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932091
+    m_Localized: A Gentle Gaze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932092
+    m_Localized: A Hostile Gaze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932093
+    m_Localized: A Hostile Gaze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932094
+    m_Localized: Security System
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932095
+    m_Localized: Five Chances
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932096
+    m_Localized: Security Code Entered
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932097
+    m_Localized: Undying Beings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932098
+    m_Localized: A Blue Glow Tainted with Malice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932099
+    m_Localized: A Safe Path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932100
+    m_Localized: An Exceptional Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932101
+    m_Localized: A Wooden Table in the Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932102
+    m_Localized: A Resting Place Deep in the Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932103
+    m_Localized: A Needless Break
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932104
+    m_Localized: An Unusual Capsule
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932105
+    m_Localized: "The Alchemist\u2019s Resting Place"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932106
+    m_Localized: An Unsettling Feeling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932107
+    m_Localized: Poisonous Plants or Medicinal Herb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932108
+    m_Localized: "Unless You\u2019re an Expert"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932109
+    m_Localized: Poisonous Plants
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932110
+    m_Localized: Medicinal Herb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932111
+    m_Localized: A Group of Bonnies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932112
+    m_Localized: Safety First
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932113
+    m_Localized: Assassination Successful
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932114
+    m_Localized: Assassination Failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932115
+    m_Localized: "The Shaman\u2019s Ritual"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932116
+    m_Localized: Steal the Ritual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932117
+    m_Localized: Discovered
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932118
+    m_Localized: Disrupt the Ritual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932119
+    m_Localized: Ignore the Ritual
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932120
+    m_Localized: The Real Prairie Dog Knight
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932121
+    m_Localized: A Sparring Match
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932122
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932123
+    m_Localized: A Shady Spot Perfect for Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932124
+    m_Localized: A Refreshing Rest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932125
+    m_Localized: A Needless Break
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932126
+    m_Localized: A Group of Short Leg Birds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932127
+    m_Localized: Complacency Toward Safety
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932128
+    m_Localized: The Right Choice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932129
+    m_Localized: A Careful Choice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932130
+    m_Localized: A Forest Shrouded in Mist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932131
+    m_Localized: A Forest Shrouded in Mist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932132
+    m_Localized: A Forest Filled with Thick Mist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932133
+    m_Localized: A Forest Swallowed by Even Thicker Mist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932134
+    m_Localized: A Forest Teeming with Life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932135
+    m_Localized: A Cleared Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932136
+    m_Localized: Lost the Way
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932137
+    m_Localized: Bracelet of Life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932138
+    m_Localized: A Cabin in the Forest
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932139
+    m_Localized: A Delicious Soup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932140
+    m_Localized: Ingredients Not Meant for Humans
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932141
+    m_Localized: A Suspicious Figure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932142
+    m_Localized: The Experience Tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932143
+    m_Localized: The Experience Tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932144
+    m_Localized: The Experience Tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932145
+    m_Localized: Free Experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932146
+    m_Localized: Safety First
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932147
+    m_Localized: An Angry Golden Wisp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932148
+    m_Localized: A Fragrant Fruit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932149
+    m_Localized: Rich in Both Taste and Nutrition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932150
+    m_Localized: An Unripe Fruit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932151
+    m_Localized: Mountain Lord
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932152
+    m_Localized: A Virtuous Person
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547061932153
+    m_Localized: An Ordinary Person
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126336
+    m_Localized: A Villain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126337
+    m_Localized: A Weaponless Giant
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126338
+    m_Localized: Another Talking Monster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126339
+    m_Localized: Just a Monster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126340
+    m_Localized: Virtually Free
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126341
+    m_Localized: Another Talking Monster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126342
+    m_Localized: Let The Game Begin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126343
+    m_Localized: Antidote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126344
+    m_Localized: Poison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126345
+    m_Localized: Distrust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126346
+    m_Localized: Laboratory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126347
+    m_Localized: "The Alchemy Tower\u2019s Security System"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126348
+    m_Localized: Stamina Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126349
+    m_Localized: Spectral Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126350
+    m_Localized: An Unsettling Laboratory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126351
+    m_Localized: Security System
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126352
+    m_Localized: Five Chances
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126353
+    m_Localized: A Capsule of Living Flesh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126354
+    m_Localized: Liberation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126355
+    m_Localized: Suffering
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126356
+    m_Localized: Undying Beings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126357
+    m_Localized: A Blue Glow Tainted with Malice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126358
+    m_Localized: A Safe Path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126359
+    m_Localized: The Observer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126360
+    m_Localized: An Ominous Gaze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126361
+    m_Localized: Prepare for Battle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126362
+    m_Localized: An Unchanging Doppelganger
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126363
+    m_Localized: A Philosophical Question
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126364
+    m_Localized: No Different from a Monster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126365
+    m_Localized: Joining the Party
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126366
+    m_Localized: An Undelivered Report
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126367
+    m_Localized: An Otherworld Report
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126368
+    m_Localized: The Realm of Pride
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126369
+    m_Localized: The Realm of Pride
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126370
+    m_Localized: The Vanished Realm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126371
+    m_Localized: The Realm of Greed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126372
+    m_Localized: The Realm of Greed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126373
+    m_Localized: The Realm of Envy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126374
+    m_Localized: The Realm of Envy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126375
+    m_Localized: The Realm of Lust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126376
+    m_Localized: The Realm of Lust
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126377
+    m_Localized: The Realm of Gluttony
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126378
+    m_Localized: The Realm of Gluttony
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126379
+    m_Localized: The Realm of Sloth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126380
+    m_Localized: The Realm of Sloth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126381
+    m_Localized: The Realm of Wrath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126382
+    m_Localized: The Realm of Wrath
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126383
+    m_Localized: No Way Out
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853547066126384
+    m_Localized: An Ominous Presence
     m_Metadata:
       m_Items: []
   references:

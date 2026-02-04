@@ -451,7 +451,7 @@ public class EventManager : MonoBehaviour
             case 9050:
                 if (JsonReadWriteManager.Instance.LkEv_Info.OminousSword == true &&
                     JsonReadWriteManager.Instance.LkEv_Info.CleanOminousSword == false &&
-                    JsonReadWriteManager.Instance.LkEv_Info.TotoCursedSword)
+                    JsonReadWriteManager.Instance.LkEv_Info.TotoCursedSword == false)
                 {//여기에서 이미 토토에게 검이 정화되러 가지고 갔으면.....
                     //+토토와 저주받은 검이 == false 일때 바꿔야함
                     ReturnEventCode = FindNChangeAddresableEvent(9050, 8000);
@@ -840,7 +840,7 @@ public class EventManager : MonoBehaviour
                 break;
             case 10000:
                 CommonEvents.Event10000(ButtonType, PlayerMgr);
-                Debug.Log("Boss");
+                //Debug.Log("Boss");
                 EndOfEvent();
                 break;
             case 9001:
@@ -1169,6 +1169,12 @@ public class EventManager : MonoBehaviour
                 JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
                 StartCoroutine(LoadEvent(true));
             }
+            else
+            {
+                JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
+                UIMgr.SetUI();
+                return;
+            }
             return;
         }
         else if (FollowEventCodeStorage.Contains(FollowEventCode))
@@ -1281,6 +1287,8 @@ public class EventManager : MonoBehaviour
     {
         Stage04EventDetailAction Stage04Event = new Stage04EventDetailAction();
         int FollowEventCode = 0;
+        Getting = "";
+        Losing = "";
         switch (CurrentEvent.EventCode)
         {
             case 4000:

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
 using UnityEngine;
@@ -8,10 +8,10 @@ public class LinkageEventDetailAction
     //---------------------------------Event8000
     public int Event8000(int ButtonType, int StageAverageReward,PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. Æò±Õº¸»ó * 3, bk + 1
+        //0. í‰ê· ë³´ìƒ * 3, bk + 1
         //1. bk - 1
-        //2. -Æò±Õº¸»ó bk - 2
-        //3. ÀúÁÖ°¡ ¿¶¾îÁø °Ë//ÇÃ·¹ÀÌ¾î°¡ ÀåÂøÇÏ°í ÀÖ°Å³ª ÀÎº¥Åä¸®¿¡ ÀÕ´Â °ËÀ» ¹Ù²ã¾ßÇÔ
+        //2. -í‰ê· ë³´ìƒ bk - 2
+        //3. ì €ì£¼ê°€ ì˜…ì–´ì§„ ê²€//í”Œë ˆì´ì–´ê°€ ì¥ì°©í•˜ê³  ìˆê±°ë‚˜ ì¸ë²¤í† ë¦¬ì— ì‡ëŠ” ê²€ì„ ë°”ê¿”ì•¼í•¨
         Getting = "";
         Losing = "";
         int RewardRange = 0;
@@ -21,7 +21,7 @@ public class LinkageEventDetailAction
             case 0:
                 RewardRange = (int)(StageAverageReward * 3 / 4);
                 RandomReward = (int)(StageAverageReward * 3) + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                Getting = "+EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
@@ -34,7 +34,7 @@ public class LinkageEventDetailAction
             case 2:
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Losing = "°æÇèÄ¡ ¼Ò¸ğ : " + RandomReward.ToString();
+                Losing = "-EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma -= 2;
 
@@ -64,8 +64,21 @@ public class LinkageEventDetailAction
                 {
                     return 8004;
                 }
-                Getting = "Àåºñ È¹µæ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(SmallCursedSword).EquipmentName;
-                Losing = "Àåºñ ¼Ò¸ğ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CursedSword).EquipmentName;
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                {
+                    Getting = "+Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(SmallCursedSword).EquipmentName;
+                    Losing = "-Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CursedSword).EquipmentName;
+                }
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                {
+                    Getting = "+è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(SmallCursedSword).EquipmentName;
+                    Losing = "-è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CursedSword).EquipmentName;
+                }
+                else
+                {
+                    Getting = "+ì¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(SmallCursedSword).EquipmentName;
+                    Losing = "-ì¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CursedSword).EquipmentName;
+                }
                 UIMgr.GI_UI.ActiveGettingUI(SmallCursedSword);
                 JsonReadWriteManager.Instance.LkEv_Info.CleanOminousSword = true;
                 return 8003;
@@ -75,9 +88,9 @@ public class LinkageEventDetailAction
     //-------------------------------------------------Event8010
     public int Event8010(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. Ã¼·Â15, ÇÇ·Îµµ150 È¸º¹
+        //0. ì²´ë ¥15, í”¼ë¡œë„150 íšŒë³µ
         //1. gk+1
-        //2. ÇÇ·Îµµ -300 gk + 2
+        //2. í”¼ë¡œë„ -300 gk + 2
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
@@ -89,12 +102,12 @@ public class LinkageEventDetailAction
                 if(RandomNum == 0)
                 {
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
-                    Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomHP).ToString();
+                    Getting = "+HP : " + (30 + RandomHP).ToString();
                 }
                 else
                 {
                     PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
-                    Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                    Getting = "+STA : " + (300 + RandomSTA).ToString();
                 }
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 8011;
@@ -102,7 +115,7 @@ public class LinkageEventDetailAction
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
                 return 8012;
             case 2:
-                Losing = "ÇÇ·Îµµ ¼Ò¸ğ : " + (300 + RandomSTA).ToString();
+                Losing = "-STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 2;
                 JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem = true;
@@ -113,7 +126,7 @@ public class LinkageEventDetailAction
     //----------------------------------------------------Event8020
     public int Event8020(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. ½ºÅ×ÀÌÁö º¸»ó * 2
+        //0. ìŠ¤í…Œì´ì§€ ë³´ìƒ * 2
         Getting = "";
         Losing = "";
         switch(ButtonType)
@@ -121,7 +134,7 @@ public class LinkageEventDetailAction
             case 0:
                 int RewardRange = (int)(StageAverageReward * 2 / 4);
                 int RandomReward = (int)(StageAverageReward * 2) + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                Getting = "+EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
                 JsonReadWriteManager.Instance.LkEv_Info.RestInPeace = false;
@@ -133,11 +146,11 @@ public class LinkageEventDetailAction
     //---------------------------------------------------Event8030
     public int Event8030(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0.½Å¼ºÀÌ ±ê´ø°Ë 25002
+        //0.ì‹ ì„±ì´ ê¹ƒë˜ê²€ 25002
         Getting = "";
         Losing = "";
         int HolySword = 25002;
-        if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ÀÎº¥Åä¸®°¡ ²ËÃ¡´Ù¸é
+        if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ë‹¤ë©´
         {
             UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);
             return 8030;
@@ -145,7 +158,18 @@ public class LinkageEventDetailAction
         switch (ButtonType)
         {
             case 0:
-                Getting = "Àåºñ È¹µæ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(HolySword).EquipmentName;
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                {
+                    Getting = "+Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(HolySword).EquipmentName;
+                }
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                {
+                    Getting = "+è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(HolySword).EquipmentName;
+                }
+                else
+                {
+                    Getting = "+ì¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(HolySword).EquipmentName;
+                }
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(HolySword);
                 UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(HolySword);
@@ -157,8 +181,8 @@ public class LinkageEventDetailAction
     //-------------------------------------------------Event8040
     public int Event8040(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. -ÀúÁÖ ¹ŞÀº°Ë, È¤Àº - ÀúÁÖ°¡ ¿¶¾îÁø °Ë
-        //1. ¾Æ¹«ÀÏ X
+        //0. -ì €ì£¼ ë°›ì€ê²€, í˜¹ì€ - ì €ì£¼ê°€ ì˜…ì–´ì§„ ê²€
+        //1. ì•„ë¬´ì¼ X
         Getting = "";
         Losing = "";
         int SmallCursedSword = 24001;
@@ -171,7 +195,19 @@ public class LinkageEventDetailAction
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == SmallCursedSword)
                 {
                     WeaponCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode;
-                    Losing = "Àåºñ ¼Ò¸ğ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+
+                    if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    {
+                        Losing = "-Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+                    }
+                    else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    {
+                        Losing = "-è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+                    }
+                    else
+                    {
+                        Losing = "-ì¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+                    }
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode = 0;
                 }
                 else
@@ -182,13 +218,24 @@ public class LinkageEventDetailAction
                             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] == SmallCursedSword)
                         {
                             WeaponCode = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i];
-                            Losing = "Àåºñ ¼Ò¸ğ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+                            if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                            {
+                                Losing = "-Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+                            }
+                            else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                            {
+                                Losing = "-è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+                            }
+                            else
+                            {
+                                Losing = "-ì¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(WeaponCode).EquipmentName;
+                            }
                             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] = 0;
                             break;
                         }
                     }
                 }
-                //¿©±â µé¾î¿À¸é ÀÏ´Ü ¾ø¾îµµ ÁøÇàÀº µÇ°Ô
+                //ì—¬ê¸° ë“¤ì–´ì˜¤ë©´ ì¼ë‹¨ ì—†ì–´ë„ ì§„í–‰ì€ ë˜ê²Œ
                 JsonReadWriteManager.Instance.LkEv_Info.TotoCursedSword = true;
                 return 8041;
             case 1:
@@ -202,7 +249,7 @@ public class LinkageEventDetailAction
         Getting = "";
         Losing = "";
         int BlessedSword = 26003;
-        if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ÀÎº¥Åä¸®°¡ ²ËÃ¡´Ù¸é
+        if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ë‹¤ë©´
         {
             UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);
             return 8050;
@@ -210,7 +257,18 @@ public class LinkageEventDetailAction
         switch (ButtonType)
         {
             case 0:
-                Getting = "Àåºñ È¹µæ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(BlessedSword).EquipmentName;
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                {
+                    Getting = "+Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(BlessedSword).EquipmentName;
+                }
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                {
+                    Getting = "+è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(BlessedSword).EquipmentName;
+                }
+                else
+                {
+                    Getting = "+ì¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(BlessedSword).EquipmentName;
+                }
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(BlessedSword);
                 UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(BlessedSword);
@@ -222,7 +280,7 @@ public class LinkageEventDetailAction
     //-----------------------------------------Event8060
     public int Event8060(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. Ã¼·Â 30, ÇÇ·Îµµ 300È¸º¹
+        //0. ì²´ë ¥ 30, í”¼ë¡œë„ 300íšŒë³µ
         //1. gk + 3
         Getting = "";
         Losing = "";
@@ -231,8 +289,8 @@ public class LinkageEventDetailAction
         switch(ButtonType)
         {
             case 0:
-                Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomHP).ToString() + "\n" +
-                    "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                Getting = "+HP : " + (30 + RandomHP).ToString() + "\n" +
+                    "+STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
@@ -246,7 +304,7 @@ public class LinkageEventDetailAction
     //--------------------------------------------Event8070
     public int Event8070(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. Ã¼·Â -10 ÇÇ·Îµµ -100
+        //0. ì²´ë ¥ -10 í”¼ë¡œë„ -100
         Getting = "";
         Losing = "";
         int RandomHP = Random.Range(-15, 16);
@@ -257,12 +315,12 @@ public class LinkageEventDetailAction
                 int RandNum = Random.Range(0, 2);
                 if(RandNum == 0)
                 {
-                    Losing = "ÇÇ·Îµµ ¼Ò¸ğ : " + (300 + RandomSTA).ToString();
+                    Losing = "-STA : " + (300 + RandomSTA).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 }
                 else
                 {
-                    Losing = "Ã¼·Â ¼Ò¸ğ : " + (30 + RandomHP).ToString();
+                    Losing = "-HP : " + (30 + RandomHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandomHP);
                 }
                 return 8071;
@@ -272,13 +330,13 @@ public class LinkageEventDetailAction
     //--------------------------------------------Event8080
     public int Event8080()
     {
-        //¾Æ¹«ÀÏ ¾øÀ½
+        //ì•„ë¬´ì¼ ì—†ìŒ
         return 8081;
     }
     //--------------------------------------------Event8090
     public int Event8090(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //Ã¼·Â -15, ÇÇ·Îµµ-150
+        //ì²´ë ¥ -15, í”¼ë¡œë„-150
         Getting = "";
         Losing = "";
         int RandomHP = Random.Range(-15, 16);
@@ -286,8 +344,8 @@ public class LinkageEventDetailAction
         switch (ButtonType)
         {
             case 0:
-                Losing = "Ã¼·Â ¼Ò¸ğ : " + (30 + RandomHP).ToString() + "\n" +
-                    "ÇÇ·Îµµ ¼Ò¸ğ : " + (300 + RandomSTA).ToString();
+                Losing = "-HP : " + (30 + RandomHP).ToString() + "\n" +
+                    "-STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandomHP);
                 return 8091;
@@ -307,12 +365,12 @@ public class LinkageEventDetailAction
                 int RandNum = Random.Range(0, 2);
                 if(RandNum == 0)
                 {
-                    Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomHP).ToString();
+                    Getting = "+HP : " + (30 + RandomHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
                 }
                 else
                 {
-                    Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                    Getting = "+STA : " + (300 + RandomSTA).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 }
                 SoundManager.Instance.PlaySFX("Buff_Healing");
@@ -326,7 +384,7 @@ public class LinkageEventDetailAction
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
-        Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+        Getting = "+STA : " + (300 + RandomSTA).ToString();
         PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
         SoundManager.Instance.PlaySFX("Buff_Healing");
         return 8111;
@@ -344,8 +402,8 @@ public class LinkageEventDetailAction
     //--------------------------------------------Event8140
     public int Event8140(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ÀüÅõ°³½Ã                           8141
-        //1. Ã¼·Â, ÇÇ·Îµµ ¼Ò È¸º¹           8142
+        //0. ì „íˆ¬ê°œì‹œ                           8141
+        //1. ì²´ë ¥, í”¼ë¡œë„ ì†Œ íšŒë³µ           8142
         Getting = "";
         Losing = "";
         int RandomHP = Random.Range(-15, 16);
@@ -355,8 +413,8 @@ public class LinkageEventDetailAction
             case 0:
                 return 8141;
             case 1:
-                Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomHP).ToString() + "\n" +
-                    "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                Getting = "+HP : " + (30 + RandomHP).ToString() + "\n" +
+                    "+STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
@@ -367,11 +425,11 @@ public class LinkageEventDetailAction
     }
     public void Event8141(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
     {
-        int CurrentEventMonsterSpawnPatternCode = 3300;//ÀÌ·±°Íµµ ¹Ù³¢¾î¾ß ÇÒ·Á³ª
+        int CurrentEventMonsterSpawnPatternCode = 3300;//ì´ëŸ°ê²ƒë„ ë°”ë¼ì–´ì•¼ í• ë ¤ë‚˜
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -379,9 +437,9 @@ public class LinkageEventDetailAction
     //--------------------------------------------Event8150
     public int Event8150(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. ÀüÅõ                 8151
-        //1. ÀÌÅ»                 8152
-        //2. °æÇèÄ¡ Áß          8153
+        //0. ì „íˆ¬                 8151
+        //1. ì´íƒˆ                 8152
+        //2. ê²½í—˜ì¹˜ ì¤‘          8153
         Getting = "";
         Losing = "";
         int RandomReward = Random.Range(-(StageAverageReward / 2), (StageAverageReward / 2) + 1);
@@ -392,7 +450,7 @@ public class LinkageEventDetailAction
             case 1:
                 return 8152;
             case 2:
-                Getting = "°æÇèÄ¡ È¹µæ : " + ((StageAverageReward * 2) + RandomReward).ToString();
+                Getting = "+EXP : " + ((StageAverageReward * 2) + RandomReward).ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount((StageAverageReward * 2) + RandomReward);
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
                 return 8153;
@@ -401,11 +459,11 @@ public class LinkageEventDetailAction
     }
     public void Event8151(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
     {
-        int CurrentEventMonsterSpawnPatternCode = 3301;//ÀÌ·±°Íµµ ¹Ù³¢¾î¾ß ÇÒ·Á³ª
+        int CurrentEventMonsterSpawnPatternCode = 3301;//ì´ëŸ°ê²ƒë„ ë°”ë¼ì–´ì•¼ í• ë ¤ë‚˜
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -413,22 +471,27 @@ public class LinkageEventDetailAction
     //--------------------------------------------Event8160
     public int Event8160(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ÇÇ·Îµµ È¸º¹                 8161
-        //1. Å½»öµµ »ó½Â                 8162
+        //0. í”¼ë¡œë„ íšŒë³µ                 8161
+        //1. íƒìƒ‰ë„ ìƒìŠ¹                 8162
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
         switch (ButtonType)
         {
             case 0:
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                Getting = "+EXP : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 8161;
             case 1:
-                //1 ~ 20 ±îÁöÁß ·£´ıÀ¸·Î
+                //1 ~ 20 ê¹Œì§€ì¤‘ ëœë¤ìœ¼ë¡œ
                 int RandomIncrease = Random.Range(1, 20);
-                Getting = "Å½»öµµ »ó½Â : " + RandomIncrease.ToString();
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Getting = "+Exploration : " + RandomIncrease.ToString();
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Getting = "+æ¢ç´¢åº¦ : " + RandomIncrease.ToString();
+                else
+                    Getting = "+íƒìƒ‰ë„ : " + RandomIncrease.ToString();
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandomIncrease;
                 return 8162;
         }
@@ -437,8 +500,8 @@ public class LinkageEventDetailAction
     //--------------------------------------------Event8170
     public int Event8170(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ÇÇ·Îµµ, Ã¼·Â È¸º¹                 8171
-        //1. ÀÌÅ»                 8172
+        //0. í”¼ë¡œë„, ì²´ë ¥ íšŒë³µ                 8171
+        //1. ì´íƒˆ                 8172
         Getting = "";
         Losing = "";
         int RandomHP = Random.Range(-15, 16);
@@ -446,8 +509,8 @@ public class LinkageEventDetailAction
         switch (ButtonType)
         {
             case 0:
-                Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomHP).ToString() + "\n" +
-                    "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                Getting = "+HP : " + (30 + RandomHP).ToString() + "\n" +
+                    "+STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");

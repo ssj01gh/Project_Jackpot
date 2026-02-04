@@ -1,0 +1,1398 @@
+﻿Key,Korean(ko),English(en),Japanese(ja)
+PS_EDT_9000,"탐색을 이어가던 당신의 앞에
+검은색 포탈이 나타났습니다.
+포탈에서 머리에 뿔이 달린
+정체불명의 남자가 나와 말을 겁니다.
+""거래를 하지.""","As you continue your exploration,
+a black portal appears before you.
+From within the portal emerges
+a mysterious man with horns on his head.
+He speaks to you.
+“Let’s make a deal.”","探索を続けているあなたの前に、
+黒いポータルが現れました。
+ポータルの中から、
+頭に角の生えた正体不明の男が現れ、
+声をかけてきます。
+「取引をしよう。」"
+PS_EDT_9001,"<color=green>{Getting}</color>
+""좋은 거래였어.""
+""대가가 무엇이냐고?""
+""나아가다 보면 알게 되겠지.""
+정체불명의 남자는 검은색 포탈에
+들어가며 사라졌습니다.","<color=green>{Getting}</color>
+“It was a good deal.”
+“You want to know the price?”
+“You’ll find out as you go.”
+With those words,
+the mysterious man steps into the black portal
+and vanishes.","<color=green>{Getting}</color>
+「いい取引だった。」
+「代償が何か、だって？」
+「進めば分かるさ。」
+そう言い残し、
+正体不明の男は黒いポータルへと入り、
+姿を消しました。"
+PS_EDT_9002,"""훌륭하군. 다음에 또 보도록 하지.""
+정체불명의 남자는 검은색 포탈에
+들어가며 사라졌습니다.","“Impressive. We’ll meet again.”
+With that,
+the mysterious man steps into the black portal
+and disappears.","「見事だ。では、また会おう。」
+そう言って、
+正体不明の男は黒いポータルへと入り、
+姿を消しました。"
+PS_EDT_9010,"당신은 많은 양의 상처약이 놓여있는
+바구니를 발견했습니다.
+""한개씩 써요!""
+라고 적힌 메세지가 보입니다.","You find a basket filled
+with a large number of healing potion.
+A note attached to it reads:
+“Only one, please!”","たくさんのヒーリングポーションが入った
+かごを見つけました。
+そこには、こんなメッセージが書かれています。
+「1つずつ使ってね！」"
+PS_EDT_9011,"<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+상처가 나아가는 것이 느껴집니다.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+You feel your wounds beginning to heal.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+傷が癒えていくのを感じます。"
+PS_EDT_9020,"""우아아앙!!!!!""
+소리가 들려오는 곳을 보니
+왠 흙골렘이 몬스터 무리에게 쫓기는 것이 보입니다.","“Waaahhh!!!!!”
+You turn toward the sound
+and see a clay golem being chased
+by a group of monsters.","「うわああああ！！！」
+声が聞こえた方を見ると、
+モンスターの群れに追われている
+土ゴーレムの姿が見えます。"
+PS_EDT_9021,"<color=green>{Getting}</color>
+흙골렘과 몬스터 무리가 멀어져 갑니다.
+가만 있는 동안 피로가 해소된 것 같습니다.","<color=green>{Getting}</color>
+The clay golem and the group of monsters
+gradually move farther away.
+While you remain still,
+you feel your fatigue easing.","<color=green>{Getting}</color>
+土ゴーレムとモンスターの群れが
+次第に遠ざかっていきます。
+じっとしているうちに、
+疲れが取れたようです。"
+PS_EDT_9022,"잠시 몬스터 무리의 시선을 끄는데 성공했습니다.
+그 흙골렘은 도망치는데 성공했을까요?","You manage to draw the attention
+of the group of monsters for a moment.
+Did the clay golem manage to escape?","モンスターの群れの注意を、
+しばらくの間引きつけることに成功しました。
+あの土ゴーレムは、
+無事に逃げることができたのでしょうか？"
+PS_EDT_9023,"<color=red>{Losing}</color>
+약간의 무리를 했지만
+몬스터 무리를 내쫓는데 성공했습니다.
+""고마워요!! 고마워요!!""
+당신이 구한 흙골렘은 감사를 표하며
+언젠가 은혜를 갚겠다며 떠나갑니다.","<color=red>{Losing}</color>
+You push yourself a little,
+but manage to drive the monsters away.
+“Thank you!! Thank you!!”
+The clay golem you saved expresses its gratitude
+and leaves, promising to repay the favor someday.","<color=red>{Losing}</color>
+少し無理をしましたが、
+モンスターの群れを追い払うことに成功しました。
+「ありがとう！！ ありがとう！！」
+あなたが助けた土ゴーレムは、
+感謝の言葉を伝え、
+いつか必ず恩返しをすると言って、その場を去っていきました。"
+PS_EDT_9030,"바닥에 쓰러져있는 무언가가 보입니다.
+다가가서 자세히 보니 뼈만 남은
+탐험가의 시체인듯 합니다.","You notice something lying on the ground.
+As you approach and take a closer look,
+it appears to be the skeletal remains
+of an explorer.","地面に倒れている何かが見えます。
+近づいてよく見てみると、
+それは骨だけが残った
+探検者の遺体のようです。"
+PS_EDT_9031,"<color=green>{Getting}</color>
+약간은 찝찝하지만
+별다른 고생없이 보급품을 얻었습니다.","<color=green>{Getting}</color>
+It feels a bit unsettling,
+but you obtain some supplies
+without much trouble.","<color=green>{Getting}</color>
+少し気がかりではありますが、
+特に苦労することもなく、
+補給品を手に入れました。"
+PS_EDT_9032,"<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+당신은 어느 탐험가의 장례식을 치렀습니다.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+You hold a funeral
+for an explorer.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+あなたは、
+ある探検者の葬儀を執り行いました。"
+PS_EDT_9040,"많은 양의 피로회복제가 놓여있는
+바구니를 발견했습니다.
+""한개씩 써요!!""
+라고 적힌 메세지가 보입니다.","You find a basket filled
+with a large number of stamina potion.
+A note attached to it reads:
+“Only one, please!”","たくさんのステミナポーションが入った
+かごを見つけました。
+そこには、こんなメッセージが書かれています。
+「1つずつ使ってね！」"
+PS_EDT_9041,"<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+피로가 해소되는게 느껴집니다.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+You feel your fatigue fade away.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+疲れが取れていくのを感じます。"
+PS_EDT_9050,"당신의 시야에 주변과 어울리지 않는
+성스러워 보이는 분수가 보입니다.
+좋지 않은 것을 정화하는 힘을 가진것 같습니다.","In your field of vision,
+you notice a fountain that seems out of place,
+yet appears sacred.
+It seems to possess the power
+to cleanse that which is tainted.","周囲とは明らかに調和していない、
+神聖そうな噴水が視界に入ります。
+どうやら、
+良くないものを浄化する力を
+持っているようです。"
+PS_EDT_9051,"<color=green>{Getting}</color>
+당신은 사람들의 염원이 담긴
+경험을 훔쳤습니다.","<color=green>{Getting}</color>
+You steal experience
+imbued with the hopes
+of countless people.","<color=green>{Getting}</color>
+あなたは、
+人々の願いが込められた
+経験を盗みました。"
+PS_EDT_9052,"<color=red>{Losing}</color>
+당신은 기도 후 마음이 가벼워짐을 느낍니다.","<color=red>{Losing}</color>
+After praying,
+you feel a weight lift from your heart.","<color=red>{Losing}</color>
+祈りを捧げたあと、
+心が少し軽くなったのを感じます。
+"
+PS_EDT_9060,"경험이 물처럼 흐르는 신비한 샘을 발견했습니다.
+신비한 샘 앞에는
+무언가 적힌 표지판이 있습니다.
+<과유불급>","You discover a mysterious spring
+where experience flows like water.
+In front of the spring,
+there is a sign with words written on it.
+<Too much is as bad as too little.>","経験が水のように流れる
+不思議な泉を見つけました。
+その泉の前には、
+何かが書かれた立て札があります。
+〈過ぎたるは及ばざるがごとし〉"
+PS_EDT_9061,"<color=red>{Losing}</color>
+경험를 최대한 흡수하기 위해
+샘에 몸을 담근 당신은 오히려 경험이
+빠져나가는 것을 느꼈습니다.","<color=red>{Losing}</color>
+In an attempt to absorb as much experience as possible,
+you immerse yourself in the spring—
+only to feel your experience slipping away instead.","<color=red>{Losing}</color>
+経験をできるだけ吸収しようと、
+泉に身を沈めたあなたは、
+逆に経験が流れ出していくのを感じました。"
+PS_EDT_9062,"<color=green>{Getting}</color>
+경험를 적당히 흡수하기 위해
+샘에 손을 담근 당신은 경험이
+당신에게 흡수 되는 것을 느꼈습니다.","<color=green>{Getting}</color>
+To absorb a reasonable amount of experience,
+you place your hand into the spring,
+and feel the experience flow into you.","<color=green>{Getting}</color>
+経験をほどほどに吸収しようと、
+泉に手を浸したあなたは、
+経験が自分の中へと吸い込まれていくのを感じました。"
+PS_EDT_9063,"<color=red>{Losing}</color>
+샘을 자세히 보던 당신은
+샘이 유지되는 방식을 깨달았습니다.
+자신보다 샘이 필요한 사람들을 위해
+당신은 약간의 경험을 샘에 흘려 넣었습니다.
+샘의 물이 더 풍부해 진 것 같습니다.","<color=red>{Losing}</color>
+As you study the spring more closely,
+you come to understand how it is sustained.
+For those who need the spring more than you do,
+you let a small amount of your experience flow into it.
+The waters of the spring seem to grow more abundant.","<color=red>{Losing}</color>
+泉をじっくり観察していたあなたは、
+この泉が保たれている仕組みに気づきました。
+自分よりもこの泉を必要としている人たちのために、
+あなたは少しの経験を泉へと流し込みました。
+泉の水が、前よりも豊かになったようです。"
+PS_EDT_9070,"갑작스럽게 나타난 문을 열자
+피부를 달구는 열기와
+쇠를 두드리는 소리가 끝없이 들려옵니다.
+단단한 인상의 남성이 말을 걸어옵니다.
+""뭘 만들어 주면 되겠소?""","As you open the door that suddenly appeared,
+searing heat washes over your skin,
+and the endless sound of hammer striking steel fills the air.
+A man with a stern expression speaks to you.
+“So, what do you want me to make?”","突然あらわれた扉を開けると、
+肌を焼くような熱と、
+金属を打つ音が絶えず聞こえてきます。
+がっしりした印象の男が、あなたに声をかけてきます。
+「何を作ってほしいんだ？」"
+PS_EDT_9071,"""어떤 종류의 평범한 장비를 원하시오?""","“What kind of ordinary equipment are you looking for?""",「どんな種類の普通の装備がいい？」
+PS_EDT_9072,"""어떤 종류의 좋은 장비를 원하시오?""","“What kind of good equipment are you looking for?""",「どんな種類の良い装備がいい？」
+PS_EDT_9073,"""어떤 종류의 뛰어난 장비를 원하시오?""","“What kind of fine equipment are you looking for?""",「どんな種類の優れた装備がいい？」
+PS_EDT_9074,"""어떤 종류의 완벽한 장비를 원하시오?""","“What kind of perfect equipment are you looking for?""",「どんな種類の完璧な装備がいい？」
+PS_EDT_9075,"약간의 시간이 지난후
+말을 걸어왔던 남성이
+한 장비를 당신에게 넘깁니다.","After a short while,
+the man who spoke to you earlier
+hands you a equipment.","少し時間がたったあと、
+先ほど声をかけてきた男が、
+装備をひとつあなたに渡します。"
+PS_EDT_9076,"당신은 대장간에서
+장비를 제작할 필요성을 느끼지 못했습니다.","You do not feel the need to 
+have equipment crafted at the forge.","あなたは、ここで装備を
+作ってもらう必要はないと感じました。"
+PS_EDT_9080,"상당한 불길함이 느껴지는 검이
+눈 앞에 나타 났습니다.",A deeply ominous sword appears before you.,"強い不吉さを感じさせる剣が、
+目の前に現れました。"
+PS_EDT_9081,"불길해 보이는 물건은
+건드리지 않는 것이 제일 일지도 모릅니다.","It might be best
+not to touch something that looks ominous.","不吉そうな物には、
+触れないのが一番かもしれません。"
+PS_EDT_9082,"<color=green>{Getting}</color>
+불길해 보인다는 것은 느낌일 뿐
+잡아 보기 전까지는 알지 못합니다.
+당신은 용감하게 검을 잡았습니다.","<color=green>{Getting}</color>
+What seems ominous is only a feeling.
+You won’t know until you grasp it.
+You bravely grasp the sword.","<color=green>{Getting}</color>
+不吉に見えるのは、
+ただの気のせいかもしれません。
+握るまでは、分からないのです。
+あなたは勇気を出して、剣を握りました。"
+PS_EDT_8000,"당신의 시야에 주변과 어울리지 않는
+성스러워 보이는 분수가 보입니다.
+좋지 않은 것을 정화하는 힘을 가진것 같습니다.","In your field of vision,
+you notice a fountain that seems out of place,
+yet appears sacred.
+It seems to possess the power
+to cleanse that which is tainted.","周囲とは明らかに調和していない、
+神聖そうな噴水が視界に入ります。
+どうやら、
+良くないものを浄化する力を
+持っているようです。"
+PS_EDT_8001,"<color=green>{Getting}</color>
+당신은 사람들의 염원이 담긴
+경험를 훔쳤습니다.","<color=green>{Getting}</color>
+You steal experience
+imbued with the hopes
+of countless people.","<color=green>{Getting}</color>
+あなたは、
+人々の願いが込められた
+経験を盗みました。"
+PS_EDT_8002,"<color=red>{Losing}</color>
+당신은 기도후 마음이 가벼워짐을 느낍니다.","<color=red>{Losing}</color>
+After praying,
+you feel a weight lift from your heart.","<color=red>{Losing}</color>
+祈りを捧げたあと、
+心が少し軽くなったのを感じます。
+"
+PS_EDT_8003,"<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+저주 받은 검을 분수에 담그자
+검에 깃든 저주가 약해짐을 느낍니다.
+그러나 분수의 힘으로는
+완전한 정화가 불가능 한 듯 합니다.
+더 강력한 힘을 가진 성수가 필요한듯 합니다.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+When you submerge the cursed sword in the fountain,
+you feel the curse bound to it weaken.
+However, the power of the fountain alone
+does not seem sufficient for complete purification.
+It appears that holy water of greater power is required.","<color=green>{Getting}</color>
+<color=red>{Losing}</color>
+呪われた剣を噴水に浸すと、
+剣に宿る呪いが弱まっていくのを感じます。
+しかし、この噴水の力だけでは、
+完全な浄化はできないようです。
+もっと強い力を持つ聖水が必要なようです。"
+PS_EDT_8004,"저주 받은 검을 분수에 담그려 했던 당신은
+그 검을 버렸던 것을 떠올렸습니다.","As you attempt to place the cursed sword into the fountain,
+you suddenly recall that you already discarded the sword.","呪われた剣を噴水に浸そうとしたあなたは、
+すでにその剣を捨てていたことを思い出しました。"
+PS_EDT_8010,"""용사님 또 만났어요!!""
+당신은 예전에 몬스터 무리에게 쫓기던
+흙골렘과 마주쳤습니다.","“Hero! It’s you again!!”
+You come face to face with the clay golem
+who was once chased by a group of monsters.","「勇者さま、また会えた！」
+あなたは、以前モンスターの群れに追われていた
+土ゴーレムと出会いました。"
+PS_EDT_8011,"<color=green>{Getting}</color>
+""토토 이거 줄게요!!!""
+당신은 흙골렘이 건네준 물을 마십니다.
+상당히 성스러운 기운이 담긴 물이였습니다.","<color=green>{Getting}</color>
+""Toto will give you this!!!!""
+You drink the water the clay golem hands you.
+It is water filled with a powerful holy aura.","<color=green>{Getting}</color>
+「トト！ これあげる！！！」
+あなたは、土ゴーレムから渡された水を飲みます。
+その水には、かなり神聖な気配が込められていました。"
+PS_EDT_8012,"""네! 토토 집에 잘 갔어요!!""
+당신은 흙골렘과 대화를 하다가 헤어졌습니다.","“Yeah! Toto made it home safe!!”
+After talking for a while,
+you part ways with the clay golem.","「うん！ トト、おうちにちゃんと帰ったよ！！」
+あなたは、
+土ゴーレムとしばらく話をしてから、
+別れました。
+"
+PS_EDT_8013,"<color=red>{Losing}</color>
+당신은 순수해 보이는 흙골렘을
+그냥 둘 수 없었습니다.
+""토토 튼튼해요!!!""
+흙골렘의 만류에도 불구하고
+함께 흙골렘의 식량을 채집하고 헤어졌습니다.","<color=red>{Losing}</color>
+You couldn’t bring yourself
+to leave the innocent-looking clay golem alone.
+“Toto is strong!!!”
+Despite the clay golem’s protests,
+you gather food together for it
+before going your separate ways.","<color=red>{Losing}</color>
+「トト、つよい！！！」
+無邪気そうな土ゴーレムを、
+そのままにしておくことはできませんでした。
+土ゴーレムは止めましたが、
+一緒に食べ物を集めてから、
+別れました。"
+PS_EDT_8020,"당신의 눈앞에 한 유령이 나타났습니다.
+아무레도 전에 장례식을 치뤄준
+방치된 시신의 유령인듯 합니다.
+""나에게 명복을 빌어줘서 고맙네""
+""약간의 도움이라도 주고 싶네만, 받아주지 않겠나?""","A ghost appears before your eyes.
+It seems to be the spirit of a body you once laid to rest,
+left unattended before the funeral.
+“Thank you for praying for my peace.”
+“I would like to offer you a small token of help, if you will accept it.”","あなたの目の前に、
+ひとりの幽霊があらわれました。
+どうやら以前、あなたが葬儀を行った、
+放置されていた遺体の幽霊のようです。
+「私のために冥福を祈ってくれて、ありがとう。」
+「ささやかな助けだが、受け取ってはくれんか。」"
+PS_EDT_8021,"<color=green>{Getting}</color>
+당신 유령의 경험을 전수 받았습니다.
+유령은 경험을 전수해 주고는 만족한듯
+사라집니다.","<color=green>{Getting}</color>
+You receive the ghost’s experience.
+Having passed it on, the ghost seems satisfied
+and fades away.","<color=green>{Getting}</color>
+あなたは、幽霊から経験を受け取りました。
+経験を渡し終えた幽霊は、
+満足した様子で、静かに消えていきます。"
+PS_EDT_8030,"""여기 있었어요! 토토 찾고 있었어요!!""
+말하는 흙골렘 토토가 머리에
+보따리를 이고선 당신을 찾아 왔습니다.","“Found you! Toto was looking everywhere!!”
+Toto, the talking clay golem,
+comes looking for you with a bundle balanced on its head.","「ここにいた！ トト、さがしてたよ！！」
+しゃべる土ゴーレムのトトが、
+頭にふろしきをのせて、
+あなたを探しにやってきました。"
+PS_EDT_8031,"<color=green>{Getting}</color>
+당신은 보따리에 싸여있던 검을 잡았습니다.
+상당히 좋은 품질의 검이라는 것이 느껴집니다.
+당신은 고마움을 담아
+토토의 머리를 쓰다듬습니다.
+""토토도 기뻐요!!""","<color=green>{Getting}</color>
+You take hold of the sword wrapped in the bundle.
+You can tell at once that it is of excellent quality.
+With gratitude,
+you gently pat Toto on the head.
+“Toto is happy too!!”","<color=green>{Getting}</color>
+ふろしきに包まれていた剣を、
+あなたは手に取りました。
+かなり質の良い剣だと感じます。
+感謝の気持ちを込めて、
+あなたはトトの頭をなでました。
+「トトも、うれしい！！」"
+PS_EDT_8040,"""용사님 또 만났어요!!""
+다시 만난 말하는 흙골렘 토토가
+당신을 만난 것에 기뻐하며 방방 뜁니다.
+그러던 것도 잠시 토토의 시선이 당신이
+가지고 있던 저주 받은 검에 고정 됩니다.
+""안 좋은 거에요!!!""","“Hero! We meet again!!”
+Toto, the talking clay golem you meet once more,
+jumps up and down with joy at seeing you again.
+But only for a moment—
+Toto’s gaze fixes on the cursed sword you are carrying.
+“That’s bad!!!”","「勇者さま！ また会えた！！」
+再び出会ったしゃべる土ゴーレムのトトは、
+あなたに会えたことがうれしくて、
+ぴょんぴょん跳ねます。
+しかし、しばらくすると、
+トトの視線があなたの持っている
+呪われた剣に釘づけになります。
+「それ、よくないよ！！！」"
+PS_EDT_8041,"
+<color=red>{Losing}</color>
+""토토가 깨끗하게 만들고 돌려 줄게요!!""
+토토는 저주 받은 검을 머리에 이고서
+어디론가 사라져 버렸습니다.","
+<color=red>{Losing}</color>
+“Toto will clean it up and bring it back to you!!”
+With the cursed sword balanced on its head,
+Toto disappears off somewhere.","
+<color=red>{Losing}</color>
+「トトが、きれいにして返すよ！！」
+トトは、呪われた剣を頭にのせて、
+どこかへ行ってしまいました。"
+PS_EDT_8042,"토토는 당신이 저주받은 검을 가지고 있는 것에
+불안을 느끼는것 같습니다.
+당신은 토토의 머리를 쓰다듬으며 괜찮다고
+안심 시킵니다.","Toto seems uneasy
+about you carrying the cursed sword.
+You gently pat Toto on the head
+and reassure it that everything is fine.","トトは、あなたが呪われた剣を持っていることを、
+少し不安に思っているようです。
+あなたはトトの頭をなでながら、
+大丈夫だと伝えて、安心させます。"
+PS_EDT_8050,"""토토가 깨끗하게 만들었어요!!""
+다시 만난 토토의 머리에는
+성스러운 기운을 내뿜는 검이 올려져 있습니다.","“Toto made it clean!!”
+When you meet Toto again,
+a sword radiating a holy aura rests atop its head.","「トトが、きれいにした！！」
+再び会ったトトの頭の上には、
+神聖な気配を放つ剣がのせられています。"
+PS_EDT_8051,"<color=green>{Getting}</color>
+토토가 건네준 검을 쥐자 마치
+이야기속 전설의 용사가 된 것 같은 기분이 듭니다.
+""용사님 웃으면 토토도 기뻐요!!""
+당신은 고마움을 담아
+토토의 머리를 쓰다듬습니다.","<color=green>{Getting}</color>
+As you grip the sword Toto hands you,
+you feel as if you have become a legendary hero from a tale.
+“When you smile, Hero, Toto is happy too!!”
+Filled with gratitude,
+you gently pat Toto on the head.","<color=green>{Getting}</color>
+トトから渡された剣を握ると、
+まるで物語に出てくる
+伝説の勇者になったような気分になります。
+「勇者さまが笑うと、トトもうれしい！！」
+感謝の気持ちを込めて、
+あなたはトトの頭をなでました。"
+PS_EDT_8060,"""토토 집에 있는 깨끗한 물 가져왔어요!!""
+토토가 당신에게 맑은 물을 건넵니다.","“I brought clean water from Toto’s home!!”
+Toto hands you the clear water.","「トトの家にある、きれいな水を持ってきたよ！！」
+トトは、あなたに澄んだ水を手渡します。"
+PS_EDT_8061,"<color=green>{Getting}</color>
+토토가 건네준 물을 마시자
+깨끗한 기운이 당신의 몸을 치유하고
+정신을 맑게 해줍니다.","<color=green>{Getting}</color>
+As you drink the water Toto hands you,
+a pure energy heals your body
+and clears your mind.","<color=green>{Getting}</color>
+トトから渡された水を飲むと、
+きれいな気配があなたの体を癒し、
+心まで澄んでいくのを感じます。"
+PS_EDT_8062,"""용사님 상냥해요! 토토 기뻐요!!""
+기뻐하는 토토와 재밌는 한 때를 보냈습니다.","“Hero, you’re so kind! Toto is happy!!”
+You share a pleasant time with a happy Toto.","「勇者さま、やさしい！ トト、うれしい！！」
+うれしそうなトトと、
+楽しいひとときを過ごしました。"
+PS_EDT_8070,"저주 받은 검을 얻은 후로
+악몽과 불행에 시달리고 있습니다.","Ever since obtaining the cursed sword,
+you have been plagued by nightmares and misfortune.","呪われた剣を手に入れてから、
+悪い夢と不幸に悩まされています。"
+PS_EDT_8071,"<color=red>{Losing}</color>
+저주 받은 검을 버린다고
+해결될것 같진 않습니다.","<color=red>{Losing}</color>
+It doesn’t seem like simply discarding the cursed sword
+will solve the problem.","<color=red>{Losing}</color>
+呪われた剣を捨てても、
+問題が解決するとは思えません。"
+PS_EDT_8080,"저주 받은 검의 저주가 옅어지자
+악몽과 불행이 약해졌습니다.","As the curse on the cursed sword weakens,
+the nightmares and misfortune begin to fade.","呪われた剣の呪いが薄れると、
+悪い夢や不幸も、少しずつ弱まっていきました。"
+PS_EDT_8081,"이정도의 악몽과 불행은
+강인한 당신에게 영향을 줄 수 없습니다.","Nightmares and misfortune of this degree
+cannot affect someone as strong as you.","この程度の悪い夢や不幸は、
+強いあなたには影響しません。"
+PS_EDT_8090,"저주 받은 검을 버리자
+악몽과 불행이 더욱 심해졌습니다.","When you discard the cursed sword,
+the nightmares and misfortune grow even worse.","呪われた剣を捨てると、
+悪い夢や不幸が、さらにひどくなりました。"
+PS_EDT_8091,"<color=red>{Losing}</color>
+뒤늦게 버렸던 검을 찾아 봤지만
+검은 이미 없어져 버렸습니다.","<color=red>{Losing}</color>
+You search for the sword you discarded,
+but it is already gone.","<color=red>{Losing}</color>
+後になって捨てた剣を探してみましたが、
+その剣はすでになくなっていました。"
+PS_EDT_8100,"저주 받은 검의 저주가 완전히 정화되었습니다.
+검에 깃든 축복이 당신에게 영향을 줍니다.","The curse on the cursed sword has been completely purified.
+The blessing bound to the blade now affects you.","呪われた剣の呪いは、
+完全にきれいになりました。
+剣に宿っていた祝福が、
+あなたに影響を与えます。"
+PS_EDT_8101,"<color=green>{Getting}</color>
+완전히 정화된 검의 축복에 의해
+신체의 회복 속도가 빨라졌습니다.","<color=green>{Getting}</color>
+Thanks to the blessing of the fully purified sword,
+your body’s recovery speed has increased.","<color=green>{Getting}</color>
+完全に浄化された剣の祝福によって、
+体の回復の速さが早くなりました。"
+PS_EDT_8110,"생명력이 가득한 팔찌를 얻은 후
+숲의 안개에 방해 받는 일은 없었습니다.
+새들은 지저귀고, 꽃들은 피어나는
+평화로운 숲입니다.","After obtaining the Bracelet of Life,
+you are no longer hindered by the forest’s mist.
+Birds chirp, flowers bloom—
+it is a peaceful forest.","生命のブレスレットを手に入れてから、
+森の霧に邪魔されることはなくなりました。
+鳥はさえずり、花は咲き、
+とても穏やかな森です。"
+PS_EDT_8111,"<color=green>{Getting}</color>
+피로가 풀리는 것 같은
+평화로운 숲입니다.","<color=green>{Getting}</color>
+It is a peaceful forest
+where your fatigue seems to melt away.","<color=green>{Getting}</color>
+疲れが取れていくような、
+穏やかな森です。"
+PS_EDT_8120,"익숙한 시선이 느껴집니다.
+저번과 다르게 적의는 없는 것을 보니
+문제는 없을 듯 합니다.","You feel a familiar gaze upon you.
+Unlike before, there is no hostility,
+so it doesn’t seem to be a problem.","どこか見覚えのある視線を感じます。
+前とは違い、敵意がなので、
+問題はなさそうです。"
+PS_EDT_8121,시선에서 느껴지는 기운이 한층 더 온화해졌습니다.,The presence you feel from the gaze grows even gentler.,"その視線から感じる気配が、
+さらに穏やかになりました。"
+PS_EDT_8130,"익숙한 시선이 느껴집니다.
+저번과는 비교도 안될 정도의
+적의가 느껴집니다.","You feel a familiar gaze upon you.
+This time, however, the hostility is far greater
+than before.","どこか見覚えのある視線を感じます。
+しかし今回は、前とは比べものにならないほどの
+敵意を感じます。"
+PS_EDT_8131,"어둠속에서 지켜보던 날카로운 눈빛은
+이내 사라져 버렸습니다.","The sharp gaze watching from the darkness
+soon disappears.","暗がりから見つめていた鋭い視線は、
+やがて消えてしまいました。"
+PS_EDT_8140,"""침입자 발견""
+음성과 함께 땅이 꺼지는 느낌이 들더니
+철창으로 막혀있는 방에 도착했습니다.
+""본 연금술 탑의 연구원이시라면
+보안 코드를 말해 주십시오""","“Intruder detected.”
+As the voice echoes, the ground seems to give way beneath you,
+and you find yourself in a room sealed with iron bars.
+“If you are a researcher of this alchemy tower,
+please state the security code.”","「侵入者を確認しました。」
+その音声と同時に、
+地面が崩れるような感覚に包まれ、
+鉄格子で閉ざされた部屋に到着しました。
+「この錬金術の塔の研究員であれば、
+セキュリティコードを答えてください。」"
+PS_EDT_8141,"""보안 코드 5회 입력을 실패했습니다.
+보안 체계를 실행합니다.""
+철컥 소리와 함께 철창이 열리더니
+몬스터 들이 나옵니다.","“Security code input failed five times.
+Activating security system.”
+With a loud clang, the iron bars slide open,
+and monsters emerge.","「セキュリティコードの入力に、
+5回失敗しました。
+セキュリティシステムを起動します。」
+ガチャリという音とともに鉄格子が開き、
+モンスターが現れます。"
+PS_EDT_8142,"<color=green>{Getting}</color>
+""보안 코드 입력이 완료되었습니다.""
+숨겨져 있던 문이 열리고
+그곳에는 휴식을 할 수 있는 시설이 있었습니다.","<color=green>{Getting}</color>
+“Security code entry complete.”
+A hidden door opens,
+revealing a facility where you can rest.","<color=green>{Getting}</color>
+「セキュリティコードの入力が完了しました。」
+隠されていた扉が開き、
+そこには休める設備がありました。"
+PS_EDT_8150,"어두운 복도 너머로 푸른색 빛을 내고 있는
+해골들이 떠다니고 있습니다.","Beyond the dark corridor,
+skulls emitting a blue glow float in the air.","暗い通路の向こうに、
+青い光を放つ骸骨が、
+浮かんでいます。"
+PS_EDT_8151,"어두운 복도 쪽으로 다가가자
+해골들이 당신을 발견하고 다가옵니다.","As you approach the dark corridor,
+the skulls notice you and begin to move closer.","暗い通路の方へ近づくと、
+骸骨たちがあなたに気づき、
+こちらへ近づいてきます。"
+PS_EDT_8152,다른 안전한 길이 있을 듯 합니다.,"There seems to be another, safer path.","ほかに、
+もっと安全な道がありそうです。"
+PS_EDT_8153,"<color=green>{Getting}</color>
+해골들 쪽으로 폭탄을 던지자
+특이한 색의 빛이 터져 나오더니
+해골들이 사라졌습니다.
+해골이 있던 위치는 경험만이 존재할 뿐입니다.","<color=green>{Getting}</color>
+When you throw a bomb toward the skulls,
+a burst of unusually colored light erupts,
+and the skulls vanish.
+Only experience remains where they once were.","<color=green>{Getting}</color>
+骸骨たちに向かって爆弾を投げると、
+不思議な色の光がはじけ、
+骸骨は消えてしまいました。
+骸骨がいた場所には、
+経験だけが残っています。"
+PS_EDT_8160,"햇빛이 드문 드문 비치는 장소에
+누군가 만들어 놓은
+나무 탁자를 발견했습니다.","In a place where sunlight filters through in patches,
+you discover a wooden table
+made by someone.","日差しが差し込む場所に、
+誰かが作った
+木のテーブルを見つけました。"
+PS_EDT_8161,"<color=green>{Getting}</color>
+숲속의 시원한 바람이 불어옵니다.","<color=green>{Getting}</color>
+A cool breeze blows through the forest.","<color=green>{Getting}</color>
+森の中の涼しい風が吹いてきます。"
+PS_EDT_8162,"<color=green>{Getting}</color>
+휴식은 필요하지 않다고 느껴습니다.
+탐색을 서두릅니다.","<color=green>{Getting}</color>
+You feel that rest isn’t necessary.
+You hasten your exploration.","<color=green>{Getting}</color>
+休む必要はないと感じました。
+探索を急ぎます。"
+PS_EDT_8170,"생활감이 있어보이는 방에서
+살덩이들이 들어 있던것과는 다른 느낌의
+실험관을 발견했습니다.
+들어가 볼 수 있을 것 같습니다.","In a room that feels lived-in,
+you discover a capsule
+different from the ones that held flesh.
+It looks like you can enter it.","生活感のある部屋で、
+肉塊が入っていたものとは
+違う感じの実験槽を見つけました。
+中に入れそうです。"
+PS_EDT_8171,"<color=green>{Getting}</color>
+실험관은 오랜 탐색으로 지친
+몸과 마음을 치료해 주었습니다.","<color=green>{Getting}</color>
+The capsule soothes your body and mind,
+worn down by long exploration.","<color=green>{Getting}</color>
+実験槽は、長い探索で疲れた
+体と心を癒してくれました。"
+PS_EDT_8172,"실험관에 있던 살덩이들이 떠오른 당신은
+눈앞의 실험관에서 떨어졌습니다.","As memories of the flesh-filled capsules resurface,
+you lose your footing and fall from the capsule before you.","実験槽に入っていた
+肉塊を思い出したあなたは、
+目の前の実験槽から落ちてしまいました。"
+PS_EDT_1000,"특이한 풀이 눈에 띕니다.
+언젠가 읽었던 책에서 봤던
+초원에서만 난다고 하던 풀인듯 합니다.","An unusual plant catches your eye.
+You recall seeing it in a book you once read—
+a plant said to grow only on the plains.","変わった草が目に留まります。
+以前読んだ本で見たことのある、
+草原にしか生えない草のようです。"
+PS_EDT_1001,"정확하지 않다면 함부로 사용하지 않는게
+좋을 수도 있습니다.","If you’re not certain,
+it may be best not to use it carelessly.","はっきりしないなら、
+むやみに使わないほうが
+いいかもしれません。"
+PS_EDT_1002,"<color=red>{Losing}</color>
+당신이 약초인줄 알고 사용했던 풀은
+독초였습니다.
+몸 상태가 안좋아 졌습니다.","<color=red>{Losing}</color>
+The plant you used, believing it to be a medicinal herb,
+was actually poisonous.
+Your condition worsens.","<color=red>{Losing}</color>
+薬草だと思って使った草は、
+毒のある草でした。
+体の調子が悪くなりました。"
+PS_EDT_1003,"<color=green>{Getting}</color>
+당신은 약초를 사용했습니다.
+몸이 건강해 지는 것이 느껴집니다.","<color=green>{Getting}</color>
+You use the medicinal herb.
+You feel your body growing healthier.","<color=green>{Getting}</color>
+薬草を使いました。
+体が元気になっていくのを感じます。"
+PS_EDT_1010,"무리지어 자고 있는 토깨비 무리를
+발견했습니다.
+암살에 성공한다며 손쉽게
+경험을 얻을 수 있을것 같습니다.","You discover a group of bonnies sleeping together.
+If the assassination succeeds,
+it looks like you could gain experience easily.","群れになって眠っているオニサギたちを
+見つけました。
+暗殺に成功すれば、
+手軽に経験を得られそうです。"
+PS_EDT_1011,"토깨비 무리가 잠에서 깨지 않도록
+조용히 근처에서 멀어졌습니다.","You quietly move away
+so as not to wake the bonni group.","オニサギの群れが目を覚まさないように、
+静かにその場を離れました。"
+PS_EDT_1012,"<color=green>{Getting}</color>
+토깨비 무리를 별다른 전투 없이
+쓰러트리는 데 성공했습니다.","<color=green>{Getting}</color>
+You successfully defeat the bonni group
+without engaging in a full battle.","<color=green>{Getting}</color>
+大きな戦闘をすることなく、
+オニサギの群れを倒すことに成功しました。"
+PS_EDT_1013,"잠든 토깨비들을 하나씩 쓰러트리던 중
+남은 몇마리의 토깨비가 일제히 일어났습니다.","As you take down the sleeping goblins one by one,
+the remaining goblins wake up all at once.","眠っているオニサギを一体ずつ倒していると、
+残っていた数体のオニサギが、
+一斉に目を覚ましました。"
+PS_EDT_1020,"클로버 주술사가 의식을 진행하고 있습니다.
+의식에 몰래 참석해 의식의 효과를 훔칠 수도
+의식을 방해 할 수도 있을것 같습니다.","A clover shaman is performing a ritual.
+You could secretly take part and steal the ritual’s effect,
+or attempt to disrupt the ritual.","クローバーの呪術師が、
+儀式を行っています。
+こっそり儀式に参加して、
+その効果を奪うことも、
+儀式を妨害することもできそうです。"
+PS_EDT_1021,"<color=green>{Getting}</color>
+의식이 끝나고 의식의 효과가 당신에게
+스며드는 것이 느껴집니다.
+한동안 행운 효과가 당신에게 부여 됩니다.","<color=green>{Getting}</color>
+As the ritual ends,
+you feel its effect seep into you.
+A luck bonus is granted to you for a while.","<color=green>{Getting}</color>
+儀式が終わると、
+その効果があなたに
+染み込んでくるのを感じます。
+しばらくの間、
+運の効果が付与されます。"
+PS_EDT_1022,"의식의 효과를 몰래 훔치려던 당신은
+클로버 주술사에게 발각 되었습니다.","As you attempt to secretly steal the ritual’s effect,
+you are discovered by the clover shaman.","儀式の効果をこっそり奪おうとしたあなたは、
+クローバーの呪術師に見つかってしまいました。"
+PS_EDT_1023,"당신은 클로버 주술사의 의식을
+방해하기로 결정했습니다.",You decide to disrupt the clover shaman’s ritual.,"あなたは、
+クローバーの呪術師の儀式を
+妨害することに決めました。"
+PS_EDT_1024,괜한 싸움은 할 필요가 없을 것 같습니다.,It seems there’s no need to start a pointless fight.,"無駄な戦いをする必要は、
+なさそうです。"
+PS_EDT_1030,"프레리독 기사가 나타났습니다.
+당신에게 검을 겨누지만 살기는 느껴지지 않습니다.","A prairie dog knight appears.
+He point his sword at you,
+but you sense no killing intent.","プレーリードッグの騎士が現れました。
+あなたに剣を向けていますが、
+殺意は感じられません。"
+PS_EDT_1031,"<color=green>{Getting}</color>
+대련이 끝나자 프레리독 기사는
+어디론가 사라졌습니다.
+당신은 전투가 좀더 능숙해진것 같습니다.","<color=green>{Getting}</color>
+When the sparring ends,
+the prairie dog knight disappears somewhere.
+You feel that you’ve become more skilled in combat.","<color=green>{Getting}</color>
+模擬戦が終わると、
+プレーリードッグの騎士は
+どこかへ消えていきました。
+あなたは、
+戦いが少し上達したように感じます。"
+PS_EDT_1032,"살기가 담겨있는 공격을
+프레리독 기사는 아무렇지 않게 막아냈습니다.
+기사는 한숨을 쉬며
+전투를 준비 합니다.","The prairie dog knight effortlessly blocks your killing strike.
+With a quiet sigh,
+the knight prepares for battle.","殺意のこもった攻撃を、
+プレーリードッグの騎士は
+平然と受け止めました。
+騎士はひとつ息をつき、
+戦いの構えを取ります。"
+PS_EDT_1040,"계속된 탐색에 지친 당신의 앞에
+휴식하기 좋은 나무 그늘이 나타났습니다.","After your long exploration leaves you weary,
+a tree’s shade—perfect for resting—appears before you.","続く探索で疲れたあなたの前に、
+休むのにちょうどいい
+木のかげが現れました。"
+PS_EDT_1041,"<color=green>{Getting}</color>
+좋은 그늘에서 충분한 휴식을 취했습니다.
+피로가 풀렸습니다.","<color=green>{Getting}</color>
+You take a good rest in the pleasant shade.
+Your fatigue fades away.","<color=green>{Getting}</color>
+気持ちのいい木かげで、
+十分に休みました。
+疲れが取れました。"
+PS_EDT_1042,"<color=green>{Getting}</color>
+당신은 휴식이 필요하지 않다고 판단했습니다.
+탐색을 서두릅니다.","<color=green>{Getting}</color>
+You decide that rest isn’t necessary.
+You hasten your exploration.","<color=green>{Getting}</color>
+休む必要はないと判断しました。
+探索を急ぎます。"
+PS_EDT_1050,"두두두두 하는 소리와 함께
+땅의 흔들림이 느껴집니다.
+저 멀리 흙먼지가 피어 오르는게 보입니다.
+짧은 다리 새의 거대한 무리가 달리고 있는듯 합니다.","With a rumbling thud-thud-thud,
+you feel the ground begin to shake.
+In the distance, clouds of dust rise into the air.
+It seems a massive flock of short leg birds is charging.","ドドドドという音とともに、
+地面の揺れを感じます。
+遠くの方で、
+土ぼこりが舞い上がるのが見えます。
+短脚鳥の、
+大きな群れが走ってきているようです。"
+PS_EDT_1051,"<color=red>{Losing}</color>
+짧은 다리새 무리에게 관심을 주지 않던 당신은
+어느새 가깝게 다가온 무리에 치여 버렸습니다.
+온몸이 안아픈 곳이 없습니다.","<color=red>{Losing}</color>
+Ignoring the flock of short leg birds,
+you are struck by the group before you realize how close they are.
+Your entire body aches.","<color=red>{Losing}</color>
+短脚鳥の群れを気にせずにいたあなたは、
+いつの間にか近づいていた群れに
+はね飛ばされてしまいました。
+体のどこも、
+痛くないところがありません。"
+PS_EDT_1052,"<color=green>{Getting}</color>
+잛은 다리새 무리는
+당신을 향해 달리고 있지 않습니다.
+당신은 혹시나 무리를 자극하지 않기 위해
+자리에 앉아 휴식을 취했습니다.
+흙먼지가 점점 멀어지는 것이 보입니다.","<color=green>{Getting}</color>
+The flock of short leg birds is not running toward you.
+To avoid provoking them,
+you sit down and take a rest.
+You watch as the clouds of dust slowly fade into the distance.","<color=green>{Getting}</color>
+短脚鳥の群れは、
+あなたの方へ走ってきてはいません。
+刺激しないように、
+あなたはその場に座って休みました。
+土ぼこりが、
+だんだん遠ざかっていくのが見えます。"
+PS_EDT_1053,"<color=red>{Losing}</color>
+달려서 급하게 자리를 벗어난 당신은
+방금까지 당신이 있던 자리를
+짧은 다리새 무리가 지나가는 것을 지켜봤습니다.","<color=red>{Losing}</color>
+You sprint away and hastily leave the area.
+From a distance, you watch as the flock of short leg birds
+rushes past the spot where you stood moments ago.","<color=red>{Losing}</color>
+走って急いでその場を離れたあなたは、
+ついさっきまで自分がいた場所を、
+短脚鳥の群れが
+通り過ぎていくのを見届けました。"
+PS_EDT_2000,숲에 안개가 자욱해 졌습니다.,A thick fog has settled over the forest.,森に霧が立ちこめました。
+PS_EDT_2001,"<color=red>{Losing}</color>
+안개속을 계속해서 탐색합니다.","<color=red>{Losing}</color>
+You continue to explore through the fog.","<color=red>{Losing}</color>
+霧の中を引き続き探索します。"
+PS_EDT_2002,"<color=red>{Losing}</color>
+짙은 안개속에서 무언가가 느껴집니다.","<color=red>{Losing}</color>
+You sense something within the dense fog.","<color=red>{Losing}</color>
+濃い霧の中で、何かを感じます。"
+PS_EDT_2003,"<color=red>{Losing}</color>
+더욱 짙어진 안개속에서 무언가가 느껴집니다.","<color=red>{Losing}</color>
+You sense something within the thickening fog.","<color=red>{Losing}</color>
+さらに濃くなった霧の中で、何かを感じます。"
+PS_EDT_2004,"<color=red>{Losing}</color>
+넘치는 생명 느껴지는 팔찌가 나무에 걸려있습니다.","<color=red>{Losing}</color>
+A bracelet overflowing with life is caught on a tree.","<color=red>{Losing}</color>
+あふれる生命を感じるブレスレットが、木に引っかかっています。"
+PS_EDT_2005,"<color=green>{Getting}</color>
+잠시 기다리자 숲의 안개가 점점 걷힙니다.
+길을 찾았습니다.","<color=green>{Getting}</color>
+After waiting for a moment, the fog in the forest gradually clears.
+You have found a path.","<color=green>{Getting}</color>
+しばらく待つと、森の霧が少しずつ晴れていきます。
+道を見つけました。"
+PS_EDT_2006,"<color=red>{Losing}</color>
+숲의 안개속에서 길을 잃었습니다.
+계속해서 걷다보니 처음 있던 자리 같습니다.","<color=red>{Losing}</color>
+You have lost your way in the forest fog.
+After walking for some time, it seems
+you have returned to where you started.","<color=red>{Losing}</color>
+森の霧の中で、道に迷いました。
+歩き続けているうちに、最初にいた場所に戻ったようです。"
+PS_EDT_2007,"<color=green>{Getting}</color>
+팔찌를 챙기자 숲의 안개가 걷혔습니다.
+길을 찾았습니다.","<color=green>{Getting}</color>
+As you take the bracelet, the forest fog clears.
+You have found a path.","<color=green>{Getting}</color>
+ブレスレットを手に取ると、森の霧が晴れました。
+道を見つけました。"
+PS_EDT_2010,"숲에서 나는 맛있는 냄새에 이끌려 도착한 곳엔
+나무로 만든 오두막이 세워져 있습니다.
+오두막에서 보라색 로브를 입은 여성이 나와 말을 겁니다.
+""마침 스프를 끓였는데 드시고 가실레요?""","Drawn by a delicious smell from the forest, 
+you arrive at a place where a wooden cabin stands.
+A woman in a purple robe steps out of the cabin and speaks to you.
+“I was just making some soup. 
+Would you like to have some before you go?”","森からただようおいしそうな香りに引き寄せられ、
+たどり着いた先には、木で作られた小屋が建っています。
+小屋から、紫のローブを着た女性が出てきて、声をかけます。
+「ちょうどスープを作っているところですが、
+よろしければ、召し上がっていきませんか？」"
+PS_EDT_2011,"<color=green>{Getting}</color>
+맛잇는 스프를 먹은 당신은 당분간의 전투에서
+원할히 싸울 수 있을 것 같습니다.","<color=green>{Getting}</color>
+After eating the delicious soup,
+you feel ready to fight more effectively for a while.","<color=green>{Getting}</color>
+おいしいスープを食べたことで、
+しばらくの間の戦闘では、順調に戦えそうです。"
+PS_EDT_2012,"<color=red>{Losing}</color>
+스프는 맛있었지만 먹고난후 배가 아프기 시작합니다.
+당분간의 전투에서 안좋은 영향을 끼칠 듯 합니다.","<color=red>{Losing}</color>
+The soup was delicious, but after eating it, 
+your stomach begins to ache.
+It seems this will have a negative effect on combat for a while.","<color=red>{Losing}</color>
+スープはおいしかったですが、
+食べた後から、お腹が痛くなってきました。
+しばらくの間の戦闘では、
+悪い影響が出そうです。"
+PS_EDT_2013,"처음보는 수상한 인물이 주는 음식은
+피하는 것이 좋을 지도 모릅니다.",It may be wise to avoid food offered by suspicious strangers.,"初めて会う、怪しい人物からもらう食べ物は、
+避けたほうがいいかもしれません。"
+PS_EDT_2020,"숲을 거닐다 커다란 나무를 발견했습니다.
+나무의 커다란 옹이구멍에는 구슬 형태의
+경험이 가득 들어있습니다.
+주변에 떠다니는 황금색 불길로 보아
+황금 도깨비불의 경험 창고 인듯 합니다.","While walking through the forest, you discover a massive tree.
+Inside a large hollow in its trunk
+are countless orb-shaped fragments of experience.
+Judging by the golden flames drifting around it,
+this appears to be a storage of experience
+belonging to a Golden Wisp.","森を歩いていると、
+ひときわ大きな木を見つけました。
+木にある大きなこぶの穴の中には、
+玉のような経験が、たくさん入っています。
+周囲を漂う黄金色の炎を見るに、
+黄金の鬼火の経験の保管場所のようです。"
+PS_EDT_2021,"<color=green>{Getting}</color>
+경험 구슬을 적당히 흡수했습니다.
+주변에 떠다니는 황금색 불길이
+거세어진듯 합니다.","<color=green>{Getting}</color>
+You absorb a moderate amount of the experience orbs.
+The golden flames drifting nearby seem to grow more intense.","<color=green>{Getting}</color>
+経験の玉を、ほどよく吸収しました。
+周囲に漂う黄金色の炎が、
+激しくなってきたようです。"
+PS_EDT_2022,"<color=green>{Getting}</color>
+경험 구슬을 상당히 흡수했습니다.
+주변에 떠다니는 황금색 불길이
+거세어졌습니다.","<color=green>{Getting}</color>
+You absorb a large amount of the experience orbs.
+The golden flames drifting nearby grow fierce.","<color=green>{Getting}</color>
+経験の玉を、かなり吸収しました。
+周囲に漂う黄金色の炎が、
+激しくなりました。"
+PS_EDT_2023,들키기 않고 경험를 얻어냈습니다.,You manage to obtain the experience without being noticed.,"気づかれることなく、
+経験を手に入れました。"
+PS_EDT_2024,욕심은 화를 부르는 법입니다.,Greed is bound to invite trouble.,欲張りは、災いを招くものです。
+PS_EDT_2025,"경험 구슬을 훔치는 것을 본
+황금 도깨비불 무리가 당신에게 덤벼듭니다.","Seeing you steal the experience orbs,
+a group of Golden Wisps rushes toward you.","経験の玉を盗むところを見られ、
+黄金の鬼火の群れが、あなたに襲いかかってきます。"
+PS_EDT_2030,"향긋한 향기가 나는 나무 열매가 맺혀있습니다.
+책에서나 보던 나무정령의 열매인듯 합니다.
+다 안익은 열매를 따면 무척이나 화를 낸다고
+알려져 있습니다.","A tree bears fruit with a pleasant, fragrant scent.
+It appears to be the fruit of a tree elemental, known only from books.
+It is said that picking the fruit before it is fully ripe
+will greatly anger the spirit.","香ばしい香りのする木の実が、なっています。
+本でしか見たことのない、
+木の精霊の実のようです。
+まだ熟していない実を取ると、
+ひどく怒ると知られています。"
+PS_EDT_2031,"<color=green>{Getting}</color>
+열매를 한입 베어물자 환상적인 맛이
+입안을 맴돕니다.
+온몸에 활기가 도는것 같습니다.","<color=green>{Getting}</color>
+As you take a bite of the fruit, a fantastic flavor fills your mouth.
+You feel vitality coursing through your entire body.","<color=green>{Getting}</color>
+実をひと口かじると、
+幻想的な味が口いっぱいに広がります。
+全身に、
+活力がみなぎるように感じます。"
+PS_EDT_2032,"열매를 따자 눈앞의 나무가 땅속에서
+뿌리를 꺼내 공격합니다.","As you pick the fruit, the tree before you
+pulls its roots from the ground and attacks.","実を取ったとたん、
+目の前の木が地面から根を引き抜き、攻撃してきます。"
+PS_EDT_2040,"""그대가 마녀가 말한 인물인가.""
+어둠속에서 정체불명의 눈빛과 함께
+근엄한 목소리가 들립니다.","“So you are the one the witch spoke of.”
+From the darkness, an unknown gaze watches you,
+and a solemn voice echoes forth.","「そなたが魔女が話していた人物か。」
+闇の中から、
+正体の分からない視線とともに、
+重々しい声が聞こえてきます。"
+PS_EDT_2041,"<color=green>{Getting}</color>
+""그대는... 선인이군...""
+정체불명의 눈빛의 중얼거림과 함께
+몸에 힘이 흘러 들어 옵니다.","<color=green>{Getting}</color>
+“So… you are one of the righteous…”
+With a murmur from an unknown gaze,
+strength begins to flow into your body.","<color=green>{Getting}</color>
+「そなたは……善き者か……」
+正体の分からない視線からのつぶやきとともに、
+体に力が流れ込んできます。"
+PS_EDT_2042,"""그대라면.... 막을 수 있을지도 모르겠군...""
+정체불명의 눈빛의 중얼거림과 함께
+눈빛이 멀어집니다.
+이제야 몸이 움직입니다.","“If it is you… you may be able to stop it…”
+With a murmur from the unknown gaze,
+the presence fades away.
+Only then does your body begin to move.","「そなたなら……止められるやもしれぬ……」
+正体の分からない視線のつぶやきとともに、
+その気配は遠ざかっていきます。
+ようやく、
+体が動くようになりました。"
+PS_EDT_2043,"""그대는.... 악인이군....""
+정체불명의 눈빛의 중얼거림과 함께
+어둠속에서 늑대 정령들이 공격해 옵니다.","“So… you are one of the wicked…”
+With a murmur from the unknown gaze,
+Spirit wolves surge forth from the darkness and attack.","「そなたは……悪しき者か……」
+正体の分からない視線のつぶやきとともに、
+闇の中から、狼の精霊たちが襲いかかってきます。"
+PS_EDT_2050,"숲속에서 무언가 때리는 둔탁한 소리가 울려 퍼집니다.
+소리를 따라 가자 한 거인이 다른 거인들에게
+맞고 있는 것이 보입니다.","A dull thudding sound echoes through the forest, 
+as if something is being struck.
+Following the noise, you see a giant being beaten by other giants.","森の中に、
+何かを打ちつけるような鈍い音が響き渡ります。
+音をたどっていくと、
+一人の巨人が、ほかの巨人たちに殴られている様子が見えます。"
+PS_EDT_2051,"당신은 거인의 시선을 돌린뒤
+상처입은 거인의 상태를 살폈습니다.
+""고맙다.... 인간....""
+상처입은 거인이 당신에게 감사를 건내고
+멀어집니다.","You draw the giants’ attention away
+and check on the condition of the injured giant.
+“Thank you…Human…”
+The injured giant offers you his gratitude
+and slowly walks away.","あなたは巨人たちの注意をそらし、
+傷ついた巨人の様子を確かめました。
+「……感謝する……人間……」
+傷ついた巨人は、
+あなたに感謝を伝え、
+その場を離れていきます。"
+PS_EDT_2052,"맞고 있던 거인이 눈에 밟히긴 하지만
+몬스터일 뿐입니다.","The beaten giant does weigh on your mind,
+but in the end, it is nothing more than a monster.","殴られていた巨人のことが、
+少し気にはなりますが、
+しょせんモンスターにすぎません。"
+PS_EDT_2053,"<color=green>{Getting}</color>
+끙끙거리며 바닥에 누워잇는 거인을
+암살하는 것은 손쉬운 일이었습니다.","<color=green>{Getting}</color>
+Assassinating the giant,
+groaning and lying on the ground, was an easy task.","<color=green>{Getting}</color>
+うめき声を上げながら地面に倒れている巨人を、
+始末するのは容易なことでした。"
+PS_EDT_2054,"당신은 거인의 시선을 돌린뒤
+상처입은 거인의 상태를 살폈습니다.
+""인간.....""
+토토 처럼 말을 할 줄 아는 몬스터 였습니다.
+당신은 거인에게 초원으로 가서
+흙골렘 토토를 찾으라고 말했습니다.
+""고맙다....인간....""","You draw the giants’ attention away
+and check on the condition of the injured giant.
+“Human…”
+It is a monster capable of speech, much like Toto.
+You tell the giant to head to the plains
+and seek out Toto the Clay Golem.
+“Thank you… human…”","あなたは巨人たちの注意をそらし、
+傷ついた巨人の様子を確かめました。
+「……人間……」
+それは、
+トトのように言葉を話すことのできるモンスターでした。
+あなたは巨人に、
+草原へ向かい、
+土のゴーレム・トトを探すよう伝えました。
+「……感謝する……人間……」"
+PS_EDT_3000,"갑작스럽게 뒷목이 따끔거립니다.
+이윽고 눈앞이 흐릿해 지기 시작할때
+불쾌한 목소리가 들려옵니다.
+""게임을 시작하지.""
+""둘중 하나는 해독제 하나는 독이다.""","A sudden sting prickles the back of your neck.
+As your vision begins to blur,
+an unpleasant voice reaches your ears.
+“Let the game begin.”
+“One is an antidote. The other is poison.”","突然、首の後ろにチクリとした痛みを感じます。
+やがて、目の前がぼやけ始めたその時、
+不快な声が聞こえてきます。
+「ゲームを始めろ。」
+「二つのうち、一つは解毒剤、もう一つは毒だ。」"
+PS_EDT_3001,약물을 주사하자 눈앞이 다시 선명해지기 시작합니다.,"As you inject the substance, your vision begins to clear once more.",薬を注射すると、目の前が再びはっきりしてきます。
+PS_EDT_3002,"<color=red>{Losing}</color>
+약물을 주사하자 눈앞이 더욱 흐려집니다.","<color=red>{Losing}</color>
+As you inject the substance, your vision grows even more blurred.","<color=red>{Losing}</color>
+薬を注射すると、目の前がさらにぼやけていきます。"
+PS_EDT_3003,"<color=red>{Losing}</color>
+이상한 게임을 제안한 존재를
+믿을 수 없었습니다.","<color=red>{Losing}</color>
+You could not trust the being that proposed such a strange game.","<color=red>{Losing}</color>
+奇妙なゲームを提案した存在を、
+信じることはできませんでした。"
+PS_EDT_3010,"다양한 도구와 엄청난 양의 서류가 쌓여있는
+방에 들어왔습니다.
+<악마와 인공 생명체><차원이동과 신체변형>등
+다양한 주제의 서류들이 보입니다.","You enter a room filled with various tools
+and an enormous amount of paperwork.
+Documents on many subjects catch your eye, such as
+<Demons and Artificial Life> and 
+<Dimensional Travel and Physical Transformation>.","さまざまな道具と、
+膨大な量の書類が積まれた部屋に入りました。
+<悪魔と人工生命>、<次元移動と身体変化>など、
+多様なテーマの書類が目に入ります。"
+PS_EDT_3011,"<연금술 탑의 보안체계>서류를 펼치자
+이해하기 힘든 용어들이 쏟아져 나옵니다.
+그중 하나의 문장이 눈에 띕니다.
+""보안체계에 휘말렸다면 아래의 코드를 입력하라""
+235711.....97","As you open the document titled 
+<The Alchemy Tower’s Security System>,
+a flood of difficult-to-understand terminology pours out.
+One sentence, however, catches your eye.
+“If you are caught in the security system, enter the code below.”
+235711…..97","<錬金術の塔のセキュリティシステム>と書かれた書類を開くと、
+理解しがたい用語が次々と並んでいます。
+その中で、
+一つの文章が目に留まります。
+「セキュリティシステムに巻き込まれた場合、下のコードを入力せよ」
+235711…..97"
+PS_EDT_3012,"<color=green>{Getting}</color>
+피로 회복제를 먹자
+몸에 샇인 피로가 어느정도
+풀리는게 느껴집니다.","<color=green>{Getting}</color>
+After taking the fatigue recovery potion,
+you feel some of the weariness built up in your body begin to ease.","<color=green>{Getting}</color>
+疲労回復剤を飲むと、
+体にたまっていた疲れが、
+ある程度和らいだのを感じます。"
+PS_EDT_3013,"구체의 옆에는 사용설명서가 있었습니다.
+<취급주의>
+불사의 존재를 물리치기 위한 폭탄.
+불사의 존재들에게 던지시오.","Beside the sphere lies an instruction manual.
+<Handle with Care>
+A bomb designed to defeat immortal beings.
+Throw it at immortal targets.","球体のそばに、
+取扱説明書が置かれていました。
+〈取扱注意〉
+不死の存在を倒すための爆弾です。
+不死の存在に投げてください。"
+PS_EDT_3014,"꺼림직한 느낌이 드는 연구실의 물건을
+만지지 않고 그대로 빠져나갔습니다.","Feeling uneasy about the items in the laboratory,
+you leave without touching anything.","研究室の物に不安を覚え、
+何も触れずに、そのまま立ち去りました。"
+PS_EDT_3020,"""칩입자 발견""
+음성과 함께 땅이 꺼지는 느낌이 들더니
+철창으로 막혀있 방에 도착했습니다.
+""본 연금술 탑의 연구원이시라면
+보안 코드를 말씀해 주십시오.""","“Intruder detected.”
+As the voice echoes, the ground seems to give way beneath you,
+and you find yourself in a room sealed with iron bars.
+“If you are a researcher of this alchemy tower,
+please state the security code.”","「侵入者を確認しました。」
+その音声と同時に、
+地面が崩れるような感覚に包まれ、
+鉄格子で閉ざされた部屋に到着しました。
+「この錬金術の塔の研究員であれば、
+セキュリティコードを答えてください。」"
+PS_EDT_3021,"""보안 코드 5회 입력을 실패했습니다.""
+""보안 체계를 실행합니다.""
+철컥 소리와 함께 철창이 열리더니
+몬스터들이 나옵니다.","“Security code input failed five times.
+Activating security system.”
+With a loud clang, the iron bars slide open,
+and monsters emerge.","「セキュリティコードの入力に、
+5回失敗しました。
+セキュリティシステムを起動します。」
+ガチャリという音とともに鉄格子が開き、
+モンスターが現れます。"
+PS_EDT_3030,"어느 어둑어둑한 방에 도착했습니다.
+방에는 노란색 액체가 담겨있는 실험관만이
+약한 빛을 내고 있습니다.
+실험관 안에는 살덩이가 들어있습니다.
+""죽주주주구여주어어.....""
+중얼거림들이 사방에서 들려옵니다.","You arrive in a dimly lit room.
+Only a capsule filled with a yellow liquid emits a faint glow.
+Inside the capsule is a lump of flesh.
+“kkkkkkiiiillllllmmmmeeee.......”
+Murmurs echo from all around you.","薄暗い部屋に、たどり着きました。
+部屋の中では、黄色い液体が入った実験槽だけが、
+かすかな光を放っています。
+実験槽の中には、肉塊が入っています。
+「こおおおろおおしいいいいてえええ」
+周囲のあちこちから、
+不気味なつぶやきが聞こえてきます。"
+PS_EDT_3031,"실험관들을 깨트리자 살덩이들이
+꿈틀거리며 다가옵니다.
+""주주주거여격주여어어어!!!!!!!""","As you shatter the capsule, 
+the lumps of flesh begin to writhe and creep toward you.
+“kkkiiiilllllmmmeee!!!!!”","試験管を壊すと、肉塊たちが、
+うごめきながら近づいてきます。
+「こおおろおおおしいいいてええええ!!!!」"
+PS_EDT_3032,중얼거림이 점점 멀어집니다.,The murmuring gradually fades away.,つぶやきが、次第に遠ざかっていきます。
+PS_EDT_3040,"어두운 복도 너머로 푸른색 빛을 내고 있는
+해골들이 떠다니고 있습니다.","Beyond the dark corridor,
+skulls emitting a blue glow float in the air.","暗い通路の向こうに、
+青い光を放つ骸骨が、
+浮かんでいます。"
+PS_EDT_3041,"어두운 복도 쪽으로 다가가자
+해골들이 당신을 발견하고 다가옵니다.","As you approach the dark corridor,
+the skulls notice you and begin to move closer.","暗い通路の方へ近づくと、
+骸骨たちがあなたに気づき、
+こちらへ近づいてきます。"
+PS_EDT_3042,다른 안전한 길이 있을 듯 합니다.,"There seems to be another, safer path.","ほかに、
+もっと安全な道がありそうです。"
+PS_EDT_3050,"벽에서 눈 처럼 생긴 도구가 나와서
+당신을 응시합니다.","An eye-shaped device emerges from the wall
+and fixes its gaze upon you.","壁から、目のような形をした装置が現れ、
+あなたをじっと見つめます。"
+PS_EDT_3051,"눈 모양의 도구는 시야에서 당신이
+없어지자 어디론가 사라져 버렸습니다.","Once you leave its field of view, 
+the eye-shaped device disappears somewhere.","目の形をした装置は、
+あなたが視界から消えると、
+どこかへ姿を消してしまいました。"
+PS_EDT_3052,"<color=red>{Losing}</color>
+당신은 눈 모양의 도구를 피하지 않았습니다.
+""침입자 발견""
+""관리자와 수호자는 전투 준비""
+무감정한 음성이 탑 전체에 울려 퍼집니다.","<color=red>{Losing}</color>
+You do not evade the eye-shaped device.
+“Intruder detected.”
+“Administrator and Guardian, prepare for combat.”
+An emotionless voice echoes throughout the entire tower.","<color=red>{Losing}</color>
+あなたは、
+目の形をした装置を避けませんでした。
+「侵入者を確認」
+「管理者および守護者は、戦闘準備」
+感情のこもらない声が、
+塔全体に響き渡ります。"
+PS_EDT_3060,"""이봐 인간""
+들려오는 말에 뒤를 돌아보자
+한마리의 도플갱어가 당신에게 말을 걸고 있습니다.
+""나란 뭘까?""","“Hey, human.”
+When you turn around at the sound of the voice,
+a doppelganger is speaking to you.
+“What am I?”","「おい、人間。」
+その声に振り向くと、
+一体のドッペルゲンガーが、
+あなたに話しかけています。
+「私とは何でる？」"
+PS_EDT_3061,"""고마워 인간. 많은 도움이 됬어""
+열띤 토론을 이어가던 도플갱어는
+만족한듯 감사 인사를 하며 멀어져 갑니다.","“Thank you, human. You’ve been a great help.”
+After the heated discussion, the doppelganger, seemingly satisfied,
+offers its thanks and walks away.","「ありがとう、人間。とても助かった。」
+熱い議論を続けていたドッペルゲンガーは、
+満足した様子で感謝の言葉を残し、
+そのまま離れていきます。"
+PS_EDT_3062,"<color=green>{Getting}</color>
+말하는 도플갱어는 당신의 기습에
+반응하지 못했고 칼에 베여 쓰러졌습니다.
+""너는 몬스터와 다름이 없는 인간이구나...""
+도플갱어가 사라진 자리엔 경험이 떨어져 있습니다.","<color=green>{Getting}</color>
+The speaking doppelganger fails to react to your sudden attack
+and collapses after being cut down by your blade.
+“So… you’re no different from a monster, human…”
+In the place where the doppelganger vanished, 
+experience remains behind.","<color=green>{Getting}</color>
+言葉を話していたドッペルゲンガーは、
+あなたの奇襲に反応できず、
+刃に斬られて倒れました。
+「……お前も、モンスターと変わらぬ人間か……」
+ドッペルゲンガーが消えた場所には、
+経験が残されています。"
+PS_EDT_3063,"""고마워 인간. 많은 도움이 됬어.""
+열띤 토론에 도플갱어는 만족한듯 합니다.
+""너가 말한 토토라는 골렘을 찾아가 봐야겠어.""
+도플갱어는 그렇게 말하며 멀어져 갑니다.","“Thank you, human. You’ve been a great help.”
+After the heated discussion, the doppelganger seems satisfied.
+“I should go and seek out this golem
+called Toto that you mentioned.”
+With those words, the doppelganger walks away.","「ありがとう、人間。とても助かった。」
+熱のこもった議論を経て、
+ドッペルゲンガーは満足した様子です。
+「お前が言っていた、
+トトというゴーレムを探しに行ってみる。」
+そう言い残し、
+ドッペルゲンガーは遠ざかっていきます。"
+PS_EDT_4000,포탈 근처에 떨어져있던 종이를 발견 했습니다.,You discover a piece of paper lying near the portal.,"ポータルの近くに落ちていた紙を、
+見つけました。"
+PS_EDT_4001,"""칠왕 아니, 육왕에게 배신당했다.""
+""그들은 침략을 준비하고 있다.""
+""분노는 전쟁에서 사용될 생체병기다.""
+""대비해야 한다.""","“We were betrayed by the Seven Kings—no, the Six Kings.”
+“They are preparing an invasion.”
+“Wrath is a biological weapon to be used in war.”
+""We must prepare.""","「七王……いや、六王に裏切られた。」
+「彼らは侵攻の準備を進めている。」
+「憤怒は、戦争で使われる生体兵器だ。」
+「備えねばならない。」"
+PS_EDT_4010,"주변의 기운이 달라졌습니다.
+커다란 성이 보입니다.
+교만의 영역으로 들어온 것 같습니다.","The atmosphere around you has changed.
+A massive castle comes into view.
+It seems you have entered the Realm of Pride.","周囲の気配が、変わりました。
+巨大な城が見えます。
+傲慢の領域に、足を踏み入れたようです。"
+PS_EDT_4011,"""감히 짐을 쓰러트릴 하는가.""
+""분수를 알아라.""","“You dare attempt to strike me down?”
+“Know your place.”","「我を討とうとするか。」
+「身の程を知れ。」"
+PS_EDT_4012,"영역에서 멀어지자
+흔적이 감쪽같이 없어졌습니다.","As you move away from the realm,
+all traces disappear completely.","領域から離れると、
+痕跡はきれいに消えてしまいました。"
+PS_EDT_4020,"주변의 기운이 달라졌습니다.
+쌓여있는 보물이 보입니다.
+탐욕의 영역으로 들어온 것 같습니다.","The atmosphere around you has changed.
+Piled-up treasures come into view.
+It seems you have entered the Realm of Greed.","周囲の気配が、変わりました。
+積み上げられた宝が見えます。
+強欲の領域に、足を踏み入れたようです。"
+PS_EDT_4021,"""너 좋은걸 많이 가지고 있네?""
+""내가 가져도 불만은 없지?""","“You’ve got a lot of nice things, don’t you?”
+“You wouldn’t mind if I took them, would you?”","「いいものを、ずいぶん持っているじゃないか。」
+「少しくらい、俺がもらっても文句はないだろう？」"
+PS_EDT_4030,"주변의 기운이 달라졌습니다.
+무채색이 된 땅이 보입니다.
+질투의 영역으로 들어온 것 같습니다.","The atmosphere around you has changed.
+A land drained of color comes into view.
+It seems you have entered the Realm of Envy.","周囲の気配が、変わりました。
+色を失った大地が、目の前に広がっています。
+嫉妬の領域に、足を踏み入れたようです。"
+PS_EDT_4031,"""왜 너는 가지고 있는거지?""
+""나와 똑같이 만들어 주마""","“Why do you get to have it?”
+“I’ll make you just like me.”","「なぜ、お前だけが持っている？」
+「我と同じにしてやろう。」"
+PS_EDT_4040,"주변의 기운이 달라졌습니다.
+달짝찌근한 냄새가 납니다.
+음욕의 영역으로 들어온 것 같습니다.","The atmosphere around you has changed.
+A sweet, cloying scent fills the air.
+It seems you have entered the Realm of Lust.","周囲の気配が、変わりました。
+甘ったるい香りが、漂っています。
+色欲の領域に、足を踏み入れたようです。"
+PS_EDT_4041,"""귀여운 자기가 들어왔네?""
+""싸움같은 난폭한 방법말고 다른 방법은 어때~?""","“Well, look who wandered in—aren’t you cute?”
+“Why not try something other than rough, violent fighting~?”","「あら、かわいい子が入ってきたじゃない？」
+「乱暴なケンカなんてやめて、ほかの方法にしない〜？」"
+PS_EDT_4050,"주변의 기운이 달라졌습니다.
+수많은 유해가 보입니다.
+식탐의 영역으로 들어온것 같습니다.","The atmosphere around you has changed.
+Countless remains come into view.
+It seems you have entered the Realm of Gluttony.","周囲の気配が、変わりました。
+無数の遺骸が、目に入ります。
+暴食の領域に、足を踏み入れたようです。"
+PS_EDT_4051,"""너 맛있는 냄새 난다.""
+""나, 너 먹는다.""","“You smell good.”
+“Me eat you.”","「お前、いい匂いする。」
+「俺、お前食う。」"
+PS_EDT_4060,"주변의 기운이 달라졌습니다.
+얼음과 푸른 불꽃이 보입니다.
+나태의 영역으로 들어온것 같습니다.","The atmosphere around you has changed.
+Ice and blue flames come into view.
+It seems you have entered the Realm of Sloth.","周囲の気配が、変わりました。
+氷と青い炎が、目に入ります。
+怠惰の領域に、足を踏み入れたようです。"
+PS_EDT_4061,"""....왜 여기까지 들어온 거지....""
+"".....귀찮군....""","“…Why did you come all the way here…?”
+“…What a bother…”","「……なぜ、ここまで来たんだ……」
+「……面倒だな……」"
+PS_EDT_4070,"주변의 기운이 달라졌습니다.
+일렁이는 불꽃과
+쏟아 오르는 용암이 보입니다.
+분노의 영역으로 들어온것 같습니다.","The atmosphere around you has changed.
+Flickering flames and surging lava come into view.
+It seems you have entered the Realm of Wrath.","周囲の気配が、変わりました。
+揺らめく炎と、噴き上がる溶岩が見えます。
+憤怒の領域に、足を踏み入れたようです。"
+PS_EDT_4071,"분노는 아무런 말도 없이
+당신을 노려보고 있습니다.",Wrath glares at you without saying a single word.,"憤怒は、何も語らずに、
+あなたをにらみつけています。"
+PS_EDT_4072,"굉음과 함께 불덩이가 날라옵니다.
+아무래도 벗어날 수 없을 듯 합니다.","With a thunderous roar, a mass of fire comes hurtling toward you.
+It seems there’s no way to escape.","轟音とともに、火の塊が飛んできます。
+どうやら、逃げられそうにありません。"
+PS_EDT_10000,"심상치 않은 기운이 느껴집니다.
+보스와 마주치기 전
+정비를 하는게 좋을 것 같습니다.","You sense an ominous presence.
+It would be wise to prepare before facing the boss.","ただならぬ気配を感じます。
+ボスと対峙する前に、
+準備を整えたほうがよさそうです。"

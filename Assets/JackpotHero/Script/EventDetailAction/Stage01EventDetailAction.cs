@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,8 +8,8 @@ public class Stage01EventDetailAction
     //-------------------------------------------------Event1000
     public int Event1000(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ¾Æ¹«ÀÏ ¾øÀ½
-        //1. 50% Ã¼·Â +30 50% Ã¼·Â -30
+        //0. ì•„ë¬´ì¼ ì—†ìŒ
+        //1. 50% ì²´ë ¥ +30 50% ì²´ë ¥ -30
         Getting = "";
         Losing = "";
         int RandomHP = Random.Range(-15, 16);
@@ -20,15 +20,15 @@ public class Stage01EventDetailAction
             case 1:
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
-                {//µ¶ÃÊ
-                    Losing = "Ã¼·Â ¼Ò¸ğ : " + (30 + RandomHP).ToString();
+                {//ë…ì´ˆ
+                    Losing = "-HP : " + (30 + RandomHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandomHP);
                     SoundManager.Instance.PlaySFX("Buff_Consume");
                     return 1002;
                 }
                 else if(Rand == 1)
-                {//¾àÃÊ
-                    Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomHP).ToString();
+                {//ì•½ì´ˆ
+                    Getting = "+HP : " + (30 + RandomHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomHP);
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     return 1003;
@@ -40,8 +40,8 @@ public class Stage01EventDetailAction
     //-------------------------------------------------Event1010
     public int Event1010(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. ¾Æ¹«ÀÏ ¾øÀ½
-        //1. 50% °æÇèÄ¡ 56/ 50% ÀüÅõ
+        //0. ì•„ë¬´ì¼ ì—†ìŒ
+        //1. 50% ê²½í—˜ì¹˜ 56/ 50% ì „íˆ¬
         Getting = "";
         Losing = "";
         switch(ButtonType)
@@ -52,16 +52,16 @@ public class Stage01EventDetailAction
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
-                {//±â½À¼º°ø
+                {//ê¸°ìŠµì„±ê³µ
                     int RewardRange = (int)(StageAverageReward / 4);
                     int RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                    Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                    Getting = "+EXP : " + RandomReward.ToString();
                     PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                     UIMgr.GI_UI.ActiveGettingUI(0, true);
                     return 1012;
                 }
                 else if(Rand == 1)
-                {//±â½À ½ÇÆĞ
+                {//ê¸°ìŠµ ì‹¤íŒ¨
                     return 1013;
                 }
                 break;
@@ -74,7 +74,7 @@ public class Stage01EventDetailAction
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -82,9 +82,9 @@ public class Stage01EventDetailAction
     //-------------------------------------------------Event1020
     public int Event1020(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ¾ÕÀ¸·Î 2¹øÀÇ ÀüÅõµ¿¾È Çà¿î 3 ºÎ¿© 50% // ÀüÅõ 50%
-        //1. ÁÖ¼ú»ç¿Í ÀüÅõ
-        //2. ¾Æ¹«ÀÏ ¾øÀ½
+        //0. ì•ìœ¼ë¡œ 2ë²ˆì˜ ì „íˆ¬ë™ì•ˆ í–‰ìš´ 3 ë¶€ì—¬ 50% // ì „íˆ¬ 50%
+        //1. ì£¼ìˆ ì‚¬ì™€ ì „íˆ¬
+        //2. ì•„ë¬´ì¼ ì—†ìŒ
         Getting = "";
         Losing = "";
         switch(ButtonType)
@@ -92,14 +92,19 @@ public class Stage01EventDetailAction
             case 0:
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
-                {//ÈÉÄ¡±â ¼º°ø
+                {//í›”ì¹˜ê¸° ì„±ê³µ
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                     JsonReadWriteManager.Instance.LkEv_Info.PowwersCeremony = 2;
-                    Getting = "ÀüÅõ 2È¸ µ¿¾È ÀüÅõ ½ÃÀÛ½Ã Çà¿î 3½ºÅÃ º¸À¯";
+                    if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                        Getting = "For the next 2 battles, start combat with 3 stacks of Luck.";
+                    else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                        Getting = "æ¬¡ã®2å›ã®æˆ¦é—˜ã§ã€æˆ¦é—˜é–‹å§‹æ™‚ã«é‹ã‚’3ã‚¹ã‚¿ãƒƒã‚¯ç²å¾—ã€‚";
+                    else
+                        Getting = "ì „íˆ¬ 2íšŒ ë™ì•ˆ ì „íˆ¬ ì‹œì‘ì‹œ í–‰ìš´ 3ìŠ¤íƒ ë³´ìœ ";
                     return 1021;
                 }
                 else
-                {//ÈÉÄ¡±â ½ÇÆĞ
+                {//í›”ì¹˜ê¸° ì‹¤íŒ¨
                     return 1022;
                 }
             case 1:
@@ -115,7 +120,7 @@ public class Stage01EventDetailAction
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -123,8 +128,8 @@ public class Stage01EventDetailAction
     //-------------------------------------------------Event1030
     public int Event1030(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. Èû, ³»±¸, ¼Óµµ Áß ·¹º§ ³·Àº°Å 1·¾¾÷, ÇÇ·Îµµ -300
-        //1. ÀüÅõ
+        //0. í˜, ë‚´êµ¬, ì†ë„ ì¤‘ ë ˆë²¨ ë‚®ì€ê±° 1ë ™ì—…, í”¼ë¡œë„ -300
+        //1. ì „íˆ¬
         Getting = "";
         Losing = "";
         int RandSTA = Random.Range(-150, 151);
@@ -138,17 +143,32 @@ public class Stage01EventDetailAction
                 int SmallestLevel = Mathf.Min(STRLevel, DURLevel, SPDLevel);
                 if(SmallestLevel == STRLevel)
                 {
-                    Getting = "Èû ·¹º§ 1 »ó½Â";
+                    if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                        Getting = "+STR Level : 1";
+                    else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                        Getting = "+STRãƒ¬ãƒ™ãƒ« : 1";
+                    else
+                        Getting = "+STR ë ˆë²¨ : 1";
                     PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("STR", 1);
                 }
                 else if(SmallestLevel == DURLevel)
                 {
-                    Getting = "³»±¸ ·¹º§ 1 »ó½Â";
+                    if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                        Getting = "+DUR Level : 1";
+                    else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                        Getting = "+DURãƒ¬ãƒ™ãƒ« : 1";
+                    else
+                        Getting = "+DUR ë ˆë²¨ : 1";
                     PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("DUR", 1);
                 }
                 else if(SmallestLevel == SPDLevel)
                 {
-                    Getting = "¼Óµµ ·¹º§ 1 »ó½Â";
+                    if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                        Getting = "+SPD Level : 1";
+                    else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                        Getting = "+SPDãƒ¬ãƒ™ãƒ« : 1";
+                    else
+                        Getting = "+SPD ë ˆë²¨ : 1";
                     PlayerMgr.GetPlayerInfo().UpgradePlayerSingleStatus("SPD", 1);
                 }
                 PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();
@@ -165,7 +185,7 @@ public class Stage01EventDetailAction
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -173,22 +193,27 @@ public class Stage01EventDetailAction
     //-------------------------------------------------Event1040
     public int Event1040(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ÇÇ·Îµµ 300È¸º¹
-        //2. Å½»ö ¼öÄ¡ Áõ°¡
+        //0. í”¼ë¡œë„ 300íšŒë³µ
+        //2. íƒìƒ‰ ìˆ˜ì¹˜ ì¦ê°€
         Getting = "";
         Losing = "";
         int RandSTA = Random.Range(-150, 151);
         switch (ButtonType)
         {
             case 0:
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandSTA).ToString();
+                Getting = "+STA : " + (300 + RandSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 1041;
             case 1:
-                //1 ~ 20 ±îÁöÁß ·£´ıÀ¸·Î
+                //1 ~ 20 ê¹Œì§€ì¤‘ ëœë¤ìœ¼ë¡œ
                 int RandomIncrease = Random.Range(1, 20);
-                Getting = "Å½»öµµ »ó½Â : " + RandomIncrease.ToString();
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Getting = "+Exploration : " + RandomIncrease.ToString();
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Getting = "+æ¢ç´¢åº¦ : " + RandomIncrease.ToString();
+                else
+                    Getting = "+íƒìƒ‰ë„ : " + RandomIncrease.ToString();
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandomIncrease;
                 return 1042;
         }
@@ -197,8 +222,8 @@ public class Stage01EventDetailAction
     //-------------------------------------------------Event1050
     public int Event1050(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. 50% Ã¼·Â ¼Ò¸ğ30 // 50% ÇÇ·Îµµ È¸º¹ 300
-        //1. ÇÇ·Îµµ ¼Ò¸ğ 300
+        //0. 50% ì²´ë ¥ ì†Œëª¨30 // 50% í”¼ë¡œë„ íšŒë³µ 300
+        //1. í”¼ë¡œë„ ì†Œëª¨ 300
         Getting = "";
         Losing = "";
         int RandHP = Random.Range(-15, 16);
@@ -208,20 +233,20 @@ public class Stage01EventDetailAction
             case 0:
                 int Rand = Random.Range(0, 2);
                 if(Rand == 0)
-                {//ºÎµúÈû
-                    Losing = "Ã¼·Â ¼Ò¸ğ : " + (30 + RandHP).ToString();
+                {//ë¶€ë”ªí˜
+                    Losing = "-HP : " + (30 + RandHP).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 - RandHP);
                     return 1051;
                 }
                 else
-                {//¾ÈºÎµúÈû
-                    Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandSTA).ToString();
+                {//ì•ˆë¶€ë”ªí˜
+                    Getting = "+STA : " + (300 + RandSTA).ToString();
                     PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandSTA);
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     return 1052;
                 }
             case 1:
-                Losing = "ÇÇ·Îµµ ¼Ò¸ğ : " + (300 + RandSTA).ToString();
+                Losing = "-STA : " + (300 + RandSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandSTA);
                 return 1053;
         }
