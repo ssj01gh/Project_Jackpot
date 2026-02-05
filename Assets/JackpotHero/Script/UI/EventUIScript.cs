@@ -50,13 +50,15 @@ public class EventUIScript : MonoBehaviour
             EventDetail.text = Regex.Replace(EventDetail.text, "{Losing}", EventMgr.Losing);
         }
 
-            foreach (GameObject Obj in EventSelectionButtons)
-            {
-                Obj.SetActive(false);
-            }
+        foreach (GameObject Obj in EventSelectionButtons)
+        {
+            Obj.SetActive(false);
+            Obj.GetComponent<Button>().interactable = false;
+        }
         for(int i = 0; i < EventMgr.CurrentEvent.EventSelectionDetail.Count; i++)
         {
             EventSelectionButtons[i].SetActive(true);
+            EventSelectionButtons[i].GetComponent<Button>().interactable = true;
             EventSelectionTexts[i].text = EventMgr.CurrentEvent.EventSelectionDetail[i];
         }
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
@@ -68,6 +70,13 @@ public class EventUIScript : MonoBehaviour
     {
         if(gameObject.activeSelf == true)
         {
+            for(int i = 0; i < EventSelectionButtons.Length; i++)
+            {
+                if (EventSelectionButtons[i].activeSelf == true)
+                {
+                    EventSelectionButtons[i].GetComponent<Button>().interactable = false;
+                }
+            }
             gameObject.GetComponent<CanvasGroup>().alpha = 1;
             gameObject.GetComponent<CanvasGroup>().DOFade(0, 0.5f).OnComplete(() => { gameObject.SetActive(false); });
         }

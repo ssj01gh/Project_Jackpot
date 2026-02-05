@@ -17,4 +17,4 @@ MonoBehaviour:
   EventImage: {fileID: 21300000, guid: 59ec602da77fc9a4897dd5b3019f1646, type: 3}
   EventDetail: PS_EDT_8070
   EventSelectionDetail:
-  - PS_ESDT_8070
+  - PS_ESDT_8070_1

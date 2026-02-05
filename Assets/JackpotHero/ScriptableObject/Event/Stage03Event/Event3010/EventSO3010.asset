@@ -17,7 +17,7 @@ MonoBehaviour:
   EventImage: {fileID: 21300000, guid: 5da50a56ac9694e4aafb5d9f55c277ae, type: 3}
   EventDetail: PS_EDT_3010
   EventSelectionDetail:
-  - PS_ESET_3010_1
+  - PS_ESDT_3010_1
   - PS_ESDT_3010_2
   - PS_ESDT_3010_3
   - PS_ESDT_3010_4

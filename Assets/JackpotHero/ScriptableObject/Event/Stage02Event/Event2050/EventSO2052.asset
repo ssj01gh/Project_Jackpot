@@ -17,4 +17,4 @@ MonoBehaviour:
   EventImage: {fileID: 21300000, guid: 3e4559929240086498964b4c2dffd7dd, type: 3}
   EventDetail: PS_EDT_2052
   EventSelectionDetail:
-  - PT_ESDT_2052_1
+  - PS_ESDT_2052_1

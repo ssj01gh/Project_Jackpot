@@ -347,7 +347,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2850373072711755
-    m_Localized: For some reason, you sense a sacred presence from the clay golem.
+    m_Localized: You sense a sacred presence from the clay golem.
     m_Metadata:
       m_Items: []
   - m_Id: 2850373072711756
@@ -939,7 +939,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2850373076906018
-    m_Localized: Engage in a philosophical debate with the talking doppelganger.
+    m_Localized: Discuss philosophy with the doppelganger.
     m_Metadata:
       m_Items: []
   - m_Id: 2850373076906019

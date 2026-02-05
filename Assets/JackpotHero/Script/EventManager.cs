@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -466,8 +467,8 @@ public class EventManager : MonoBehaviour
                 {
                     //불길한 검의 저주 8070
                     //검이 없으면 8090으로
-                    int CursedSword = 17001;
-                    int SmallCursedSword = 17002;
+                    int CursedSword = 23000;
+                    int SmallCursedSword = 24001;
                     bool IsHaveCursedSword = false;
                     if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == CursedSword ||
                         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode == SmallCursedSword)
@@ -751,6 +752,7 @@ public class EventManager : MonoBehaviour
     public void PressEventSelectionButton(int SelectionType)//이게 이제 이벤트의 결과 함수임
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
+        //Debug.Log("ClickEventButton");
         OccurEventBySelection(SelectionType);//여기서 이벤트의 선택에 맞게 이벤트가 발생함
         /*
         UIMgr.E_UI.InActiveEventUI();//버튼 이 눌렸으니 이벤트를 종료 한다.
@@ -1400,6 +1402,14 @@ public class EventManager : MonoBehaviour
         UIMgr.E_UI.ActiveEventUI(this);
         if(IsUseSetUI == true)
             UIMgr.SetUI();
+    }
+
+    public void ChangeLangueWhenEventUIOpen()
+    {
+        if(UIMgr.E_UI.gameObject.activeSelf == true && CurrentKeyEvent.EventCode == PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails)
+        {//이거 두개가 같을때 = 옳은 이벤트가 켜져있을때 라고 해야하려나
+            StartCoroutine(LoadEvent());
+        }
     }
     //------------------------------------------Event1060
     /*
