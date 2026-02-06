@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO9031
   m_EditorClassIdentifier: 
   EventCode: 9031
-  EventTitle: "\uBB34\uB8CC?"
+  EventTitle: PS_ETT_9031
   EventImage: {fileID: 21300000, guid: 542ebe4613cc67947b9700b7c0a58abc, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\n\uC57D\uAC04\uC740 \uCC1D\uCC1D\uD558\uC9C0\uB9CC\n\uBCC4\uB2E4\uB978
-    \uACE0\uC0DD\uC5C6\uC774 \uBCF4\uAE09\uD488\uC744 \uC5BB\uC5C8\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_9031
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_9031_1

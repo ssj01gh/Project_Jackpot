@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.Burst;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -97,7 +96,7 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
     protected string[] PlayerEquipTierNameEN = new string[7]
     {"Initiate’s ","Low-quality ","Common ","High-quality ","Reinforced ","Enchanted ","Eternal "};
     protected string[] PlayerEquipMultiTypeNameEN = new string[4]
-    {"","Stable ","Balanced ","폭발적인 "};
+    {"","Stable ","Balanced ","Explosive "};
     protected string[] PlayerEquipTierNameJA = new string[7]
     {"始まりの","低品質の","一般的な","高品質の","強化された","魔法の","永遠の"};
     protected string[] PlayerEquipMultiTypeNameJA = new string[4]

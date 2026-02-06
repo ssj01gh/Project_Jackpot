@@ -323,6 +323,30 @@ MonoBehaviour:
     m_Key: PS_EquipMG_AccText
     m_Metadata:
       m_Items: []
+  - m_Id: 9764138401787904
+    m_Key: PS_CP_GachaStateType
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764139899154432
+    m_Key: PS_CP_GachaEquipType
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764141501378560
+    m_Key: PS_CP_GachaMultiType
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764649268015104
+    m_Key: PS_CP_GachaRemainCount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764651444858880
+    m_Key: PS_CP_GachaOK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9764653269381120
+    m_Key: PS_CP_GachaReroll
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

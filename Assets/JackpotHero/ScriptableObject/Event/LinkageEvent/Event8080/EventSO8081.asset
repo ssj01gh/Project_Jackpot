@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO8081
   m_EditorClassIdentifier: 
   EventCode: 8081
-  EventTitle: "\uC605\uC5B4\uC9C4 \uC800\uC8FC\uBC1B\uC740 \uAC80\uC758 \uC800\uC8FC"
+  EventTitle: PS_ETT_8081
   EventImage: {fileID: 21300000, guid: 322376883f1e2ad4394b1831a1f28f9f, type: 3}
-  EventDetail: "\uC774\uC815\uB3C4\uC758 \uC545\uBABD\uACFC \uBD88\uD589\uC740\n\uAC15\uC778\uD55C
-    \uB2F9\uC2E0\uC5D0\uAC8C \uC601\uD5A5\uC744 \uC904 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_8081
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_8081_1

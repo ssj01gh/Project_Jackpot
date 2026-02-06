@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +7,8 @@ public class Stage03EventDetailAction
     //-----------------------------------------Event3000
     public int Event3000(int ButtonType, ref string Getting, ref string Losing)
     {
-        //0.1. 0°ú 1Àº »ó°ü¾øÀº 50% µ¶X 50% µ¶ 10
-        //2. µ¶ 5
+        //0.1. 0ê³¼ 1ì€ ìƒê´€ì—†ì€ 50% ë…X 50% ë… 10
+        //2. ë… 5
         Getting = "";
         Losing = "";
         int RandNum = Random.Range(0, 2);//0~1
@@ -17,25 +17,32 @@ public class Stage03EventDetailAction
             case 0:
             case 1:
                 if(RandNum == 0)
-                {//ÇØµ¶ 3001
+                {//í•´ë… 3001
                     SoundManager.Instance.PlaySFX("Buff_Healing");
                     JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin = 0;
+                    JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin_DisInject = 0;
                     return 3001;
                 }
                 else
-                {//µ¶ 3002
-                    Losing = "ÀüÅõ 10È¸ µ¿¾È ÀüÅõ ½ÃÀÛ½Ã µ¶ º¸À¯\n" +
-                        "µ¶ ½ºÅÃÀº ³²Àº µ¶ ºÎ¿© È½¼ö¸¸Å­ ºÎ¿©\n" +
-                        "10È¸ : 10½ºÅÃ, 9È¸ : 9½ºÅÃ....";
+                {//ë… 3002
+                    if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                        Losing = "For the next 5 battles, start combat with 10 stacks of Poison";
+                    else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                        Losing = "æ¬¡ã®5å›ã®æˆ¦é—˜ã§ã€æˆ¦é—˜é–‹å§‹æ™‚ã«æ¯’ã‚’10ã‚¹ã‚¿ãƒƒã‚¯ç²å¾—";
+                    else
+                        Losing = "ì „íˆ¬ 5íšŒ ë™ì•ˆ ì „íˆ¬ ì‹œì‘ì‹œ ë… 10ìŠ¤íƒ ë³´ìœ ";
                     SoundManager.Instance.PlaySFX("Buff_Consume");
-                    JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin = 10;
+                    JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin = 5;
                     return 3002;
                 }
             case 2://3003
-                Losing = "ÀüÅõ 5È¸ µ¿¾È ÀüÅõ ½ÃÀÛ½Ã µ¶ º¸À¯\n" +
-                        "µ¶ ½ºÅÃÀº ³²Àº µ¶ ºÎ¿© È½¼ö¸¸Å­ ºÎ¿©\n" +
-                        "5È¸ : 5½ºÅÃ, 4È¸ : 4½ºÅÃ....";
-                JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin = 5;
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Losing = "For the next 5 battles, start combat with 5 stacks of Poison";
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Losing = "æ¬¡ã®5å›ã®æˆ¦é—˜ã§ã€æˆ¦é—˜é–‹å§‹æ™‚ã«æ¯’ã‚’5ã‚¹ã‚¿ãƒƒã‚¯ç²å¾—";
+                else
+                    Losing = "ì „íˆ¬ 5íšŒ ë™ì•ˆ ì „íˆ¬ ì‹œì‘ì‹œ ë… 5ìŠ¤íƒ ë³´ìœ ";
+                JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin_DisInject = 5;
                 return 3003;
         }
         return 3000;
@@ -43,10 +50,10 @@ public class Stage03EventDetailAction
     //-----------------------------------------Event3010
     public int Event3010(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0.JsonEvent µî·Ï º¸¾ÈÃ¼°è // 3011
-        //1. ÇÇ·Î È¸º¹ + ¼Ò // 3012
-        //2.JsonEvent µî·Ï ÀÌ»óÇÑ ±¸Ã¼ // 3013
-        //3. ÀÌÅ»                         // 3014
+        //0.JsonEvent ë“±ë¡ ë³´ì•ˆì²´ê³„ // 3011
+        //1. í”¼ë¡œ íšŒë³µ + ì†Œ // 3012
+        //2.JsonEvent ë“±ë¡ ì´ìƒí•œ êµ¬ì²´ // 3013
+        //3. ì´íƒˆ                         // 3014
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
@@ -56,7 +63,7 @@ public class Stage03EventDetailAction
                 JsonReadWriteManager.Instance.LkEv_Info.Lab_Security = true;
                 return 3011;
             case 1:
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                Getting = "+STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 3012;
@@ -75,11 +82,11 @@ public class Stage03EventDetailAction
     }
     public void Event3021(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
     {
-        int CurrentEventMonsterSpawnPatternCode = 3300;//ÀÌ·±°Íµµ ¹Ù³¢¾î¾ß ÇÒ·Á³ª
+        int CurrentEventMonsterSpawnPatternCode = 3300;//ì´ëŸ°ê²ƒë„ ë°”ë¼ì–´ì•¼ í• ë ¤ë‚˜
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -87,8 +94,8 @@ public class Stage03EventDetailAction
     //-----------------------------------------Event3030
     public int Event3030(int ButtonType, PlayerManager PlayerMgr)
     {
-        //0. ÀüÅõ °³½Ã gk + 2 // 3031
-        //1. ÀÌÅ»                 // 3032
+        //0. ì „íˆ¬ ê°œì‹œ gk + 2 // 3031
+        //1. ì´íƒˆ                 // 3032
         switch (ButtonType)
         {
             case 0:
@@ -102,11 +109,11 @@ public class Stage03EventDetailAction
 
     public void Event3031(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
     {
-        int CurrentEventMonsterSpawnPatternCode = 3150;//ÀÌ·±°Íµµ ¹Ù³¢¾î¾ß ÇÒ·Á³ª
+        int CurrentEventMonsterSpawnPatternCode = 3150;//ì´ëŸ°ê²ƒë„ ë°”ë¼ì–´ì•¼ í• ë ¤ë‚˜
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -114,8 +121,8 @@ public class Stage03EventDetailAction
     //-----------------------------------------Event3040
     public int Event3040(int ButtonType)
     {
-        //0. ÀüÅõ °³½Ã 3041
-        //1. ÀÌÅ»         3042
+        //0. ì „íˆ¬ ê°œì‹œ 3041
+        //1. ì´íƒˆ         3042
         switch(ButtonType)
         {
             case 0:
@@ -127,11 +134,11 @@ public class Stage03EventDetailAction
     }
     public void Event3041(PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, BattleManager BattleMgr)
     {
-        int CurrentEventMonsterSpawnPatternCode = 3301;//ÀÌ·±°Íµµ ¹Ù³¢¾î¾ß ÇÒ·Á³ª
+        int CurrentEventMonsterSpawnPatternCode = 3301;//ì´ëŸ°ê²ƒë„ ë°”ë¼ì–´ì•¼ í• ë ¤ë‚˜
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
         PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = CurrentEventMonsterSpawnPatternCode;
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
-        UIMgr.E_UI.InActiveEventUI();//¹öÆ° ÀÌ ´­·ÈÀ¸´Ï ÀÌº¥Æ®¸¦ Á¾·á ÇÑ´Ù.
+        UIMgr.E_UI.InActiveEventUI();//ë²„íŠ¼ ì´ ëˆŒë ¸ìœ¼ë‹ˆ ì´ë²¤íŠ¸ë¥¼ ì¢…ë£Œ í•œë‹¤.
         BattleMgr.InitCurrentBattleMonsters();
         BattleMgr.InitMonsterNPlayerActiveGuage();
         BattleMgr.ProgressBattle();
@@ -139,8 +146,8 @@ public class Stage03EventDetailAction
     //-----------------------------------------Event3050
     public int Event3050(int ButtonType, ref string Getting, ref string Losing)
     {
-        //0. ÀÌÅ»                                                 3051
-        //1. ¸¶ÁÖÇÑ´Ù. -> º¸½º ÀüÅõ ½ÃÀÛ½Ã µµÇÎ ºÎ¿©   3052
+        //0. ì´íƒˆ                                                 3051
+        //1. ë§ˆì£¼í•œë‹¤. -> ë³´ìŠ¤ ì „íˆ¬ ì‹œì‘ì‹œ ë„í•‘ ë¶€ì—¬   3052
         Getting = "";
         Losing = "";
         switch (ButtonType)
@@ -148,7 +155,12 @@ public class Stage03EventDetailAction
             case 0:
                 return 3051;
             case 1:
-                Losing = "º¸½º°¡ µîÀå½Ã µµÇÎ¹öÇÁ º¸À¯";
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Losing = "When a battle with an Administrator or a Guardian begins\nmonsters start with 99 stacks of Doping";
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Losing = "ç®¡ç†è€…ã¾ãŸã¯å®ˆè­·è€…ã¨ã®æˆ¦é—˜é–‹å§‹æ™‚\nãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¯ãƒ‰ãƒ¼ãƒ”ãƒ³ã‚°ã‚’99ã‚¹ã‚¿ãƒƒã‚¯æ‰€æŒã€‚";
+                else
+                    Losing = "ê´€ë¦¬ì í˜¹ì€ ìˆ˜í˜¸ìì™€ì˜ ì „íˆ¬ ì‹œì‘ì‹œ\nëª¬ìŠ¤í„°ê°€ ë„í•‘ 99ìŠ¤íƒ ë³´ìœ ";
                 JsonReadWriteManager.Instance.LkEv_Info.ReadyForBattle = true;
                 return 3052;
         }
@@ -157,8 +169,8 @@ public class Stage03EventDetailAction
     //-----------------------------------------Event3060
     public int Event3060(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //1.ÀÌÅ»                  //Á¶°Ç¿¡ µû¶ó 3061 Or 3063
-        //2. °æÇèÄ¡ »ó + bk + 3// 3062
+        //1.ì´íƒˆ                  //ì¡°ê±´ì— ë”°ë¼ 3061 Or 3063
+        //2. ê²½í—˜ì¹˜ ìƒ + bk + 3// 3062
         Getting = "";
         Losing = "";
         JsonReadWriteManager.Instance.LkEv_Info.IsMeetTalkingDopple = true;
@@ -168,13 +180,13 @@ public class Stage03EventDetailAction
             case 0:
                 if (JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster == true &&
                     JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem == true)
-                {//ÅäÅäÀÇ ÀÌ¸§À» ¾Ë¶§
+                {//í† í† ì˜ ì´ë¦„ì„ ì•Œë•Œ
                     return 3063;
                 }
-                else//ÅäÅäÀÇ ÀÌ¸§À» ¸ğ¸¦¶§
+                else//í† í† ì˜ ì´ë¦„ì„ ëª¨ë¥¼ë•Œ
                     return 3061;
             case 1:
-                Getting = "°æÇèÄ¡ È¹µæ : " + ((StageAverageReward * 3) + RandomReward).ToString();
+                Getting = "+EXP : " + ((StageAverageReward * 3) + RandomReward).ToString();
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount((StageAverageReward * 3) + RandomReward);
                 UIMgr.GI_UI.ActiveGettingUI(0, true);

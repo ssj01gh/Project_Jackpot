@@ -42,19 +42,19 @@ public class GettingItenUIScript : MonoBehaviour
         {
             switch ((EquipmentCode / 10) % 10)
             {
-                case 1://公扁
+                case 0://公扁
                     GettingType = "Weapon";
                     break;
-                case 2://癌渴
+                case 1://癌渴
                     GettingType = "Armor";
                     break;
-                case 3://秋杆
+                case 2://秋杆
                     GettingType = "Helmet";
                     break;
-                case 4://何明
+                case 3://何明
                     GettingType = "Boots";
                     break;
-                case 5://厩技荤府
+                case 4://厩技荤府
                     GettingType = "Jewelry";
                     break;
             }

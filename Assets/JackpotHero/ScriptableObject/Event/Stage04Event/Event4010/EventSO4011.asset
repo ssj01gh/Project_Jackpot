@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: EventSO4011
   m_EditorClassIdentifier: 
   EventCode: 4011
-  EventTitle: "\uAD50\uB9CC\uC758 \uC601\uC5ED"
+  EventTitle: PS_ETT_4011
   EventImage: {fileID: 21300000, guid: 185a8ce84b25a4c42a8afa75d9cd8555, type: 3}
-  EventDetail: "\"\uAC10\uD788 \uC9D0\uC744 \uC4F0\uB7EC\uD2B8\uB9B4 \uD558\uB294\uAC00.\"\n\"\uBD84\uC218\uB97C
-    \uC54C\uC544\uB77C.\""
+  EventDetail: PS_EDT_4011
   EventSelectionDetail:
-  - "\uAD50\uB9CC\uACFC\uC758 \uC804\uD22C\uB97C \uC2DC\uC791\uD55C\uB2E4."
+  - PS_ESDT_4011_1

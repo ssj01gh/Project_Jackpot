@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,22 +7,29 @@ public class CommonEventDetailAction
     //-----------------------------------------Event9000
     public int Event9000(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. ½ºÅ×ÀÌÁö + 1 Æ¼¾î Àåºñ, bk + 3
-        //1. ½ºÅ×ÀÌÁö Æò±Õ º¸»ó * 3, bk+ 3
-        //2. Èû ·¹º§ + 2, bk + 3
-        //3. °ÅÀýÇÑ´Ù.
+        //0. ìŠ¤í…Œì´ì§€ + 1 í‹°ì–´ ìž¥ë¹„, bk + 3
+        //1. ìŠ¤í…Œì´ì§€ í‰ê·  ë³´ìƒ * 3, bk+ 3
+        //2. íž˜ ë ˆë²¨ + 2, bk + 3
+        //3. ê±°ì ˆí•œë‹¤.
         Getting = "";
         Losing = "";
         switch (ButtonType)
         {
             case 0:
-                if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ÀÎº¥Åä¸®°¡ ²ËÃ¡´Ù¸é
+                if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ë‹¤ë©´
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);
                     return 9000;
                 }
                 int RandomEquipment = EquipmentInfoManager.Instance.GetFixedTierRandomEquipmnet(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor + 1);
-                Getting = "Àåºñ È¹µæ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName;
+
+                if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Getting = "+Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName;
+                else if(JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Getting = "+è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName;
+                else
+                    Getting = "+ìž¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName;
+
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(RandomEquipment);
                 UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
@@ -32,14 +39,21 @@ public class CommonEventDetailAction
             case 1:
                 int RewardRange = (int)(StageAverageReward * 3 / 4);
                 int RandomReward = (int)(StageAverageReward * 3) + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                Getting = "+EXP : " + RandomReward.ToString();
+
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
 
                 return 9001;
             case 2:
-                Getting = "¿µ±¸ÀûÀ¸·Î Èû ±âÃÊ ´É·ÂÄ¡ 2 Áõ°¡";
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Getting = "Permanently increases STR by 2";
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Getting = "STRãŒæ’ä¹…çš„ã«2ä¸Šæ˜‡ã€‚";
+                else
+                    Getting = "ì˜êµ¬ì ìœ¼ë¡œ STR 2 ì¦ê°€";
+
                 JsonReadWriteManager.Instance.LkEv_Info.TradeWithDevil += 2;
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();
@@ -54,35 +68,35 @@ public class CommonEventDetailAction
     //-------------------------------------------Event9010
     public int Event9010(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. Ã¼·Â 90È¸º¹ bk + 3
-        //1. Ã¼·Â 60È¸º¹ bk + 1
-        //2. Ã¼·Â 30È¸º¹
-        //3. Ã¼·Â 30È¸º¹ °æÇèÄ¡ - ½ºÅ×ÀÌÁö º¸»ó gk + 1
+        //0. ì²´ë ¥ 90íšŒë³µ bk + 3
+        //1. ì²´ë ¥ 60íšŒë³µ bk + 1
+        //2. ì²´ë ¥ 30íšŒë³µ
+        //3. ì²´ë ¥ 30íšŒë³µ ê²½í—˜ì¹˜ - ìŠ¤í…Œì´ì§€ ë³´ìƒ gk + 1
         Getting = "";
         Losing = "";
         int RandomAverage = Random.Range(-15, 16);//-15 ~ 15
         switch (ButtonType)
         {
             case 0:
-                Getting = "Ã¼·Â È¸º¹ : " + (90 + RandomAverage).ToString();
+                Getting = "+HP : " + (90 + RandomAverage).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(90 + RandomAverage);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 break;
             case 1:
-                Getting = "Ã¼·Â È¸º¹ : " + (60 + RandomAverage).ToString();
+                Getting = "+HP : " + (60 + RandomAverage).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(60 + RandomAverage);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                 break;
             case 2:
-                Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomAverage).ToString();
+                Getting = "+HP : " + (30 + RandomAverage).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomAverage);
                 break;
             case 3:
                 int RewardRange = (int)(StageAverageReward / 4);
                 int RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
 
-                Getting = "Ã¼·Â È¸º¹ : " + (30 + RandomAverage).ToString();
-                Losing = "°æÇèÄ¡ ¼Ò¸ð : " + RandomReward.ToString();
+                Getting = "+HP : " + (30 + RandomAverage).ToString();
+                Losing = "-EXP : " + RandomReward.ToString();
 
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(30 + RandomAverage);
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);
@@ -95,9 +109,9 @@ public class CommonEventDetailAction
     //---------------------------------------------Event9020
     public int Event9020(int ButtonType, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ÇÇ·Îµµ 300È¸º¹
+        //0. í”¼ë¡œë„ 300íšŒë³µ
         //1. gk + 1
-        //2. Ã¼·Â -30 ÇÇ·Îµµ - 300 gk + 3
+        //2. ì²´ë ¥ -30 í”¼ë¡œë„ - 300 gk + 3
         Getting = "";
         Losing = "";
         int RandomAverSTA = Random.Range(-150, 151);
@@ -105,7 +119,7 @@ public class CommonEventDetailAction
         switch (ButtonType)
         {
             case 0:
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomAverSTA).ToString();
+                Getting = "+STA : " + (300 + RandomAverSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomAverSTA);
                 SoundManager.Instance.PlaySFX("Buff_Healing");
                 return 9021;
@@ -113,7 +127,7 @@ public class CommonEventDetailAction
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
                 return 9022;
             case 2:
-                Losing = "Ã¼·Â ¼Ò¸ð : " + (30 - RandomAverHP).ToString() + "\n" + "ÇÇ·Îµµ ¼Ò¸ð : " + (300 + RandomAverSTA).ToString();
+                Losing = "-HP : " + (30 - RandomAverHP).ToString() + "\n" + "-STA : " + (300 + RandomAverSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomAverSTA);
                 PlayerMgr.GetPlayerInfo().PlayerRegenHp(-30 + RandomAverHP);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 3;
@@ -126,10 +140,10 @@ public class CommonEventDetailAction
     //------------------------------------------------Event9030
     public int Event9030(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. ½ºÅ×ÀÌÁö Æò±Õ Æ¼¾î Àåºñ, Æò±ÕÀû º¸»ó, bk + 1
-        //1. Æò±ÕÀû º¸»ó
-        //2. Æò±ÕÀû º¸»ó , ÇÇ·Îµµ -300, gk + 1
-        //3. ÇÇ·Îµµ -300, gk + 2
+        //0. ìŠ¤í…Œì´ì§€ í‰ê·  í‹°ì–´ ìž¥ë¹„, í‰ê· ì  ë³´ìƒ, bk + 1
+        //1. í‰ê· ì  ë³´ìƒ
+        //2. í‰ê· ì  ë³´ìƒ , í”¼ë¡œë„ -300, gk + 1
+        //3. í”¼ë¡œë„ -300, gk + 2
         Getting = "";
         Losing = "";
         int RewardRange = 0;
@@ -138,8 +152,8 @@ public class CommonEventDetailAction
         switch (ButtonType)
         {
             case 0:
-                //Àåºñ È¹µæ
-                if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ÀÎº¥Åä¸®°¡ ²ËÃ¡´Ù¸é
+                //ìž¥ë¹„ íšë“
+                if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ë‹¤ë©´
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);
                     return 9030;
@@ -147,36 +161,43 @@ public class CommonEventDetailAction
                 int RandomEquipment = EquipmentInfoManager.Instance.GetFixedTierRandomEquipmnet(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(RandomEquipment);
                 UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
-                //°æÇèÄ¡ È¹µæ
+                //ê²½í—˜ì¹˜ íšë“
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "Àåºñ È¹µæ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName +
-                    "\n" + "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Getting = "+Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName + 
+                        "\n" + "+EXP : " + RandomReward.ToString();
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Getting = "+è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName +
+                        "\n" + "+EXP : " + RandomReward.ToString();
+                else
+                    Getting = "+ìž¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(RandomEquipment).EquipmentName +
+                         "\n" + "+EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
-                //Ä«¸£¸¶ °è»ê
+                //ì¹´ë¥´ë§ˆ ê³„ì‚°
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                 UIMgr.GI_UI.ActiveGettingUI(RandomEquipment);
 
                 return 9031;
             case 1:
-                //°æÇèÄ¡ È¹µæ
+                //ê²½í—˜ì¹˜ íšë“
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                Getting = "+EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
 
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
                 return 9031;
             case 2:
-                //°æÇèÄ¡ È¹µæ
+                //ê²½í—˜ì¹˜ íšë“
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
-                Losing = "ÇÇ·Îµµ ¼Ò¸ð : " + (300 + RandomSTA).ToString();
+                Getting = "+EXP : " + RandomReward.ToString();
+                Losing = "-STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
-                //½ºÅ×¸¶³ª ¼Ò¸ð
+                //ìŠ¤í…Œë§ˆë‚˜ ì†Œëª¨
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
-                //Ä«¸£¸¶ °è»ê
+                //ì¹´ë¥´ë§ˆ ê³„ì‚°
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
 
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
@@ -184,10 +205,10 @@ public class CommonEventDetailAction
 
                 return 9032;
             case 3:
-                Losing = "ÇÇ·Îµµ ¼Ò¸ð : " + (300 + RandomSTA).ToString();
-                //½ºÅ×¹Ì³ª¼Ò¸ð
+                Losing = "-STA : " + (300 + RandomSTA).ToString();
+                //ìŠ¤í…Œë¯¸ë‚˜ì†Œëª¨
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
-                //Ä«¸£¸¶ °è»ê
+                //ì¹´ë¥´ë§ˆ ê³„ì‚°
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 2;
 
                 JsonReadWriteManager.Instance.LkEv_Info.RestInPeace = true;
@@ -199,35 +220,35 @@ public class CommonEventDetailAction
     //-----------------------------------------Event9040
     public int Event9040(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, ref string Getting, ref string Losing)
     {
-        //0. ÇÇ·Î 900È¸º¹ bk + 3
-        //1. ÇÇ·Î 600È¸º¹ bk + 1
-        //2. ÇÇ·Î 300È¸º¹
-        //3. ÇÇ·Î 300È¸º¹, -½ºÅ×ÀÌÁö Æò±Õ º¸»ó, gk + 1
+        //0. í”¼ë¡œ 900íšŒë³µ bk + 3
+        //1. í”¼ë¡œ 600íšŒë³µ bk + 1
+        //2. í”¼ë¡œ 300íšŒë³µ
+        //3. í”¼ë¡œ 300íšŒë³µ, -ìŠ¤í…Œì´ì§€ í‰ê·  ë³´ìƒ, gk + 1
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
         switch (ButtonType)
         {
             case 0:
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (900 + RandomSTA).ToString();
+                Getting = "+STA : " + (900 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(900 + RandomSTA);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 break;
             case 1:
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (600 + RandomSTA).ToString();
+                Getting = "+STA : " + (600 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(600 + RandomSTA);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 1;
                 break;
             case 2:
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
+                Getting = "+STA : " + (300 + RandomSTA).ToString();
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 break;
             case 3:
                 PlayerMgr.GetPlayerInfo().PlayerRegenSTA(300 + RandomSTA);
                 int RewardRange = (int)(StageAverageReward / 4);
                 int RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "ÇÇ·Îµµ È¸º¹ : " + (300 + RandomSTA).ToString();
-                Losing = "°æÇèÄ¡ ¼Ò¸ð : " + RandomReward.ToString();
+                Getting = "+STA : " + (300 + RandomSTA).ToString();
+                Losing = "-EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);
 
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().GoodKarma += 1;
@@ -239,9 +260,9 @@ public class CommonEventDetailAction
     //---------------------------------------Event9050
     public int Event9050(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. ½ºÅ×ÀÌÁö Æò±Õº¸»ó *3, bk + 3
+        //0. ìŠ¤í…Œì´ì§€ í‰ê· ë³´ìƒ *3, bk + 3
         //1. bk - 1
-        //2. -½ºÅ×ÀÌÁö Æò±Õº¸»ó, bk - 3
+        //2. -ìŠ¤í…Œì´ì§€ í‰ê· ë³´ìƒ, bk - 3
         Getting = "";
         Losing = "";
         int RewardRange = 0;
@@ -251,7 +272,7 @@ public class CommonEventDetailAction
             case 0:
                 RewardRange = (int)(StageAverageReward * 3 / 4);
                 RandomReward = (int)(StageAverageReward * 3) + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                Getting = "+EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma += 3;
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
@@ -264,7 +285,7 @@ public class CommonEventDetailAction
             case 2:
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Losing = "°æÇèÄ¡ ¼Ò¸ð : " + RandomReward.ToString();
+                Losing = "-EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().BadKarma -= 2;
 
@@ -275,9 +296,9 @@ public class CommonEventDetailAction
     //----------------------------------------------Event9060
     public int Event9060(int ButtonType, int StageAverageReward, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. -½ºÅ×ÀÌÁö Æò±Õ * 3
-        //1. +½ºÅ×ÀÌÁö Æò±Õ 
-        //2. -½ºÅ×ÀÌÁö Æò±Õ, gk + 2
+        //0. -ìŠ¤í…Œì´ì§€ í‰ê·  * 3
+        //1. +ìŠ¤í…Œì´ì§€ í‰ê·  
+        //2. -ìŠ¤í…Œì´ì§€ í‰ê· , gk + 2
         Getting = "";
         Losing = "";
         int RewardRange = 0;
@@ -287,14 +308,14 @@ public class CommonEventDetailAction
             case 0:
                 RewardRange = (int)(StageAverageReward * 3 / 4);
                 RandomReward = (int)(StageAverageReward * 3) + Random.Range(-RewardRange, RewardRange + 1);
-                Losing = "°æÇèÄ¡ ¼Ò¸ð : " + RandomReward.ToString();
+                Losing = "-EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);
 
                 return 9061;
             case 1:
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Getting = "°æÇèÄ¡ È¹µæ : " + RandomReward.ToString();
+                Getting = "+EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RandomReward);
 
                 UIMgr.GI_UI.ActiveGettingUI(0, true);
@@ -303,7 +324,7 @@ public class CommonEventDetailAction
             case 2:
                 RewardRange = (int)(StageAverageReward / 4);
                 RandomReward = StageAverageReward + Random.Range(-RewardRange, RewardRange + 1);
-                Losing = "°æÇèÄ¡ ¼Ò¸ð : " + RandomReward.ToString();
+                Losing = "-EXP : " + RandomReward.ToString();
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-RandomReward, true);
 
                 return 9063;
@@ -313,11 +334,11 @@ public class CommonEventDetailAction
     //----------------------------------------------Event9070
     public int Event9070(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
     {
-        //0. 2Æ¼¾î ÀÌº¥Æ® -120°æÇèÄ¡
-        //1. 3Æ¼¾î ÀÌº¥Æ® -300°æÇèÄ¡
-        //2. 4Æ¼¾î ÀÌº¥Æ® -1050°æÇèÄ¡
-        //3. 5Æ¼¾î ÀÌº¥Æ® -3000°æÇèÄ¡
-        //4. ¶°³­´Ù.
+        //0. 2í‹°ì–´ ì´ë²¤íŠ¸ -120ê²½í—˜ì¹˜
+        //1. 3í‹°ì–´ ì´ë²¤íŠ¸ -300ê²½í—˜ì¹˜
+        //2. 4í‹°ì–´ ì´ë²¤íŠ¸ -1050ê²½í—˜ì¹˜
+        //3. 5í‹°ì–´ ì´ë²¤íŠ¸ -3000ê²½í—˜ì¹˜
+        //4. ë– ë‚œë‹¤.
         switch(ButtonType)
         {
             case 0:
@@ -361,12 +382,12 @@ public class CommonEventDetailAction
     public int Event9071_4(int ButtonType, int CurrentEventCode, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
     {
         //Tier = 2 -> 9071 // 3-> 9072 // 4-> 9073 // 5-> 9074
-        //0. 2Æ¼¾î ¹«±â
-        //1. 2Æ¼¾î °©¿Ê
-        //2. 2Æ¼¾î Åõ±¸
-        //3. 2Æ¼¾î ºÎÃ÷
-        //4. 2Æ¼¾î Àå½Å±¸
-        if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ÀÎº¥Åä¸®°¡ ²ËÃ¡´Ù¸é
+        //0. 2í‹°ì–´ ë¬´ê¸°
+        //1. 2í‹°ì–´ ê°‘ì˜·
+        //2. 2í‹°ì–´ íˆ¬êµ¬
+        //3. 2í‹°ì–´ ë¶€ì¸ 
+        //4. 2í‹°ì–´ ìž¥ì‹ êµ¬
+        if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ë‹¤ë©´
         {
             UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);
             return CurrentEventCode;
@@ -402,8 +423,8 @@ public class CommonEventDetailAction
     //-----------------------------------------Event9080
     public int Event9080(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
-        //0. ¾Æ¹«ÀÏ ¾øÀ½
-        //1. ÀúÁÖ¹ÞÀº °Ë È¹µæ, ÀÌ°Å ¼±ÅÃ½Ã ´Ù½Ã ¹ß»ý x
+        //0. ì•„ë¬´ì¼ ì—†ìŒ
+        //1. ì €ì£¼ë°›ì€ ê²€ íšë“, ì´ê±° ì„ íƒì‹œ ë‹¤ì‹œ ë°œìƒ x
         Getting = "";
         Losing = "";
         switch (ButtonType)
@@ -411,14 +432,19 @@ public class CommonEventDetailAction
             case 0:
                 return 9081;
             case 1:
-                if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ÀÎº¥Åä¸®°¡ ²ËÃ¡´Ù¸é
+                if (PlayerMgr.GetPlayerInfo().IsInventoryFull() == true)//ì¸ë²¤í† ë¦¬ê°€ ê½‰ì°¼ë‹¤ë©´
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughInventoryMessage);
                     return 9080;
                 }
 
                 int OminousSwordCode = 23000;
-                Getting = "Àåºñ È¹µæ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(OminousSwordCode).EquipmentName;
+                if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+                    Getting = "+Equipment : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(OminousSwordCode).EquipmentName;
+                else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+                    Getting = "+è£…å‚™ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(OminousSwordCode).EquipmentName;
+                else
+                    Getting = "+ìž¥ë¹„ : " + EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(OminousSwordCode).EquipmentName;
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(OminousSwordCode);
                 UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(OminousSwordCode);
@@ -429,7 +455,7 @@ public class CommonEventDetailAction
         return 9080;
     }
     //-------------------------------------------------Event10000
-    public void Event10000(int ButtonType, PlayerManager PlayerMgr)//º¸½ºÁ¶¿ìÀÓ -> Å¬¸¯ÇÏ¸é Çàµ¿¼±ÅÃÀ¸·Î, º¸½º È®·ü 100À¸·Î
+    public void Event10000(int ButtonType, PlayerManager PlayerMgr)//ë³´ìŠ¤ì¡°ìš°ìž„ -> í´ë¦­í•˜ë©´ í–‰ë™ì„ íƒìœ¼ë¡œ, ë³´ìŠ¤ í™•ë¥  100ìœ¼ë¡œ
     {
         switch (ButtonType)
         {

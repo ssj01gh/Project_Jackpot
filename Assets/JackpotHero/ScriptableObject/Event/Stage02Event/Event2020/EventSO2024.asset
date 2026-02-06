@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EventSO2024
   m_EditorClassIdentifier: 
   EventCode: 2024
-  EventTitle: "\uC548\uC804 \uC6B0\uC120"
+  EventTitle: PS_ETT_2024
   EventImage: {fileID: 21300000, guid: 09ac7c68ef8c33a42ae84cf13978ad09, type: 3}
-  EventDetail: "\uC695\uC2EC\uC740 \uD654\uB97C \uBD80\uB974\uB294 \uBC95\uC785\uB2C8\uB2E4."
+  EventDetail: PS_EDT_2024
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_2024_1

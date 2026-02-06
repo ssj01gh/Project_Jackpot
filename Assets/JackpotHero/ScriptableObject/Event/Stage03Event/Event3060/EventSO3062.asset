@@ -13,13 +13,8 @@ MonoBehaviour:
   m_Name: EventSO3062
   m_EditorClassIdentifier: 
   EventCode: 3062
-  EventTitle: "\uBAAC\uC2A4\uD130\uC640 \uB2E4\uB984\uC5C6\uB294"
+  EventTitle: PS_ETT_3062
   EventImage: {fileID: 21300000, guid: d7caec180ea2c14438bf3c6623b23b17, type: 3}
-  EventDetail: "<color=green>{Getting}</color>\n\uB9D0\uD558\uB294 \uB3C4\uD50C\uAC31\uC5B4\uB294
-    \uB2F9\uC2E0\uC758 \uAE30\uC2B5\uC5D0\n\uBC18\uC751\uD558\uC9C0 \uBABB\uD588\uACE0
-    \uCE7C\uC5D0 \uBCA0\uC5EC \uC4F0\uB7EC\uC84C\uC2B5\uB2C8\uB2E4.\n\"\uB108\uB294
-    \uB3D9\uC871\uACFC \uB2E4\uB984\uC774 \uC5C6\uB294 \uC778\uAC04\uC774\uAD6C\uB098...\"\n\uB3C4\uD50C\uAC31\uC5B4\uAC00
-    \uC0AC\uB77C\uC9C4 \uC790\uB9AC\uC5D4 \uACBD\uD5D8\uCE58\uAC00 \uB5A8\uC5B4\uC838
-    \uC788\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_3062
   EventSelectionDetail:
-  - "\uACC4\uC18D\uD574\uC11C \uD0D0\uC0C9\uD55C\uB2E4."
+  - PS_ESDT_3062_1

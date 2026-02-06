@@ -1,0 +1,1322 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: EventDetailText_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d47c87e5c10f3d94386987cd2a06e77f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 250291236237312
+    m_Localized: "As you continue your exploration,\na black portal appears before
+      you.\nFrom within the portal emerges\na mysterious man with horns on his head.\nHe
+      speaks to you.\n\u201CLet\u2019s make a deal.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251814284488704
+    m_Localized: "<color=green>{Getting}</color>\n\u201CIt was a good deal.\u201D\n\u201CYou
+      want to know the price?\u201D\n\u201CYou\u2019ll find out as you go.\u201D\nWith
+      those words,\nthe mysterious man steps into the black portal\nand vanishes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252591832952832
+    m_Localized: "\u201CImpressive. We\u2019ll meet again.\u201D\nWith that,\nthe
+      mysterious man steps into the black portal\nand disappears."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264810438656
+    m_Localized: "You find a basket filled\nwith a large number of healing potion.\nA
+      note attached to it reads:\n\u201COnly one, please!\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187392
+    m_Localized: '<color=green>{Getting}</color>
+
+      <color=red>{Losing}</color>
+
+      You
+      feel your wounds beginning to heal.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187393
+    m_Localized: "\u201CWaaahhh!!!!!\u201D\nYou turn toward the sound\nand see a
+      clay golem being chased\nby a group of monsters."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187394
+    m_Localized: '<color=green>{Getting}</color>
+
+      The clay golem and the group
+      of monsters
+
+      gradually move farther away.
+
+      While you remain still,
+
+      you
+      feel your fatigue easing.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187395
+    m_Localized: 'You manage to draw the attention
+
+      of the group of monsters
+      for a moment.
+
+      Did the clay golem manage to escape?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187396
+    m_Localized: "<color=red>{Losing}</color>\nYou push yourself a little,\nbut manage
+      to drive the monsters away.\n\u201CThank you!! Thank you!!\u201D\nThe clay
+      golem you saved expresses its gratitude\nand leaves, promising to repay the
+      favor someday."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187397
+    m_Localized: 'You notice something lying on the ground.
+
+      As you approach
+      and take a closer look,
+
+      it appears to be the skeletal remains
+
+      of
+      an explorer.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187398
+    m_Localized: '<color=green>{Getting}</color>
+
+      It feels a bit unsettling,
+
+      but
+      you obtain some supplies
+
+      without much trouble.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187399
+    m_Localized: '<color=green>{Getting}</color>
+
+      <color=red>{Losing}</color>
+
+      You
+      hold a funeral
+
+      for an explorer.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187400
+    m_Localized: "You find a basket filled\nwith a large number of stamina potion.\nA
+      note attached to it reads:\n\u201COnly one, please!\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187401
+    m_Localized: '<color=green>{Getting}</color>
+
+      <color=red>{Losing}</color>
+
+      You
+      feel your fatigue fade away.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187402
+    m_Localized: 'In your field of vision,
+
+      you notice a fountain that seems
+      out of place,
+
+      yet appears sacred.
+
+      It seems to possess the power
+
+      to
+      cleanse that which is tainted.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187403
+    m_Localized: '<color=green>{Getting}</color>
+
+      You steal experience
+
+      imbued
+      with the hopes
+
+      of countless people.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187404
+    m_Localized: '<color=red>{Losing}</color>
+
+      After praying,
+
+      you feel
+      a weight lift from your heart.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187405
+    m_Localized: 'You discover a mysterious spring
+
+      where experience flows
+      like water.
+
+      In front of the spring,
+
+      there is a sign with words
+      written on it.
+
+      <Too much is as bad as too little.>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187406
+    m_Localized: "<color=red>{Losing}</color>\nIn an attempt to absorb as much experience
+      as possible,\nyou immerse yourself in the spring\u2014\nonly to feel your experience
+      slipping away instead."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187407
+    m_Localized: '<color=green>{Getting}</color>
+
+      To absorb a reasonable amount
+      of experience,
+
+      you place your hand into the spring,
+
+      and feel
+      the experience flow into you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187408
+    m_Localized: '<color=red>{Losing}</color>
+
+      As you study the spring more
+      closely,
+
+      you come to understand how it is sustained.
+
+      For those
+      who need the spring more than you do,
+
+      you let a small amount of your
+      experience flow into it.
+
+      The waters of the spring seem to grow more
+      abundant.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187409
+    m_Localized: "As you open the door that suddenly appeared,\nsearing heat washes
+      over your skin,\nand the endless sound of hammer striking steel fills the air.\nA
+      man with a stern expression speaks to you.\n\u201CSo, what do you want me to
+      make?\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187410
+    m_Localized: "\u201CWhat kind of ordinary equipment are you looking for?\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187411
+    m_Localized: "\u201CWhat kind of good equipment are you looking for?\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187412
+    m_Localized: "\u201CWhat kind of fine equipment are you looking for?\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187413
+    m_Localized: "\u201CWhat kind of perfect equipment are you looking for?\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187414
+    m_Localized: 'After a short while,
+
+      the man who spoke to you earlier
+
+      hands
+      you a equipment.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187415
+    m_Localized: "You do not feel the need to \nhave equipment crafted at the forge."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187416
+    m_Localized: A deeply ominous sword appears before you.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187417
+    m_Localized: 'It might be best
+
+      not to touch something that looks ominous.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187418
+    m_Localized: "<color=green>{Getting}</color>\nWhat seems ominous is only a feeling.\nYou
+      won\u2019t know until you grasp it.\nYou bravely grasp the sword."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187419
+    m_Localized: 'In your field of vision,
+
+      you notice a fountain that seems
+      out of place,
+
+      yet appears sacred.
+
+      It seems to possess the power
+
+      to
+      cleanse that which is tainted.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187420
+    m_Localized: '<color=green>{Getting}</color>
+
+      You steal experience
+
+      imbued
+      with the hopes
+
+      of countless people.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187421
+    m_Localized: '<color=red>{Losing}</color>
+
+      After praying,
+
+      you feel
+      a weight lift from your heart.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187422
+    m_Localized: '<color=green>{Getting}</color>
+
+      <color=red>{Losing}</color>
+
+      When
+      you submerge the cursed sword in the fountain,
+
+      you feel the curse bound
+      to it weaken.
+
+      However, the power of the fountain alone
+
+      does not
+      seem sufficient for complete purification.
+
+      It appears that holy water
+      of greater power is required.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187423
+    m_Localized: 'As you attempt to place the cursed sword into the fountain,
+
+      you
+      suddenly recall that you already discarded the sword.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187424
+    m_Localized: "\u201CHero! It\u2019s you again!!\u201D\nYou come face to face
+      with the clay golem\nwho was once chased by a group of monsters."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187425
+    m_Localized: '<color=green>{Getting}</color>
+
+      "Toto will give you this!!!!"
+
+      You
+      drink the water the clay golem hands you.
+
+      It is water filled with a
+      powerful holy aura.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187426
+    m_Localized: "\u201CYeah! Toto made it home safe!!\u201D\nAfter talking for a
+      while,\nyou part ways with the clay golem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187427
+    m_Localized: "<color=red>{Losing}</color>\nYou couldn\u2019t bring yourself\nto
+      leave the innocent-looking clay golem alone.\n\u201CToto is strong!!!\u201D\nDespite
+      the clay golem\u2019s protests,\nyou gather food together for it\nbefore going
+      your separate ways."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187428
+    m_Localized: "A ghost appears before your eyes.\nIt seems to be the spirit of
+      a body you once laid to rest,\nleft unattended before the funeral.\n\u201CThank
+      you for praying for my peace.\u201D\n\u201CI would like to offer you a small
+      token of help, if you will accept it.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187429
+    m_Localized: "<color=green>{Getting}</color>\nYou receive the ghost\u2019s experience.\nHaving
+      passed it on, the ghost seems satisfied\nand fades away."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187430
+    m_Localized: "\u201CFound you! Toto was looking everywhere!!\u201D\nToto, the
+      talking clay golem,\ncomes looking for you with a bundle balanced on its head."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187431
+    m_Localized: "<color=green>{Getting}</color>\nYou take hold of the sword wrapped
+      in the bundle.\nYou can tell at once that it is of excellent quality.\nWith
+      gratitude,\nyou gently pat Toto on the head.\n\u201CToto is happy too!!\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187432
+    m_Localized: "\u201CHero! We meet again!!\u201D\nToto, the talking clay golem
+      you meet once more,\njumps up and down with joy at seeing you again.\nBut only
+      for a moment\u2014\nToto\u2019s gaze fixes on the cursed sword you are carrying.\n\u201CThat\u2019s
+      bad!!!\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187433
+    m_Localized: "\n<color=red>{Losing}</color>\n\u201CToto will clean it up and
+      bring it back to you!!\u201D\nWith the cursed sword balanced on its head,\nToto
+      disappears off somewhere."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187434
+    m_Localized: 'Toto seems uneasy
+
+      about you carrying the cursed sword.
+
+      You
+      gently pat Toto on the head
+
+      and reassure it that everything is fine.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187435
+    m_Localized: "\u201CToto made it clean!!\u201D\nWhen you meet Toto again,\na
+      sword radiating a holy aura rests atop its head."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187436
+    m_Localized: "<color=green>{Getting}</color>\nAs you grip the sword Toto hands
+      you,\nyou feel as if you have become a legendary hero from a tale.\n\u201CWhen
+      you smile, Hero, Toto is happy too!!\u201D\nFilled with gratitude,\nyou gently
+      pat Toto on the head."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187437
+    m_Localized: "\u201CI brought clean water from Toto\u2019s home!!\u201D\nToto
+      hands you the clear water."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187438
+    m_Localized: '<color=green>{Getting}</color>
+
+      As you drink the water Toto
+      hands you,
+
+      a pure energy heals your body
+
+      and clears your mind.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187439
+    m_Localized: "\u201CHero, you\u2019re so kind! Toto is happy!!\u201D\nYou share
+      a pleasant time with a happy Toto."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187440
+    m_Localized: 'Ever since obtaining the cursed sword,
+
+      you have been plagued
+      by nightmares and misfortune.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187441
+    m_Localized: "<color=red>{Losing}</color>\nIt doesn\u2019t seem like simply discarding
+      the cursed sword\nwill solve the problem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187442
+    m_Localized: 'As the curse on the cursed sword weakens,
+
+      the nightmares
+      and misfortune begin to fade.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187443
+    m_Localized: 'Nightmares and misfortune of this degree
+
+      cannot affect someone
+      as strong as you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187444
+    m_Localized: 'When you discard the cursed sword,
+
+      the nightmares and misfortune
+      grow even worse.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187445
+    m_Localized: '<color=red>{Losing}</color>
+
+      You search for the sword you
+      discarded,
+
+      but it is already gone.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187446
+    m_Localized: 'The curse on the cursed sword has been completely purified.
+
+      The
+      blessing bound to the blade now affects you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187447
+    m_Localized: "<color=green>{Getting}</color>\nThanks to the blessing of the fully
+      purified sword,\nyour body\u2019s recovery speed has increased."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187448
+    m_Localized: "After obtaining the Bracelet of Life,\nyou are no longer hindered
+      by the forest\u2019s mist.\nBirds chirp, flowers bloom\u2014\nit is a peaceful
+      forest."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187449
+    m_Localized: '<color=green>{Getting}</color>
+
+      It is a peaceful forest
+
+      where
+      your fatigue seems to melt away.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187450
+    m_Localized: "You feel a familiar gaze upon you.\nUnlike before, there is no
+      hostility,\nso it doesn\u2019t seem to be a problem."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187451
+    m_Localized: The presence you feel from the gaze grows even gentler.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187452
+    m_Localized: 'You feel a familiar gaze upon you.
+
+      This time, however, the
+      hostility is far greater
+
+      than before.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187453
+    m_Localized: 'The sharp gaze watching from the darkness
+
+      soon disappears.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187454
+    m_Localized: "\u201CIntruder detected.\u201D\nAs the voice echoes, the ground
+      seems to give way beneath you,\nand you find yourself in a room sealed with
+      iron bars.\n\u201CIf you are a researcher of this alchemy tower,\nplease state
+      the security code.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187455
+    m_Localized: "\u201CSecurity code input failed five times.\nActivating security
+      system.\u201D\nWith a loud clang, the iron bars slide open,\nand monsters emerge."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187456
+    m_Localized: "<color=green>{Getting}</color>\n\u201CSecurity code entry complete.\u201D\nA
+      hidden door opens,\nrevealing a facility where you can rest."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187457
+    m_Localized: 'Beyond the dark corridor,
+
+      skulls emitting a blue glow float
+      in the air.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187458
+    m_Localized: 'As you approach the dark corridor,
+
+      the skulls notice you
+      and begin to move closer.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187459
+    m_Localized: There seems to be another, safer path.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187460
+    m_Localized: '<color=green>{Getting}</color>
+
+      When you throw a bomb toward
+      the skulls,
+
+      a burst of unusually colored light erupts,
+
+      and the
+      skulls vanish.
+
+      Only experience remains where they once were.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187461
+    m_Localized: 'In a place where sunlight filters through in patches,
+
+      you
+      discover a wooden table
+
+      made by someone.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187462
+    m_Localized: '<color=green>{Getting}</color>
+
+      A cool breeze blows through
+      the forest.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187463
+    m_Localized: "<color=green>{Getting}</color>\nYou feel that rest isn\u2019t necessary.\nYou
+      hasten your exploration."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187464
+    m_Localized: 'In a room that feels lived-in,
+
+      you discover a capsule
+
+      different
+      from the ones that held flesh.
+
+      It looks like you can enter it.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187465
+    m_Localized: '<color=green>{Getting}</color>
+
+      The capsule soothes your
+      body and mind,
+
+      worn down by long exploration.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187466
+    m_Localized: 'As memories of the flesh-filled capsules resurface,
+
+      you
+      lose your footing and fall from the capsule before you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187467
+    m_Localized: "An unusual plant catches your eye.\nYou recall seeing it in a book
+      you once read\u2014\na plant said to grow only on the plains."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187468
+    m_Localized: "If you\u2019re not certain,\nit may be best not to use it carelessly."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187469
+    m_Localized: '<color=red>{Losing}</color>
+
+      The plant you used, believing
+      it to be a medicinal herb,
+
+      was actually poisonous.
+
+      Your condition
+      worsens.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187470
+    m_Localized: '<color=green>{Getting}</color>
+
+      You use the medicinal herb.
+
+      You
+      feel your body growing healthier.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187471
+    m_Localized: 'You discover a group of bonnies sleeping together.
+
+      If the
+      assassination succeeds,
+
+      it looks like you could gain experience easily.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187472
+    m_Localized: 'You quietly move away
+
+      so as not to wake the bonni group.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187473
+    m_Localized: '<color=green>{Getting}</color>
+
+      You successfully defeat the
+      bonni group
+
+      without engaging in a full battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187474
+    m_Localized: 'As you take down the sleeping goblins one by one,
+
+      the remaining
+      goblins wake up all at once.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187475
+    m_Localized: "A clover shaman is performing a ritual.\nYou could secretly take
+      part and steal the ritual\u2019s effect,\nor attempt to disrupt the ritual."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187476
+    m_Localized: '<color=green>{Getting}</color>
+
+      As the ritual ends,
+
+      you
+      feel its effect seep into you.
+
+      A luck bonus is granted to you for a
+      while.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187477
+    m_Localized: "As you attempt to secretly steal the ritual\u2019s effect,\nyou
+      are discovered by the clover shaman."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187478
+    m_Localized: "You decide to disrupt the clover shaman\u2019s ritual."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187479
+    m_Localized: "It seems there\u2019s no need to start a pointless fight."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187480
+    m_Localized: 'A prairie dog knight appears.
+
+      He point his sword at you,
+
+      but
+      you sense no killing intent.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187481
+    m_Localized: "<color=green>{Getting}</color>\nWhen the sparring ends,\nthe prairie
+      dog knight disappears somewhere.\nYou feel that you\u2019ve become more skilled
+      in combat."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187482
+    m_Localized: 'The prairie dog knight effortlessly blocks your killing strike.
+
+      With
+      a quiet sigh,
+
+      the knight prepares for battle.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187483
+    m_Localized: "After your long exploration leaves you weary,\na tree\u2019s shade\u2014perfect
+      for resting\u2014appears before you."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187484
+    m_Localized: '<color=green>{Getting}</color>
+
+      You take a good rest in the
+      pleasant shade.
+
+      Your fatigue fades away.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187485
+    m_Localized: "<color=green>{Getting}</color>\nYou decide that rest isn\u2019t
+      necessary.\nYou hasten your exploration."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187486
+    m_Localized: 'With a rumbling thud-thud-thud,
+
+      you feel the ground begin
+      to shake.
+
+      In the distance, clouds of dust rise into the air.
+
+      It
+      seems a massive flock of short leg birds is charging.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187487
+    m_Localized: '<color=red>{Losing}</color>
+
+      Ignoring the flock of short
+      leg birds,
+
+      you are struck by the group before you realize how close
+      they are.
+
+      Your entire body aches.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187488
+    m_Localized: '<color=green>{Getting}</color>
+
+      The flock of short leg birds
+      is not running toward you.
+
+      To avoid provoking them,
+
+      you sit down
+      and take a rest.
+
+      You watch as the clouds of dust slowly fade into the
+      distance.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381696
+    m_Localized: '<color=red>{Losing}</color>
+
+      You sprint away and hastily
+      leave the area.
+
+      From a distance, you watch as the flock of short leg
+      birds
+
+      rushes past the spot where you stood moments ago.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381697
+    m_Localized: A thick fog has settled over the forest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381698
+    m_Localized: '<color=red>{Losing}</color>
+
+      You continue to explore through
+      the fog.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381699
+    m_Localized: '<color=red>{Losing}</color>
+
+      You sense something within the
+      dense fog.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381700
+    m_Localized: '<color=red>{Losing}</color>
+
+      You sense something within the
+      thickening fog.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381701
+    m_Localized: '<color=red>{Losing}</color>
+
+      A bracelet overflowing with
+      life is caught on a tree.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381702
+    m_Localized: '<color=green>{Getting}</color>
+
+      After waiting for a moment,
+      the fog in the forest gradually clears.
+
+      You have found a path.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381703
+    m_Localized: '<color=red>{Losing}</color>
+
+      You have lost your way in the
+      forest fog.
+
+      After walking for some time, it seems
+
+      you have returned
+      to where you started.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381704
+    m_Localized: '<color=green>{Getting}</color>
+
+      As you take the bracelet,
+      the forest fog clears.
+
+      You have found a path.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381705
+    m_Localized: "Drawn by a delicious smell from the forest, \nyou arrive at a place
+      where a wooden cabin stands.\nA woman in a purple robe steps out of the cabin
+      and speaks to you.\n\u201CI was just making some soup. \nWould you like to
+      have some before you go?\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381706
+    m_Localized: '<color=green>{Getting}</color>
+
+      After eating the delicious
+      soup,
+
+      you feel ready to fight more effectively for a while.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381707
+    m_Localized: "<color=red>{Losing}</color>\nThe soup was delicious, but after
+      eating it, \nyour stomach begins to ache.\nIt seems this will have a negative
+      effect on combat for a while."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381708
+    m_Localized: It may be wise to avoid food offered by suspicious strangers.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381709
+    m_Localized: 'While walking through the forest, you discover a massive tree.
+
+      Inside
+      a large hollow in its trunk
+
+      are countless orb-shaped fragments of experience.
+
+      Judging
+      by the golden flames drifting around it,
+
+      this appears to be a storage
+      of experience
+
+      belonging to a Golden Wisp.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381710
+    m_Localized: '<color=green>{Getting}</color>
+
+      You absorb a moderate amount
+      of the experience orbs.
+
+      The golden flames drifting nearby seem to grow
+      more intense.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381711
+    m_Localized: '<color=green>{Getting}</color>
+
+      You absorb a large amount
+      of the experience orbs.
+
+      The golden flames drifting nearby grow fierce.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381712
+    m_Localized: You manage to obtain the experience without being noticed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381713
+    m_Localized: Greed is bound to invite trouble.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381714
+    m_Localized: 'Seeing you steal the experience orbs,
+
+      a group of Golden
+      Wisps rushes toward you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381715
+    m_Localized: 'A tree bears fruit with a pleasant, fragrant scent.
+
+      It appears
+      to be the fruit of a tree elemental, known only from books.
+
+      It is said
+      that picking the fruit before it is fully ripe
+
+      will greatly anger the
+      spirit.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381716
+    m_Localized: '<color=green>{Getting}</color>
+
+      As you take a bite of the
+      fruit, a fantastic flavor fills your mouth.
+
+      You feel vitality coursing
+      through your entire body.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381717
+    m_Localized: 'As you pick the fruit, the tree before you
+
+      pulls its roots
+      from the ground and attacks.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381718
+    m_Localized: "\u201CSo you are the one the witch spoke of.\u201D\nFrom the darkness,
+      an unknown gaze watches you,\nand a solemn voice echoes forth."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381719
+    m_Localized: "<color=green>{Getting}</color>\n\u201CSo\u2026 you are one of the
+      righteous\u2026\u201D\nWith a murmur from an unknown gaze,\nstrength begins
+      to flow into your body."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381720
+    m_Localized: "\u201CIf it is you\u2026 you may be able to stop it\u2026\u201D\nWith
+      a murmur from the unknown gaze,\nthe presence fades away.\nOnly then does your
+      body begin to move."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381721
+    m_Localized: "\u201CSo\u2026 you are one of the wicked\u2026\u201D\nWith a murmur
+      from the unknown gaze,\nSpirit wolves surge forth from the darkness and attack."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381722
+    m_Localized: "A dull thudding sound echoes through the forest, \nas if something
+      is being struck.\nFollowing the noise, you see a giant being beaten by other
+      giants."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381723
+    m_Localized: "You draw the giants\u2019 attention away\nand check on the condition
+      of the injured giant.\n\u201CThank you\u2026Human\u2026\u201D\nThe injured
+      giant offers you his gratitude\nand slowly walks away."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381724
+    m_Localized: 'The beaten giant does weigh on your mind,
+
+      but in the end,
+      it is nothing more than a monster.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381725
+    m_Localized: '<color=green>{Getting}</color>
+
+      Assassinating the giant,
+
+      groaning
+      and lying on the ground, was an easy task.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381726
+    m_Localized: "You draw the giants\u2019 attention away\nand check on the condition
+      of the injured giant.\n\u201CHuman\u2026\u201D\nIt is a monster capable of
+      speech, much like Toto.\nYou tell the giant to head to the plains\nand seek
+      out Toto the Clay Golem.\n\u201CThank you\u2026 human\u2026\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381727
+    m_Localized: "A sudden sting prickles the back of your neck.\nAs your vision
+      begins to blur,\nan unpleasant voice reaches your ears.\n\u201CLet the game
+      begin.\u201D\n\u201COne is an antidote. The other is poison.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381728
+    m_Localized: As you inject the substance, your vision begins to clear once more.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381729
+    m_Localized: '<color=red>{Losing}</color>
+
+      As you inject the substance,
+      your vision grows even more blurred.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381730
+    m_Localized: '<color=red>{Losing}</color>
+
+      You could not trust the being
+      that proposed such a strange game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381731
+    m_Localized: "You enter a room filled with various tools\nand an enormous amount
+      of paperwork.\nDocuments on many subjects catch your eye, such as\n<Demons
+      and Artificial Life> and \n<Dimensional Travel and Physical Transformation>."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381732
+    m_Localized: "As you open the document titled \n<The Alchemy Tower\u2019s Security
+      System>,\na flood of difficult-to-understand terminology pours out.\nOne sentence,
+      however, catches your eye.\n\u201CIf you are caught in the security system,
+      enter the code below.\u201D\n235711\u2026..97"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381733
+    m_Localized: '<color=green>{Getting}</color>
+
+      After taking the fatigue
+      recovery potion,
+
+      you feel some of the weariness built up in your body
+      begin to ease.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381734
+    m_Localized: 'Beside the sphere lies an instruction manual.
+
+      <Handle with
+      Care>
+
+      A bomb designed to defeat immortal beings.
+
+      Throw it at
+      immortal targets.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381735
+    m_Localized: 'Feeling uneasy about the items in the laboratory,
+
+      you leave
+      without touching anything.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381736
+    m_Localized: "\u201CIntruder detected.\u201D\nAs the voice echoes, the ground
+      seems to give way beneath you,\nand you find yourself in a room sealed with
+      iron bars.\n\u201CIf you are a researcher of this alchemy tower,\nplease state
+      the security code.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381737
+    m_Localized: "\u201CSecurity code input failed five times.\nActivating security
+      system.\u201D\nWith a loud clang, the iron bars slide open,\nand monsters emerge."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381738
+    m_Localized: "You arrive in a dimly lit room.\nOnly a capsule filled with a yellow
+      liquid emits a faint glow.\nInside the capsule is a lump of flesh.\n\u201Ckkkkkkiiiillllllmmmmeeee.......\u201D\nMurmurs
+      echo from all around you."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381739
+    m_Localized: "As you shatter the capsule, \nthe lumps of flesh begin to writhe
+      and creep toward you.\n\u201Ckkkiiiilllllmmmeee!!!!!\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381740
+    m_Localized: The murmuring gradually fades away.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381741
+    m_Localized: 'Beyond the dark corridor,
+
+      skulls emitting a blue glow float
+      in the air.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381742
+    m_Localized: 'As you approach the dark corridor,
+
+      the skulls notice you
+      and begin to move closer.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381743
+    m_Localized: There seems to be another, safer path.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381744
+    m_Localized: 'An eye-shaped device emerges from the wall
+
+      and fixes its
+      gaze upon you.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381745
+    m_Localized: "Once you leave its field of view, \nthe eye-shaped device disappears
+      somewhere."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381746
+    m_Localized: "<color=red>{Losing}</color>\nYou do not evade the eye-shaped device.\n\u201CIntruder
+      detected.\u201D\n\u201CAdministrator and Guardian, prepare for combat.\u201D\nAn
+      emotionless voice echoes throughout the entire tower."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381747
+    m_Localized: "\u201CHey, human.\u201D\nWhen you turn around at the sound of the
+      voice,\na doppelganger is speaking to you.\n\u201CWhat am I?\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381748
+    m_Localized: "\u201CThank you, human. You\u2019ve been a great help.\u201D\nAfter
+      the heated discussion, the doppelganger, seemingly satisfied,\noffers its thanks
+      and walks away."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381749
+    m_Localized: "<color=green>{Getting}</color>\nThe speaking doppelganger fails
+      to react to your sudden attack\nand collapses after being cut down by your
+      blade.\n\u201CSo\u2026 you\u2019re no different from a monster, human\u2026\u201D\nIn
+      the place where the doppelganger vanished, \nexperience remains behind."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381750
+    m_Localized: "\u201CThank you, human. You\u2019ve been a great help.\u201D\nAfter
+      the heated discussion, the doppelganger seems satisfied.\n\u201CI should go
+      and seek out this golem\ncalled Toto that you mentioned.\u201D\nWith those
+      words, the doppelganger walks away."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381751
+    m_Localized: You discover a piece of paper lying near the portal.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381752
+    m_Localized: "\u201CWe were betrayed by the Seven Kings\u2014no, the Six Kings.\u201D\n\u201CThey
+      are preparing an invasion.\u201D\n\u201CWrath is a biological weapon to be
+      used in war.\u201D\n\"We must prepare.\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381753
+    m_Localized: 'The atmosphere around you has changed.
+
+      A massive castle
+      comes into view.
+
+      It seems you have entered the Realm of Pride.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381754
+    m_Localized: "\u201CYou dare attempt to strike me down?\u201D\n\u201CKnow your
+      place.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381755
+    m_Localized: 'As you move away from the realm,
+
+      all traces disappear completely.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381756
+    m_Localized: 'The atmosphere around you has changed.
+
+      Piled-up treasures
+      come into view.
+
+      It seems you have entered the Realm of Greed.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381757
+    m_Localized: "\u201CYou\u2019ve got a lot of nice things, don\u2019t you?\u201D\n\u201CYou
+      wouldn\u2019t mind if I took them, would you?\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381758
+    m_Localized: 'The atmosphere around you has changed.
+
+      A land drained of
+      color comes into view.
+
+      It seems you have entered the Realm of Envy.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381759
+    m_Localized: "\u201CWhy do you get to have it?\u201D\n\u201CI\u2019ll make you
+      just like me.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381760
+    m_Localized: 'The atmosphere around you has changed.
+
+      A sweet, cloying
+      scent fills the air.
+
+      It seems you have entered the Realm of Lust.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381761
+    m_Localized: "\u201CWell, look who wandered in\u2014aren\u2019t you cute?\u201D\n\u201CWhy
+      not try something other than rough, violent fighting~?\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381762
+    m_Localized: 'The atmosphere around you has changed.
+
+      Countless remains
+      come into view.
+
+      It seems you have entered the Realm of Gluttony.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381763
+    m_Localized: "\u201CYou smell good.\u201D\n\u201CMe eat you.\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576000
+    m_Localized: 'The atmosphere around you has changed.
+
+      Ice and blue flames
+      come into view.
+
+      It seems you have entered the Realm of Sloth.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576001
+    m_Localized: "\u201C\u2026Why did you come all the way here\u2026?\u201D\n\u201C\u2026What
+      a bother\u2026\u201D"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576002
+    m_Localized: 'The atmosphere around you has changed.
+
+      Flickering flames
+      and surging lava come into view.
+
+      It seems you have entered the Realm
+      of Wrath.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576003
+    m_Localized: Wrath glares at you without saying a single word.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576004
+    m_Localized: "With a thunderous roar, a mass of fire comes hurtling toward you.\nIt
+      seems there\u2019s no way to escape."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576005
+    m_Localized: 'You sense an ominous presence.
+
+      It would be wise to prepare
+      before facing the boss.'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

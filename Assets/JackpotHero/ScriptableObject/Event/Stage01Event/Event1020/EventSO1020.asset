@@ -13,13 +13,10 @@ MonoBehaviour:
   m_Name: EventSO1020
   m_EditorClassIdentifier: 
   EventCode: 1020
-  EventTitle: "\uC8FC\uC220\uC0AC\uC758 \uC758\uC2DD"
+  EventTitle: PS_ETT_1020
   EventImage: {fileID: 21300000, guid: 0bc261032e2a5484bba610676fdd4b92, type: 3}
-  EventDetail: "\uD074\uB85C\uBC84 \uC8FC\uC220\uC0AC\uAC00 \uC758\uC2DD\uC744 \uC9C4\uD589\uD558\uACE0
-    \uC788\uC2B5\uB2C8\uB2E4.\n\uC758\uC2DD\uC5D0 \uBAB0\uB798 \uCC38\uC11D\uD574
-    \uC758\uC2DD\uC758 \uD6A8\uACFC\uB97C \uD6D4\uCE60 \uC218\uB3C4\n\uC758\uC2DD\uC744
-    \uBC29\uD574 \uD560 \uC218\uB3C4 \uC788\uC744\uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
+  EventDetail: PS_EDT_1020
   EventSelectionDetail:
-  - "\uBAB0\uB798 \uCC38\uC11D\uD55C\uB2E4."
-  - "\uC758\uC2DD\uC744 \uBC29\uD574 \uD55C\uB2E4."
-  - "\uBB34\uC2DC\uD558\uACE0 \uC9C0\uB098\uAC04\uB2E4."
+  - PS_ESDT_1020_1
+  - PS_ESDT_1020_2
+  - PS_ESDT_1020_3

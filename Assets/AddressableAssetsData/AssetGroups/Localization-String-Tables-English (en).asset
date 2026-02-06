@@ -47,6 +47,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7fdd01f12ab79774f9d040e10a8d02d4
+    m_Address: EventDetailText_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8716cac1fc74b8148bb426da37be4f9b
     m_Address: PlaySceneShortText_en
     m_ReadOnly: 1
@@ -59,8 +65,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d151a30f93b702439ab8e070a6ddc4b
+    m_Address: EventTitleText_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a4d5f5af8207c804bac74da124263f83
     m_Address: TutorialText_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a65d58d2ad099984aa8c4c4eebc1dedc
+    m_Address: EventSelectionDetailText_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

@@ -118,6 +118,7 @@ public class LinkageEventInfo
     public bool ML_BKPerson;
     public bool IsMeetTalkingGiant;
     public int LetTheGameBegin;
+    public int LetTheGameBegin_DisInject;
     public bool Lab_Security;
     public bool Lab_Sphere;
     public bool ReadyForBattle;

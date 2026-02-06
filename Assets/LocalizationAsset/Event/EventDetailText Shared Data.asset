@@ -1,0 +1,728 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: EventDetailText Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: EventDetailText
+  m_TableCollectionNameGuidString: d47c87e5c10f3d94386987cd2a06e77f
+  m_Entries:
+  - m_Id: 250291236237312
+    m_Key: PS_EDT_9000
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251814284488704
+    m_Key: PS_EDT_9001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 252591832952832
+    m_Key: PS_EDT_9002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264810438656
+    m_Key: PS_EDT_9010
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187392
+    m_Key: PS_EDT_9011
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187393
+    m_Key: PS_EDT_9020
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187394
+    m_Key: PS_EDT_9021
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187395
+    m_Key: PS_EDT_9022
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187396
+    m_Key: PS_EDT_9023
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187397
+    m_Key: PS_EDT_9030
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187398
+    m_Key: PS_EDT_9031
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187399
+    m_Key: PS_EDT_9032
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187400
+    m_Key: PS_EDT_9040
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187401
+    m_Key: PS_EDT_9041
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187402
+    m_Key: PS_EDT_9050
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187403
+    m_Key: PS_EDT_9051
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187404
+    m_Key: PS_EDT_9052
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187405
+    m_Key: PS_EDT_9060
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187406
+    m_Key: PS_EDT_9061
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187407
+    m_Key: PS_EDT_9062
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187408
+    m_Key: PS_EDT_9063
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187409
+    m_Key: PS_EDT_9070
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187410
+    m_Key: PS_EDT_9071
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187411
+    m_Key: PS_EDT_9072
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187412
+    m_Key: PS_EDT_9073
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187413
+    m_Key: PS_EDT_9074
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187414
+    m_Key: PS_EDT_9075
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187415
+    m_Key: PS_EDT_9076
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187416
+    m_Key: PS_EDT_9080
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187417
+    m_Key: PS_EDT_9081
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187418
+    m_Key: PS_EDT_9082
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187419
+    m_Key: PS_EDT_8000
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187420
+    m_Key: PS_EDT_8001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187421
+    m_Key: PS_EDT_8002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187422
+    m_Key: PS_EDT_8003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187423
+    m_Key: PS_EDT_8004
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187424
+    m_Key: PS_EDT_8010
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187425
+    m_Key: PS_EDT_8011
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187426
+    m_Key: PS_EDT_8012
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187427
+    m_Key: PS_EDT_8013
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187428
+    m_Key: PS_EDT_8020
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187429
+    m_Key: PS_EDT_8021
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187430
+    m_Key: PS_EDT_8030
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187431
+    m_Key: PS_EDT_8031
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187432
+    m_Key: PS_EDT_8040
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187433
+    m_Key: PS_EDT_8041
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187434
+    m_Key: PS_EDT_8042
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187435
+    m_Key: PS_EDT_8050
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187436
+    m_Key: PS_EDT_8051
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187437
+    m_Key: PS_EDT_8060
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187438
+    m_Key: PS_EDT_8061
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187439
+    m_Key: PS_EDT_8062
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187440
+    m_Key: PS_EDT_8070
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187441
+    m_Key: PS_EDT_8071
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187442
+    m_Key: PS_EDT_8080
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187443
+    m_Key: PS_EDT_8081
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187444
+    m_Key: PS_EDT_8090
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187445
+    m_Key: PS_EDT_8091
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187446
+    m_Key: PS_EDT_8100
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187447
+    m_Key: PS_EDT_8101
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187448
+    m_Key: PS_EDT_8110
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187449
+    m_Key: PS_EDT_8111
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187450
+    m_Key: PS_EDT_8120
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187451
+    m_Key: PS_EDT_8121
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187452
+    m_Key: PS_EDT_8130
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187453
+    m_Key: PS_EDT_8131
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187454
+    m_Key: PS_EDT_8140
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187455
+    m_Key: PS_EDT_8141
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187456
+    m_Key: PS_EDT_8142
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187457
+    m_Key: PS_EDT_8150
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187458
+    m_Key: PS_EDT_8151
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187459
+    m_Key: PS_EDT_8152
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187460
+    m_Key: PS_EDT_8153
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187461
+    m_Key: PS_EDT_8160
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187462
+    m_Key: PS_EDT_8161
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187463
+    m_Key: PS_EDT_8162
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187464
+    m_Key: PS_EDT_8170
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187465
+    m_Key: PS_EDT_8171
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187466
+    m_Key: PS_EDT_8172
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187467
+    m_Key: PS_EDT_1000
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187468
+    m_Key: PS_EDT_1001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187469
+    m_Key: PS_EDT_1002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187470
+    m_Key: PS_EDT_1003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187471
+    m_Key: PS_EDT_1010
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187472
+    m_Key: PS_EDT_1011
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187473
+    m_Key: PS_EDT_1012
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187474
+    m_Key: PS_EDT_1013
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187475
+    m_Key: PS_EDT_1020
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187476
+    m_Key: PS_EDT_1021
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187477
+    m_Key: PS_EDT_1022
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187478
+    m_Key: PS_EDT_1023
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187479
+    m_Key: PS_EDT_1024
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187480
+    m_Key: PS_EDT_1030
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187481
+    m_Key: PS_EDT_1031
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187482
+    m_Key: PS_EDT_1032
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187483
+    m_Key: PS_EDT_1040
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187484
+    m_Key: PS_EDT_1041
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187485
+    m_Key: PS_EDT_1042
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187486
+    m_Key: PS_EDT_1050
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187487
+    m_Key: PS_EDT_1051
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264848187488
+    m_Key: PS_EDT_1052
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381696
+    m_Key: PS_EDT_1053
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381697
+    m_Key: PS_EDT_2000
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381698
+    m_Key: PS_EDT_2001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381699
+    m_Key: PS_EDT_2002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381700
+    m_Key: PS_EDT_2003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381701
+    m_Key: PS_EDT_2004
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381702
+    m_Key: PS_EDT_2005
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381703
+    m_Key: PS_EDT_2006
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381704
+    m_Key: PS_EDT_2007
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381705
+    m_Key: PS_EDT_2010
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381706
+    m_Key: PS_EDT_2011
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381707
+    m_Key: PS_EDT_2012
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381708
+    m_Key: PS_EDT_2013
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381709
+    m_Key: PS_EDT_2020
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381710
+    m_Key: PS_EDT_2021
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381711
+    m_Key: PS_EDT_2022
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381712
+    m_Key: PS_EDT_2023
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381713
+    m_Key: PS_EDT_2024
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381714
+    m_Key: PS_EDT_2025
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381715
+    m_Key: PS_EDT_2030
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381716
+    m_Key: PS_EDT_2031
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381717
+    m_Key: PS_EDT_2032
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381718
+    m_Key: PS_EDT_2040
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381719
+    m_Key: PS_EDT_2041
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381720
+    m_Key: PS_EDT_2042
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381721
+    m_Key: PS_EDT_2043
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381722
+    m_Key: PS_EDT_2050
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381723
+    m_Key: PS_EDT_2051
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381724
+    m_Key: PS_EDT_2052
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381725
+    m_Key: PS_EDT_2053
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381726
+    m_Key: PS_EDT_2054
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381727
+    m_Key: PS_EDT_3000
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381728
+    m_Key: PS_EDT_3001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381729
+    m_Key: PS_EDT_3002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381730
+    m_Key: PS_EDT_3003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381731
+    m_Key: PS_EDT_3010
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381732
+    m_Key: PS_EDT_3011
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381733
+    m_Key: PS_EDT_3012
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381734
+    m_Key: PS_EDT_3013
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381735
+    m_Key: PS_EDT_3014
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381736
+    m_Key: PS_EDT_3020
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381737
+    m_Key: PS_EDT_3021
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381738
+    m_Key: PS_EDT_3030
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381739
+    m_Key: PS_EDT_3031
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381740
+    m_Key: PS_EDT_3032
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381741
+    m_Key: PS_EDT_3040
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381742
+    m_Key: PS_EDT_3041
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381743
+    m_Key: PS_EDT_3042
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381744
+    m_Key: PS_EDT_3050
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381745
+    m_Key: PS_EDT_3051
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381746
+    m_Key: PS_EDT_3052
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381747
+    m_Key: PS_EDT_3060
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381748
+    m_Key: PS_EDT_3061
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381749
+    m_Key: PS_EDT_3062
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381750
+    m_Key: PS_EDT_3063
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381751
+    m_Key: PS_EDT_4000
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381752
+    m_Key: PS_EDT_4001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381753
+    m_Key: PS_EDT_4010
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381754
+    m_Key: PS_EDT_4011
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381755
+    m_Key: PS_EDT_4012
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381756
+    m_Key: PS_EDT_4020
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381757
+    m_Key: PS_EDT_4021
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381758
+    m_Key: PS_EDT_4030
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381759
+    m_Key: PS_EDT_4031
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381760
+    m_Key: PS_EDT_4040
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381761
+    m_Key: PS_EDT_4041
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381762
+    m_Key: PS_EDT_4050
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264852381763
+    m_Key: PS_EDT_4051
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576000
+    m_Key: PS_EDT_4060
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576001
+    m_Key: PS_EDT_4061
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576002
+    m_Key: PS_EDT_4070
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576003
+    m_Key: PS_EDT_4071
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576004
+    m_Key: PS_EDT_4072
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2853264856576005
+    m_Key: PS_EDT_10000
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8381884525301202945
+  references:
+    version: 2
+    RefIds:
+    - rid: 8381884525301202945
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1769515853244

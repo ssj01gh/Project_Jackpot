@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: EventSO9000
   m_EditorClassIdentifier: 
   EventCode: 9000
-  EventTitle: "\uC815\uCCB4\uBD88\uBA85\uC758 \uAC70\uB798"
+  EventTitle: PS_ETT_9000
   EventImage: {fileID: 21300000, guid: 7fa0a749fd65ff5498633828324f9e18, type: 3}
-  EventDetail: "\uD0D0\uC0C9\uC744 \uC774\uC5B4\uAC00\uB358 \uB2F9\uC2E0\uC758 \uC55E\uC5D0
-    \n\uAC80\uC740\uC0C9 \uD3EC\uD0C8\uC774 \uB098\uD0C0\uB0AC\uC2B5\uB2C8\uB2E4.\n\uD3EC\uD0C8\uC5D0\uC11C
-    \uBA38\uB9AC\uC5D0 \uBFD4\uC774 \uB2EC\uB9B0\n\uC815\uCCB4 \uBD88\uBA85\uC758
-    \uB0A8\uC790\uAC00 \uB098\uC640 \uB9D0\uC744 \uAC81\uB2C8\uB2E4.\n\"\uAC70\uB798\uB97C
-    \uD558\uC9C0\""
+  EventDetail: PS_EDT_9000
   EventSelectionDetail:
-  - "\uC7A5\uBE44\uB97C \uC694\uAD6C\uD55C\uB2E4."
-  - "\uACBD\uD5D8\uCE58\uB97C \uC694\uAD6C\uD55C\uB2E4."
-  - "\uD798\uC744 \uC694\uAD6C\uD55C\uB2E4."
-  - "\uAC70\uC808\uD55C\uB2E4."
+  - PS_ESDT_9000_1
+  - PS_ESDT_9000_2
+  - PS_ESDT_9000_3
+  - PS_ESDT_9000_4

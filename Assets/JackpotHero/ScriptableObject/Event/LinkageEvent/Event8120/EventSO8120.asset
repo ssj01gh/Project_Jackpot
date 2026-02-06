@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: EventSO8120
   m_EditorClassIdentifier: 
   EventCode: 8120
-  EventTitle: "\uC628\uD654\uD55C \uC2DC\uC120"
+  EventTitle: PS_ETT_8120
   EventImage: {fileID: 21300000, guid: 04c2c50b24659cd45a77dfffc2f4eb97, type: 3}
-  EventDetail: "\uC775\uC219\uD55C \uC2DC\uC120\uC774 \uB290\uAEF4\uC9D1\uB2C8\uB2E4.\n\uC800\uBC88\uACFC
-    \uB2E4\uB978\uAC8C \uC801\uC758\uB294 \uC5C6\uB294 \uAC83\uC744 \uBCF4\uB2C8\n\uBB38\uC81C\uB294
-    \uC5C6\uC744 \uB4EF \uD569\uB2C8\uB2E4."
+  EventDetail: PS_EDT_8120
   EventSelectionDetail:
-  - "\uC2DC\uC120\uC774 \uB290\uAEF4\uC9C0\uB294 \uCABD\uC73C\uB85C \uC778\uC0AC\uD55C\uB2E4."
+  - PS_ESDT_8120_1

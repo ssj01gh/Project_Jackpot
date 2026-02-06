@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: EventSO2050
   m_EditorClassIdentifier: 
   EventCode: 2050
-  EventTitle: "\uBB34\uAE30 \uC5C6\uB294 \uAC70\uC778"
+  EventTitle: PS_ETT_2050
   EventImage: {fileID: 21300000, guid: 3e4559929240086498964b4c2dffd7dd, type: 3}
-  EventDetail: "\uC232\uC18D\uC5D0\uC11C \uBB34\uC5B8\uAC00 \uB54C\uB9AC\uB294 \uB454\uD0C1\uD55C
-    \uC18C\uB9AC\uAC00 \uC6B8\uB824 \uD37C\uC9D1\uB2C8\uB2E4.\n\uC18C\uB9AC\uB97C
-    \uB530\uB77C \uAC00\uC790 \uD55C \uAC70\uC778\uC774 \uB2E4\uB978 \uAC70\uC778\uB4E4\uC5D0\uAC8C\n\uB9DE\uACE0
-    \uC788\uB294 \uAC83\uC774 \uBCF4\uC785\uB2C8\uB2E4."
+  EventDetail: PS_EDT_2050
   EventSelectionDetail:
-  - "\uB9DE\uACE0 \uC788\uB294 \uD55C \uAC70\uC778\uC744 \uAD6C\uD55C\uB2E4."
-  - "\uD604\uC7A5\uC5D0\uC11C \uBA40\uC5B4\uC9C4\uB2E4."
-  - "\uAE30\uB2E4\uB838\uB2E4\uAC00 \uB9DE\uACE0 \uC788\uB294 \uAC70\uC778\uC744
-    \uC554\uC0B4\uD55C\uB2E4."
+  - PS_ESDT_2050_1
+  - PS_ESDT_2050_2
+  - PS_ESDT_2050_3

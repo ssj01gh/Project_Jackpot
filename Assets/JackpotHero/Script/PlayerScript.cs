@@ -465,8 +465,13 @@ public class PlayerScript : MonoBehaviour
         }
         if(JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin >= 1)
         {
-            PlayerBuff.BuffList[(int)EBuffType.Poison] += JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin;
+            PlayerBuff.BuffList[(int)EBuffType.Poison] += 10;
             JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin -= 1;
+        }
+        if(JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin_DisInject >= 1)
+        {
+            PlayerBuff.BuffList[(int)EBuffType.Poison] += 5;
+            JsonReadWriteManager.Instance.LkEv_Info.LetTheGameBegin_DisInject -= 1;
         }
     }
     protected void SetInitBuffByKarma()

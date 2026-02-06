@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EventSO4061
   m_EditorClassIdentifier: 
   EventCode: 4061
-  EventTitle: "\uB098\uD0DC\uC758 \uC601\uC5ED"
+  EventTitle: PS_ETT_4061
   EventImage: {fileID: 21300000, guid: 008b7357c44cbf34bb8447736b192ff8, type: 3}
-  EventDetail: "\"....\uC65C \uC5EC\uAE30\uAE4C\uC9C0 \uB4E4\uC5B4\uC628 \uAC70\uC9C0....\"\n\".....\uADC0\uCC2E\uAD70....\""
+  EventDetail: PS_EDT_4061
   EventSelectionDetail:
-  - "\uB098\uD0DC\uC640\uC758 \uC804\uD22C\uB97C \uC2DC\uC791\uD55C\uB2E4."
+  - PS_ESDT_4061_1

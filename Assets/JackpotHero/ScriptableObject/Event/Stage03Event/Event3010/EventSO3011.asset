@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: EventSO3011
   m_EditorClassIdentifier: 
   EventCode: 3011
-  EventTitle: "\uC5F0\uAE08\uC220 \uD0D1\uC758 \uBCF4\uC548\uCCB4\uACC4"
+  EventTitle: PS_ETT_3011
   EventImage: {fileID: 21300000, guid: 5da50a56ac9694e4aafb5d9f55c277ae, type: 3}
-  EventDetail: "<\uC5F0\uAE08\uC220 \uD0D1\uC758 \uBCF4\uC548\uCCB4\uACC4>\uC11C\uB958\uB97C
-    \uD3BC\uCE58\uC790\n\uC774\uD574\uD558\uAE30 \uD798\uB4E0 \uC6A9\uC5B4\uB4E4\uC774
-    \uC3DF\uC544\uC838 \uB098\uC635\uB2C8\uB2E4.\n\uADF8\uC911 \uD558\uB098\uC758
-    \uBB38\uC7A5\uC774 \uB208\uC5D0 \uB755\uB2C8\uB2E4.\n\"\uBCF4\uC548\uCCB4\uACC4\uC5D0
-    \uD718\uB9D0\uB838\uB2E4\uBA74 \uC544\uB798\uC758 \uCF54\uB4DC\uB97C \uC785\uB825\uD558\uB77C\"\n235711.....97"
+  EventDetail: PS_EDT_3011
   EventSelectionDetail:
-  - "235711....\uBB50\uB77C\uACE0 \uD588\uB354\uB77C..."
+  - PS_ESDT_3011_1

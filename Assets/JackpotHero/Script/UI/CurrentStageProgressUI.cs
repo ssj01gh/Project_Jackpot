@@ -30,7 +30,7 @@ public class CurrentStageProgressUI : MonoBehaviour
             CSTextCor = null;
         }
         LanKey = "";
-        CurrentStageText.text = "";
+        //CurrentStageText.text = "";
         switch (PInfo.CurrentFloor)
         {
             case 1:
@@ -89,6 +89,6 @@ public class CurrentStageProgressUI : MonoBehaviour
         //Debug.Log(LocalizationSettings.SelectedLocale.Identifier.Code);
 
         var BuffDetailTable = LocalizationSettings.StringDatabase.GetTable("PlaySceneShortText");
-        CurrentStageText.text = BuffDetailTable.GetEntry(key).GetLocalizedString();
+        CurrentStageText.text = BuffDetailTable.GetEntry(key)?.GetLocalizedString();
     }
 }

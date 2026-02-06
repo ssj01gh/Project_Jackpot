@@ -13,14 +13,9 @@ MonoBehaviour:
   m_Name: EventSO8040
   m_EditorClassIdentifier: 
   EventCode: 8040
-  EventTitle: "\uD1A0\uD1A0\uC640 \uC800\uC8FC \uBC1B\uC740 \uAC80"
+  EventTitle: PS_ETT_8040
   EventImage: {fileID: 21300000, guid: 3645ca0b9a460594684fb4b1ce496cb5, type: 3}
-  EventDetail: "\"\uC6A9\uC0AC\uB2D8 \uB610 \uB9CC\uB0AC\uC5B4\uC694!!\"\n\uB2E4\uC2DC
-    \uB9CC\uB09C \uB9D0\uD558\uB294 \uD759\uACE8\uB818 \uD1A0\uD1A0\uAC00\n\uB2F9\uC2E0\uC744
-    \uB9CC\uB09C \uAC83\uC5D0 \uAE30\uBED0\uD558\uBA70 \uBC29\uBC29 \uB701\uB2C8\uB2E4.\n\uADF8\uB7EC\uB358
-    \uAC83\uB3C4 \uC7A0\uC2DC \uD1A0\uD1A0\uC758 \uC2DC\uC120\uC774 \uB2F9\uC2E0\uC774\n\uAC00\uC9C0\uACE0
-    \uC788\uB358 \uC800\uC8FC \uBC1B\uC740 \uAC80\uC5D0 \uACE0\uC815 \uB429\uB2C8\uB2E4.\n\"\uC548
-    \uC88B\uC740 \uAC70\uC5D0\uC694!!!\""
+  EventDetail: PS_EDT_8040
   EventSelectionDetail:
-  - "\uC800\uC8FC \uBC1B\uC740 \uAC80\uC744 \uAC74\uB124\uC900\uB2E4."
-  - "\uC800\uC8FC \uBC1B\uC740 \uAC80\uC744 \uAC74\uB124\uC8FC\uC9C0 \uC54A\uB294\uB2E4."
+  - PS_ESDT_8040_1
+  - PS_ESDT_8040_2
