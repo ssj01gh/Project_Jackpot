@@ -184,6 +184,9 @@ public class BackGroundUI : MonoBehaviour
         }
         foreach (GameObject LayerObject in Layer04_BackGround)
         {
+            if (ThemeNum == 1)
+                break;
+
             if (DOTween.IsTweening(LayerObject))
                 continue;
 

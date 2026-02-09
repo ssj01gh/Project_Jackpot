@@ -30,7 +30,8 @@ public class Mon_ShortLegBird : Monster
         }
         else if (RandNum == 1)
         {
-            MonsterCurrentState = (int)EMonsterActionState.Defense;
+            //MonsterCurrentState = (int)EMonsterActionState.Defense;
+            MonsterCurrentState = (int)EMonsterActionState.Attack;
         }
         
         //MonsterCurrentState = (int)EMonsterActionState.GiveEnvy;
@@ -47,7 +48,8 @@ public class Mon_ShortLegBird : Monster
         }
         else if (RandNum == 1)
         {
-            MonsterCurrentState = (int)EMonsterActionState.Defense;
+            //MonsterCurrentState = (int)EMonsterActionState.Defense;
+            MonsterCurrentState = (int)EMonsterActionState.Attack;
         }
     }
     /*

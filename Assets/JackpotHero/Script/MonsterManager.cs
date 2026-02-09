@@ -585,6 +585,16 @@ public class MonsterManager : MonoBehaviour
             }
         }
     }
+    public void SetActiveMonsterBodies(GameObject TargetMon, bool BodiesState)
+    {
+        for(int i = 0; i < ActiveMonsters.Count; i++)
+        {
+            if (ActiveMonsters[i] != TargetMon)
+            {
+                ActiveMonsters[i].GetComponent<Monster>().MonsterBody.gameObject.SetActive(BodiesState);
+            }
+        }
+    }
 
     public void SetAcitveMonsterMountainLord()
     {

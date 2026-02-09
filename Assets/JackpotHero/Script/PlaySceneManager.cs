@@ -16,8 +16,8 @@ public class PlaySceneManager : MonoBehaviour
     // Start is called before the first frame update
 
     //여기 아래꺼가 바뀌면 CurrentStageProgressUI에서 쓰고있는 상수도 바꿔야함
-    protected const float EngageMonster = 175f;//원래 175
-    protected const float OccurEvent = 125f;//원래 125
+    protected const float EngageMonster = 160f;//원래 175
+    protected const float OccurEvent = 140f;//원래 125
     protected const int SearchNextFloorMaxPoint = 19;
     void Start()
     {
@@ -79,6 +79,7 @@ public class PlaySceneManager : MonoBehaviour
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Walk);
+        UIMgr.InActiveActionSelectionUI();
         //전체적인 포인트
         //0 ~ EngageMonster - 1 -> 몬스터 조우,
         //EngageMonster ~ EngageMonster + OccurEvent - 1 -> 이벤트 발생,
@@ -142,7 +143,7 @@ public class PlaySceneManager : MonoBehaviour
 
         JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
         UIMgr.BG_UI.MoveBackGround(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
-        StartCoroutine(CheckBackGroundMoveEnd());
+        StartCoroutine(CheckBackGroundMoveEnd());//여기에서 SetUI에서 ActionSeleciton이 꺼짐-> 이동시작하자 마자 꺼저야함
     }
 
     IEnumerator CheckBackGroundMoveEnd(bool IsIgnoreWhile = false)

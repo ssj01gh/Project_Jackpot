@@ -487,7 +487,7 @@ public class BattleManager : MonoBehaviour
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         //여기서는 공격주체가 플레이어
-        UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().gameObject, MonMgr.CurrentTarget, ActionButtonType, BattleResultStatus, 
+        UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().gameObject, MonMgr.CurrentTarget, PlayerMgr.GetPlayerInfo().gameObject, ActionButtonType, BattleResultStatus, 
             PlayerMgr.GetPlayerInfo().gameObject.transform.position, IsTargetHasShield, ProgressBattle);
     }
     protected void GiveDebuffToMonsterByAttack(Monster TargetMon)
@@ -784,7 +784,7 @@ public class BattleManager : MonoBehaviour
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         //여기선 공격주체가 몬스터
-        UIMgr.B_UI.ActiveMainBattleUI(CurrentTurnObject.GetComponent<Monster>().gameObject, CurrentTurnObject.GetComponent<Monster>(), CurrentBattleState, BattleResultStatus,
+        UIMgr.B_UI.ActiveMainBattleUI(CurrentTurnObject.GetComponent<Monster>().gameObject, CurrentTurnObject.GetComponent<Monster>(), PlayerMgr.GetPlayerInfo().gameObject, CurrentBattleState, BattleResultStatus,
             PlayerMgr.GetPlayerInfo().gameObject.transform.position, IsTargetHasShield, ProgressBattle);
     }
     public void PressVictoryButton()

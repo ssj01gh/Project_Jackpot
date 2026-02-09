@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
@@ -20,6 +19,8 @@ public class BattleUI : MonoBehaviour
 {
     [SerializeField]
     private TutorialManager TutorialMgr;
+    [SerializeField]
+    private MonsterManager MonMgr;
     public Canvas WorldCanvas;
     public GameObject UI_StartOfBattle;
     [Header("ActionSelectionUI")]
@@ -124,6 +125,10 @@ public class BattleUI : MonoBehaviour
     public TextMeshProUGUI W_TotalScore;
     public TextMeshProUGUI W_SuccessionNum;
     public TextMeshProUGUI W_EarlyPointScore;
+    [Header("MonsterBattleUI")]
+    public GameObject MonsterBattleUI;
+    [Header("BattleCamera")]
+    public BattleCameraManager Battle_Cam;
 
     //protected Dictionary<string, GameObject> MonSpritesStorage = new Dictionary<string, GameObject>();
     //protected Dictionary<string, Sprite> MonHeadSpriteStorage = new Dictionary<string, Sprite>();
@@ -138,6 +143,10 @@ public class BattleUI : MonoBehaviour
     protected int PositiveLink = 0;
     protected int MergeCompleteCardCount = 0;
     protected List<int> MagCardNumList = new List<int>();
+
+    protected float BattleCamLeftX = -3.5f;
+    protected float BattleCamCenterX = 0f;
+    protected float BattleCamRightX = 3.5f;
 
     protected int CurrentMainBattlePhase;
     protected enum EMainBattlePhase
@@ -614,7 +623,7 @@ public class BattleUI : MonoBehaviour
         SelectionArrow.SetActive(false);
     }
 
-    public void ActiveMainBattleUI(GameObject ActionObj, Monster CurrentTarget, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, bool IsThereShield, Action CallBack)//메인 전투 시작
+    public void ActiveMainBattleUI(GameObject ActionObj, Monster CurrentTarget, GameObject PlayerObj, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, bool IsThereShield, Action CallBack)//메인 전투 시작
     {//(현재 차례인 오브젝트, 타겟이 된 몬스터(플레이어 턴일때), 오브젝트의 행동, 행동 결과, 모든 행동이 끝나고 실행할 함수)
         //필요한것은 Effect를 불러올 플레이어의 Vector와 몬스터의 Vector 굳이 Player와 Monster의 모든 정보를 안가져 와도 될듯?
         if (MainBattleUI.activeSelf == true)
@@ -701,10 +710,10 @@ public class BattleUI : MonoBehaviour
         if (CurrentTarget != null)
             TargetPos = CurrentTarget.gameObject.transform.position;
 
-        StartCoroutine(ProgressMainBattle_UI(ActionObj, ActionString, BattleResult, PlayerPos, TargetPos, IsThereShield, CallBack));
+        StartCoroutine(ProgressMainBattle_UI(ActionObj, PlayerObj, ActionString, BattleResult, PlayerPos, TargetPos, IsThereShield, CallBack));
         //DoTween.OnComplete로 하면 코루틴으로 안하고 함수들키리 이벤트성을 연결가능하지 않나? 그게 더 안좋으려나?
     }
-    IEnumerator ProgressMainBattle_UI(GameObject ActionObj, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, Vector2 TargetPos, bool IsThereShield, Action CallBack)
+    IEnumerator ProgressMainBattle_UI(GameObject ActionObj, GameObject PlayerObj, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, Vector2 TargetPos, bool IsThereShield, Action CallBack)
     {
         AudioSource NumAudioSource = new AudioSource();
         CurrentMainBattlePhase = (int)EMainBattlePhase.Nothing;
@@ -1153,6 +1162,7 @@ public class BattleUI : MonoBehaviour
         //약간 기다린다
         yield return new WaitForSeconds(0.3f);
         IsAnimateComplete = false;
+        //여기에서 카메라 연출이 시작 되야함
         //이거에 대한 예외사항은 나중에 계속 늘어날듯?
         //공격한 주체가 앞으로 갔다가 오는 거
         if (ActionObj.tag == "Player" && ActionString == "Attack")//플레이어일 경우 공격일때만
@@ -1199,7 +1209,8 @@ public class BattleUI : MonoBehaviour
 
                 if(ActionObj.GetComponent<Monster>().IsHaveAttackAnimation == false)
                 {
-                    ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
+                    MonMgr.SetActiveMonsterBodies(ActionObj, false);
+                    BattleProduction(ActionObj, PlayerObj);
                 }
                 else
                 {
@@ -1267,6 +1278,10 @@ public class BattleUI : MonoBehaviour
                         IsAnimateComplete = false;
                     }
                 }
+                if(Battle_Cam.IsCoroutineRunning == false)//카메라 코루틴이 끝났음
+                {
+                    IsAnimateComplete = true;
+                }
             }
         }
 
@@ -1285,6 +1300,29 @@ public class BattleUI : MonoBehaviour
         //여기에서 소환?
         CallBack?.Invoke();
         Debug.Log("CoroutineEnd");
+    }
+
+    protected void BattleProduction(GameObject MonsterObj, GameObject PlayerObj)
+    {//이걸 다양한 상황에서 쓸수 있어야 하는데.....//그냥 상황마다 함수 만드는 것도 방법임!
+        MonsterBattleUI.SetActive(false);
+        DisplayTurnUI.SetActive(false);
+        float ActionObjDefaultPosX = MonsterObj.transform.position.x;
+        float PlayerObjDefaultPosX = PlayerObj.transform.position.x;
+        Sequence MonSeq = DOTween.Sequence();
+        Sequence PlayerSeq = DOTween.Sequence();
+        MonSeq.Append(MonsterObj.transform.DOLocalMoveX(BattleCamRightX, 0.1f))
+            .AppendInterval(0.4f).OnComplete(() => 
+            {
+                MonMgr.SetActiveMonsterBodies(MonsterObj, true);
+                MonsterBattleUI.SetActive(true);
+                DisplayTurnUI.SetActive(true);
+            })
+            .Append(MonsterObj.transform.DOLocalMoveX(ActionObjDefaultPosX, 0.6f));
+        //이거 쓸려면 플레이어 오브젝트를 여기까지 끌고 와야함
+        PlayerSeq.Append(PlayerObj.transform.DOLocalMoveX(BattleCamLeftX, 0.1f))
+            .AppendInterval(0.4f)
+            .Append(PlayerObj.transform.DOLocalMoveX(PlayerObjDefaultPosX, 0.6f));
+        Battle_Cam.PlayBattleCamera(Vector3.zero);
     }
 
     public void ClickAmountCard()
