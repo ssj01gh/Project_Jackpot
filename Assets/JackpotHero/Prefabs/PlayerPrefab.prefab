@@ -52,6 +52,7 @@ MonoBehaviour:
   BuffUIPos: {fileID: 5232481080567027971}
   ActionTypePos: {fileID: 6751202674796581219}
   HeroineBody: {fileID: 6041912671298076677}
+  HeroineAnimator: {fileID: 3678763944420534398}
 --- !u!1 &5232481080567027971
 GameObject:
   m_ObjectHideFlags: 0

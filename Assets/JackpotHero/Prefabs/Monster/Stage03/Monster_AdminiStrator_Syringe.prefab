@@ -128,7 +128,7 @@ MonoBehaviour:
   MonsterHead: {fileID: 442170184, guid: ecfb5d37ba0bab74a939e3aae67823d0, type: 3}
   MonsterBody: {fileID: 3229441595594747495}
   MonsterAnimator: {fileID: 8009959077196215787}
-  IsHaveAttackAnimation: 1
+  IsHaveAttackAnimation: 0
   IsTierOne: 0
   IsSummonTier: 1
   MonsterBaseHP: 100

@@ -51,7 +51,7 @@ public class Mon_AdminServant : Monster
                 return 0;
         }
     }
-
+    /*
     public override void SetMonsterAnimation(string AnimationType = "")
     {
         //MonsterAnimator
@@ -80,7 +80,8 @@ public class Mon_AdminServant : Monster
             MonsterAnimator.SetInteger(AnimeStateName, 0);
         }
     }
-
+    */
+    /*
     public override bool CheckmonsterAnimationEnd(string AnimationType = "")
     {
         string AnimeStateName = "";
@@ -116,4 +117,5 @@ public class Mon_AdminServant : Monster
             return true;
         }
     }
+    */
 }

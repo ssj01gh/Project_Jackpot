@@ -109,7 +109,7 @@ public class Mon_Administrator : Monster
         else
             return 0;
     }
-
+    /*
     public override void SetMonsterAnimation(string AnimationType = "")
     {
         //MonsterAnimator
@@ -122,7 +122,8 @@ public class Mon_Administrator : Monster
             MonsterAnimator.SetInteger("AdminState", 0);
         }
     }
-
+    */
+    /*
     public override bool CheckmonsterAnimationEnd(string AnimationType = "")
     {
         if (AnimationType == "Attack")
@@ -142,4 +143,5 @@ public class Mon_Administrator : Monster
             return true;
         }
     }
+    */
 }

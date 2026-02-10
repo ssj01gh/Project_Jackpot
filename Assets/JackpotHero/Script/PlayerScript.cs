@@ -27,6 +27,10 @@ public enum EPlayerAnimationState
     Idle_Battle,
     Defeat,
     Rest,
+    Attack_Battle,
+    Defense_Battle,
+    STARecovery_Battle,
+    Charm_Battle
 }
 
 public class TotalPlayerState

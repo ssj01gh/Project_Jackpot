@@ -78,27 +78,12 @@ public class Mon_Wrath : Monster
             base.MonsterGetBuff(i_BuffType, 1);
         }
     }
-
+    /*
     public override void SetMonsterAnimation(string AnimationType = "")
     {
         //MonsterAnimator
         if (AnimationType == "Attack")
         {
-            /*
-            if (MonsterBuff.BuffList[(int)EBuffType.Charging] <= 1)
-            {//1보다 작은 상황
-                MonsterAnimator.SetInteger("WrathAnimeState", 11);
-            }
-            else if(MonsterBuff.BuffList[(int)EBuffType.Charging] == 2)
-            {
-                MonsterAnimator.SetInteger("WrathAnimeState", 21);
-                //WrathAnimeState
-            }
-            else if(MonsterBuff.BuffList[(int)EBuffType.Charging] >= 3)
-            {//스택이 3이상 쌓여있을때
-                MonsterAnimator.SetInteger("WrathAnimeState", 31);
-            }
-            */
             if (MonsterAnimator.GetInteger("WrathAnimeState") == 1)
             {//1보다 작은 상황
                 MonsterAnimator.SetInteger("WrathAnimeState", 11);
@@ -133,7 +118,8 @@ public class Mon_Wrath : Monster
             }
         }
     }
-
+    */
+    /*
     public override bool CheckmonsterAnimationEnd(string AnimationType = "")
     {
         if (AnimationType == "Attack")
@@ -153,4 +139,5 @@ public class Mon_Wrath : Monster
             return true;
         }
     }
+    */
 }

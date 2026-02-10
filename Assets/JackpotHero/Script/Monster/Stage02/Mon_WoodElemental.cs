@@ -55,7 +55,7 @@ public class Mon_WoodElemental : Monster
     {
         return 0;
     }
-
+    /*
     public override void SetMonsterAnimation(string AnimationType = "")
     {
         //MonsterAnimator
@@ -68,7 +68,8 @@ public class Mon_WoodElemental : Monster
             MonsterAnimator.SetInteger("WoodElementalState", 0);
         }
     }
-
+    */
+    /*
     public override bool CheckmonsterAnimationEnd(string AnimationType = "")
     {
         if(AnimationType == "Attack")
@@ -88,4 +89,5 @@ public class Mon_WoodElemental : Monster
             return true;
         }
     }
+    */
 }

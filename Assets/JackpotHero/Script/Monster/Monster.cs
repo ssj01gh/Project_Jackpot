@@ -35,6 +35,17 @@ public enum EMonsterActionState
     GivePetrification,
     ApplyCharging
 }
+
+public enum EMonsterAnimationState
+{
+    Idle,
+    Attack,
+    Defense,
+    Charm,
+    GiveBuff,
+    ApplyBuff,
+    SpawnMonster
+}
 public class MonsterCurrentStatus
 {
     public float MonsterMaxHP;
@@ -291,12 +302,12 @@ public class Monster : MonoBehaviour
     {
 
     }
-    public virtual void SetMonsterAnimation(string AnimationType = "")
+    public virtual void SetMonsterAnimation(int AnimationState)
     {
 
     }
 
-    public virtual bool CheckmonsterAnimationEnd(string AnimationType = "")
+    public virtual bool CheckmonsterAnimationEnd(int AnimationState)
     {
         return true;
     }
