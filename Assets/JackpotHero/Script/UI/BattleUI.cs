@@ -21,7 +21,8 @@ public enum EActorsBattleAction
     Charm,
     GiveBuff,
     ApplyBuff,
-    SpawnMonster
+    SpawnMonster,
+    CantSpawnMonster
 }
 
 [System.Serializable]
@@ -727,9 +728,17 @@ public class BattleUI : MonoBehaviour
         }
         Vector2 TargetPos = Vector2.zero;
         if (CurrentTarget != null)
+        {
             TargetPos = CurrentTarget.gameObject.transform.position;
+            StartCoroutine(ProgressMainBattle_UI(ActionObj, PlayerObj, CurrentTarget.gameObject, ActionString, BattleResult, PlayerPos, TargetPos, IsThereShield, CallBack));
+        }
+        else
+        {
+            StartCoroutine(ProgressMainBattle_UI(ActionObj, PlayerObj, null, ActionString, BattleResult, PlayerPos, TargetPos, IsThereShield, CallBack));
+        }
 
-        StartCoroutine(ProgressMainBattle_UI(ActionObj, PlayerObj, CurrentTarget.gameObject, ActionString, BattleResult, PlayerPos, TargetPos, IsThereShield, CallBack));
+        //CurrentTarget이 null일땐 어떻게 보내지....
+        
         //DoTween.OnComplete로 하면 코루틴으로 안하고 함수들키리 이벤트성을 연결가능하지 않나? 그게 더 안좋으려나?
     }
     IEnumerator ProgressMainBattle_UI(GameObject ActionObj, GameObject PlayerObj, GameObject MonsterObj, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, Vector2 TargetPos, bool IsThereShield, Action CallBack)
@@ -1188,97 +1197,135 @@ public class BattleUI : MonoBehaviour
         {
             if(ActionString == "Attack")
             {
+                if(IsThereShield == true)
+                    SoundManager.Instance.PlaySFX("Shield_Block");
+                else
+                    SoundManager.Instance.PlaySFX("Hit_Sward");
+
+                Vector2 EffectPos = TargetPos;
+                EffectPos.x = BattleCamRightX;
+                EffectPos.y += 0.5f;
+
+                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", EffectPos);
                 BattleAttackProduction(PlayerObj, MonsterObj, false);
             }
             else if(ActionString == "Charm")
             {
+                if (IsThereShield == true)
+                    SoundManager.Instance.PlaySFX("Shield_Block");
+                else
+                    SoundManager.Instance.PlaySFX("Hit_Sward");
+
+                Vector2 EffectPos = PlayerObj.transform.position;
+                EffectPos.x = BattleCamCenterX;
+                EffectPos.y += 0.5f;
+
+                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", EffectPos);
                 BattleOneActorProduction(PlayerObj, (int)EActorsBattleAction.Charm);
             }
             else if(ActionString == "Rest")
             {
+                SoundManager.Instance.PlaySFX("Buff_Healing");
+
+                Vector2 EffectPos = PlayerObj.transform.position;
+                EffectPos.x = BattleCamCenterX;
+                EffectPos.y += 2f;
+
+                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_ReCharge", EffectPos);
                 BattleOneActorProduction(PlayerObj, (int)EActorsBattleAction.STARecovery);
             }
             else
             {//방어
+                SoundManager.Instance.PlaySFX("Shield_Appear");
+
+                Vector2 EffectPos = PlayerObj.transform.position;
+                EffectPos.x = BattleCamCenterX;
+                EffectPos.y += 2f;
+
+                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", EffectPos);
                 BattleOneActorProduction(PlayerObj, (int)EActorsBattleAction.Defense);
             }
         }
-        /*
-        if (ActionObj.tag == "Player" && ActionString == "Attack")//플레이어일 경우 공격일때만
-        {
-
-            //여기에 들어왓을때 상대가 쉴드가 있다면 막힌거임-> 공격이 막힌 소리를 낸다.
-            //if(IsThereShield == true)//몬스터가 쉴드를 가지고 있을떄 -> 막힌거임
-            //{
-            //    SoundManager.Instance.PlaySFX("Shield_Block");
-            //}
-            //else//안가지고 있을때 -> 뚫은거임 혹은 매혹상태거나
-            //{
-            //    EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", TargetPos + new Vector2(0,0.5f));
-            //}
-            //overwhelmingpower 이 있으면 사방으로 퍼져나가는 이펙트가 있으면 좋을듯?
-            //ActionObj.transform.DOPunchPosition(new Vector3(1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
-            //PlayerZone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-350, 0), 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { IsAnimateComplete = true; });
-        }
-        else if(ActionObj.tag == "Player" && ActionString == "Charm")
-        {
-
-            //Vector2 ActionObjPos = ActionObj.transform.position;
-            //EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", ActionObjPos + new Vector2(0.5f, 0.5f));
-            //IsAnimateComplete = true;
-        }
-        else if (ActionObj.tag == "Player" && ActionString == "Rest")
-        {
-
-            //if (BattleResult.FinalResultAmount != 0)
-            //    SoundManager.Instance.PlaySFX("Buff_Healing");//
-            //IsAnimateComplete = true;
-        }
-        */
         else if (ActionObj.tag == "Monster")//몬스터일 경우 공격 + 특수 행동일때만
         {
             if (ActionString == "Attack")
             {
-                BattleAttackProduction(ActionObj, PlayerObj, true);
-                /*
-                if (IsThereShield == true && ActionString == "Attack")//플레이어가 쉴드를 가지고 있을떄 -> 막힌거임
-                {
+                if(IsThereShield == true)
                     SoundManager.Instance.PlaySFX("Shield_Block");
-                }
-                else//플레이어가 안가지고 있을때 -> 뚫은거임
-                {
-                    EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", PlayerPos + new Vector2(0, 0.5f));//몬스터의 종류에 따라 달라지면 좋을지두
-                }
-                */
-                /*
-                if(ActionObj.GetComponent<Monster>().IsHaveAttackAnimation == false)
-                {
-                    MonMgr.SetActiveMonsterBodies(ActionObj, false);
-                    BattleProduction(ActionObj, PlayerObj);
-                }
                 else
-                {
-                    //ActionObj.GetComponent<Monster>().SetMonsterAnimation("Attack");
-                }
-                */
+                    SoundManager.Instance.PlaySFX("Hit_Sward");
+
+                Vector2 EffectPos = PlayerObj.transform.position;
+                EffectPos.x = BattleCamLeftX;
+                EffectPos.y += 0.5f;
+
+                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", EffectPos);
+                BattleAttackProduction(ActionObj, PlayerObj, true);
             }
             else if (ActionString == "Charm")
             {
-                BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.Charm);
-                //Vector2 ActionObjPos = ActionObj.transform.position;
-                //EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", ActionObjPos + new Vector2(-0.5f, 0.5f));
-
-                /*
-                if (ActionObj.GetComponent<Monster>().IsHaveAttackAnimation == false)
-                {
-                    IsAnimateComplete = true;
-                }
+                if (IsThereShield == true)
+                    SoundManager.Instance.PlaySFX("Shield_Block");
                 else
-                {
-                    //ActionObj.GetComponent<Monster>().SetMonsterAnimation("Attack");
-                }
-                */
+                    SoundManager.Instance.PlaySFX("Hit_Sward");
+
+                Vector2 EffectPos = ActionObj.transform.position;
+                EffectPos.x = BattleCamCenterX;
+                EffectPos.y += 0.5f;
+
+                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", EffectPos);
+                BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.Charm);
             }
+            else if (ActionString == "Defense")
+            {//방어
+                SoundManager.Instance.PlaySFX("Shield_Appear");
+
+                Vector2 EffectPos = ActionObj.transform.position;
+                EffectPos.x = BattleCamCenterX;
+                EffectPos.y += 2f;
+
+                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", EffectPos);
+                BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.Defense);
+            }
+            else
+            {
+                switch(ActionString)
+                {
+                    case "Luck":
+                    case "ThronArmor":
+                    case "CopyStrength":
+                    case "CopyDurability":
+                    case "CopyLuck":
+                    case "Greed":
+                    case "Charging":
+                    case "Regeneration":
+                    case "OverCharge":
+                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.ApplyBuff);
+                        break;
+                    case "Posion":
+                    case "MisFortune":
+                    case "CurseOfDeath":
+                    case "Cower":
+                    case "Envy":
+                    case "DefenseDebuff":
+                    case "GiveCharm":
+                    case "Petrification":
+                    case "Burn":
+                    case "AttackDebuff":
+                        BattleMonsterGiveBuffToPlayerProduction(ActionObj, PlayerObj);
+                        break;
+                    case "SummonMonster":
+                    case "SurvantByGluttony":
+                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.SpawnMonster);
+                        break;
+                    case "CanConsume":
+                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.CantSpawnMonster);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            /*
             else if (ActionString == "Poison" || ActionString == "CurseOfDeath" || ActionString == "Burn")
             {
                 BattleMonsterGiveBuffToPlayerProduction(ActionObj, PlayerObj);
@@ -1292,16 +1339,11 @@ public class BattleUI : MonoBehaviour
                 //SoundManager.Instance.PlaySFX("Buff_Forcing");
                 //ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
             }
-            else if(ActionString == "Greed" || ActionString == "Charging")//스스로에게 바르는 버프들?
+            else if (ActionString == "Greed" || ActionString == "Charging")//스스로에게 바르는 버프들?
             {
                 BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.ApplyBuff);
                 //BattleMonster
                 //SoundManager.Instance.PlaySFX("Acquire_EXP");
-                //IsAnimateComplete = true;
-            }
-            else if(ActionString == "Defense")
-            {//방어
-                BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.Defense);
                 //IsAnimateComplete = true;
             }
             else
@@ -1309,6 +1351,7 @@ public class BattleUI : MonoBehaviour
                 //일단 임시로 방어 박아놓기
                 BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.Defense);
             }
+            */
             //MonsterZone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(350, 0), 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { IsAnimateComplete = true; });
         }
         else
@@ -1343,38 +1386,16 @@ public class BattleUI : MonoBehaviour
                 break;
             }
         }
-
         //여기에서 소환?
         CallBack?.Invoke();
         Debug.Log("CoroutineEnd");
-    }
-    protected void BattleProduction(GameObject MonsterObj, GameObject PlayerObj)
-    {//이걸 다양한 상황에서 쓸수 있어야 하는데.....//그냥 상황마다 함수 만드는 것도 방법임!
-        MonsterBattleUI.SetActive(false);
-        DisplayTurnUI.SetActive(false);
-        float ActionObjDefaultPosX = MonsterObj.transform.position.x;
-        float PlayerObjDefaultPosX = PlayerObj.transform.position.x;
-        Sequence MonSeq = DOTween.Sequence();
-        Sequence PlayerSeq = DOTween.Sequence();
-        MonSeq.Append(MonsterObj.transform.DOLocalMoveX(BattleCamRightX, 0.1f))
-            .AppendInterval(0.4f).OnComplete(() => 
-            {
-                MonMgr.SetActiveMonsterBodies(MonsterObj, true);
-                MonsterBattleUI.SetActive(true);
-                DisplayTurnUI.SetActive(true);
-            })
-            .Append(MonsterObj.transform.DOLocalMoveX(ActionObjDefaultPosX, 0.6f));
-        //이거 쓸려면 플레이어 오브젝트를 여기까지 끌고 와야함
-        PlayerSeq.Append(PlayerObj.transform.DOLocalMoveX(BattleCamLeftX, 0.1f))
-            .AppendInterval(0.4f)
-            .Append(PlayerObj.transform.DOLocalMoveX(PlayerObjDefaultPosX, 0.6f));
-        Battle_Cam.PlayBattleCamera(Vector3.zero);
     }
     //만약 행동 이미지가 있다면 줌인, 홀드일때 이미지가 바뀌었다가 줌아웃 되면 다시 원래 꺼로 돌아감
     protected void BattleAttackProduction(GameObject Attacker, GameObject Defender, bool IsAttackerRight)
     {//Attacker는 공격 모션을 Depender는 방어 모션을 취해야함
         //그런데 Attacker가 오른쪽이냐 왼쪽이냐로 가야하는 좌표가 달라짐
         //아씨... 몬스터랑 플레이어랑 따로 부모 둬가지고 모션 바꾸는 것도 다 계산해줘야 되네....joat
+        bool IsPlayerShield = PlayerShield.activeSelf;
         float AttackerTargetX, AttackerDefaultX, DefenderTargetX, DefenderDefaultX;
         if(IsAttackerRight == true)
         {//공격자가 오른쪽일때(몬스터 일때)
@@ -1392,6 +1413,7 @@ public class BattleUI : MonoBehaviour
         DefenderDefaultX = Defender.transform.position.x;
         MonsterBattleUI.SetActive(false);
         DisplayTurnUI.SetActive(false);
+        PlayerShield.SetActive(false);
         SetActorBattleMotion(Attacker, (int)EActorsBattleAction.Attack);
         SetActorBattleMotion(Defender, (int)EActorsBattleAction.Defense);
         Sequence AttackerSeq = DOTween.Sequence();
@@ -1408,6 +1430,7 @@ public class BattleUI : MonoBehaviour
                 SetActorBattleMotion(Defender, (int)EActorsBattleAction.Idle);
                 MonsterBattleUI.SetActive(true);
                 DisplayTurnUI.SetActive(true);
+                PlayerShield.SetActive(IsPlayerShield);
             })
             .Append(Attacker.transform.DOLocalMoveX(AttackerDefaultX, ZoomOutTime));
         DefenderSeq.Append(Defender.transform.DOLocalMoveX(DefenderTargetX, ZoomInTime))
@@ -1418,11 +1441,13 @@ public class BattleUI : MonoBehaviour
     //Defense, STARecovery, Charm, SpawnMonster, ApplyBuff
     protected void BattleOneActorProduction(GameObject Actor, int ActionType)
     {
+        bool IsPlayerShield = PlayerShield.activeSelf;
         float ActorTargetX, ActorDefaultX;
         ActorTargetX = BattleCamCenterX;
         ActorDefaultX = Actor.transform.position.x;
         MonsterBattleUI.SetActive(false);
         DisplayTurnUI.SetActive(false);
+        PlayerShield.SetActive(false);
         MonMgr.SetActiveMonsterBodies(Actor, false);//Actor에 플레이어가 들어가도 문제X
         SetActorBattleMotion(Actor, ActionType);
         Sequence ActorSeq = DOTween.Sequence();
@@ -1432,6 +1457,7 @@ public class BattleUI : MonoBehaviour
                 MonMgr.SetActiveMonsterBodies(Actor, true);
                 MonsterBattleUI.SetActive(true);
                 DisplayTurnUI.SetActive(true);
+                PlayerShield.SetActive(IsPlayerShield);
                 SetActorBattleMotion(Actor, (int)EActorsBattleAction.Idle);
             })
             .Append(Actor.transform.DOLocalMoveX(ActorDefaultX, ZoomOutTime));
@@ -1439,12 +1465,16 @@ public class BattleUI : MonoBehaviour
     }
     protected void BattleMonsterGiveBuffToPlayerProduction(GameObject G_Monster, GameObject G_Player)
     {
+        bool IsPlayerShield = PlayerShield.activeSelf;
         float MonsterTargetX, MonsterDefaultX, PlayerTargetX, PlayerDefaultX;
         MonsterTargetX = BattleCamRightX;
         MonsterDefaultX = G_Monster.transform.position.x;
         PlayerTargetX = BattleCamLeftX;
         PlayerDefaultX = G_Player.transform.position.x;
         MonMgr.SetActiveMonsterBodies(G_Monster, false);
+        MonsterBattleUI.SetActive(false);
+        DisplayTurnUI.SetActive(false);
+        PlayerShield.SetActive(false);
         SetActorBattleMotion(G_Monster, (int)EActorsBattleAction.GiveBuff);
         SetActorBattleMotion(G_Player, (int)EActorsBattleAction.Defense);
         Sequence MonsterSeq = DOTween.Sequence();
@@ -1457,6 +1487,7 @@ public class BattleUI : MonoBehaviour
                 SetActorBattleMotion(G_Player, (int)EActorsBattleAction.Idle);
                 MonsterBattleUI.SetActive(true);
                 DisplayTurnUI.SetActive(true);
+                PlayerShield.SetActive(IsPlayerShield);
             })
             .Append(G_Monster.transform.DOLocalMoveX(MonsterDefaultX, ZoomOutTime));
         PlayerSeq.Append(G_Player.transform.DOLocalMoveX(PlayerTargetX, ZoomInTime))
@@ -1519,6 +1550,9 @@ public class BattleUI : MonoBehaviour
                     break;
                 case (int)EActorsBattleAction.SpawnMonster:
                     Actor.GetComponent<Monster>().SetMonsterAnimation((int)EMonsterAnimationState.SpawnMonster);
+                    break;
+                case (int)EActorsBattleAction.CantSpawnMonster:
+                    Actor.GetComponent<Monster>().SetMonsterAnimation((int)EMonsterAnimationState.CantSpawnMonster);
                     break;
                 default:
                     Actor.GetComponent<Monster>().SetMonsterAnimation((int)EMonsterAnimationState.Idle);

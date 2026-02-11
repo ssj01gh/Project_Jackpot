@@ -43,39 +43,6 @@ public class EffectManager : MonoSingleton<EffectManager>
 
     public void ActiveEffect(string Effect_ID, Vector2 EffectPos)
     {
-        Debug.Log(Effect_ID);
-        //여기서 이펙트 사운드는 구분해서 하면 될듯? 이펙트 + 사운드 한세트인거로
-        switch(Effect_ID)
-        {
-            //타격
-            case "BattleEffect_Hit_Sward":
-            case "BattleEffect_Hit_Mon_Sward":
-                SoundManager.Instance.PlaySFX("Hit_Sward");
-                break;
-            //소모형
-            case "BattleEffect_Buff_Burn":
-                SoundManager.Instance.PlaySFX("Buff_Burn");
-                break;
-            case "BattleEffect_Buff_Poison":
-            case "BattleEffect_Buff_CurseOfDeath":
-            case "BattleEffect_Buff_Weakness":
-            case "BattleEffect_Buff_Cower":
-                SoundManager.Instance.PlaySFX("Buff_Consume");
-                break;
-            //회복형
-            case "BattleEffect_Buff_Regeneration":
-            case "BattleEffect_Buff_ReCharge":
-            case "BattleEffect_Buff_UnDead":
-            case "BattleEffect_Buff_RegenArmor":
-                SoundManager.Instance.PlaySFX("Buff_Healing");
-                break;
-            //강제형
-            case "BattleEffect_Buff_Petrification":
-            case "BattleEffect_Buff_Fear":
-                SoundManager.Instance.PlaySFX("Buff_Forcing");
-                break;
-        }
-
         if(EffectStorage.ContainsKey(Effect_ID))
         {
             for(int i = 0; i < EffectObjStorage.Count; i++)
@@ -88,5 +55,10 @@ public class EffectManager : MonoSingleton<EffectManager>
                 }
             }
         }
+    }
+
+    public void ActiveNumberEffect()
+    {
+
     }
 }

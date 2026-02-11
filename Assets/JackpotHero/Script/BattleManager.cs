@@ -663,7 +663,7 @@ public class BattleManager : MonoBehaviour
                 SpawnMonstersID = CurrentTurnObject.GetComponent<Monster>().GetSummonMonsters();
                 SummonerMonster = CurrentTurnObject;
                 //여기서 다음 턴에 어떤 몬스터를 스폰할지 결정하면 될듯?
-                CurrentBattleState = "Another";
+                CurrentBattleState = "SummonMonster";
                 break;
             case (int)EMonsterActionState.ApplyLuck:
                 CurrentBattleState = "Luck";
@@ -897,34 +897,6 @@ public class BattleManager : MonoBehaviour
         {
             MonMgr.SetCurrentTargetMonster(obj.GetComponent<Monster>());
         }
-    }
-    protected void ActiveBuffEffectAtFirstTime()
-    {
-        if (CurrentTurnObject.tag == "Player")
-        {
-            if(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Petrification] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Frost", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
-            }
-            if(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
-            }
-        }
-        /*//몬스터는 딱히 걸리지 않는다? -> 턴 결정하는 매커니즘이 바뀌면 공포는 걸릴듯, 그리고 동상의 효과가 변한다던가?
-        else if(CurrentTurnObject.tag == "Monster")
-        {
-            Monster MonInfo = CurrentTurnObject.GetComponent<Monster>();
-            if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.FrostBite] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Frost", MonInfo.gameObject.transform.position);
-            }
-            if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.Fear] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", MonInfo.gameObject.transform.position);
-            }
-        }
-        */
     }
     protected void AfterBuffProgress()
     {

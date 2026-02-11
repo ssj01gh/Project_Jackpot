@@ -44,7 +44,8 @@ public enum EMonsterAnimationState
     Charm,
     GiveBuff,
     ApplyBuff,
-    SpawnMonster
+    SpawnMonster,
+    CantSpawnMonster
 }
 public class MonsterCurrentStatus
 {

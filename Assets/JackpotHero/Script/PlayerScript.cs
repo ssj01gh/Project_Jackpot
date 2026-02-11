@@ -403,7 +403,7 @@ public class PlayerScript : MonoBehaviour
         }
         //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 99;
         //PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
-        //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.Charm] = 99;
         SetInitBuffByEarlyUpgrade();
         /*
         스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨
@@ -1032,6 +1032,30 @@ public class PlayerScript : MonoBehaviour
                 if(HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Rest)
                 {
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Rest);
+                }
+                break;
+            case (int)EPlayerAnimationState.Attack_Battle:
+                if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Attack_Battle)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Attack_Battle);
+                }
+                break;
+            case (int)EPlayerAnimationState.Defense_Battle:
+                if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Defense_Battle)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Defense_Battle);
+                }
+                break;
+            case (int)EPlayerAnimationState.STARecovery_Battle:
+                if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.STARecovery_Battle)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.STARecovery_Battle);
+                }
+                break;
+            case (int)EPlayerAnimationState.Charm_Battle:
+                if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Charm_Battle)
+                {
+                    HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Charm_Battle);
                 }
                 break;
         }
