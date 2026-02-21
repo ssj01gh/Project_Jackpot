@@ -305,7 +305,7 @@ public class Monster : MonoBehaviour
     }
     public virtual void SetMonsterAnimation(int AnimationState)
     {
-
+        //MonAnimeState
     }
 
     public virtual bool CheckmonsterAnimationEnd(int AnimationState)

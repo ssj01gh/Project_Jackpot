@@ -108,7 +108,238 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.6291667, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5efc9a7e61cbbe4469748da988f95b36
+      internalID: -1305122511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 160
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1ed7814771891499848a3ff360ad23
+      internalID: -312931093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 160
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fa5344a154489e4697809bfea4c60b8
+      internalID: -281141300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 068973e92c07b6b48ad46516c44882f1
+      internalID: -1387282266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34803088563c266439c24a765562f05c
+      internalID: 939156640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 80
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6291ce0960eb434eb6b21fc27ad750c
+      internalID: -1137798988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 80
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32b8a32269088e94d9ec1648408b4355
+      internalID: 474279300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bc2790e326484740adfcd2617d0d39e
+      internalID: -737994124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0699b821a2b2b7248a903f60a748a637
+      internalID: -1986140008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50a9f43d3a375444be0b00fcefc8370
+      internalID: 2018822969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warth_BattleAction-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 240
+        height: 80
+      alignment: 9
+      pivot: {x: 0.62916666, y: 0.0375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35b75f6804a80a64cb831ccfc3c9f6c6
+      internalID: 466821111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +350,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Warth_BattleAction-Sheet_0: -1305122511
+      Warth_BattleAction-Sheet_1: -312931093
+      Warth_BattleAction-Sheet_10: 466821111
+      Warth_BattleAction-Sheet_2: -281141300
+      Warth_BattleAction-Sheet_3: -1387282266
+      Warth_BattleAction-Sheet_4: 939156640
+      Warth_BattleAction-Sheet_5: -1137798988
+      Warth_BattleAction-Sheet_6: 474279300
+      Warth_BattleAction-Sheet_7: -737994124
+      Warth_BattleAction-Sheet_8: -1986140008
+      Warth_BattleAction-Sheet_9: 2018822969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
