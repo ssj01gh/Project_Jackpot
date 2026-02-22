@@ -306,6 +306,8 @@ public class Monster : MonoBehaviour
     public virtual void SetMonsterAnimation(int AnimationState)
     {
         //MonAnimeState
+        //MonsterAnimator.SetInteger("DoppelgangerState", 1);
+        MonsterAnimator.SetInteger("MonAnimeState", AnimationState);
     }
 
     public virtual bool CheckmonsterAnimationEnd(int AnimationState)
@@ -451,6 +453,10 @@ public class Monster : MonoBehaviour
             if (CopySTR == true && CopyDUR == true && CopyLUK == true && CopySPD == true)
             {
                 MonsterAnimator.SetInteger("DoppelgangerState", 1);
+            }
+            else
+            {
+                MonsterAnimator.SetInteger("DoppelgangerState", 0);
             }
         }
         if(MonsterName == "Sloth")
