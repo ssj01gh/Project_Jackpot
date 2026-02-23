@@ -22,6 +22,7 @@ public class Mon_Assassnake : Monster
         //PoisonCount 수치에 따라 일반행동과 독주입의 확률이 달라짐
         //PoisonCount = 10이상일때 일반행동 확률 = 100%
         //공격 : 방어 = 1 : 1
+        //MonsterBuff.BuffList[(int)EBuffType.Charm] = 99;
         EnemyPoisonCount = 0;
         int RandNum = Random.Range(0, 11);
         if(RandNum > EnemyPoisonCount)//적의 독 수치가 작을 수록 확률 이쪽 확률 증가
@@ -40,6 +41,7 @@ public class Mon_Assassnake : Monster
                 MonsterCurrentState = (int)EMonsterActionState.Defense;
             }
         }
+        //MonsterCurrentState = (int)EMonsterActionState.GivePoison;
     }
 
     public override void CheckEnemyBuff(BuffInfo EnemyBuff)

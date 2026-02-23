@@ -20,7 +20,6 @@ public class Mon_WoodElemental : Monster
         base.InitMonsterState();
         MonsterBuff.BuffList[(int)EBuffType.ToughSkin] = 99;
         MonsterBuff.BuffList[(int)EBuffType.Regeneration] = 99;
-        MonsterAnimator.SetInteger("WoodElementalState", 0);
         int RandNum = Random.Range(0, 2);
         if(RandNum == 0)
         {
@@ -55,39 +54,4 @@ public class Mon_WoodElemental : Monster
     {
         return 0;
     }
-    /*
-    public override void SetMonsterAnimation(string AnimationType = "")
-    {
-        //MonsterAnimator
-        if (AnimationType == "Attack")
-        {
-            MonsterAnimator.SetInteger("WoodElementalState", 1);
-        }
-        else
-        {
-            MonsterAnimator.SetInteger("WoodElementalState", 0);
-        }
-    }
-    */
-    /*
-    public override bool CheckmonsterAnimationEnd(string AnimationType = "")
-    {
-        if(AnimationType == "Attack")
-        {
-            if(MonsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            {
-                MonsterAnimator.SetInteger("WoodElementalState", 0);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return true;
-        }
-    }
-    */
 }

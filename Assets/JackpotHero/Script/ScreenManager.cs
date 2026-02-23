@@ -16,6 +16,7 @@ public class ScreenManager : MonoSingleton<ScreenManager>
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log(Screen.fullScreenMode);
         InitScreen();
     }
 
@@ -51,9 +52,14 @@ public class ScreenManager : MonoSingleton<ScreenManager>
 
     public void SetScreenResolution(int Value)
     {
-        if(Value < Resolution16_9.Length)
+        //Debug.Log($"Screen: {Screen.width}x{Screen.height}, mode: {Screen.fullScreenMode}");
+        if (Value < Resolution16_9.Length)
         {
             JsonReadWriteManager.Instance.O_Info.ScreenResolutionWidth = Resolution16_9[Value].width;
+
+            if(JsonReadWriteManager.Instance.O_Info.IsFullScreen == true)
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+
             Screen.SetResolution(Resolution16_9[Value].width, Resolution16_9[Value].height, JsonReadWriteManager.Instance.O_Info.IsFullScreen);
         }
     }

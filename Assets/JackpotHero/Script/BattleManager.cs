@@ -211,35 +211,6 @@ public class BattleManager : MonoBehaviour
             BeforeBuffProgress();
         }
 
-        /*
-        if (IgnoreBuffProgressAtFirstBattleProgress == true)
-        {
-            MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
-            PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//버프 디버프에의한 스탯 계산용
-        }//처음용
-
-        SetBattleTurn();//플레이어와 몬스터의 SPD값에 영향을 받은 Turn을 결정->아마 여기서 확인할듯?
-        DecideCurrentBattleTurn();//여기서 현재 누구의 차례인지 결정
-        UIMgr.B_UI.SetBattleTurnUI(BattleTurn);//결정된 Turn을 ui에 표시
-        MonMgr.SetCurrentTargetMonster(null);//CurrentTarget초기화
-        UIMgr.B_UI.UnDisplayMonsterDetailUI();//몬스터의 상세 표시 UnActive//상세 스테이터스와 장비같은 것들;
-
-        //여기에서 특정 버프의 데미지라던가 줘야할듯(살아있는 놈의 자신의 턴에)
-        if (IgnoreBuffProgressAtFirstBattleProgress == true)
-        {
-            IgnoreBuffProgressAtFirstBattleProgress = false;
-            ActiveBuffEffectAtFirstTime();
-        }
-        else
-        {
-            BuffProgress();//이거 처음은 무시하게해야함//여기서 이펙트 발생임.....
-                           //hit 이펙트와 사운드는 BattleUI에서 앞으로 나갈때 발생 해야 할듯?
-            MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
-            PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//버프 디버프에의한 스탯 계산용
-            //처음 이후로는 후반에
-        }
-        */
-
 
         UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(), 
             PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList);//플레이어 정보도 갱신

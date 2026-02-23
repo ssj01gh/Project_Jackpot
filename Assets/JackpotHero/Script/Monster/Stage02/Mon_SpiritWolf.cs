@@ -32,7 +32,6 @@ public class Mon_SpiritWolf : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
-        
     }
 
     public override void CheckEnemyBuff(BuffInfo EnemyBuff)

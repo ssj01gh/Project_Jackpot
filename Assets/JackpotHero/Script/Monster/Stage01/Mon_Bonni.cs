@@ -20,6 +20,7 @@ public class Mon_Bonni : Monster
         base.InitMonsterState();
         //공격 : 방어 = 4 : 1
         //0~4
+        //MonsterBuff.BuffList[(int)EBuffType.Charm] = 99;
         int RandNum = Random.Range(0, 5);
         if (RandNum >= 1)
         {
@@ -29,6 +30,7 @@ public class Mon_Bonni : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
+        //MonsterCurrentState = (int)EMonsterActionState.Defense;
     }
 
     public override void SetNextMonsterState()

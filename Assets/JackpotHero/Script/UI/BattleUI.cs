@@ -34,6 +34,8 @@ public class MonBrokenShield
 public class BattleUI : MonoBehaviour
 {
     [SerializeField]
+    private PlaySceneUIManager PS_UIManager;
+    [SerializeField]
     private TutorialManager TutorialMgr;
     [SerializeField]
     private MonsterManager MonMgr;
@@ -903,10 +905,12 @@ public class BattleUI : MonoBehaviour
             //각 카드가 몇번째 카드인지 확인할 수 있어야함 (왼쪽 위 부터 1번)
             //개방된 카드가 ResultMagnification.count 이상이 되면 다음으로 넘어감
             //ClickMagnificationCard(int)가 1초후 0.2초 간격으로 실행 ActionObj == Monster일 경우 MagCardNumList.Count만큼
+            /*
             for(int i = 0; i < MagCardNumList.Count; i++)
             {
                 Debug.Log(MagCardNumList[i]);
             }
+            */
             if (ActionObj.tag == "Monster")
             {
                 Sequence Seq = DOTween.Sequence();
@@ -1218,9 +1222,9 @@ public class BattleUI : MonoBehaviour
 
                 Vector2 EffectPos = PlayerObj.transform.position;
                 EffectPos.x = BattleCamCenterX;
-                EffectPos.y += 0.5f;
+                EffectPos.y += 2f;
 
-                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Sward", EffectPos);
+                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Charm", EffectPos);
                 BattleOneActorProduction(PlayerObj, (int)EActorsBattleAction.Charm);
             }
             else if(ActionString == "Rest")
@@ -1271,9 +1275,9 @@ public class BattleUI : MonoBehaviour
 
                 Vector2 EffectPos = ActionObj.transform.position;
                 EffectPos.x = BattleCamCenterX;
-                EffectPos.y += 0.5f;
+                EffectPos.y += 2f;
 
-                EffectManager.Instance.ActiveEffect("BattleEffect_Hit_Mon_Sward", EffectPos);
+                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Charm", EffectPos);
                 BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.Charm);
             }
             else if (ActionString == "Defense")
@@ -1289,70 +1293,133 @@ public class BattleUI : MonoBehaviour
             }
             else
             {
+                string ActionType = "";
+                string EffectBuffName = "";
                 switch(ActionString)
                 {
                     case "Luck":
-                    case "ThronArmor":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_Luck";
+                        break;
+                    case "ThornArmor":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_ThornArmor";
+                        break;
                     case "CopyStrength":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_CopySTR";
+                        break;
                     case "CopyDurability":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_CopyDUR";
+                        break;
                     case "CopyLuck":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_LUK";
+                        break;
                     case "Greed":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_Greed";
+                        break;
                     case "Charging":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_Charging";
+                        break;
                     case "Regeneration":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_Regeneration";
+                        break;
                     case "OverCharge":
-                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.ApplyBuff);
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_OverCharge";
                         break;
-                    case "Posion":
+                        //-------------------------------------
+                    case "Poison":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_Poison";
+                        break;
                     case "MisFortune":
-                    case "CurseOfDeath":
-                    case "Cower":
-                    case "Envy":
-                    case "DefenseDebuff":
-                    case "GiveCharm":
-                    case "Petrification":
-                    case "Burn":
-                    case "AttackDebuff":
-                        BattleMonsterGiveBuffToPlayerProduction(ActionObj, PlayerObj);
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_Misfortune";
                         break;
+                    case "CurseOfDeath":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_CurseOfDeath";
+                        break;
+                    case "Cower":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_Cower";
+                        break;
+                    case "Envy":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_Envy";
+                        break;
+                    case "DefenseDebuff":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_DefenseDebuff";
+                        break;
+                    case "GiveCharm":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_Charm";
+                        break;
+                    case "Petrification":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_Petrification";
+                        break;
+                    case "Burn":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_Burn";
+                        break;
+                    case "AttackDebuff":
+                        ActionType = "GiveBuff";
+                        EffectBuffName = "BattleEffect_Buff_AttackDebuff";
+                        break;
+                        //-------------------------------------------
                     case "SummonMonster":
                     case "SurvantByGluttony":
-                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.SpawnMonster);
+                        ActionType = "SummonMonster";
                         break;
+                        //---------------------------------------------
                     case "CanConsume":
-                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.CantSpawnMonster);
+                        ActionType = "CantConsume";
                         break;
                     default:
                         break;
                 }
+
+                Vector2 MonsterEffectPos = ActionObj.transform.position;
+                MonsterEffectPos.y += 2f;
+                Vector2 PlayerEffectPos = PlayerObj.transform.position;
+                PlayerEffectPos.y += 2f;
+                switch (ActionType)
+                {
+                    case "ApplyBuff":
+                        SoundManager.Instance.PlaySFX("Buff_Healing");
+
+                        MonsterEffectPos.x = BattleCamCenterX;
+                        EffectManager.Instance.ActiveEffect(EffectBuffName, MonsterEffectPos);
+
+                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.ApplyBuff);
+                        break;
+                    case "GiveBuff":
+                        SoundManager.Instance.PlaySFX("Buff_Consume");
+
+                        PlayerEffectPos.x = BattleCamLeftX;
+                        EffectManager.Instance.ActiveEffect(EffectBuffName, PlayerEffectPos);
+
+                        BattleMonsterGiveBuffToPlayerProduction(ActionObj, PlayerObj);
+                        break;
+                    case "SummonMonster":
+                        SoundManager.Instance.PlaySFX("Buff_Forcing");
+                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.SpawnMonster);
+                        break;
+                    case "CantConsume":
+                        SoundManager.Instance.PlaySFX("Buff_Consume");
+                        BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.CantSpawnMonster);
+                        break;
+                }
+
             }
-            /*
-            else if (ActionString == "Poison" || ActionString == "CurseOfDeath" || ActionString == "Burn")
-            {
-                BattleMonsterGiveBuffToPlayerProduction(ActionObj, PlayerObj);
-                //SoundManager.Instance.PlaySFX("Buff_Consume");
-                //ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
-            }
-            else if (ActionString == "MisFortune" || ActionString == "Envy" || ActionString == "Cower" || ActionString == "DefenseDebuff" || ActionString == "AttackDebuff" ||
-                ActionString == "OverCharge" || ActionString == "GiveCharm" || ActionString == "Petrification")
-            {
-                BattleMonsterGiveBuffToPlayerProduction(ActionObj, PlayerObj);
-                //SoundManager.Instance.PlaySFX("Buff_Forcing");
-                //ActionObj.transform.DOPunchPosition(new Vector3(-1, 0, 0), 0.2f, 1, 1).OnComplete(() => { IsAnimateComplete = true; });
-            }
-            else if (ActionString == "Greed" || ActionString == "Charging")//스스로에게 바르는 버프들?
-            {
-                BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.ApplyBuff);
-                //BattleMonster
-                //SoundManager.Instance.PlaySFX("Acquire_EXP");
-                //IsAnimateComplete = true;
-            }
-            else
-            {//기타들
-                //일단 임시로 방어 박아놓기
-                BattleOneActorProduction(ActionObj, (int)EActorsBattleAction.Defense);
-            }
-            */
-            //MonsterZone.GetComponent<RectTransform>().DOAnchorPos(new Vector2(350, 0), 0.1f).SetLoops(2, LoopType.Yoyo).OnComplete(() => { IsAnimateComplete = true; });
         }
         else
         {
@@ -1414,6 +1481,9 @@ public class BattleUI : MonoBehaviour
         MonsterBattleUI.SetActive(false);
         DisplayTurnUI.SetActive(false);
         PlayerShield.SetActive(false);
+        FinalCalculateObject.SetActive(false);
+        PS_UIManager.InActiveWhenZoomInAtBattle();
+        PlayerBuffUI.InitBuffImage();
         SetActorBattleMotion(Attacker, (int)EActorsBattleAction.Attack);
         SetActorBattleMotion(Defender, (int)EActorsBattleAction.Defense);
         Sequence AttackerSeq = DOTween.Sequence();
@@ -1448,6 +1518,9 @@ public class BattleUI : MonoBehaviour
         MonsterBattleUI.SetActive(false);
         DisplayTurnUI.SetActive(false);
         PlayerShield.SetActive(false);
+        FinalCalculateObject.SetActive(false);
+        PS_UIManager.InActiveWhenZoomInAtBattle();
+        PlayerBuffUI.InitBuffImage();
         MonMgr.SetActiveMonsterBodies(Actor, false);//Actor에 플레이어가 들어가도 문제X
         SetActorBattleMotion(Actor, ActionType);
         Sequence ActorSeq = DOTween.Sequence();
@@ -1475,6 +1548,9 @@ public class BattleUI : MonoBehaviour
         MonsterBattleUI.SetActive(false);
         DisplayTurnUI.SetActive(false);
         PlayerShield.SetActive(false);
+        FinalCalculateObject.SetActive(false);
+        PS_UIManager.InActiveWhenZoomInAtBattle();
+        PlayerBuffUI.InitBuffImage();
         SetActorBattleMotion(G_Monster, (int)EActorsBattleAction.GiveBuff);
         SetActorBattleMotion(G_Player, (int)EActorsBattleAction.Defense);
         Sequence MonsterSeq = DOTween.Sequence();

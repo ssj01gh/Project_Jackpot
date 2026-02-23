@@ -256,7 +256,15 @@ public class PlaySceneUIManager : MonoBehaviour
         MEDI_UI.gameObject.transform.position = ClickedButton.gameObject.transform.position;
         MEDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetMonEquipmentInfo(EquipCode), EquipCode, false);
     }
-
+    //----------------------------
+    public void InActiveWhenZoomInAtBattle()
+    {
+        EDI_UI.InActiveEquipmentDetailInfoUI();
+        MEDI_UI.InActiveEquipmentDetailInfoUI();
+        OP_UI.OptionInActive();
+        NonInven_UI.CloseNonRestInventory();
+    }
+    //----------------------------
     public void PlayerDefeat()//지거나 게임에서 이기거나
     {
         PE_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { PE_UI.gameObject.SetActive(false); });
