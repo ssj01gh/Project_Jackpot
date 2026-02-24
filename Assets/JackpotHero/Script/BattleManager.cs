@@ -664,22 +664,22 @@ public class BattleManager : MonoBehaviour
                 //사전강화 + 레벨업으로 인한 강화
                 CurrentBattleState = "CopyStrength";
                 int STRPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("STR") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().StrengthLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyStrength, STRPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyStrength, STRPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyCopyDurability:
                 CurrentBattleState = "CopyDurability";
                 int DURPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("DUR") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DurabilityLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyDurability, DURPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyDurability, DURPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyCopySpeed:
                 CurrentBattleState = "CopySpeed";
                 int SPDPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("SPD") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SpeedLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopySpeed, SPDPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopySpeed, SPDPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyCopyLuck:
                 CurrentBattleState = "CopyLuck";
                 int LUKPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("LUK") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().LuckLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyLuck, LUKPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyLuck, LUKPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyGreed:
                 CurrentBattleState = "Greed";

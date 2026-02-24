@@ -28,7 +28,6 @@ public class Mon_Giant : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
-        MonsterCurrentState = (int)EMonsterActionState.Attack;
     }
 
     public override void CheckEnemyBuff(BuffInfo EnemyBuff)

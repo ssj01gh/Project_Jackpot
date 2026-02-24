@@ -264,7 +264,6 @@ public class Monster : MonoBehaviour
     {
         BeforeMonsterShield = (int)MonTotalStatus.MonsterCurrentShieldPoint;
     }
-
     protected virtual void InitMonsterState()
     {
         AdditionalEXP = 0;

@@ -34,7 +34,6 @@ public class Mon_Administrator : Monster
 
         MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
         AdministratorNextAction = (int)EAdministratorState.OverChargeServant;
-        
         //Test
     }
 
@@ -109,39 +108,4 @@ public class Mon_Administrator : Monster
         else
             return 0;
     }
-    /*
-    public override void SetMonsterAnimation(string AnimationType = "")
-    {
-        //MonsterAnimator
-        if (AnimationType == "Attack")
-        {
-            MonsterAnimator.SetInteger("AdminState", 1);
-        }
-        else
-        {
-            MonsterAnimator.SetInteger("AdminState", 0);
-        }
-    }
-    */
-    /*
-    public override bool CheckmonsterAnimationEnd(string AnimationType = "")
-    {
-        if (AnimationType == "Attack")
-        {
-            if (MonsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            {
-                MonsterAnimator.SetInteger("AdminState", 0);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return true;
-        }
-    }
-    */
 }

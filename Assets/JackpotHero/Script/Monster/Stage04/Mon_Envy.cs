@@ -19,6 +19,7 @@ public class Mon_Envy : Monster
     {
         base.InitMonsterState();
         //MonsterBuff.BuffList[(int)EBuffType.Plunder] = 99;
+        //MonsterBuff.BuffList[(int)EBuffType.Charm] = 99;
         MonsterCurrentState = (int)EMonsterActionState.GiveEnvy;
     }
 

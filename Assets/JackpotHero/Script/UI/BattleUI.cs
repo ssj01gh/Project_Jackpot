@@ -1313,9 +1313,13 @@ public class BattleUI : MonoBehaviour
                         ActionType = "ApplyBuff";
                         EffectBuffName = "BattleEffect_Buff_CopyDUR";
                         break;
+                    case "CopySpeed":
+                        ActionType = "ApplyBuff";
+                        EffectBuffName = "BattleEffect_Buff_CopySPD";
+                        break;
                     case "CopyLuck":
                         ActionType = "ApplyBuff";
-                        EffectBuffName = "BattleEffect_Buff_LUK";
+                        EffectBuffName = "BattleEffect_Buff_CopyLUK";
                         break;
                     case "Greed":
                         ActionType = "ApplyBuff";
@@ -1380,7 +1384,7 @@ public class BattleUI : MonoBehaviour
                         ActionType = "SummonMonster";
                         break;
                         //---------------------------------------------
-                    case "CanConsume":
+                    case "CantConsume":
                         ActionType = "CantConsume";
                         break;
                     default:

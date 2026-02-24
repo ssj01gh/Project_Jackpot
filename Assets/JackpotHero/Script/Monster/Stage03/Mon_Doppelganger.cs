@@ -20,7 +20,7 @@ public class Mon_Doppelganger : Monster
     {
         base.Start();
     }
-
+    //Body가 꺼졌다가 켜졌을때 원래 모습으로 돌아왔다가 되돌아감..... 이걸 해결 할 방법이 있나?
     // Update is called once per frame
     protected override void Update()
     {
@@ -34,6 +34,7 @@ public class Mon_Doppelganger : Monster
         IsAttackTurn = false;
         MonsterAnimator.SetInteger("DoppelgangerState", 0);
         DecideCopyState();
+        //한번 처음부터 쭉 해보기 얘는
     }
 
     public override void CheckEnemyBuff(BuffInfo EnemyBuff)
@@ -64,6 +65,7 @@ public class Mon_Doppelganger : Monster
                 DecideCopyState();
             }
         }
+
         //DecideCopyState();
     }
 
@@ -129,30 +131,5 @@ public class Mon_Doppelganger : Monster
     public override void MonsterGetBuff(int i_BuffType, int BuffCount = 0)
     {
         base.MonsterGetBuff(i_BuffType, BuffCount);
-        /*
-        DontCopyStateList.Clear();
-        if (MonsterBuff.BuffList[(int)EBuffType.CopyStrength] < 1)
-        {//없을때
-            DontCopyStateList.Add((int)ECopyState.STR);
-        }
-        if (MonsterBuff.BuffList[(int)EBuffType.CopyDurability] < 1)
-        {
-            DontCopyStateList.Add((int)ECopyState.DUR);
-        }
-        if (MonsterBuff.BuffList[(int)EBuffType.CopyLuck] < 1)
-        {
-            DontCopyStateList.Add((int)ECopyState.LUK);
-        }
-        if (MonsterBuff.BuffList[(int)EBuffType.CopySpeed] < 1)
-        {
-            DontCopyStateList.Add((int)ECopyState.SPD);
-        }
-
-        if(DontCopyStateList.Count < 1)
-        {//다 복사 됬으면
-            MonsterAnimator.SetInteger("DoppelgangerState", 1);
-        }
-        DontCopyStateList.Clear();
-        */
     }
 }

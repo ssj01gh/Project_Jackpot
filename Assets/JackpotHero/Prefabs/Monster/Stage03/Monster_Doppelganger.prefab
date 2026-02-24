@@ -156,6 +156,8 @@ MonoBehaviour:
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}
+  MonsterSprite: {fileID: -1668308495, guid: 9e0015e20b56c684d9c13a2ffbc11a54, type: 3}
+  HeroineSprite: {fileID: 426854729, guid: 0a7aa7055183a8549b06543d36786b58, type: 3}
 --- !u!1 &3712609004761415353
 GameObject:
   m_ObjectHideFlags: 0
