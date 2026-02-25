@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WrathStack02_Defense
+  m_Name: WrathStack03_Charm
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1137798988, guid: 0a7714a01bdd8144e8ec99f6a2204285, type: 3}
+      value: {fileID: -254196237, guid: db874b12b2437914383e49a97a92b21b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,7 +44,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1137798988, guid: 0a7714a01bdd8144e8ec99f6a2204285, type: 3}
+    - {fileID: -254196237, guid: db874b12b2437914383e49a97a92b21b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

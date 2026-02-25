@@ -23,8 +23,6 @@ public class Mon_Wrath : Monster
         int WrathCount = 7 - JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount;
         MonsterBuff.BuffList[(int)EBuffType.Wrath] = WrathCount;
         SetWrathActionState();
-        MonsterBuff.BuffList[(int)EBuffType.Charging] = 0;
-        MonsterCurrentState = (int)EMonsterActionState.Attack;
     }
 
     public override void CheckEnemyBuff(BuffInfo EnemyBuff)

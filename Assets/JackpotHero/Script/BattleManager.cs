@@ -210,6 +210,17 @@ public class BattleManager : MonoBehaviour
         {
             BeforeBuffProgress();
         }
+        //버프 계산하고 죽었으면 턴 다시 시작
+        if (CurrentTurnObject != null && CurrentTurnObject.tag == "Monster")
+        {
+            if (CurrentTurnObject.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
+            {
+                //몬스터가 죽으면 progressBattle을 다시 실행한다.
+                CurrentTurnObject = null;
+                ProgressBattle();
+                return;
+            }
+        }
 
 
         UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(), 
@@ -419,6 +430,9 @@ public class BattleManager : MonoBehaviour
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
 
+            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] >= 1)
+                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] = 0;
+
             PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount, false, true);
             if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
             {//쉴드가 남아있으면
@@ -624,9 +638,6 @@ public class BattleManager : MonoBehaviour
                 break;
             case (int)EMonsterActionState.Defense:
                 CurrentBattleState = "Defense";
-
-                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] >= 1)
-                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] = 0;
 
                 CurrentTurnObject.GetComponent<Monster>().MonsterGetShield(BattleResultStatus.FinalResultAmount);
                 break;

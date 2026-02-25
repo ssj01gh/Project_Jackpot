@@ -346,7 +346,7 @@ public class MonsterManager : MonoBehaviour
         int AccTier = (_PlayerInfo.EquipAccessoriesCode / 1000) % 10;
         int IsEventAcc = _PlayerInfo.EquipAccessoriesCode / 10000;
         int AccStateType = (_PlayerInfo.EquipAccessoriesCode / 100) % 10;
-        int AccType = (IsEventBoots * 10) + BootsStateType;
+        int AccType = (IsEventBoots * 10) + AccStateType;
 
         if(BootsType == RESEquip)
         {
