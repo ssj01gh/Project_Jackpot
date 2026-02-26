@@ -283,46 +283,12 @@ public class EquipmentDetailInfoUI : MonoBehaviour
         ClickEquipSpendSTA.text = "";
 
         StartCoroutine(LoadEquipSpendSTA(EquipInfo.EquipmentType, (int)EquipInfo.SpendTiredness, EquipInfo.EquipmentCode));
-        /*
-        if (IsPlayerEquipment == true)
-        {
-            if (EquipInfo.EquipmentType == (int)EEquipType.TypeWeapon)
-                ClickEquipSpendSTA.text = "공격시 피로도 : " + EquipInfo.SpendTiredness.ToString();
-            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeArmor)
-                ClickEquipSpendSTA.text = "방어시 피로도 : " + EquipInfo.SpendTiredness.ToString();
-            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeHelmet)
-                ClickEquipSpendSTA.text = "피로도 회복시 피로도는 사용되지 않습니다.";
-            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeBoots)
-                ClickEquipSpendSTA.text = "신발은 피로도를 사용하지 않습니다.";
-            else if (EquipInfo.EquipmentType == (int)EEquipType.TypeAcc)
-                ClickEquipSpendSTA.text = "장신구는 피로도를 사용하지 않습니다.";
-            else
-                ClickEquipSpendSTA.text = "??시 피로도 : " + EquipInfo.SpendTiredness.ToString();
-
-            ClickEquipAddSTR.text = EquipInfo.AddSTRAmount.ToString();
-            ClickEquipAddDUR.text = EquipInfo.AddDURAmount.ToString();
-            ClickEquipAddRES.text = EquipInfo.AddRESAmount.ToString();
-            ClickEquipAddSPD.text = EquipInfo.AddSPDAmount.ToString();
-            ClickEquipAddLUK.text = EquipInfo.AddLUKAmount.ToString();
-        }
-        else
-        {
-            EquipCode = EquipInfo.EquipmentCode;
-
-            if (EquipCode >= 70000 && EquipCode < 80000)
-            {
-                ClickEquipSpendSTA.text = "해당 몬스터의 공격입니다.";
-            }
-            else if(EquipCode >= 80000 && EquipCode < 90000)
-            {
-                ClickEquipSpendSTA.text = "해당 몬스터의 방어입니다.";
-            }
-            else if(EquipCode >= 90000 && EquipCode < 100000)
-            {
-                ClickEquipSpendSTA.text = "해당 몬스터의 특수한 행동입니다.";
-            }
-        }
-        */
+        //장비의 추가 스탯
+        ClickEquipAddSTR.text = EquipInfo.AddSTRAmount.ToString();
+        ClickEquipAddDUR.text = EquipInfo.AddDURAmount.ToString();
+        ClickEquipAddRES.text = EquipInfo.AddRESAmount.ToString();
+        ClickEquipAddSPD.text = EquipInfo.AddSPDAmount.ToString();
+        ClickEquipAddLUK.text = EquipInfo.AddLUKAmount.ToString();
         //장비의 설명창
         ClickEquipDetailText.text = EquipInfo.EquipmentDetail.ToString();
         //이 밑에꺼는 나중에 버튼 클릭하면 열리게 설정만 해놓고

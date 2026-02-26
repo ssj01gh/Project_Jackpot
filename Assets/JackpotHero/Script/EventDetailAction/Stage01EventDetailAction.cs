@@ -137,6 +137,7 @@ public class Stage01EventDetailAction
         {
             case 0:
                 PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandSTA);
+                Losing = "-STA : " + (300 + RandSTA).ToString();
                 int STRLevel = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().StrengthLevel;
                 int DURLevel = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DurabilityLevel;
                 int SPDLevel = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SpeedLevel;

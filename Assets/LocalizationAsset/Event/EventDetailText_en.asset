@@ -728,9 +728,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2853264848187481
-    m_Localized: "<color=green>{Getting}</color>\nWhen the sparring ends,\nthe prairie
-      dog knight disappears somewhere.\nYou feel that you\u2019ve become more skilled
-      in combat."
+    m_Localized: "<color=green>{Getting}</color>\n<color=red>{Losing}</color>\nWhen
+      the sparring ends,\nthe prairie dog knight disappears somewhere.\nYou feel
+      that you\u2019ve become more skilled in combat."
     m_Metadata:
       m_Items: []
   - m_Id: 2853264848187482

@@ -133,7 +133,7 @@ MonoBehaviour:
   IsSummonTier: 0
   MonsterBaseHP: 20
   HPVarianceAmount: 5
-  MonsterBaseATK: 13
+  MonsterBaseATK: 10
   ATKVarianceAmount: 3
   MonsterBaseDUR: 6
   DURVarianceAmount: 2

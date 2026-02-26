@@ -559,12 +559,12 @@ public class PlayerScript : MonoBehaviour
         if(ArmorType == SPDArmor)
         {
             int Amount = (int)(DefensePointAmount * 0.2f);
-            PlayerBuff.BuffList[(int)EBuffType.RegenArmor] += Amount;
-        }
-        if(ArmorType == HPArmor)
+            PlayerBuff.BuffList[(int)EBuffType.RegenArmor] += (Amount+1);
+        }// 자신의 턴이 끝날시 -1이 되버려서 +1이 되어야함(효과를 못받은체 스택이 감소됨)
+        if (ArmorType == HPArmor)
         {
-            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 3;
-        }
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += (3 + 1);
+        }//원래 3이여야 되는데 자신의 턴이 끝날시 -1이 되버려서 +1이 되어야함(효과를 못받은체 스택이 감소됨)
     }
     public void GetBuffByRest()
     {
@@ -575,17 +575,17 @@ public class PlayerScript : MonoBehaviour
 
         if(HelmetType == STRHelmet)
         {
-            PlayerBuff.BuffList[(int)EBuffType.Recharge] += 3;
-        }
-        if(HelmetType == DURHelmet)
+            PlayerBuff.BuffList[(int)EBuffType.Recharge] += (3+1);
+        }// 자신의 턴이 끝날시 -1이 되버려서 +1이 되어야함(효과를 못받은체 스택이 감소됨)
+        if (HelmetType == DURHelmet)
         {
-            PlayerBuff.BuffList[(int)EBuffType.RegenArmor] += 5;
-        }
-        if(HelmetType == RESHelmet)
+            PlayerBuff.BuffList[(int)EBuffType.RegenArmor] += (5 + 1);
+        }// 자신의 턴이 끝날시 -1이 되버려서 +1이 되어야함(효과를 못받은체 스택이 감소됨)
+        if (HelmetType == RESHelmet)
         {
-            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += 3;
-        }
-        if(HelmetType == SPDHelmet)
+            PlayerBuff.BuffList[(int)EBuffType.Regeneration] += (3 + 1);
+        }// 자신의 턴이 끝날시 -1이 되버려서 +1이 되어야함(효과를 못받은체 스택이 감소됨)
+        if (HelmetType == SPDHelmet)
         {
             PlayerBuff.BuffList[(int)EBuffType.OverCharge] += 3;
         }
@@ -880,17 +880,32 @@ public class PlayerScript : MonoBehaviour
         return true;
     }
 
-    public void CalculateEarlyPoint()//전투에서 졌을떄//지거나 게임에서 이기거나
+    public void CalculateEarlyPoint(bool IsWinGame = false)//전투에서 졌을떄//지거나 게임에서 이기거나
     {
-        int EarlyPoint = 0;
+        int EarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
+        int BeforeCalculatePoint = 0;
         if (PlayerState.CurrentFloor > JsonReadWriteManager.Instance.E_Info.PlayerReachFloor)
+        {//기록상 최대 스테이지에 도달 성공했을때 갱신
             JsonReadWriteManager.Instance.E_Info.PlayerReachFloor = PlayerState.CurrentFloor;
+            JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = PlayerState.CurrentFloor * 6;
+            if(IsWinGame == true)
+            {//끝까지 깼을때 한번더 갱신
+                JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = 28;
+            }
+        }
 
-        EarlyPoint += JsonReadWriteManager.Instance.E_Info.PlayerReachFloor;
-        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillNormalMonster / 4);
-        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.KillEliteMonster * 7 / 20);
-        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.Experience / 2000);
-        EarlyPoint += (int)(JsonReadWriteManager.Instance.P_Info.GoodKarma / 10);
+        BeforeCalculatePoint = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 500);//2당 1포
+        BeforeCalculatePoint += (int)(PlayerState.KillNormalMonster * 167);//6당 1포
+        BeforeCalculatePoint += (int)(PlayerState.KillEliteMonster * 250);//4당 1포
+        BeforeCalculatePoint += (int)(PlayerState.Experience / 3);//3000당 1포
+        BeforeCalculatePoint += (int)(PlayerState.GoodKarma * 77);//13 당 1포
+
+        EarlyPoint += (int)(BeforeCalculatePoint / 1000);
+
+        if (EarlyPoint >= JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint)
+        {
+            EarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint;
+        }
 
         JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;//나머지 레벨들은 초기화 해야할듯? 나중에? 여기서하면 계승이 불가능
     }

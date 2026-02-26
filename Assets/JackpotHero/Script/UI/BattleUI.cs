@@ -146,10 +146,17 @@ public class BattleUI : MonoBehaviour
     public GameObject MonsterBattleUI;
     [Header("BattleCamera")]
     public BattleCameraManager Battle_Cam;
+    [Header("AccelButton")]
+    public GameObject AccelButtonContainer;
+    public GameObject AccelButtonx1;
+    public GameObject AccelButtonx1_5;
+    public GameObject AccelButtonx2;
 
     //protected Dictionary<string, GameObject> MonSpritesStorage = new Dictionary<string, GameObject>();
     //protected Dictionary<string, Sprite> MonHeadSpriteStorage = new Dictionary<string, Sprite>();
     // Start is called before the first frame update
+    protected AudioSource NumAudioSource;
+
     protected bool IsAnimateComplete = false;
     protected bool IsOpenCard = false;
     protected bool IsOpenAnimationComplete = false;
@@ -168,6 +175,8 @@ public class BattleUI : MonoBehaviour
     protected float ZoomInTime = 0.1f;
     protected float ZoomHoldTime = 0.4f;
     protected float ZoomOutTime = 0.6f;
+
+    protected float BattleAccel = 1f;
 
     protected int CurrentMainBattlePhase;
     protected enum EMainBattlePhase
@@ -233,6 +242,7 @@ public class BattleUI : MonoBehaviour
     public void InitBattleUI()
     {
         gameObject.SetActive(true);
+        AccelButtonContainer.SetActive(false);
         DisplayTurnUI.SetActive(false);
         UI_StartOfBattle.SetActive(false);
         PlayerActionSelectionBattleUI.SetActive(false);
@@ -265,12 +275,31 @@ public class BattleUI : MonoBehaviour
     {
         gameObject.SetActive(true);
 
+        AccelButtonContainer.SetActive(true);
+        if(BattleAccel == 0.67f)
+        {
+            AccelButtonx1.GetComponent<Image>().color = Color.white;
+            AccelButtonx1_5.GetComponent<Image>().color = Color.green;
+            AccelButtonx2.GetComponent<Image>().color = Color.white;
+        }
+        else if(BattleAccel == 0.5f)
+        {
+            AccelButtonx1.GetComponent<Image>().color = Color.white;
+            AccelButtonx1_5.GetComponent<Image>().color = Color.white;
+            AccelButtonx2.GetComponent<Image>().color = Color.green;
+        }
+        else
+        {
+            AccelButtonx1.GetComponent<Image>().color = Color.green;
+            AccelButtonx1_5.GetComponent<Image>().color = Color.white;
+            AccelButtonx2.GetComponent<Image>().color = Color.white;
+        }
         UI_StartOfBattle.GetComponent<CanvasGroup>().alpha = 0;
         UI_StartOfBattle.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         UI_StartOfBattle.SetActive(true);
-        UI_StartOfBattle.GetComponent<CanvasGroup>().DOFade(1, 0.3f).OnComplete(() => 
+        UI_StartOfBattle.GetComponent<CanvasGroup>().DOFade(1, 0.3f * BattleAccel).OnComplete(() => 
         {
-            UI_StartOfBattle.GetComponent<RectTransform>().DOAnchorPosY(640, 0.3f).SetEase(Ease.InBack).OnComplete(() => 
+            UI_StartOfBattle.GetComponent<RectTransform>().DOAnchorPosY(640, 0.3f * BattleAccel).SetEase(Ease.InBack).OnComplete(() => 
             {
                 UI_StartOfBattle.SetActive(false);
             });
@@ -744,7 +773,7 @@ public class BattleUI : MonoBehaviour
     }
     IEnumerator ProgressMainBattle_UI(GameObject ActionObj, GameObject PlayerObj, GameObject MonsterObj, string ActionString, BattleResultStates BattleResult, Vector2 PlayerPos, Vector2 TargetPos, bool IsThereShield, Action CallBack)
     {
-        AudioSource NumAudioSource = new AudioSource();
+        //여기서 대부분의 BattleAnimation이 발생
         CurrentMainBattlePhase = (int)EMainBattlePhase.Nothing;
         IsOpenCard = false;
         IsOpenAnimationComplete = false;
@@ -765,7 +794,7 @@ public class BattleUI : MonoBehaviour
             ClickTextObject.SetActive(true);
             ClickTextObject.GetComponent<RectTransform>().DOKill();
             ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-            ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+            ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f * BattleAccel).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
         }
 
         switch (ActionString)
@@ -801,7 +830,7 @@ public class BattleUI : MonoBehaviour
         {
             if (ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+                DOVirtual.DelayedCall(0.5f * BattleAccel, () => ClickAmountCard());
             }
             while (true)
             {
@@ -818,7 +847,7 @@ public class BattleUI : MonoBehaviour
                     {
                         BaseAmount = x;
                         BaseAmountText.text = BaseAmount.ToString("F0");
-                    }, (int)BattleResult.BaseAmount, 0.3f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
+                    }, (int)BattleResult.BaseAmount, 0.3f * BattleAccel).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
                     //BaseAmountText.text = ((int)BattleResult.BaseAmount).ToString();
                     BaseAmountCard.SetActive(false);
                     CurrentMainBattlePhase = (int)EMainBattlePhase.BaseAmountComplete;
@@ -845,7 +874,7 @@ public class BattleUI : MonoBehaviour
                     ClickTextObject.SetActive(true);
                     ClickTextObject.GetComponent<RectTransform>().DOKill();
                     ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f * BattleAccel).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
                 }
                 if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
                     BaseAmountCardTitleText.text = "Additional Base Value";
@@ -858,7 +887,7 @@ public class BattleUI : MonoBehaviour
             //첫번째 카드를 클릭하고 애니메이션이 끝날때까지 대기
             if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+                DOVirtual.DelayedCall(0.5f * BattleAccel, () => ClickAmountCard());
             }
             while (BaseAmountCard.activeSelf == true)
             {
@@ -875,7 +904,7 @@ public class BattleUI : MonoBehaviour
                     {
                         BaseAmount = x;
                         BaseAmountText.text = BaseAmount.ToString("F0");
-                    }, (int)(BattleResult.BaseAmount + BattleResult.BaseAmountPlus), 0.3f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
+                    }, (int)(BattleResult.BaseAmount + BattleResult.BaseAmountPlus), 0.3f * BattleAccel).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
                     //BaseAmountText.text = ((int)(BattleResult.BaseAmount + BattleResult.BaseAmountPlus)).ToString();
                     BaseAmountCard.SetActive(false);
                     CurrentMainBattlePhase = (int)EMainBattlePhase.BasePlusAmountComplete;
@@ -914,14 +943,14 @@ public class BattleUI : MonoBehaviour
             {
                 Sequence Seq = DOTween.Sequence();
                 
-                Seq.AppendInterval(0.5f); // 1초 대기
+                Seq.AppendInterval(0.5f * BattleAccel); // 1초 대기
                 foreach (int i  in MagCardNumList)
                 {
                     Seq.AppendCallback(() =>
                     {
                         ClickMagnificationCard(i);
                     });
-                    Seq.AppendInterval(0.2f); // 0.2초 간격
+                    Seq.AppendInterval(0.2f * BattleAccel); // 0.2초 간격
                 }
             }
             while (true)
@@ -962,7 +991,7 @@ public class BattleUI : MonoBehaviour
                     {
                         BeforeMagnification = x;
                         MagnificationText.text = BeforeMagnification.ToString("F2");
-                    }, TotalMagnification, 0.3f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
+                    }, TotalMagnification, 0.3f * BattleAccel).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
                     break;
                 }
             }
@@ -988,7 +1017,7 @@ public class BattleUI : MonoBehaviour
                     ClickTextObject.SetActive(true);
                     ClickTextObject.GetComponent<RectTransform>().DOKill();
                     ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f * BattleAccel).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
                 }
                 //ClickTextObject.SetActive(true);
                 //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
@@ -1003,7 +1032,7 @@ public class BattleUI : MonoBehaviour
 
             if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+                DOVirtual.DelayedCall(0.5f * BattleAccel, () => ClickAmountCard());
             }
             while (BaseAmountCard.activeSelf == true)
             {
@@ -1021,7 +1050,7 @@ public class BattleUI : MonoBehaviour
                     {
                         BeforeMagnification = x;
                         MagnificationText.text = BeforeMagnification.ToString("F2");
-                    }, TotalMagnification, 0.3f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
+                    }, TotalMagnification, 0.3f * BattleAccel).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
                     //애니메이션이 끝나면 1번의 수 증가, 빠져나요기//숫자가 한번에 변하는것이 아닌 조금씩 변화하면 더 좋을것 같기도 함
                     //MagnificationText.text = TotalMagnification.ToString("F2");
                     CurrentMainBattlePhase = (int)EMainBattlePhase.BuffMagnificationComplete;
@@ -1030,13 +1059,13 @@ public class BattleUI : MonoBehaviour
             }
 
             //약간 기다린다
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.3f * BattleAccel);
             //5번 실행
             IsAnimateComplete = false;
-            BaseAmountObject.GetComponent<RectTransform>().DOAnchorPosX(0f, 0.5f);
-            BaseAmountObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f);
-            MagnificationObject.GetComponent<RectTransform>().DOAnchorPosX(0f, 0.5f);
-            MagnificationObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
+            BaseAmountObject.GetComponent<RectTransform>().DOAnchorPosX(0f, 0.5f * BattleAccel);
+            BaseAmountObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * BattleAccel);
+            MagnificationObject.GetComponent<RectTransform>().DOAnchorPosX(0f, 0.5f * BattleAccel);
+            MagnificationObject.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * BattleAccel).OnComplete(() => { IsAnimateComplete = true; });
 
             while (true)
             {
@@ -1048,7 +1077,7 @@ public class BattleUI : MonoBehaviour
                     MagnificationObject.SetActive(false);
                     FinalCalculateText.gameObject.SetActive(true);
                     FinalCalculateText.gameObject.GetComponent<RectTransform>().localScale = Vector2.zero;
-                    FinalCalculateText.gameObject.GetComponent<RectTransform>().DOScale(Vector2.one, 0.5f).SetEase(Ease.OutBack).OnComplete(() => { IsAnimateComplete = true; });
+                    FinalCalculateText.gameObject.GetComponent<RectTransform>().DOScale(Vector2.one, 0.5f * BattleAccel).SetEase(Ease.OutBack).OnComplete(() => { IsAnimateComplete = true; });
                     int BeforeFinalCalculate = 0;
                     if (BeforeFinalCalculate != (int)(BattleResult.FinalResultAmount - BattleResult.FinalResultAmountPlus))
                     {
@@ -1058,7 +1087,7 @@ public class BattleUI : MonoBehaviour
                     {
                         BeforeFinalCalculate = x;
                         FinalCalculateText.text = BeforeFinalCalculate.ToString("F0");
-                    }, (int)(BattleResult.FinalResultAmount - BattleResult.FinalResultAmountPlus), 0.5f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
+                    }, (int)(BattleResult.FinalResultAmount - BattleResult.FinalResultAmountPlus), 0.5f * BattleAccel).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
                     //FinalCalculateText.text = ((int)(BattleResult.FinalResultAmount - BattleResult.FinalResultAmountPlus)).ToString();
                     break;
                 }
@@ -1094,7 +1123,7 @@ public class BattleUI : MonoBehaviour
                     ClickTextObject.SetActive(true);
                     ClickTextObject.GetComponent<RectTransform>().DOKill();
                     ClickTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -250f);
-                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+                    ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-245, 0.5f * BattleAccel).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
                 }
                 //ClickTextObject.SetActive(true);
                 //ClickTextObject.GetComponent<RectTransform>().DOAnchorPosY(-240, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
@@ -1109,7 +1138,7 @@ public class BattleUI : MonoBehaviour
 
             if (BaseAmountCard.activeSelf == true && ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+                DOVirtual.DelayedCall(0.5f * BattleAccel, () => ClickAmountCard());
             }
             while (BaseAmountCard.activeSelf == true)
             {
@@ -1127,7 +1156,7 @@ public class BattleUI : MonoBehaviour
                     {
                         BeforeFinalCalculate = x;
                         FinalCalculateText.text = BeforeFinalCalculate.ToString("F0");
-                    }, (int)BattleResult.FinalResultAmount, 0.5f).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
+                    }, (int)BattleResult.FinalResultAmount, 0.5f * BattleAccel).OnComplete(() => { SoundManager.Instance.StopSFX(NumAudioSource); });
                     //FinalCalculateText.text = ((int)BattleResult.FinalResultAmount).ToString();
                     BaseAmountCard.SetActive(false);
                     break;
@@ -1138,7 +1167,7 @@ public class BattleUI : MonoBehaviour
         {
             if (ActionObj.tag == "Monster")
             {
-                DOVirtual.DelayedCall(0.5f, () => ClickAmountCard());
+                DOVirtual.DelayedCall(0.5f * BattleAccel, () => ClickAmountCard());
             }
             while (true)
             {
@@ -1155,7 +1184,7 @@ public class BattleUI : MonoBehaviour
         }
         
         //약간 기다린다
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f * BattleAccel);
 
         //행동한 주체( 몬스터 혹은 플레이어 머리 위쪽으로 이동한다)
         IsAnimateComplete = false;
@@ -1168,7 +1197,7 @@ public class BattleUI : MonoBehaviour
                 Camera.main.WorldToScreenPoint(ActionObj.GetComponent<PlayerScript>().ActionTypePos.transform.position),
                 Camera.main, out AnchoredPos);
 
-            FinalCalculateObject.GetComponent<RectTransform>().DOAnchorPos(AnchoredPos, 0.5f).
+            FinalCalculateObject.GetComponent<RectTransform>().DOAnchorPos(AnchoredPos, 0.5f * BattleAccel).
                 OnComplete(() => { IsAnimateComplete = true; });
         }
         else if(ActionObj.tag == "Monster")
@@ -1178,7 +1207,7 @@ public class BattleUI : MonoBehaviour
                 Camera.main.WorldToScreenPoint(ActionObj.GetComponent<Monster>().GetMonActionTypePos()),
                 Camera.main, out AnchoredPos);
 
-            FinalCalculateObject.GetComponent<RectTransform>().DOAnchorPos(AnchoredPos, 0.5f).
+            FinalCalculateObject.GetComponent<RectTransform>().DOAnchorPos(AnchoredPos, 0.5f * BattleAccel).
                 OnComplete(() => { IsAnimateComplete = true; });
         }
 
@@ -1191,7 +1220,7 @@ public class BattleUI : MonoBehaviour
             }
         }
         //약간 기다린다
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f * BattleAccel);
         IsAnimateComplete = false;
         //여기에서 카메라 연출이 시작 되야함
         //이거에 대한 예외사항은 나중에 계속 늘어날듯?
@@ -1446,7 +1475,7 @@ public class BattleUI : MonoBehaviour
         }
 
         IsAnimateComplete = false;
-        MainBattleUI.GetComponent<CanvasGroup>().DOFade(0f, 0.2f).OnComplete(() => { IsAnimateComplete = true; }); ;
+        MainBattleUI.GetComponent<CanvasGroup>().DOFade(0f, 0.2f * BattleAccel).OnComplete(() => { IsAnimateComplete = true; }); ;
         while(true)
         {
             yield return null;
@@ -1491,8 +1520,8 @@ public class BattleUI : MonoBehaviour
         SetActorBattleMotion(Defender, (int)EActorsBattleAction.Defense);
         Sequence AttackerSeq = DOTween.Sequence();
         Sequence DefenderSeq = DOTween.Sequence();
-        AttackerSeq.Append(Attacker.transform.DOLocalMoveX(AttackerTargetX, ZoomInTime))
-            .AppendInterval(ZoomHoldTime).OnComplete(() =>
+        AttackerSeq.Append(Attacker.transform.DOLocalMoveX(AttackerTargetX, ZoomInTime * BattleAccel))
+            .AppendInterval(ZoomHoldTime * BattleAccel).OnComplete(() =>
             {
                 if(IsAttackerRight == true)
                     MonMgr.SetActiveMonsterBodies(Attacker, true);
@@ -1505,11 +1534,11 @@ public class BattleUI : MonoBehaviour
                 DisplayTurnUI.SetActive(true);
                 PlayerShield.SetActive(IsPlayerShield);
             })
-            .Append(Attacker.transform.DOLocalMoveX(AttackerDefaultX, ZoomOutTime));
-        DefenderSeq.Append(Defender.transform.DOLocalMoveX(DefenderTargetX, ZoomInTime))
-            .AppendInterval(ZoomHoldTime)
-            .Append(Defender.transform.DOLocalMoveX(DefenderDefaultX, ZoomOutTime));
-        Battle_Cam.PlayBattleCamera(Vector3.zero);
+            .Append(Attacker.transform.DOLocalMoveX(AttackerDefaultX, ZoomOutTime * BattleAccel));
+        DefenderSeq.Append(Defender.transform.DOLocalMoveX(DefenderTargetX, ZoomInTime * BattleAccel))
+            .AppendInterval(ZoomHoldTime * BattleAccel)
+            .Append(Defender.transform.DOLocalMoveX(DefenderDefaultX, ZoomOutTime * BattleAccel));
+        Battle_Cam.PlayBattleCamera(Vector3.zero, BattleAccel);
     }
     //Defense, STARecovery, Charm, SpawnMonster, ApplyBuff
     protected void BattleOneActorProduction(GameObject Actor, int ActionType)
@@ -1527,8 +1556,8 @@ public class BattleUI : MonoBehaviour
         MonMgr.SetActiveMonsterBodies(Actor, false);//Actor에 플레이어가 들어가도 문제X
         SetActorBattleMotion(Actor, ActionType);
         Sequence ActorSeq = DOTween.Sequence();
-        ActorSeq.Append(Actor.transform.DOLocalMoveX(ActorTargetX, ZoomInTime))
-            .AppendInterval(ZoomHoldTime).OnComplete(() =>
+        ActorSeq.Append(Actor.transform.DOLocalMoveX(ActorTargetX, ZoomInTime * BattleAccel))
+            .AppendInterval(ZoomHoldTime * BattleAccel).OnComplete(() =>
             {
                 MonMgr.SetActiveMonsterBodies(Actor, true);
                 MonsterBattleUI.SetActive(true);
@@ -1536,8 +1565,8 @@ public class BattleUI : MonoBehaviour
                 PlayerShield.SetActive(IsPlayerShield);
                 SetActorBattleMotion(Actor, (int)EActorsBattleAction.Idle);
             })
-            .Append(Actor.transform.DOLocalMoveX(ActorDefaultX, ZoomOutTime));
-        Battle_Cam.PlayBattleCamera(Vector3.zero);
+            .Append(Actor.transform.DOLocalMoveX(ActorDefaultX, ZoomOutTime * BattleAccel));
+        Battle_Cam.PlayBattleCamera(Vector3.zero, BattleAccel);
     }
     protected void BattleMonsterGiveBuffToPlayerProduction(GameObject G_Monster, GameObject G_Player)
     {
@@ -1558,8 +1587,8 @@ public class BattleUI : MonoBehaviour
         SetActorBattleMotion(G_Player, (int)EActorsBattleAction.Defense);
         Sequence MonsterSeq = DOTween.Sequence();
         Sequence PlayerSeq = DOTween.Sequence();
-        MonsterSeq.Append(G_Monster.transform.DOLocalMoveX(MonsterTargetX, ZoomInTime))
-            .AppendInterval(ZoomHoldTime).OnComplete(() =>
+        MonsterSeq.Append(G_Monster.transform.DOLocalMoveX(MonsterTargetX, ZoomInTime * BattleAccel))
+            .AppendInterval(ZoomHoldTime * BattleAccel).OnComplete(() =>
             {
                 MonMgr.SetActiveMonsterBodies(G_Monster, true);
                 SetActorBattleMotion(G_Monster, (int)EActorsBattleAction.Idle);
@@ -1568,12 +1597,12 @@ public class BattleUI : MonoBehaviour
                 DisplayTurnUI.SetActive(true);
                 PlayerShield.SetActive(IsPlayerShield);
             })
-            .Append(G_Monster.transform.DOLocalMoveX(MonsterDefaultX, ZoomOutTime));
-        PlayerSeq.Append(G_Player.transform.DOLocalMoveX(PlayerTargetX, ZoomInTime))
-            .AppendInterval(ZoomHoldTime)
-            .Append(G_Player.transform.DOLocalMoveX(PlayerDefaultX, ZoomOutTime));
+            .Append(G_Monster.transform.DOLocalMoveX(MonsterDefaultX, ZoomOutTime * BattleAccel));
+        PlayerSeq.Append(G_Player.transform.DOLocalMoveX(PlayerTargetX, ZoomInTime * BattleAccel))
+            .AppendInterval(ZoomHoldTime * BattleAccel)
+            .Append(G_Player.transform.DOLocalMoveX(PlayerDefaultX, ZoomOutTime * BattleAccel));
 
-        Battle_Cam.PlayBattleCamera(Vector3.zero);
+        Battle_Cam.PlayBattleCamera(Vector3.zero, BattleAccel);
     }
     protected void SetActorBattleMotion(GameObject Actor, int ActionType)
     {
@@ -1645,47 +1674,30 @@ public class BattleUI : MonoBehaviour
         if (CurrentMainBattlePhase == (int)EMainBattlePhase.Nothing || CurrentMainBattlePhase == (int)EMainBattlePhase.BaseAmountComplete)//왼쪽으로 회전하면서
         {//기초 수치 도착 지점, //추가 기초 수치 도착지점
             //BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-400, 350), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-180, 130), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
-            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
+            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-180, 130), 0.5f * BattleAccel);
+            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * BattleAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * BattleAccel).OnComplete(() => { IsAnimateComplete = true; });
             ClickTextObject.GetComponent<RectTransform>().DOKill();
             ClickTextObject.SetActive(false);
         }
         else if(CurrentMainBattlePhase == (int)EMainBattlePhase.EquipMagnificationComplete)
         {//장비에 의한 곱 완료 상태라면 -> 버프에 의한 추가 곱임
             //BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(400, 350), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
-            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
+            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(180, 130), 0.5f * BattleAccel);
+            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * BattleAccel, RotateMode.FastBeyond360);
+            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * BattleAccel).OnComplete(() => { IsAnimateComplete = true; });
             ClickTextObject.GetComponent<RectTransform>().DOKill();
             ClickTextObject.SetActive(false);
         }
         else if(CurrentMainBattlePhase == (int)EMainBattlePhase.MergeComplete || CurrentMainBattlePhase == (int)EMainBattlePhase.SpecialAction)
         {//합치는게 완료 상태 -> 최종 추가 수치
             //BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 350), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 130), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
-            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
+            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 130), 0.5f * BattleAccel);
+            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * BattleAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * BattleAccel).OnComplete(() => { IsAnimateComplete = true; });
             ClickTextObject.GetComponent<RectTransform>().DOKill();
             ClickTextObject.SetActive(false);
         }
-
-        /*
-        if(IsOpenAnimationComplete == false)//추가 기초 수치
-        {
-            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(-400, 350), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
-            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
-            ClickTextObject.SetActive(false);
-        }
-        else if(IsOpenAnimationComplete == true)//추가 최종 수치
-        {
-            BaseAmountCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 350), 0.5f);
-            BaseAmountCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
-            BaseAmountCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => { IsAnimateComplete = true; });
-            ClickTextObject.SetActive(false);
-        }
-        */
     }
 
     public void ClickMagnificationCard(int CardNum)//여는거 연출
@@ -1727,7 +1739,7 @@ public class BattleUI : MonoBehaviour
 
             int ClickedCardLink = PositiveLink;
             //뒤집는 애니메이션이 완료됬을때 카드를 
-            UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() => 
+            UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f * BattleAccel, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() => 
             {
                 //이게 뒤집어 질때 늘어나면 안됨. 클릭됬을때 늘어나야 막 눌러도 소리의 피치가 점점 높아질듯함
                 //근디 전에 눌렀던 카드가 부정인데 다음에 눌렀던 카드가 긍정이면 1로 밑에 소리가 들어감.... 흠....
@@ -1741,7 +1753,7 @@ public class BattleUI : MonoBehaviour
 
                 UpperMGVirtualCard[CardNum].GetComponent<Image>().sprite = 
                 EquipmentInfoManager.Instance.GetEquipmentSlotSprite(UpperMGList[CardNum]);//클릭한 카드에 맞는 결과 출력
-                UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
+                UpperMGVirtualCard[CardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f * BattleAccel, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
                     PlayCardResultSound(ClickedCardLink);//계속 긍정이 되면 피치가 계속 올라감
@@ -1763,12 +1775,12 @@ public class BattleUI : MonoBehaviour
 
             int ClickedCardLink = PositiveLink;
             //뒤집는 애니메이션이 완료됬을때 카드를 
-            LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
+            LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f * BattleAccel, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
             {
 
                 LowerMGVirtualCard[FixedCardNum].GetComponent<Image>().sprite =
                 EquipmentInfoManager.Instance.GetEquipmentSlotSprite(LowwerMGList[FixedCardNum]);//클릭한 카드에 맞는 결과 출력
-                LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
+                LowerMGVirtualCard[FixedCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f * BattleAccel, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
                 {
                     TotalOpenCard++;
                     PlayCardResultSound(ClickedCardLink);//계속 긍정이 되면 피치가 계속 올라감
@@ -1793,9 +1805,9 @@ public class BattleUI : MonoBehaviour
             {
                 Vector3 TargetPos = UCard.transform.parent.InverseTransformPoint(World);
 
-                UCard.GetComponent<RectTransform>().DOAnchorPos(TargetPos, 0.5f);
-                UCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
-                UCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => 
+                UCard.GetComponent<RectTransform>().DOAnchorPos(TargetPos, 0.5f * BattleAccel);
+                UCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * BattleAccel, RotateMode.FastBeyond360);
+                UCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * BattleAccel).OnComplete(() => 
                 { 
                     MergeCompleteCardCount++;
                     UCard.SetActive(false);
@@ -1807,9 +1819,9 @@ public class BattleUI : MonoBehaviour
         {
             Vector3 TargetPos = LCard.transform.parent.InverseTransformPoint(World);
 
-            LCard.GetComponent<RectTransform>().DOAnchorPos(TargetPos, 0.5f);
-            LCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);
-            LCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() => 
+            LCard.GetComponent<RectTransform>().DOAnchorPos(TargetPos, 0.5f * BattleAccel);
+            LCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * BattleAccel, RotateMode.FastBeyond360);
+            LCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * BattleAccel).OnComplete(() => 
             { 
                 MergeCompleteCardCount++;
                 LCard.SetActive(false);
@@ -1961,6 +1973,10 @@ public class BattleUI : MonoBehaviour
 
     public void VictoryBattle(int RewardExperience)//승리했을때
     {
+        if (AccelButtonContainer.activeSelf == true)
+        {
+            AccelButtonContainer.SetActive(false);
+        }
         //행동선택 UI비활성화
         if (PlayerActionSelectionBattleUI.activeSelf == true)
         {
@@ -2035,6 +2051,10 @@ public class BattleUI : MonoBehaviour
     public void DefeatBattle(PlayerScript PlayerInfo)
     {
         //행동선택 UI비활성화
+        if (AccelButtonContainer.activeSelf == true)
+        {
+            AccelButtonContainer.SetActive(false);
+        }
         if (PlayerActionSelectionBattleUI.activeSelf == true)
         {
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(-1080, 0.5f).OnComplete(() => { PlayerActionSelectionBattleUI.SetActive(false); });
@@ -2108,13 +2128,13 @@ public class BattleUI : MonoBehaviour
         D_RemainEXPRealCount.text = "(" + RemainEXPCount + ")";
         D_GoodKarmaRealCount.text = "(" + GoodKarmaCount + ")";
         //Score들
-        D_FloorScore.text = (FloorCount * 1000).ToString();
-        D_NormalMonScore.text = (NormalMonCount * 250).ToString();
-        D_EliteMonScore.text = (EliteMonCount * 350).ToString();
-        D_RemainEXPScore.text = (RemainEXPCount / 2).ToString();
-        D_GoodKarmaScore.text = (GoodKarmaCount * 100).ToString();
+        D_FloorScore.text = (FloorCount * 500).ToString();
+        D_NormalMonScore.text = (NormalMonCount * 167).ToString();
+        D_EliteMonScore.text = (EliteMonCount * 250).ToString();
+        D_RemainEXPScore.text = (RemainEXPCount / 3).ToString();
+        D_GoodKarmaScore.text = (GoodKarmaCount * 77).ToString();
         //아래쪽 들
-        D_TotalScore.text = ((FloorCount * 1000) + (NormalMonCount * 250) + (EliteMonCount * 350) + (RemainEXPCount / 2) + (GoodKarmaCount * 100)).ToString();
+        D_TotalScore.text = ((FloorCount * 500) + (NormalMonCount * 167) + (EliteMonCount * 250) + (RemainEXPCount / 3) + (GoodKarmaCount * 77)).ToString();
         D_SuccessionNum.text = ((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
         D_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
     }
@@ -2162,13 +2182,13 @@ public class BattleUI : MonoBehaviour
         W_RemainEXPRealCount.text = "(" + RemainEXPCount + ")";
         W_GoodKarmaRealCount.text = "(" + GoodKarmaCount + ")";
         //Score들
-        W_FloorScore.text = (FloorCount * 1000).ToString();
-        W_NormalMonScore.text = (NormalMonCount * 250).ToString();
-        W_EliteMonScore.text = (EliteMonCount * 350).ToString();
-        W_RemainEXPScore.text = (RemainEXPCount / 2).ToString();
-        W_GoodKarmaScore.text = (GoodKarmaCount * 100).ToString();
+        W_FloorScore.text = (FloorCount * 500).ToString();
+        W_NormalMonScore.text = (NormalMonCount * 167).ToString();
+        W_EliteMonScore.text = (EliteMonCount * 250).ToString();
+        W_RemainEXPScore.text = (RemainEXPCount / 3).ToString();
+        W_GoodKarmaScore.text = (GoodKarmaCount * 77).ToString();
         //아래쪽 들
-        W_TotalScore.text = ((FloorCount * 1000) + (NormalMonCount * 250) + (EliteMonCount * 350) + (RemainEXPCount / 2) + (GoodKarmaCount * 100)).ToString();
+        W_TotalScore.text = ((FloorCount * 500) + (NormalMonCount * 167) + (EliteMonCount * 250) + (RemainEXPCount / 3) + (GoodKarmaCount * 77)).ToString();
         W_SuccessionNum.text = ((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
         W_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
     }
@@ -2176,5 +2196,30 @@ public class BattleUI : MonoBehaviour
     public void ClickDefeatButton()
     {
 
+    }
+    //-----------------------------------------
+    public void ClickAccelButton(int AccelPoint)
+    {
+        switch(AccelPoint)
+        {
+            case 0:
+                BattleAccel = 1f;
+                AccelButtonx1.GetComponent<Image>().color = Color.green;
+                AccelButtonx1_5.GetComponent<Image>().color = Color.white;
+                AccelButtonx2.GetComponent<Image>().color = Color.white;
+                break;
+            case 1:
+                BattleAccel = 0.67f;
+                AccelButtonx1.GetComponent<Image>().color = Color.white;
+                AccelButtonx1_5.GetComponent<Image>().color = Color.green;
+                AccelButtonx2.GetComponent<Image>().color = Color.white;
+                break;
+            case 2:
+                BattleAccel = 0.5f;
+                AccelButtonx1.GetComponent<Image>().color = Color.white;
+                AccelButtonx1_5.GetComponent<Image>().color = Color.white;
+                AccelButtonx2.GetComponent<Image>().color = Color.green;
+                break;
+        }
     }
 }

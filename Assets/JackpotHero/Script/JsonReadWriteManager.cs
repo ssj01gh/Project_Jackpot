@@ -167,6 +167,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
             {
                 E_Info.PlayerReachFloor = 0;
                 E_Info.PlayerEarlyPoint = 0;
+                E_Info.PlayerMaxEarlyPoint = 0;
             }//나머지는 다 초기화//IsRestartGame이 true이 상황에서 PlyaerReachFloor와 PlyaerEarlyPoint의 수치는 
             //PlayerScript의 DefeatformBattle에서 설정된다.나머지는 초기화하고 저장시키면 됨
             E_Info.EarlyStrengthLevel = 0;
@@ -209,6 +210,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     {
         E_Info.PlayerReachFloor = 0;
         E_Info.PlayerEarlyPoint = 0;
+        E_Info.PlayerMaxEarlyPoint = 0;
         E_Info.EarlyStrengthLevel = 0;
         E_Info.EarlyDurabilityLevel = 0;
         E_Info.EarlySpeedLevel = 0;

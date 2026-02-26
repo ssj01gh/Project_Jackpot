@@ -782,7 +782,7 @@ public class BattleManager : MonoBehaviour
                 {//현재 개방된 것 보다 크거나 같으면 게임 승리임
                  //보스중에서도 마지막 분노만 여기로 들어오고
                     UIMgr.B_UI.ClickVictoryButton();
-                    PlayerMgr.GetPlayerInfo().CalculateEarlyPoint();
+                    PlayerMgr.GetPlayerInfo().CalculateEarlyPoint(true);
                     UIMgr.B_UI.WinGame(PlayerMgr.GetPlayerInfo());
                 }
                 else
