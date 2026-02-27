@@ -29,7 +29,6 @@ public class Mon_DefectiveSubject : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
-
         /*
         MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
         MonsterCurrentState = (int)EMonsterActionState.ApplyRegeneration;

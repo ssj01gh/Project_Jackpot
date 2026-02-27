@@ -21,7 +21,6 @@ public class Mon_BerserkGolem : Monster
         MonsterBuff.BuffList[(int)EBuffType.OverCharge] = 5;
         int RandNum = Random.Range(0, 2);
         MonsterCurrentState = (int)EMonsterActionState.Attack;
-
         /*
         MonsterCurrentState = (int)EMonsterActionState.SpawnMonster;
         MonsterCurrentState = (int)EMonsterActionState.ApplyRegeneration;

@@ -75,9 +75,11 @@ MonoBehaviour:
   AddLUKAmount: 0
   AddHPAmount: 0
   AddTirednessAmount: 0
-  EquipmentDetail: "\uB450\uD130\uC6B4 \uAC00\uC8FD\uC740 \uC660\uB9CC\uD55C \uCDA9\uACA9\uC744
-    \uD761\uC218\uD574 \uBC84\uB9BD\uB2C8\uB2E4."
+  EquipmentDetail: "\uB098\uD0DC\uC758 \uB450\uD130\uC6B4 \uAC00\uC8FD\uC774\n\uBD88\uAF43\uC5D0
+    \uC758\uD574 \uAC15\uD654\uB429\uB2C8\uB2E4."
   EquipmentNameEN: Thick Hide
-  EquipmentDetailEN: Its thick hide absorbs most impacts.
+  EquipmentDetailEN: 'Sloth''s thick hide is strengthened
+
+    by flames.'
   EquipmentNameJA: "\u5206\u539A\u3044\u76AE"
-  EquipmentDetailJA: "\u5206\u539A\u3044\u76AE\u819A\u304C\u3001\u307B\u3068\u3093\u3069\u306E\u885D\u6483\u3092\u5438\u53CE\u3057\u307E\u3059\u3002"
+  EquipmentDetailJA: "\u6020\u60F0\u306E\u5206\u539A\u3044\u76AE\u819A\u304C\u3001\n\u708E\u306B\u3088\u3063\u3066\u5F37\u5316\u3055\u308C\u307E\u3059\u3002"

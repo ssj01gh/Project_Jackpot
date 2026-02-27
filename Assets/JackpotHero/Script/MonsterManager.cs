@@ -346,7 +346,7 @@ public class MonsterManager : MonoBehaviour
         int AccTier = (_PlayerInfo.EquipAccessoriesCode / 1000) % 10;
         int IsEventAcc = _PlayerInfo.EquipAccessoriesCode / 10000;
         int AccStateType = (_PlayerInfo.EquipAccessoriesCode / 100) % 10;
-        int AccType = (IsEventBoots * 10) + BootsStateType;
+        int AccType = (IsEventBoots * 10) + AccStateType;
 
         if(BootsType == RESEquip)
         {
@@ -582,6 +582,20 @@ public class MonsterManager : MonoBehaviour
             else//몬스터의 턴이 아닐때
             {
                 ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.ChainAttack] = 0;
+            }
+        }
+    }
+    public void SetActiveMonsterBodies(GameObject TargetMon, bool BodiesState)
+    {
+        Color BodyColor = Color.white;
+        if (BodiesState == false)
+            BodyColor.a = 0;
+
+        for (int i = 0; i < ActiveMonsters.Count; i++)
+        {
+            if (ActiveMonsters[i] != TargetMon)
+            {
+                ActiveMonsters[i].GetComponent<Monster>().MonsterBody.color = BodyColor;
             }
         }
     }

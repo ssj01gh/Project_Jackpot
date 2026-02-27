@@ -21,6 +21,7 @@ public class Mon_DirtGolem : Monster
         base.InitMonsterState();
         //MonsterBuff.BuffList[(int)EBuffType.CurseOfDeath] = 1;
         //MonsterBuff.BuffList[(int)EBuffType.Plunder] = 99;
+        //MonsterBuff.BuffList[(int)EBuffType.Charm] = 99;
         //공격 : 방어 = 1 : 4
         //0~4
         int RandNum = Random.Range(0, 5);
@@ -32,6 +33,7 @@ public class Mon_DirtGolem : Monster
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
+        //MonsterCurrentState = (int)EMonsterActionState.Defense;
     }
 
     public override void SetNextMonsterState()

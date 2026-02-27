@@ -102,37 +102,5 @@ public class Mon_Sloth : Monster
             MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
     }
-
-    public override void SetMonsterAnimation(string AnimationType = "")
-    {
-        //MonsterAnimator
-        if (AnimationType == "Attack")
-        {
-            MonsterAnimator.SetInteger("WoodElementalState", 1);
-        }
-        else
-        {
-            MonsterAnimator.SetInteger("WoodElementalState", 0);
-        }
-    }
-
-    public override bool CheckmonsterAnimationEnd(string AnimationType = "")
-    {
-        if (AnimationType == "Attack")
-        {
-            if (MonsterAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
-            {
-                MonsterAnimator.SetInteger("WoodElementalState", 0);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return true;
-        }
-    }
+    
 }

@@ -271,13 +271,13 @@ MonoBehaviour:
   MonsterBaseHP: 20
   HPVarianceAmount: 5
   MonsterBaseATK: 4
-  ATKVarianceAmount: 1
+  ATKVarianceAmount: 2
   MonsterBaseDUR: 4
   DURVarianceAmount: 1
   MonsterBaseLuk: 0
   LUKVarianceAmount: 0
-  MonsterBaseSPD: 13
-  SPDVarianceAmount: 4
+  MonsterBaseSPD: 10
+  SPDVarianceAmount: 3
   MonsterBaseEXP: 19
   EXPVarianceAmount: 4
   MonsterWeaponCode: 71021

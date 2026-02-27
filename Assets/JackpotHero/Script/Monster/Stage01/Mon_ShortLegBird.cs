@@ -18,22 +18,25 @@ public class Mon_ShortLegBird : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        //MonTotalStatus.MonsterCurrentShieldPoint = 99;
         //MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] = 999;
         //MonsterBuff.BuffList[(int)EBuffType.ToughFist] = 999;
-        //MonsterBuff.BuffList[(int)EBuffType.Reflect] = 20;
+        //MonsterBuff.BuffList[(int)EBuffType.Charm] = 99;
         //공격 : 방어 = 1 : 1
         
         int RandNum = Random.Range(0, 2);
         if (RandNum == 0)
         {
             MonsterCurrentState = (int)EMonsterActionState.Attack;
+            //MonsterCurrentState = (int)EMonsterActionState.Defense;
         }
         else if (RandNum == 1)
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
+            //MonsterCurrentState = (int)EMonsterActionState.Attack;
         }
         
-        //MonsterCurrentState = (int)EMonsterActionState.GiveEnvy;
+        //MonsterCurrentState = (int)EMonsterActionState.Defense;
     }
 
     public override void SetNextMonsterState()
@@ -48,6 +51,7 @@ public class Mon_ShortLegBird : Monster
         else if (RandNum == 1)
         {
             MonsterCurrentState = (int)EMonsterActionState.Defense;
+            //MonsterCurrentState = (int)EMonsterActionState.Attack;
         }
     }
     /*

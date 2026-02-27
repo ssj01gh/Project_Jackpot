@@ -49,6 +49,6 @@ public class Mon_ThornTurtle : Monster
     public override void MonsterGetBuff(int i_BuffType, int BuffCount = 0)
     {
         if(i_BuffType == (int)EBuffType.ThornArmor)
-            base.MonsterGetBuff(i_BuffType, 3);
+            base.MonsterGetBuff(i_BuffType, 4);
     }
 }

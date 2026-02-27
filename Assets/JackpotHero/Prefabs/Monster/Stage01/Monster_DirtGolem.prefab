@@ -272,7 +272,7 @@ MonoBehaviour:
   HPVarianceAmount: 5
   MonsterBaseATK: 6
   ATKVarianceAmount: 2
-  MonsterBaseDUR: 13
+  MonsterBaseDUR: 10
   DURVarianceAmount: 3
   MonsterBaseLuk: 0
   LUKVarianceAmount: 0

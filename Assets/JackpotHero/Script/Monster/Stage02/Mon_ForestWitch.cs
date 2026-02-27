@@ -95,7 +95,7 @@ public class Mon_ForestWitch : Monster
     {
         if(i_BuffType == (int)EBuffType.Regeneration)
         {
-            base.MonsterGetBuff(i_BuffType, 5);
+            base.MonsterGetBuff(i_BuffType, 5);//이건 5로 해야되려나....획복관련이여서.....
         }
     }
 }

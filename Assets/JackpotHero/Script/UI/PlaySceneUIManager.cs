@@ -23,6 +23,8 @@ public class PlaySceneUIManager : MonoBehaviour
     public GettingItenUIScript GI_UI;
     public GuideUI G_UI;
     public GameObject ActionSelectionUI;
+    public Button AS_ResearchButton;
+    public Button AS_RestButton;
     public EventUIScript E_UI;
     public GameObject RestSelectionUI;
     public GameObject FadeUI;
@@ -59,9 +61,7 @@ public class PlaySceneUIManager : MonoBehaviour
         switch(PlayerAction)
         {
             case (int)EPlayerCurrentState.SelectAction:
-                ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
-                ActionSelectionUI.SetActive(true);
-                ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.5f).SetEase(Ease.OutBack);
+                ActiveActionSelectionUI();
                 SoundManager.Instance.PlayBGM("BaseBGM");//빅토리 뜰때 바뀌는게 자연스러울듯? (이건 SelectionAction을 위해 남겨 놓고)
                 if(JsonReadWriteManager.Instance.T_Info.Research == false)
                 {
@@ -70,21 +70,13 @@ public class PlaySceneUIManager : MonoBehaviour
                 }
                 break;
             case (int)EPlayerCurrentState.Battle:
-                if (ActionSelectionUI.activeSelf == true)
-                {
-                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
-                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
-                }
+                InActiveActionSelectionUI();
                 if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack != -1)
                     BG_UI.SetRestBackGround(true);//이것도 어디에 넣어야함
                 B_UI.ActiveBattleUI();
                 break;
             case (int)EPlayerCurrentState.OtherEvent:
-                if (ActionSelectionUI.activeSelf == true)
-                {
-                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
-                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
-                }
+                InActiveActionSelectionUI();
                 //EventUI.SetActive(true);
                 if(JsonReadWriteManager.Instance.T_Info.Event == false)
                 {
@@ -93,11 +85,7 @@ public class PlaySceneUIManager : MonoBehaviour
                 }
                 break;
             case (int)EPlayerCurrentState.Rest:
-                if (ActionSelectionUI.activeSelf == true)
-                {
-                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
-                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
-                }
+                InActiveActionSelectionUI();
                 if(RestSelectionUI.activeSelf == true)
                 {
                     RestSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
@@ -131,18 +119,10 @@ public class PlaySceneUIManager : MonoBehaviour
                 //휴식에서 행동 선택버튼들 활성화
                 break;
             case (int)EPlayerCurrentState.Boss_Event:
-                if (ActionSelectionUI.activeSelf == true)
-                {
-                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
-                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
-                }
+                InActiveActionSelectionUI();
                 break;
             case (int)EPlayerCurrentState.Boss_Battle:
-                if (ActionSelectionUI.activeSelf == true)
-                {
-                    ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
-                    ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
-                }
+                InActiveActionSelectionUI();
                 break;
         }
     }
@@ -156,14 +136,34 @@ public class PlaySceneUIManager : MonoBehaviour
         MEDI_UI.gameObject.SetActive(false);
         SetCurrentStateUI(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction, PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails);
     }
+    public void InActiveActionSelectionUI()
+    {
+        if (ActionSelectionUI.activeSelf == true)
+        {
+            AS_ResearchButton.interactable = false;
+            AS_RestButton.interactable = false;
+            ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
+            ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.5f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+        }
+    }
+    public void ActiveActionSelectionUI()
+    {
+        if(ActionSelectionUI.activeSelf == false)
+        {
+            AS_ResearchButton.interactable = true;
+            AS_RestButton.interactable = true;
+            ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
+            ActionSelectionUI.gameObject.SetActive(true);
+            ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.3f).SetEase(Ease.OutBack);
+        }
+    }
 
     public void RestButtonClick()//
     {
         ActionSelectionUI.GetComponent<RectTransform>().DOKill();
         RestSelectionUI.GetComponent<RectTransform>().DOKill();
 
-        ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
-        ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.3f).OnComplete(() => { ActionSelectionUI.SetActive(false); });
+        InActiveActionSelectionUI();
 
         //RestSelectionUI에서 피로도가 부족하면 안내 매세지를 띄우거나 비활성화 -> 안내 매세지 띄우는게 더 나을듯?
         RestSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
@@ -184,9 +184,7 @@ public class PlaySceneUIManager : MonoBehaviour
         RestSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, 0);
         RestSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(400, 0.3f).OnComplete(() => { RestSelectionUI.SetActive(false); });
 
-        ActionSelectionUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, 0);
-        ActionSelectionUI.gameObject.SetActive(true);
-        ActionSelectionUI.GetComponent<RectTransform>().DOAnchorPosX(-400, 0.3f).SetEase(Ease.OutBack);
+        ActiveActionSelectionUI();
     }
     public void EquipmentButtonClick()
     {
@@ -258,7 +256,15 @@ public class PlaySceneUIManager : MonoBehaviour
         MEDI_UI.gameObject.transform.position = ClickedButton.gameObject.transform.position;
         MEDI_UI.ActiveEquipmentDetailInfoUI(EquipmentInfoManager.Instance.GetMonEquipmentInfo(EquipCode), EquipCode, false);
     }
-
+    //----------------------------
+    public void InActiveWhenZoomInAtBattle()
+    {
+        EDI_UI.InActiveEquipmentDetailInfoUI();
+        MEDI_UI.InActiveEquipmentDetailInfoUI();
+        OP_UI.OptionInActive();
+        NonInven_UI.CloseNonRestInventory();
+    }
+    //----------------------------
     public void PlayerDefeat()//지거나 게임에서 이기거나
     {
         PE_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(100, 0.5f).OnComplete(() => { PE_UI.gameObject.SetActive(false); });

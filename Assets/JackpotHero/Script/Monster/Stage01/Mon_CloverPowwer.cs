@@ -18,6 +18,7 @@ public class Mon_CloverPowwer : Monster
     protected override void InitMonsterState()
     {
         base.InitMonsterState();
+        //MonsterBuff.BuffList[(int)EBuffType.Charm] = 99;
         //공격 : 방어 = 1 : 1
         if (MonsterBuff.BuffList[(int)EBuffType.Luck] <= 0)//행운이 없다면
         {
@@ -36,6 +37,7 @@ public class Mon_CloverPowwer : Monster
                 MonsterCurrentState = (int)EMonsterActionState.Defense;
             }
         }
+        MonsterCurrentState = (int)EMonsterActionState.ApplyLuck;
     }
 
     public override void SetNextMonsterState()
@@ -63,6 +65,6 @@ public class Mon_CloverPowwer : Monster
     public override void MonsterGetBuff(int i_BuffType, int BuffCount = 0)
     {
         if (i_BuffType == (int)EBuffType.Luck)
-            base.MonsterGetBuff((int)EBuffType.Luck, 2);
+            base.MonsterGetBuff((int)EBuffType.Luck, 3);
     }
 }

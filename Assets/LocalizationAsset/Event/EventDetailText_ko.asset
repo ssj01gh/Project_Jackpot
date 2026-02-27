@@ -591,9 +591,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2853264848187481
-    m_Localized: "<color=green>{Getting}</color>\n\uB300\uB828\uC774 \uB05D\uB098\uC790
-      \uD504\uB808\uB9AC\uB3C5 \uAE30\uC0AC\uB294\n\uC5B4\uB514\uB860\uAC00 \uC0AC\uB77C\uC84C\uC2B5\uB2C8\uB2E4.\n\uB2F9\uC2E0\uC740
-      \uC804\uD22C\uAC00 \uC880\uB354 \uB2A5\uC219\uD574\uC9C4\uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
+    m_Localized: "<color=green>{Getting}</color>\n<color=red>{Losing}</color>\n\uB300\uB828\uC774
+      \uB05D\uB098\uC790 \uD504\uB808\uB9AC\uB3C5 \uAE30\uC0AC\uB294\n\uC5B4\uB514\uB860\uAC00
+      \uC0AC\uB77C\uC84C\uC2B5\uB2C8\uB2E4.\n\uB2F9\uC2E0\uC740 \uC804\uD22C\uAC00
+      \uC880\uB354 \uB2A5\uC219\uD574\uC9C4\uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
     m_Metadata:
       m_Items: []
   - m_Id: 2853264848187482

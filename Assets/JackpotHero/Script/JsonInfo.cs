@@ -45,6 +45,7 @@ public class EarlyStrengthenInfo
 {
     public int PlayerReachFloor;
     public int PlayerEarlyPoint;
+    public int PlayerMaxEarlyPoint;
     public int EarlyStrengthLevel;
     public int EarlyDurabilityLevel;
     public int EarlySpeedLevel;

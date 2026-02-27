@@ -35,6 +35,18 @@ public enum EMonsterActionState
     GivePetrification,
     ApplyCharging
 }
+
+public enum EMonsterAnimationState
+{
+    Idle,
+    Attack,
+    Defense,
+    Charm,
+    GiveBuff,
+    ApplyBuff,
+    SpawnMonster,
+    CantSpawnMonster
+}
 public class MonsterCurrentStatus
 {
     public float MonsterMaxHP;
@@ -252,7 +264,6 @@ public class Monster : MonoBehaviour
     {
         BeforeMonsterShield = (int)MonTotalStatus.MonsterCurrentShieldPoint;
     }
-
     protected virtual void InitMonsterState()
     {
         AdditionalEXP = 0;
@@ -291,12 +302,14 @@ public class Monster : MonoBehaviour
     {
 
     }
-    public virtual void SetMonsterAnimation(string AnimationType = "")
+    public virtual void SetMonsterAnimation(int AnimationState)
     {
-
+        //MonAnimeState
+        //MonsterAnimator.SetInteger("DoppelgangerState", 1);
+        MonsterAnimator.SetInteger("MonAnimeState", AnimationState);
     }
 
-    public virtual bool CheckmonsterAnimationEnd(string AnimationType = "")
+    public virtual bool CheckmonsterAnimationEnd(int AnimationState)
     {
         return true;
     }
@@ -439,6 +452,10 @@ public class Monster : MonoBehaviour
             if (CopySTR == true && CopyDUR == true && CopyLUK == true && CopySPD == true)
             {
                 MonsterAnimator.SetInteger("DoppelgangerState", 1);
+            }
+            else
+            {
+                MonsterAnimator.SetInteger("DoppelgangerState", 0);
             }
         }
         if(MonsterName == "Sloth")

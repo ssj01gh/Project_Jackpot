@@ -210,35 +210,17 @@ public class BattleManager : MonoBehaviour
         {
             BeforeBuffProgress();
         }
-
-        /*
-        if (IgnoreBuffProgressAtFirstBattleProgress == true)
+        //버프 계산하고 죽었으면 턴 다시 시작
+        if (CurrentTurnObject != null && CurrentTurnObject.tag == "Monster")
         {
-            MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
-            PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//버프 디버프에의한 스탯 계산용
-        }//처음용
-
-        SetBattleTurn();//플레이어와 몬스터의 SPD값에 영향을 받은 Turn을 결정->아마 여기서 확인할듯?
-        DecideCurrentBattleTurn();//여기서 현재 누구의 차례인지 결정
-        UIMgr.B_UI.SetBattleTurnUI(BattleTurn);//결정된 Turn을 ui에 표시
-        MonMgr.SetCurrentTargetMonster(null);//CurrentTarget초기화
-        UIMgr.B_UI.UnDisplayMonsterDetailUI();//몬스터의 상세 표시 UnActive//상세 스테이터스와 장비같은 것들;
-
-        //여기에서 특정 버프의 데미지라던가 줘야할듯(살아있는 놈의 자신의 턴에)
-        if (IgnoreBuffProgressAtFirstBattleProgress == true)
-        {
-            IgnoreBuffProgressAtFirstBattleProgress = false;
-            ActiveBuffEffectAtFirstTime();
+            if (CurrentTurnObject.GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
+            {
+                //몬스터가 죽으면 progressBattle을 다시 실행한다.
+                CurrentTurnObject = null;
+                ProgressBattle();
+                return;
+            }
         }
-        else
-        {
-            BuffProgress();//이거 처음은 무시하게해야함//여기서 이펙트 발생임.....
-                           //hit 이펙트와 사운드는 BattleUI에서 앞으로 나갈때 발생 해야 할듯?
-            MonMgr.SetActiveMonstersStatus();//현재 Active되있는 몬스터 들의 status 계산
-            PlayerMgr.GetPlayerInfo().SetPlayerTotalStatus();//버프 디버프에의한 스탯 계산용
-            //처음 이후로는 후반에
-        }
-        */
 
 
         UIMgr.PSI_UI.SetPlayerStateUI(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo(), PlayerMgr.GetPlayerInfo().GetPlayerStateInfo(), 
@@ -448,6 +430,9 @@ public class BattleManager : MonoBehaviour
             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 1)
                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower]--;
 
+            if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] >= 1)
+                PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charging] = 0;
+
             PlayerMgr.GetPlayerInfo().PlayerDamage(BattleResultStatus.FinalResultAmount, false, true);
             if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().ShieldAmount >= 1)
             {//쉴드가 남아있으면
@@ -487,7 +472,7 @@ public class BattleManager : MonoBehaviour
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         //여기서는 공격주체가 플레이어
-        UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().gameObject, MonMgr.CurrentTarget, ActionButtonType, BattleResultStatus, 
+        UIMgr.B_UI.ActiveMainBattleUI(PlayerMgr.GetPlayerInfo().gameObject, MonMgr.CurrentTarget, PlayerMgr.GetPlayerInfo().gameObject, ActionButtonType, BattleResultStatus, 
             PlayerMgr.GetPlayerInfo().gameObject.transform.position, IsTargetHasShield, ProgressBattle);
     }
     protected void GiveDebuffToMonsterByAttack(Monster TargetMon)
@@ -654,16 +639,13 @@ public class BattleManager : MonoBehaviour
             case (int)EMonsterActionState.Defense:
                 CurrentBattleState = "Defense";
 
-                if (CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] >= 1)
-                    CurrentTurnObject.GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.Charging] = 0;
-
                 CurrentTurnObject.GetComponent<Monster>().MonsterGetShield(BattleResultStatus.FinalResultAmount);
                 break;
             case (int)EMonsterActionState.SpawnMonster:
                 SpawnMonstersID = CurrentTurnObject.GetComponent<Monster>().GetSummonMonsters();
                 SummonerMonster = CurrentTurnObject;
                 //여기서 다음 턴에 어떤 몬스터를 스폰할지 결정하면 될듯?
-                CurrentBattleState = "Another";
+                CurrentBattleState = "SummonMonster";
                 break;
             case (int)EMonsterActionState.ApplyLuck:
                 CurrentBattleState = "Luck";
@@ -693,22 +675,22 @@ public class BattleManager : MonoBehaviour
                 //사전강화 + 레벨업으로 인한 강화
                 CurrentBattleState = "CopyStrength";
                 int STRPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("STR") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().StrengthLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyStrength, STRPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyStrength, STRPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyCopyDurability:
                 CurrentBattleState = "CopyDurability";
                 int DURPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("DUR") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DurabilityLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyDurability, DURPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyDurability, DURPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyCopySpeed:
                 CurrentBattleState = "CopySpeed";
                 int SPDPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("SPD") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SpeedLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopySpeed, SPDPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopySpeed, SPDPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyCopyLuck:
                 CurrentBattleState = "CopyLuck";
                 int LUKPlusAmount = (int)(JsonReadWriteManager.Instance.GetEarlyState("LUK") + PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().LuckLevel);
-                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyLuck, LUKPlusAmount);
+                CurrentTurnObject.GetComponent<Monster>().MonsterGetBuff((int)EBuffType.CopyLuck, LUKPlusAmount+1);
                 break;
             case (int)EMonsterActionState.ApplyGreed:
                 CurrentBattleState = "Greed";
@@ -784,7 +766,7 @@ public class BattleManager : MonoBehaviour
         UIMgr.EDI_UI.InActiveEquipmentDetailInfoUI();
         UIMgr.MEDI_UI.InActiveEquipmentDetailInfoUI();
         //여기선 공격주체가 몬스터
-        UIMgr.B_UI.ActiveMainBattleUI(CurrentTurnObject.GetComponent<Monster>().gameObject, CurrentTurnObject.GetComponent<Monster>(), CurrentBattleState, BattleResultStatus,
+        UIMgr.B_UI.ActiveMainBattleUI(CurrentTurnObject.GetComponent<Monster>().gameObject, CurrentTurnObject.GetComponent<Monster>(), PlayerMgr.GetPlayerInfo().gameObject, CurrentBattleState, BattleResultStatus,
             PlayerMgr.GetPlayerInfo().gameObject.transform.position, IsTargetHasShield, ProgressBattle);
     }
     public void PressVictoryButton()
@@ -800,7 +782,7 @@ public class BattleManager : MonoBehaviour
                 {//현재 개방된 것 보다 크거나 같으면 게임 승리임
                  //보스중에서도 마지막 분노만 여기로 들어오고
                     UIMgr.B_UI.ClickVictoryButton();
-                    PlayerMgr.GetPlayerInfo().CalculateEarlyPoint();
+                    PlayerMgr.GetPlayerInfo().CalculateEarlyPoint(true);
                     UIMgr.B_UI.WinGame(PlayerMgr.GetPlayerInfo());
                 }
                 else
@@ -897,34 +879,6 @@ public class BattleManager : MonoBehaviour
         {
             MonMgr.SetCurrentTargetMonster(obj.GetComponent<Monster>());
         }
-    }
-    protected void ActiveBuffEffectAtFirstTime()
-    {
-        if (CurrentTurnObject.tag == "Player")
-        {
-            if(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Petrification] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Frost", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
-            }
-            if(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Fear] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerMgr.GetPlayerInfo().gameObject.transform.position);
-            }
-        }
-        /*//몬스터는 딱히 걸리지 않는다? -> 턴 결정하는 매커니즘이 바뀌면 공포는 걸릴듯, 그리고 동상의 효과가 변한다던가?
-        else if(CurrentTurnObject.tag == "Monster")
-        {
-            Monster MonInfo = CurrentTurnObject.GetComponent<Monster>();
-            if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.FrostBite] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Frost", MonInfo.gameObject.transform.position);
-            }
-            if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.Fear] > 0)
-            {
-                EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", MonInfo.gameObject.transform.position);
-            }
-        }
-        */
     }
     protected void AfterBuffProgress()
     {
