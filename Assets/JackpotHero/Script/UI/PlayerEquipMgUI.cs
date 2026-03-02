@@ -100,6 +100,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject InvenBuffDetailExplainObject;//설명 나올 오브젝트
     public TextMeshProUGUI InvenBuffDetailExplainTitleText;//설명 제목
     public TextMeshProUGUI InvenBuffDetailExplainDetailText;//설명 상세
+    [Header("GachaEquipDictionary")]
+    public GachaEquipDictionaryUI GED_UI;
 
     protected Color InventoryActiveColor = new Color(0.28f, 0.19f, 0.1f, 1f);
     protected Color InventoryUnActiveColor = new Color(0.78f, 0.78f, 0.78f, 0.5f);
@@ -231,6 +233,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGambling.SetActive(false);
         MouseFollowImage.gameObject.SetActive(false);
         EquipGachaObject.SetActive(false);
+        GED_UI.gameObject.SetActive(false);
         if (EquipBuffDetailExplainObject != null)
         {
             EquipBuffDetailExplainObject.SetActive(false);
@@ -2322,5 +2325,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             RemainGachaText.text = PS_ShortTable.GetEntry("PS_CP_GachaRemainCount")?.GetLocalizedString();
             RemainGachaText.text += RemainGachaCount.ToString();
         }
+    }
+
+    public void PressEquipGachaDictionayButton()
+    {
+        GED_UI.ActiveGachaEquipDictionary();
     }
 }
