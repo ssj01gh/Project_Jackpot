@@ -56,6 +56,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public TextMeshProUGUI EquipGamblingButtonText;
     public Button EquipGamblingLevelUpButton;
     public TextMeshProUGUI EquipGamblingLevelUPButtonText;
+    public Button FastEquipGamblingButton;
+    public TextMeshProUGUI FastEquipGamblingText;
     public TextMeshProUGUI[] EquipGamblingPercentTexts;
     [Header("EquipMg_MouseFollowImage")]
     public Image MouseFollowImage;
@@ -100,6 +102,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject InvenBuffDetailExplainObject;//설명 나올 오브젝트
     public TextMeshProUGUI InvenBuffDetailExplainTitleText;//설명 제목
     public TextMeshProUGUI InvenBuffDetailExplainDetailText;//설명 상세
+    [Header("EqupiGachaButton")]
+    public GameObject DictionaryButton;
     [Header("GachaEquipDictionary")]
     public GachaEquipDictionaryUI GED_UI;
 
@@ -294,13 +298,6 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     private void OnLinkEnter(string id, int DetailNum)
     {
-        /*
-         * DetailExplainText.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-    ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
-    ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
-    ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
-    ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
-         */
         if (DetailNum == 0)
             EquipBuffDetailExplainObject.SetActive(true);
         else
@@ -836,24 +833,46 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {//인벤토리가 꽉찼다면
             EquipGamblingButton.interactable = false;
             EquipGamblingButtonText.text = "";
+            FastEquipGamblingButton.interactable = false;
+            FastEquipGamblingText.text = "";
             if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            {
                 EquipGamblingButtonText.text = "Not enough\r\nInventory";
+                FastEquipGamblingText.text = "Not enough\r\nInventory";
+            }
             else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            {
                 EquipGamblingButtonText.text = "インベントリ\r\n不足";
+                FastEquipGamblingText.text = "インベントリ\r\n不足";
+            }
             else
+            {
                 EquipGamblingButtonText.text = "인벤토리\r\n공간 부족";
+                FastEquipGamblingText.text = "인벤토리\r\n공간 부족";
+            }
         }
         else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 
             EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel))
         {//경험치가 부족할경우
             EquipGamblingButton.interactable = false;
             EquipGamblingButtonText.text = "";
+            FastEquipGamblingButton.interactable = false;
+            FastEquipGamblingText.text = "";
             if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            {
                 EquipGamblingButtonText.text = "Not enough EXP\r\nRequired EXP : ";
+                FastEquipGamblingText.text = "Not enough EXP\r\nRequired EXP : ";
+            }
             else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            {
                 EquipGamblingButtonText.text = "EXP不足\r\n必要EXP : ";
+                FastEquipGamblingText.text = "EXP不足\r\n必要EXP : ";
+            }
             else
+            {
                 EquipGamblingButtonText.text = "EXP 부족\r\n필요 EXP : ";
+                FastEquipGamblingText.text = "EXP 부족\r\n필요 EXP : ";
+            }
 
             if (EquipGamblingButtonText.text != "")
             {
@@ -864,16 +883,28 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {
             EquipGamblingButton.interactable = true;
             EquipGamblingButtonText.text = "";
+            FastEquipGamblingButton.interactable = true;
+            FastEquipGamblingText.text = "";
             if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            {
                 EquipGamblingButtonText.text = "Equipment Gacha\r\nEXP : ";
+                FastEquipGamblingText.text = "Quick Equipment Gacha\r\nEXP : ";
+            }
             else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            {
                 EquipGamblingButtonText.text = "装備ガチャ\r\nEXP : ";
+                FastEquipGamblingText.text = "クイック装備ガチャ\r\nEXP : ";
+            }
             else
+            {
                 EquipGamblingButtonText.text = "장비 뽑기\r\nEXP : ";
+                FastEquipGamblingText.text = "빠른 장비 뽑기\r\nEXP : ";
+            }
 
             if (EquipGamblingButtonText.text != "")
             {
                 EquipGamblingButtonText.text += EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+                FastEquipGamblingText.text += EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
             }
         }
 
@@ -1609,6 +1640,26 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         SetGambling();
     }
 
+    public void PressQuickEquipGachaButton()
+    {
+        //경험치가 줄어든다.
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
+        DictionaryButton.SetActive(false);
+
+        //씁 그냥 Quick용을 따로 만들어 버릴까?
+        EquipGachaObject.SetActive(true);//뒷 배경을 어둡게
+        EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
+        EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
+        EquipGachaCapsule.GetComponent<Image>().color = Color.white;
+        EquipGachaCapsule.SetActive(true);
+        ClickButton.SetActive(false);//이거는 캡슐 클릭용 버튼?
+        GetEquipClickButton.SetActive(false);//이거는 누르면 다음으로 넘어가는 버튼?
+
+        EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
+            OnComplete(() => { ActiveGachaClickButton(); });
+    }
+
     public void PressEquipGamblingGachaButton()//ActiveGacha
     {//
         //경험치가 줄어든다.
@@ -1616,6 +1667,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
         //초기화
         //삼격형 판 초기화
+        DictionaryButton.SetActive(true);
         EquipGachaTrianglePlate.gameObject.SetActive(true);//삼각형 판
         EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ZeroLightOn];
         EquipGachaIcon_TierGem.SetActive(false);
@@ -2130,6 +2182,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //2. 빛(흰색의 원)이 엄청 커진다음에는 페이드 인이 되면서 장비가 모습을 드러낸다.(삼각형 판에 있는 icon들은 모두 없어진 상태여야한다.)
         //스케일이 0~9까지 커졌다가 30까지 커지고 페이드 인
         //3. 장비를 클릭하면 획득한다.
+        GED_UI.InActiveGachaEquipDictionay();
+        DictionaryButton.SetActive(false);//사전도 이제 비활성화
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
         CurrentGachaPhase = (int)EGachaPhase.EndPhase;
         EquipGachaIcon_StateType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
