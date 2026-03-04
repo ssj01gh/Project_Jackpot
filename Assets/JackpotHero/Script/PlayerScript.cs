@@ -887,11 +887,12 @@ public class PlayerScript : MonoBehaviour
         if (PlayerState.CurrentFloor > JsonReadWriteManager.Instance.E_Info.PlayerReachFloor)
         {//기록상 최대 스테이지에 도달 성공했을때 갱신
             JsonReadWriteManager.Instance.E_Info.PlayerReachFloor = PlayerState.CurrentFloor;
-            JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = PlayerState.CurrentFloor * 6;
-            if(IsWinGame == true)
-            {//끝까지 깼을때 한번더 갱신
-                JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = 28;
-            }
+        }
+
+        JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 6;
+        if (IsWinGame == true)
+        {//끝까지 깼을때 한번더 갱신
+            JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = 28;
         }
 
         BeforeCalculatePoint = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 500);//2당 1포

@@ -177,6 +177,7 @@ public class RestManager : MonoBehaviour
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
 
+                UIMgr.B_UI.ActiveBattleUI();
                 PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle_Battle);
                 BattleMgr.InitCurrentBattleMonsters();
                 BattleMgr.InitMonsterNPlayerActiveGuage();

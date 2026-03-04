@@ -640,20 +640,11 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         //만약 JsonReadWriteManager의 E_info.Luk의 레벨이 7이상이라면 5퍼센트 확률로 발생
         if (JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel >= 7)
         {
-            int RandLuk = Random.Range(0, 99);
-            if(RandLuk < 5)//장비 1티어 상승 당첨 -> 1티어라면 2티어로....5티어 라면 6티어로
-            {
-                if (RandNum < TierOneNum)//1티어는 2티어로
-                    RandNum = TierOneNum + 1;
-                else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//2티어는 3티어로
-                    RandNum = TierTwoNum + 1;
-                else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//3티어는 4티어로
-                    RandNum = TierThreeNum + 1;
-                else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//4티어는 5티어로
-                    RandNum = TierFourNum + 1;
-                else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//5티어는 6티어로
-                    RandNum = TierFiveNum + 1;
-            }
+            TierOneNum = EquipmentGamblingDetail_Luck[GamblingLevel, 0];
+            TierTwoNum = EquipmentGamblingDetail_Luck[GamblingLevel, 1] + TierOneNum;
+            TierThreeNum = EquipmentGamblingDetail_Luck[GamblingLevel, 2] + TierTwoNum;
+            TierFourNum = EquipmentGamblingDetail_Luck[GamblingLevel, 3] + TierThreeNum;
+            TierFiveNum = EquipmentGamblingDetail_Luck[GamblingLevel, 4] + TierFourNum;
         }
         int EquipTier = 1;
         int EquipStateType = 0;
@@ -673,8 +664,8 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         else if (RandNum >= TierFiveNum)//티어 6
             EquipTier = (int)EEquipTier.TierSix;
 
-        EquipStateType = Random.Range((int)EEquipStateType.StateSTR, (int)EEquipStateType.StateNormal + 1);
-        EquipType = Random.Range((int)EEquipType.TypeWeapon, (int)EEquipType.TypeAcc + 1);
+        EquipStateType = Random.Range((int)EEquipStateType.StateSTR, (int)EEquipStateType.StateNormal + 1);//0~7까지
+        EquipType = Random.Range((int)EEquipType.TypeWeapon, (int)EEquipType.TypeAcc + 1);//0~4까지
         if (EquipType != (int)EEquipType.TypeBoots && EquipType != (int)EEquipType.TypeAcc)
         {
             EquipMultiType = Random.Range((int)EEquipMultiType.MultiSteady, (int)EEquipMultiType.MultiVolatile + 1);

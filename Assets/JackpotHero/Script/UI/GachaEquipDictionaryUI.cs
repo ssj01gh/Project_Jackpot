@@ -80,64 +80,69 @@ public class GachaEquipDictionaryUI : MonoBehaviour
         //EquipDetail_InvenDetailText
 
         // 링크 인덱스를 찾음
-        int EquipLinkIndex01 = TMP_TextUtilities.FindIntersectingLink(EquipEffectText01, mousePosition, Camera.main);
-        int EquipLinkIndex02 = TMP_TextUtilities.FindIntersectingLink(EquipEffectText02, mousePosition, Camera.main);
-
-        if (EquipLinkIndex01 != EquipCurrentLinkIndex01)
+        if(SelectionEquipInfo01.activeSelf == true)
         {
-            // 기존 링크에서 마우스가 벗어났을 때
-            if (EquipCurrentLinkIndex01 != -1)
+            int EquipLinkIndex01 = TMP_TextUtilities.FindIntersectingLink(EquipEffectText01, mousePosition, Camera.main);
+            if (EquipLinkIndex01 != EquipCurrentLinkIndex01)
             {
-                string oldID = EquipEffectText01.textInfo.linkInfo[EquipCurrentLinkIndex01].GetLinkID();
-                OnLinkExit(oldID);
+                // 기존 링크에서 마우스가 벗어났을 때
+                if (EquipCurrentLinkIndex01 != -1)
+                {
+                    string oldID = EquipEffectText01.textInfo.linkInfo[EquipCurrentLinkIndex01].GetLinkID();
+                    OnLinkExit(oldID);
+                }
+
+                // 새로운 링크에 마우스가 올라갔을 때
+                if (EquipLinkIndex01 != -1)
+                {
+                    string newID = EquipEffectText01.textInfo.linkInfo[EquipLinkIndex01].GetLinkID();
+
+                    TMP_LinkInfo LinkInfo = EquipEffectText01.textInfo.linkInfo[EquipLinkIndex01];
+                    int FirstCharIndex = LinkInfo.linkTextfirstCharacterIndex;
+                    int LastCharIndex = FirstCharIndex + LinkInfo.linkTextLength - 1;
+                    Vector3 BottomLeft = EquipEffectText01.textInfo.characterInfo[FirstCharIndex].bottomLeft;
+                    Vector3 TopRight = EquipEffectText01.textInfo.characterInfo[LastCharIndex].topRight;
+                    Vector3 CenterPos = (EquipEffectText01.transform.TransformPoint(BottomLeft) + EquipEffectText01.transform.TransformPoint(TopRight)) * 0.5f;
+
+                    OnLinkEnter(newID, CenterPos);
+                }
+                EquipCurrentLinkIndex01 = EquipLinkIndex01;
             }
-
-            // 새로운 링크에 마우스가 올라갔을 때
-            if (EquipLinkIndex01 != -1)
-            {
-                string newID = EquipEffectText01.textInfo.linkInfo[EquipLinkIndex01].GetLinkID();
-
-                TMP_LinkInfo LinkInfo = EquipEffectText01.textInfo.linkInfo[EquipLinkIndex01];
-                int FirstCharIndex = LinkInfo.linkTextfirstCharacterIndex;
-                int LastCharIndex = FirstCharIndex + LinkInfo.linkTextLength - 1;
-                Vector3 BottomLeft = EquipEffectText01.textInfo.characterInfo[FirstCharIndex].bottomLeft;
-                Vector3 TopRight = EquipEffectText01.textInfo.characterInfo[LastCharIndex].topRight;
-                Vector3 CenterPos = (EquipEffectText01.transform.TransformPoint(BottomLeft) + EquipEffectText01.transform.TransformPoint(TopRight)) * 0.5f;
-
-                OnLinkEnter(newID, CenterPos);
-            }
-            EquipCurrentLinkIndex01 = EquipLinkIndex01;
         }
-
-        if (EquipLinkIndex02 != EquipCurrentLinkIndex02)
+        if(SelectionEquipInfo02.activeSelf == true)
         {
-            // 기존 링크에서 마우스가 벗어났을 때
-            if (EquipCurrentLinkIndex02 != -1)
+            int EquipLinkIndex02 = TMP_TextUtilities.FindIntersectingLink(EquipEffectText02, mousePosition, Camera.main);
+            if (EquipLinkIndex02 != EquipCurrentLinkIndex02)
             {
-                string oldID = EquipEffectText02.textInfo.linkInfo[EquipCurrentLinkIndex02].GetLinkID();
-                OnLinkExit(oldID);
+                // 기존 링크에서 마우스가 벗어났을 때
+                if (EquipCurrentLinkIndex02 != -1)
+                {
+                    string oldID = EquipEffectText02.textInfo.linkInfo[EquipCurrentLinkIndex02].GetLinkID();
+                    OnLinkExit(oldID);
+                }
+
+                // 새로운 링크에 마우스가 올라갔을 때
+                if (EquipLinkIndex02 != -1)
+                {
+                    string newID = EquipEffectText02.textInfo.linkInfo[EquipLinkIndex02].GetLinkID();
+
+                    TMP_LinkInfo LinkInfo = EquipEffectText02.textInfo.linkInfo[EquipLinkIndex02];
+                    int FirstCharIndex = LinkInfo.linkTextfirstCharacterIndex;
+                    int LastCharIndex = FirstCharIndex + LinkInfo.linkTextLength - 1;
+                    Vector3 BottomLeft = EquipEffectText02.textInfo.characterInfo[FirstCharIndex].bottomLeft;
+                    Vector3 TopRight = EquipEffectText02.textInfo.characterInfo[LastCharIndex].topRight;
+                    Vector3 CenterPos = (EquipEffectText02.transform.TransformPoint(BottomLeft) + EquipEffectText02.transform.TransformPoint(TopRight)) * 0.5f;
+
+                    OnLinkEnter(newID, CenterPos);
+                }
+                EquipCurrentLinkIndex02 = EquipLinkIndex02;
             }
-
-            // 새로운 링크에 마우스가 올라갔을 때
-            if (EquipLinkIndex02 != -1)
-            {
-                string newID = EquipEffectText02.textInfo.linkInfo[EquipLinkIndex02].GetLinkID();
-
-                TMP_LinkInfo LinkInfo = EquipEffectText02.textInfo.linkInfo[EquipLinkIndex02];
-                int FirstCharIndex = LinkInfo.linkTextfirstCharacterIndex;
-                int LastCharIndex = FirstCharIndex + LinkInfo.linkTextLength - 1;
-                Vector3 BottomLeft = EquipEffectText02.textInfo.characterInfo[FirstCharIndex].bottomLeft;
-                Vector3 TopRight = EquipEffectText02.textInfo.characterInfo[LastCharIndex].topRight;
-                Vector3 CenterPos = (EquipEffectText02.transform.TransformPoint(BottomLeft) + EquipEffectText02.transform.TransformPoint(TopRight)) * 0.5f;
-
-                OnLinkEnter(newID, CenterPos);
-            }
-            EquipCurrentLinkIndex02 = EquipLinkIndex02;
         }
     }
 
     public void ActiveGachaEquipDictionary()
     {
+        //Debug.Log("IsClickingTips");
         //왼쪽에서 오른쪽으로(만약 이미 DoTween중이라면 이 함수의 호출을 무시
         //카드 하이라이트를 STR과 Weapon위치에 활성화, 위치 시키기
         //줄 하이라이트를 하나 끄고(1번) 하나를 연결 시키기(0번)

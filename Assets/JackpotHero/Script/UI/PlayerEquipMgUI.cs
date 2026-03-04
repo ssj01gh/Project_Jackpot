@@ -68,6 +68,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject ClickButton;
     public GameObject GetEquipClickButton;
     public Image EquipGachaResultImage;
+    public GameObject EquipQuickGachaEquipmentObject;
+    public GameObject EquipQuickGachaCapsule;
+    public GameObject QuickClickButton;
+    public GameObject QuickGetEquipClickButton;
+    public Image QuickEquipGachaResultImage;
     public GameObject LightStorage;
     public GameObject[] EquipGachaLight;
     public Image EquipGachaTrianglePlate;
@@ -1649,15 +1654,65 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
         //씁 그냥 Quick용을 따로 만들어 버릴까?
         EquipGachaObject.SetActive(true);//뒷 배경을 어둡게
-        EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
-        EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
-        EquipGachaCapsule.GetComponent<Image>().color = Color.white;
-        EquipGachaCapsule.SetActive(true);
-        ClickButton.SetActive(false);//이거는 캡슐 클릭용 버튼?
-        GetEquipClickButton.SetActive(false);//이거는 누르면 다음으로 넘어가는 버튼?
+        EquipGachaTrianglePlate.gameObject.SetActive(false);//삼각형 판
+        EquipGachaEquipmentObject.SetActive(false);
+        EquipQuickGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
+        EquipQuickGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
+        EquipQuickGachaCapsule.GetComponent<Image>().color = Color.white;
+        EquipQuickGachaCapsule.SetActive(true);
+        EquipQuickGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
+        QuickClickButton.SetActive(false);//캡슐 클릭용
+        QuickGetEquipClickButton.SetActive(false);//장비 클릭용
+        //다른 갓챠용 UI끄기
+        GachaCardSelectObject.SetActive(false);
+        for (int i = 0; i < EquipGachaLight.Length; i++)
+        {
+            EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[i];
+            //EquipGachaLightOutline[i].color = GachaTierLightColor[0];
+            EquipGachaLight[i].SetActive(false);
+        }
+        //현재 레벨에 맞게 장비 정하기
+        GachaResultEquipCode = EquipmentInfoManager.Instance.GetGamblingEquipmentCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+        //장비의 이미지 출력
+        QuickEquipGachaResultImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
+        //위에서 부터 캡슐이 바운스를 하며 떨어짐
+        EquipQuickGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
+            OnComplete(() => { ActiveQuickGachaClickButton(); });
+    }
 
-        EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
-            OnComplete(() => { ActiveGachaClickButton(); });
+    protected void ActiveQuickGachaClickButton()
+    {
+        if (DOTween.IsTweening(QuickClickButton.GetComponent<RectTransform>()) == true)
+            DOTween.Kill(QuickClickButton.GetComponent<RectTransform>());
+
+        QuickClickButton.SetActive(true);
+        QuickClickButton.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -5f);
+        QuickClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+    }
+
+    public void PressQuickGachaClickButton()
+    {
+        QuickClickButton.GetComponent<RectTransform>().DOKill();
+        QuickClickButton.SetActive(false);
+        SoundManager.Instance.PlaySFX("EquipGacha_Result");
+        //누르면 캡슐이 확 커짐
+        EquipQuickGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(7f, 7f), 0.8f).
+            OnComplete(() =>
+            {
+                EquipQuickGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f).
+                OnComplete(() =>
+                {
+                    //장비 클릭 버튼 활성화
+                    QuickGetEquipClickButton.SetActive(true);
+                });
+            });
+    }
+
+    public void PressQuickGetEquipButton()
+    {
+        //장비를 인벤토리로
+        PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);//인벤토리에 넣고
+        PressGetEquipClickButton();//UI업데이트
     }
 
     public void PressEquipGamblingGachaButton()//ActiveGacha
@@ -1680,6 +1735,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         FinalEquipImage.gameObject.SetActive(false);
         //티어 보석 뽑는 UI 초기화
         EquipGachaObject.SetActive(true);
+        EquipQuickGachaEquipmentObject.SetActive(false);
         EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
         EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
         EquipGachaCapsule.GetComponent<Image>().color = Color.white;
@@ -1715,6 +1771,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     private void ActiveGachaClickButton()
     {
+        if (DOTween.IsTweening(ClickButton.GetComponent<RectTransform>()) == true)
+            DOTween.Kill(ClickButton.GetComponent<RectTransform>());
         ClickButton.SetActive(true);
         ClickButton.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -5f);
         ClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
