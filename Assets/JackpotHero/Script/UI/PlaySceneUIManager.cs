@@ -31,6 +31,7 @@ public class PlaySceneUIManager : MonoBehaviour
     public RestUIScript R_UI;
 
     public NonRestInventoryUIScript NonInven_UI;
+    public GachaEquipDictionaryUI NonGachaDic_UI;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -263,6 +264,7 @@ public class PlaySceneUIManager : MonoBehaviour
         MEDI_UI.InActiveEquipmentDetailInfoUI();
         OP_UI.OptionInActive();
         NonInven_UI.CloseNonRestInventory();
+        NonGachaDic_UI.InActiveGachaEquipDictionay();
     }
     //----------------------------
     public void PlayerDefeat()//지거나 게임에서 이기거나
@@ -271,6 +273,7 @@ public class PlaySceneUIManager : MonoBehaviour
         PSI_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(-125, 0.5f).OnComplete(() => { PSI_UI.gameObject.SetActive(false); });
         CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
         NonInven_UI.gameObject.SetActive(false);
+        NonGachaDic_UI.gameObject.SetActive(false);
         SoundManager.Instance.PlayBGM("DefeatBGM");
     }
     //-------------------------------PressRestTimeUI

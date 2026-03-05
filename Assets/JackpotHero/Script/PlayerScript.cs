@@ -882,7 +882,13 @@ public class PlayerScript : MonoBehaviour
 
     public void CalculateEarlyPoint(bool IsWinGame = false)//전투에서 졌을떄//지거나 게임에서 이기거나
     {
-        int EarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint;
+        //이게 다른데 찍히면 EarlyPoint는 줄어들어서 그런듯함
+        int EarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint + JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel +
+            JsonReadWriteManager.Instance.E_Info.EarlyDurabilityLevel + JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel +
+            JsonReadWriteManager.Instance.E_Info.EarlyResilienceLevel + JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel +
+            JsonReadWriteManager.Instance.E_Info.EarlyHpLevel + JsonReadWriteManager.Instance.E_Info.EarlyTirednessLevel +
+            JsonReadWriteManager.Instance.E_Info.EarlyExperience + JsonReadWriteManager.Instance.E_Info.EarlyExperienceMagnification +
+            JsonReadWriteManager.Instance.E_Info.EquipmentSuccessionLevel;
         int BeforeCalculatePoint = 0;
         if (PlayerState.CurrentFloor > JsonReadWriteManager.Instance.E_Info.PlayerReachFloor)
         {//기록상 최대 스테이지에 도달 성공했을때 갱신

@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -284,11 +285,16 @@ public class EquipmentDetailInfoUI : MonoBehaviour
 
         StartCoroutine(LoadEquipSpendSTA(EquipInfo.EquipmentType, (int)EquipInfo.SpendTiredness, EquipInfo.EquipmentCode));
         //장비의 추가 스탯
-        ClickEquipAddSTR.text = EquipInfo.AddSTRAmount.ToString();
-        ClickEquipAddDUR.text = EquipInfo.AddDURAmount.ToString();
-        ClickEquipAddRES.text = EquipInfo.AddRESAmount.ToString();
-        ClickEquipAddSPD.text = EquipInfo.AddSPDAmount.ToString();
-        ClickEquipAddLUK.text = EquipInfo.AddLUKAmount.ToString();
+        if(ClickEquipAddSTR != null)
+            ClickEquipAddSTR.text = EquipInfo.AddSTRAmount.ToString();
+        if (ClickEquipAddDUR != null)
+            ClickEquipAddDUR.text = EquipInfo.AddDURAmount.ToString();
+        if (ClickEquipAddRES != null)
+            ClickEquipAddRES.text = EquipInfo.AddRESAmount.ToString();
+        if (ClickEquipAddSPD != null)
+            ClickEquipAddSPD.text = EquipInfo.AddSPDAmount.ToString();
+        if (ClickEquipAddLUK != null)
+            ClickEquipAddLUK.text = EquipInfo.AddLUKAmount.ToString();
         //장비의 설명창
         ClickEquipDetailText.text = EquipInfo.EquipmentDetail.ToString();
         //이 밑에꺼는 나중에 버튼 클릭하면 열리게 설정만 해놓고
