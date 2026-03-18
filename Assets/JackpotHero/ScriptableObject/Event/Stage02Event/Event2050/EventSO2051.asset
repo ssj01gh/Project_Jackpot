@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 2051
   EventTitle: PS_ETT_2051
-  EventImage: {fileID: 21300000, guid: 3e4559929240086498964b4c2dffd7dd, type: 3}
+  EventImage: {fileID: 21300000, guid: 6d0081e44fb0737458985c162dcc647a, type: 3}
   EventDetail: PS_EDT_2051
   EventSelectionDetail:
   - PS_ESDT_2051_1

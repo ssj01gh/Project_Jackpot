@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 2012
   EventTitle: PS_ETT_2012
-  EventImage: {fileID: 21300000, guid: 68259fe8c63e9364283f2a7440910310, type: 3}
+  EventImage: {fileID: 21300000, guid: 13e0d4cdb6497aa4cb019aa3d3dedc57, type: 3}
   EventDetail: PS_EDT_2012
   EventSelectionDetail:
   - PS_ESDT_2012_1

@@ -1197,9 +1197,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2853264852381752
-    m_Localized: "\u201CWe were betrayed by the Seven Kings\u2014no, the Six Kings.\u201D\n\u201CThey
-      are preparing an invasion.\u201D\n\u201CWrath is a biological weapon to be
-      used in war.\u201D\n\"We must prepare.\""
+    m_Localized: "\u201CIn this place, one\u2019s power is determined by their karma.\u201D\n\u2026\n\u201CThe
+      kings of this realm are gathering their strength for Wrath.\u201D\n\u2026\n\u201CWe
+      who failed to live righteously cannot stop it.\u201D\n\u201CMay the one who
+      finds this be a virtuous soul.\u201D"
     m_Metadata:
       m_Items: []
   - m_Id: 2853264852381753

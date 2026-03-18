@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 8091
   EventTitle: PS_ETT_8091
-  EventImage: {fileID: 21300000, guid: 2a8f5f302112a7f46ba8d90346caed24, type: 3}
+  EventImage: {fileID: 21300000, guid: 2b514460a71959141913fd756cbe52c9, type: 3}
   EventDetail: PS_EDT_8091
   EventSelectionDetail:
   - PS_ESDT_8091_1

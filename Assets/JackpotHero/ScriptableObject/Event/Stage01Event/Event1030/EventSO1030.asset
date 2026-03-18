@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 1030
   EventTitle: PS_ETT_1030
-  EventImage: {fileID: 21300000, guid: eb222176706b5974b9e238674072accb, type: 3}
+  EventImage: {fileID: 21300000, guid: 31e18db8ad0b87f478c1c8a32475a1ad, type: 3}
   EventDetail: PS_EDT_1030
   EventSelectionDetail:
   - PS_ESDT_1030_1

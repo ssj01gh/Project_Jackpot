@@ -56,6 +56,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public TextMeshProUGUI EquipGamblingButtonText;
     public Button EquipGamblingLevelUpButton;
     public TextMeshProUGUI EquipGamblingLevelUPButtonText;
+    public Button FastEquipGamblingButton;
+    public TextMeshProUGUI FastEquipGamblingText;
     public TextMeshProUGUI[] EquipGamblingPercentTexts;
     [Header("EquipMg_MouseFollowImage")]
     public Image MouseFollowImage;
@@ -66,6 +68,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject ClickButton;
     public GameObject GetEquipClickButton;
     public Image EquipGachaResultImage;
+    public GameObject EquipQuickGachaEquipmentObject;
+    public GameObject EquipQuickGachaCapsule;
+    public GameObject QuickClickButton;
+    public GameObject QuickGetEquipClickButton;
+    public Image QuickEquipGachaResultImage;
     public GameObject LightStorage;
     public GameObject[] EquipGachaLight;
     public Image EquipGachaTrianglePlate;
@@ -100,6 +107,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public GameObject InvenBuffDetailExplainObject;//설명 나올 오브젝트
     public TextMeshProUGUI InvenBuffDetailExplainTitleText;//설명 제목
     public TextMeshProUGUI InvenBuffDetailExplainDetailText;//설명 상세
+    [Header("EqupiGachaButton")]
+    public GameObject DictionaryButton;
+    [Header("GachaEquipDictionary")]
+    public GachaEquipDictionaryUI GED_UI;
 
     protected Color InventoryActiveColor = new Color(0.28f, 0.19f, 0.1f, 1f);
     protected Color InventoryUnActiveColor = new Color(0.78f, 0.78f, 0.78f, 0.5f);
@@ -231,6 +242,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGambling.SetActive(false);
         MouseFollowImage.gameObject.SetActive(false);
         EquipGachaObject.SetActive(false);
+        GED_UI.gameObject.SetActive(false);
         if (EquipBuffDetailExplainObject != null)
         {
             EquipBuffDetailExplainObject.SetActive(false);
@@ -291,13 +303,6 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     private void OnLinkEnter(string id, int DetailNum)
     {
-        /*
-         * DetailExplainText.text = "도달 최대 층수 (" + JsonReadWriteManager.Instance.E_Info.PlayerReachFloor +
-    ")\r\n일반 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillNormalMonster +
-    ")\r\n엘리트 몬스터 (" + PlayerInfo.GetPlayerStateInfo().KillEliteMonster +
-    ")\r\n남은 경험치 (" + PlayerInfo.GetPlayerStateInfo().Experience +
-    ")\r\n선한 영향력 (" + PlayerInfo.GetPlayerStateInfo().GoodKarma + ")";
-         */
         if (DetailNum == 0)
             EquipBuffDetailExplainObject.SetActive(true);
         else
@@ -833,24 +838,46 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {//인벤토리가 꽉찼다면
             EquipGamblingButton.interactable = false;
             EquipGamblingButtonText.text = "";
+            FastEquipGamblingButton.interactable = false;
+            FastEquipGamblingText.text = "";
             if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            {
                 EquipGamblingButtonText.text = "Not enough\r\nInventory";
+                FastEquipGamblingText.text = "Not enough\r\nInventory";
+            }
             else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            {
                 EquipGamblingButtonText.text = "インベントリ\r\n不足";
+                FastEquipGamblingText.text = "インベントリ\r\n不足";
+            }
             else
+            {
                 EquipGamblingButtonText.text = "인벤토리\r\n공간 부족";
+                FastEquipGamblingText.text = "인벤토리\r\n공간 부족";
+            }
         }
         else if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 
             EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel))
         {//경험치가 부족할경우
             EquipGamblingButton.interactable = false;
             EquipGamblingButtonText.text = "";
+            FastEquipGamblingButton.interactable = false;
+            FastEquipGamblingText.text = "";
             if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            {
                 EquipGamblingButtonText.text = "Not enough EXP\r\nRequired EXP : ";
+                FastEquipGamblingText.text = "Not enough EXP\r\nRequired EXP : ";
+            }
             else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            {
                 EquipGamblingButtonText.text = "EXP不足\r\n必要EXP : ";
+                FastEquipGamblingText.text = "EXP不足\r\n必要EXP : ";
+            }
             else
+            {
                 EquipGamblingButtonText.text = "EXP 부족\r\n필요 EXP : ";
+                FastEquipGamblingText.text = "EXP 부족\r\n필요 EXP : ";
+            }
 
             if (EquipGamblingButtonText.text != "")
             {
@@ -861,16 +888,28 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {
             EquipGamblingButton.interactable = true;
             EquipGamblingButtonText.text = "";
+            FastEquipGamblingButton.interactable = true;
+            FastEquipGamblingText.text = "";
             if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            {
                 EquipGamblingButtonText.text = "Equipment Gacha\r\nEXP : ";
+                FastEquipGamblingText.text = "Quick Equipment Gacha\r\nEXP : ";
+            }
             else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            {
                 EquipGamblingButtonText.text = "装備ガチャ\r\nEXP : ";
+                FastEquipGamblingText.text = "クイック装備ガチャ\r\nEXP : ";
+            }
             else
+            {
                 EquipGamblingButtonText.text = "장비 뽑기\r\nEXP : ";
+                FastEquipGamblingText.text = "빠른 장비 뽑기\r\nEXP : ";
+            }
 
             if (EquipGamblingButtonText.text != "")
             {
                 EquipGamblingButtonText.text += EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+                FastEquipGamblingText.text += EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
             }
         }
 
@@ -1606,6 +1645,76 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         SetGambling();
     }
 
+    public void PressQuickEquipGachaButton()
+    {
+        //경험치가 줄어든다.
+        SoundManager.Instance.PlayUISFX("UI_Button");
+        PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
+        DictionaryButton.SetActive(false);
+
+        //씁 그냥 Quick용을 따로 만들어 버릴까?
+        EquipGachaObject.SetActive(true);//뒷 배경을 어둡게
+        EquipGachaTrianglePlate.gameObject.SetActive(false);//삼각형 판
+        EquipGachaEquipmentObject.SetActive(false);
+        EquipQuickGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
+        EquipQuickGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
+        EquipQuickGachaCapsule.GetComponent<Image>().color = Color.white;
+        EquipQuickGachaCapsule.SetActive(true);
+        EquipQuickGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
+        QuickClickButton.SetActive(false);//캡슐 클릭용
+        QuickGetEquipClickButton.SetActive(false);//장비 클릭용
+        //다른 갓챠용 UI끄기
+        GachaCardSelectObject.SetActive(false);
+        for (int i = 0; i < EquipGachaLight.Length; i++)
+        {
+            EquipGachaLight[i].GetComponent<Image>().color = GachaTierLightColor[i];
+            //EquipGachaLightOutline[i].color = GachaTierLightColor[0];
+            EquipGachaLight[i].SetActive(false);
+        }
+        //현재 레벨에 맞게 장비 정하기
+        GachaResultEquipCode = EquipmentInfoManager.Instance.GetGamblingEquipmentCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
+        //장비의 이미지 출력
+        QuickEquipGachaResultImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
+        //위에서 부터 캡슐이 바운스를 하며 떨어짐
+        EquipQuickGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
+            OnComplete(() => { ActiveQuickGachaClickButton(); });
+    }
+
+    protected void ActiveQuickGachaClickButton()
+    {
+        if (DOTween.IsTweening(QuickClickButton.GetComponent<RectTransform>()) == true)
+            DOTween.Kill(QuickClickButton.GetComponent<RectTransform>());
+
+        QuickClickButton.SetActive(true);
+        QuickClickButton.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -5f);
+        QuickClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+    }
+
+    public void PressQuickGachaClickButton()
+    {
+        QuickClickButton.GetComponent<RectTransform>().DOKill();
+        QuickClickButton.SetActive(false);
+        SoundManager.Instance.PlaySFX("EquipGacha_Result");
+        //누르면 캡슐이 확 커짐
+        EquipQuickGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(7f, 7f), 0.8f).
+            OnComplete(() =>
+            {
+                EquipQuickGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f).
+                OnComplete(() =>
+                {
+                    //장비 클릭 버튼 활성화
+                    QuickGetEquipClickButton.SetActive(true);
+                });
+            });
+    }
+
+    public void PressQuickGetEquipButton()
+    {
+        //장비를 인벤토리로
+        PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);//인벤토리에 넣고
+        PressGetEquipClickButton();//UI업데이트
+    }
+
     public void PressEquipGamblingGachaButton()//ActiveGacha
     {//
         //경험치가 줄어든다.
@@ -1613,6 +1722,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
         //초기화
         //삼격형 판 초기화
+        DictionaryButton.SetActive(true);
         EquipGachaTrianglePlate.gameObject.SetActive(true);//삼각형 판
         EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ZeroLightOn];
         EquipGachaIcon_TierGem.SetActive(false);
@@ -1625,6 +1735,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         FinalEquipImage.gameObject.SetActive(false);
         //티어 보석 뽑는 UI 초기화
         EquipGachaObject.SetActive(true);
+        EquipQuickGachaEquipmentObject.SetActive(false);
         EquipGachaEquipmentObject.SetActive(true);//장비를 감추고 있는 캡슐과 장비 이미지를 가지고 있는 오브젝트
         EquipGachaCapsule.GetComponent<RectTransform>().localScale = Vector3.one;
         EquipGachaCapsule.GetComponent<Image>().color = Color.white;
@@ -1660,6 +1771,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     private void ActiveGachaClickButton()
     {
+        if (DOTween.IsTweening(ClickButton.GetComponent<RectTransform>()) == true)
+            DOTween.Kill(ClickButton.GetComponent<RectTransform>());
         ClickButton.SetActive(true);
         ClickButton.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -5f);
         ClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
@@ -2127,6 +2240,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //2. 빛(흰색의 원)이 엄청 커진다음에는 페이드 인이 되면서 장비가 모습을 드러낸다.(삼각형 판에 있는 icon들은 모두 없어진 상태여야한다.)
         //스케일이 0~9까지 커졌다가 30까지 커지고 페이드 인
         //3. 장비를 클릭하면 획득한다.
+        GED_UI.InActiveGachaEquipDictionay();
+        DictionaryButton.SetActive(false);//사전도 이제 비활성화
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
         CurrentGachaPhase = (int)EGachaPhase.EndPhase;
         EquipGachaIcon_StateType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
@@ -2322,5 +2437,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             RemainGachaText.text = PS_ShortTable.GetEntry("PS_CP_GachaRemainCount")?.GetLocalizedString();
             RemainGachaText.text += RemainGachaCount.ToString();
         }
+    }
+
+    public void PressEquipGachaDictionayButton()
+    {
+        GED_UI.ActiveGachaEquipDictionary();
     }
 }

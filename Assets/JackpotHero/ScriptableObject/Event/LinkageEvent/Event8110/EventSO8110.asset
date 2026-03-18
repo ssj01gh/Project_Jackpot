@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 8110
   EventTitle: PS_ETT_8110
-  EventImage: {fileID: 21300000, guid: d6d3179fde406f841b468abd736ff35c, type: 3}
+  EventImage: {fileID: 21300000, guid: 9acf5e1ddd5b350428e5d77da6ddfcce, type: 3}
   EventDetail: PS_EDT_8110
   EventSelectionDetail:
   - PS_ESDT_8110_1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 8000
   EventTitle: PS_ETT_8000
-  EventImage: {fileID: 21300000, guid: fb972b2d3cc5d2c4b9bd461e97f3f6da, type: 3}
+  EventImage: {fileID: 21300000, guid: 4a4c8fb9662cfe54c911a70622d68d7e, type: 3}
   EventDetail: PS_EDT_8000
   EventSelectionDetail:
   - PS_ESDT_8000_1

@@ -274,7 +274,7 @@ public class BattleUI : MonoBehaviour
     public void ActiveBattleUI()//전투를 시작할때 한번만
     {
         gameObject.SetActive(true);
-
+        
         AccelButtonContainer.SetActive(true);
         if(BattleAccel == 0.67f)
         {

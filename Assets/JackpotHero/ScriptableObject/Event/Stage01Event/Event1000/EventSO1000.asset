@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 1000
   EventTitle: PS_ETT_1000
-  EventImage: {fileID: 21300000, guid: 29a8c7c400d1187498fdd38463146524, type: 3}
+  EventImage: {fileID: 21300000, guid: f72e92ff03afcb449a6b9cbd1a8a3113, type: 3}
   EventDetail: PS_EDT_1000
   EventSelectionDetail:
   - PS_ESDT_1000_1

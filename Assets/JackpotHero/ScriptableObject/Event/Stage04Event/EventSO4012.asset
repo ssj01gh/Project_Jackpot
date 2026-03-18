@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 4012
   EventTitle: PS_ETT_4012
-  EventImage: {fileID: 21300000, guid: 7fbfc2fabaf2ba0418916e2edfb1ea2c, type: 3}
+  EventImage: {fileID: 21300000, guid: 7358dd639f64f9f4f9d66560029e2dda, type: 3}
   EventDetail: PS_EDT_4012
   EventSelectionDetail:
   - PS_ESDT_4012_1

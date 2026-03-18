@@ -43,7 +43,7 @@ public class Mon_ShortLegBird : Monster
     {
         base.SetNextMonsterState();
         //공격 : 방어 = 1 : 1
-        int RandNum = Random.Range(0, 5);
+        int RandNum = Random.Range(0, 2);
         if (RandNum == 0)
         {
             MonsterCurrentState = (int)EMonsterActionState.Attack;

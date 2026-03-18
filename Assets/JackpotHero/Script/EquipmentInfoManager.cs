@@ -640,20 +640,11 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         //만약 JsonReadWriteManager의 E_info.Luk의 레벨이 7이상이라면 5퍼센트 확률로 발생
         if (JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel >= 7)
         {
-            int RandLuk = Random.Range(0, 99);
-            if(RandLuk < 5)//장비 1티어 상승 당첨 -> 1티어라면 2티어로....5티어 라면 6티어로
-            {
-                if (RandNum < TierOneNum)//1티어는 2티어로
-                    RandNum = TierOneNum + 1;
-                else if (RandNum >= TierOneNum && RandNum < TierTwoNum)//2티어는 3티어로
-                    RandNum = TierTwoNum + 1;
-                else if (RandNum >= TierTwoNum && RandNum < TierThreeNum)//3티어는 4티어로
-                    RandNum = TierThreeNum + 1;
-                else if (RandNum >= TierThreeNum && RandNum < TierFourNum)//4티어는 5티어로
-                    RandNum = TierFourNum + 1;
-                else if (RandNum >= TierFourNum && RandNum < TierFiveNum)//5티어는 6티어로
-                    RandNum = TierFiveNum + 1;
-            }
+            TierOneNum = EquipmentGamblingDetail_Luck[GamblingLevel, 0];
+            TierTwoNum = EquipmentGamblingDetail_Luck[GamblingLevel, 1] + TierOneNum;
+            TierThreeNum = EquipmentGamblingDetail_Luck[GamblingLevel, 2] + TierTwoNum;
+            TierFourNum = EquipmentGamblingDetail_Luck[GamblingLevel, 3] + TierThreeNum;
+            TierFiveNum = EquipmentGamblingDetail_Luck[GamblingLevel, 4] + TierFourNum;
         }
         int EquipTier = 1;
         int EquipStateType = 0;
@@ -673,8 +664,8 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
         else if (RandNum >= TierFiveNum)//티어 6
             EquipTier = (int)EEquipTier.TierSix;
 
-        EquipStateType = Random.Range((int)EEquipStateType.StateSTR, (int)EEquipStateType.StateNormal + 1);
-        EquipType = Random.Range((int)EEquipType.TypeWeapon, (int)EEquipType.TypeAcc + 1);
+        EquipStateType = Random.Range((int)EEquipStateType.StateSTR, (int)EEquipStateType.StateNormal + 1);//0~7까지
+        EquipType = Random.Range((int)EEquipType.TypeWeapon, (int)EEquipType.TypeAcc + 1);//0~4까지
         if (EquipType != (int)EEquipType.TypeBoots && EquipType != (int)EEquipType.TypeAcc)
         {
             EquipMultiType = Random.Range((int)EEquipMultiType.MultiSteady, (int)EEquipMultiType.MultiVolatile + 1);
@@ -748,5 +739,89 @@ public class EquipmentInfoManager : MonoSingleton<EquipmentInfoManager>
             return 0;
         }
         return GamblingGachaCost[Level];
+    }
+
+    public EquipmentInfo GetDictionaryEquipmentInfo(int StateTypeNum, int EquipTypeNum)
+    {
+        //2티어 장비의 이미지
+        //스탯 증가량, 스테미너 사용량, 설명창
+        //스탯 증가량과 스테미너 사용량은 T X n 식으로 표기
+        //설명창에도 티어 마다 달라지는 수가 있다면 T X n 식으로 표기함
+        int PlayerEquipEventType = 1;
+        int PlayerEquipTier = 2;
+        int PlayerEquipStateType = StateTypeNum;
+        int PlayerEquipType = EquipTypeNum;
+        int PlayerEquipMultiType = 1;
+        EquipmentInfo AssembleEquip = new EquipmentInfo();
+
+        AssembleEquip.EquipmentType = PlayerEquipType;
+        AssembleEquip.EquipmentTier = PlayerEquipTier;
+        AssembleEquip.EquipmentCode = (PlayerEquipEventType * 10000) + (PlayerEquipTier * 1000) + (PlayerEquipStateType * 100) + (PlayerEquipType * 10) + PlayerEquipMultiType;
+        //이름은 딱히 필요없음
+        AssembleEquip.EquipmentName = "";
+        //STA -> 전달 하는 곳에서 T X 를 적는다.
+        AssembleEquip.SpendTiredness = (int)(GetEquipIncreseInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).SpendTired);
+        //스탯 증가량도 STA와 동일
+        AssembleEquip.AddSTRAmount = GetEquipIncreseInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).IncreaseSTR;
+        AssembleEquip.AddDURAmount = GetEquipIncreseInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).IncreaseDUR;
+        AssembleEquip.AddRESAmount = GetEquipIncreseInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).IncreaseRES;
+        AssembleEquip.AddSPDAmount = GetEquipIncreseInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).IncreaseSPD;
+        AssembleEquip.AddLUKAmount = GetEquipIncreseInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).IncreaseLUK;
+        //슬롯 필요없음
+        //이미지
+        AssembleEquip.EquipmentImage = GetEquipSpriteInfo(PlayerEquipEventType, PlayerEquipTier, PlayerEquipStateType, PlayerEquipType).EquipSprite;
+
+        //설명창
+        string BeforeDetailString = "";
+        if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.English)
+            BeforeDetailString = GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmnetDetailEN;
+        else if (JsonReadWriteManager.Instance.O_Info.CurrentLanguage == (int)ELanguageNum.Japanese)
+            BeforeDetailString = GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmnetDetailJA;
+        else
+            BeforeDetailString = GetEquipDetailInfo(PlayerEquipEventType, PlayerEquipStateType, PlayerEquipType).EquipmentDetail;
+
+        switch (PlayerEquipStateType)
+        {
+            case (int)EEquipStateType.StateSTR:
+                string STRB = "T×" + BootsBuffInt[(int)EEquipStateType.StateSTR];
+                string STRA = "T×" + AccessoriesBuffInt[(int)EEquipStateType.StateSTR];
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{STRB}", STRB).Replace("{STRA}", STRA);
+                break;
+            case (int)EEquipStateType.StateDUR:
+                string DURB = "T×" + BootsBuffInt[(int)EEquipStateType.StateDUR];
+                string DURA = "T×" + AccessoriesBuffInt[(int)EEquipStateType.StateDUR];
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{DURB}", DURB).Replace("{DURA}", DURA);
+                break;
+            case (int)EEquipStateType.StateRES:
+                string RESB = "T×" + BootsBuffInt[(int)EEquipStateType.StateRES];
+                string RESA = "15 - T×" + AccessoriesBuffInt[(int)EEquipStateType.StateRES];
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{RESB}", RESB).Replace("{RESA}", RESA);
+                break;
+            case (int)EEquipStateType.StateSPD:
+                string SPDB = "T×" + BootsBuffInt[(int)EEquipStateType.StateSPD];
+                string SPDA = "T×" + AccessoriesBuffInt[(int)EEquipStateType.StateSPD];
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{SPDB}", SPDB).Replace("{SPDA}", SPDA);
+                break;
+            case (int)EEquipStateType.StateLUK:
+                string LUKB = "T×" + BootsBuffInt[(int)EEquipStateType.StateLUK];
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{LUKB}", LUKB);
+                break;
+            case (int)EEquipStateType.StateHP:
+                string HPB = "T×" + BootsBuffInt[(int)EEquipStateType.StateHP];
+                string HPA = "T×" + AccessoriesBuffInt[(int)EEquipStateType.StateHP];
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{HPB}", HPB).Replace("{HPA}", HPA);
+                break;
+            case (int)EEquipStateType.StateSTA:
+                string STAB = "T×" + BootsBuffInt[(int)EEquipStateType.StateSTA];
+                string STAA = "T×" + AccessoriesBuffInt[(int)EEquipStateType.StateSTA];
+                AssembleEquip.EquipmentDetail = BeforeDetailString.Replace("{STAB}", STAB).Replace("{STAA}", STAA);
+                break;
+            case (int)EEquipStateType.StateNormal:
+            case (int)EEquipStateType.StateStart:
+                AssembleEquip.EquipmentDetail = BeforeDetailString;
+                break;
+        }
+
+        return AssembleEquip;
     }
 }
