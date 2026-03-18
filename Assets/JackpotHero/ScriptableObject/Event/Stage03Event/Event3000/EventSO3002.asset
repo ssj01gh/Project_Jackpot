@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 3002
   EventTitle: PS_ETT_3002
-  EventImage: {fileID: 21300000, guid: dde1d04b8a8ff8e428ff8d00170714c8, type: 3}
+  EventImage: {fileID: 21300000, guid: fae86dce56c831542ac668d76fc159da, type: 3}
   EventDetail: PS_EDT_3002
   EventSelectionDetail:
   - PS_ESDT_3002_1

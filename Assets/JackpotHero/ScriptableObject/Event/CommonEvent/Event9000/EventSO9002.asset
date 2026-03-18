@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 9002
   EventTitle: PS_ETT_9002
-  EventImage: {fileID: 21300000, guid: 7fa0a749fd65ff5498633828324f9e18, type: 3}
+  EventImage: {fileID: 21300000, guid: 641b81c58f01ced4087bb4991a5db8da, type: 3}
   EventDetail: PS_EDT_9002
   EventSelectionDetail:
   - PS_ESDT_9002_1

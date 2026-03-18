@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 3061
   EventTitle: PS_ETT_3061
-  EventImage: {fileID: 21300000, guid: d7caec180ea2c14438bf3c6623b23b17, type: 3}
+  EventImage: {fileID: 21300000, guid: 8c18818b9ec430940baa0b3df9a7d92c, type: 3}
   EventDetail: PS_EDT_3061
   EventSelectionDetail:
   - PS_ESDT_3061_1

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 4020
   EventTitle: PS_ETT_4020
-  EventImage: {fileID: 21300000, guid: 924956377a58f6d4096080a1d2055e34, type: 3}
+  EventImage: {fileID: 21300000, guid: 591d5bdafec894848b82fc82f8c19844, type: 3}
   EventDetail: PS_EDT_4020
   EventSelectionDetail:
   - PS_ESDT_4020_1

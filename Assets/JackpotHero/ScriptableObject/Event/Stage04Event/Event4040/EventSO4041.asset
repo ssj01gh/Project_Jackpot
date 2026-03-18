@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 4041
   EventTitle: PS_ETT_4041
-  EventImage: {fileID: 21300000, guid: 615f8fa254dd5144a996831779cd7c1b, type: 3}
+  EventImage: {fileID: 21300000, guid: 3f04053710a6bb34b87c4176ab88f2ce, type: 3}
   EventDetail: PS_EDT_4041
   EventSelectionDetail:
   - PS_ESDT_4041_1

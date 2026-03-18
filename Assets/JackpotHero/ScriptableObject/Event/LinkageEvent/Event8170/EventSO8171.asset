@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 8171
   EventTitle: PS_ETT_8171
-  EventImage: {fileID: 21300000, guid: 21fbb4c73822ff1499ada3e60b402ad0, type: 3}
+  EventImage: {fileID: 21300000, guid: 767af2d5f65017c40910e74099695ce9, type: 3}
   EventDetail: PS_EDT_8171
   EventSelectionDetail:
   - PS_ESDT_8171_1

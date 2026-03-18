@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 2021
   EventTitle: PS_ETT_2021
-  EventImage: {fileID: 21300000, guid: 09ac7c68ef8c33a42ae84cf13978ad09, type: 3}
+  EventImage: {fileID: 21300000, guid: d207656f6305a2744a12800879ae63ed, type: 3}
   EventDetail: PS_EDT_2021
   EventSelectionDetail:
   - PS_ESDT_2021_1

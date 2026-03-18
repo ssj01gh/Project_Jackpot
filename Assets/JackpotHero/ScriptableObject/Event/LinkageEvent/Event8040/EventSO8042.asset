@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 8042
   EventTitle: PS_ETT_8042
-  EventImage: {fileID: 21300000, guid: 3645ca0b9a460594684fb4b1ce496cb5, type: 3}
+  EventImage: {fileID: 21300000, guid: a18b06df1feb53c488aacce2ae6b25aa, type: 3}
   EventDetail: PS_EDT_8042
   EventSelectionDetail:
   - PS_ESDT_8042_1

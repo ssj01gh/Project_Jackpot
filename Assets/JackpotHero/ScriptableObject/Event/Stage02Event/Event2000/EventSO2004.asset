@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 2004
   EventTitle: PS_ETT_2004
-  EventImage: {fileID: 21300000, guid: 142dc3214f1bdba4b811692c0f7025e7, type: 3}
+  EventImage: {fileID: 21300000, guid: bfb39a30073a5c347ba7bff298c92f3f, type: 3}
   EventDetail: PS_EDT_2004
   EventSelectionDetail:
   - PS_ESDT_2004_1

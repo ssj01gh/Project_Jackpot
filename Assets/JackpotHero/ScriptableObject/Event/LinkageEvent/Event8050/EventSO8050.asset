@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EventCode: 8050
   EventTitle: PS_ETT_8050
-  EventImage: {fileID: 21300000, guid: 5c6b57e5baa8aa6428a2bbaad2507c1f, type: 3}
+  EventImage: {fileID: 21300000, guid: 7eacf6fef1428b74ab69a0776549e212, type: 3}
   EventDetail: PS_EDT_8050
   EventSelectionDetail:
   - PS_ESDT_8050_1
