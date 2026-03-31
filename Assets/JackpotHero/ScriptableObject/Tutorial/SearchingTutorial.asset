@@ -17,9 +17,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f6ee7bd1990c2a94c938567f403f82bf, type: 3}
   - {fileID: 21300000, guid: 12c198f790c7e3c40825237a5bbc0ffb, type: 3}
   - {fileID: 21300000, guid: 2d54bb93600d971419946bc8d6ebad46, type: 3}
+  - {fileID: 21300000, guid: 2d54bb93600d971419946bc8d6ebad46, type: 3}
   TutorialTextPos:
   - {x: -555, y: 255}
   - {x: -130, y: 355}
+  - {x: 30, y: 0}
   - {x: 0, y: 175}
   - {x: 30, y: 0}
   TutorialText:
@@ -27,3 +29,4 @@ MonoBehaviour:
   - TT_ST02
   - TT_ST03
   - TT_ST04
+  - TT_ST05
