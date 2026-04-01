@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BattleSuddenAttackTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: 15b039b9da7cc5042b4f4e325f386c3f, type: 3}
-  - {fileID: 21300000, guid: c7cd238dba6ce984496f8a6c60d77c91, type: 3}
+  - {fileID: 21300000, guid: a217679b920313b49a4a7b14418abc9c, type: 3}
+  - {fileID: 21300000, guid: 950b13f5df1d90d4fb7e7257ec689239, type: 3}
   TutorialTextPos:
   - {x: 0, y: 150}
   - {x: -460, y: -100}

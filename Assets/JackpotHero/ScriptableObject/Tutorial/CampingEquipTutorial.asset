@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: CampingEquipTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: 41c9cb054a2480941aa1094a0bac4a75, type: 3}
-  - {fileID: 21300000, guid: 61c049a8dde89be4a8b7348196565e1c, type: 3}
-  - {fileID: 21300000, guid: 85b66a561a9897248a3266d2497cae79, type: 3}
-  - {fileID: 21300000, guid: d223c70e14513484a97762ba1a90bf0d, type: 3}
-  - {fileID: 21300000, guid: d223c70e14513484a97762ba1a90bf0d, type: 3}
-  - {fileID: 21300000, guid: d223c70e14513484a97762ba1a90bf0d, type: 3}
-  - {fileID: 21300000, guid: d223c70e14513484a97762ba1a90bf0d, type: 3}
+  - {fileID: 21300000, guid: 9ad4391fb5b1cfb4ca5b349f25af0c12, type: 3}
+  - {fileID: 21300000, guid: d38d24b31feb2654487f41d3fc8ef3d3, type: 3}
+  - {fileID: 21300000, guid: 7649d49a83b33164f8192267d6e5ad5f, type: 3}
+  - {fileID: 21300000, guid: 7649d49a83b33164f8192267d6e5ad5f, type: 3}
+  - {fileID: 21300000, guid: 24b825ac86717ff4586ac815d095c700, type: 3}
+  - {fileID: 21300000, guid: 24b825ac86717ff4586ac815d095c700, type: 3}
+  - {fileID: 21300000, guid: 4103f9cb7372dab4594f72d7c2f994ae, type: 3}
   TutorialTextPos:
   - {x: 0, y: 120}
   - {x: -280, y: 240}
   - {x: 520, y: -190}
-  - {x: -100, y: -360}
-  - {x: -100, y: -360}
-  - {x: -100, y: -360}
-  - {x: -100, y: -360}
+  - {x: 510, y: -120}
+  - {x: 630, y: -190}
+  - {x: 630, y: -120}
+  - {x: -200, y: -360}
   TutorialText:
   - TT_CET01
   - TT_CET02

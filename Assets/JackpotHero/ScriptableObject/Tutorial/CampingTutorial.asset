@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CampingTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: 4aa6aaa66be49f04da9fecfaa79f5114, type: 3}
-  - {fileID: 21300000, guid: b46be6d4aac15154686dcc6d4974f049, type: 3}
-  - {fileID: 21300000, guid: cf458c43dd98fc748a67c265953ea767, type: 3}
-  - {fileID: 21300000, guid: 02a02f16d8d631f4a84dfb4613c9c001, type: 3}
+  - {fileID: 21300000, guid: 21283037d80dd304a979c614c0f70e77, type: 3}
+  - {fileID: 21300000, guid: 1428b05a6fa9c174db733dcbdd5da04c, type: 3}
+  - {fileID: 21300000, guid: cff0e685dcbed694e8f5e699425e171b, type: 3}
+  - {fileID: 21300000, guid: 52e02fff8d2dbb840b81e2a88f63d512, type: 3}
   TutorialTextPos:
   - {x: 50, y: 240}
   - {x: -30, y: 50}
