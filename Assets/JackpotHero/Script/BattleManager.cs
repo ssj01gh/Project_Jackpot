@@ -61,6 +61,26 @@ public class BattleManager : MonoBehaviour
     protected GameObject SummonerMonster = null;
     //protected List<float> MonsterActiveGuage = new List<float>();
 
+    protected enum EAfterBuffPriority
+    {
+        //낮은게 우선순위 낮음
+        P_Lust,
+        P_Fear,
+        P_Servant_CurseOfDeath,
+        P_SelfDestruct,
+        P_OverCharge,
+        P_UnDead
+    }
+    protected enum EBeforeBuffPriority
+    {
+        //낮은게 우선순위 낮음
+        P_RegenArmor,
+        P_ReCharge,
+        P_Regeneration,
+        P_Cower_Weakness,
+        P_Burn,
+        P_Poison
+    }
     void Start()
     {
         
@@ -152,7 +172,7 @@ public class BattleManager : MonoBehaviour
             SoundManager.Instance.PlayBGM("NormalBattleBGM");
         }
 
-        //몬스터는 여기서 불사를 계산해야함
+        //몬스터는 여기서 불사를 계산해야함 -> 여기서 계산하는 불사는 타격에 의한 불사 발동임
         List<int> RewardEXPs = MonMgr.CheckActiveMonstersRSurvive(PlayerMgr);//현재 스폰된 몬스터중 죽은 몬스터 정리//죽을때 Reward증가
         PlayerMgr.GetPlayerInfo().CheckUnDeadBuff();
         if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().SaveRestQualityBySuddenAttack == -1)
@@ -172,6 +192,7 @@ public class BattleManager : MonoBehaviour
         //버프 계산 <- 이놈은 근데 전의 녀석을 계산함 만약 없으면 계산X
         if (CurrentTurnObject != null)
         {
+            //여기서 계산하는 불사는 버프에 의한 불사 발동
             AfterBuffProgress();//AfterBuffProgress
             //위축 -> 공포는 모든 턴마다 전환
             while (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] >= 3)
@@ -883,13 +904,45 @@ public class BattleManager : MonoBehaviour
     protected void AfterBuffProgress()
     {
         //각 플레이어와 몬스터에 버프가 존재하면 버프의 턴을 1씩 감소시키고 그거에 맞춰서 데미지를 주거나 해야함
-        for(int i = 0; i < (int)EBuffType.CountOfBuff; i++)
+        int AfterBuffPriority = -1;
+
+        for (int i = 0; i < (int)EBuffType.CountOfBuff; i++)
         {
-            AfterBuffCalculate(i);
+            AfterBuffCalculate(i, ref AfterBuffPriority);
+        }
+
+        switch (AfterBuffPriority)
+        {
+            case (int)EAfterBuffPriority.P_Lust:
+            case (int)EAfterBuffPriority.P_Fear:
+            case (int)EAfterBuffPriority.P_OverCharge:
+                SoundManager.Instance.PlaySFX("Buff_Forcing");
+                //Forcing
+                break;
+            case (int)EAfterBuffPriority.P_Servant_CurseOfDeath:
+                SoundManager.Instance.PlaySFX("Buff_Consume");
+                //Poison
+                break;
+            case (int)EAfterBuffPriority.P_SelfDestruct:
+                //Debug.Log("IsSelfDestruct?");
+                SoundManager.Instance.PlaySFX("Buff_Burn");
+                //Burn
+                break;
+            case (int)EAfterBuffPriority.P_UnDead:
+                SoundManager.Instance.PlaySFX("Buff_Healing");
+                //Healing
+                break;
+            default:
+                break;
         }
     }
-    protected void AfterBuffCalculate(int BuffsType)
+    protected void AfterBuffCalculate(int BuffsType, ref int PriorityValue)
     {
+        //After에서 적용되는 버프 = UnDead__, CurseOfDeath__, Fear__, OverCharge__
+        //MonsterAfter = UnDead__, CurseOfDeath__, Servant, SelfDestruct__, OverCharge__, Lust__
+
+        //우선 순위 UnDead() <- OverCharge <- SelfDestruct <- Servant, CurseOfDeath <- Fear <- Lust
+        //Healing <- Forcing <- Burn <- Poison <- Forcing <- Forcing
         if (CurrentTurnObject.tag == "Player" && MonMgr.GetActiveMonsters().Count > 0)
         {
             if (BuffsType == (int)EBuffType.UnDead && PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead] > 0)
@@ -902,6 +955,10 @@ public class BattleManager : MonoBehaviour
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentHpRatio =
                         PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP / PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxHP;
                     PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.UnDead] = 0;
+
+                    if (PriorityValue < (int)EAfterBuffPriority.P_UnDead)
+                        PriorityValue = (int)EAfterBuffPriority.P_UnDead;
+
                     EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerBuffPos);
                 }
                 else
@@ -924,6 +981,10 @@ public class BattleManager : MonoBehaviour
                                 float CurseOfDeathDamage = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP * 9 / 10;
                                 PlayerMgr.GetPlayerInfo().PlayerDamage(CurseOfDeathDamage);
                                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath] = 0;
+
+                                if (PriorityValue < (int)EAfterBuffPriority.P_Servant_CurseOfDeath)
+                                    PriorityValue = (int)EAfterBuffPriority.P_Servant_CurseOfDeath;
+
                                 EffectManager.Instance.ActiveEffect("BattleEffect_Buff_CurseOfDeath", PlayerBuffPos);
                             }
                             else
@@ -931,16 +992,19 @@ public class BattleManager : MonoBehaviour
                                 PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.CurseOfDeath]--;
                             }
                             break;
-                        case (int)EBuffType.Recharge:
-                            break;
-                        case (int)EBuffType.Cower:
-                            break;
-                        case (int)EBuffType.Fear:
+                        case (int)EBuffType.Fear://공포는 조건이 충족될때 매턴 전환됨 -> 적용될때 체크 해야하는데 전체적인 구조 안바꾸고는 불가능 그냥 여기서?
+
+                            if (PriorityValue < (int)EAfterBuffPriority.P_Fear)
+                                PriorityValue = (int)EAfterBuffPriority.P_Fear;
+
                             EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Fear", PlayerBuffPos);
                             break;
                         case (int)EBuffType.OverCharge:
                             if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.OverCharge] <= 1)
                             {
+                                if (PriorityValue < (int)EAfterBuffPriority.P_OverCharge)
+                                    PriorityValue = (int)EAfterBuffPriority.P_OverCharge;
+
                                 PlayerMgr.GetPlayerInfo().PlayerDamage(99999);
                             }
                             break;
@@ -972,6 +1036,10 @@ public class BattleManager : MonoBehaviour
                 {
                     MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP = 1;
                     MonInfo.MonsterBuff.BuffList[(int)EBuffType.UnDead] = 0;
+
+                    if (PriorityValue < (int)EAfterBuffPriority.P_UnDead)
+                        PriorityValue = (int)EAfterBuffPriority.P_UnDead;
+
                     EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", MonInfo.gameObject.transform.position);
                 }
                 else
@@ -990,6 +1058,10 @@ public class BattleManager : MonoBehaviour
                             float CurseOfDeathDamage = MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP * 9 / 10;
                             MonInfo.MonsterDamage((int)CurseOfDeathDamage);
                             MonInfo.MonsterBuff.BuffList[(int)EBuffType.CurseOfDeath] = 0;
+
+                            if (PriorityValue < (int)EAfterBuffPriority.P_Servant_CurseOfDeath)
+                                PriorityValue = (int)EAfterBuffPriority.P_Servant_CurseOfDeath;
+
                             EffectManager.Instance.ActiveEffect("BattleEffect_Buff_CurseOfDeath", MonInfo.gameObject.transform.position);
                         }
                         else
@@ -1000,12 +1072,19 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.Servant:
                         if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.Servant] <= 1)
                         {
+
+                            if (PriorityValue < (int)EAfterBuffPriority.P_Servant_CurseOfDeath)
+                                PriorityValue = (int)EAfterBuffPriority.P_Servant_CurseOfDeath;
+
                             MonInfo.MonsterDamage(99999);
                         }
                         break;
                     case (int)EBuffType.SelfDestruct:
                         if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.SelfDestruct] <= 1)
                         {
+                            if (PriorityValue < (int)EAfterBuffPriority.P_SelfDestruct)
+                                PriorityValue = (int)EAfterBuffPriority.P_SelfDestruct;
+                            
                             MonInfo.MonsterDamage(99999);
                             PlayerMgr.GetPlayerInfo().PlayerDamage(50);
                         }
@@ -1013,10 +1092,17 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.OverCharge:
                         if (MonInfo.MonsterBuff.BuffList[(int)EBuffType.OverCharge] <= 1)
                         {
+                            if (PriorityValue < (int)EAfterBuffPriority.P_OverCharge)
+                                PriorityValue = (int)EAfterBuffPriority.P_OverCharge;
+
                             MonInfo.MonsterDamage(99999);
                         }
                         break;
                     case (int)EBuffType.Lust:
+
+                        if (PriorityValue < (int)EAfterBuffPriority.P_Lust)
+                            PriorityValue = (int)EAfterBuffPriority.P_Lust;
+
                         PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Charm] += 1;
                         break;
                 }
@@ -1040,19 +1126,55 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+
     }
 
     protected void BeforeBuffProgress()
     {
+        int BeforeBuffPriority = -1;
         //각 플레이어와 몬스터에 버프가 존재하면 버프의 턴을 1씩 감소시키고 그거에 맞춰서 데미지를 주거나 해야함
         for (int i = 0; i < (int)EBuffType.CountOfBuff; i++)
         {
-            BeforeBuffCalculate(i);
+            BeforeBuffCalculate(i, ref BeforeBuffPriority);
+        }
+
+        switch (BeforeBuffPriority)
+        {
+            case (int)EBeforeBuffPriority.P_RegenArmor:
+                //->이건 애초부터 나서 사운드 추가 안해도 ㅇㅋ일듯
+                //SoundManager.Instance.PlaySFX("Shield_Appear");
+                //Shield
+                break;
+            case (int)EBeforeBuffPriority.P_ReCharge:
+            case (int)EBeforeBuffPriority.P_Regeneration:
+                SoundManager.Instance.PlaySFX("Buff_Healing");
+                //Healing
+                break;
+            case (int)EBeforeBuffPriority.P_Cower_Weakness:
+                SoundManager.Instance.PlaySFX("Buff_Forcing");
+                //Forcing
+                break;
+            case (int)EBeforeBuffPriority.P_Burn:
+                SoundManager.Instance.PlaySFX("Buff_Burn");
+                //Burn
+                break;
+            case (int)EBeforeBuffPriority.P_Poison:
+                SoundManager.Instance.PlaySFX("Buff_Consume");
+                //Poison
+                break;
+            default:
+                break;
         }
     }
 
-    protected void BeforeBuffCalculate(int BuffsType)
+    protected void BeforeBuffCalculate(int BuffsType, ref int PriorityValue)
     {
+        //PlayerBuff = Posison__, Cower__, Burn__, RegenArmor, Weakness__, Regeneration__, ReCharge__
+        //MonsterBuff = Posion__, Burn__, RegenArmor, Regeneration__
+
+        //우선 순위 = Poison <- Burn <- Cower, Weakness <- Regeneration <- ReCharge <- RegenArmor
+        // Poison <- Burn <- Forcing <- Healing <- Healing <- Shield
+
         //체력이 0 이하일때는 계산 X?
         if (CurrentTurnObject.tag == "Player" && MonMgr.GetActiveMonsters().Count > 0 && !(PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP < 1))
         {
@@ -1066,6 +1188,10 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.Poison:
                         PlayerMgr.GetPlayerInfo().PlayerDamage(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison], true);
                         PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Poison] / 2;
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Poison)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Poison;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", PlayerBuffPos);
                         break;
                     case (int)EBuffType.Resilience:
@@ -1075,6 +1201,10 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.Cower:
                         float DebuffSpendSTA = PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Cower] * 20;
                         PlayerMgr.GetPlayerInfo().PlayerSpendSTA(DebuffSpendSTA);
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Cower_Weakness)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Cower_Weakness;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Cower", PlayerBuffPos);
                         //BattleEffect_Buff_Cower
                         //durl
@@ -1082,15 +1212,27 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.Burn:
                         float BurnDamage = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentHP / 20;
                         PlayerMgr.GetPlayerInfo().PlayerDamage((int)BurnDamage, true);
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Burn)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Burn;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Burn", PlayerBuffPos);
                         break;
                     case (int)EBuffType.RegenArmor:
                         PlayerMgr.GetPlayerInfo().PlayerGetShield(PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.RegenArmor]);
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_RegenArmor)
+                            PriorityValue = (int)EBeforeBuffPriority.P_RegenArmor;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", PlayerBuffPos);
                         break;
                     case (int)EBuffType.Weakness:
                         float WeaknessSpendSTA = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA / 20;
                         PlayerMgr.GetPlayerInfo().PlayerSpendSTA(WeaknessSpendSTA);
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Cower_Weakness)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Cower_Weakness;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Weakness", PlayerBuffPos);
                         break;
                     case (int)EBuffType.Regeneration:
@@ -1098,12 +1240,20 @@ public class BattleManager : MonoBehaviour
                         RegenHPAmount = RegenHPAmount / 20;
                         PlayerMgr.GetPlayerInfo().PlayerRegenHp((int)RegenHPAmount);
                         //BattleEffect_Buff_Regeneration
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Regeneration)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Regeneration;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", PlayerBuffPos);
                         break;
                     case (int)EBuffType.Recharge:
                         float RegenSTAAmount = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().MaxSTA - PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().CurrentSTA;
                         RegenSTAAmount = RegenSTAAmount / 20;
                         PlayerMgr.GetPlayerInfo().PlayerRegenSTA(RegenSTAAmount);
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_ReCharge)
+                            PriorityValue = (int)EBeforeBuffPriority.P_ReCharge;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_ReCharge", PlayerBuffPos);
                         break;
                 }
@@ -1120,21 +1270,38 @@ public class BattleManager : MonoBehaviour
                     case (int)EBuffType.Poison:
                         MonInfo.MonsterDamage(MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison]);
                         MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison] = MonInfo.MonsterBuff.BuffList[(int)EBuffType.Poison] / 2;
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Poison)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Poison;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Poison", MonInfo.gameObject.transform.position);
                         break;
                     case (int)EBuffType.Burn:
                         float BurnDamage = MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP / 20;
                         MonInfo.MonsterDamage((int)BurnDamage);
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Burn)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Burn;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Burn", MonInfo.gameObject.transform.position);
                         break;
                     case (int)EBuffType.RegenArmor:
                         MonInfo.MonsterGetShield(MonInfo.MonsterBuff.BuffList[(int)EBuffType.RegenArmor]);
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_RegenArmor)
+                            PriorityValue = (int)EBeforeBuffPriority.P_RegenArmor;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_RegenArmor", MonInfo.gameObject.transform.position);
                         break;
                     case (int)EBuffType.Regeneration:
                         float RegenHPAmount = MonInfo.GetMonsterCurrentStatus().MonsterMaxHP - MonInfo.GetMonsterCurrentStatus().MonsterCurrentHP;
                         RegenHPAmount = RegenHPAmount / 20;
                         MonInfo.MonsterRegenHP(RegenHPAmount);
+
+
+                        if (PriorityValue < (int)EBeforeBuffPriority.P_Regeneration)
+                            PriorityValue = (int)EBeforeBuffPriority.P_Regeneration;
+
                         EffectManager.Instance.ActiveEffect("BattleEffect_Buff_Regeneration", MonInfo.gameObject.transform.position);
                         break;
                 }
@@ -1144,77 +1311,6 @@ public class BattleManager : MonoBehaviour
 
     public void SetBattleTurn()
     {
-        //여기에서 첫번째 꺼 다음꺼를 기준으로 삼아야함.
-        /*
-        if (BattleTurn.Count >= 1)
-            BattleTurn.RemoveAt(0);//첫번째꺼를 지운다.(왜냐하면 여기에 크기가 1이상인 BattleTurn이 들어왔다는것은 이미 0번째에 있는 오브젝트는 턴을 쓴것임
-
-        for(int i = BattleTurn.Count - 1; i >= 0; i--)
-        {
-            if (BattleTurn[i].tag == "Monster")
-            {
-                if (BattleTurn[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP <= 0)
-                {
-                    Debug.Log("Empty");
-                    BattleTurn.RemoveAt(i);
-                }
-            }
-        }
-        float PlayerSPD = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo().TotalSPD;
-
-        float[] MonsterSPD = new float[MonMgr.GetActiveMonsters().Count];
-        for (int i = 0; i < MonsterSPD.Length; i++)
-        {
-            MonsterSPD[i] = MonMgr.GetActiveMonsters()[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentSPD;
-        }
-
-        while(BattleTurn.Count < 9)
-        {
-            PlayerActiveGauge += PlayerSPD;
-            //ActiveMonster의 갯수를 줄여도 MonsterActiveGuage의 갯수는 그대로 유지가 된다.
-            //만약 index1인 몬스터가 죽으면 원래는 index2였던 몬스터가 index1이 쓰던 MonsterActiveGuage를 이어받게 되는 문제가 생긴다.
-            for(int i = 0; i < MonMgr.GetActiveMonsters().Count; i++)
-            {
-                MonMgr.GetActiveMonsters()[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentActionGauge += MonsterSPD[i];
-            }
-
-
-            if(PlayerActiveGauge >= 100)
-            {
-                PlayerActiveGauge -= 100;
-                BattleTurn.Add(PlayerMgr.GetPlayerInfo().gameObject);
-            }
-
-            List<int> ChargedMonster = new List<int>();
-            for(int i = 0; i < MonsterSPD.Length; i++)
-            {
-                if (MonMgr.GetActiveMonsters()[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentActionGauge >= 100)
-                {
-                    ChargedMonster.Add(i);
-                    //MonsterActiveGuage[i] -= 100;
-                    //BattleTurn.Enqueue(MonMgr.GetActiveMonsters()[i]);
-                }
-            }
-
-            while(ChargedMonster.Count > 0)
-            {
-                float FastestMonster = MonMgr.GetActiveMonsters()[ChargedMonster[0]].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentActionGauge;
-                int ChargedMonsterIndex = 0;
-                for(int i = 0; i < ChargedMonster.Count; i++)
-                {
-                    if(FastestMonster < MonMgr.GetActiveMonsters()[ChargedMonster[i]].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentActionGauge)
-                    {
-                        FastestMonster = MonMgr.GetActiveMonsters()[ChargedMonster[i]].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentActionGauge;
-                        ChargedMonsterIndex = i;
-                    }
-                }
-                //여기로 나오면 FastestMonster가 결정된거임
-                MonMgr.GetActiveMonsters()[ChargedMonster[ChargedMonsterIndex]].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentActionGauge -= 100;
-                BattleTurn.Add(MonMgr.GetActiveMonsters()[ChargedMonster[ChargedMonsterIndex]]);
-                ChargedMonster.RemoveAt(ChargedMonsterIndex);
-            }
-        }
-        */
         //지금턴의 다음꺼를 첫번째로 잡는다.//Current Gauge에 nextGauge의 값을 넣는다.
         //BattleTurn의 Count가 2가 될때 NextGauge에 CurrentGuage를 저장한다.
         BattleTurn.Clear();

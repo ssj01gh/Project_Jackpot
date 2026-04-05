@@ -401,9 +401,15 @@ public class PlayerScript : MonoBehaviour
                 PlayerBuff.BuffList[i] = 0;
             }
         }
-        //PlayerBuff.BuffList[(int)EBuffType.ToughFist] = 99;
-        //PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] = 99;
-        //PlayerBuff.BuffList[(int)EBuffType.Charm] = 99;
+        //PlayerBuff.BuffList[(int)EBuffType.RegenArmor] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.Recharge] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.Regeneration] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.Cower] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.Weakness] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.Burn] = 10;
+        //PlayerBuff.BuffList[(int)EBuffType.OverCharge] = 1;
+        
+
         SetInitBuffByEarlyUpgrade();
         /*
         스피드 7레벨에 해당하는 버프는 스폰되는 몬스터에게 적용됨
@@ -760,6 +766,9 @@ public class PlayerScript : MonoBehaviour
             PlayerBuff.BuffList[(int)EBuffType.UnDead] = 0;
             Vector3 PlayerBuffPos = gameObject.transform.position;
             PlayerBuffPos.y += 1.5f;
+
+            SoundManager.Instance.PlaySFX("Buff_Healing");
+
             EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", PlayerBuffPos);
         }
     }

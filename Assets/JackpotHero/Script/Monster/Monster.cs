@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
@@ -143,6 +144,34 @@ public class Monster : MonoBehaviour
     {
         if(gameObject.activeSelf == true && Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                /*
+                GameObject uiObject = null;
+                PointerEventData pointerData = new PointerEventData(EventSystem.current);
+                pointerData.position = Input.mousePosition;
+
+                List<RaycastResult> results = new List<RaycastResult>();
+
+                EventSystem.current.RaycastAll(pointerData, results);
+
+                if (results.Count > 0)
+                {
+                    // 가장 위에 있는 UI
+                    uiObject = results[0].gameObject;
+                }
+
+                
+
+                if (uiObject != null)
+                {
+                    Debug.Log("가리고 있는 UI: " + uiObject.name);
+                    return;
+                }
+                */
+                return;
+            }
+
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // 충돌 검사//지금 이거는 MainBattle이 진행중일때도 바뀌어 버림 나중에 바꿔야함
             //BattleTurn이 진행중일때 안클릭되게...

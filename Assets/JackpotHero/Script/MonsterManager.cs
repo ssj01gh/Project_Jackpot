@@ -462,6 +462,9 @@ public class MonsterManager : MonoBehaviour
                 {
                     ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP = 1;
                     ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.UnDead] = 0;
+
+                    SoundManager.Instance.PlaySFX("Buff_Healing");
+
                     EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", ActiveMonsters[i].gameObject.transform.position);
                     continue;
                 }

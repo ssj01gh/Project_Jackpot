@@ -265,6 +265,7 @@ public class PlaySceneUIManager : MonoBehaviour
         OP_UI.OptionInActive();
         NonInven_UI.CloseNonRestInventory();
         NonGachaDic_UI.InActiveGachaEquipDictionay();
+        TutorialMgr.InActiveTutorialButtonPage();
     }
     //----------------------------
     public void PlayerDefeat()//지거나 게임에서 이기거나

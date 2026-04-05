@@ -385,6 +385,76 @@ MonoBehaviour:
     m_Localized: Reroll
     m_Metadata:
       m_Items: []
+  - m_Id: 30768215092752384
+    m_Localized: Preparation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768218322366464
+    m_Localized: Explore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768221900107776
+    m_Localized: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768222961266688
+    m_Localized: Select Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768223682686976
+    m_Localized: Battle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768224383135744
+    m_Localized: '<size=35>Battle</size>
+
+      Player Turn'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768225008087040
+    m_Localized: '<size=35>Battle</size>
+
+      Multiplier Cards'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768225633038336
+    m_Localized: '<size=35>Battle</size>
+
+      Monster Turn'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768226245406720
+    m_Localized: '<size=35>Battle</size>
+
+      Ambushed'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768226849386496
+    m_Localized: Event
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768227491115008
+    m_Localized: Maintenance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768228099289088
+    m_Localized: '<size=35>Maintenance</size>
+
+      Rest'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768229982531584
+    m_Localized: '<size=35>Maintenance</size>
+
+      Stat Upgrade'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30768231807053824
+    m_Localized: '<size=35>Maintenance</size>
+
+      Equipment Management'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
