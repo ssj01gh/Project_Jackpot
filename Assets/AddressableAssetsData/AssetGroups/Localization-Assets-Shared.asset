@@ -53,6 +53,12 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83bb9f98c9321c4409929eef32677f67
+    m_Address: Assets/LocalizationAsset/EarlyUpgrade_PlayScene/EarlyUpgrade_PlayScene
+      Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8af578243c9b62d4da17c2e4c9106279
     m_Address: Assets/LocalizationAsset/OptionUI/Option_UI_Table Shared Data.asset
     m_ReadOnly: 1

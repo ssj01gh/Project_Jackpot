@@ -53,6 +53,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ko
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5483b5cfc9eb194aa9aae67327c8a97
+    m_Address: EarlyUpgrade_PlayScene_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a81977658cbd5ad47be1ed12494961b1
     m_Address: EventDetailText_ko
     m_ReadOnly: 1

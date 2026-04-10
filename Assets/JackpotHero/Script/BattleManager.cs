@@ -258,6 +258,7 @@ public class BattleManager : MonoBehaviour
             //UIMgr.B_UI.ActivePlayerShieldNBuffUI(PlayerMgr.GetPlayerInfo());//여기있는 Set~~은 다 없애기 위함
             PlayerMgr.GetPlayerInfo().CalculateEarlyPoint();
             PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Defeat);
+            UIMgr.B_UI.InitBattleUI();//배틀 관련된 UI초기화
             UIMgr.B_UI.DefeatBattle(PlayerMgr.GetPlayerInfo());
             UIMgr.PlayerDefeat();//플레이어의 장비창, 스탯창, 현재 스테이지 진행창 같은것들
             //다른 플레이어 UI도 없에기
@@ -284,6 +285,7 @@ public class BattleManager : MonoBehaviour
                     PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList);//플레이어 정보도 갱신
                 int RewardEXP = PlayerMgr.GetPlayerInfo().ReturnEXPByEXPMagnification((int)CurrentSpawnPatternReward);
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RewardEXP, true);
+                UIMgr.B_UI.InitBattleUI();//배틀 관련된 UI초기화
                 UIMgr.B_UI.VictoryBattle(RewardEXP);
             }
             else//보스가 아니라면 평범하게
@@ -295,6 +297,7 @@ public class BattleManager : MonoBehaviour
                                                                    //휴식중에 습격을 받은거라면 다시 휴식 행동 선택으로 돌아감
                 int RewardEXP = PlayerMgr.GetPlayerInfo().ReturnEXPByEXPMagnification((int)CurrentSpawnPatternReward);
                 PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(RewardEXP, true);
+                UIMgr.B_UI.InitBattleUI();//배틀 관련된 UI초기화
                 UIMgr.B_UI.VictoryBattle(RewardEXP);
             }
             return;
@@ -1673,34 +1676,42 @@ public class BattleManager : MonoBehaviour
             }
             //Debug.Log("부정 : 긍정 = 1 : 2 => 부정 : 0 ~ 20"  + " 긍정 : 20 ~ " + (60 + (int)TP_Info.TotalLUK + LuckBuffNum));
             //Luk이 겁나 낮아지는거 예외처리
-            int RandNum;
-            if (60 + (int)TP_Info.TotalLUK <= 1)
-            {
-                RandNum = 0;
-            }
-            else
-            {
-                RandNum = Random.Range(0, 60 + (int)TP_Info.TotalLUK);
-            }
+            int RandNum = 0;
+            float LUKConstNum = 3f;
+            int TotalCardRange = 60 + (int)(Mathf.Abs(TP_Info.TotalLUK) * LUKConstNum);//이게 분모
+            int NegativeRange = 0;
+            //LUK가 -가 될때 = NegativeCard에 추가 확률, LUK이 +가 될때 = PositiveCard에 추가 확률
+            //LUK의 절대 값 만큼 나올 수 있는 값이 60 + 가 된다 -> -라도
+            //Total 범위는 60 + (LUK * LuckConstNum);
+            //LUK이 -일때는 0 ~ ((NegativeList.Count * MultiplyNum) + (LUK * LuckConstNum) - 1) -> 부정 , 나머지 긍정
+            //LUK이 + 일때는 0 ~ ((NegativeList.Count * MultiplyNum) - 1) -> 부정, 나머지 긍정
+            //NegativeAmount가 0일때는 NegativeRange는 0이된다 LUK이 아무리 낮아도 -> 상관 없다 밑에서 예외처리를 해서
+            if ((int)TP_Info.TotalLUK >= 0)//0포함 양수 일때
+                NegativeRange = (int)(NegativeAmount * MultiplyNum);
+            else//음수 일때
+                NegativeRange = (int)(NegativeAmount * MultiplyNum) + (int)(Mathf.Abs(TP_Info.TotalLUK) * LUKConstNum);
 
-            if(NegativeAmount == 0)//긍정에서 하나 뽑아서 저장
+            RandNum = Random.Range(0, TotalCardRange);// -> 부정이 될지 긍정이 될지 뽑는다.
+            //Debug.Log("부정 확률 : " + (float)NegativeRange / (float)TotalCardRange * 100 + "%//////긍정 확률 : " + ((float)(TotalCardRange - NegativeRange)) / (float)TotalCardRange * 100 + "%");
+
+            if (NegativeAmount == 0)//긍정에서 하나 뽑아서 저장
             {
                 int PositiveRandNum = Random.Range(0, PositiveList.Count);
                 BattleResultStatus.ResultMagnification.Add(PositiveList[PositiveRandNum]);
             }
-            else if(PositiveAmount == 0)//부정에서 하나 뽑아서 저장
+            else if (PositiveAmount == 0)//부정에서 하나 뽑아서 저장
             {
                 int NegativeRandNum = Random.Range(0, NegativeList.Count);
                 BattleResultStatus.ResultMagnification.Add(NegativeList[NegativeRandNum]);
             }
-            else if (RandNum >= 0 && RandNum < MultiplyNum * NegativeAmount)
-            {
+            else if (RandNum >= 0 && RandNum < NegativeRange)
+            {//0 ~ NegativeRange - 1 -> 부정적에서 하나
                 //부정적 List에서 하나를 뽑아서 저장
                 int NegativeRandNum = Random.Range(0, NegativeList.Count);
                 BattleResultStatus.ResultMagnification.Add(NegativeList[NegativeRandNum]);
             }
-            else if (RandNum >= MultiplyNum * NegativeAmount && RandNum < 60 + (int)TP_Info.TotalLUK)
-            {
+            else if (RandNum >= NegativeRange)
+            {//NegativeRange보다 크면 긍정에서 하나
                 //긍정적 List에서 하나를 뽑아서 저장
                 int PositiveRandNum = Random.Range(0, PositiveList.Count);
                 BattleResultStatus.ResultMagnification.Add(PositiveList[PositiveRandNum]);
@@ -1745,14 +1756,14 @@ public class BattleManager : MonoBehaviour
                 break;
         }
         BattleResultStatus.FinalResultAmountPlus = 0f;
-        switch(ActionButtonType)
+        if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.EXPPower] >= 1)//경험은 힘 버프 보유시
+        {
+            BattleResultStatus.FinalResultAmountPlus += (int)(P_Info.Experience / 20f);
+        }
+        switch (ActionButtonType)
         {
             case "Charm":
             case "Attack":
-                if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.EXPPower] >= 1)//경험은 힘 버프 보유시
-                {
-                    BattleResultStatus.FinalResultAmountPlus += (int)(P_Info.Experience / 100f);
-                }
                 if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect] >= 1)
                 {
                     BattleResultStatus.FinalResultAmountPlus += PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.Reflect];

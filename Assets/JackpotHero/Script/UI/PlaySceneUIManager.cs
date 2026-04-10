@@ -29,6 +29,7 @@ public class PlaySceneUIManager : MonoBehaviour
     public GameObject RestSelectionUI;
     public GameObject FadeUI;
     public RestUIScript R_UI;
+    public EarlyUpgradeIconUI EUIU_UI;
 
     public NonRestInventoryUIScript NonInven_UI;
     public GachaEquipDictionaryUI NonGachaDic_UI;
@@ -124,6 +125,7 @@ public class PlaySceneUIManager : MonoBehaviour
                 break;
             case (int)EPlayerCurrentState.Boss_Battle:
                 InActiveActionSelectionUI();
+                B_UI.ActiveBattleUI();
                 break;
         }
     }
@@ -275,6 +277,7 @@ public class PlaySceneUIManager : MonoBehaviour
         CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
         NonInven_UI.gameObject.SetActive(false);
         NonGachaDic_UI.gameObject.SetActive(false);
+        EUIU_UI.InActiveAllIcon();
         SoundManager.Instance.PlayBGM("DefeatBGM");
     }
     //-------------------------------PressRestTimeUI

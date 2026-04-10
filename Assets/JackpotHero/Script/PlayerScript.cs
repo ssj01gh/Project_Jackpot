@@ -60,6 +60,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject BuffUIPos;
     public GameObject ActionTypePos;
     public GameObject HeroineBody;
+    public GameObject ShadowCircle;
+    public Vector2[] ShadowCirclePos;
+    public Vector2[] ShadowCircleSize;
     //PlayerState
     protected PlayerInfo PlayerState;
     protected TotalPlayerState PlayerTotalState = new TotalPlayerState();
@@ -401,7 +404,9 @@ public class PlayerScript : MonoBehaviour
                 PlayerBuff.BuffList[i] = 0;
             }
         }
-        //PlayerBuff.BuffList[(int)EBuffType.RegenArmor] = 10;
+        BeforeShield = 0;
+        PlayerState.ShieldAmount = 0;
+        //PlayerBuff.BuffList[(int)EBuffType.EXPPower] = 99;
         //PlayerBuff.BuffList[(int)EBuffType.Recharge] = 10;
         //PlayerBuff.BuffList[(int)EBuffType.Regeneration] = 10;
         //PlayerBuff.BuffList[(int)EBuffType.Cower] = 10;
@@ -1032,60 +1037,81 @@ public class PlayerScript : MonoBehaviour
     //-----------------------------------------HeroineAnimation
     public void SetPlayerAnimation(int PlayerTargetState)
     {
+        float ShadowPosZ = 0.1f;
+        float ShadowSizeZ = 1f;
+
         Animator HeroineAnimator = HeroineBody.GetComponent<Animator>();
         switch(PlayerTargetState)
         {
             case (int)EPlayerAnimationState.Idle:
                 if(HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Idle)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Idle].x, ShadowCirclePos[(int)EPlayerAnimationState.Idle].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Idle].x, ShadowCircleSize[(int)EPlayerAnimationState.Idle].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Idle);
                 }
                 break;
             case (int)EPlayerAnimationState.Walk:
                 if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Walk)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Walk].x, ShadowCirclePos[(int)EPlayerAnimationState.Walk].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Walk].x, ShadowCircleSize[(int)EPlayerAnimationState.Walk].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Walk);
                 }
                 break;
             case (int)EPlayerAnimationState.Idle_Battle:
                 if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Idle_Battle)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Idle_Battle].x, ShadowCirclePos[(int)EPlayerAnimationState.Idle_Battle].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Idle_Battle].x, ShadowCircleSize[(int)EPlayerAnimationState.Idle_Battle].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Idle_Battle);
                 }
                 break;
             case (int)EPlayerAnimationState.Defeat:
                 if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Defeat)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Defeat].x, ShadowCirclePos[(int)EPlayerAnimationState.Defeat].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Defeat].x, ShadowCircleSize[(int)EPlayerAnimationState.Defeat].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Defeat);
                 }
                 break;
             case (int)EPlayerAnimationState.Rest:
                 if(HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Rest)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Rest].x, ShadowCirclePos[(int)EPlayerAnimationState.Rest].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Rest].x, ShadowCircleSize[(int)EPlayerAnimationState.Rest].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Rest);
                 }
                 break;
             case (int)EPlayerAnimationState.Attack_Battle:
                 if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Attack_Battle)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Attack_Battle].x, ShadowCirclePos[(int)EPlayerAnimationState.Attack_Battle].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Attack_Battle].x, ShadowCircleSize[(int)EPlayerAnimationState.Attack_Battle].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Attack_Battle);
                 }
                 break;
             case (int)EPlayerAnimationState.Defense_Battle:
                 if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Defense_Battle)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Defense_Battle].x, ShadowCirclePos[(int)EPlayerAnimationState.Defense_Battle].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Defense_Battle].x, ShadowCircleSize[(int)EPlayerAnimationState.Defense_Battle].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Defense_Battle);
                 }
                 break;
             case (int)EPlayerAnimationState.STARecovery_Battle:
                 if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.STARecovery_Battle)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.STARecovery_Battle].x, ShadowCirclePos[(int)EPlayerAnimationState.STARecovery_Battle].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.STARecovery_Battle].x, ShadowCircleSize[(int)EPlayerAnimationState.STARecovery_Battle].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.STARecovery_Battle);
                 }
                 break;
             case (int)EPlayerAnimationState.Charm_Battle:
                 if (HeroineAnimator.GetInteger("HeroineState") != (int)EPlayerAnimationState.Charm_Battle)
                 {
+                    ShadowCircle.transform.localPosition = new Vector3(ShadowCirclePos[(int)EPlayerAnimationState.Charm_Battle].x, ShadowCirclePos[(int)EPlayerAnimationState.Charm_Battle].y, ShadowPosZ);
+                    ShadowCircle.transform.localScale = new Vector3(ShadowCircleSize[(int)EPlayerAnimationState.Charm_Battle].x, ShadowCircleSize[(int)EPlayerAnimationState.Charm_Battle].y, ShadowSizeZ);
                     HeroineAnimator.SetInteger("HeroineState", (int)EPlayerAnimationState.Charm_Battle);
                 }
                 break;

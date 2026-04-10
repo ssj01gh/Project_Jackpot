@@ -319,7 +319,7 @@ public class BattleUI : MonoBehaviour
             PlayerDefenseButton.interactable = false;
 
             PlayerRegenSTAButton.interactable = true;
-            PlayerRegenSTAButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(RestAver);
+            //PlayerRegenSTAButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(RestAver);
 
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1080);
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.4f).SetEase(Ease.OutBack);
@@ -329,11 +329,11 @@ public class BattleUI : MonoBehaviour
             MainBattleUI.SetActive(false);
             PlayerActionSelectionBattleUI.SetActive(true);
             PlayerAttackButton.interactable = true;
-            PlayerAttackButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(AttackAver);
+           //PlayerAttackButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(AttackAver);
             PlayerDefenseButton.interactable = true;
-            PlayerDefenseButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(DefenseAver);
+            //PlayerDefenseButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(DefenseAver);
             PlayerRegenSTAButton.interactable = true;
-            PlayerRegenSTAButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(RestAver);
+            //PlayerRegenSTAButton.GetComponent<PlayerBattleActionSelection>().GetUsefulInfo(RestAver);
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1080);
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.4f).SetEase(Ease.OutBack);
         }
@@ -684,7 +684,7 @@ public class BattleUI : MonoBehaviour
             PlayerActionSelectionBattleUI.GetComponent<RectTransform>().DOAnchorPosY(-1080, 0.4f).OnComplete(() => 
             { 
                 PlayerActionSelectionBattleUI.SetActive(false);
-                PlayerActionSelectionBattleUI.GetComponent<PlayerBattleActionSelection>().InActiveActionPercentDetailUI();
+                //PlayerActionSelectionBattleUI.GetComponent<PlayerBattleActionSelection>().InActiveActionPercentDetailUI();
             });
         }
 
