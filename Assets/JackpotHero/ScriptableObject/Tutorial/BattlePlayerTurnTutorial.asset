@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BattlePlayerTurnTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: 30c3f5c1f081626409ec88696f2c2c35, type: 3}
-  - {fileID: 21300000, guid: 8f6e755a249e86f46a3b6c6716f142fe, type: 3}
-  - {fileID: 21300000, guid: bfa798a494f950b47a22d5ceaedd377e, type: 3}
-  - {fileID: 21300000, guid: b243cd587790f1b4499720722c8f44bf, type: 3}
+  - {fileID: 21300000, guid: e5ae1dd87a690c94d9f30a3a45c0cf1d, type: 3}
+  - {fileID: 21300000, guid: aa77826ef38d413479ae0e84676009df, type: 3}
+  - {fileID: 21300000, guid: 4a78d39534c1fdd48bb5b71be5298294, type: 3}
+  - {fileID: 21300000, guid: 8db0fa2cec9a96544a1f465785e20e32, type: 3}
   TutorialTextPos:
   - {x: -400, y: 0}
   - {x: -545, y: 0}

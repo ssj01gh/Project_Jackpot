@@ -10,13 +10,19 @@ public class TitleUIManager : MonoBehaviour
     public EarlyStrengthenUI _EarlyUI;
     public Button ContinueButton;
     public GameObject LogoCard;
+    public GameObject[] TitleCloud;
     //public GameObject[] LogoStar;
     // Start is called before the first frame update
+
+    private Vector2 CloudInitPos01 = new Vector2(-1920f, 0f);
+    private Vector2 CloudInitPos02 = Vector2.zero;
+    private Vector2 CloudInitPos03 = new Vector2(1920f, 0f);
     void Start()
     {
         SetContinueButton();
         _OptionUI.gameObject.SetActive(false);
         StartLogoAnimation();
+        StartTitleCloudAnimation();
         //_EarlyUI.gameObject.SetActive(false);
         SoundManager.Instance.PlayBGM("TitleBGM");
     }
@@ -44,6 +50,41 @@ public class TitleUIManager : MonoBehaviour
         // .SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         //LogoStar.GetComponent<Image>().DOFade(0.2f, 0.5f)
         //.SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+    }
+
+    protected void StartTitleCloudAnimation()
+    {
+        foreach(GameObject TargetObject in TitleCloud)
+        {
+            LoopBackGround(TargetObject);
+        }
+    }
+
+    protected void LoopBackGround(GameObject TargetObject)
+    {
+        float TargetMoveX = 7f;
+        float MovingTime = 1f;
+        float MoveAmount = TargetMoveX;
+        float TargetX = TargetObject.GetComponent<RectTransform>().anchoredPosition.x - MoveAmount;
+
+        TargetObject.GetComponent<RectTransform>().DOKill();
+        //TargetMoveX = 1440;
+
+        TargetObject.GetComponent<RectTransform>().
+            DOAnchorPosX(TargetX, MovingTime).SetEase(Ease.Linear).
+            OnComplete(() =>
+            {
+                if (TargetObject.GetComponent<RectTransform>().anchoredPosition.x <= -2800)
+                {
+                    Vector3 ReturnPos = TargetObject.GetComponent<RectTransform>().anchoredPosition;
+                    ReturnPos.x += 5760f;
+                    TargetObject.GetComponent<RectTransform>().anchoredPosition = ReturnPos;
+                }
+                LoopBackGround(TargetObject);
+            });
+        //이 함수들로 구름을 이동 시킬때 구름이 역주행 하는 버그가 있음.... 왜 그럴까?
+        //역주행 하는 이유 -> 목표 좌표가 현재 좌표 +5760으로 됬다. -> 이게 제일 확률이 높다?
+        //왜 5760이 되지?
     }
 
     protected void SetContinueButton()

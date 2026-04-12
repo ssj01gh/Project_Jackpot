@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SearchingRestTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: 34878df579922114290b3a8de08cb6be, type: 3}
-  - {fileID: 21300000, guid: e73a02c6734defc4cb64f9722a28e1bd, type: 3}
-  - {fileID: 21300000, guid: 17b2c4119c427174e9b230c3c7faeea8, type: 3}
-  - {fileID: 21300000, guid: c0b5c0801645d0344bdd130ec7362a3c, type: 3}
+  - {fileID: 21300000, guid: 0aba8598d5dcd7b498fa1cf3534fe8e2, type: 3}
+  - {fileID: 21300000, guid: 2affa2c9419eb8b4ba22227a43b7d396, type: 3}
+  - {fileID: 21300000, guid: bcfcab6be73a248409b25aa4fa09f104, type: 3}
+  - {fileID: 21300000, guid: 6701818af83ed8c4d85bfa73a4385d9e, type: 3}
   TutorialTextPos:
   - {x: 565, y: 410}
   - {x: -555, y: 275}

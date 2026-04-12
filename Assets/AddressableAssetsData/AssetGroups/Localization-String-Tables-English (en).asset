@@ -23,6 +23,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23d53636998d1ba4982f2463c3cec8f7
+    m_Address: EndingStoryTable_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29939744bd5215744afa21c71d4995e7
+    m_Address: EarlyUpgrade_PlayScene_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 31560cd4fde788c4486662c7c8ce4814
     m_Address: ES_DetailTitle_en
     m_ReadOnly: 1

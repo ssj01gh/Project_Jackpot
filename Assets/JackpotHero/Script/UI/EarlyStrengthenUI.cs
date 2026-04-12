@@ -110,6 +110,7 @@ public class EarlyStrengthenUI : MonoBehaviour
         StartCoroutine(Load("ATK00"));
         //DetailTitleText.text = ESDictionary["ATK00"].EarlyDetailTitle;
         //DetailText.text = ESDictionary["ATK00"].DetailText;
+        ButtonOutlineObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-422.5f, 347.5f, 0f);
         gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1080);
         gameObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f).OnComplete(() => { StrengthenActiveAnimationEnd(); });
         //gameObject.GetComponent<Animator>().SetInteger("EarlyStrengthenState", 1);
@@ -123,7 +124,7 @@ public class EarlyStrengthenUI : MonoBehaviour
             //DetailText.text = ESDictionary["ATK00"].DetailText;
             if (LevelZeros.Length > 0)
             {
-                ButtonOutlineObject.transform.position = LevelZeros[0].transform.position;
+                //ButtonOutlineObject.transform.position = LevelZeros[0].transform.position;
             }
             else
             {
@@ -526,7 +527,7 @@ public class EarlyStrengthenUI : MonoBehaviour
         SoundManager.Instance.PlayUISFX("UI_Button");
         JsonReadWriteManager.Instance.SaveEarlyInfo(EarlyInfo);
         //JsonReadWriteManager.Instance.E_Info = EarlyInfo;//JsonReadWriteManager에 값 복사
-        JsonReadWriteManager.Instance.InitPlayerInfo(true);//새로 시작하는거니까 PlayInfo초기값으로 변경시키기
+        JsonReadWriteManager.Instance.InitPlayerInfo(true);//새로 시작하는거니까 PlayInfo초기값으로 변경시키기//<-여기서 되면 계승기능안됨-> 계승기능 없애버릴까....
         JsonReadWriteManager.Instance.InitLinkageEventInfo(true);
         LoadingScene.Instance.LoadAnotherScene("PlayScene");
     }

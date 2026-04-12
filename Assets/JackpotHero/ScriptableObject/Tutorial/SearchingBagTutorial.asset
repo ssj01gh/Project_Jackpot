@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SearchingBagTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: 0c5a61638db6ed2478787266871bd8d7, type: 3}
-  - {fileID: 21300000, guid: 483dfd23570cba042872c75bc6e3ae9b, type: 3}
-  - {fileID: 21300000, guid: 8a491a36ecd0f134e8edf5a24446a226, type: 3}
+  - {fileID: 21300000, guid: a4575d2662cf3db419af9444062e89ec, type: 3}
+  - {fileID: 21300000, guid: 3be8b08c4189d744fa0043f8dd119015, type: 3}
+  - {fileID: 21300000, guid: ad1503e64f569de4a8c13230f0683a89, type: 3}
   TutorialTextPos:
   - {x: 130, y: 210}
-  - {x: 0, y: 280}
+  - {x: 30, y: 280}
   - {x: -585, y: -45}
   TutorialText:
   - TT_SBT01

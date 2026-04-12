@@ -117,7 +117,13 @@ MonoBehaviour:
   - SoundName: Buff_Consume
     _Sound: {fileID: 8300000, guid: 4a8faebafb1870144b580dd4f4a51f13, type: 3}
   - SoundName: Buff_Burn
-    _Sound: {fileID: 8300000, guid: 68ad95330a0461a4392c8a9887169a84, type: 3}
+    _Sound: {fileID: 8300000, guid: 432e487c6491baf43a3c78b303010261, type: 3}
+  - SoundName: Grass_Step
+    _Sound: {fileID: 8300000, guid: 3ca43b3402f44cc468fc9f0bb67e5485, type: 3}
+  - SoundName: Stone_Step
+    _Sound: {fileID: 8300000, guid: c6b68fb0ed6a2c94cb121e7990fd9a47, type: 3}
+  - SoundName: Portal_Step
+    _Sound: {fileID: 8300000, guid: dcd0b4a170ff58348b25bc9e8b29187f, type: 3}
   UISFX:
   - SoundName: UI_Button
     _Sound: {fileID: 8300000, guid: ac667ae2ff44718459b6783220585c78, type: 3}

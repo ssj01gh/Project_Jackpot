@@ -1,0 +1,289 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: EarlyUpgrade_PlayScene_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 83bb9f98c9321c4409929eef32677f67, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 48821301248
+    m_Localized: 'Start with STR : 6'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50952007680
+    m_Localized: 'Start with STR : 7'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52780724224
+    m_Localized: 'Start with STR : 8'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54433280000
+    m_Localized: 'Start with STR : 9'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 58107490304
+    m_Localized: 'Start with STR : 10'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59965566976
+    m_Localized: 'Start with STR : 10
+
+      Applies itself <color=green>Overwhelming
+      Power</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 396797538304
+    m_Localized: 'Start with DUR : 6'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 398265544704
+    m_Localized: 'Start with DUR : 7'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 399309926400
+    m_Localized: 'Start with DUR : 8'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 400492720128
+    m_Localized: 'Start with DUR : 9'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 403277737984
+    m_Localized: 'Start with DUR : 10'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 415869038592
+    m_Localized: 'Start with DUR : 10
+
+      Applies itself <color=green>Thorn Armor</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 484961808384
+    m_Localized: 'Start with RES : 6'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 486803107840
+    m_Localized: 'Start with RES : 7'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 487797157888
+    m_Localized: 'Start with RES : 8'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 489386799104
+    m_Localized: 'Start with RES : 9'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 493325250560
+    m_Localized: 'Start with RES : 10'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495640506368
+    m_Localized: 'Start with RES : 10
+
+      Applies itself <color=green>Advanced
+      Rest</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 582223523840
+    m_Localized: 'Start with SPD : 6'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 583569895424
+    m_Localized: 'Start with SPD : 7'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 585323114496
+    m_Localized: 'Start with SPD : 8'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 586694651904
+    m_Localized: 'Start with SPD : 9'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 588158464000
+    m_Localized: 'Start with SPD : 10'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 589752299520
+    m_Localized: 'Start with SPD : 10
+
+      Applies enemy <color=green>Vulnerable</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 661181296640
+    m_Localized: 'Start with LUK : 1'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 662745772032
+    m_Localized: 'Start with LUK : 2'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 664050200576
+    m_Localized: 'Start with LUK : 3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 665325268992
+    m_Localized: 'Start with LUK : 4'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 666629697536
+    m_Localized: 'Start with LUK : 5'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 667967680512
+    m_Localized: 'Start with LUK : 5
+
+      Increases the chance of obtaining high-Tier
+      equipment'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 738662674432
+    m_Localized: 'Start with HP : 120'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 739883216896
+    m_Localized: 'Start with HP : 140'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 741032456192
+    m_Localized: 'Start with HP : 160'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 742139752448
+    m_Localized: 'Start with HP : 180'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 743259631616
+    m_Localized: 'Start with HP : 200'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 744270458880
+    m_Localized: 'Start with HP : 200
+
+      Applies itself <color=green>Bloodline</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 827443507200
+    m_Localized: 'Start with STA : 1200'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 828798267392
+    m_Localized: 'Start with STA : 1400'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 830002032640
+    m_Localized: 'Start with STA : 1600'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 831138689024
+    m_Localized: 'Start with STA : 1800'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 832275345408
+    m_Localized: 'Start with STA : 2000'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 833323921408
+    m_Localized: 'Start with STA : 2000
+
+      Applies itself <color=green>Fatigue
+      Controll</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5311196426240
+    m_Localized: 'Start with EXP : 30'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5312169504768
+    m_Localized: 'Start with EXP : 60'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5313322938368
+    m_Localized: 'Start with EXP : 90'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5314392485888
+    m_Localized: 'Start with EXP : 120'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5315474616320
+    m_Localized: 'Start with EXP : 150'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5316749684736
+    m_Localized: 'Start with EXP : 150
+
+      Applies itself <color=green>Exploitation</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5394327531520
+    m_Localized: EXP gain starts at 105%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5395279638528
+    m_Localized: EXP gain starts at 110%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5396131082240
+    m_Localized: EXP gain starts at 115%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5396995108864
+    m_Localized: EXP gain starts at 120%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5397863329792
+    m_Localized: EXP gain starts at 125%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5398660247552
+    m_Localized: 'EXP gain starts at 125%
+
+      Applies itself <color=green>EXP
+      Power</color>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5471146209280
+    m_Localized: Start with 4 inventory slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5472899428352
+    m_Localized: Start with 6 inventory slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5473809592320
+    m_Localized: Start with 8 inventory slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5474749116416
+    m_Localized: Start with 10 inventory slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5475617337344
+    m_Localized: Start with 12 inventory slots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5478431715328
+    m_Localized: 'Start with 12 inventory slots
+
+      Applies itself <color=green>Weapon
+      Master</color>'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

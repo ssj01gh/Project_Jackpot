@@ -361,6 +361,36 @@ MonoBehaviour:
       its detailed effects.'
     m_Metadata:
       m_Items: []
+  - m_Id: 30082948287557632
+    m_Localized: 'For Equipment Gacha,
+
+      you are granted
+
+      3 additional
+      chances
+
+      to obtain the equipment you want.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30083034686025728
+    m_Localized: "You can obtain equipment\r using the\nQuick Equipment Gacha button."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30083080894672896
+    m_Localized: 'Quick Equipment Gacha
+
+      does not provide additional chances
+
+      to
+      obtain desired equipment.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30082426704883712
+    m_Localized: 'Click the Codex to view
+
+      about equipment types and effects.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

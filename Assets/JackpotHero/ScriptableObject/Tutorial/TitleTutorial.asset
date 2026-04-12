@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TitleTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: fd949894eeeb63943af1882ac0547589, type: 3}
-  - {fileID: 21300000, guid: 0a01bfa6670b04c41945a1e93c89f7f1, type: 3}
-  - {fileID: 21300000, guid: 71521be740b1f244982c809aaff1520a, type: 3}
+  - {fileID: 21300000, guid: dd4b51c63f852484c8b4519a1d82c443, type: 3}
+  - {fileID: 21300000, guid: 25dce02030b946947928500d97e23c68, type: 3}
+  - {fileID: 21300000, guid: 02e62c3d3dfca034a9478a6369e8b55f, type: 3}
   TutorialTextPos:
   - {x: 35, y: 345}
   - {x: -205, y: 225}

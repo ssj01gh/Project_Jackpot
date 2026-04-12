@@ -17,6 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 0bf474c436083a54790eeb72db37cfd7
   m_SerializeEntries:
+  - m_GUID: 01c2fc8264ec8e14c840a292aefbcd40
+    m_Address: Assets/LocalizationAsset/EndingStoryText/EndingStoryTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 075a89f4268554d42ac1df1faa30a3f3
     m_Address: Assets/LocalizationAsset/PlaySceneShortText/PlaySceneShortText Shared
       Data.asset
@@ -50,6 +55,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 739e03781d36f6b44affd09095b9307e
     m_Address: Assets/LocalizationAsset/Tutorial/TutorialText Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83bb9f98c9321c4409929eef32677f67
+    m_Address: Assets/LocalizationAsset/EarlyUpgrade_PlayScene/EarlyUpgrade_PlayScene
+      Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

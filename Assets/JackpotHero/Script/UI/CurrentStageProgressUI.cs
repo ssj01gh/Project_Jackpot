@@ -49,7 +49,7 @@ public class CurrentStageProgressUI : MonoBehaviour
                 LanKey = "PS_SCStageError";
                 break;
         }
-        StartCoroutine(Load(LanKey));
+        CSTextCor = StartCoroutine(Load(LanKey));
         //PlaySceneShortText
 
         if (PInfo.CurrentFloor == 4)
@@ -79,7 +79,7 @@ public class CurrentStageProgressUI : MonoBehaviour
             StopCoroutine(CSTextCor);
             CSTextCor = null;
         }
-        StartCoroutine(Load(LanKey));
+        CSTextCor = StartCoroutine(Load(LanKey));
     }
 
     private IEnumerator Load(string key)

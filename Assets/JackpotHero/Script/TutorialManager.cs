@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,6 +19,8 @@ public class TutorialManager : MonoBehaviour
     private TextMeshProUGUI TutorialText;
     [SerializeField]
     private Button TutorialSkipButton;
+    [SerializeField]
+    private GameObject TutorialButtonPage;
 
     private TutorialSetSO CurrentTutorialInfo;
     private AsyncOperationHandle<TutorialSetSO> _Handle;
@@ -29,6 +32,24 @@ public class TutorialManager : MonoBehaviour
     private bool IsAfterTutorial = false;
 
     private Coroutine TutorialLanCor;
+
+    private enum ETutorialNum
+    {
+        Preparation,
+        Explore,
+        Inventory,
+        SelectCamp,
+        Battle,
+        Battle_PlayerTurn,
+        Battle_MultiplierCards,
+        Battle_MonsterTurn,
+        Battle_Ambushed,
+        Event,
+        Maintenance,
+        Maintenance_Rest,
+        Maintenance_StatUpgrade,
+        Maintenance_EquipmentManagement
+    }
     public void SetLinkedTutorialNStartTutorial(string TutorialKey)//이걸 타이밍 맞게 부르면.....
     {
         SaveLinkedTutorialList(TutorialKey);
@@ -141,36 +162,85 @@ public class TutorialManager : MonoBehaviour
             NextTutorial();
         }
     }
-    public void ClickAllTutorialButton()
+    public void ClickAllTutorialButton()//?버튼임 활성화 버튼
     {//전체적 설명을 클릭했을때
         //구분해야함 -> 타이틀 씬인지, 탐색, 전투, 이벤트, 휴식 인지
-        IsAfterTutorial = true;
-        if (PlayerMgr == null)
-        {//여기 들어오면 title씬
-            SaveLinkedTutorialList("Title");//여기서 플레이할 튜토리얼이 정해짐
-            //SaveLinkedTutorialList("Camping");
+        if (TutorialButtonPage.activeSelf == true)
+            return;
+        if(DOTween.IsTweening(TutorialButtonPage.GetComponent<RectTransform>()))
+        {
+            DOTween.Kill(TutorialButtonPage.GetComponent<RectTransform>());
         }
-        else
-        {//여기 들어오면 플레이씬
-            switch(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction)
+
+        TutorialButtonPage.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 1080f);
+        TutorialButtonPage.SetActive(true);
+
+        TutorialButtonPage.GetComponent<RectTransform>().DOAnchorPosY(0f, 0.3f).SetEase(Ease.OutBack);
+    }
+    public void ClickSelectionTutorialButton(int TutorialNum)
+    {
+        IsAfterTutorial = true;
+
+        switch(TutorialNum)
+        {
+            case (int)ETutorialNum.Preparation:
+                ForLinkedTutorial.Add("Tutorial/Title");
+                break;
+            case (int)ETutorialNum.Explore:
+                ForLinkedTutorial.Add("Tutorial/Searching");
+                break;
+            case (int)ETutorialNum.Inventory:
+                ForLinkedTutorial.Add("Tutorial/SearchingBag");
+                break;
+            case (int)ETutorialNum.SelectCamp:
+                ForLinkedTutorial.Add("Tutorial/SearchingRest");
+                break;
+            case (int)ETutorialNum.Battle:
+                ForLinkedTutorial.Add("Tutorial/Battle");
+                break;
+            case (int)ETutorialNum.Battle_PlayerTurn:
+                ForLinkedTutorial.Add("Tutorial/BattlePlayerTurn");
+                break;
+            case (int)ETutorialNum.Battle_MultiplierCards:
+                ForLinkedTutorial.Add("Tutorial/PlayerMagCard");
+                break;
+            case (int)ETutorialNum.Battle_MonsterTurn:
+                ForLinkedTutorial.Add("Tutorial/MonsterTurn");
+                break;
+            case (int)ETutorialNum.Battle_Ambushed:
+                ForLinkedTutorial.Add("Tutorial/BattleSuddenAttack");
+                break;
+            case (int)ETutorialNum.Event:
+                ForLinkedTutorial.Add("Tutorial/Event");
+                break;
+            case (int)ETutorialNum.Maintenance:
+                ForLinkedTutorial.Add("Tutorial/Camping");
+                break;
+            case (int)ETutorialNum.Maintenance_Rest:
+                ForLinkedTutorial.Add("Tutorial/CampingRest");
+                break;
+            case (int)ETutorialNum.Maintenance_StatUpgrade:
+                ForLinkedTutorial.Add("Tutorial/CampingLevelUp");
+                break;
+            case (int)ETutorialNum.Maintenance_EquipmentManagement:
+                ForLinkedTutorial.Add("Tutorial/CampingEquip");
+                break;
+        }
+
+        StartTutorial(ForLinkedTutorial[0]);
+    }
+    public void InActiveTutorialButtonPage()//비활성화 버튼
+    {
+        if(TutorialButtonPage.activeSelf == true)
+        {
+            if(!DOTween.IsTweening(TutorialButtonPage.GetComponent<RectTransform>()))
             {
-                case (int)EPlayerCurrentState.SelectAction:
-                    SaveLinkedTutorialList("Search");
-                    break;
-                case (int)EPlayerCurrentState.Battle:
-                    SaveLinkedTutorialList("Battle");
-                    break;
-                case (int)EPlayerCurrentState.OtherEvent:
-                    SaveLinkedTutorialList("Event");
-                    break;
-                case (int)EPlayerCurrentState.Rest:
-                    SaveLinkedTutorialList("Camping");
-                    break;
-                default:
-                    return;
+                TutorialButtonPage.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                TutorialButtonPage.GetComponent<RectTransform>().DOAnchorPosY(1080f, 0.3f).OnComplete(() => { TutorialButtonPage.SetActive(false); });
             }
         }
-        StartTutorial(ForLinkedTutorial[0]);
+
+        CancelTutorial();
     }
     public void CancelTutorial()
     {

@@ -105,7 +105,7 @@ MonoBehaviour:
     m_Localized: '<size=40>EXP Power</size>
 
 
-      Add a final bonus equal to 10%
+      Add a final bonus equal to 5%
       of EXP
 
       to attack, defense, and STA recovery calculation

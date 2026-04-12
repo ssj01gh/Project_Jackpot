@@ -29,6 +29,7 @@ public class PlaySceneUIManager : MonoBehaviour
     public GameObject RestSelectionUI;
     public GameObject FadeUI;
     public RestUIScript R_UI;
+    public EarlyUpgradeIconUI EUIU_UI;
 
     public NonRestInventoryUIScript NonInven_UI;
     public GachaEquipDictionaryUI NonGachaDic_UI;
@@ -124,6 +125,7 @@ public class PlaySceneUIManager : MonoBehaviour
                 break;
             case (int)EPlayerCurrentState.Boss_Battle:
                 InActiveActionSelectionUI();
+                B_UI.ActiveBattleUI();
                 break;
         }
     }
@@ -265,6 +267,7 @@ public class PlaySceneUIManager : MonoBehaviour
         OP_UI.OptionInActive();
         NonInven_UI.CloseNonRestInventory();
         NonGachaDic_UI.InActiveGachaEquipDictionay();
+        TutorialMgr.InActiveTutorialButtonPage();
     }
     //----------------------------
     public void PlayerDefeat()//지거나 게임에서 이기거나
@@ -274,6 +277,7 @@ public class PlaySceneUIManager : MonoBehaviour
         CSP_UI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(130, 0.5f).OnComplete(() => { CSP_UI.gameObject.SetActive(false); });
         NonInven_UI.gameObject.SetActive(false);
         NonGachaDic_UI.gameObject.SetActive(false);
+        EUIU_UI.InActiveAllIcon();
         SoundManager.Instance.PlayBGM("DefeatBGM");
     }
     //-------------------------------PressRestTimeUI
@@ -301,14 +305,34 @@ public class PlaySceneUIManager : MonoBehaviour
             });
     }
     //-------------------BossBattleWinFad
-    public void BossBattleWinFade()
+    public void BossBattleWinFade(int NextFloorNum)
     {
+        //1->2스테이지 일때 2가 들어옴
+        //2->3스테이지 일때 3이 들어옴
+        //3->4스테이지 일때 4가 들어옴
         FadeUI.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
         FadeUI.SetActive(true);
         FadeUI.GetComponent<Image>().DOFade(1, 0.5f).OnComplete(() =>
         {
+            switch(NextFloorNum)
+            {
+                case 2:
+                    SoundManager.Instance.PlaySFX("Grass_Step");
+                    break;
+                case 3:
+                    SoundManager.Instance.PlaySFX("Stone_Step");
+                    break;
+                case 4:
+                    SoundManager.Instance.PlaySFX("Stone_Step");
+                    //SoundManager.Instance.PlaySFX("Portal_Step");
+                    break;
+                default:
+                    Debug.Log(NextFloorNum);
+                    break;
+            }
+
             BG_UI.SetBackGroundSprite(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
-            DOVirtual.DelayedCall(1f, () =>
+            DOVirtual.DelayedCall(2f, () =>
             {
                 FadeUI.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() =>
                 {

@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ja
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b4f32924e9f94c43bfbfb0205041848
+    m_Address: EndingStoryTable_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d550a68236ac394ea2ba4ad11ab1f89
     m_Address: EventDetailText_ja
     m_ReadOnly: 1
@@ -73,6 +79,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d209e045c1481c943a5ddca7f7d529c3
     m_Address: ES_ShortText_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6badab668eae0d4ea4ce4bc1f6253f3
+    m_Address: EarlyUpgrade_PlayScene_ja
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja

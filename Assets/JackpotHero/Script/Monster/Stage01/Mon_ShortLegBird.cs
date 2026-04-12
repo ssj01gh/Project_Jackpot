@@ -22,6 +22,7 @@ public class Mon_ShortLegBird : Monster
         //MonsterBuff.BuffList[(int)EBuffType.BloodFamiliy] = 999;
         //MonsterBuff.BuffList[(int)EBuffType.ToughFist] = 999;
         //MonsterBuff.BuffList[(int)EBuffType.Charm] = 99;
+        //MonsterBuff.BuffList[(int)EBuffType.Lust] = 99;
         //공격 : 방어 = 1 : 1
         
         int RandNum = Random.Range(0, 2);

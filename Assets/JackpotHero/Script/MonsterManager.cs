@@ -148,10 +148,20 @@ public class MonsterManager : MonoBehaviour
         return ActiveMonsters;
     }
 
-    public void SetBossSpawn(PlayerManager PMgr)//여기는 보스를 최초로 정할때만 들어옴
+    public void SetBossSpawn(PlayerManager PMgr)//여기는 보스를 최초로 정할때만 들어옴//여기에 들어올때 마다 새로 뽑음 <- 이러면 안됨, 이미 정해져 있으면 새로 뽑지 않아야함
     {//1스테이지 라면 1200 ~ // 2스테이지 라면 2200~
         int ThemeNum = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor;
         int DetailOfEvents = PMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails;
+
+        for(int i = 0; i < BossPatternStorage[ThemeNum].Count; i++)
+        {
+            if (BossPatternStorage[ThemeNum][i].SpawnPatternID == DetailOfEvents)
+            {//있는 보스 패턴이라면
+                CurrentSpawnPattern = BossPatternStorage[ThemeNum][i];
+                return;
+            }
+        }
+
         int RandBossPatternID = Random.Range(0, BossPatternStorage[ThemeNum].Count);
 
         CurrentSpawnPattern = BossPatternStorage[ThemeNum][RandBossPatternID];
@@ -462,6 +472,9 @@ public class MonsterManager : MonoBehaviour
                 {
                     ActiveMonsters[i].GetComponent<Monster>().GetMonsterCurrentStatus().MonsterCurrentHP = 1;
                     ActiveMonsters[i].GetComponent<Monster>().MonsterBuff.BuffList[(int)EBuffType.UnDead] = 0;
+
+                    SoundManager.Instance.PlaySFX("Buff_Healing");
+
                     EffectManager.Instance.ActiveEffect("BattleEffect_Buff_UnDead", ActiveMonsters[i].gameObject.transform.position);
                     continue;
                 }

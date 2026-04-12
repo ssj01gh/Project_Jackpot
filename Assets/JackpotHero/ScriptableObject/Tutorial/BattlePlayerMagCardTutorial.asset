@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BattlePlayerMagCardTutorial
   m_EditorClassIdentifier: 
   TutorialPages:
-  - {fileID: 21300000, guid: dd613b64fcba0764e84b1f3ea8d23a84, type: 3}
-  - {fileID: 21300000, guid: 9da33b7dc62a6534d9f400708fc0ba93, type: 3}
-  - {fileID: 21300000, guid: 96a624cc5eb333d4888888f344539712, type: 3}
+  - {fileID: 21300000, guid: 3fda42acf787b0546ae65c142a3c00f3, type: 3}
+  - {fileID: 21300000, guid: dbcecb20cc00a3d48aa86847d22f8779, type: 3}
+  - {fileID: 21300000, guid: 4cb019361927ea848bcd382f36a647c1, type: 3}
   TutorialTextPos:
   - {x: 0, y: -420}
   - {x: 0, y: -420}
