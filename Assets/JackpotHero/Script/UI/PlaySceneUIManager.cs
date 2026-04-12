@@ -305,14 +305,34 @@ public class PlaySceneUIManager : MonoBehaviour
             });
     }
     //-------------------BossBattleWinFad
-    public void BossBattleWinFade()
+    public void BossBattleWinFade(int NextFloorNum)
     {
+        //1->2스테이지 일때 2가 들어옴
+        //2->3스테이지 일때 3이 들어옴
+        //3->4스테이지 일때 4가 들어옴
         FadeUI.GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
         FadeUI.SetActive(true);
         FadeUI.GetComponent<Image>().DOFade(1, 0.5f).OnComplete(() =>
         {
+            switch(NextFloorNum)
+            {
+                case 2:
+                    SoundManager.Instance.PlaySFX("Grass_Step");
+                    break;
+                case 3:
+                    SoundManager.Instance.PlaySFX("Stone_Step");
+                    break;
+                case 4:
+                    SoundManager.Instance.PlaySFX("Stone_Step");
+                    //SoundManager.Instance.PlaySFX("Portal_Step");
+                    break;
+                default:
+                    Debug.Log(NextFloorNum);
+                    break;
+            }
+
             BG_UI.SetBackGroundSprite(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);
-            DOVirtual.DelayedCall(1f, () =>
+            DOVirtual.DelayedCall(2f, () =>
             {
                 FadeUI.GetComponent<Image>().DOFade(0, 0.5f).OnComplete(() =>
                 {

@@ -50,7 +50,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
     protected int[] EarlyState_STA = new int[8] { 0, 200, 400, 600, 800, 1000, 1000, 1000 };
     protected int[] EarlyState_EXP = new int[8] { 0, 30, 60, 90, 120, 150, 150, 150 };
     protected float[] EarlyState_EXPMG = new float[8] { 1f, 1.05f, 1.1f, 1.15f, 1.2f, 1.25f, 1.25f, 1.25f };
-    protected int[] EarlyState_EquipInven = new int[8] { 4, 6, 8, 10, 12, 12, 12, 12 };
+    protected int[] EarlyState_EquipInven = new int[8] { 2, 4, 6, 8, 10, 12, 12, 12 };
     protected int[] EarlyState_EquipSuccession = new int[8] { 0, 0, 1, 2, 3, 4, 4, 4 };
     // Start is called before the first frame update
     protected override void Awake()
@@ -389,6 +389,8 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         LkEv_Info.ReadyForBattle = false;
         LkEv_Info.IsMeetTalkingDopple = false;
         LkEv_Info.Stage04EventCount = 0;
+        LkEv_Info.LetKnowGiant = false;
+        LkEv_Info.LetKnowDopple = false;
 
         string classToJson = JsonUtility.ToJson(LkEv_Info, true);
         File.WriteAllText(Path, classToJson);

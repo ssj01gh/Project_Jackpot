@@ -42,6 +42,8 @@ public class BattleManager : MonoBehaviour
     private PlaySceneUIManager UIMgr;
     [SerializeField]
     private TutorialManager TutorialMgr;
+    [SerializeField]
+    private CreditUI CreditMgr;
     // Start is called before the first frame update
     public GameObject CurrentTurnObject { protected set; get; }
     public BattleResultStates BattleResultStatus { protected set; get; } = new BattleResultStates();
@@ -799,7 +801,7 @@ public class BattleManager : MonoBehaviour
         if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails % 1000 >= 200 &&
             PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails % 1000 < 300)//아닐때는 보스일때만임
         {//여기서 클릭 됬을때 보스일때 따로 연출을 넣어야 할듯?
-            Debug.Log("Stage04Boss");
+            //Debug.Log("Stage04Boss");
             if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor == 4)
             {
                 if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == CurrentFinalBossCode)
@@ -823,11 +825,11 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("AnotherBoss");
+                //Debug.Log("AnotherBoss");
                 //보스 중에서도 4스테이지 가 아니면 다른 스테이지로
                 PlayerMgr.GetPlayerInfo().WinBossBattle();
                 UIMgr.B_UI.ClickVictoryButton();//승리버튼 눌렀을때 UI끄고
-                UIMgr.BossBattleWinFade();//Fade해야함//여기에 SetUI랑 이것저것 있음
+                UIMgr.BossBattleWinFade(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentFloor);//Fade해야함//여기에 SetUI랑 이것저것 있음
                 JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
             }
             //CurrentPlayerActionDetail로 구분하는건 끝났음 0으로 바꾸기//CurrentFloor도 늘리게
@@ -843,9 +845,10 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void PressDefeatButton()//이겼을때도 똑같긴하네
+    public void PressDefeatButton(bool IsWin)//이겼을때도 똑같긴하네
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
+        /*
         //여기서 초기 강화 포인트를 얼마나 줄지 계산해야 되는거 아니여?
         if (JsonReadWriteManager.Instance.E_Info.EquipmentSuccessionLevel >= 2)
         {//2이상이면 장비를 랜덤하게 인벤토리에 넣는다 -> 
@@ -858,27 +861,56 @@ public class BattleManager : MonoBehaviour
             JsonReadWriteManager.Instance.InitPlayerInfo(true);//초기화
             JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴
         }
-        LoadingScene.Instance.LoadAnotherScene("TitleScene");
+        */
+        JsonReadWriteManager.Instance.InitPlayerInfo(true);//초기화
+        JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴
+        //->여기서 이겼을때만 크래딧을 띄운다.
+        if (IsWin == true)
+        {//이겼을때
+            CreditMgr.StartEnding();
+        }
+        else
+        {//졌을때
+            LoadingScene.Instance.LoadAnotherScene("TitleScene");
+        }
         //초기화 JsonManager의 P_Info 초기화
     }
 
+    //계승을 그냥 없애버리면? -> 솔직히 계승이 그렇게 특별한 기능인지? -> 이벤트에서도 꼬일 가능성 상당히 높음
     protected void SetEquipSuccession()
     {
         JsonReadWriteManager.Instance.InitPlayerInfo(true);//초기화
-        JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴
         List<int> InPossessionEquip = new List<int>();
         //장비하고있는 장비 코드 저장
-        InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode);
-        InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode);
-        InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode);
-        InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode);
-        InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode);
+        //이거 기초 장비면 무시하게 해야함
+        //P_Info.EquipWeaponCode = 10802;
+        //P_Info.EquipArmorCode = 10812;
+        //P_Info.EquipHatCode = 10822;
+        //P_Info.EquipShoesCode = 10830;
+        //P_Info.EquipAccessoriesCode = 10840;
+        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode != 10802)
+            InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipWeaponCode);
+        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode != 10812)
+            InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipArmorCode);
+        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode != 10830)
+            InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipShoesCode);
+        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode != 10822)
+            InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipHatCode);
+        if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode != 10840)
+            InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipAccessoriesCode);
         //인벤토리에 있는 장비 코드저장
         for(int i = 0; i < (int)JsonReadWriteManager.Instance.GetEarlyState("EQUIP"); i++)
         {
             if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 0)
             {
-                InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i]);
+                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 10802 &&
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 10812 &&
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 10830 &&
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 10822 &&
+                    PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i] != 10840)
+                {
+                    InPossessionEquip.Add(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentInventory[i]);
+                }
             }
         }
         //다 저장했으면 계승 레벨에 맞게 n개의 랜덤한 장비를 뽑음
@@ -891,7 +923,10 @@ public class BattleManager : MonoBehaviour
             JsonReadWriteManager.Instance.P_Info.EquipmentInventory[i] = InPossessionEquip[RandNum];
             InPossessionEquip.RemoveAt(RandNum);
         }
-
+        //-> 여기까지 오면 JsonReadWriteManager.Instance.P_Info.EquipmentInventory[i]에 저장되어 있음. json에는 기록 안되어 있음
+        //->json에 기록 되는건 언제?
+        //여기서 초기화 해야지 위쪽에서 계승할 아이템이 나올듯
+        JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴 <- EarlyPoint는 지금 초기화 시키면 안될것 같은데?
     }
 
     public void PressTurnUIImage(int ButtonNum)//순서 칸에서 몬스터 버튼 눌렀을때 사용

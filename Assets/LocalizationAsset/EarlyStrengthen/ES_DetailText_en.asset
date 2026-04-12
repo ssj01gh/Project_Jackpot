@@ -786,73 +786,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224876
-    m_Localized: 'Start with 4 inventory slots.
-
-
-      After victory or defeat,
-      0 random equipment
-
-      can be carried over to the next game.'
+    m_Localized: Start with 2 inventory slots.
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224877
-    m_Localized: 'Start with 6 inventory slots.
-
-
-      After victory or defeat,
-      0 random equipment
-
-      can be carried over to the next game.'
+    m_Localized: Start with 4 inventory slots.
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224878
-    m_Localized: 'Start with 8 inventory slots.
-
-
-      After victory or defeat,
-      1 random equipment
-
-      can be carried over to the next game.'
+    m_Localized: Start with 6 inventory slots.
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224879
-    m_Localized: 'Start with 10 inventory slots.
-
-
-      After victory or defeat,
-      2 random equipment
-
-      can be carried over to the next game.'
+    m_Localized: Start with 8 inventory slots.
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224880
-    m_Localized: 'Start with 12 inventory slots.
-
-
-      After victory or defeat,
-      3 random equipment
-
-      can be carried over to the next game.'
+    m_Localized: Start with 10 inventory slots.
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224881
-    m_Localized: 'Start with 12 inventory slots.
-
-
-      After victory or defeat,
-      4 random equipment
-
-      can be carried over to the next game.'
+    m_Localized: Start with 12 inventory slots.
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224882
-    m_Localized: 'Start with 12 inventory slots.
-
-
-      After victory or defeat,
-      4 random equipment
-
-      can be carried over to the next game.'
+    m_Localized: Start with 12 inventory slots.
     m_Metadata:
       m_Items: []
   - m_Id: 302527119224883
@@ -862,13 +820,7 @@ MonoBehaviour:
       Applies itself
 
       <link="EQUIP07"><color=green>Weapon
-      Master</color></link> at the start of combat.
-
-
-      After victory or defeat,
-      4 random equipment
-
-      can be carried over to the next game.'
+      Master</color></link> at the start of combat..'
     m_Metadata:
       m_Items: []
   references:

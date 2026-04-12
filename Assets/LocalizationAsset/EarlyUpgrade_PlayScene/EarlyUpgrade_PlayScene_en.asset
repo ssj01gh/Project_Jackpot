@@ -258,47 +258,30 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5471146209280
-    m_Localized: 'Start with 6 inventory slots
-
-      0 random equipment carried
-      over to the next game.'
+    m_Localized: Start with 4 inventory slots
     m_Metadata:
       m_Items: []
   - m_Id: 5472899428352
-    m_Localized: 'Start with 8 inventory slots
-
-      1 random equipment carried
-      over to the next game.'
+    m_Localized: Start with 6 inventory slots
     m_Metadata:
       m_Items: []
   - m_Id: 5473809592320
-    m_Localized: 'Start with 10 inventory slots
-
-      2 random equipment carried
-      over to the next game.'
+    m_Localized: Start with 8 inventory slots
     m_Metadata:
       m_Items: []
   - m_Id: 5474749116416
-    m_Localized: 'Start with 12 inventory slots
-
-      3 random equipment carried
-      over to the next game.'
+    m_Localized: Start with 10 inventory slots
     m_Metadata:
       m_Items: []
   - m_Id: 5475617337344
-    m_Localized: 'Start with 12 inventory slots
-
-      4 random equipment carried
-      over to the next game.'
+    m_Localized: Start with 12 inventory slots
     m_Metadata:
       m_Items: []
   - m_Id: 5478431715328
     m_Localized: 'Start with 12 inventory slots
 
-      4 random equipment carried
-      over to the next game.
-
-      Applies itself <color=green>Weapon Master</color>'
+      Applies itself <color=green>Weapon
+      Master</color>'
     m_Metadata:
       m_Items: []
   references:

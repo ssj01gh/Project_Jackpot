@@ -181,6 +181,7 @@ public class Stage03EventDetailAction
                 if (JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster == true &&
                     JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem == true)
                 {//토토의 이름을 알때
+                    JsonReadWriteManager.Instance.LkEv_Info.LetKnowDopple = true;
                     return 3063;
                 }
                 else//토토의 이름을 모를때

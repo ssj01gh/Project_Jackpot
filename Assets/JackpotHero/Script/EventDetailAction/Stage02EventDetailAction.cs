@@ -413,6 +413,7 @@ public class Stage02EventDetailAction
                 if(JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster == true &&
                     JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem == true)
                 {
+                    JsonReadWriteManager.Instance.LkEv_Info.LetKnowGiant = true;
                     return 2054;
                 }
                 else

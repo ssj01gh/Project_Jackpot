@@ -2135,7 +2135,7 @@ public class BattleUI : MonoBehaviour
         D_GoodKarmaScore.text = (GoodKarmaCount * 77).ToString();
         //아래쪽 들
         D_TotalScore.text = ((FloorCount * 500) + (NormalMonCount * 167) + (EliteMonCount * 250) + (RemainEXPCount / 3) + (GoodKarmaCount * 77)).ToString();
-        D_SuccessionNum.text = ((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
+        D_SuccessionNum.text = "";//((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
         D_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
     }
 
@@ -2189,7 +2189,7 @@ public class BattleUI : MonoBehaviour
         W_GoodKarmaScore.text = (GoodKarmaCount * 77).ToString();
         //아래쪽 들
         W_TotalScore.text = ((FloorCount * 500) + (NormalMonCount * 167) + (EliteMonCount * 250) + (RemainEXPCount / 3) + (GoodKarmaCount * 77)).ToString();
-        W_SuccessionNum.text = ((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
+        W_SuccessionNum.text = "";//((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
         W_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
     }
 

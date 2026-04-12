@@ -125,6 +125,8 @@ public class LinkageEventInfo
     public bool ReadyForBattle;
     public bool IsMeetTalkingDopple;
     public int Stage04EventCount;
+    public bool LetKnowGiant;
+    public bool LetKnowDopple;
 
     public bool IsValid()
     {

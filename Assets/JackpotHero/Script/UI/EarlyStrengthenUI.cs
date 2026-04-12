@@ -527,7 +527,7 @@ public class EarlyStrengthenUI : MonoBehaviour
         SoundManager.Instance.PlayUISFX("UI_Button");
         JsonReadWriteManager.Instance.SaveEarlyInfo(EarlyInfo);
         //JsonReadWriteManager.Instance.E_Info = EarlyInfo;//JsonReadWriteManager에 값 복사
-        JsonReadWriteManager.Instance.InitPlayerInfo(true);//새로 시작하는거니까 PlayInfo초기값으로 변경시키기
+        JsonReadWriteManager.Instance.InitPlayerInfo(true);//새로 시작하는거니까 PlayInfo초기값으로 변경시키기//<-여기서 되면 계승기능안됨-> 계승기능 없애버릴까....
         JsonReadWriteManager.Instance.InitLinkageEventInfo(true);
         LoadingScene.Instance.LoadAnotherScene("PlayScene");
     }

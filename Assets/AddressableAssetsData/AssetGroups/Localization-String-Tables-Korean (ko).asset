@@ -83,6 +83,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ko
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e00e290f334ec0e41b64cf7d72f87fa0
+    m_Address: EndingStoryTable_ko
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: efe474b3c8fff35459e9f25de9087f6c
     m_Address: PlaySceneShortText_ko
     m_ReadOnly: 1
