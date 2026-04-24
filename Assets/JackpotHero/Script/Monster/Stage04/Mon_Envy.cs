@@ -50,7 +50,8 @@ public class Mon_Envy : Monster
     {
         if(i_BuffType == (int)EBuffType.Envy)
         {
-            int RandomPercent = Random.Range(5, 21);
+            //버프의 성능이 3.3배 올랐으니 주는 스택이 1/3이 되어야함
+            int RandomPercent = Random.Range(10, 16);//2~7->이러면 거의 안줄어드는데.....들어올 수 있는 BuffCount = 0 ~ 30 15정도가 보통이라고 생각하면.... 10% ~ 15%
             int GiveEnvyStack = (int)(BuffCount * 0.01 * RandomPercent);
             return base.MonsterGiveBuff(i_BuffType, GiveEnvyStack);
         }

@@ -121,7 +121,8 @@ public class BackGroundUI : MonoBehaviour
         {
             foreach(GameObject LayerObject in Layer04_BackGround)
             {
-                LayerObject.GetComponent<RectTransform>().DOKill();
+                DOTween.Kill(gameObject);
+                //LayerObject.GetComponent<RectTransform>().DOKill();
             }
         }
     }
@@ -145,7 +146,7 @@ public class BackGroundUI : MonoBehaviour
                     TargetObject.GetComponent<RectTransform>().anchoredPosition = ReturnPos;
                 }
                 LoopBackGround(SpeedRatio, TargetObject); 
-            });
+            }).SetTarget(gameObject);
         //이 함수들로 구름을 이동 시킬때 구름이 역주행 하는 버그가 있음.... 왜 그럴까?
         //역주행 하는 이유 -> 목표 좌표가 현재 좌표 +5760으로 됬다. -> 이게 제일 확률이 높다?
         //왜 5760이 되지?
@@ -233,5 +234,10 @@ public class BackGroundUI : MonoBehaviour
     public void SetRestBackGround(bool BackGroundState)
     {
         RestBackGround.SetActive(BackGroundState);
+    }
+
+    private void OnDisable()
+    {
+        DOTween.Kill(gameObject);
     }
 }

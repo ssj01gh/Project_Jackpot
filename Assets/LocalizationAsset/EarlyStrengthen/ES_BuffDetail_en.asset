@@ -105,7 +105,7 @@ MonoBehaviour:
     m_Localized: '<size=40>EXP Power</size>
 
 
-      Add a final bonus equal to 5%
+      Add a final bonus equal to 3%
       of EXP
 
       to attack, defense, and STA recovery calculation
@@ -121,7 +121,7 @@ MonoBehaviour:
       Add a base value equal to
 
       the
-      total tier of all items you own
+      total tier of equipped equipment
 
       to attack, defense, and STA recovery
       calculations

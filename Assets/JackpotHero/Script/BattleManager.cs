@@ -268,13 +268,13 @@ public class BattleManager : MonoBehaviour
         }
         if (MonMgr.GetActiveMonsters().Count <= 0)
         {
-            Debug.Log("Winner");//여기서 대악마들이 쓰러졌는지 확인하면 될듯?
+            //Debug.Log("Winner");//여기서 대악마들이 쓰러졌는지 확인하면 될듯?
             if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4200 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4201 ||
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4202 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4203||
                 PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4204 || PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails == 4205)
             {
                 JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount += 1;
-                Debug.Log("Json : " + JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount);
+                //Debug.Log("Json : " + JsonReadWriteManager.Instance.LkEv_Info.GreatDevilKillCount);
             }
             PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Idle);
             //현재의 상대가 보스라는것을 확일할 방법이 있는가? 엑셀 참고//보스 200이상 300미만
@@ -1712,7 +1712,7 @@ public class BattleManager : MonoBehaviour
             //Debug.Log("부정 : 긍정 = 1 : 2 => 부정 : 0 ~ 20"  + " 긍정 : 20 ~ " + (60 + (int)TP_Info.TotalLUK + LuckBuffNum));
             //Luk이 겁나 낮아지는거 예외처리
             int RandNum = 0;
-            float LUKConstNum = 3f;
+            float LUKConstNum = 2f;
             int TotalCardRange = 60 + (int)(Mathf.Abs(TP_Info.TotalLUK) * LUKConstNum);//이게 분모
             int NegativeRange = 0;
             //LUK가 -가 될때 = NegativeCard에 추가 확률, LUK이 +가 될때 = PositiveCard에 추가 확률
@@ -1727,7 +1727,7 @@ public class BattleManager : MonoBehaviour
                 NegativeRange = (int)(NegativeAmount * MultiplyNum) + (int)(Mathf.Abs(TP_Info.TotalLUK) * LUKConstNum);
 
             RandNum = Random.Range(0, TotalCardRange);// -> 부정이 될지 긍정이 될지 뽑는다.
-            //Debug.Log("부정 확률 : " + (float)NegativeRange / (float)TotalCardRange * 100 + "%//////긍정 확률 : " + ((float)(TotalCardRange - NegativeRange)) / (float)TotalCardRange * 100 + "%");
+            //Debug.Log("플레이어 -- 부정 확률 : " + (float)NegativeRange / (float)TotalCardRange * 100 + "%//////긍정 확률 : " + ((float)(TotalCardRange - NegativeRange)) / (float)TotalCardRange * 100 + "%");
 
             if (NegativeAmount == 0)//긍정에서 하나 뽑아서 저장
             {
@@ -1793,7 +1793,7 @@ public class BattleManager : MonoBehaviour
         BattleResultStatus.FinalResultAmountPlus = 0f;
         if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.EXPPower] >= 1)//경험은 힘 버프 보유시
         {
-            BattleResultStatus.FinalResultAmountPlus += (int)(P_Info.Experience / 20f);
+            BattleResultStatus.FinalResultAmountPlus += (int)(P_Info.Experience / 33f);
         }
         switch (ActionButtonType)
         {
@@ -1948,27 +1948,46 @@ public class BattleManager : MonoBehaviour
                     NegativeList.Add(ESO_Info.EquipmentSlots[i].SlotState[j]);
                 }
             }
-
+            //////////////
             //Debug.Log("부정 : 긍정 = 1 : 1 => 부정 : 0 ~ 30" + " 긍정 : 30 ~ " + (60 + (int)MC_Info.MonsterCurrentLUK + LuckBuffNum));
             //Luk이 겁나 낮아지는거 예외처리
-            int RandNum;
-            if (60 + (int)MC_Info.MonsterCurrentLUK <= 1)
-            {
-                RandNum = 0;
-            }
-            else
-            {
-                RandNum = Random.Range(0, 60 + (int)MC_Info.MonsterCurrentLUK);
-            }
 
-            if (RandNum >= 0 && RandNum < MultiplyNum * NegativeAmount)
+            int RandNum = 0;
+            float LUKConstNum = 2f;
+            int TotalCardRange = 60 + (int)(Mathf.Abs((int)MC_Info.MonsterCurrentLUK) * LUKConstNum);//이게 분모
+            int NegativeRange = 0;
+            //LUK가 -가 될때 = NegativeCard에 추가 확률, LUK이 +가 될때 = PositiveCard에 추가 확률
+            //LUK의 절대 값 만큼 나올 수 있는 값이 60 + 가 된다 -> -라도
+            //Total 범위는 60 + (LUK * LuckConstNum);
+            //LUK이 -일때는 0 ~ ((NegativeList.Count * MultiplyNum) + (LUK * LuckConstNum) - 1) -> 부정 , 나머지 긍정
+            //LUK이 + 일때는 0 ~ ((NegativeList.Count * MultiplyNum) - 1) -> 부정, 나머지 긍정
+            //NegativeAmount가 0일때는 NegativeRange는 0이된다 LUK이 아무리 낮아도 -> 상관 없다 밑에서 예외처리를 해서
+            if ((int)MC_Info.MonsterCurrentLUK >= 0)//0포함 양수 일때
+                NegativeRange = (int)(NegativeAmount * MultiplyNum);
+            else//음수 일때
+                NegativeRange = (int)(NegativeAmount * MultiplyNum) + (int)(Mathf.Abs(MC_Info.MonsterCurrentLUK) * LUKConstNum);
+
+            RandNum = Random.Range(0, TotalCardRange);// -> 부정이 될지 긍정이 될지 뽑는다.
+            //Debug.Log("몬스터 -- 부정 확률 : " + (float)NegativeRange / (float)TotalCardRange * 100 + "%//////긍정 확률 : " + ((float)(TotalCardRange - NegativeRange)) / (float)TotalCardRange * 100 + "%");
+
+            if (NegativeAmount == 0)//긍정에서 하나 뽑아서 저장
             {
+                int PositiveRandNum = Random.Range(0, PositiveList.Count);
+                BattleResultStatus.ResultMagnification.Add(PositiveList[PositiveRandNum]);
+            }
+            else if (PositiveAmount == 0)//부정에서 하나 뽑아서 저장
+            {
+                int NegativeRandNum = Random.Range(0, NegativeList.Count);
+                BattleResultStatus.ResultMagnification.Add(NegativeList[NegativeRandNum]);
+            }
+            else if (RandNum >= 0 && RandNum < NegativeRange)
+            {//0 ~ NegativeRange - 1 -> 부정적에서 하나
                 //부정적 List에서 하나를 뽑아서 저장
                 int NegativeRandNum = Random.Range(0, NegativeList.Count);
                 BattleResultStatus.ResultMagnification.Add(NegativeList[NegativeRandNum]);
             }
-            else if (RandNum >= MultiplyNum * NegativeAmount && RandNum < 60 + (int)MC_Info.MonsterCurrentLUK)
-            {
+            else if (RandNum >= NegativeRange)
+            {//NegativeRange보다 크면 긍정에서 하나
                 //긍정적 List에서 하나를 뽑아서 저장
                 int PositiveRandNum = Random.Range(0, PositiveList.Count);
                 BattleResultStatus.ResultMagnification.Add(PositiveList[PositiveRandNum]);

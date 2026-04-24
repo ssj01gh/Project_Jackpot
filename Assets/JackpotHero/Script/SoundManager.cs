@@ -115,7 +115,7 @@ public class SoundManager : MonoSingletonDontDestroy<SoundManager>
         else
         {
             //∞„√∆¿ª∂ßµµ ∂‰
-            Debug.Log("There is No " + BGMName);
+            //Debug.Log("There is No " + BGMName);
         }
     }
     public AudioSource PlaySFX(string SFXName, float Pitch = 1)

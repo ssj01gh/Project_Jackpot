@@ -461,7 +461,7 @@ public class EarlyStrengthenUI : MonoBehaviour
                 }
                 break;
             case "STA":
-                if (EarlyInfo.EarlyStrengthLevel > 0)
+                if (EarlyInfo.EarlyTirednessLevel > 0)
                 {
                     EarlyInfo.EarlyTirednessLevel--;
                     EarlyInfo.PlayerEarlyPoint++;

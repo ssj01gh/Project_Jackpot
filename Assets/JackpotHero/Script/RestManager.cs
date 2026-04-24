@@ -193,13 +193,13 @@ public class RestManager : MonoBehaviour
         {
             //회복이 끝나면 다시 휴식 행동 선택창이 나와야함
             //Player의 정보도 Json에 갱신하고
-            Debug.Log("FullRest");
+            //Debug.Log("FullRest");
             UIMgr.R_UI.InActiveLeftTimeObject();
             UIMgr.R_UI.ActiveRestActionSelection();
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
             //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
         }
-        Debug.Log("RestEnd");
+        //Debug.Log("RestEnd");
     }
 
     //---------------------------------PlayerUpgradeFunc

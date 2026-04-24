@@ -37,7 +37,7 @@ public class TitleUIManager : MonoBehaviour
     {
         Vector3 OriginRotation = LogoCard.GetComponent<RectTransform>().transform.eulerAngles;
         LogoCard.GetComponent<RectTransform>().transform.DORotate(new Vector3(0, 360f, OriginRotation.z), 3f, RotateMode.FastBeyond360)
-            .SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart); // 무한 반복
+            .SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart).SetTarget(gameObject); // 무한 반복
 
         /*
         foreach(GameObject Star in LogoStar)
@@ -81,7 +81,7 @@ public class TitleUIManager : MonoBehaviour
                     TargetObject.GetComponent<RectTransform>().anchoredPosition = ReturnPos;
                 }
                 LoopBackGround(TargetObject);
-            });
+            }).SetTarget(gameObject);
         //이 함수들로 구름을 이동 시킬때 구름이 역주행 하는 버그가 있음.... 왜 그럴까?
         //역주행 하는 이유 -> 목표 좌표가 현재 좌표 +5760으로 됬다. -> 이게 제일 확률이 높다?
         //왜 5760이 되지?
@@ -116,6 +116,12 @@ public class TitleUIManager : MonoBehaviour
     {
         _OptionUI.OptionUIActive();
     }
+
+    private void OnDisable()
+    {
+        DOTween.Kill(gameObject);
+    }
+
     public void ExitButtonClick()
     {
 #if UNITY_EDITOR

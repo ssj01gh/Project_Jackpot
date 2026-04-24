@@ -103,7 +103,7 @@ public class PlaySceneManager : MonoBehaviour
                     int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint + 1);
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Battle;
-                    Debug.Log("EngageMonster");
+                    //Debug.Log("EngageMonster");
                 }
                 else if (RandPoint >= EngageMonster && RandPoint < EngageMonster + OccurEvent)//랜덤 이벤트 발생
                 {
@@ -111,7 +111,7 @@ public class PlaySceneManager : MonoBehaviour
                     int RandResearchPoint = Random.Range(1, SearchNextFloorMaxPoint + 1);
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().DetectNextFloorPoint += RandResearchPoint;
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.OtherEvent;
-                    Debug.Log("RandomEvent");
+                    //Debug.Log("RandomEvent");
                 }
                 else
                 {
@@ -129,7 +129,7 @@ public class PlaySceneManager : MonoBehaviour
                 {
                     //다음층은 DetectNextFloorPoint가 100이 넘을때
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.Boss_Event;
-                    Debug.Log("ResearchNextFloor_Evnet");
+                    //Debug.Log("ResearchNextFloor_Evnet");
                 }
                 else
                 {

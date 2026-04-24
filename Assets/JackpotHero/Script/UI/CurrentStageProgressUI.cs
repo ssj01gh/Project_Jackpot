@@ -84,6 +84,12 @@ public class CurrentStageProgressUI : MonoBehaviour
 
     private IEnumerator Load(string key)
     {
+        if (key == null)
+        {
+            //Debug.LogWarning("Localization key is null or empty");
+            yield break;
+        }
+
         yield return new WaitForSeconds(0.1f);
         yield return LocalizationSettings.InitializationOperation;
         //Debug.Log(LocalizationSettings.SelectedLocale.Identifier.Code);

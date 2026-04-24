@@ -252,7 +252,7 @@ public class PlayerScript : MonoBehaviour
                     PlayerTotalState.TotalSPD += 3;
                     break;
                 case (int)EBuffType.Slow:
-                    PlayerTotalState.TotalSPD -= 10;
+                    PlayerTotalState.TotalSPD -= 5;//원래10
                     break;
                 case (int)EBuffType.Haste:
                     PlayerTotalState.TotalSPD += 10;
@@ -277,7 +277,7 @@ public class PlayerScript : MonoBehaviour
                     PlayerTotalState.TotalLUK -= DecreaseStateByBK;
                     break;
                 case (int)EBuffType.Envy:
-                    int DecreaseStateByEnvy = (int)(PlayerBuff.BuffList[(int)EBuffType.Envy] * 0.3f);
+                    int DecreaseStateByEnvy = (int)(PlayerBuff.BuffList[(int)EBuffType.Envy]);
                     PlayerTotalState.TotalSTR -= DecreaseStateByEnvy;
                     PlayerTotalState.TotalDUR -= DecreaseStateByEnvy;
                     PlayerTotalState.TotalRES -= DecreaseStateByEnvy;
@@ -625,7 +625,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ApplyBuff(int ApplyBuffType, int BuffCount)
     {
-        Debug.Log("IsThisActive");
+        //Debug.Log("IsThisActive");
         PlayerBuff.BuffList[ApplyBuffType] += BuffCount;
     }
     public void SetIsSuddenAttackAndRestQuality()
@@ -684,6 +684,8 @@ public class PlayerScript : MonoBehaviour
         AllEquipmentTier += EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipAccessoriesCode).EquipmentTier;
 
         //현재 인벤토리에 있는 모든 장비
+        //이거는 일단 제외
+        /*
         for(int i = 0; i < PlayerState.EquipmentInventory.Length; i++)
         {
             if(PlayerState.EquipmentInventory[i] >= 1)
@@ -691,6 +693,7 @@ public class PlayerScript : MonoBehaviour
                 AllEquipmentTier += EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(PlayerState.EquipmentInventory[i]).EquipmentTier;
             }
         }
+        */
 
         return AllEquipmentTier;
     }
@@ -909,10 +912,21 @@ public class PlayerScript : MonoBehaviour
             JsonReadWriteManager.Instance.E_Info.PlayerReachFloor = PlayerState.CurrentFloor;
         }
 
-        JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 6;
         if (IsWinGame == true)
         {//끝까지 깼을때 한번더 갱신
+            JsonReadWriteManager.Instance.E_Info.PlayerReachFloor = 5;
             JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = 28;
+        }
+        else
+        {
+            if(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor >= 5)
+            {
+                JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = 28;
+            }
+            else
+            {
+                JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 6;
+            }
         }
 
         BeforeCalculatePoint = (int)(JsonReadWriteManager.Instance.E_Info.PlayerReachFloor * 500);//2당 1포
