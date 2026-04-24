@@ -105,7 +105,8 @@ public class Mon_Homunculus : Monster
             return;
         }
         int Rand = Random.Range(0, DontConsumeStateList.Count);
-        switch(Rand)
+
+        switch(DontConsumeStateList[Rand])
         {
             case (int)EConsumeState.ConsumeToughSkin:
                 MonsterBuff.BuffList[(int)EBuffType.ToughSkin] = 99;

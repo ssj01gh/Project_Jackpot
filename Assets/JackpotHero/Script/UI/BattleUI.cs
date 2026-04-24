@@ -1487,7 +1487,7 @@ public class BattleUI : MonoBehaviour
         }
         //여기에서 소환?
         CallBack?.Invoke();
-        Debug.Log("CoroutineEnd");
+        //Debug.Log("CoroutineEnd");
     }
     //만약 행동 이미지가 있다면 줌인, 홀드일때 이미지가 바뀌었다가 줌아웃 되면 다시 원래 꺼로 돌아감
     protected void BattleAttackProduction(GameObject Attacker, GameObject Defender, bool IsAttackerRight)

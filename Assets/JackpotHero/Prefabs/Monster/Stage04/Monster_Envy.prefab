@@ -141,8 +141,8 @@ MonoBehaviour:
   LUKVarianceAmount: 0
   MonsterBaseSPD: 14
   SPDVarianceAmount: 0
-  MonsterBaseEXP: 1088
-  EXPVarianceAmount: 272
+  MonsterBaseEXP: 0
+  EXPVarianceAmount: 0
   MonsterWeaponCode: 74021
   MonsterArmorCode: 84021
   MonsterAnotherEquipmentCode: 456f0100

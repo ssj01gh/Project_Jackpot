@@ -57,7 +57,7 @@ public class Mon_Assassnake : Monster
         //PoisonCount = 10이상일때 일반행동 확률 = 100%
         //공격 : 방어 = 1 : 1
         int RandNum = Random.Range(0, 11);
-        Debug.Log(EnemyPoisonCount);
+        //Debug.Log(EnemyPoisonCount);
         if (RandNum > EnemyPoisonCount)//적의 독 수치가 작을 수록 확률 이쪽 확률 증가
         {
             MonsterCurrentState = (int)EMonsterActionState.GivePoison;

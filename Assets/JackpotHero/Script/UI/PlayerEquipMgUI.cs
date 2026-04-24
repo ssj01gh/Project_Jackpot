@@ -1009,7 +1009,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     IsClickedInventorySlot = true;
 
                     MouseFollowImage.gameObject.SetActive(true);
-                    Debug.Log(CurrentBringItemCode);
+                    //Debug.Log(CurrentBringItemCode);
                     MouseFollowImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(CurrentBringItemCode).EquipmentImage;
                     MoveUI(eventData);
                     PlayerEquipImages[i].gameObject.SetActive(false);

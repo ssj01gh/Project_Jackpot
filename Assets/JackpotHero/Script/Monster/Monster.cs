@@ -399,7 +399,7 @@ public class Monster : MonoBehaviour
                     MonTotalStatus.MonsterCurrentSPD += 3;
                     break;
                 case (int)EBuffType.Slow:
-                    MonTotalStatus.MonsterCurrentSPD -= 10;
+                    MonTotalStatus.MonsterCurrentSPD -= 5;
                     break;
                 case (int)EBuffType.Haste:
                     MonTotalStatus.MonsterCurrentSPD += 10;
