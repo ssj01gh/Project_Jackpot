@@ -240,6 +240,7 @@ MonoBehaviour:
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}
+  DopplegangerShadow: {fileID: 1163540501788608408}
 --- !u!1 &3712609004761415353
 GameObject:
   m_ObjectHideFlags: 0

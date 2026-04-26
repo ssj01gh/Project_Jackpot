@@ -1711,7 +1711,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void PressQuickGetEquipButton()
     {
+        //여기가 장비 얻는곳 -> 업적 달성 체크
         //장비를 인벤토리로
+        CheckGachaSteamACH(GachaResultEquipCode);
         PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);//인벤토리에 넣고
         PressGetEquipClickButton();//UI업데이트
     }
@@ -2275,6 +2277,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     protected void EquipGachaEndPhaseEnd()
     {
+        //여기
+        CheckGachaSteamACH(GachaResultEquipCode);
         PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);//인벤토리에 넣고
         PressGetEquipClickButton();
     }
@@ -2443,5 +2447,33 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     public void PressEquipGachaDictionayButton()
     {
         GED_UI.ActiveGachaEquipDictionary();
+    }
+
+    protected void CheckGachaSteamACH(int GachaEquipCode)
+    {
+        //천의 자리
+        //만의 자리 나머지 -> 천의 자리 남고 -> 천으로 나누면 -> 티어
+        int GetEquipTier = (GachaEquipCode % 10000) / 1000;
+        switch(GetEquipTier)
+        {
+            case 1:
+                SteamAchievementManager.Instance.SetSteamAchievement("ACH_GACHA_TONE");//동기화도 같이
+                break;
+            case 2:
+                SteamAchievementManager.Instance.SetSteamAchievement("ACH_GACHA_TTWO");//동기화도 같이
+                break;
+            case 3:
+                SteamAchievementManager.Instance.SetSteamAchievement("ACH_GACHA_TTHREE");//동기화도 같이
+                break;
+            case 4:
+                SteamAchievementManager.Instance.SetSteamAchievement("ACH_GACHA_TFOUR");//동기화도 같이
+                break;
+            case 5:
+                SteamAchievementManager.Instance.SetSteamAchievement("ACH_GACHA_TFIVE");//동기화도 같이
+                break;
+            case 6:
+                SteamAchievementManager.Instance.SetSteamAchievement("ACH_GACHA_TSIX");//동기화도 같이
+                break;
+        }
     }
 }

@@ -62,16 +62,9 @@ public class BackGroundUI : MonoBehaviour
 
     public void SetBackGroundSprite(int ThemeNum)
     {
-        /*
-        if (ThemeNum - 1 >= BackGroundObjects.Length)
-            return;
-        */
+        //넘어갈때랑 시작할때 불러와짐
         if(ThemeNum != 1 && ThemeNum != 2 && ThemeNum != 3 && ThemeNum != 4)
             ThemeNum = 1;
-
-        //각 저장소에 아무것도 없는 곳에는 null(투명) 이미지을 등록
-        //ThemeNum == 3일때는 좀 특별하게 해야 할듯?
-        //-> 첫번째 레이어랑 RestBackGround만 사용하기 때문에
 
         if(ThemeNum == 3)
         {
@@ -124,6 +117,23 @@ public class BackGroundUI : MonoBehaviour
                 DOTween.Kill(gameObject);
                 //LayerObject.GetComponent<RectTransform>().DOKill();
             }
+        }
+
+        if(ThemeNum == 1)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENTER_STAGE01");//여긴 동기화도 같이
+        }
+        if(ThemeNum == 2)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENTER_STAGE02");
+        }
+        if(ThemeNum == 3)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENTER_STAGE03");
+        }
+        if(ThemeNum == 4)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENTER_STAGE04");
         }
     }
 

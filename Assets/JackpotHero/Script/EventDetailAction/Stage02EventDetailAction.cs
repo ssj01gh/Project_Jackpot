@@ -157,6 +157,7 @@ public class Stage02EventDetailAction
                 PlayerMgr.GetPlayerInfo().PutEquipmentToInven(ForestBukelt);
                 UIMgr.NonInven_UI.UpdateNonRestInventoryWhenOpen();
                 UIMgr.GI_UI.ActiveGettingUI(ForestBukelt);
+                SteamAchievementManager.Instance.SetSteamAchievement("ACH_GET_LIFEBRACELET");
                 JsonReadWriteManager.Instance.LkEv_Info.ForestBracelet = true;
                 return 2007;
         }

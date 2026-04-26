@@ -481,6 +481,7 @@ public class Monster : MonoBehaviour
             if (CopySTR == true && CopyDUR == true && CopyLUK == true && CopySPD == true)
             {
                 MonsterAnimator.SetInteger("DoppelgangerState", 1);
+                //Idle Attack Defense¸¸ µüÀÖ´Ù.
             }
             else
             {

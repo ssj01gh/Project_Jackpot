@@ -334,44 +334,45 @@ public class CommonEventDetailAction
     //----------------------------------------------Event9070
     public int Event9070(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr)
     {
-        //0. 2티어 이벤트 -120경험치
-        //1. 3티어 이벤트 -300경험치
-        //2. 4티어 이벤트 -1050경험치
-        //3. 5티어 이벤트 -3000경험치
+        // 1/6으로 줄이기
+        //0. 2티어 이벤트 -120경험치 -> -20
+        //1. 3티어 이벤트 -300경험치 -> -50
+        //2. 4티어 이벤트 -1050경험치 -> 175
+        //3. 5티어 이벤트 -3000경험치 -> 500
         //4. 떠난다.
         switch(ButtonType)
         {
             case 0:
-                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 120)
+                if(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 20)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughEXP_ForgeEvent);
                     return 9070;
                 }
-                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-120, true);
+                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-20, true);
                 return 9071;
             case 1:
-                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 300)
+                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 50)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughEXP_ForgeEvent);
                     return 9070;
                 }
-                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-300, true);
+                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-50, true);
                 return 9072;
             case 2:
-                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 1050)
+                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 175)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughEXP_ForgeEvent);
                     return 9070;
                 }
-                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-1050, true);
+                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-175, true);
                 return 9073;
             case 3:
-                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 3000)
+                if (PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().Experience < 500)
                 {
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NotEnoughEXP_ForgeEvent);
                     return 9070;
                 }
-                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-3000, true);
+                PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-500, true);
                 return 9074;
             case 4:
                 return 9076;

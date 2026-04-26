@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Mon_Doppelganger : Monster
 {
@@ -12,9 +13,39 @@ public class Mon_Doppelganger : Monster
         SPD
     }
 
+    enum EShadowState
+    {
+        Normal,
+        Heroine_Idle,
+        Heroine_Attack,
+        Heroine_Defense,
+        Heroine_Special
+    }
+
+    [SerializeField]
+    private GameObject DopplegangerShadow;
+
     private List<int> DontCopyStateList = new List<int>();
     private bool IsAttackTurn = false;
     private bool IsCopyComplete = false;
+
+    private float ShadowZPos = 0.1f;
+    private Vector2[] ShadowPos =
+    {
+        new Vector2(0f,0f),
+        new Vector2(0f, 0f),
+        new Vector2(-0.04f, 0f),
+        new Vector2(-0.08f, 0f),
+        new Vector2(-0.04f, 0f)
+    };
+    private Vector2[] ShadowScale =
+    {
+        new Vector2(0.25f, 0.05f),
+        new Vector2(0.25f, 0.05f),
+        new Vector2(0.2f, 0.05f),
+        new Vector2(0.35f, 0.05f),
+        new Vector2(0.25f, 0.05f)
+    };
 
     protected override void Start()
     {
@@ -131,5 +162,39 @@ public class Mon_Doppelganger : Monster
     public override void MonsterGetBuff(int i_BuffType, int BuffCount = 0)
     {
         base.MonsterGetBuff(i_BuffType, BuffCount);
+    }
+
+    public override void SetMonsterAnimation(int AnimationState)
+    {
+        base.SetMonsterAnimation(AnimationState);//애니메이션이 변경된다.
+
+        if(MonsterAnimator.GetInteger("DoppelgangerState") == 0)
+        {
+            DopplegangerShadow.transform.localPosition = new Vector3(ShadowPos[(int)EShadowState.Normal].x, ShadowPos[(int)EShadowState.Normal].y, ShadowZPos);
+            DopplegangerShadow.transform.localScale = new Vector3(ShadowScale[(int)EShadowState.Normal].x, ShadowScale[(int)EShadowState.Normal].y, 1f);
+        }
+        else
+        {
+            switch(AnimationState)
+            {
+                case 0:
+                    DopplegangerShadow.transform.localPosition = new Vector3(ShadowPos[(int)EShadowState.Heroine_Idle].x, ShadowPos[(int)EShadowState.Heroine_Idle].y, ShadowZPos);
+                    DopplegangerShadow.transform.localScale = new Vector3(ShadowScale[(int)EShadowState.Heroine_Idle].x, ShadowScale[(int)EShadowState.Heroine_Idle].y, 1f);
+                    break;
+                case 1:
+                case 3:
+                    DopplegangerShadow.transform.localPosition = new Vector3(ShadowPos[(int)EShadowState.Heroine_Attack].x, ShadowPos[(int)EShadowState.Heroine_Attack].y, ShadowZPos);
+                    DopplegangerShadow.transform.localScale = new Vector3(ShadowScale[(int)EShadowState.Heroine_Attack].x, ShadowScale[(int)EShadowState.Heroine_Attack].y, 1f);
+                    break;
+                case 2:
+                    DopplegangerShadow.transform.localPosition = new Vector3(ShadowPos[(int)EShadowState.Heroine_Defense].x, ShadowPos[(int)EShadowState.Heroine_Defense].y, ShadowZPos);
+                    DopplegangerShadow.transform.localScale = new Vector3(ShadowScale[(int)EShadowState.Heroine_Defense].x, ShadowScale[(int)EShadowState.Heroine_Defense].y, 1f);
+                    break;
+                case 5:
+                    DopplegangerShadow.transform.localPosition = new Vector3(ShadowPos[(int)EShadowState.Heroine_Special].x, ShadowPos[(int)EShadowState.Heroine_Special].y, ShadowZPos);
+                    DopplegangerShadow.transform.localScale = new Vector3(ShadowScale[(int)EShadowState.Heroine_Special].x, ShadowScale[(int)EShadowState.Heroine_Special].y, 1f);
+                    break;
+            }
+        }
     }
 }
