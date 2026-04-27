@@ -1182,7 +1182,23 @@ public class BattleUI : MonoBehaviour
                 //여기서 부터
             }
         }
-        
+        //여기서 공격 방어 회복에 따른 업적달성을 하면 될것같음 -> 숫자가 나오기 때문
+        if((int)BattleResult.FinalResultAmount >= 1000 && ActionObj.tag == "Player")
+        {//1000이 넘고 플레이어일때
+            switch(ActionString)
+            {
+                case "Attack":
+                    SteamAchievementManager.Instance.SetSteamAchievement("ACH_ATTACK_1000");//이건 동기화도 같이
+                    break;
+                case "Defense":
+                    SteamAchievementManager.Instance.SetSteamAchievement("ACH_DEFENSE_1000");//이건 동기화도 같이
+                    break;
+                case "Rest":
+                    SteamAchievementManager.Instance.SetSteamAchievement("ACH_STARECOVERY_1000");//이건 동기화도 같이
+                    break;
+            }
+        }
+
         //약간 기다린다
         yield return new WaitForSeconds(0.3f * BattleAccel);
 

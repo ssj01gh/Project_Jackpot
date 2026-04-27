@@ -613,8 +613,17 @@ public class PlayerScript : MonoBehaviour
         if (WeaponType == SPDWeapon)
         {
             if(IsAttack == true && IsPlayerTurn == true)
-            {
-                PlayerBuff.BuffList[(int)EBuffType.ChainAttack] += 1;
+            {//여기에 들어오면 쌓이는 거임
+                //지금 0스택이라면 +1 지금이 0스택이 아니라면 *2로
+                int CurrentChainAttackStack = PlayerBuff.BuffList[(int)EBuffType.ChainAttack];
+                if(CurrentChainAttackStack == 0)
+                {
+                    PlayerBuff.BuffList[(int)EBuffType.ChainAttack] += 1;
+                }
+                else
+                {//1이면 2가 되고 2면 4가됨 ......
+                    PlayerBuff.BuffList[(int)EBuffType.ChainAttack] += CurrentChainAttackStack;
+                }
             }
             else
             {

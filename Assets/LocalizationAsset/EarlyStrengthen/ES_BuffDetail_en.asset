@@ -115,18 +115,9 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19418393997320
-    m_Localized: '<size=40>Weapon Master</size>
-
-
-      Add a base value equal to
-
-      the
-      total tier of equipped equipment
-
-      to attack, defense, and STA recovery
-      calculations
-
-      during combat.'
+    m_Localized: "<size=40>Weapon Master</size>\n\nAdd a base value 50% of the sum
+      of the\r\nequipment tier values \u200B\u200Byou are equipped\r\nto attack,
+      defense, and STA recovery calculations\r\nduring combat."
     m_Metadata:
       m_Items: []
   references:

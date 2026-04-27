@@ -175,19 +175,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2850373072711712
-    m_Localized: "\u666E\u901A\u306E\u88C5\u5099 <color=red>-EXP : 120</color>"
+    m_Localized: "\u666E\u901A\u306E\u88C5\u5099 <color=red>-EXP : 20</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 2850373072711713
-    m_Localized: "\u826F\u3044\u88C5\u5099 <color=red>-EXP : 300</color>"
+    m_Localized: "\u826F\u3044\u88C5\u5099 <color=red>-EXP : 50</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 2850373072711714
-    m_Localized: "\u512A\u308C\u305F\u88C5\u5099 <color=red>-EXP : 1050</color>"
+    m_Localized: "\u512A\u308C\u305F\u88C5\u5099 <color=red>-EXP : 175</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 2850373072711715
-    m_Localized: "\u5B8C\u74A7\u306A\u88C5\u5099 <color=red>-EXP : 3000</color>"
+    m_Localized: "\u5B8C\u74A7\u306A\u88C5\u5099 <color=red>-EXP : 500</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 2850373072711716

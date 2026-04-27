@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -6,7 +7,6 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
-
 public enum EBattleStates
 {
     Idle,
@@ -868,12 +868,64 @@ public class BattleManager : MonoBehaviour
         if (IsWin == true)
         {//이겼을때
             CreditMgr.StartEnding();
+            CheckWinAchievement();
         }
         else
         {//졌을때
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_FIRST_DEATH");//여기선 동기화 까지 한번에
             LoadingScene.Instance.LoadAnotherScene("TitleScene");
         }
         //초기화 JsonManager의 P_Info 초기화
+    }
+
+    protected void CheckWinAchievement()
+    {
+        SteamAchievementManager.Instance.SetSteamAchievement("ACH_FIRST_CLEAR", false);
+        if(JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_STR_CLEAR", false);
+        }
+        if(JsonReadWriteManager.Instance.E_Info.EarlyDurabilityLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_DUR_CLEAR", false);
+        }
+        if(JsonReadWriteManager.Instance.E_Info.EarlyResilienceLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_RES_CLEAR", false);
+        }
+        if(JsonReadWriteManager.Instance.E_Info.EarlySpeedLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_SPD_CLEAR", false);
+        }
+        if(JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_LUK_CLEAR", false);
+        }
+        if (JsonReadWriteManager.Instance.E_Info.EarlyHpLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_HP_CLEAR", false);
+        }
+        if (JsonReadWriteManager.Instance.E_Info.EarlyTirednessLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_STA_CLEAR", false);
+        }
+        if (JsonReadWriteManager.Instance.E_Info.EarlyExperience >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_EXP_CLEAR", false);
+        }
+        if (JsonReadWriteManager.Instance.E_Info.EarlyExperienceMagnification >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_EXPMG_CLEAR", false);
+        }
+        if (JsonReadWriteManager.Instance.E_Info.EquipmentSuccessionLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_INVEN_CLEAR", false);
+        }
+        if (JsonReadWriteManager.Instance.E_Info.EarlyLuckLevel >= 7)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_LUK_CLEAR", false);
+        }
+        SteamAchievementManager.Instance.SetSteamACHStoreStats();//동기화 -->CreditMgr.StartEnding();쪽에서 몇번 엔딩인가에 관한 업적도 적용됨
     }
 
     //계승을 그냥 없애버리면? -> 솔직히 계승이 그렇게 특별한 기능인지? -> 이벤트에서도 꼬일 가능성 상당히 높음
@@ -1646,7 +1698,7 @@ public class BattleManager : MonoBehaviour
     {
         PlayerInfo P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
         TotalPlayerState TP_Info = PlayerMgr.GetPlayerInfo().GetTotalPlayerStateInfo();
-        float AllEquipTier = PlayerMgr.GetPlayerInfo().GetAllEquipTier();
+        float AllEquipTier = PlayerMgr.GetPlayerInfo().GetAllEquipTier() / 2;
 
         int EquipCode = 0;
         BattleResultStatus.BaseAmountPlus = 0;
@@ -1677,7 +1729,7 @@ public class BattleManager : MonoBehaviour
         if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.WeaponMaster] >= 1)//웨폰마스터 버프를 보유중일때
         {
             //플레이어간 끼고 있는 장비들을 포함한 모든 장비들의 티어의 합
-            BattleResultStatus.BaseAmountPlus += AllEquipTier;
+            BattleResultStatus.BaseAmountPlus += (int)AllEquipTier;
         }
         if (PlayerMgr.GetPlayerInfo().PlayerBuff.BuffList[(int)EBuffType.BloodFamiliy] >= 1)
         {

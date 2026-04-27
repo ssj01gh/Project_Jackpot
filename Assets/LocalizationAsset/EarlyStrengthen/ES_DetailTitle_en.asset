@@ -307,35 +307,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1483705282560
-    m_Localized: Succession Upgrade Level 0
+    m_Localized: Inventory Upgrade Level 0
     m_Metadata:
       m_Items: []
   - m_Id: 1526508154880
-    m_Localized: Succession Upgrade Level 1
+    m_Localized: Inventory Upgrade Level 1
     m_Metadata:
       m_Items: []
   - m_Id: 1536272494592
-    m_Localized: Succession Upgrade Level 2
+    m_Localized: Inventory Upgrade Level 2
     m_Metadata:
       m_Items: []
   - m_Id: 1546464653312
-    m_Localized: Succession Upgrade Level 3
+    m_Localized: Inventory Upgrade Level 3
     m_Metadata:
       m_Items: []
   - m_Id: 1554966507520
-    m_Localized: Succession Upgrade Level 4
+    m_Localized: Inventory Upgrade Level 4
     m_Metadata:
       m_Items: []
   - m_Id: 1563237675008
-    m_Localized: Succession Upgrade Level 5
+    m_Localized: Inventory Upgrade Level 5
     m_Metadata:
       m_Items: []
   - m_Id: 1570716119040
-    m_Localized: Succession Upgrade Level 6
+    m_Localized: Inventory Upgrade Level 6
     m_Metadata:
       m_Items: []
   - m_Id: 1577989042176
-    m_Localized: Succession Upgrade Level 7
+    m_Localized: Inventory Upgrade Level 7
     m_Metadata:
       m_Items: []
   references:
