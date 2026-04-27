@@ -224,6 +224,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     private int EquipCurrentLinkIndex = -1;
     private int InvenCurrentLinkIndex = -1;
+
+    private float QuickProductionAccel = 1f;
+    private float ProductionAccel = 0.57f;
     protected enum EPlayerEquip
     {
         Helmet,
@@ -1677,7 +1680,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //장비의 이미지 출력
         QuickEquipGachaResultImage.sprite = EquipmentInfoManager.Instance.GetPlayerEquipmentInfo(GachaResultEquipCode).EquipmentImage;
         //위에서 부터 캡슐이 바운스를 하며 떨어짐
-        EquipQuickGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
+        EquipQuickGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f * QuickProductionAccel).SetEase(Ease.OutBounce).
             OnComplete(() => { ActiveQuickGachaClickButton(); });
     }
 
@@ -1697,10 +1700,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         QuickClickButton.SetActive(false);
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
         //누르면 캡슐이 확 커짐
-        EquipQuickGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(7f, 7f), 0.8f).
+        EquipQuickGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(7f, 7f), 0.8f * QuickProductionAccel).
             OnComplete(() =>
             {
-                EquipQuickGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f).
+                EquipQuickGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f * QuickProductionAccel).
                 OnComplete(() =>
                 {
                     //장비 클릭 버튼 활성화
@@ -1767,7 +1770,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //띄용띄용이 끝나면 클릭버튼 활성화
         GachaTierNum = EquipmentInfoManager.Instance.GetGamblingTierCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
         EquipGachaResultImage.sprite = GachaTierGemSprites[GachaTierNum - 1];//GachaTierNum는 최소 1이 나옴
-        EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f).SetEase(Ease.OutBounce).
+        EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f * ProductionAccel).SetEase(Ease.OutBounce).
             OnComplete(() => { ActiveGachaClickButton(); });
 
     }
@@ -1778,7 +1781,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             DOTween.Kill(ClickButton.GetComponent<RectTransform>());
         ClickButton.SetActive(true);
         ClickButton.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -5f);
-        ClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        ClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f * ProductionAccel).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
     }
 
     public void PressGachaClickButton()
@@ -1798,7 +1801,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaLightRot[0] + new Vector3(0, 0, Random.Range(-GachaLightZVariation, GachaLightZVariation));
         EquipGachaLight[0].SetActive(true);
         PlayEquipGachaLightSound(0);
-        EquipGachaLight[0].GetComponent<RectTransform>().DOScaleY(1, 0.3f).SetEase(Ease.OutExpo).OnComplete(() => { StartCoroutine(EquipGachaCoroutine(GachaTierNum)); });
+        EquipGachaLight[0].GetComponent<RectTransform>().DOScaleY(1, 0.3f * ProductionAccel).SetEase(Ease.OutExpo).OnComplete(() => { StartCoroutine(EquipGachaCoroutine(GachaTierNum)); });
     }
 
     IEnumerator EquipGachaCoroutine(int EquipmentTier)
@@ -1810,7 +1813,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         {
             yield return null;
             IsAnimationEnd = false;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.3f * ProductionAccel);
 
             if (EquipmentTier <= CurrentEffectLevel)//1티어라면
             {
@@ -1818,11 +1821,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             }
             else//1티어 이상일때
             {
-                EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f).SetEase(Ease.Linear).
+                EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f * ProductionAccel * 1.5f).SetEase(Ease.Linear).
                     OnComplete(() =>
                     { 
                         ContinueOfEquipGacha(CurrentEffectLevel++); 
-                        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(1.5f, 1.5f), 0.3f).
+                        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(1.5f, 1.5f), 0.3f * ProductionAccel * 1.5f).
                         OnComplete(() => 
                         { 
                             IsAnimationEnd = true;
@@ -1841,7 +1844,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             }
         }
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
-        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f).SetEase(Ease.Linear).OnComplete(() => { EquipGachaOpenTierGem(); });
+        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(3f, 3f), 0.3f * ProductionAccel * 1.5f).SetEase(Ease.Linear).OnComplete(() => { EquipGachaOpenTierGem(); });
     }
     protected void ContinueOfEquipGacha(int CurrentEffectLevel)
     {
@@ -1857,7 +1860,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 EquipGachaLight[i].SetActive(true);
                 PlayEquipGachaLightSound(CurrentEffectLevel);
                 //Debug.Log("AAAAAA");
-                EquipGachaLight[i].GetComponent<RectTransform>().DOScaleY(1, 0.3f).SetEase(Ease.OutExpo);
+                EquipGachaLight[i].GetComponent<RectTransform>().DOScaleY(1, 0.3f * ProductionAccel * 1.5f).SetEase(Ease.OutExpo);
             }
         }
     }
@@ -1888,7 +1891,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     }
     protected void EquipGachaOpenTierGem()
     {
-        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(7f, 7f), 0.8f).
+        EquipGachaCapsule.GetComponent<RectTransform>().DOScale(new Vector2(7f, 7f), 0.8f * ProductionAccel).
             OnComplete(() => 
             {
                 for(int i = 0; i < EquipGachaLight.Length; i++)
@@ -1897,7 +1900,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     //obj.GetComponent<SpriteOutline>().Regenerate();
                     EquipGachaLight[i].SetActive(false);
                 };
-                EquipGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f).
+                EquipGachaCapsule.GetComponent<Image>().DOFade(0, 0.5f * ProductionAccel).
                 OnComplete(() => 
                 {
                     LightStorage.SetActive(false);
@@ -1957,16 +1960,16 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
              x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
             -168f,                          // 목표 값
-            0.5f).OnComplete(() =>
+            0.5f * ProductionAccel).OnComplete(() =>
             {
-                DOVirtual.DelayedCall(0.5f, () =>
+                DOVirtual.DelayedCall(0.5f * ProductionAccel, () =>
                 {
                     SoundManager.Instance.PlaySFX("ReverseCard_Open");
                     GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = -168f;
                     DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                      x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
                     20f,                          // 목표 값
-                    0.5f).OnComplete(() =>
+                    0.5f * ProductionAccel).OnComplete(() =>
                     {
                         for (int i = 0; i < 8; i++)
                         {
@@ -1982,7 +1985,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //EquipmentImage를 이동후에 없애면서 초기화, Plate에 있는 이미지를 그 이미지로 바꾼다.
         //그리고 다음 페이지로 자동 이동
         GetEquipClickButton.SetActive(false);
-        EquipGachaResultImage.rectTransform.DOAnchorPosY(-115f, 0.5f).OnComplete(() => 
+        EquipGachaResultImage.rectTransform.DOAnchorPosY(-115f, 0.5f * ProductionAccel).OnComplete(() => 
         {
             EquipGachaIcon_TierGem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -115f);
             EquipGachaIcon_TierGem.SetActive(true);
@@ -1990,7 +1993,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.OneLightOn];
             EquipGachaResultImage.rectTransform.position = Vector3.zero;
             EquipGachaEquipmentObject.SetActive(false);
-            DOVirtual.DelayedCall(0.5f, () =>
+            DOVirtual.DelayedCall(0.5f * ProductionAccel, () =>
             {
                 //여기에서 다음꺼_ 장비 성향 뽑기를 진행 해야함
                 EquipGachaPhaseTwoStart();
@@ -2026,7 +2029,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
          x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
         20f,                          // 목표 값
-        0.5f).OnComplete(() =>
+        0.5f* ProductionAccel).OnComplete(() =>
         {
             for (int i = 0; i < 8; i++)
             {
@@ -2047,9 +2050,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
         GachaVirtualCard.GetComponent<RectTransform>().localScale = Vector2.one;
         GachaVirtualCard.SetActive(true);
-        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(960, 0), 0.5f);
-        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
-        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
+        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(960, 0), 0.5f * ProductionAccel);
+        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * ProductionAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * ProductionAccel).OnComplete(() =>
         {
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.TwoLightOn];
             EquipGachaIcon_StateType.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 145f);
@@ -2064,7 +2067,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                  x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
                 -168f,                          // 목표 값
-                0.5f).OnComplete(() => { EquipGachaPhaseThreeStart(); });
+                0.5f * ProductionAccel).OnComplete(() => { EquipGachaPhaseThreeStart(); });
             });
         });
     }
@@ -2096,7 +2099,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
          x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
         20f,                          // 목표 값
-        0.5f).OnComplete(() =>
+        0.5f * ProductionAccel).OnComplete(() =>
         {
             for (int i = 0; i < 5; i++)
             {
@@ -2118,9 +2121,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
         GachaVirtualCard.GetComponent<RectTransform>().localScale = Vector2.one;
         GachaVirtualCard.SetActive(true);
-        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(720, -385), 0.5f);
-        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
-        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
+        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(720, -385), 0.5f * ProductionAccel);
+        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * ProductionAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * ProductionAccel).OnComplete(() =>
         {
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ThreeLightOn];
             EquipGachaIcon_EquipType.GetComponent<RectTransform>().anchoredPosition = new Vector2(-240f, -240f);
@@ -2135,7 +2138,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                  x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
                 -168f,                          // 목표 값
-                0.5f).OnComplete(() => { EquipGachaPhaseFourStart(); });
+                0.5f * ProductionAccel).OnComplete(() => { EquipGachaPhaseFourStart(); });
             });
         });
     }
@@ -2179,7 +2182,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
              x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
             20f,                          // 목표 값
-            0.5f).OnComplete(() =>
+            0.5f * ProductionAccel).OnComplete(() =>
             {
                 for (int i = 0; i < 5; i++)
                 {
@@ -2198,9 +2201,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[SelectedGachaCardNum].GetComponent<RectTransform>().anchoredPosition;
         GachaVirtualCard.GetComponent<RectTransform>().localScale = Vector2.one;
         GachaVirtualCard.SetActive(true);
-        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(1200, -385), 0.5f);
-        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
-        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f).OnComplete(() =>
+        GachaVirtualCard.GetComponent<RectTransform>().DOAnchorPos(new Vector2(1200, -385), 0.5f * ProductionAccel);
+        GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * ProductionAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
+        GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * ProductionAccel).OnComplete(() =>
         {
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.FourLightOn];
             EquipGachaIcon_MultiType.GetComponent<RectTransform>().anchoredPosition = new Vector2(240f, -240f);
@@ -2223,11 +2226,11 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                     DOTween.To(() => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing,   // getter
                      x => GachaCardStorage.GetComponent<HorizontalLayoutGroup>().spacing = x, // setter
                     -168f,                          // 목표 값
-                    0.5f).OnComplete(() =>
+                    0.5f * ProductionAccel).OnComplete(() =>
                     {
                         GachaCardSelectObject.SetActive(false);
                         EquipGachaTriangleBlindObject.SetActive(false);
-                        DOVirtual.DelayedCall(0.5f, () =>
+                        DOVirtual.DelayedCall(0.5f * ProductionAccel, () =>
                         {
                             EquipGachaEndPhaseStart();
                         });
@@ -2247,13 +2250,13 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         DictionaryButton.SetActive(false);//사전도 이제 비활성화
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
         CurrentGachaPhase = (int)EGachaPhase.EndPhase;
-        EquipGachaIcon_StateType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
-        EquipGachaIcon_EquipType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
-        EquipGachaIcon_MultiType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f).SetEase(Ease.OutCubic);
+        EquipGachaIcon_StateType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f * ProductionAccel).SetEase(Ease.OutCubic);
+        EquipGachaIcon_EquipType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f * ProductionAccel).SetEase(Ease.OutCubic);
+        EquipGachaIcon_MultiType.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, -115f), 0.5f * ProductionAccel).SetEase(Ease.OutCubic);
         FinalEquipGachaCapsule.transform.localScale = Vector3.zero;
         FinalEquipGachaCapsule.GetComponent<Image>().color = Color.white;
         FinalEquipGachaCapsule.SetActive(true);
-        FinalEquipGachaCapsule.transform.DOScale(new Vector3(9f, 9f, 9f), 0.5f).OnComplete(() =>
+        FinalEquipGachaCapsule.transform.DOScale(new Vector3(9f, 9f, 9f), 0.5f * ProductionAccel * 1.5f).OnComplete(() =>
         {
             EquipGachaIcon_TierGem.SetActive(false);
             EquipGachaIcon_StateType.SetActive(false);
@@ -2265,9 +2268,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             FinalEquipGachaButton.SetActive(true);
             FinalEquipGachaButton.GetComponent<Button>().interactable = false;
 
-            FinalEquipGachaCapsule.transform.DOScale(new Vector3(30f, 30f, 30f), 0.3f).OnComplete(() =>
+            FinalEquipGachaCapsule.transform.DOScale(new Vector3(30f, 30f, 30f), 0.3f * ProductionAccel * 1.5f).OnComplete(() =>
             {//화면을 덮을 정도로 커짐
-                FinalEquipGachaCapsule.GetComponent<Image>().DOFade(0f, 0.5f).OnComplete(() =>
+                FinalEquipGachaCapsule.GetComponent<Image>().DOFade(0f, 0.5f * ProductionAccel * 1.5f).OnComplete(() =>
                 {//페이드 인
                     FinalEquipGachaCapsule.SetActive(false);
                     FinalEquipGachaButton.GetComponent<Button>().interactable = true;
@@ -2334,14 +2337,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             GachaSelectCards[i].GetComponent<Button>().interactable = false;
         }
         SoundManager.Instance.PlaySFX("ReverseCard_Open");
-        GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
+        GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f * ProductionAccel, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             GachaSelectCards[GachaCardNum].GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[GachaCardNum]];
-            GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
+            GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f * ProductionAccel, RotateMode.Fast).SetEase(Ease.InCirc).OnComplete(() =>
             {
                 GachaCardHighligh.SetActive(true);
                 GachaCardHighligh.GetComponent<RectTransform>().anchoredPosition = GachaSelectCards[GachaCardNum].GetComponent<RectTransform>().anchoredPosition;
-                DOVirtual.DelayedCall(0.3f, () =>
+                DOVirtual.DelayedCall(0.3f * ProductionAccel, () =>
                 {
                     //다른카드들 다 뒤집기
                     ReverseAllOtherGachaCard(GachaCardNum);
@@ -2366,7 +2369,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             {
                 ReverseGachaCard(Num);
             });
-            Seq.AppendInterval(0.2f); // 0.2초 간격
+            Seq.AppendInterval(0.2f * ProductionAccel); // 0.2초 간격
         }
         Seq.OnComplete(() =>
         {
@@ -2385,10 +2388,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
     protected void ReverseGachaCard(int ReverseCardNum)
     {
         SoundManager.Instance.PlaySFX("ReverseCard_Open");
-        GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
+        GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f * ProductionAccel, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             GachaSelectCards[ReverseCardNum].GetComponent<Image>().sprite = GachaCardSprites[RemainCardResult[ReverseCardNum]];
-            GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc);
+            GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f * ProductionAccel, RotateMode.Fast).SetEase(Ease.InCirc);
         });
     }
     protected Sequence ReReverseAllOtherGachaCard()
@@ -2405,18 +2408,18 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             {
                 ReReverseGachaCard(Num);
             });
-            Seq.AppendInterval(0.2f); // 0.2초 간격
+            Seq.AppendInterval(0.2f * ProductionAccel); // 0.2초 간격
         }
-        Seq.AppendInterval(0.5f);
+        Seq.AppendInterval(0.5f * ProductionAccel);
         return Seq;
     }
     protected void ReReverseGachaCard(int ReverseCardNum)
     {
         SoundManager.Instance.PlaySFX("ReverseCard_Open");
-        GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
+        GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, -90, 0), 0.2f * ProductionAccel, RotateMode.FastBeyond360).SetEase(Ease.OutCirc).OnComplete(() =>
         {
             GachaSelectCards[ReverseCardNum].GetComponent<Image>().sprite = GachaCardSprites[(int)EGachaIconNCard.OnlyForCard_BackCard];
-            GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f, RotateMode.Fast).SetEase(Ease.InCirc);
+            GachaSelectCards[ReverseCardNum].GetComponent<RectTransform>().DOLocalRotate(Vector3.zero, 0.2f * ProductionAccel, RotateMode.Fast).SetEase(Ease.InCirc);
         });
     }
     protected void PressGetEquipClickButton()//이건 마지막에 클릭되야함?
