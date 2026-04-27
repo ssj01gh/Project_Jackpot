@@ -5541,8 +5541,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1690}
-  m_SizeDelta: {x: 1920, y: 2300}
+  m_AnchoredPosition: {x: 0, y: -1500}
+  m_SizeDelta: {x: 1920, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &85054082
 MonoBehaviour:
@@ -5567,11 +5567,11 @@ MonoBehaviour:
   m_text: "<size=52>Developed by</size>\nSEONGJE SEO\n\n<size=52>Art</size>\nSEONGJE
     SEO\n\n<size=52>Sound Design</size>\nSEONGJE SEO\n\n-----------------------\n\n<size=52>Sound
     Effects</size>\nSome sounds frome Freesound.org (CC0)\n\n<size=52>Assets</size>\n(Unity
-    Asset Store)\n\nUI\n- Wooden Pixel Art GUI UI Kit\n\nTools\n- DOTween Pro\n\nArt\n-
-    Admurin\u2019s Pixel Items\n\nShaders\n- Photoshop-like 2D Sprite Outline / Stroke
-    Effect\n\nAudio\n- Fantasy RPG Music \u2013 100 Game Soundtracks Collection\n-
-    Turn-Based Combat SFX v2\n\n<size=52>Font</size>\nGalmuri Font\n\n-----------------------\n\n<size=52>Additional
-    Notes</size>\nSome viaul assets were generated and modifed using AI tools"
+    Asset Store)\n\nWooden Pixel Art GUI UI Kit\nDOTween Pro\nAdmurin\u2019s Pixel
+    Items\nPhotoshop-like 2D Sprite Outline / Stroke Effect\nFantasy RPG Music \u2013
+    100 Game Soundtracks Collection\nTurn-Based Combat SFX v2\n\n<size=52>Font</size>\nGalmuri
+    Font\n\n-----------------------\n\n<size=52>Additional Notes</size>\nSome viaul
+    assets were generated and modifed using AI tools"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d440c12e343d6ec4eb12d57995e4dec1, type: 2}
   m_sharedMaterial: {fileID: -1119034971577199236, guid: d440c12e343d6ec4eb12d57995e4dec1, type: 2}
@@ -6787,7 +6787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CreditBox: {fileID: 318766661}
   StartPos: 0
-  EndPos: 3370
+  EndPos: 3000
   SkipText: {fileID: 698673799}
   StoryText: {fileID: 1206388503}
 --- !u!225 &107514031
@@ -103950,7 +103950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -3370}
+  m_AnchoredPosition: {x: 0, y: -3000}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1367989976

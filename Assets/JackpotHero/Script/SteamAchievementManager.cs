@@ -49,6 +49,9 @@ public class SteamAchievementManager : MonoSingletonDontDestroy<SteamAchievement
 
     public void SetSteamACHStoreStats()
     {
+        if (IsSteamAPIConected == false)
+            return;
+
         SteamUserStats.StoreStats();
     }
 
