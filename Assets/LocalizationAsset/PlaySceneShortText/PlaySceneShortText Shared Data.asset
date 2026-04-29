@@ -403,6 +403,26 @@ MonoBehaviour:
     m_Key: PS_TB_M_EquipmentManagement
     m_Metadata:
       m_Items: []
+  - m_Id: 40207504469782528
+    m_Key: PS_DW_MaxPointInfo_ONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207506051035136
+    m_Key: PS_DW_MaxPointInfo_TWO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207506986364928
+    m_Key: PS_DW_MaxPointInfo_THREE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207507842002944
+    m_Key: PS_DW_MaxPointInfo_FOUR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207921870139392
+    m_Key: PS_DW_MaxPointInfo_CLEAR
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -906,7 +906,7 @@ public class PlayerScript : MonoBehaviour
         return true;
     }
 
-    public void CalculateEarlyPoint(bool IsWinGame = false)//전투에서 졌을떄//지거나 게임에서 이기거나
+    public int CalculateEarlyPoint(bool IsWinGame = false)//전투에서 졌을떄//지거나 게임에서 이기거나
     {
         //이게 다른데 찍히면 EarlyPoint는 줄어들어서 그런듯함
         int EarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint + JsonReadWriteManager.Instance.E_Info.EarlyStrengthLevel +
@@ -951,7 +951,8 @@ public class PlayerScript : MonoBehaviour
             EarlyPoint = JsonReadWriteManager.Instance.E_Info.PlayerMaxEarlyPoint;
         }
 
-        JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;//나머지 레벨들은 초기화 해야할듯? 나중에? 여기서하면 계승이 불가능
+        return EarlyPoint;
+        //JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyPoint;//나머지 레벨들은 초기화 해야할듯? 나중에? 여기서하면 계승이 불가능
     }
 
     public void RecoverHPNSTAByRest(float RecoverAmount)
