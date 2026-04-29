@@ -62,6 +62,7 @@ public class BattleManager : MonoBehaviour
     protected List<string> SpawnMonstersID = new List<string>();
     protected GameObject SummonerMonster = null;
     //protected List<float> MonsterActiveGuage = new List<float>();
+    private int EarlyUpgradePoint = 0;//이렇게 하면 PlayScene에 올때마다 초기화
 
     protected enum EAfterBuffPriority
     {
@@ -258,10 +259,10 @@ public class BattleManager : MonoBehaviour
             //ActiveMonster전부다 해제
             MonMgr.InActiveAllActiveMonster();
             //UIMgr.B_UI.ActivePlayerShieldNBuffUI(PlayerMgr.GetPlayerInfo());//여기있는 Set~~은 다 없애기 위함
-            PlayerMgr.GetPlayerInfo().CalculateEarlyPoint();
+            EarlyUpgradePoint = PlayerMgr.GetPlayerInfo().CalculateEarlyPoint();
             PlayerMgr.GetPlayerInfo().SetPlayerAnimation((int)EPlayerAnimationState.Defeat);
             UIMgr.B_UI.InitBattleUI();//배틀 관련된 UI초기화
-            UIMgr.B_UI.DefeatBattle(PlayerMgr.GetPlayerInfo());
+            UIMgr.B_UI.DefeatBattle(PlayerMgr.GetPlayerInfo(), EarlyUpgradePoint);
             UIMgr.PlayerDefeat();//플레이어의 장비창, 스탯창, 현재 스테이지 진행창 같은것들
             //다른 플레이어 UI도 없에기
             return;
@@ -808,8 +809,8 @@ public class BattleManager : MonoBehaviour
                 {//현재 개방된 것 보다 크거나 같으면 게임 승리임
                  //보스중에서도 마지막 분노만 여기로 들어오고
                     UIMgr.B_UI.ClickVictoryButton();
-                    PlayerMgr.GetPlayerInfo().CalculateEarlyPoint(true);
-                    UIMgr.B_UI.WinGame(PlayerMgr.GetPlayerInfo());
+                    EarlyUpgradePoint = PlayerMgr.GetPlayerInfo().CalculateEarlyPoint(true);
+                    UIMgr.B_UI.WinGame(PlayerMgr.GetPlayerInfo(), EarlyUpgradePoint);
                 }
                 else
                 {
@@ -848,20 +849,10 @@ public class BattleManager : MonoBehaviour
     public void PressDefeatButton(bool IsWin)//이겼을때도 똑같긴하네
     {
         SoundManager.Instance.PlayUISFX("UI_Button");
-        /*
-        //여기서 초기 강화 포인트를 얼마나 줄지 계산해야 되는거 아니여?
-        if (JsonReadWriteManager.Instance.E_Info.EquipmentSuccessionLevel >= 2)
-        {//2이상이면 장비를 랜덤하게 인벤토리에 넣는다 -> 
-            //초기화->하기 전에 장비에 대한 정보를 어디에 넣어놓고 작업하면 될듯?
-            //JsonManager에 있는 정보 갱신은 전투를 시작할때 갱신됬으니 문제는 없고
-            SetEquipSuccession();
-        }
-        else
-        {
-            JsonReadWriteManager.Instance.InitPlayerInfo(true);//초기화
-            JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴
-        }
-        */
+        //여기가 이제 버튼 눌러졌을때임 -> 이기거나 졌을때
+        JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyUpgradePoint;
+        //눌렀을때 할당되게
+
         JsonReadWriteManager.Instance.InitPlayerInfo(true);//초기화
         JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴
         //->여기서 이겼을때만 크래딧을 띄운다.

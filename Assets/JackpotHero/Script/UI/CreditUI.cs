@@ -120,6 +120,7 @@ public class CreditUI : MonoBehaviour
             SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_THREE", false);
             return "EST_Ending03";
         }
+
         SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_ONE", false);
         return "EST_Ending01";
     }

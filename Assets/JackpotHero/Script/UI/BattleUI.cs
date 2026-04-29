@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
@@ -125,7 +126,7 @@ public class BattleUI : MonoBehaviour
     public TextMeshProUGUI D_GoodKarmaRealCount;
     public TextMeshProUGUI D_GoodKarmaScore;
     public TextMeshProUGUI D_TotalScore;
-    public TextMeshProUGUI D_SuccessionNum;
+    public TextMeshProUGUI D_CurrentMaxUpgradePoint;
     public TextMeshProUGUI D_EarlyPointScore;
     [Header("WinGameUI")]
     public GameObject WinGameUI;
@@ -140,7 +141,7 @@ public class BattleUI : MonoBehaviour
     public TextMeshProUGUI W_GoodKarmaRealCount;
     public TextMeshProUGUI W_GoodKarmaScore;
     public TextMeshProUGUI W_TotalScore;
-    public TextMeshProUGUI W_SuccessionNum;
+    public TextMeshProUGUI W_CurrentMaxUpgradePoint;
     public TextMeshProUGUI W_EarlyPointScore;
     [Header("MonsterBattleUI")]
     public GameObject MonsterBattleUI;
@@ -2064,7 +2065,7 @@ public class BattleUI : MonoBehaviour
         }
     }
 
-    public void DefeatBattle(PlayerScript PlayerInfo)
+    public void DefeatBattle(PlayerScript PlayerInfo, int EarlyPoint)
     {
         //행동선택 UI비활성화
         if (AccelButtonContainer.activeSelf == true)
@@ -2151,11 +2152,12 @@ public class BattleUI : MonoBehaviour
         D_GoodKarmaScore.text = (GoodKarmaCount * 77).ToString();
         //아래쪽 들
         D_TotalScore.text = ((FloorCount * 500) + (NormalMonCount * 167) + (EliteMonCount * 250) + (RemainEXPCount / 3) + (GoodKarmaCount * 77)).ToString();
-        D_SuccessionNum.text = "";//((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
-        D_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
+        StartCoroutine(LoadMaxPointInfo(false, FloorCount));
+        //D_SuccessionNum.text = "";//((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
+        D_EarlyPointScore.text = EarlyPoint.ToString();
     }
 
-    public void WinGame(PlayerScript PlayerInfo)//이게 여기있어도 되는지는 몰겠는데 안좋으면 나중에 옮기지 뭐
+    public void WinGame(PlayerScript PlayerInfo, int EarlyPoint)//이게 여기있어도 되는지는 몰겠는데 안좋으면 나중에 옮기지 뭐
     {
         if (PlayerActionSelectionBattleUI.activeSelf == true)
         {
@@ -2205,8 +2207,50 @@ public class BattleUI : MonoBehaviour
         W_GoodKarmaScore.text = (GoodKarmaCount * 77).ToString();
         //아래쪽 들
         W_TotalScore.text = ((FloorCount * 500) + (NormalMonCount * 167) + (EliteMonCount * 250) + (RemainEXPCount / 3) + (GoodKarmaCount * 77)).ToString();
-        W_SuccessionNum.text = "";//((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
-        W_EarlyPointScore.text = JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint.ToString();
+        StartCoroutine(LoadMaxPointInfo(true, FloorCount));
+        //W_SuccessionNum.text = "";//((int)JsonReadWriteManager.Instance.GetEarlyState("EQUIPSUC")).ToString();
+        W_EarlyPointScore.text = EarlyPoint.ToString();
+    }
+
+    private IEnumerator LoadMaxPointInfo(bool IsWin, int FloorCount )
+    {
+        yield return LocalizationSettings.InitializationOperation;
+
+        string MaxInfoKey = "";
+        switch(FloorCount)
+        {
+            case 1:
+                MaxInfoKey = "PS_DW_MaxPointInfo_ONE";
+                break;
+            case 2:
+                MaxInfoKey = "PS_DW_MaxPointInfo_TWO";
+                break;
+            case 3:
+                MaxInfoKey = "PS_DW_MaxPointInfo_THREE";
+                break;
+            case 4:
+                MaxInfoKey = "PS_DW_MaxPointInfo_FOUR";
+                break;
+            case 5:
+                MaxInfoKey = "PS_DW_MaxPointInfo_CLEAR";
+                break;
+        }
+
+        var ShortTextTable = LocalizationSettings.StringDatabase.GetTable("PlaySceneShortText");
+        if(IsWin == true)
+        {
+            if (MaxInfoKey == "")
+                W_CurrentMaxUpgradePoint.text = "";
+            else
+                W_CurrentMaxUpgradePoint.text = ShortTextTable.GetEntry(MaxInfoKey).GetLocalizedString();
+        }
+        else
+        {
+            if (MaxInfoKey == "")
+                D_CurrentMaxUpgradePoint.text = "";
+            else
+                D_CurrentMaxUpgradePoint.text = ShortTextTable.GetEntry(MaxInfoKey).GetLocalizedString();
+        }
     }
 
     public void ClickDefeatButton()

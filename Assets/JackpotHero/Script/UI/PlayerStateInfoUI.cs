@@ -112,7 +112,7 @@ public class PlayerStateInfoUI : MonoBehaviour
         }
         //SetRESUI
         float BeforeRES = float.Parse(PlayerRES.text);
-        if(BeforeRES != TPInfo.TotalDUR)
+        if(BeforeRES != TPInfo.TotalRES)
         {
             DOTween.To(() => BeforeRES, x =>
             {

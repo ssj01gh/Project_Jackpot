@@ -455,6 +455,37 @@ MonoBehaviour:
       Equipment Management'
     m_Metadata:
       m_Items: []
+  - m_Id: 40207504469782528
+    m_Localized: 'Highest Stage Reached : Grassland
+
+      Max Enhancement Point
+      : 6'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207506051035136
+    m_Localized: 'Highest Stage Reached : Forest
+
+      Max Enhancement Point : 12'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207506986364928
+    m_Localized: "Highest Stage Reached : Alchemist\u2019s Tower\nMax Enhancement
+      Point : 18"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207507842002944
+    m_Localized: 'Highest Stage Reached : Otherworld
+
+      Max Enhancement Point
+      : 24'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40207921870139392
+    m_Localized: 'Highest Stage Reached : Clear
+
+      Max Enhancement Point : 28'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
