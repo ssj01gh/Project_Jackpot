@@ -852,14 +852,13 @@ public class BattleManager : MonoBehaviour
         //여기가 이제 버튼 눌러졌을때임 -> 이기거나 졌을때
         JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyUpgradePoint;
         //눌렀을때 할당되게
-
+        CheckWinAchievement();//초기화 하기 전에.....
         JsonReadWriteManager.Instance.InitPlayerInfo(true);//초기화
         JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴
         //->여기서 이겼을때만 크래딧을 띄운다.
         if (IsWin == true)
         {//이겼을때
             CreditMgr.StartEnding();
-            CheckWinAchievement();
         }
         else
         {//졌을때
@@ -916,6 +915,21 @@ public class BattleManager : MonoBehaviour
         {
             SteamAchievementManager.Instance.SetSteamAchievement("ACH_LUK_CLEAR", false);
         }
+
+        if (JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster == true && JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem == true &&
+            JsonReadWriteManager.Instance.LkEv_Info.LetKnowGiant == true && JsonReadWriteManager.Instance.LkEv_Info.LetKnowDopple == true)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_TWO", false);
+        }
+        else if(JsonReadWriteManager.Instance.LkEv_Info.TotoBlessedSword == true)
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_THREE", false);
+        }
+        else
+        {
+            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_ONE", false);
+        }
+
         SteamAchievementManager.Instance.SetSteamACHStoreStats();//동기화 -->CreditMgr.StartEnding();쪽에서 몇번 엔딩인가에 관한 업적도 적용됨
     }
 
