@@ -111,17 +111,14 @@ public class CreditUI : MonoBehaviour
         if (JsonReadWriteManager.Instance.LkEv_Info.TalkingMonster == true && JsonReadWriteManager.Instance.LkEv_Info.TalkingDirtGolem == true &&
             JsonReadWriteManager.Instance.LkEv_Info.LetKnowGiant == true && JsonReadWriteManager.Instance.LkEv_Info.LetKnowDopple == true)
         {
-            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_TWO", false);
             return "EST_Ending02";
         }
 
         if (JsonReadWriteManager.Instance.LkEv_Info.TotoBlessedSword == true)
         {//¿£µù 3
-            SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_THREE", false);
             return "EST_Ending03";
         }
 
-        SteamAchievementManager.Instance.SetSteamAchievement("ACH_ENDING_ONE", false);
         return "EST_Ending01";
     }
 

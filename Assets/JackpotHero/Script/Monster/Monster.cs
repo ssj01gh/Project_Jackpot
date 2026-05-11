@@ -106,6 +106,9 @@ public class Monster : MonoBehaviour
     [Header("SummonMonsterForSpecialAction")]//몇몇 특수 몬스터 들을 위한 소환할 몬스터 종류
     public string[] CanSummonMonsterIDs;
     public int SummonMonsterCount;
+    [Header("MonsterDeadSoundPitch")]
+    [Range(0, 2)]
+    public int MonsterDeadSoundPitch;
 
     //--------------------^GetFromInspector\
 
@@ -261,6 +264,7 @@ public class Monster : MonoBehaviour
 
     public void DeSpawnFadeOut()
     {
+        //여기가 죽었을때임 -> 사운드가 나와야 할곳? -> 아님 여기는 그냥 비활성화 될때 마다 사운드가 들려버림 -> 플레이어가 죽었을때도
         Color MonColor = MonsterBody.color;
         MonColor.a = 1;
         MonsterBody.color = MonColor;
@@ -341,6 +345,27 @@ public class Monster : MonoBehaviour
     public virtual bool CheckmonsterAnimationEnd(int AnimationState)
     {
         return true;
+    }
+
+    public void PlayMonsterDeadSound()//0~4를 받는다 몬스터 한테서
+    {
+        //switch()
+        switch(MonsterDeadSoundPitch)
+        {
+            case 0:
+                SoundManager.Instance.PlaySFX("Monster_Dead", 1f, 0.7f);
+                break;
+            case 1:
+                SoundManager.Instance.PlaySFX("Monster_Dead", 0.75f, 0.7f);
+                break;
+            case 2:
+                SoundManager.Instance.PlaySFX("Monster_Dead", 0.5f, 0.7f);
+                break;
+            default:
+                SoundManager.Instance.PlaySFX("Monster_Dead", 1f, 0.7f);
+                break;
+        }
+
     }
 
     public void SetMonsterStatus()

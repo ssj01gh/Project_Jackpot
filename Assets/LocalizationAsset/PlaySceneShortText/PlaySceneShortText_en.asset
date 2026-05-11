@@ -486,6 +486,12 @@ MonoBehaviour:
       Max Enhancement Point : 28'
     m_Metadata:
       m_Items: []
+  - m_Id: 42663680721678336
+    m_Localized: '<size=35>Maintenance</size>
+
+      Equipment Gacha'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

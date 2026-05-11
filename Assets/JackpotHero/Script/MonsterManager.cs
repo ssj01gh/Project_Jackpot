@@ -498,6 +498,7 @@ public class MonsterManager : MonoBehaviour
                 ActiveMonsters[i].GetComponent<Monster>().InitAllBuff();//모든 버프들 없애기
                 ActiveMonsters[i].GetComponent<Monster>().MonsterClicked -= SetCurrentTargetMonster;
                 ActiveMonsters[i].GetComponent<Monster>().MasterMonster = null;
+                ActiveMonsters[i].GetComponent<Monster>().PlayMonsterDeadSound();
                 ActiveMonsters[i].GetComponent<Monster>().DeSpawnFadeOut();
                 int RewardEXP = (int)ActiveMonsters[i].GetComponent<Monster>().MonsterBaseEXP;
                 int VarianceEXP = Random.Range(-(int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount, (int)ActiveMonsters[i].GetComponent<Monster>().EXPVarianceAmount);

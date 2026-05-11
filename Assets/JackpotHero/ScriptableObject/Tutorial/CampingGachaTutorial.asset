@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3e29e66d9b3294eb6598bf34af9a1a, type: 3}
+  m_Name: CampingGachaTutorial
+  m_EditorClassIdentifier: 
+  TutorialPages:
+  - {fileID: 21300000, guid: fa64eed42981677468b3b9633be35bd9, type: 3}
+  - {fileID: 21300000, guid: f2e249d429c6b784ca528b1f86ef22e5, type: 3}
+  - {fileID: 21300000, guid: f025f833364b6c04d8c8f708dc5704f8, type: 3}
+  - {fileID: 21300000, guid: 051a137cff54f4343a191f5378795ce8, type: 3}
+  - {fileID: 21300000, guid: c94a63bc03164ed45bf3a2ab06bfd60e, type: 3}
+  - {fileID: 21300000, guid: 5674fee17d886b84d804cb6ce9eae52f, type: 3}
+  - {fileID: 21300000, guid: 74402a79b2483a440982c703449fb9b7, type: 3}
+  - {fileID: 21300000, guid: c8270f92beb457745a9e10395a63dfb0, type: 3}
+  - {fileID: 21300000, guid: fd8b5404b84ea8542890e8f67bca5ff9, type: 3}
+  - {fileID: 21300000, guid: 657f3482e17628744b85b53cee9dc32e, type: 3}
+  - {fileID: 21300000, guid: 0a2f4e8f3f7191d49a2e420247f9a2d7, type: 3}
+  - {fileID: 21300000, guid: 88e78ca3aafb6c54fa6eb78a82ab5a37, type: 3}
+  - {fileID: 21300000, guid: 7b282d01128d59f408f0f89b8dc969c3, type: 3}
+  - {fileID: 21300000, guid: afd65871772e56344a817658b7090e5a, type: 3}
+  - {fileID: 21300000, guid: c1476ad2eddfbe544b01333e9d2d56dc, type: 3}
+  - {fileID: 21300000, guid: 0e459aec62cd4be479ef35cefb305ad6, type: 3}
+  TutorialTextPos:
+  - {x: 0, y: -130}
+  - {x: 0, y: -230}
+  - {x: 0, y: 100}
+  - {x: 0, y: -290}
+  - {x: 0, y: -290}
+  - {x: 0, y: -250}
+  - {x: 0, y: -250}
+  - {x: 0, y: -250}
+  - {x: 0, y: -250}
+  - {x: -190, y: -215}
+  - {x: 190, y: -215}
+  - {x: 0, y: -215}
+  - {x: 0, y: -215}
+  - {x: -400, y: -180}
+  - {x: 400, y: -80}
+  - {x: -300, y: 410}
+  TutorialText:
+  - TT_CG01
+  - TT_CG02
+  - TT_CG03
+  - TT_CG04
+  - TT_CG05
+  - TT_CG06
+  - TT_CG07
+  - TT_CG08
+  - TT_CG09
+  - TT_CG10
+  - TT_CG11
+  - TT_CG12
+  - TT_CG13
+  - TT_CG14
+  - TT_CG15
+  - TT_CG16

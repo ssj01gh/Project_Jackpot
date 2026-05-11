@@ -124,6 +124,24 @@ MonoBehaviour:
     _Sound: {fileID: 8300000, guid: c6b68fb0ed6a2c94cb121e7990fd9a47, type: 3}
   - SoundName: Portal_Step
     _Sound: {fileID: 8300000, guid: dcd0b4a170ff58348b25bc9e8b29187f, type: 3}
+  - SoundName: Monster_Dead
+    _Sound: {fileID: 8300000, guid: 4e6e057d76e3ef749b062eaab964cc41, type: 3}
+  - SoundName: Grass_Step01_Short
+    _Sound: {fileID: 8300000, guid: 4078d4b0a23a52f41a8a443705a0c602, type: 3}
+  - SoundName: Grass_Step02_Short
+    _Sound: {fileID: 8300000, guid: ce81c6c9a1803cd41ad58cbf53938d6f, type: 3}
+  - SoundName: Grass_Step03_Short
+    _Sound: {fileID: 8300000, guid: 31481cbba00ef3d4f84b38c09fc02ebd, type: 3}
+  - SoundName: Grass_Step04_Short
+    _Sound: {fileID: 8300000, guid: bbd5bacda2ff9fc46be42aaf0c5833c9, type: 3}
+  - SoundName: Stone_Step01_Short
+    _Sound: {fileID: 8300000, guid: d60afa9941f4b5e44b81d666c6779d18, type: 3}
+  - SoundName: Stone_Step02_Short
+    _Sound: {fileID: 8300000, guid: ffc0980e70bca434bb4657caa8853e65, type: 3}
+  - SoundName: Stone_Step03_Short
+    _Sound: {fileID: 8300000, guid: 3600edb53173ffb43b4bd6b56dbd396a, type: 3}
+  - SoundName: Stone_Step04_Short
+    _Sound: {fileID: 8300000, guid: 2a207f1d1fee22b4cbe221b0adf3ea32, type: 3}
   UISFX:
   - SoundName: UI_Button
     _Sound: {fileID: 8300000, guid: ac667ae2ff44718459b6783220585c78, type: 3}
