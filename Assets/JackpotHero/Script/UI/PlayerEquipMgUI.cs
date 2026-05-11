@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public PlayerManager PlayerMgr;
+    public TutorialManager TutorialMgr;
     [Header("EquipManagement")]
     public GameObject PlayerEquip;
     public GameObject EquipInventory;
@@ -1654,6 +1655,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //경험치가 줄어든다.
         SoundManager.Instance.PlayUISFX("UI_Button");
         PlayerMgr.GetPlayerInfo().SetPlayerEXPAmount(-EquipmentInfoManager.Instance.GetGamblingGachaCost(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel), true);
+        if (DOTween.IsTweening(DictionaryButton.GetComponent<Image>()))
+            DOTween.Kill(DictionaryButton.GetComponent<Image>());
         DictionaryButton.SetActive(false);
 
         //씁 그냥 Quick용을 따로 만들어 버릴까?
@@ -1665,6 +1668,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipQuickGachaCapsule.GetComponent<Image>().color = Color.white;
         EquipQuickGachaCapsule.SetActive(true);
         EquipQuickGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
+        QuickClickButton.GetComponent<RectTransform>().DOKill();
         QuickClickButton.SetActive(false);//캡슐 클릭용
         QuickGetEquipClickButton.SetActive(false);//장비 클릭용
         //다른 갓챠용 UI끄기
@@ -1691,7 +1695,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
         QuickClickButton.SetActive(true);
         QuickClickButton.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -5f);
-        QuickClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        if (DOTween.IsTweening(QuickClickButton.GetComponent<RectTransform>()) == false)
+        {
+            QuickClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetTarget(gameObject);
+        }
     }
 
     public void PressQuickGachaClickButton()
@@ -1729,6 +1736,9 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //초기화
         //삼격형 판 초기화
         DictionaryButton.SetActive(true);
+        DictionaryButton.GetComponent<Image>().color = Color.white;
+        if (DOTween.IsTweening(DictionaryButton.GetComponent<Image>()) == false)
+            DictionaryButton.GetComponent<Image>().DOFade(0.3f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetTarget(gameObject);
         EquipGachaTrianglePlate.gameObject.SetActive(true);//삼각형 판
         EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ZeroLightOn];
         EquipGachaIcon_TierGem.SetActive(false);
@@ -1747,6 +1757,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         EquipGachaCapsule.GetComponent<Image>().color = Color.white;
         EquipGachaCapsule.SetActive(true);
         EquipGachaEquipmentObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 750);
+        if (DOTween.IsTweening(ClickButton.GetComponent<RectTransform>()) == true)
+            DOTween.Kill(ClickButton.GetComponent<RectTransform>());
         ClickButton.SetActive(false);
         GetEquipClickButton.SetActive(false);
         //장비 성향, 장비 종류, 곱 성향 뽑는 UI 초기화(일단은 부모만 끄기)
@@ -1758,7 +1770,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             //EquipGachaLightOutline[i].color = GachaTierLightColor[0];
             EquipGachaLight[i].SetActive(false);
         }
-        
+
         //결과로 나오는 장비의 이미지와 인벤토리에 미리 넣어둠, 어짜피 업데이트 하지 않으면 UI(인벤토리)에서는 안보이니까
         //GetGamblingEquipmentCode <- gambling 레벨에 맞는 장비 코드 반환
         //이제 이거 필요 X 코드는 차근차근 완성되는 형태임
@@ -1768,6 +1780,13 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //이건 나중에 활성화
         //PlayerMgr.GetPlayerInfo().PutEquipmentToInven(GachaResultEquipCode);
         //띄용띄용이 끝나면 클릭버튼 활성화
+
+        if (JsonReadWriteManager.Instance.T_Info.CampingGacha == false)
+        {
+            JsonReadWriteManager.Instance.T_Info.CampingGacha = true;
+            TutorialMgr.SetLinkedTutorialNStartTutorial("Tutorial/CampingGacha");
+        }
+
         GachaTierNum = EquipmentInfoManager.Instance.GetGamblingTierCode(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().EquipmentGamblingLevel);
         EquipGachaResultImage.sprite = GachaTierGemSprites[GachaTierNum - 1];//GachaTierNum는 최소 1이 나옴
         EquipGachaEquipmentObject.GetComponent<RectTransform>().DOAnchorPosY(0, 0.7f * ProductionAccel).SetEase(Ease.OutBounce).
@@ -1781,12 +1800,14 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             DOTween.Kill(ClickButton.GetComponent<RectTransform>());
         ClickButton.SetActive(true);
         ClickButton.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, -5f);
-        ClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f * ProductionAccel).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        if(DOTween.IsTweening(ClickButton.GetComponent<RectTransform>()) == false)
+            ClickButton.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 5), 0.5f * ProductionAccel).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine).SetTarget(gameObject);
     }
 
     public void PressGachaClickButton()
     {
-        ClickButton.GetComponent<RectTransform>().DOKill();
+        if (DOTween.IsTweening(ClickButton.GetComponent<RectTransform>()) == true)
+            DOTween.Kill(ClickButton.GetComponent<RectTransform>());
         ClickButton.SetActive(false);
         //이 버튼을 누르면 버튼은 비활성화
         // 1티어 장비라면 0번까지 활성화 , 흰색// 2티어 장비라면  1번까지 활성화, 파란색
@@ -1990,6 +2011,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
             EquipGachaIcon_TierGem.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -115f);
             EquipGachaIcon_TierGem.SetActive(true);
             EquipGachaIcon_TierGem.GetComponent<Image>().sprite = GachaTierGemSprites[GachaTierNum - 1];
+            SoundManager.Instance.PlaySFX("EquipGacha_TierTwo");
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.OneLightOn];
             EquipGachaResultImage.rectTransform.position = Vector3.zero;
             EquipGachaEquipmentObject.SetActive(false);
@@ -2054,6 +2076,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * ProductionAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
         GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * ProductionAccel).OnComplete(() =>
         {
+            SoundManager.Instance.PlaySFX("EquipGacha_TierThree");
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.TwoLightOn];
             EquipGachaIcon_StateType.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 145f);
             EquipGachaIcon_StateType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
@@ -2125,6 +2148,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * ProductionAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
         GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * ProductionAccel).OnComplete(() =>
         {
+            SoundManager.Instance.PlaySFX("EquipGacha_TierFour");
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.ThreeLightOn];
             EquipGachaIcon_EquipType.GetComponent<RectTransform>().anchoredPosition = new Vector2(-240f, -240f);
             EquipGachaIcon_EquipType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
@@ -2205,6 +2229,7 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         GachaVirtualCard.GetComponent<RectTransform>().DOLocalRotate(new Vector3(0, 0, 1080), 0.5f * ProductionAccel, RotateMode.FastBeyond360);//.SetEase(Ease.OutQuad);
         GachaVirtualCard.GetComponent<RectTransform>().DOScale(Vector2.zero, 0.5f * ProductionAccel).OnComplete(() =>
         {
+            SoundManager.Instance.PlaySFX("EquipGacha_TierFive");
             EquipGachaTrianglePlate.sprite = GachaTrianglePlateSprites[(int)ETriangleState.FourLightOn];
             EquipGachaIcon_MultiType.GetComponent<RectTransform>().anchoredPosition = new Vector2(240f, -240f);
             EquipGachaIcon_MultiType.GetComponent<Image>().sprite = GachaIconSprites[RemainCardResult[SelectedGachaCardNum]];
@@ -2247,6 +2272,8 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
         //스케일이 0~9까지 커졌다가 30까지 커지고 페이드 인
         //3. 장비를 클릭하면 획득한다.
         GED_UI.InActiveGachaEquipDictionay();
+        if (DOTween.IsTweening(DictionaryButton.GetComponent<Image>()))
+            DOTween.Kill(DictionaryButton.GetComponent<Image>());
         DictionaryButton.SetActive(false);//사전도 이제 비활성화
         SoundManager.Instance.PlaySFX("EquipGacha_Result");
         CurrentGachaPhase = (int)EGachaPhase.EndPhase;
@@ -2478,5 +2505,10 @@ public class PlayerEquipMgUI : MonoBehaviour, IPointerDownHandler, IDragHandler,
                 SteamAchievementManager.Instance.SetSteamAchievement("ACH_GACHA_TSIX");//동기화도 같이
                 break;
         }
+    }
+
+    private void OnDisable()
+    {
+        DOTween.Kill(gameObject);
     }
 }

@@ -46,7 +46,25 @@ public class SoundManager : MonoSingletonDontDestroy<SoundManager>
     // Update is called once per frame
     void Update()
     {
-        
+        //ptch -3 ~ 3
+        /*
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            PlaySFX("Monster_Dead", 0.5f);대형
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            PlaySFX("Monster_Dead", 0.75f, 0.6f);중형
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            PlaySFX("Monster_Dead", 1f);소형
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PlaySFX("Monster_Dead", 2f);
+        }
+        */
     }
 
     protected void InitSoundPlayer()
@@ -118,7 +136,7 @@ public class SoundManager : MonoSingletonDontDestroy<SoundManager>
             //Debug.Log("There is No " + BGMName);
         }
     }
-    public AudioSource PlaySFX(string SFXName, float Pitch = 1)
+    public AudioSource PlaySFX(string SFXName, float Pitch = 1f, float Volume = 1f)
     {
         if(SFXStorage.ContainsKey(SFXName) == true)
         {
@@ -127,6 +145,7 @@ public class SoundManager : MonoSingletonDontDestroy<SoundManager>
                 if(AS.isPlaying == false)
                 {
                     AS.clip = SFXStorage[SFXName];
+                    AS.volume = Volume;
                     AS.pitch = Pitch;
                     AS.Play();
                     return AS;

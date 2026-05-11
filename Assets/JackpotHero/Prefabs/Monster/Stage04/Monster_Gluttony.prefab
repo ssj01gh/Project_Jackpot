@@ -154,6 +154,7 @@ MonoBehaviour:
   CanSummonMonsterIDs:
   - GluttonyServant
   SummonMonsterCount: 1
+  MonsterDeadSoundPitch: 2
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}

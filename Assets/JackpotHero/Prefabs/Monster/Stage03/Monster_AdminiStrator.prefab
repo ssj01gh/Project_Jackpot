@@ -241,6 +241,7 @@ MonoBehaviour:
   - Administrator_Knife
   - Administrator_Syringe
   SummonMonsterCount: 2
+  MonsterDeadSoundPitch: 2
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}

@@ -391,6 +391,90 @@ MonoBehaviour:
       about equipment types and effects.'
     m_Metadata:
       m_Items: []
+  - m_Id: 42664204594442240
+    m_Localized: 'In Equipment Gacha,
+
+      you create equipment
+
+      by combining
+      different cards.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664456651141120
+    m_Localized: "First, select the equipment\u2019s Tier."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664458706350080
+    m_Localized: There are Tiers from 1 to 6.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664459708788736
+    m_Localized: "Second, select the\r\nequipment\u2019s Stat Affinity."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664460551843840
+    m_Localized: There are 8 types of Stat Affinity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664461482979328
+    m_Localized: Third, select the equipment type.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664462330228736
+    m_Localized: There are 5 types of equipment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664463261364224
+    m_Localized: "Finally, select the\r\nequipment\u2019s Multiplier Affinity."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664464108613632
+    m_Localized: There are 3 types of Multiplier Affinity.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664464905531392
+    m_Localized: 'Green cards are
+
+      low risk, low return.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664465878609920
+    m_Localized: 'Red cards are
+
+      high risk, high return.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664467820572672
+    m_Localized: 'Yellow cards are
+
+      a balance between green and red.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664468604907520
+    m_Localized: 'Accessories and boots
+
+      do not have Multiplier cards.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664469426991104
+    m_Localized: 'Use the OK button
+
+      to finalize your selections.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664471444451328
+    m_Localized: You are given 3 reroll chances.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42664473566769152
+    m_Localized: 'You can check the effects of
+
+      each Stat Affinity and equipment
+      type
+
+      in the Codex.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

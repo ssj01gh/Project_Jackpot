@@ -151,6 +151,7 @@ public class TutorialInfo
     public bool CampingRest;
     public bool CampingLevelUp;
     public bool CampingEquipment;
+    public bool CampingGacha;
 
     public bool IsValid()
     {

@@ -8,10 +8,11 @@ public class Stage02EventDetailAction
     public int Event2000(int ButtonType, PlayerManager PlayerMgr, PlaySceneUIManager UIMgr, ref string Getting, ref string Losing)
     {
         //0. 피로도 +300 +-150 -> 이벤트 2005로
-        //1. 피로도 -300 +-150 -> 이벤트 2001로
+        //1. 피로도 -300 +-150 -> 이벤트 2001로 -150 ~ -75정도로 줄이기?
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
+        int SRandomSTA = Random.Range(-150, -226);//300 + N -> 150 ~ 75가 나오게 해야함 -150 ~ -225
         switch(ButtonType)
         {
             case 0:
@@ -25,8 +26,8 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2000;
                 }
-                Losing = "-STA : " + (300 + RandomSTA).ToString();
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
+                Losing = "-STA : " + (300 + SRandomSTA).ToString();
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + SRandomSTA);
                 return 2001;
         }    
 
@@ -39,6 +40,7 @@ public class Stage02EventDetailAction
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
+        int SRandomSTA = Random.Range(-150, -226);//300 + N -> 150 ~ 75가 나오게 해야함 -150 ~ -225
         int RandomPath = Random.Range(0, 2);//0~1
         switch (ButtonType)
         {
@@ -53,8 +55,8 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2001;
                 }
-                Losing = "-STA : " + (300 + RandomSTA).ToString();
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
+                Losing = "-STA : " + (300 + SRandomSTA).ToString();
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + SRandomSTA);
                 if (RandomPath == 0)//0걸리면 2002
                 {
                     return 2002;
@@ -73,6 +75,7 @@ public class Stage02EventDetailAction
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
+        int SRandomSTA = Random.Range(-150, -226);//300 + N -> 150 ~ 75가 나오게 해야함 -150 ~ -225
         int RandomPath = Random.Range(0, 4);//0~3
         switch (ButtonType)
         {
@@ -87,8 +90,8 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2002;
                 }
-                Losing = "-STA : " + (300 + RandomSTA).ToString();
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
+                Losing = "-STA : " + (300 + SRandomSTA).ToString();
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + SRandomSTA);
                 if (RandomPath == 0)
                 {//이거 걸리면 2003
                     return 2003;
@@ -107,6 +110,7 @@ public class Stage02EventDetailAction
         Getting = "";
         Losing = "";
         int RandomSTA = Random.Range(-150, 151);
+        int SRandomSTA = Random.Range(-150, -226);//300 + N -> 150 ~ 75가 나오게 해야함 -150 ~ -225
         int RandomPath = Random.Range(0, 10);//0 ~ 9
         switch (ButtonType)
         {
@@ -121,8 +125,8 @@ public class Stage02EventDetailAction
                     UIMgr.G_UI.ActiveGuideMessageUI((int)EGuideMessage.NoEnoughEnergy_FoggedForest);
                     return 2003;
                 }
-                Losing = "-STA : " + (300 + RandomSTA).ToString();
-                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + RandomSTA);
+                Losing = "-STA : " + (300 + SRandomSTA).ToString();
+                PlayerMgr.GetPlayerInfo().PlayerSpendSTA(300 + SRandomSTA);
                 if (RandomPath == 0)
                 {//이거 걸리면 2004
                     return 2004;

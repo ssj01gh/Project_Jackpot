@@ -1141,4 +1141,28 @@ public class PlayerScript : MonoBehaviour
                 break;
         }
     }
+
+    public void PlayPlayerStepSound()
+    {
+        //PlayerState.CurrentFloor
+
+        int RandomSound = Random.Range(1, 5);
+        string SoundID = "";
+
+        if(PlayerState.CurrentFloor == 1 || PlayerState.CurrentFloor == 2)
+        {//钱 家府
+            SoundID = "Grass_Step0" + RandomSound.ToString() + "_Short";
+
+        }
+        else if(PlayerState.CurrentFloor == 3 || PlayerState.CurrentFloor == 4)
+        {//倒 家府
+            SoundID = "Stone_Step0" + RandomSound.ToString() + "_Short";
+        }
+
+        //Debug.Log(SoundID);
+        if(SoundID != "")
+        {
+            SoundManager.Instance.PlaySFX(SoundID);
+        }
+    }
 }

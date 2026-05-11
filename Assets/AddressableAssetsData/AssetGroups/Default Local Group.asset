@@ -307,6 +307,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 457e1e75b1deb754bb161a29466b0a8f
+    m_Address: Tutorial/CampingGacha
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4770b81416ebeaa47bfa958763357666
     m_Address: Event/Event8010
     m_ReadOnly: 0

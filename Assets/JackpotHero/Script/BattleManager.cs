@@ -818,7 +818,7 @@ public class BattleManager : MonoBehaviour
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerAction = (int)EPlayerCurrentState.SelectAction;
                     PlayerMgr.GetPlayerInfo().GetPlayerStateInfo().CurrentPlayerActionDetails = 0;
                     UIMgr.B_UI.ClickVictoryButton();
-                    UIMgr.GI_UI.ActiveGettingUI();
+                    UIMgr.GI_UI.ActiveGettingUI(0, true);
                     UIMgr.SetUI();
                     JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
                     //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();
@@ -839,7 +839,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             UIMgr.B_UI.ClickVictoryButton();
-            UIMgr.GI_UI.ActiveGettingUI();
+            UIMgr.GI_UI.ActiveGettingUI(0, true);
             UIMgr.SetUI();
             JsonReadWriteManager.Instance.SavePlayerInfo(PlayerMgr.GetPlayerInfo().GetPlayerStateInfo());
             //JsonReadWriteManager.Instance.P_Info = PlayerMgr.GetPlayerInfo().GetPlayerStateInfo();

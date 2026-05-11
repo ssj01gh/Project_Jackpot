@@ -153,6 +153,7 @@ MonoBehaviour:
   ActionPosUpperHP: 1
   CanSummonMonsterIDs: []
   SummonMonsterCount: 0
+  MonsterDeadSoundPitch: 2
   MonsterCurrentState: 0
   AdditionalEXP: 0
   MasterMonster: {fileID: 0}

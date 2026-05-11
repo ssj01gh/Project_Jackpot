@@ -323,6 +323,7 @@ public class JsonReadWriteManager : MonoSingletonDontDestroy<JsonReadWriteManage
         T_Info.CampingRest = false;
         T_Info.CampingLevelUp = false;
         T_Info.CampingEquipment = false;
+        T_Info.CampingGacha = false;
 
         string classToJson = JsonUtility.ToJson(T_Info, true);
         File.WriteAllText(Path, classToJson);

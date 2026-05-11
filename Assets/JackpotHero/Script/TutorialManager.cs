@@ -48,7 +48,8 @@ public class TutorialManager : MonoBehaviour
         Maintenance,
         Maintenance_Rest,
         Maintenance_StatUpgrade,
-        Maintenance_EquipmentManagement
+        Maintenance_EquipmentManagement,
+        Maintenance_Gacha
     }
     public void SetLinkedTutorialNStartTutorial(string TutorialKey)//이걸 타이밍 맞게 부르면.....
     {
@@ -224,6 +225,9 @@ public class TutorialManager : MonoBehaviour
                 break;
             case (int)ETutorialNum.Maintenance_EquipmentManagement:
                 ForLinkedTutorial.Add("Tutorial/CampingEquip");
+                break;
+            case (int)ETutorialNum.Maintenance_Gacha:
+                ForLinkedTutorial.Add("Tutorial/CampingGacha");
                 break;
         }
 

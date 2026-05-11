@@ -403,6 +403,10 @@ MonoBehaviour:
     m_Key: PS_TB_M_EquipmentManagement
     m_Metadata:
       m_Items: []
+  - m_Id: 42663680721678336
+    m_Key: PS_TB_M_Gacha
+    m_Metadata:
+      m_Items: []
   - m_Id: 40207504469782528
     m_Key: PS_DW_MaxPointInfo_ONE
     m_Metadata:
