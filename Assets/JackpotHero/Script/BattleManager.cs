@@ -852,7 +852,9 @@ public class BattleManager : MonoBehaviour
         //여기가 이제 버튼 눌러졌을때임 -> 이기거나 졌을때
         JsonReadWriteManager.Instance.E_Info.PlayerEarlyPoint = EarlyUpgradePoint;
         //눌렀을때 할당되게
-        CheckWinAchievement();//초기화 하기 전에.....
+        if(IsWin == true)//이겼을때만
+            CheckWinAchievement();//초기화 하기 전에.....
+
         JsonReadWriteManager.Instance.InitPlayerInfo(true);//초기화
         JsonReadWriteManager.Instance.InitEarlyStrengthenInfo(true);//ReachFloor와 EarlyPoint를 제외하고 초기화시킴
         //->여기서 이겼을때만 크래딧을 띄운다.

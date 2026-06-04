@@ -1,8 +1,9 @@
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Steamworks;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class SteamAchievementManager : MonoSingletonDontDestroy<SteamAchievementManager>
 {
@@ -21,6 +22,7 @@ public class SteamAchievementManager : MonoSingletonDontDestroy<SteamAchievement
         {
             //Debug.Log("Steam 연결 성공");
             IsSteamAPIConected = true;
+            //ResetAchievement();
         }
     }
 
@@ -54,6 +56,17 @@ public class SteamAchievementManager : MonoSingletonDontDestroy<SteamAchievement
 
         SteamUserStats.StoreStats();
     }
+    /*
+    protected void ResetAchievement()
+    {
+        if (IsSteamAPIConected == false)
+            return;
+
+        SteamUserStats.ClearAchievement("ACH_FIRST_CLEAR");
+        SteamUserStats.ClearAchievement("ACH_ENDING_ONE");
+        SteamUserStats.StoreStats();
+    }
+    */
 
     void OnApplicationQuit()
     {
